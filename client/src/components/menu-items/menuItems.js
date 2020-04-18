@@ -7,7 +7,7 @@ const menuItems = (props, {history,match})=>{
    return(
    
 <Link className="item"
-to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}
+to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}
 >
 
 <img src={props.imgURL}  className="item-img"/>
