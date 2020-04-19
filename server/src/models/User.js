@@ -52,6 +52,18 @@ const userSchema = mongoose.Schema({
             }
         }
     },
+    
+    addresses:[
+        {
+            address:{
+                type: String,
+                
+            }
+        }
+    ], 
+
+    
+    
     tokens:[
         {
             token:{
@@ -68,6 +80,19 @@ const userSchema = mongoose.Schema({
 {
     timestamps: true
 })
+
+userSchema.virtual('orders', {
+    ref: 'Order',
+    localField: '_id',
+    foreignField: 'userID'
+})
+
+userSchema.virtual('cart', {
+    ref: 'Cart',
+    localField: '_id',
+    foreignField: 'userID'
+})
+
 /*
 userSchema.virtual('tasks', {
     ref: 'Task',

@@ -5,11 +5,20 @@ const jwt = require('jsonwebtoken')
 
 const sectionSchema = mongoose.Schema({
 	
-	
+	name:{
+		type: String,
+        trim: true,
+        require: true,
+		 }
 	
 	
 	})
 	
+sectionSchema.virtual('products', {
+    ref: 'Product',
+    localField: '_id',
+    foreignField: 'sectionID'
+})
 	
 	
 	
