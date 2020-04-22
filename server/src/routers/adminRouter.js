@@ -5,9 +5,9 @@ const auth = require('../middleware/auth')
 
 
 
-router.post('/ admins/add', async (req,res)=>{
+router.post('/admins/add', async (req,res)=>{
 
-     const verifyPass = req.body.password;
+     const verifyPass = req.body.verifypassword;
      
     /* const email = req.body.email;
      const password = req.body.password;
@@ -17,22 +17,18 @@ router.post('/ admins/add', async (req,res)=>{
      const admin = new Admin(req.body)
      const isValid = await admin.verifyAdmin(verifyPass);
       if (!isValid) {
-     return res.send('invalid operation);
+     return res.send('invalid operation');
      } 
     try {
         await admin.save()
         const token = await admin.generateAuthToken()
-        res.status(201).send({user, token})
+        res.status(201).send({admin, token})
     } catch (e) {
         res.status(400).send(e)
     }
     
      
-     try {
-   . 
-    } catch (e) {
 
+})
 
-     }
-
-}
+module.exports = router

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const hashed = required('../keys/admin.js' ) 
+const hashed = require('../keys/admin.js') 
 const hashpass = hashed.hash;
 const adminSchema = mongoose.Schema({
     adminname:{
@@ -56,6 +56,16 @@ const adminSchema = mongoose.Schema({
 timestamps: true
 } )
 
+adminSchema.pre('save', async function (next) {
+    const admin = this
+
+    if (admin.isModified('password')) {
+        admin.password = await bcrypt.hash(admin.password, 8)
+    }
+
+    next()
+})
+
 
 //Admin verify
 adminSchema.statics.verifyAdmin = async (password)=>{
@@ -75,4 +85,4 @@ adminSchema.statics.verifyAdmin = async (password)=>{
 
 const Admin = mongoose.model('Admin', adminSchema );
 
-module.exports Admin;
+module.exports = Admin;

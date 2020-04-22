@@ -5,7 +5,7 @@ const ObjectId = mongodb.ObjectID;
 
 const connectionURL = 'mongodb://127.0.0.1:27017';
 
-const databaseName = 'shopenode';
+const databaseName = 'offer';
 
 MongoClient.connect(connectionURL , {useNewUrlParser: true}, (err , client) => {
     if (err){
@@ -13,3 +13,4 @@ MongoClient.connect(connectionURL , {useNewUrlParser: true}, (err , client) => {
     }
    const db = client.db(databaseName);
 
+})
