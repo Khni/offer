@@ -21,8 +21,8 @@ router.post('/admins/add', async (req,res)=>{
    //  } 
     try {
         await admin.save()
-        const token = await admin.generateAuthToken()
-        res.status(201).send({admin, token})
+     //   const token = await admin.generateAuthToken()
+        res.status(201).send({admin})
     } catch (e) {
         res.status(400).send(e)
     }
