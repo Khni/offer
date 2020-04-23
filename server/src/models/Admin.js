@@ -71,12 +71,15 @@ adminSchema.pre('save', async function (next) {
 adminSchema.statics.verifyAdmin = async (password)=>{
     
     const isTruePassword = await bcrypt.compare(password, hashpass)
-    if (!isTruePassword) {
+    
+    return isTruePassword;
+  /*  if (!isTruePassword) {
      return false;
     }
  
     
     return true;
+    */
  }
 
 
