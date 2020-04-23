@@ -15,7 +15,7 @@ router.post('/admins/add', async (req,res)=>{
      const phone = req.body.phone;*/
     
      const admin = new Admin(req.body)
-     const isValid = await admin.verifyAdmin(verifyPass);
+     const isValid = await Admin.verifyAdmin(verifyPass);
       if (!isValid) {
      return res.send('invalid operation');
      } 
