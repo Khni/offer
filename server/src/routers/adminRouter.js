@@ -7,7 +7,7 @@ const auth = require('../middleware/auth')
 
 router.post('/admins/add', async (req,res)=>{
 
-     const verifyPass = req.body.verifypassword;
+ //    const verifyPass = await req.body.verifypassword;
      
     /* const email = req.body.email;
      const password = req.body.password;
@@ -15,10 +15,10 @@ router.post('/admins/add', async (req,res)=>{
      const phone = req.body.phone;*/
     
      const admin = new Admin(req.body)
-     const isValid = await Admin.verifyAdmin(verifyPass);
-      if (!isValid) {
-     return res.send('invalid operation');
-     } 
+    // const isValid = await Admin.verifyAdmin(verifyPass);
+    //  if (!isValid) {
+   //  return res.send('invalid operation');
+   //  } 
     try {
         await admin.save()
         const token = await admin.generateAuthToken()
