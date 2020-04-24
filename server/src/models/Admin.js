@@ -65,12 +65,19 @@ adminSchema.pre('save', async function (next) {
 
     next()
 })
-
+//generate token
+adminSchema.methods.generateAuthToken = async function(){
+    const admin = this
+    const token = jwt.sign({_id: admin._id.toString()}, 'secret',{expiresIn: '7 days'})
+    admin.tokens = admin.tokens.concat({token})
+    await admin.save()
+    return token
+}
 
 //Admin verify
 adminSchema.statics.verifyAdmin = async (password)=>{
     
-    const isTruePassword = await bcrypt.compare(password, hashpass)
+    const isTruePassword = await bcrypt.compare(password, hashed)
     
     return isTruePassword;
   /*  if (!isTruePassword) {
