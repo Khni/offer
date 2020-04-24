@@ -80,17 +80,24 @@ adminSchema.statics.verifyAdmin = async (password)=>{
     const isTruePassword = await bcrypt.compare(password, hashed)
     
     return isTruePassword;
-  /*  if (!isTruePassword) {
-     return false;
-    }
- 
-    
-    return true;
-    */
+
  }
 
 
-
+//login verify
+adminSchema.statics.loginVerify = async (email,password)=>{
+    const adminLogin = await User.findOne({email: email})
+    if (!adminLogin) {
+        throw new Error('unable to Login') 
+    }
+    const isTruePassword = await bcrypt.compare(password, adminLogin.password)
+    if (!isTruePassword) {
+     throw new Error('unable to Login') 
+    }
+ 
+    
+    return adminLogin
+ }
 
 
 const Admin = mongoose.model('Admin', adminSchema );

@@ -55,7 +55,7 @@ router.get('/users',async (req,res) => {
  router.get('/profile' , auth, async (req,res) =>{
     res.send(req.user)
 })
-
+/*
 //find user by id
 router.get('/users/:id',(req,res) => {
     User.findById(req.params.id).then((user)=>{
@@ -65,7 +65,7 @@ router.get('/users/:id',(req,res) => {
     })
   
 })
-
+*/
 
 //logout
 router.get('/logout', auth , async (req,res)=>{
