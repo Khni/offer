@@ -7,7 +7,7 @@ const auth = require('../middleware/adminAuth')
 
 router.post('/admin/add', async (req,res)=>{
      const DataLoginInput = Object.keys(req.body)
-    const DataLoginMust = ['email', 'verifypassword', 'adminname', 'phone', 'password' ]
+    const DataLoginMust = ['email', 'verifypassword', 'adminname', 'phone', 'password', 'personalCardId' ]
     const isValidOperation = DataLoginInput.every((LoginInput) => DataLoginMust.includes(LoginInput))
     
     if (!isValidOperation) {
@@ -20,7 +20,7 @@ router.post('/admin/add', async (req,res)=>{
     if (adminjson) {
         return res.send('Email is already exit!')
       }
-    const adminnamejs= await User.findOne({username: username})
+    const adminnamejs= await Admin.findOne({adminname: adminname})
     if (adminnamejs) {
         return res.send('Adminname is already exit!')
       }
@@ -79,17 +79,18 @@ router.post('/admin/login', async (req,res)=>{
 
 
    try {
-       const adminToLogin =await Admin.adminVerfy(EmailInput,PasswordInput)
+       const adminToLogin =await Admin.loginVerify(EmailInput,PasswordInput)
        const token = await adminToLogin.generateAuthToken()
        res.send({adminToLogin , token})
    } catch (error) {
-
+        console.log(error);
+        
        res.status(400).send(error)
    }
 
 
 
-)} 
+})
 router.get('/admin/profile' , auth, async (req,res) =>{
     res.send(req.admin)
 })
@@ -117,7 +118,7 @@ router.post('/admins',async (req,res) => {
    } catch (e) {
     res.status(400).send(e)
    }
-  )} 
+  })
   
   //logout
 router.get('/admin/logout', auth , async (req,res)=>{

@@ -27,6 +27,12 @@ const adminSchema = mongoose.Schema({
             }
         }
     },
+    personalCardId: {
+       type: Number,
+       required: true,
+       minlength: 14,
+       trim: true
+    },
     password: {
         type: String,
         required: true,
@@ -55,17 +61,17 @@ const adminSchema = mongoose.Schema({
 
 timestamps: true
 } )
-userSchema.virtual('product', {
+adminSchema.virtual('product', {
     ref: 'Product',
     localField: '_id',
     foreignField: 'adminID'
 })
-userSchema.virtual('category', {
+adminSchema.virtual('category', {
     ref: 'Category',
     localField: '_id',
     foreignField: 'adminID'
 })
-userSchema.virtual('section', {
+adminSchema.virtual('section', {
     ref: 'Section',
     localField: '_id',
     foreignField: 'adminID'
@@ -104,7 +110,7 @@ adminSchema.statics.verifyAdmin = async (password)=>{
 
 //login verify
 adminSchema.statics.loginVerify = async (email,password)=>{
-    const adminLogin = await User.findOne({email: email})
+    const adminLogin = await Admin.findOne({email: email})
     if (!adminLogin) {
         throw new Error('unable to Login') 
     }
