@@ -10,6 +10,12 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true,
 		 },
+		
+	adminID:{
+      type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Admin'
+        }, 
 	price:{
 		type: Float,
         trim: true,

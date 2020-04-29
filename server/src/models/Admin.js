@@ -55,6 +55,24 @@ const adminSchema = mongoose.Schema({
 
 timestamps: true
 } )
+userSchema.virtual('product', {
+    ref: 'Product',
+    localField: '_id',
+    foreignField: 'adminID'
+})
+userSchema.virtual('category', {
+    ref: 'Category',
+    localField: '_id',
+    foreignField: 'adminID'
+})
+userSchema.virtual('section', {
+    ref: 'Section',
+    localField: '_id',
+    foreignField: 'adminID'
+})
+
+
+
 
 adminSchema.pre('save', async function (next) {
     const admin = this

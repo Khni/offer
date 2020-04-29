@@ -9,7 +9,13 @@ const sectionSchema = mongoose.Schema({
 		type: String,
         trim: true,
         require: true,
-		 }
+		 }, 
+		adminID: {
+       type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Admin'
+         } 
+		
 	
 	
 	})

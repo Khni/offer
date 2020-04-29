@@ -10,6 +10,11 @@ const categorySchema = mongoose.Schema({
         trim: true,
         require: true,
 		 }
+		adminID:{
+type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Admin'
+            } 
 	
 	
 	
