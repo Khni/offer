@@ -23,11 +23,11 @@ type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
 
             }, 
-        Quantity: {
+      quantity: {
        type: Number,
         required: true
        }, 
-       PriceQuantity: {
+       priceQuantity: {
        type: Number,
         required: true
        }, 
