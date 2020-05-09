@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import InputForm from '../inputForm.js';
 import * as actions from '../../../store/actions/users.js';
-
+ 
 class signUp extends Component{
    
    constructor(props) {
@@ -17,10 +17,12 @@ class signUp extends Component{
     this.onSubmit = this.onSubmit.bind(this);
     
   }
-
+ 
   async onSubmit(formData) {
   	const { signUp } = this.props;
     await signUp(formData);
+    console.log(formData);
+    
     
   }
    
@@ -36,7 +38,7 @@ class signUp extends Component{
   <div class="header">
   
 </div>
-
+ 
   
   
   
@@ -48,8 +50,8 @@ class signUp extends Component{
   </div>
   <h4 class="h3h"> انشاء حساب جديد  </h4>
 <form onSubmit={handleSubmit(this.onSubmit)}> 
-
-
+ 
+ 
 <fieldset>
   <Field 
 type="text"
@@ -60,9 +62,9 @@ placeholder="الاسم الثلاثي"
 component={ InputForm }
 />
 </fieldset>
-
-
-
+ 
+ 
+ 
 <fieldset>
   <Field 
 type="text"
@@ -73,9 +75,9 @@ placeholder="الايميل - البريد الالكترونى "
 component={ InputForm }
 />
 </fieldset>
-
-
-
+ 
+ 
+ 
 <fieldset>
   <Field 
 type="tel"
@@ -86,8 +88,8 @@ placeholder="رقم الهاتف"
 component={ InputForm }
 />
 </fieldset>
-
-
+ 
+ 
 <fieldset>
   <Field 
 type="password"
@@ -98,7 +100,7 @@ placeholder="اكتب الرقم السري"
 component={ InputForm }
 />
 </fieldset>
-
+ 
 <fieldset>
   <Field 
 type="password"
@@ -109,15 +111,15 @@ placeholder="أعد كتابة الرقم السري"
 component={ InputForm }
 />
 </fieldset>
-
-
-
+ 
+ 
+ 
  
  <button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
-
-
+ 
+ 
 <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
-
+ 
 <div class="social-icons">
 <img src={FacebookIcon}  class="fbicon"
 height="50"
@@ -127,33 +129,33 @@ width="50"
 height="50"
 width="50"
 />
-
-
-
-
+ 
+ 
+ 
+ 
 </div>
-
+ 
  </form>
-
-
+ 
+ 
 </div>
-
+ 
 </div>
-
-
-
+ 
+ 
+ 
  
      );
     } 
 }
-
+ 
 const mapStateToProps = state => {
   return {
     errorMsg: state.userAuth.error
   }
   
 }
-
+ 
 export default compose(
   connect(mapStateToProps, actions),
   reduxForm({ form: 'signup' })
