@@ -1,11 +1,35 @@
-import React from 'react';
 import Section from './signUp.css';
 import { withRouter } from 'react-router-dom';
+import * as RouterDom from 'react-router-dom';
 import Googleicon from './img/googleicon.png';
 import FacebookIcon from './img/Facebookicon.png';
+import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import InputForm from '../inputForm.js';
+import * as actions from '../../../store/actions/users.js';
 
-const signUp = (props)=>{
+class signUp extends Component{
    
+   constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    
+  }
+
+  async onSubmit(formData) {
+  	const { signUp } = this.props;
+    await signUp(formData);
+    
+  }
+   
+   
+   
+   
+   
+   render() {
+   	const { handleSubmit } = this.props;
    return(
     
 <div class="main-container">
@@ -23,34 +47,70 @@ const signUp = (props)=>{
   <div class="logo-pic">
   </div>
   <h4 class="h3h"> انشاء حساب جديد  </h4>
-<form> 
+<form onSubmit={handleSubmit(this.onSubmit)}> 
 
 
-<input type="text"
+<fieldset>
+  <Field 
+type="text"
+name="name" 
+id="name" 
 class="input-text"
 placeholder="الاسم الثلاثي"
+component={ InputForm }
 />
+</fieldset>
 
-<input type="email"
+
+
+<fieldset>
+  <Field 
+type="text"
+name="email" 
+id="email" 
 class="input-text"
 placeholder="الايميل - البريد الالكترونى "
+component={ InputForm }
 />
+</fieldset>
 
-<input type="tel"
+
+
+<fieldset>
+  <Field 
+type="tel"
+name="phone" 
+id="phone" 
 class="input-text"
 placeholder="رقم الهاتف"
+component={ InputForm }
 />
+</fieldset>
 
 
-<input type="password"
+<fieldset>
+  <Field 
+type="password"
+name="password" 
+id="password" 
 class="input-text"
-placeholder="الرقم السري"
+placeholder="اكتب الرقم السري"
+component={ InputForm }
 />
+</fieldset>
 
-<input type="password"
+<fieldset>
+  <Field 
+type="password"
+name="repassword" 
+id="repassword" 
 class="input-text"
-placeholder="أعد كتابة الرقم السري للتاكيد"
+placeholder="أعد كتابة الرقم السري" 
+component={ InputForm }
 />
+</fieldset>
+
+
 
  
  <button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
@@ -84,6 +144,17 @@ width="50"
 
  
      );
+    } 
 }
 
-export default withRouter(signUp);
+const mapStateToProps = state => {
+  return {
+    errorMsg: state.userAuth.error
+  }
+  
+}
+
+export default compose(
+  connect(mapStateToProps, actions),
+  reduxForm({ form: 'signup' })
+)(signUp)

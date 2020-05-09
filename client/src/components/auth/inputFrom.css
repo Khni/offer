@@ -1,0 +1,21 @@
+.input-text {
+				font-size:12pt;
+				width:290px;
+				transition: width 2s;
+				height:50px;
+				margin-bottom: 15px;
+				
+				padding: 22px;
+				 border: 1px solid rgba(81, 203, 238, 1); 
+				
+				border-radius: 25px;
+				padding: 7px;
+				text-align: right;
+				}		
+				
+.input-text:focus {
+			  width:310px;
+				box-shadow: 0 0 5px 	#00ccff; 
+				 border: 1px solid #0066cc; 
+				 
+				 }

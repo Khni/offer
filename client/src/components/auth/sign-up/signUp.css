@@ -7,6 +7,11 @@ body, html {
 				margin: 5px;
 				box-shadow: 5px 10px 18px #888888;
 				}
+				
+fieldset {
+  border: none;
+  margin: 0;
+} 
 	
 .hrr { border: 1;
  clear:both;
