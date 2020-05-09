@@ -13,7 +13,7 @@ import {
  export const signUp = data => {
   return async dispatch => {
     try {
-      const response = await axios.post('http://localhost:3000/admin/signup', data);
+      const response = await axios.post('http://localhost:8080/signup', data);
 
       dispatch({
         type: AUTH_SIGN_UP
