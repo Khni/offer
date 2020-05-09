@@ -89,7 +89,7 @@ router.post('/admin/login', async (req,res)=>{
    }
 
 
-
+   
 })
 router.get('/admin/profile' , auth, async (req,res) =>{
     res.send(req.admin)
@@ -98,7 +98,7 @@ router.get('/admin/profile' , auth, async (req,res) =>{
 router.post('/admins',async (req,res) => {
 	
 	const DataLoginInput = Object.keys(req.body)
-    const DataLoginMust = ['verifypassword' ]
+    const DataLoginMust = ['verifypassword']
     const isValidOperation = DataLoginInput.every((LoginInput) => DataLoginMust.includes(LoginInput))
     
     if (!isValidOperation) {
@@ -112,6 +112,7 @@ router.post('/admins',async (req,res) => {
      return res.send('invalid operation');
     } 
 	
+    
    try {
     const admins = await Admin.find({})
     res.send(admins)
