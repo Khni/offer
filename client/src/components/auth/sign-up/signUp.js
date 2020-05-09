@@ -21,6 +21,8 @@ class signUp extends Component{
   async onSubmit(formData) {
   	const { signUp } = this.props;
     await signUp(formData);
+    console.log(formData);
+    
     
   }
    
