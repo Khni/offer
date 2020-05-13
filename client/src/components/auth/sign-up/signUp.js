@@ -68,6 +68,17 @@ placeholder="الاسم الثلاثي"
 component={ InputForm }
 />
 </fieldset>
+
+<fieldset>
+  <Field 
+type="text"
+name="username" 
+id="username" 
+class="input-text"
+placeholder="اختر اسم المستخدم "
+component={ InputForm }
+/>
+</fieldset>
  
  
  

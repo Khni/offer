@@ -19,6 +19,13 @@ router.post('/signup', async (req,res)=>{
     if (usernamejs) {
         return res.send('Username is already exit!')
       }
+
+      const password = req.body.password
+      const repassword = req.body.repassword
+
+      if (password !== repassword) {
+        return res.send('Password is not match')
+      }
     
     const user = new User(req.body)
     try {
