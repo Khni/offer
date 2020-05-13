@@ -15,20 +15,26 @@ class signUp extends Component{
    constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
  
   async onSubmit(formData) {
+  	console.log("Hello");
+  alert(JSON.stringify(formData));
   	const { signUp } = this.props;
     await signUp(formData);
-    console.log(formData);
+    
     
     
   }
    
    
    
-   
+ async   handleSubmit(event) {
+    alert(event.name)
+    console.log("Hello") 
+    event.preventDefault()
+  }
    
    render() {
    	const { handleSubmit } = this.props;
@@ -115,9 +121,23 @@ component={ InputForm }
  
  
  
- <button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
- 
- 
+<button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
+  </form>
+
+  <form onSubmit={this.handleSubmit}>
+<fieldset>
+  <Field 
+type="text"
+name="name" 
+id="name" 
+class="input-text"
+placeholder="الاسم الثلاثي"
+component={ InputForm }
+/>
+</fieldset>
+<button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
+
+</form>
 <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
  
 <div class="social-icons">
@@ -135,7 +155,7 @@ width="50"
  
 </div>
  
- </form>
+
  
  
 </div>
