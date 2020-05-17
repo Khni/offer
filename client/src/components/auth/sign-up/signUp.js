@@ -19,12 +19,12 @@ class signUp extends Component{
   }
  
   async onSubmit(formData) {
-  	console.log("Hello");
-  alert(JSON.stringify(formData));
+  	
+  
   	const { signUp } = this.props;
     await signUp(formData);
     
-    
+    this.props.history.push('/dashboard')
     
   }
    
@@ -129,7 +129,7 @@ component={ InputForm }
 />
 </fieldset>
  
- 
+
  
  
 <button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>

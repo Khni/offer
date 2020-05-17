@@ -14,9 +14,10 @@ import {
   return async dispatch => {
     try {
       const response = await axios.post('http://localhost:8080/signup', data);
-
+     console.log("signUp axios") 
       dispatch({
-        type: AUTH_SIGN_UP
+        type: AUTH_SIGN_UP, 
+        Token: response.Token
       });
     } catch(err) {
       dispatch({
@@ -30,7 +31,7 @@ import {
 export const signIn = data => {
   return async dispatch => {
     try {
-      await axios.post('http://localhost:3000/admin/signin', data);
+      await axios.post('http://localhost:3000/8080/signin', data);
 
       dispatch({
         type: AUTH_SIGN_IN

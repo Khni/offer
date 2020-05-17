@@ -2,7 +2,7 @@ const express = require('express')
 const User = require('../models/User')
 const router = new express.Router()
 const auth = require('../middleware/auth')
-
+const passport = require('passport');
 
 
 //post/create new user 
@@ -11,11 +11,11 @@ router.post('/signup', async (req,res)=>{
 
     const email = req.body.email
     const username = req.body.username
-    const userjson = await User.findOne({email: email})
+    const userjson = await User.findOne({local.email: email})
     if (userjson) {
         return res.send('Email is already exit!')
       }
-    const usernamejs= await User.findOne({username: username})
+    const usernamejs= await User.findOne({local.username: username})
     if (usernamejs) {
         return res.send('Username is already exit!')
       }
@@ -26,8 +26,50 @@ router.post('/signup', async (req,res)=>{
       if (password !== repassword) {
         return res.send('Password is not match')
       }
+      
+      
+      
+      foundUser = await User.findOne({ 
+      $or: [
+        { "google.email": email },
+        { "facebook.email": email },
+      ] 
+    });
+    if (foundUser) {
+      // Let's merge them?
+      foundUser.methods.push('local')
+      foundUser={
+       local: {
+        email: email, 
+        password: password, 
+        username: username
+      }
+          ,...req.body})
+          
+          try {
+        await foundUser.save()
+        const token = await foundUser.generateAuthToken()
+        res.status(201).send({foundUser, token})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+      
+     } 
+      
+      
+      
+      
+      
+      if (!foundUser){
     
-    const user = new User(req.body)
+    const user = new User({
+    	methods: ['local'],
+      local: {
+        email: email, 
+        password: password, 
+        username: username
+      }
+          ,...req.body})
     try {
         await user.save()
         const token = await user.generateAuthToken()
@@ -35,7 +77,7 @@ router.post('/signup', async (req,res)=>{
     } catch (e) {
         res.status(400).send(e)
     }
-    
+   } 
 })
 //list of users
 router.get('/users',async (req,res) => {
@@ -212,6 +254,21 @@ router.get('/admin/removeuser/:id',(req,res)=>{
    })
 })
 
+
+
+//google
+router.post('/googleauth', async (req,res)=>{
+  
+ passport.use('googleToken', new GooglePlusTokenStrategy({
+  clientID: config.oauth.google.clientID,
+  clientSecret: config.oauth.google.clientSecret,
+  passReqToCallback: true,
+  }, async (req, accessToken, refreshToken, profile, done) => {
+
+
+
+}
+}));
 
 
 

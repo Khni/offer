@@ -4,24 +4,24 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const userSchema = mongoose.Schema({
-    username:{
-        type: String,
-        trim: true,
-        require: true,
-        unique: true,
-        validate(value){
-          if (validator.contains(value," ")) {
-            throw new Error('Username can not contain spaces')
-          }
-        }
-    },
+	
+	methods: {
+    type: [String],
+    required: true
+  },
+	
+	
+    
     name: {
         type: String
     },
     age: {
         type: Number
     },
-    email: {
+    
+    local :{
+    
+      email: {
         type: String,
         trim: true,
         require: true,
@@ -33,12 +33,18 @@ const userSchema = mongoose.Schema({
             }
         }
     },
-     phone: {
-     	type: Number,
-         trim: true,
-
-   },
-    password: {
+    username:{
+        type: String,
+        trim: true,
+        require: true,
+        unique: true,
+        validate(value){
+          if (validator.contains(value," ")) {
+            throw new Error('Username can not contain spaces')
+          }
+        }
+    },
+      password: {
         type: String,
         required: true,
         minlength: 8,
@@ -51,7 +57,36 @@ const userSchema = mongoose.Schema({
                 throw new Error('Password cannot contain "123456"')
             }
         }
+    }} ,
+    
+    
+    google: {
+    id: {
+      type: String
     },
+    email: {
+      type: String,
+      lowercase: true
+    }
+  },
+  facebook: {
+    id: {
+      type: String
+    },
+    email: {
+      type: String,
+      lowercase: true
+    }
+  }, 
+    
+    
+    
+    
+     phone: {
+     	type: Number,
+         trim: true,
+
+   },
     
     addresses:[
         {
