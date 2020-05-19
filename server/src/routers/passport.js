@@ -10,6 +10,10 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
         clientSecret: 'FGf7UrLXHsGSmwugR52e2_NU',
     passReqToCallback: true,
     }, async (req, accessToken, refreshToken, profile, done) => {
+    	
+    
+    try {
+    
          const founduser = await User.findOne({"google.id": profile.id})
          if (founduser) {
       return done(null, founduser) 
@@ -27,18 +31,16 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
           email: profile.emails[0].value
         }
         
-        try {
+       
         await foundUserLocal.save()
         return done(null, foundUserLocal);
-    //    res.status(201).send({user, token})
-    } catch (e) {
-      //  res.status(400).send(e)
-    }
+    
+      
         
         
         
         
-      }
+      }//end of if foundUserLocal
       
       
       
@@ -50,19 +52,21 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
         email: profile.emails[0].value, 
 
       }
-          })
-    try {
+          })//end of new User
+    
         await user.save()
         const token = await user.generateAuthToken()
-       //res.status(201).send({user, token})
-    } catch (e) {
-    //    res.status(400).send(e)
-    }
-   } 
+        done(null, user)
+     
+   } //end of try
 
       
-  console.log(profile.emails[0].value);
+  //console.log(profile.emails[0].value);
   
-   
+  
+  }//end of async function 
+  
+   catch(error) {
+    done(error, false, error.message);
   }
-  ))
+  } ))
