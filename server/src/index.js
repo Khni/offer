@@ -10,7 +10,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 
 const userRouter = require('./routers/userRouter')
-
+const {router , routerPromise} =require('./routers/userRouter')
 const adminRouter = require('./routers/adminRouter')
 
 //enable for using both ports client and server for developement
@@ -32,7 +32,9 @@ app.use(function(req, res, next) {
  
 //to get data jason from postman
 app.use(express.json())
-app.use(userRouter)
+//app.use(userRouter)
+app.use(router)
+app.use(routerPromise)
 app.use(adminRouter)
 
 

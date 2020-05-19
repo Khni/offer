@@ -7,7 +7,7 @@ const oauth = require('../config/oauth.js');
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
-const userController = require('../controllers/userController')
+const UserController = require('../controllers/userController')
 
 //post/create new user 
 //
@@ -264,8 +264,9 @@ router.get('/admin/removeuser/:id',(req,res)=>{
 
 
 
-routerPromise.route('/google/oauth').post(passport.authenticate('googleToken'),userController.googleOAuth)
+routerPromise.route('/google/oauth')
+.post(passport.authenticate('googleToken'),UserController.googleOAuth)
 
 
 
-module.exports = router
+module.exports ={router, routerPromise} 
