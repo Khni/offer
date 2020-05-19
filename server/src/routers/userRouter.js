@@ -3,7 +3,11 @@ const User = require('../models/User')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 const passport = require('passport');
-
+const oauth = require('../config/oauth.js');
+const GooglePlusTokenStrategy = require('passport-google-plus-token')
+const AuthPassport = require("./passport")
+const routerPromise = require('express-promise-router')();
+const userController = require('../controllers/userController')
 
 //post/create new user 
 //
@@ -11,11 +15,11 @@ router.post('/signup', async (req,res)=>{
 
     const email = req.body.email
     const username = req.body.username
-    const userjson = await User.findOne({local.email: email})
+    const userjson = await User.findOne({"local.email": email})
     if (userjson) {
         return res.send('Email is already exit!')
       }
-    const usernamejs= await User.findOne({local.username: username})
+    const usernamejs= await User.findOne({"local.username": username})
     if (usernamejs) {
         return res.send('Username is already exit!')
       }
@@ -44,7 +48,7 @@ router.post('/signup', async (req,res)=>{
         password: password, 
         username: username
       }
-          ,...req.body})
+          ,...req.body}
           
           try {
         await foundUser.save()
@@ -257,19 +261,9 @@ router.get('/admin/removeuser/:id',(req,res)=>{
 
 
 //google
-router.post('/google/oauth', async (req,res)=>{
-  
- passport.use('googleToken', new GooglePlusTokenStrategy({
-  clientID: config.oauth.google.clientID,
-  clientSecret: config.oauth.google.clientSecret,
-  passReqToCallback: true,
-  }, async (req, accessToken, refreshToken, profile, done) => {
 
 
 
-}
-}));
-
-
+routerPromise.route('/google/oauth').post(passport.authenticate('googleToken'),userController.googleOAuth)
 
 module.exports = router
