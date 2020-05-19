@@ -74,4 +74,5 @@ catch(error) {
 
 
 //MongoError: E11000 duplicate key error collection: offer.users index: local.email_1 dup key: { local.email: null }
-
+//ya29.a0AfH6SMAcAp_-q97URXXhkSAEj_trJTRQfKePL93-CT9_X88U5Kirrp0ugDiMeiOA2znl3KqnYIsWSQL1RIlIwgGloHzPtc1uGpmz6r82OQc4qXZed3hVIj8fd5OKBZvhLU5FwnqDplfw2WTj9-PWzMD9zsWKuOeKjlbo
+// passport.initialize() middleware not in use<br> &nbsp; &nbsp;at IncomingMessage.req.login.req.logIn 
