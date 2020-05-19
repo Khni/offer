@@ -257,7 +257,7 @@ router.get('/admin/removeuser/:id',(req,res)=>{
 
 
 //google
-router.post('/googleauth', async (req,res)=>{
+router.post('/google/oauth', async (req,res)=>{
   
  passport.use('googleToken', new GooglePlusTokenStrategy({
   clientID: config.oauth.google.clientID,
