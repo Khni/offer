@@ -266,4 +266,6 @@ router.get('/admin/removeuser/:id',(req,res)=>{
 
 routerPromise.route('/google/oauth').post(passport.authenticate('googleToken'),userController.googleOAuth)
 
+
+
 module.exports = router
