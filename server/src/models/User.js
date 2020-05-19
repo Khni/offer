@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
         trim: true,
        // require: true,
         lowercase: true,
-        unique: true,
+        //unique: true,
         validate(value){
             if (!validator.isEmail(value)) {
                 throw new Error('Email is invalid')
@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema({
         type: String,
         trim: true,
        // require: true,
-        unique: true,
+      //  unique: true,
         validate(value){
           if (validator.contains(value," ")) {
             throw new Error('Username can not contain spaces')
