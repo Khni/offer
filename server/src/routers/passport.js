@@ -51,17 +51,20 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
 
       }
           })
+
+
     try {
         await user.save()
         const token = await user.generateAuthToken()
        //res.status(201).send({user, token})
     } catch (e) {
     //    res.status(400).send(e)
+    return e
     }
-   } 
+   
 
       
-  console.log(profile.emails[0].value);
+  //console.log(profile.emails[0].value);
   
    
   }
