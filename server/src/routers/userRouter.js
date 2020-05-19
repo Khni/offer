@@ -79,9 +79,8 @@ router.post('/signup', async (req,res)=>{
         const token = await user.generateAuthToken()
         res.status(201).send({user, token})
     } catch (e) {
-        res.status(400).send(e)
-    }
-   } 
+        res.status(400).send(
+
 })
 //list of users
 router.get('/users',async (req,res) => {
