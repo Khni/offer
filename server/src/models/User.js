@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
       email: {
         type: String,
         trim: true,
-        require: true,
+       // require: true,
         lowercase: true,
         unique: true,
         validate(value){
@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema({
     username:{
         type: String,
         trim: true,
-        require: true,
+       // require: true,
         unique: true,
         validate(value){
           if (validator.contains(value," ")) {
@@ -46,7 +46,7 @@ const userSchema = mongoose.Schema({
     },
       password: {
         type: String,
-        required: true,
+       // required: true,
         minlength: 8,
         trim: true,
         validate(value) {

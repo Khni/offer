@@ -61,13 +61,16 @@ done(null, user)
 
 } //end of try
 
-
+catch(error) {
+    done(error, false, error.message);
+    }
 //console.log(profile.emails[0].value);
 
 
 }//end of async function 
 
-catch(error) {
-done(error, false, error.message);
-}
-} ))
+
+))
+
+
+//MongoError: E11000 duplicate key error collection: offer.users index: local.email_1 dup key: { local.email: null }
