@@ -13,9 +13,17 @@ import adminReducer from "./store/reducers/adminReducer" ;
 //import index file in reducers
 import Reducers from "./store/reducers" ;
 axios.defaults.withCredentials = true;
+const jwtToken = localStorage.getItem('JWT_TOKEN');
+axios.defaults.headers.common['Authorization'] = jwtToken;
+ 
 
+const store = createStore(Reducers , {
+userAuth: {
+      token: jwtToken,
+      isAuthenticated: jwtToken ? true : false
+    }
 
-const store = createStore(Reducers , {}, applyMiddleware(reduxThunk));
+}, applyMiddleware(reduxThunk));
 ReactDOM.render(
   <BrowserRouter>
 <Provider store={store}>

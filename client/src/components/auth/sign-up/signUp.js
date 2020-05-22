@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import InputForm from '../inputForm.js';
 import * as actions from '../../../store/actions/users.js';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
  
 class signUp extends Component{
    
@@ -16,6 +18,9 @@ class signUp extends Component{
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.responseGoogle = this.responseGoogle.bind(this);
+    this.responseFacebook = this.responseFacebook.bind(this);
+  
   }
  
   async onSubmit(formData) {
@@ -28,13 +33,28 @@ class signUp extends Component{
     
   }
    
-   
+   async responseGoogle(res) {
+    await this.props.oauthGoogle(res.accessToken);
+    if (!this.props.errorMessage) {
+      this.props.history.push('/');
+    }
+  }
+ 
+  async responseFacebook(res) {
+    await this.props.oauthFacebook(res.accessToken);
+    if (!this.props.errorMessage) {
+      this.props.history.push('/');
+    }
+  }
    
  async   handleSubmit(event) {
     alert(event.name)
     console.log("Hello") 
     event.preventDefault()
   }
+  responseGoogle(response){
+  console.log(response);
+}
    
    render() {
    	const { handleSubmit } = this.props;
@@ -135,22 +155,23 @@ component={ InputForm }
 <button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
   </form>
 
-  <form onSubmit={this.handleSubmit}>
-<fieldset>
-  <Field 
-type="text"
-name="name" 
-id="name" 
-class="input-text"
-placeholder="الاسم الثلاثي"
-component={ InputForm }
-/>
-</fieldset>
-<button type="submit" class="btn btn-primary shadow w50px grad">تسجيل</button>
 
-</form>
 <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
- 
+ <FacebookLogin
+              appId=""
+              textButton="Facebook"
+              fields="name,email,picture"
+              callback={this.responseFacebook}
+              
+              
+            />
+            <GoogleLogin 
+              clientId="746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com"
+              buttonText="Google"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              
+            />
 <div class="social-icons">
 <img src={FacebookIcon}  class="fbicon"
 height="50"

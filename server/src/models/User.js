@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
             }
         }
     },
-    username:{
+  /*  username:{
         type: String,
         trim: true,
        // require: true,
@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
             throw new Error('Username can not contain spaces')
           }
         }
-    },
+    },*/
       password: {
         type: String,
        // required: true,

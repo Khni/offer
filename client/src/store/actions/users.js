@@ -17,8 +17,10 @@ import {
      console.log("signUp axios") 
       dispatch({
         type: AUTH_SIGN_UP, 
-        Token: response.Token
+        token: response.token
       });
+      localStorage.setItem('JWT_TOKEN', response.token);
+    axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
       dispatch({
         type: AUTH_ERROR,
@@ -31,16 +33,52 @@ import {
 export const signIn = data => {
   return async dispatch => {
     try {
-      await axios.post('http://localhost:3000/8080/signin', data);
+   const response =   await axios.post('http://localhost:3000/8080/signin', data);
 
       dispatch({
-        type: AUTH_SIGN_IN
+        type: AUTH_SIGN_IN, 
+        token: response.token
       });
+      localStorage.setItem('JWT_TOKEN', response.token);
+    axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: 'Email and password combination isn\'t valid'
+        payload: err
       })
     }
+  };
+}
+
+
+export const oauthGoogle = data => {
+  return async dispatch => {
+    const response = await axios.post('http://localhost:5000/users/oauth/google', {
+      access_token: data
+    });
+ 
+    dispatch({
+      type: AUTH_SIGN_UP,
+      token: response.token
+    });
+ 
+    localStorage.setItem('JWT_TOKEN', response.token);
+    axios.defaults.headers.common['Authorization'] = response.token;
+  };
+}
+ 
+export const oauthFacebook = data => {
+  return async dispatch => {
+    const response = await axios.post('http://localhost:5000/users/oauth/facebook', {
+      access_token: data
+    });
+ 
+    dispatch({
+      type: AUTH_SIGN_UP,
+      token: response.token
+    });
+ 
+    localStorage.setItem('JWT_TOKEN', response.token);
+    axios.defaults.headers.common['Authorization'] = response.token;
   };
 }

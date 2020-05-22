@@ -6,17 +6,20 @@ import {
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
-  error: ''
+  error: '',
+  token:'', 
+  msg: 'hello' 
+  
 }
 
 export default (state = DEFAULT_STATE, action) => {
   switch(action.type) {
     case AUTH_SIGN_UP:
-      return { ...state, isAuthenticated: true, error: '' }
+      return { ...state, isAuthenticated: true, token:action.token, error: '' }
     case AUTH_SIGN_IN:
-      return { ...state, isAuthenticated: true, error: '' }
+      return { ...state, isAuthenticated: true, token:action.token, error: '' }
     case AUTH_SIGN_OUT:
-      return { ...state, isAuthenticated: false, error: '' }
+      return { ...state, isAuthenticated: false, token:'', error: '' }
     case AUTH_ERROR:
       return { ...state, error: action.payload }
     default:
