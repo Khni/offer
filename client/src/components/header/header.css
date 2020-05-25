@@ -171,6 +171,10 @@ body{
 				margin-right:3px;
 	 		
 				}
+.cartSection {
+	display: flex;
+				flex-direction: row;
+} 
 
 .icontext-text{
 				display: flex;

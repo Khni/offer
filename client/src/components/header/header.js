@@ -4,9 +4,11 @@ import Offerenologo from './img/Offereno.png';
 import menuicon from './img/menuicon.png';
 import iconuser from './img/Iconuser.png';
 import carticon from './img/carticon.png';
+import closeCart from './img/close.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/users.js';
+import * as actions from '../../store/actions/cartAction.js';
+import CartDropdown from '../cart/cart-dropdown.component';
 
 class Header extends Component{
    
@@ -46,23 +48,27 @@ class Header extends Component{
     
     
   
-    <Link className="icontext" to='/signup'>
-  
-    <p  className="icontext-text">
+    
+  <div className="cartSection" onClick={this.props.toggle}>
+      {this.props.hidden ?  <div className="cartSection" >  <p  className="icontext-text" >
     عربه
      الشراء
-     {this.props.msg} 
+     {/*this.props.msg*/} 
     </p> 
-    <img src={carticon} className="icontext-icon-cart" />
-    </Link>
+    <img src={carticon} className="icontext-icon-cart" /></div>
+  :   <img src={closeCart} className="icontext-icon-cart" />}
+ 
+
+ 
+    </div>
+    
+    </div>
+   
     
     
     </div>
     
-    
-    
-    </div>
-    
+     {this.props.hidden ? null : <CartDropdown />}
     <input type="text"
     className="input-text-search"
     placeholder="search... "
@@ -79,7 +85,8 @@ class Header extends Component{
 function mapStateToProps(state)  {
   return {
     isAuth: state.userAuth.isAuthenticated, 
-    msg: state.userAuth.msg
+    msg: state.userAuth.msg, 
+    hidden: state.cartReducer.hidden
   };
 }
  

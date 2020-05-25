@@ -10,24 +10,24 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import userReducer from "./store/reducers/userReducer" ;
 import adminReducer from "./store/reducers/adminReducer" ;
-//import index file in reducers
+
 import Reducers from "./store/reducers" ;
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { store, persistor }from "./store/store" ;
+
 axios.defaults.withCredentials = true;
 const jwtToken = localStorage.getItem('JWT_TOKEN');
 axios.defaults.headers.common['Authorization'] = jwtToken;
  
 
-const store = createStore(Reducers , {
-userAuth: {
-      token: jwtToken,
-      isAuthenticated: jwtToken ? true : false
-    }
-
-}, applyMiddleware(reduxThunk));
+//const store = createStore(Reducers , {}, applyMiddleware(reduxThunk));
 ReactDOM.render(
   <BrowserRouter>
 <Provider store={store}>
+<PersistGate persistor={persistor}>
 <App />
+</PersistGate>
 </Provider>
   </BrowserRouter>,
   document.getElementById('root')

@@ -1,0 +1,150 @@
+.cart-Item {
+   display: flex;
+   flex-direction: column;
+   margin: 15px;
+   padding: 10px;
+   background: white;
+   border :0.5px solid black;
+}
+
+.cart-item-desc {
+   display: flex;
+}
+
+.cart-item-bar {
+   display: flex;
+   border-top: 0.5px solid black;
+   height: 35px;
+   margin-top: 10px;
+   text-align: center;
+}
+.movetofav-text{
+display: flex;
+margin: 10px;
+font-size: 15px;
+color: orange;
+font-weight: 800;
+margin-left: 20px;
+}
+  .cart-itemm {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+   /* box-shadow: 2px 5px 9px #888888;*/
+  }
+ .cart-item-img {
+display: flex;
+height: 110px;
+width: 110px;
+border: 0.5px solid black;
+padding: 1px;
+margin-right: 10px;
+
+} 
+.remove-text{
+	display: flex;
+margin: 10px;
+font-size: 15px;
+color: orange;
+font-weight: 800;
+margin-left: 0;
+}
+
+.remove-text-icon{
+	display: flex;
+	flex-direction: row;
+}
+
+.trash-icon{
+display: flex;
+height: 17px;
+width: 17px;
+opacity: 0.9;
+margin: 10px;
+margin-right: 5px;
+}
+
+.adjust-item-number{
+display: flex;
+flex-direction: row;
+
+}
+.minus-icon{
+display: flex;
+height: 17px;
+width: 17px;
+opacity: 0.9;
+margin: 10px;
+margin-right:0;
+
+
+
+}
+.item-number{
+display: flex;
+text-align: center;
+margin-left: 15px;
+margin: 10px;
+height: 15px;
+width: 15px;
+border-bottom :0.5px solid black;
+font-size: 14px;
+padding-left: 5px;
+padding-right: 0.5px;
+
+
+}
+.plus-icon{
+display: flex;
+height: 17px;
+width: 17px;
+opacity: 0.9;
+margin: 10px;
+margin-left: 0;
+}
+
+
+.margin00 {
+margin-top : 0;
+margin-bottom: 0;
+} 
+.cart-item-detailss{
+	flex-direction: column;
+display: flex;
+}
+  buttonn {
+    margin-top: auto;
+  }
+
+.cart-item-title {
+				display:flex;
+				text-align: left;
+				font-size: 15px;
+				
+				margin: 0px; 
+				margin-bottom: 5px;
+				padding: 0px;
+				
+				}
+
+.cart-item-before-price{
+				display:flex;
+				
+				text-decoration: line-through;
+				color: red;
+				font-size: 15px;
+				margin: 0px; 
+				padding: 0px;
+				
+				
+				}
+.cart-item-price{
+				display:flex;
+				margin: 0px; 
+				padding: 0px;
+				font-size: 15px;
+				
+				
+				
+				}
