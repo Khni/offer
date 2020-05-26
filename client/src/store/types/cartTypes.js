@@ -1,2 +1,2 @@
 export const TOGGLE_CART = 'TOGGLE_CART'
-export const NOTOGGLE_CART = 'NOTOGGLE_CART' 
+export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART' 

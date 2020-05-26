@@ -4,16 +4,17 @@ import Plusicon from './img/add.png';
 import Minusicon from './img/minus.png';
 import { Link } from 'react-router-dom';
 import CartItemstyle from './cartItem.css';
-
+import { connect } from 'react-redux';
 const CartItem = (props) => (
 <div className="cart-Item" >
  
  <div className="cart-item-desc">
-   <img src={ 'https://i.ibb.co/mh3VM1f/polka-dot-shirt.png'} className="cart-item-img"/>
+   <img src={props.imgURL} className="cart-item-img"/>
    <div className="cart-item-details">
-      <p className="cart-item-title margin0">Comfortable Breathable Casual Shoes - Black </p>
-      <p className="cart-item-before-price margin0">   EGP 460 </p>
-      <p className="cart-item-price margin0">   EGP  260 </p>
+ 
+      <p className="cart-item-title margin0">{props.name} </p>
+      <p className="cart-item-before-price margin0">   EGP {props.beforeprice} </p>
+      <p className="cart-item-price margin0">   EGP  {props.price} </p>
     </div>{/* end of cart-utem-details*/}
   </div>{/* end of cart-item-desc*/}
   
@@ -44,3 +45,4 @@ const CartItem = (props) => (
 );
 
 export default CartItem;
+

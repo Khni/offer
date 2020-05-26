@@ -1,4 +1,4 @@
-import {TOGGLE_CART} from '../types/cartTypes';
+import {ADD_ITEM_TO_CART} from '../types/cartTypes';
 
 const INITIAL_STATE = {
   
@@ -7,10 +7,10 @@ const INITIAL_STATE = {
 
 const cartItemsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TOGGLE_CART :
+    case ADD_ITEM_TO_CART :
       return {
         ...state,
-        cartItems:{...state.cartItems, action.item} 
+        cartItems:[...state.cartItems, action.item] 
       };
     default:
       return state;

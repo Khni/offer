@@ -54,5 +54,20 @@
 			 padding: 0px;
 				}
 
-				
+.custum-btn {
+  width: 110px;
+  margin: 5px;
+  height: 30px;
+  
+  
+  
+  font-size: 13px;
+  Background: linear-gradient(to right,  #00B4DB, #0083B0);
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+ } 
 				

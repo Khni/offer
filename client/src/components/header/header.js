@@ -87,6 +87,8 @@ function mapStateToProps(state)  {
     isAuth: state.userAuth.isAuthenticated, 
     msg: state.userAuth.msg, 
     hidden: state.cartReducer.hidden
+    
+    
   };
 }
  

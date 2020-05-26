@@ -18,7 +18,7 @@ const section = (props)=>{
 
   <div className="menu-item">
 {props.items.map((item , {...others}) => 
-   <Item key={item.id} name={item.name} imgURL={item.imageUrl} price={item.price}
+   <Item item={item} key={item.id} name={item.name} imgURL={item.imageUrl} price={item.price}
   {...others} />
  )}
  </div>
