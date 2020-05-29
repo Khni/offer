@@ -12,13 +12,15 @@ import Cart from './components/cart/cart.component.js';
 function App() {
   return (
     <div className="App">
-     <Header />
+   
     
      <Switch>
+   
           <Route exact path='/' component={HomeMenu} />
           <Route path='/signup' component={SignUp} />
          <Route path='/signin' component={SignIn} />
            <Route path='/cart' component={Cart} />
+                <Route path='/item/:title' component={SignIn} />
       
         </Switch>
     </div>

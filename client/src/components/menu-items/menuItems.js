@@ -4,14 +4,18 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {addItem} from '../../store/actions/CartItemsAction';
+import { withRouter } from 'react-router-dom';
 
 const menuItems = (props, {history,match})=>{
 
    return(
    <div>
-<Link className="item"
+   
+   <div  className="item" 
+    onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}`)}>
+{/*<Link className="item"
 to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}
->
+>*/} 
 
 <img src={props.imgURL}  className="item-img"/>
 
@@ -23,8 +27,13 @@ to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" "
 
 <p className="item-price">  {props.item.price}  EGP  </p>
 
-</Link>
+{/*</Link>*/} 
+
+
+</div>
 <button className="custum-btn "  onClick={() => props.addItem(props.item)}>ADD TO CART  </button>
+
+
 
 </div>
      );
@@ -33,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 });
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps
-)(menuItems);
+)(menuItems));

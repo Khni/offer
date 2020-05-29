@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/cartAction.js';
 import CartDropdown from '../cart/cart-dropdown.component';
-
+import Sidebar from  '../sidebar/sidebar.js'
 class Header extends Component{
    
    constructor(props) {
@@ -17,8 +17,12 @@ class Header extends Component{
     
   }
   render() {
-  
+  	
   return(
+  <div className="header-container">
+  <Sidebar show={this.props.hiddenSidebar} />
+ 
+  
     
     <div className="header">
     <div className="logo-Container">
@@ -26,7 +30,7 @@ class Header extends Component{
     
     <div className="logo-container-left">
     
-    <img src={menuicon} className="menuicon" />
+    <img src={menuicon} className="menuicon" onClick={this.props.openSidebar} />
     
     
     <Link to='/'>
@@ -67,8 +71,8 @@ class Header extends Component{
     
     
     </div>
-    
-     {this.props.hidden ? null : <CartDropdown />}
+     <CartDropdown show={this.props.hidden} />
+     {/*this.props.hidden ? null : <CartDropdown />*/}
     <input type="text"
     className="input-text-search"
     placeholder="search... "
@@ -76,6 +80,8 @@ class Header extends Component{
     
     
     </div> 
+    
+    </div>
     );
  } 
   
@@ -86,7 +92,8 @@ function mapStateToProps(state)  {
   return {
     isAuth: state.userAuth.isAuthenticated, 
     msg: state.userAuth.msg, 
-    hidden: state.cartReducer.hidden
+    hidden: state.cartReducer.hidden, 
+    hiddenSidebar: state.cartReducer.hiddenSidebar
     
     
   };

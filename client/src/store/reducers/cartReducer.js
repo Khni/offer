@@ -1,7 +1,8 @@
-import {TOGGLE_CART} from '../types/cartTypes';
+import {TOGGLE_CART, OPEN_SIDEBAR} from '../types/cartTypes';
 
 const INITIAL_STATE = {
-  hidden: true
+  hidden: true, 
+  hiddenSidebar: true
   
 };
 
@@ -11,6 +12,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hidden: !state.hidden
+      };
+      
+      case OPEN_SIDEBAR :
+      return {
+        ...state,
+        hiddenSidebar: !state.hiddenSidebar
       };
     default:
       return state;
