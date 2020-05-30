@@ -19,7 +19,7 @@ to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" "
 
 <img src={props.imgURL}  className="item-img"/>
 
-<p className="item-title">{props.item.name} </p>
+<p className="item-title-menu-item">{props.item.name} </p>
 
 
 

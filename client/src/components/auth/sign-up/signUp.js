@@ -1,4 +1,4 @@
-import Section from './signUp.css';
+import Style from './signUp.css';
 import { withRouter } from 'react-router-dom';
 import * as RouterDom from 'react-router-dom';
 import Googleicon from './img/googleicon.png';
@@ -60,7 +60,7 @@ class signUp extends Component{
    	const { handleSubmit } = this.props;
    return(
     
-<div class="main-container">
+<div class="main-container-signup">
   <div class="header">
   
 </div>
@@ -71,8 +71,8 @@ class signUp extends Component{
   
   
   
-  <div class="form-container">
-  <div class="logo-pic">
+  <div class="form-container-signup">
+  <div class="logo-pic-signup">
   </div>
   <h4 class="h3h"> انشاء حساب جديد  </h4>
 <form onSubmit={handleSubmit(this.onSubmit)}> 
@@ -89,18 +89,6 @@ component={ InputForm }
 />
 </fieldset>
 
-<fieldset>
-  <Field 
-type="text"
-name="username" 
-id="username" 
-class="input-text"
-placeholder="اختر اسم المستخدم "
-component={ InputForm }
-/>
-</fieldset>
- 
- 
  
 <fieldset>
   <Field 

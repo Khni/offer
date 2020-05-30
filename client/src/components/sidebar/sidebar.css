@@ -13,4 +13,9 @@ transform: translateX(-100%);
 
 .sidebar.open{
 transform: translateX(0);
-}  
+} 
+
+
+.sidebaritems{
+border-bottom: 0.5px solid black;
+} 

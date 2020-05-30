@@ -105,9 +105,10 @@ body {
 				}
 
 
-.main-container{
+.main-container-signup{
 				display: flex;
-				background:linear-gradient(to right,  #0066cc , #00ccff);
+				background-color: #f1f1f1 ;
+			
 				/*'background-color: #0066cc;*/
 		/*		background: linear-gradient(#000428, #004e92);*/
 				justify-content: space-around;
@@ -118,10 +119,10 @@ body {
 					
 				}
 				
-.logo-pic {
+.logo-pic-signup {
 			/*	display: flex;*/
-					height: 60px;
-					width: 120px;	
+					height: 70px;
+					width: 130px;	
 					margin-top: 30px;
 					
 
@@ -137,14 +138,14 @@ background-size: 120px;
 
 					}
 
-.form-container{
+.form-container-signup{
 				background-color: white;
 	 /* background: linear-gradient(#ddd6f3, #faaca8);*/
 				margin-top: 20px;
 				padding: 30px;
 				margin-bottom: 20px;
 				border: 1px solid #0066cc;
-				border-radius: 50px;
+				border-radius: 10px;
 				flex-direction: column;
 				display: flex;
 				width: 390px;
