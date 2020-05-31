@@ -1,4 +1,4 @@
-
+$dicoraction : "line-through" ;
 
 .item {
 				
@@ -29,7 +29,7 @@
 .item-before-price{
 				display:flex;
 				
-				text-decoration: line-through;
+				text-decoration: $dicoraction;
 				color: red;
 				font-size: 15px;
 				margin: 0px; 
