@@ -27,7 +27,7 @@ const signUp = (props)=>{
 
 
 <input type="text"
-class="input-text"
+class="input-text-el"
 placeholder="الاسم الثلاثي"
 />
 

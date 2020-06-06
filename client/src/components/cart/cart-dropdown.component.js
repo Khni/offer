@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import CartItemstyle from './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
 import {addItem, removeItem} from '../../store/actions/CartItemsAction';
+import { withRouter } from 'react-router-dom';
 
 const CartItem = (props) =>{
 	let cartdropdown = "cart-dropdown" ;
@@ -60,10 +61,10 @@ cartdropdown = "cart-dropdown open" ;
 
 </div>{/*cart-Item-drop-container*/} 
 <div className="checkout-cart-btns">
-<Link to="/cart" >
-<button className="custum-btn " >View Cart List </button>
-</Link>
-<button className="custum-btn " >Chrckout</button>
+<button className="custum-btn " onClick={()=>props.history.push("/cart")} >CART LIST</button>
+
+
+<button className="custum-btn " >Checkout</button>
 </div>
 
 </div> {/*cart-dropdown-content */} 
@@ -85,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
  
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartItem));

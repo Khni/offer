@@ -1,0 +1,18 @@
+.input-text-searchbox {
+	display: flex;
+	font-size: 10pt;
+	margin-right: 10px;
+	margin-left: 10px;
+	transition: width 4s;
+	height: 30px;
+	
+	padding: 7px;
+	border: 1px solid rgba(81, 203, 238, 1);
+	border-radius: 2px;
+	text-align: left;
+}
+
+.input-text-searchbox:focus {
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
