@@ -13,7 +13,7 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
 
-class signUp extends Component {
+class Form extends Component {
 
   constructor(props) {
     super(props);
@@ -136,7 +136,4 @@ class signUp extends Component {
 }
 
 
-export default compose(
-  connect(mapStateToProps, actions),
-  reduxForm({ form: 'signup' })
-)(signUp)
+export default Form 
