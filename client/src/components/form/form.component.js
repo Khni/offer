@@ -1,4 +1,4 @@
-import Style from './signUp.css';
+import Style from './form.scss';
 import { withRouter } from 'react-router-dom';
 import * as RouterDom from 'react-router-dom';
 import Googleicon from './img/googleicon.png';
@@ -7,10 +7,10 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import InputForm from '../inputForm.js';
-import * as actions from '../../../store/actions/users.js';
+import InputForm from './inputForm.js';
+
 import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Link } from 'react-router-dom';
 
 class Form extends Component {
@@ -71,23 +71,23 @@ class Form extends Component {
 
 
         <div class="form-container-signup">
-          <Link class="logo-pic-signup" to="/"/>
+          <Link class="logo-pic-signup" to="/" />
           
-          <h4 class="form-title"> this.props.title </h4>
+          <h4 class="form-title"> {this.props.title} </h4>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-{ this.props.fieldsets.map((field) => 
-<fieldset>
+                 { this.props.fieldsets.map((field) => 
+             <fieldset>
               <Field
                 type={field.type}
                 name={field.name}
                 id={field.id}
-                className=(field.fieldsize}
+                className={field.className}
                 placeholder={field.placeholder}
                 component={InputForm}
                 label={field.label}
               />
             </fieldset>
-)} 
+                    )} 
 
             
 
@@ -97,29 +97,38 @@ class Form extends Component {
             <button type="submit" class="custum-btn-form">تسجيل</button>
           </form>
 
-{props.social ? 
+{this.props.social ? 
+<div>
           <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
           <div className="social-btns">
-            <div className="fb-btn">
+            
               <FacebookLogin
                 appId=""
                 textButton="Facebook"
+                render={renderProps => (
+                  <img className="fb-btn" src={FacebookIcon} onClick={renderProps.onClick}  />
+                )}
                 fields="name,email,picture"
                 callback={this.props.fbres}
 
 
               />
-            </div>
-            <div className="google-btn">
+            
+            
               <GoogleLogin
                 clientId="746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com"
                 buttonText='Google'
+                render={renderProps => (
+                  <img className="google-btn" src={Googleicon} onClick={renderProps.onClick} disabled={renderProps.disabled} />
+                )}
+            
                 onSuccess={this.props.googleres}
                 onFailure={this.props.googleres}
 
               />
-            </div>
-          </div> : null} 
+            
+          </div> 
+          </div>: null} 
 
 
 
@@ -136,4 +145,5 @@ class Form extends Component {
 }
 
 
-export default Form 
+export default reduxForm({ form: 'signin' })
+(Form)

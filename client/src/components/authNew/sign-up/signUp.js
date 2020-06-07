@@ -7,18 +7,18 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import InputForm from '../inputForm.js';
+
 import * as actions from '../../../store/actions/users.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
-import Form from '../form/form.component';
+import Form from '../../form/form.component';
 class signUp extends Component {
 
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
+    
     this.responseGoogle = this.responseGoogle.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
 
@@ -51,49 +51,48 @@ if (!this.props.errorMsg) {
 
   
   
-const fieldsets = [
+ fieldsets = [
 
 {
-                type: "text" 
-                name:"name" 
-                ID :"name" 
-                className: "input-text-auth" 
-                placeholder: "name" 
+                type: "text" ,
+                name:"name" ,
+                ID :"name" ,
+                className: "input-text-auth", 
+                placeholder: "name" ,
                 label: "االاسم" 
 } 
-
-. {
-               type: "text" 
-                name:"email" 
-                ID :"email" 
-                className: "input-text-auth" 
-                placeholder: "email" 
-                label: "البريد الإلكتروني" 
+, {
+               type: "text", 
+                name:"email", 
+                ID :"email" ,
+                className: "input-text-auth", 
+                placeholder: "email" ,
+                label: "البريد الإلكتروني", 
 }, 
 {
-                type: "text" 
-                name:"password" 
-                ID :"password" 
-                className: "input-text-auth" 
-                placeholder: "password" 
+                type: "text", 
+                name:"password" ,
+                ID :"password" ,
+                className: "input-text-auth" ,
+                placeholder: "password" ,
                 label: "الرقم السري" 
 }, 
 
 {
-                type: "text" 
-                name:"repassword" 
-                ID :"repassword" 
-                className: "input-text-auth" 
-                placeholder: "re-enter password" 
-                label: "الرقم السري" 
+                type: "text" ,
+                name:"repassword" ,
+                ID :"repassword" ,
+                className: "input-text-auth" ,
+                placeholder: "re-enter password" ,
+                label: "الرقم السري" ,
 } 
 
 , {
-                type: "tel" 
-                name:"phone" 
-                ID :"phone" 
-                className: "input-text-auth" 
-                placeholder: "phonw" 
+                type: "tel" ,
+                name:"phone" ,
+                ID :"phone" ,
+                className: "input-text-auth" ,
+                placeholder: "phone" ,
                 label: "رقم الهاتف " 
 }, 
 
@@ -110,11 +109,11 @@ const fieldsets = [
    <Form
    title="إنشاء حساب جديد" 
    fieldsets={this.fieldsets}
-   social=true
-   onSubmit={this.onSubmit(formData) } 
-   errorMsg: {this.props.errorMsg} 
-   fbres={this.responseFacebook(res)} 
-   googleres={this.responseGoogle(res)}
+   social={true}
+   onSubmit={this.onSubmit} 
+   errorMsg= {this.props.errorMsg} 
+   fbres={this.responseFacebook} 
+   googleres={this.responseGoogle}
    />
       </div>
 
