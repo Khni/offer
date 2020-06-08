@@ -57,17 +57,17 @@ fieldsets = [
                type: "text" ,
                 name:"email" ,
                 ID :"email" ,
-                className: {this.props.classN} ,
-                placeholder: {this.props.emailString}  ,
-                label: {this.props.emailString} 
+                className: this.props.classN ,
+                placeholder: this.props.emailString ,
+                label: this.props.emailString 
 }, 
 {
                 type: "password" ,
                 name:"password" ,
                 ID :"password" ,
-                className: {this.props.emailString} ,
-                placeholder:{this.props.classN}  ,
-                label: {this.props.passwordString} 
+                className: this.props.classN ,
+                placeholder:this.props.passwordString  ,
+                label: this.props.passwordString
 }
 
 
