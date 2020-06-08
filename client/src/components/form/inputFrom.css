@@ -1,4 +1,4 @@
-.input-text-auth {
+.input-text-auth-en {
 	font-size: 12pt;
 	width: 290px;
 	transition: width 1s;
@@ -12,8 +12,25 @@
 	text-align: left;
 	
 }
-
-.input-text-auth:focus {
+input-text-auth-en {
+font-size: 12pt;
+	width: 290px;
+	transition: width 1s;
+	height: 30px;
+	margin-bottom: 1px;
+	border: 1px solid rgba(81, 203, 238, 1);
+	border-radius: 2px;
+	padding: 10px;
+	padding-right: 30px;
+	padding-left: 30px;
+	text-align: right;
+} 
+.input-text-auth-ar:focus {
+	width: 310px;
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
+.input-text-auth-en:focus {
 	width: 310px;
 	box-shadow: 0 0 5px #00ccff;
 	border: 1px solid #0066cc;

@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import adminReducer from './adminReducer';
 import dashboardReducer from './dashboardReducer';
 import cartReducer from './cartReducer';
+import langReducer from './langReducer';
 import cartItemsReducer from './cartItemsReducer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -11,7 +12,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userAuth', 'userAuth', 'dashboard' ]
+  whitelist: ['userAuth', 'userAuth', 'dashboard', 'langReducer' ]
 };
 
 const Reducers = combineReducers({
@@ -20,7 +21,8 @@ const Reducers = combineReducers({
     adminAuth: adminReducer, 
     dashboard: dashboardReducer,
     cartReducer: cartReducer, 
-    cartItemsReducer: cartItemsReducer
+    cartItemsReducer: cartItemsReducer, 
+    langReducer: langReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 

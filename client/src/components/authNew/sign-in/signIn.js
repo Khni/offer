@@ -57,17 +57,17 @@ fieldsets = [
                type: "text" ,
                 name:"email" ,
                 ID :"email" ,
-                className: "input-text-auth" ,
-                placeholder: "email" ,
-                label: "البريد الإلكتروني" 
+                className: {this.props.classN} ,
+                placeholder: {this.props.emailString}  ,
+                label: {this.props.emailString} 
 }, 
 {
                 type: "password" ,
                 name:"password" ,
                 ID :"password" ,
-                className: "input-text-auth" ,
-                placeholder: "password" ,
-                label: "الرقم السري" 
+                className: {this.props.emailString} ,
+                placeholder:{this.props.classN}  ,
+                label: {this.props.passwordString} 
 }
 
 
@@ -81,13 +81,14 @@ fieldsets = [
 
       <div class="main-container-signup">
    <Form
-   title="تسجيل الدخول" 
+   title={this.props.signin_title} 
    fieldsets={this.fieldsets}
    social={true}
    onSubmit={this.onSubmit } 
    errorMsg= {this.props.errorMsg} 
    fbres={this.responseFacebook} 
    googleres={this.responseGoogle}
+   submitBtnTitle={this.props.submit_signin_btn} 
    />
       </div>
 
@@ -100,7 +101,12 @@ fieldsets = [
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.userAuth.error
+    errorMsg: state.userAuth.error, 
+    submit_signin_btn :state.langReducer.auth.submit_signin_btn, 
+    signin_title: state.langReducer.auth.signin_title, 
+    emailString:state.langReducer.auth.email, 
+    passwordString: state.langReducer.auth.password, 
+    classN: state.langReducer.auth.classN
   }
 
 }

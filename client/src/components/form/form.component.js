@@ -18,7 +18,6 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.responseGoogle = this.responseGoogle.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
 
@@ -27,32 +26,18 @@ class Form extends Component {
   async onSubmit(formData) {
 
 
-    const { signUp } = this.props;
-    await signUp(formData);
-
-    this.props.history.push('/dashboard')
-
+   this.props.onSubmit(formData) 
   }
 
   async responseGoogle(res) {
-    await this.props.oauthGoogle(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push('/');
-    }
+   this.props.googleres(res)
   }
 
   async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push('/');
-    }
+    this.props.fbres(res) 
   }
 
-  async   handleSubmit(event) {
-    alert(event.name)
-    console.log("Hello")
-    event.preventDefault()
-  }
+  
   responseGoogle(response) {
     console.log(response);
   }
@@ -94,7 +79,7 @@ class Form extends Component {
 
 
 
-            <button type="submit" class="custum-btn-form">تسجيل</button>
+            <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
           </form>
 
 {this.props.social ? 
@@ -145,5 +130,5 @@ class Form extends Component {
 }
 
 
-export default reduxForm({ form: 'signin' })
+export default reduxForm({ form: 'form' })
 (Form)
