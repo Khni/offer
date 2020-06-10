@@ -14,19 +14,21 @@ const {router , routerPromise} =require('./routers/userRouter')
 const adminRouter = require('./routers/adminRouter')
 
 //app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 //enable for using both ports client and server for developement
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    res.header(
+    /*res.header(
       "Access-Control-Allow-Headers","XMLHttpRequest" ,"authorization",
       "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
-    );
-    
+    );*/
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  
       next();
     
-  });
+  });*/
   //--end of enbling use both ports for developing  
  
 /*
