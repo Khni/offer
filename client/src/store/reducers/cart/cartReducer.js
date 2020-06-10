@@ -1,4 +1,4 @@
-import {TOGGLE_CART, OPEN_SIDEBAR} from '../types/cartTypes';
+import {TOGGLE_CART, OPEN_SIDEBAR} from '../../types/cartTypes';
 
 const INITIAL_STATE = {
   hidden: true, 

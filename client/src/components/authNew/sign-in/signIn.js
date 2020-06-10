@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {selectAuthLang} from  '../../../store/langReducer/langReselect';
+import {selectAuthLang} from  '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions/users.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -79,7 +79,7 @@ fieldsets = [
     const { handleSubmit } = this.props;
     return (
 
-      <div class="main-container-signup">
+      <div class="main-container-signin">
    <Form
    title={this.props.signin_title} 
    fieldsets={this.fieldsets}
@@ -106,7 +106,7 @@ const mapStateToProps = state => {
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 
     passwordString: selectAuthLang(state).password, 
-    classN: selectAuthLang(state).auth.classN
+    classN: selectAuthLang(state).classN
   }
 
 }

@@ -92,7 +92,7 @@ function mapStateToProps(state) {
     isAuth: state.userAuth.isAuthenticated,
     msg: state.userAuth.msg,
     hidden: cartHidden(state) ,
-    hiddenSidebar: sidebarHidden(sidebarHidden) 
+    hiddenSidebar: sidebarHidden(state) 
 
 
   };
