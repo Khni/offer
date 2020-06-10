@@ -11,6 +11,7 @@ import * as actions from '../../store/actions/cartAction.js';
 import CartDropdown from '../cart/cart-dropdown.component';
 import Sidebar from '../sidebar/sidebar.js'
 import Searchbox from '../searchbox/searchbox.component'
+import {cartHidden, sidebarHidden} from  '../../store/reducers/cart/cartReselect';
 class Header extends Component {
 
   constructor(props) {
@@ -90,8 +91,8 @@ function mapStateToProps(state) {
   return {
     isAuth: state.userAuth.isAuthenticated,
     msg: state.userAuth.msg,
-    hidden: state.cartReducer.hidden,
-    hiddenSidebar: state.cartReducer.hiddenSidebar
+    hidden: cartHidden(state) ,
+    hiddenSidebar: sidebarHidden(sidebarHidden) 
 
 
   };

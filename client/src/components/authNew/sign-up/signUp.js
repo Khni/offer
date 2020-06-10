@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
+import {selectAuthLang} from  '../../../store/langReducer/langReselect';
 import * as actions from '../../../store/actions/users.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -18,7 +18,7 @@ class signUp extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    
+   
     this.responseGoogle = this.responseGoogle.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
 
@@ -51,50 +51,48 @@ if (!this.props.errorMsg) {
 
   
   
- fieldsets = [
+fieldsets = [
 
 {
                 type: "text" ,
                 name:"name" ,
                 ID :"name" ,
-                className: "input-text-auth", 
-                placeholder: "name" ,
-                label: "االاسم" 
-} 
-, {
-               type: "text", 
-                name:"email", 
-                ID :"email" ,
-                className: "input-text-auth", 
-                placeholder: "email" ,
-                label: "البريد الإلكتروني", 
+                className: this.props.classN ,
+                placeholder:this.props.nameString  ,
+                label: this.props.nameString
 }, 
 {
-                type: "text", 
-                name:"password" ,
-                ID :"password" ,
-                className: "input-text-auth" ,
-                placeholder: "password" ,
-                label: "الرقم السري" 
-}, 
-
-{
-                type: "text" ,
-                name:"repassword" ,
-                ID :"repassword" ,
-                className: "input-text-auth" ,
-                placeholder: "re-enter password" ,
-                label: "الرقم السري" ,
-} 
-
-, {
                 type: "tel" ,
                 name:"phone" ,
                 ID :"phone" ,
-                className: "input-text-auth" ,
-                placeholder: "phone" ,
-                label: "رقم الهاتف " 
+                className: this.props.classN ,
+                placeholder:this.props.phoneString  ,
+                label: this.props.phoneString
 }, 
+ {
+               type: "text" ,
+                name:"email" ,
+                ID :"email" ,
+                className: this.props.classN ,
+                placeholder: this.props.emailString ,
+                label: this.props.emailString 
+}, 
+ {
+                type: "password" ,
+                name:"password" ,
+                ID :"password" ,
+                className: this.props.classN ,
+                placeholder:this.props.passwordString  ,
+                label: this.props.passwordString
+}, 
+{
+                type: "password" ,
+                name:"repassword" ,
+                ID :"repassword" ,
+                className: this.props.classN ,
+                placeholder:this.props.repasswordString  ,
+                label: this.props.repasswordString
+}
 
 
 
@@ -107,13 +105,14 @@ if (!this.props.errorMsg) {
 
       <div class="main-container-signup">
    <Form
-   title="إنشاء حساب جديد" 
+   title={this.props.signin_title} 
    fieldsets={this.fieldsets}
    social={true}
-   onSubmit={this.onSubmit} 
+   onSubmit={this.onSubmit } 
    errorMsg= {this.props.errorMsg} 
    fbres={this.responseFacebook} 
    googleres={this.responseGoogle}
+   submitBtnTitle={this.props.submit_signin_btn} 
    />
       </div>
 
@@ -126,12 +125,20 @@ if (!this.props.errorMsg) {
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.userAuth.error
+    errorMsg: state.userAuth.error, 
+    submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
+    signin_title: selectAuthLang(state).signin_title, 
+    emailString: selectAuthLang(state).email, 
+    passwordString: selectAuthLang(state).password, 
+    nameString: selectAuthLang(state).name, 
+    repassword :selectAuthLang(state).repassword, 
+    phoneString: selectAuthLang(state).phone
+    classN: selectAuthLang(state).classN
   }
 
 }
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: 'signup' })
+  reduxForm({ form: 'signup })
 )(signUp)

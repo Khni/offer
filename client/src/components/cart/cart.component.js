@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CartItem from './cartItemComponent/cartItem.component';
 import Cartstyle from './cart.css' 
 import { connect } from 'react-redux';
+import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 class Cart extends Component{
    
    constructor(props) {
@@ -35,7 +36,7 @@ class Cart extends Component{
 }
 function mapStateToProps(state)  {
   return {
-    cartItems: state.cartItemsReducer.cartItems, 
+    cartItems: selectCartItems(state) , 
     
   };
 }

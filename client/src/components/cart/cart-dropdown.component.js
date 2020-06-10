@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import CartItemstyle from './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
 import {addItem, removeItem} from '../../store/actions/CartItemsAction';
+import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 import { withRouter } from 'react-router-dom';
 
 const CartItem = (props) =>{
@@ -76,7 +77,7 @@ cartdropdown = "cart-dropdown open" ;
 
 function mapStateToProps(state)  {
   return {
-    cartItems: state.cartItemsReducer.cartItems, 
+    cartItems: selectCartItems(state)
     
   };
 }

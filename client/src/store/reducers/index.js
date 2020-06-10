@@ -3,9 +3,9 @@ import { reducer as formReducer } from 'redux-form';
 import userReducer from './userReducer';
 import adminReducer from './adminReducer';
 import dashboardReducer from './dashboardReducer';
-import cartReducer from './cartReducer';
+import cartReducer from './cart/cartReducer';
 import langReducer from './langReducer/langReducer';
-import cartItemsReducer from './cartItemsReducer';
+import cartItemsReducer from './cart/cartItemsReducer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
