@@ -20,10 +20,10 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    /*res.header(
+    res.header(
       "Access-Control-Allow-Headers","XMLHttpRequest" ,"authorization",
       "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
-    );*/
+    );
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   
       next();

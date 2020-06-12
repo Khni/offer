@@ -80,7 +80,10 @@ class Form extends Component {
 
 
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
+            {this.props.errorMsg ? <div>{this.props.errorMsg }</div> : null  }
           </form>
+
+          
 
 {this.props.social ? 
 <div>

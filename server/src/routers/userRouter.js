@@ -17,18 +17,19 @@ router.post('/signup', async (req,res)=>{
     const username = req.body.username
     const userjson = await User.findOne({"local.email": email})
     if (userjson) {
-        return res.send('Email is already exit!')
+        return res.status(403).json({ error: 'Email is already in use'});
+        
       }
     const usernamejs= await User.findOne({"local.username": username})
     if (usernamejs) {
-        return res.send('Username is already exit!')
+        return res.status(403).json({ error: 'Username is already in use'});
       }
 
       const password = req.body.password
       const repassword = req.body.repassword
 
       if (password !== repassword) {
-        return res.send('Password is not match')
+        return res.status(403).json({ error: 'Password is not Match'});
       }
       
       

@@ -19,8 +19,8 @@ import {
         type: AUTH_SIGN_UP, 
         token: response.token
       });
-      localStorage.setItem('JWT_TOKEN', response.token);
-    axios.defaults.headers.common['Authorization'] = response.token;
+    //  localStorage.setItem('JWT_TOKEN', response.token);
+   // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
       dispatch({
         type: AUTH_ERROR,

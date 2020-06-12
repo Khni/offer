@@ -30,7 +30,7 @@ class signUp extends Component {
     const { signUp } = this.props;
     await signUp(formData);
     if (!this.props.errorMsg) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/')
     }
   }
 
@@ -113,6 +113,7 @@ class signUp extends Component {
           fbres={this.responseFacebook}
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
+          errorMsg = {this.props.errorMsg}
         />
       </div>
 
