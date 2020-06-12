@@ -22,6 +22,7 @@ import {
     //  localStorage.setItem('JWT_TOKEN', response.token);
    // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
+    	console.log(err) 
       dispatch({
         type: AUTH_ERROR,
         payload: err
