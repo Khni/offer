@@ -55,8 +55,8 @@ class Form extends Component {
 
 
 
-        <div class="form-container-signup">
-          <Link class="logo-pic-signup" to="/" />
+        <div class="form-container-form">
+          <Link class="logo-pic-form" to="/" />
           
           <h4 class="form-title"> {this.props.title} </h4>
           <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -80,10 +80,10 @@ class Form extends Component {
 
 
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
-            {this.props.errorMsg ? <div>{this.props.errorMsg }</div> : null  }
+            
           </form>
-
-          
+         
+          {this.props.errorMsg ? <div className="errorMsg">error is:{this.props.errorMsg }</div> : null  }
 
 {this.props.social ? 
 <div>

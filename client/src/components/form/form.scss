@@ -22,7 +22,7 @@ fieldset {
 	padding-top: 2px;
 	font-weight: 900;
 	font-weight: 700;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	color: #753a88;
 	margin-top: 3px;
 	color: linear-gradient(to right, #0066cc, #00ccff);
@@ -93,23 +93,23 @@ fieldset {
 }
 
 
-.logo-pic-signup {
+.logo-pic-form {
 	/*	display: flex;*/
-	height: 70px;
-	width: 130px;
-	margin-top: 30px;
+	height: 50px;
+	width: 100px;
+	margin-top: 10px;
 	background: url('./img/Offereno.png') no-repeat;
-	background-size: 120px;
+	background-size: 90px;
 	transition:  1s ease;
 	&:hover {
 		transform: scale(1.1);
 	}
 }
 
-.form-container-signup {
+.form-container-form {
 	background-color: white;
 	/* background: linear-gradient(#ddd6f3, #faaca8);*/
-	margin-top: 20px;
+	margin-top: 5px;
 	padding: 30px;
 	margin-bottom: 20px;
 	border: 1px solid #0066cc;
@@ -215,4 +215,13 @@ footer {
 	&:hover {
 		transform: scale(1.2);
 	}
+}
+
+.errorMsg {
+	
+		padding: 10px;
+		background-color: #f44336; /* Red */
+		color: white;
+		margin-bottom: 15px;
+	  
 }

@@ -61,14 +61,14 @@ class signUp extends Component {
       placeholder: this.props.nameString,
       label: this.props.nameString
     },
-    {
+   /* {
       type: "tel",
       name: "phone",
       ID: "phone",
       className: this.props.classN,
       placeholder: this.props.phoneString,
       label: this.props.phoneString
-    },
+    },*/
     {
       type: "text",
       name: "email",

@@ -14,18 +14,18 @@ import {
   return async dispatch => {
     try {
       const response = await axios.post('http://localhost:8080/signup', data);
-     console.log("signUp axios") 
+     console.log(response.data.token) 
       dispatch({
         type: AUTH_SIGN_UP, 
-        token: response.token
+        token: response.data.token
       });
     //  localStorage.setItem('JWT_TOKEN', response.token);
    // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
-    	console.log(err) 
+    	console.error('err', err.response.data.error)
       dispatch({
         type: AUTH_ERROR,
-        payload: err
+        payload: err.response.data.error
       })
     }
   };

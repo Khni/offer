@@ -18,12 +18,13 @@ router.post('/signup', async (req,res)=>{
     const userjson = await User.findOne({"local.email": email})
     if (userjson) {
         return res.status(403).json({ error: 'Email is already in use'});
-        
+      // return new Error('email is already exsist').status(403)
       }
+      /*
     const usernamejs= await User.findOne({"local.username": username})
     if (usernamejs) {
         return res.status(403).json({ error: 'Username is already in use'});
-      }
+      }*/
 
       const password = req.body.password
       const repassword = req.body.repassword
