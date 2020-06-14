@@ -24,12 +24,15 @@ class signUp extends Component {
 
   }
 
+
   async onSubmit(formData) {
 
 
     const { signUp } = this.props;
-    const lang = this.props.lang
+    let lang = this.props.lang
+    console.log(lang)
     await signUp(formData, lang);
+    
     if (!this.props.errorMsg) {
       this.props.history.push('/')
     }
@@ -136,8 +139,9 @@ const mapStateToProps = state => {
     nameString: selectAuthLang(state).name,
     repasswordString: selectAuthLang(state).repassword,
     phoneString: selectAuthLang(state).phone,
-    classN: selectAuthLang(state).classN
-    lang: selectLang(state)
+    classN: selectAuthLang(state).classN,
+    //lang: selectLang(state)
+    lang: state.langReducer.lang
   }
 
 }

@@ -24,12 +24,12 @@ import {
    // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
     	let error ='' 
-    	if( lang == 'en') {
-    	let error =err.response.data.error_en
-          } else if ( lang == 'ar'){
-           let error =err.response.data.error_ar
-            } 
-    	console.error('err', err.response.data.error)
+    	if( lang == 'ar') {
+        error =err.response.data.error_ar
+           } else if ( lang == 'en'){
+            error =err.response.data.error_en
+             } 
+    	console.error('err',error +'' +lang + err)
       dispatch({
         type: AUTH_ERROR,
         payload: error 

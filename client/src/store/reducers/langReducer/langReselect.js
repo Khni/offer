@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-const selectLang = state => state.langReducer;
+const selectLangReducer = state => state.langReducer;
 
 export const selectAuthLang = createSelector(
-  [selectLang],
+  selectLangReducer,
   langReducer => langReducer.auth
 );
 export const selectLang = createSelector(
-  [selectLang],
+  selectLangReducer,
   langReducer => langReducer.lang
 );

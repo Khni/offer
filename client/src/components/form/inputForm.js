@@ -14,9 +14,9 @@ export default class CustomInput extends Component {
           type={ this.props.type }
           value={ value }
           onChange={ onChange }
-          required   
+         // required   
 
-    oninvalid="this.setCustomValidity('The Field can not be Empty ')"
+  //  oninvalid="this.setCustomValidity('The Field can not be Empty ')"
     oninput="this.setCustomValidity('')"  />
       </div>
     );
