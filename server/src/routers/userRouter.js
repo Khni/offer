@@ -17,7 +17,8 @@ router.post('/signup', async (req,res)=>{
     const username = req.body.username
     const userjson = await User.findOne({"local.email": email})
     if (userjson) {
-        return res.status(403).json({ error: 'Email is already in use'});
+        return res.status(403).json({ error_en: 'Email is already in use', 
+                                                           error_ar: 'البريد الالكترونى مسجل مسبقا '  });
       // return new Error('email is already exsist').status(403)
       }
       /*
@@ -30,7 +31,8 @@ router.post('/signup', async (req,res)=>{
       const repassword = req.body.repassword
 
       if (password !== repassword) {
-        return res.status(403).json({ error: 'Password is not Match'});
+        return res.status(403).json({ error_en: 'Password is not Match', 
+                                                           error_ar: 'الرقم السري غير مطابق'  });
       }
       
       

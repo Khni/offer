@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { selectAuthLang } from '../../../store/reducers/langReducer/langReselect';
+import { selectAuthLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions/users.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -28,7 +28,8 @@ class signUp extends Component {
 
 
     const { signUp } = this.props;
-    await signUp(formData);
+    const lang = this.props.lang
+    await signUp(formData, lang);
     if (!this.props.errorMsg) {
       this.props.history.push('/')
     }
@@ -127,6 +128,7 @@ class signUp extends Component {
 const mapStateToProps = state => {
   return {
     errorMsg: state.userAuth.error,
+    
     submit_signin_btn: selectAuthLang(state).submit_signin_btn,
     signin_title: selectAuthLang(state).signin_title,
     emailString: selectAuthLang(state).email,
@@ -135,6 +137,7 @@ const mapStateToProps = state => {
     repasswordString: selectAuthLang(state).repassword,
     phoneString: selectAuthLang(state).phone,
     classN: selectAuthLang(state).classN
+    lang: selectLang(state)
   }
 
 }

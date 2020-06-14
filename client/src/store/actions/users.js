@@ -10,7 +10,8 @@ import {
   AUTH_ERROR,
   DASHBOARD_GET_DATA } from '../types/authUserTypes'
  
- export const signUp = data => {
+ export const signUp =( data, lang) => {
+ 	
   return async dispatch => {
     try {
       const response = await axios.post('http://localhost:8080/signup', data);
@@ -22,10 +23,16 @@ import {
     //  localStorage.setItem('JWT_TOKEN', response.token);
    // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
+    	let error ='' 
+    	if( lang == 'en') {
+    	let error =err.response.data.error_en
+          } else if ( lang == 'ar'){
+           let error =err.response.data.error_ar
+            } 
     	console.error('err', err.response.data.error)
       dispatch({
         type: AUTH_ERROR,
-        payload: err.response.data.error
+        payload: error 
       })
     }
   };
