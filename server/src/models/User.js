@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
         //unique: true,
         validate(value){
             if (!validator.isEmail(value)) {
-                throw new Error('Email is invalid')
+                throw new Error('inValidEmail')
             }
         }
     },
@@ -47,15 +47,19 @@ const userSchema = mongoose.Schema({
       password: {
         type: String,
        // required: true,
-        minlength: 8,
+      //  minlength: 8,
         trim: true,
         validate(value) {
             if (value.toLowerCase().includes('password')) {
-                throw new Error('Password cannot contain "password"')
+                throw new Error('passswordcontains')
             }
             if (value.toLowerCase().includes('123456')) {
-                throw new Error('Password cannot contain "123456"')
+                throw new Error('123456contains')
             }
+            if (value.length < 8) {
+                throw new Error('LengthError')
+            }
+
         }
     }} ,
     
