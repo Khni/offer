@@ -33,5 +33,8 @@ UnhandledPromiseRejectionWarning: TypeError: HandelErrors is not a function
         error_ar: 'حطأ'
     }
 }
+module.exports = {
+       HandelErrors
+};
 
-module.exports =  HandelErrors
+
