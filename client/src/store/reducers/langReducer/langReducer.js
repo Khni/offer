@@ -4,7 +4,7 @@ import { auth_ar, auth_en, cart_ar , cart_en, header_ar, header_en} from './lang
 
 
 const INITIAL_STATE = {
-  lang: 'en', 
+  lang: 'ar', 
   auth: auth_en, 
   header: header_en, 
   cart: cart_en
