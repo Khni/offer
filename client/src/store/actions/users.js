@@ -15,7 +15,8 @@ import {
   return async dispatch => {
     try {
       const response = await axios.post('http://localhost:8080/signup', data);
-     console.log(response.data.token) 
+     console.log(response.data) 
+     console.log('data'+data.email + data.password +data.name)
       dispatch({
         type: AUTH_SIGN_UP, 
         token: response.data.token
