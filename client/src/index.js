@@ -8,10 +8,9 @@ import App from './App';
 import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
-import userReducer from "./store/reducers/userReducer" ;
-import adminReducer from "./store/reducers/adminReducer" ;
 
-import Reducers from "./store/reducers" ;
+
+
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor }from "./store/store" ;

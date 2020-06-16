@@ -23,16 +23,10 @@ const HandelErrors = (erMsg) => {
             error_ar: 'الرقم السري لا يمكن ان يحتوي علي 123456'
         }
     }else {
-        return {
-            error_en: ' Error',
-            error_ar: 'حطأ'
-        }
+        return erMsg
     }
  
-    return {
-        error_en: ' Error',
-        error_ar: 'حطأ'
-    }
+    
 }
 module.exports = {
        HandelErrors

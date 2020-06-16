@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
 
     const email = req.body.email
     const username = req.body.username
-    const userjson = await User.findOne({ "local.email": email })
+    let userjson = await User.findOne({ "local.email": email })
     if (userjson) {
         return res.status(403).json({
             error_en: 'Email is already in use',
@@ -42,16 +42,16 @@ router.post('/signup', async (req, res) => {
 
 
 
-    foundUser = await User.findOne({
+    userjson = await User.findOne({
         $or: [
             { "google.email": email },
             { "facebook.email": email },
         ]
     });
-    if (foundUser) {
+    if (userjson) {
         // Let's merge them?
-        foundUser.methods.push('local')
-        foundUser = {
+        userjson.methods.push('local')
+        userjson = {
             local: {
                 email: email,
                 password: password,
@@ -61,11 +61,11 @@ router.post('/signup', async (req, res) => {
         }
 
         try {
-            await foundUser.save()
-            const token = await foundUser.generateAuthToken()
-            res.status(201).send({ foundUser, token })
+        //    await userjson.save()
+            const token = await userjson.generateAuthToken()
+            res.status(201).send({ userjson, token })
         } catch (e) {
-            res.status(400).send(HandelErrors(e.message))
+            res.status(400).send(e.message)
         }
 
     }
@@ -74,7 +74,7 @@ router.post('/signup', async (req, res) => {
 
 
 
-    if (!foundUser) {
+    if (!userjson) {
 
         const user = new User({
             methods: ['local'],

@@ -1,4 +1,4 @@
-import { DASHBOARD_DATA } from '../types/authUserTypes';
+import { DASHBOARD_DATA } from '../../types/authUserTypes';
  
 const DEFAULT_STATE = {
   email: '', 

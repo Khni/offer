@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {selectUserAuth} from '../../../store/reducers/auth/userReselect'
 
 export default (AuthComponent) => {
   class MixedComponent extends Component {
@@ -25,8 +26,10 @@ export default (AuthComponent) => {
 
   function mapStateToProps(state) {
     return {
-      isAuth: state.auth.isAuthenticated,
-      jwtToken: state.auth.token
+      isAuth: state.userAuth.isAuthenticated,
+      jwtToken:state.userAuth.token
+      /*isAuth: selectUserAuth(state).isAuthenticated,
+      jwtToken: selectUserAuth(state).token*/
     }
   }
 

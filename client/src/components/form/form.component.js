@@ -76,20 +76,23 @@ class Form extends Component {
 
             
 
-
+{this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
 
 
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
             
           </form>
          
-          {this.props.errorMsg ? <div className="errorMsg">error is:{this.props.errorMsg }</div> : null  }
-
-{this.props.social ? 
-    {this.props.signin? 
+         
+          {this.props.signin && this.props.social? 
+          <div className="ToSignUp">
     <h5> {this.props.ToSignUp}</h5>
     <Link to={this.props.signupLink} >{ this.props.signup_title} </Link>
-     : null} 
+    </div>
+     : null}
+     
+{this.props.social ? 
+   
 <div>
           <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
           <div className="social-btns">
