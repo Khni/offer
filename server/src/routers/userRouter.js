@@ -49,19 +49,16 @@ router.post('/signup', async (req, res) => {
         ]
     });
     if (userjson) {
-        // Let's merge them?
+    	
+        // merge them
         userjson.methods.push('local')
-        userjson = {
-            local: {
-                email: email,
-                password: password,
-                // username: username
-            }
-            , ...req.body
-        }
+        userjson.local = {
+        email: email, 
+        password: password
+      }
 
         try {
-        //    await userjson.save()
+           await userjson.save()
             const token = await userjson.generateAuthToken()
             res.status(201).send({ userjson, token })
         } catch (e) {
