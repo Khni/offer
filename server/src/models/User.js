@@ -4,126 +4,123 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const userSchema = mongoose.Schema({
-	
-	methods: {
-    type: [String],
-    required: true
-  },
-	
-	
-    
+
+    methods: {
+        type: [String],
+        required: true
+    },
+
+
+
     name: {
         type: String
     },
     age: {
         type: Number
     },
-    
-    local :{
-    
-      email: {
-        type: String,
-        trim: true,
-     /*
-         
-    
-    required: function() { return this.methods === 'local'; } // Only required if a equals 'test'
-  
-       */
-        lowercase: true,
-        //unique: true,
-        validate(value){
-            if (!validator.isEmail(value)) {
-                throw new Error('inValidEmail')
+
+    local: {
+
+        email: {
+            type: String,
+            trim: true,
+            required: function () { return this.methods === 'local'; }, // Only required if a equals 'test'
+            lowercase: true,
+            //unique: true,
+            validate(value) {
+                if (!validator.isEmail(value)) {
+                    throw new Error('inValidEmail')
+                }
+            }
+        },
+        /*  username:{
+              type: String,
+              trim: true,
+             // require: true,
+            //  unique: true,
+              validate(value){
+                if (validator.contains(value," ")) {
+                  throw new Error('Username can not contain spaces')
+                }
+              }
+          },*/
+        password: {
+            type: String,
+            // required: true,
+            //  minlength: 8,
+            required: function () { return this.methods === 'local'; },
+            trim: true,
+            validate(value) {
+                if (value.toLowerCase().includes('password')) {
+                    throw new Error('passswordcontains')
+                }
+                if (value.toLowerCase().includes('123456')) {
+                    throw new Error('123456contains')
+                }
+                if (value.length < 8) {
+                    throw new Error('LengthError')
+                }
+
             }
         }
     },
-  /*  username:{
-        type: String,
-        trim: true,
-       // require: true,
-      //  unique: true,
-        validate(value){
-          if (validator.contains(value," ")) {
-            throw new Error('Username can not contain spaces')
-          }
-        }
-    },*/
-      password: {
-        type: String,
-       // required: true,
-      //  minlength: 8,
-        trim: true,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('passswordcontains')
-            }
-            if (value.toLowerCase().includes('123456')) {
-                throw new Error('123456contains')
-            }
-            if (value.length < 8) {
-                throw new Error('LengthError')
-            }
 
-        }
-    }} ,
-    
-    
+
     google: {
-    id: {
-      type: String
+        id: {
+            type: String
+        },
+        email: {
+            type: String,
+            lowercase: true
+        }
     },
-    email: {
-      type: String,
-      lowercase: true
-    }
-  },
-  facebook: {
-    id: {
-      type: String
+    facebook: {
+        id: {
+            type: String
+        },
+        email: {
+            type: String,
+            lowercase: true
+        }
     },
-    email: {
-      type: String,
-      lowercase: true
-    }
-  }, 
-    
-    
-    
-    
-     phone: {
-     	type: Number,
-         trim: true,
 
-   },
-    
-    addresses:[
+
+
+
+    phone: {
+        type: Number,
+        trim: true,
+
+    },
+
+    addresses: [
         {
-            address:{
+            address: {
                 type: String,
-                
+
             }
         }
-    ], 
+    ],
 
-    
-    
-    tokens:[
+
+
+    tokens: [
         {
-            token:{
+            token: {
                 type: String,
                 required: true
             }
         }
     ]
 
-    
-    
+
+
 }
-,
-{
-    timestamps: true
-})
+    ,
+    {
+        timestamps: true
+    })
 
 userSchema.virtual('orders', {
     ref: 'Order',
@@ -180,7 +177,7 @@ userSchema.pre('save', async function (next) {
 })
 //hide password and token when to send user
 
-userSchema.methods.toJSON = function(){
+userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
     delete userObject.password
@@ -193,31 +190,31 @@ userSchema.methods.toJSON = function(){
 
 //generate Token 
 
-userSchema.methods.generateAuthToken = async function(){
+userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({_id: user._id.toString()}, 'secret',{expiresIn: '7 days'})
-    user.tokens = user.tokens.concat({token})
+    const token = jwt.sign({ _id: user._id.toString() }, 'secret', { expiresIn: '7 days' })
+    user.tokens = user.tokens.concat({ token })
     await user.save()
     return token
 }
 
 //login verify
-userSchema.statics.findByCredentials = async (email,password)=>{
-    const userLogin = await User.findOne({email: email})
+userSchema.statics.findByCredentials = async (email, password) => {
+    const userLogin = await User.findOne({ email: email })
     if (!userLogin) {
-        throw new Error('unable to Login') 
+        throw new Error('unable to Login')
     }
     const isTruePassword = await bcrypt.compare(password, userLogin.password)
     if (!isTruePassword) {
-     throw new Error('unable to Login') 
+        throw new Error('unable to Login')
     }
- 
-    
+
+
     return userLogin
- }
+}
 
 
-const User = mongoose.model('User', userSchema )
+const User = mongoose.model('User', userSchema)
 /*
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({ email })

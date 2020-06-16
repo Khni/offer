@@ -42,12 +42,15 @@ router.post('/signup', async (req, res) => {
 
 
 
-     userjson= await User.findOne({
+     userjson= await User.findOne( { "google.email": email });
+     /*
+     {
         $or: [
             { "google.email": email },
             { "facebook.email": email },
         ]
-    });
+    }
+     */
     if (userjson) {
     	
         // merge them
