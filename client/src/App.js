@@ -7,6 +7,7 @@ import HomeMenu from './components/home-menu/homeMenu.js'
 import { Switch, Route } from 'react-router-dom';
 import SignUp from './components/authNew/sign-up/signUp.js';
 import SignIn from './components/authNew/sign-in/signIn.js';
+import authHOC from './components/HOCs/auth/authHOC.js';
 import Cart from './components/cart/cart.component.js';
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
      <Switch>
    
           <Route exact path='/' component={HomeMenu} />
-          <Route path='/signup' component={SignUp} />
-         <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={authHOC(SignUp) } />
+         <Route path='/signin' component={authHOC(SignIn)} />
            <Route path='/cart' component={Cart} />
                 <Route path='/item/:title' component={SignIn} />
       

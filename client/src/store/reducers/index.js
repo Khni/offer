@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import userReducer from './userReducer';
-import adminReducer from './adminReducer';
-import dashboardReducer from './dashboardReducer';
+import userReducer from './auth/userReducer';
+import adminReducer from './auth/adminReducer';
+import dashboardReducer from './auth/dashboardReducer';
 import cartReducer from './cart/cartReducer';
 import langReducer from './langReducer/langReducer';
 import cartItemsReducer from './cart/cartItemsReducer';

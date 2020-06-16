@@ -118,6 +118,7 @@ class signUp extends Component {
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
           errorMsg = {this.props.errorMsg}
+          
         />
       </div>
 

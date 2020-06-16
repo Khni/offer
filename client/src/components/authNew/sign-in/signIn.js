@@ -89,6 +89,10 @@ fieldsets = [
    fbres={this.responseFacebook} 
    googleres={this.responseGoogle}
    submitBtnTitle={this.props.submit_signin_btn} 
+   signin={true} 
+   signupLink="/signup" 
+   ToSignUp={this.props.ToSignUp}
+   signup_title={this.props.signup_title} 
    />
       </div>
 
@@ -106,7 +110,9 @@ const mapStateToProps = state => {
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 
     passwordString: selectAuthLang(state).password, 
-    classN: selectAuthLang(state).classN
+    classN: selectAuthLang(state).classN, 
+    ToSignUp: selectAuthLang(state).ToSignUp, 
+    signup_title :selectAuthLang(state).signup_title
   }
 
 }

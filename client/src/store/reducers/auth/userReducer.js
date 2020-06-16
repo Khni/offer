@@ -5,11 +5,12 @@ import {
   AUTH_ERROR } from '../types/authUserTypes';
 
 const DEFAULT_STATE = {
+	const authUser ={
   isAuthenticated: false,
   error: '',
   token:'', 
   msg: 'hello' 
-  
+ } 
 }
 
 export default (state = DEFAULT_STATE, action) => {

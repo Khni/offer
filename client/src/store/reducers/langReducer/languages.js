@@ -1,6 +1,6 @@
 export const auth_ar = {
 
-  signup_title: ' إنشاء حساب',
+  signup_title: 'إنشاء حساب جديد', 
   signin_title: 'تسجيل الدخول',
   submit_signup_btn: 'تسجيل',
   submit_signin_btn: 'دخول',
@@ -10,22 +10,24 @@ export const auth_ar = {
   phone: 'رقم الهاتف',
   name: 'الاسم',
   classN: 'label-auth-ar',
-  langIcon: 'englishicon'
+  langIcon: 'englishicon', 
+  ToSignUp: 'لو لم تمتلك حساب' 
 
 }
 export const auth_en = {
 
-  signup_title: 'Sign up',
+  signup_title: 'Create New Account',
   signin_title: 'Login',
   submit_signin_btn: 'Login',
-  submit_signup_btn: 'Create New Account',
+  submit_signup_btn: 'Create Account',
   email: 'Email Address',
   password: 'password',
   repassword: 're-enter your password',
   phone: 'Phone Number',
   name: 'Name',
   classN: 'label-auth-en',
-  langIcon: 'arabicicon'
+  langIcon: 'arabicicon', 
+  ToSignUp: 'If you Do not have account' 
 
 
 }
