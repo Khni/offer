@@ -24,7 +24,12 @@ const userSchema = mongoose.Schema({
       email: {
         type: String,
         trim: true,
-       // require: true,
+     /*
+         
+    
+    required: function() { return this.methods === 'local'; } // Only required if a equals 'test'
+  
+       */
         lowercase: true,
         //unique: true,
         validate(value){
