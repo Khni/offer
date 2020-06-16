@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
 
 
 
-    userjson = await User.findOne({
+     userjson= await User.findOne({
         $or: [
             { "google.email": email },
             { "facebook.email": email },
@@ -78,7 +78,7 @@ router.post('/signup', async (req, res) => {
             local: {
                 email: email,
                 password: password,
-                username: username
+                
             }
             , ...req.body
         })
