@@ -15,7 +15,16 @@ const {HandelErrors} = require('./userUtils')
 router.post('/signup', async (req, res) => {
 
     const email = req.body.email
+    const password = req.body.password
     const username = req.body.username
+    if (!email || !password) {
+return res.status(403).json({
+            error_en: 'You must provide Email and password', 
+            error_ar: 'يجب أن تدخل بريد الكتروني ورقم سري' 
+        });
+       } 
+    
+    
     let userjson = await User.findOne({ "local.email": email })
     if (userjson) {
         return res.status(403).json({
@@ -42,15 +51,13 @@ router.post('/signup', async (req, res) => {
 
 
 
-     userjson= await User.findOne( { "google.email": email });
-     /*
-     {
+     userjson= await User.findOne( {
         $or: [
             { "google.email": email },
             { "facebook.email": email },
         ]
-    }
-     */
+    });
+     
     if (userjson) {
     	
         // merge them
