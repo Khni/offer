@@ -17,6 +17,7 @@ router.post('/signup', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const username = req.body.username
+    const repassword = req.body.repassword
     if (!email || !password) {
 return res.status(403).json({
             error_en: 'You must provide Email and password', 
@@ -39,8 +40,8 @@ return res.status(403).json({
       return res.status(403).json({ error: 'Username is already in use'});
     }*/
 
-    const password = req.body.password
-    const repassword = req.body.repassword
+   
+   
 
     if (password !== repassword) {
         return res.status(403).json({
