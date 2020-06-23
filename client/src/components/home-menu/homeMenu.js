@@ -1,17 +1,17 @@
 import React , {Component} from 'react';
-import HomeMenustyle from './homeMenu.css';
-import HomeMenuData from './items.js';
+import './homeMenu.css';
+import {selectProducts} from '../../store/reducers/products/productsReselect'
+
+
 import Section from '../section/section.js';
 import Header from '../header/header.js'
+import { connect } from 'react-redux';
 
 class homeMenu extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-      collections: HomeMenuData
-    };
-	}
 	
+	}
 	render() {
 		
 		return(
@@ -19,7 +19,7 @@ class homeMenu extends Component {
 		
 		  <Header />
 		<div className="full-menu">
-		{this.state.collections.map((col)=>
+		{this.props.collections.map((col)=>
   <Section key={col.id}  items={col.items} title={col.title} />
     )}
 		</div>
@@ -37,4 +37,10 @@ class homeMenu extends Component {
 	
 }
 
-export default homeMenu;
+const mapStateToProps =(state) =>{
+	return {
+ collections: selectProducts(state)
+	}
+}
+
+export default connect(mapStateToProps)(homeMenu);

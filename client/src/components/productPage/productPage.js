@@ -2,6 +2,7 @@ import React ,{Component} from 'react'
 import PicComponent from './pic/pic.component'
 import MiddleComponent from './middle/middle.component'
 import DiscComponent from './disc/disc.component'
+import {connect} from 'react-redux'
 import Style from './ProductPage.scss'
 
  class ProductPage extends Component {
@@ -10,8 +11,9 @@ import Style from './ProductPage.scss'
         
       }
 
-      render(){
 
+      render(){
+        console.log(this.props.match.params.title);
 
         return(
 <div className="productPage">
@@ -30,5 +32,10 @@ import Style from './ProductPage.scss'
       }
  }
 
+ const mapStateToProps = (state, ownProps) => ({
+ // collection: selectCollection(ownProps.match.params.collectionId)(state)
+});
 
- export default ProductPage
+export default connect(mapStateToProps)(ProductPage);
+
+ 
