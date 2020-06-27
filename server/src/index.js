@@ -12,7 +12,9 @@ var bodyParser = require('body-parser');
 const userRouter = require('./routers/userRouter')
 const {router , routerPromise} =require('./routers/userRouter')
 const adminRouter = require('./routers/adminRouter')
-
+const CategoryRouter = require('./routers/categoryRouter')
+const SectionRouter = require('./routers/sectionRouter')
+const ProductRouter = require('./routers/productRouter')
 //app.use(cors())
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 //enable for using both ports client and server for developement
@@ -85,8 +87,9 @@ app.use(express.json())
 app.use(router)
 app.use(routerPromise)
 app.use(adminRouter)
-
-
+app.use(CategoryRouter)
+app.use(SectionRouter)
+app.use(ProductRouter)
 
 
 

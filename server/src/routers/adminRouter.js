@@ -18,11 +18,11 @@ router.post('/admin/add', async (req,res)=>{
     const adminname = req.body.adminname
     const adminjson = await Admin.findOne({email: email})
     if (adminjson) {
-        return res.send('Email is already exit!')
+        return res.status(403).send('Email is already exit!')
       }
     const adminnamejs= await Admin.findOne({adminname: adminname})
     if (adminnamejs) {
-        return res.send('Adminname is already exit!')
+        return res.status(403).send('Adminname is already exit!')
       }
     
     

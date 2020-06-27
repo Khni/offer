@@ -9,9 +9,9 @@ const categorySchema = mongoose.Schema({
 		type: String,
         trim: true,
         require: true,
-		 }
+		 },
 		adminID:{
-type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Admin'
             } 
@@ -29,4 +29,4 @@ categorySchema.virtual('products', {
 	
 const Category = mongoose.model('Category', categorySchema );
 
-module.exports Category;
+module.exports = Category;

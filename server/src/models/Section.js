@@ -30,4 +30,4 @@ sectionSchema.virtual('products', {
 	
 const Section = mongoose.model('Section', sectionSchema );
 
-module.exports Section;
+module.exports = Section;

@@ -17,7 +17,7 @@ const productSchema = mongoose.Schema({
         ref: 'Admin'
         }, 
 	price:{
-		type: Float,
+		type: Number,
         trim: true,
         require: true,
 		 },
@@ -55,7 +55,7 @@ const productSchema = mongoose.Schema({
 	 pricehistory:[
             {
             pricehistory:{
-           type: Float,
+           type: Number,
            trim: true,
         
 
@@ -93,5 +93,5 @@ productSchema.virtual('Orders', {
 	
 const Product = mongoose.model('Product', productSchema );
 
-module.exports Product
+module.exports = Product
 	

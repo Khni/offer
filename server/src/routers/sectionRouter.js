@@ -1,5 +1,5 @@
 const express = require('express')
-const Section= require('../models/Section)
+const Section= require('../models/Section')
 const router = new express.Router()
 const auth = require('../middleware/adminAuth')
 
