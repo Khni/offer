@@ -8,9 +8,9 @@ router.post('/product/add', auth, async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
-        imgURLs.concat({imgURL}) 
     })
-
+    product.imgURLs = product.imgURLs.concat({imgURL: req.body.imgURL}) 
+     
     try {
         await product.save()
         res.status(201).send(product)
