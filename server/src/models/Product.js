@@ -26,7 +26,7 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true
          }, 
-     imgURL: [
+     imgURLs: [
                {
              imgURL:{
                type: String,

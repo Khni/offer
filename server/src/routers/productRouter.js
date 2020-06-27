@@ -8,6 +8,7 @@ router.post('/product/add', auth, async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
+        imgURLs.concat({imgURL}) 
     })
 
     try {
