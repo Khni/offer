@@ -10,6 +10,7 @@ router.post('/product/add', auth, async (req, res) => {
         adminID: req.admin._id
     })
     product.imgURLs = product.imgURLs.concat({imgURL: req.body.imgURL}) 
+     product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
      
     try {
         await product.save()

@@ -5,11 +5,27 @@ const jwt = require('jsonwebtoken')
 
 const productSchema = mongoose.Schema({
 	
-	name:{
+	nameEn:{
 		type: String,
         trim: true,
         require: true,
-		 },
+		 }, 
+		nameAr:{
+		type: String,
+        trim: true,
+        require: true,
+		 }, 
+		descEn:{
+		type: String,
+        trim: true,
+        require: true,
+		 }, 
+		descAr:{
+		type: String,
+        trim: true,
+        require: true,
+		 }, 
+		
 		
 	adminID:{
       type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +42,22 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true
          }, 
+         sizes: [
+               {
+             size:{
+               type: String,
+               trim: true,
+                }, 
+                quantity :{
+               type: Number,
+                trim: true,
+        
+                   }
+                
+             } 
+
+            ], 
+         
      imgURLs: [
                {
              imgURL:{
@@ -42,9 +74,9 @@ const productSchema = mongoose.Schema({
         required: true,
         ref: 'Category'
          },
-    sectionID:{
+    collectionID:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Section'
+        ref: 'Collection'
          },
 	oldprice:{
 		type: String,
@@ -52,9 +84,13 @@ const productSchema = mongoose.Schema({
         require: true,
         
 		 },
+		gender:{
+       type: String,
+        trim: true,
+            }, 
 	 pricehistory:[
             {
-            pricehistory:{
+            price:{
            type: Number,
            trim: true,
         

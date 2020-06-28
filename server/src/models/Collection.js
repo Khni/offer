@@ -3,7 +3,7 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const categorySchema = mongoose.Schema({
+const collectionSchema = mongoose.Schema({
 	
       nameEn:{
 		type: String,
@@ -37,13 +37,13 @@ const categorySchema = mongoose.Schema({
 	})
 	
 
-categorySchema.virtual('sections', {
-    ref: 'Section',
+collectionSchema.virtual('products', {
+    ref: 'Product',
     localField: '_id',
-    foreignField: 'categoryID'
+    foreignField: 'collectionID'
 })
 	
 	
-const Category = mongoose.model('Category', categorySchema );
+const Collection = mongoose.model('Collection', collectionSchema );
 
-module.exports = Category;
+module.exports = Collection;
