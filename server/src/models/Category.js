@@ -30,7 +30,12 @@ const categorySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Admin'
-            } 
+            }, 
+          sections: [{
+        section:  {
+          type: mongoose.Schema.Types.ObjectId,
+           } 
+      }] 
 	
 	
 	

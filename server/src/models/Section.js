@@ -35,6 +35,12 @@ const sectionSchema = mongoose.Schema({
         trim: true,
         require: true,
 		 }, 
+		gender: {type: String,
+        trim: true,
+        require: true,}, 
+        age: {type: String,
+        trim: true,
+        require: true,}, 
 		
 		adminID: {
        type: mongoose.Schema.Types.ObjectId,
@@ -45,7 +51,12 @@ const sectionSchema = mongoose.Schema({
        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
-         } 
+         }, 
+         products: [{
+        product:  {
+          type: mongoose.Schema.Types.ObjectId,
+           } 
+      }] 
 		
 	
 	
@@ -57,6 +68,11 @@ sectionSchema.virtual('products', {
     foreignField: 'sectionID'
 })
 
+sectionSchema.virtual('sections', {
+    ref: 'Section',
+    localField: '_id',
+    foreignField: 'sections'
+})
 	
 	
 const Section = mongoose.model('Section', sectionSchema );

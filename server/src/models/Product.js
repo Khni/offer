@@ -84,10 +84,20 @@ const productSchema = mongoose.Schema({
         require: true,
         
 		 },
-		gender:{
-       type: String,
+		gender: 
+          {type: String,
         trim: true,
-            }, 
+        require: true,}, 
+        
+        age: 
+         {type: String,
+        trim: true,
+        require: true,}, 
+        
+        color: 
+        {type: String,
+        trim: true,
+        require: true,}, 
 	 pricehistory:[
             {
             price:{
@@ -114,6 +124,11 @@ const productSchema = mongoose.Schema({
     ref: 'Cart',
     localField: 'name',
     foreignField: 'productName'
+})
+productSchema.virtual('section', {
+    ref: 'Section',
+    localField: '_id',
+    foreignField: 'products'
 })
 
 productSchema.virtual('Orders', {
