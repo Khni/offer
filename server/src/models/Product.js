@@ -128,7 +128,7 @@ const productSchema = mongoose.Schema({
 productSchema.virtual('section', {
     ref: 'Section',
     localField: '_id',
-    foreignField: 'products'
+    foreignField: 'productsOfSection'
 })
 
 productSchema.virtual('Orders', {

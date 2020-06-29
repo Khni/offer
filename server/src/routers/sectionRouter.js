@@ -14,31 +14,19 @@ router.post('/section/add', auth, async (req, res) => {
 
     try {
         await section.save()
+       const relatedCategory = await Category.findOne({_id: req.body.categoryID})
        
-        const category = new Category({ })
-category.sections = category.sections.concat({section : section._id})
+     relatedCategory.sectionsOfCategory = relatedCategory.sectionsOfCategory.concat({sectionOfCategory : section._id})
         
-        await category.save()
-        res.status(201).send(section)
+       await relatedCategory.save()
+        res.status(201).send(relatedCategory)
     } catch (e) {
         res.status(400).send(e)
     }
 })
 
 
-/*const category = new Category({ })
-category.sections = category.sections.concat({section : section._id})
-    try {
-        await category.save()
-       
-        
-        
-        
-       // res.status(201).send(section)
-    } catch (e) {
-        res.status(400).send(e)
-    }
-})*/
+
 
 
 

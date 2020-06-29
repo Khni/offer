@@ -46,14 +46,14 @@ const sectionSchema = mongoose.Schema({
        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Admin'
-         } 
+         } ,
          categoryID: {
        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
          }, 
-         products: [{
-        product:  {
+         productsOfSection: [{
+            productOfSection:  {
           type: mongoose.Schema.Types.ObjectId,
            } 
       }] 
@@ -68,10 +68,10 @@ sectionSchema.virtual('products', {
     foreignField: 'sectionID'
 })
 
-sectionSchema.virtual('sections', {
-    ref: 'Section',
+sectionSchema.virtual('category', {
+    ref: 'Category',
     localField: '_id',
-    foreignField: 'sections'
+    foreignField: 'sectionsOfCategory'
 })
 	
 	
