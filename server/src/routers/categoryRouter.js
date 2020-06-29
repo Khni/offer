@@ -25,10 +25,10 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let sections = await Section.find({})
    // let CategoryWithSections =  foundCategory
   //  CategoryWithSections.sectionsOfCategory.sectionOfCategory = "dd"
-    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory:foundCategory.sectionsOfCategory.map(async(SOC)=>{
+    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
       return  await Section.findOne({_id: SOC.sectionOfCategory })
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
-    })   }
+    }) )   }
    /* let CategoryWithSections = foundCategory.sectionsOfCategory.map((categorySection) =>{
         return {...categorySection, sectionsOfCategory: sectionsOfCategory.map(async(section)=>{
             return await Section.find({_id: section._id})
