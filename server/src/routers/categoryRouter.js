@@ -25,7 +25,7 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let sections = await Section.find({})
    // let CategoryWithSections =  foundCategory
   //  CategoryWithSections.sectionsOfCategory.sectionOfCategory = "dd"
-    let CategoryWithSections =  {...foundCategory,sectionsOfCategory:foundCategory.sectionsOfCategory.map((SOC)=>{
+    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory:foundCategory.sectionsOfCategory.map((SOC)=>{
         return sections.filter((section) => section._id === SOC.sectionOfCategory)
     })   }
    /* let CategoryWithSections = foundCategory.sectionsOfCategory.map((categorySection) =>{
