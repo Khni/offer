@@ -25,6 +25,26 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     let sections = await Section.find({})
    
+   
+   let CategoryWithSections = 
+{...foundCategory.toObject(),sectionsOfCategory: 
+        await Promise.all(  foundCategory.sectionsOfCategory.map(async(SOC)=>{
+               return Section.findOne({_id: SOC.sectionOfCategory })
+        }))}
+        
+        
+     let CatwProducts = {...CategoryWithSections,sectionsOfCategory.productsOfSection:
+        Promise.all( CategoryWithSections.sectionsOfCategory.productsOfSection.map((POS)=>{
+         return await Product.findOne({_id: POS.productOfSection })
+     }))
+      }
+   
+   
+   
+   
+   
+   
+   
     let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
@@ -40,7 +60,7 @@ router.get('/category/findone/:id', auth, async (req, res) => {
 
     try {
  
-        res.status(201).send(CategoryWithSections)
+        res.status(201).send(CatwProducts)
     } catch (e) {
         res.status(400).send(e)
     }
