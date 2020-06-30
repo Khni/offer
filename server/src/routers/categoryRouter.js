@@ -26,15 +26,18 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let sections = await Section.find({})
    
    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
-        await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>SOC)).then((SOC)=>{
+        await Promise.all
+        ( foundCategory.sectionsOfCategory.map(async(SOC)=>SOC)).then(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
             
-            return {...sections.toObject(), productsOfSections: await Promise.all(sections.productsOfSection.map(async(POS)=>POS)).then((POS)=>{
+            return {...sections.toObject(),
+                 productsOfSections: await Promise.all(sections.productsOfSection.map(async(POS)=>POS))
+                 .then(async(POS)=>{
                 return await Product.findOne({_id: POS.productOfSection })
-            }) )
+            })} 
             
  
-        })
+        })}
   /* let CategoryWithSections = 
 {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all(  foundCategory.sectionsOfCategory.map(async(SOC)=>{
@@ -51,7 +54,7 @@ router.get('/category/findone/:id', auth, async (req, res) => {
    
    
    
-   Promise.all( items.map(item =>item) ).then(result => 
+  /* Promise.all( items.map(item =>item) ).then(result => 
 console.log(result))
    
    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
@@ -63,7 +66,7 @@ console.log(result))
                 })
               }
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
-    }) )   } 
+    }) )   } */
    
    
     /*let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
