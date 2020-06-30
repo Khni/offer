@@ -9,35 +9,42 @@ const sectionSchema = mongoose.Schema({
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		nameAr:{
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		descEn:{
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		descAr:{
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		returnPolicyEn:{
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		returnPolicyAr:{
 		type: String,
         trim: true,
         require: true,
-		 }, 
+         }, 
+         
 		gender: {type: String,
         trim: true,
         require: true,}, 
+
         age: {type: String,
         trim: true,
         require: true,}, 
@@ -47,11 +54,13 @@ const sectionSchema = mongoose.Schema({
         required: true,
         ref: 'Admin'
          } ,
+
          categoryID: {
        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
          }, 
+         
          productsOfSection: [{
             productOfSection:  {
           type: mongoose.Schema.Types.ObjectId,

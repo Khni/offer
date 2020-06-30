@@ -25,7 +25,8 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     let sections = await Section.find({})
    
-    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
+    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+        await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
       return  await Section.findOne({_id: SOC.sectionOfCategory })
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
     }) )   }
@@ -44,14 +45,20 @@ router.get('/categories', auth, async (req, res) => {
     let Categories = await Category.find({})
   
    
-    let CategoriesWithSectionsAndProducts =  await Promise.all(Categories.map((category)=> {
-           return {...category.toObject(), sectionsOfCategory: category.sectionsOfCategory.map((SOC)=>{
+    let CategoriesWithSectionsAndProducts = 
+     await Promise.all(
+         Categories.map((category)=> {
+           return {...category.toObject(), sectionsOfCategory: 
+            category.sectionsOfCategory.map(async(SOC)=>{
     let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
-           return {...sections, productsOfSection: sections.productsOfSection.map((POS)=>{
+           return {...sections, productsOfSection: 
+            sections.productsOfSection.map(async(POS)=>{
                     return await Product.findOne({_id: POS.productOfSection })
                })
-             })
-} )) 
+             }}) 
+} })
+
+) 
 
 
     try {
@@ -71,13 +78,13 @@ router.get('/categoriegenderfilter/:gender', auth, async (req, res) => {
   
    
     let CategoriesWithSectionsAndProducts =  await Promise.all(Categories.map((category)=> {
-           return {...category.toObject(), sectionsOfCategory: category.sectionsOfCategory.map((SOC)=>{
+           return {...category.toObject(), sectionsOfCategory: category.sectionsOfCategory.map(async(SOC)=>{
     let sections=  await Section.findOne({_id: SOC.sectionOfCategory }, {gender : { $in: [req.params.gender, "all" ] }} )
-           return {...sections, productsOfSection: sections.productsOfSection.map((POS)=>{
+           return {...sections, productsOfSection: sections.productsOfSection.map(async(POS)=>{
                     return await Product.findOne({_id: POS.productOfSection },  {gender : { $in: [req.params.gender, "all" ] }} )
-               })
-             })
-} )) 
+                })
+            }})
+} })) 
 
 
     try {

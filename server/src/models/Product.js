@@ -69,7 +69,7 @@ const productSchema = mongoose.Schema({
 
             ], 
          
-	categoryID:{
+            sectionID:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
