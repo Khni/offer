@@ -25,7 +25,16 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     let sections = await Section.find({})
    
-   
+   let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+        await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>SOC)).then((SOC)=>{
+            let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
+            
+            return {...sections.toObject(), productsOfSections: await Promise.all(sections.productsOfSection.map(async(POS)=>POS)).then((POS)=>{
+                return await Product.findOne({_id: POS.productOfSection })
+            }) )
+            
+ 
+        })
   /* let CategoryWithSections = 
 {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all(  foundCategory.sectionsOfCategory.map(async(SOC)=>{
@@ -42,11 +51,10 @@ router.get('/category/findone/:id', auth, async (req, res) => {
    
    
    
+   Promise.all( items.map(item =>item) ).then(result => 
+console.log(result))
    
-   
-   
-   
-    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+   let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
             return {...sections.toObject(), productsOfSections: 
@@ -56,6 +64,18 @@ router.get('/category/findone/:id', auth, async (req, res) => {
               }
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
     }) )   } 
+   
+   
+    /*let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+        await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
+            let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
+            return {...sections.toObject(), productsOfSections: 
+                sections.productsOfSection.map(async(POS)=>{
+                     return await Product.findOne({_id: POS.productOfSection })
+                })
+              }
+        // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
+    }) )   } */
 
 
 
