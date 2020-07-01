@@ -27,16 +27,16 @@ router.get('/category/findone/:id', auth, async (req, res) => {
   
 
 
-let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+/*let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all
         ( foundCategory.sectionsOfCategory.map(async(SOC)=> await Section.findOne({_id: SOC.sectionOfCategory }) )).then(async(section)=>{
             
             
-            return {...section.toObject(),
+            return {...section,
                  productsOfSections: await Promise.all(sections.productsOfSection.map(async(POS)=>await Product.findOne({_id: POS.productOfSection }))) } 
             
  
-        })}
+        })}*/
 
 
 
@@ -58,7 +58,7 @@ let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory:
         
         
         
-  /* let CategoryWithSections = 
+/*   let CategoryWithSections = 
 {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all(  foundCategory.sectionsOfCategory.map(async(SOC)=>{
                return Section.findOne({_id: SOC.sectionOfCategory })
@@ -70,8 +70,8 @@ let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory:
      await Promise.all( CategoryWithSections.sectionsOfCategory.productsOfSection.map(async(POS)=>{
          return await Product.findOne({_id: POS.productOfSection })
      }))
-      }*/
-   
+      }
+*/
    
    
   /* Promise.all( items.map(item =>item) ).then(result => 
@@ -89,7 +89,7 @@ console.log(result))
     }) )   } */
    
    
-    /*let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+    let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
             return {...sections.toObject(), productsOfSections: 
@@ -98,7 +98,7 @@ console.log(result))
                 })
               }
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
-    }) )   } */
+    }) )   } 
 
 
 
