@@ -24,8 +24,25 @@ router.post('/category/add', auth, async (req, res) => {
 router.get('/category/findone/:id', auth, async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     let sections = await Section.find({})
-   
-   let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+  
+
+
+let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
+        await Promise.all
+        ( foundCategory.sectionsOfCategory.map(async(SOC)=> await Section.findOne({_id: SOC.sectionOfCategory }) )).then(async(section)=>{
+            
+            
+            return {...section.toObject(),
+                 productsOfSections: await Promise.all(sections.productsOfSection.map(async(POS)=>await Product.findOne({_id: POS.productOfSection }))) } 
+            
+ 
+        })}
+
+
+
+
+ 
+/*   let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all
         ( foundCategory.sectionsOfCategory.map(async(SOC)=>SOC)).then(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
@@ -37,7 +54,10 @@ router.get('/category/findone/:id', auth, async (req, res) => {
             })} 
             
  
-        })}
+        })}*/
+        
+        
+        
   /* let CategoryWithSections = 
 {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all(  foundCategory.sectionsOfCategory.map(async(SOC)=>{
