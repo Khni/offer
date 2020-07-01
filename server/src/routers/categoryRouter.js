@@ -92,10 +92,10 @@ console.log(result))
     let CategoryWithSections =  {...foundCategory.toObject(),sectionsOfCategory: 
         await Promise.all( foundCategory.sectionsOfCategory.map(async(SOC)=>{
             let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
-            return {...sections.toObject(), productsOfSections: 
-                sections.productsOfSection.map(async(POS)=>{
+            return {...sections.toObject(), productsOfSection: 
+                await Promise.all(  sections.productsOfSection.map(async(POS)=>{
                      return await Product.findOne({_id: POS.productOfSection })
-                })
+                }))
               }
         // return await sections.filter((section) => section._id === SOC.sectionOfCategory)
     }) )   } 
