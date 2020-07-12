@@ -10,6 +10,7 @@ import SignIn from './components/authNew/sign-in/signIn.js';
 import authHOC from './components/HOCs/auth/authHOC.js';
 import Cart from './components/cart/cart.component.js';
 import ProductPage from './components/productPage/productPage'
+import AdminPage from './admin/admin'
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
           <Route exact path='/' component={HomeMenu} />
           <Route path='/signup' component={authHOC(SignUp) } />
          <Route path='/signin' component={authHOC(SignIn)} />
-           <Route path='/cart' component={Cart} />
-                <Route path='/item/:title' component={ProductPage} />
+         <Route path='/cart' component={Cart} />
+          <Route path='/item/:title' component={ProductPage} />
       
         </Switch>
     </div>

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import userReducer from './auth/userReducer';
-import adminReducer from './auth/adminReducer';
+import adminReducer from './admin/auth/adminReducer';
 import dashboardReducer from './auth/dashboardReducer';
 import cartReducer from './cart/cartReducer';
 import langReducer from './langReducer/langReducer';
