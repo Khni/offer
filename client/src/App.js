@@ -11,6 +11,7 @@ import authHOC from './components/HOCs/auth/authHOC.js';
 import Cart from './components/cart/cart.component.js';
 import ProductPage from './components/productPage/productPage'
 import AdminPage from './admin/admin'
+import AdminAuthHOC from './admin/components/HOCs/auth/authHOC'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
           <Route path='/item/:title' component={ProductPage} />
+          <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
       
         </Switch>
     </div>

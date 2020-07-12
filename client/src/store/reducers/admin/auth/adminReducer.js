@@ -5,7 +5,7 @@ import {
   AUTH_ERROR } from '../../../types/authAdminTypes';
 
   const DEFAULT_STATE = {
-    authUser :{
+    authAdmin :{
     isAuthenticated: false,
     error: '',
     token:'', 
