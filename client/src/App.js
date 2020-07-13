@@ -12,7 +12,7 @@ import Cart from './components/cart/cart.component.js';
 import ProductPage from './components/productPage/productPage'
 import AdminPage from './admin/admin'
 import AdminAuthHOC from './admin/components/HOCs/auth/authHOC'
-
+import AdminLogin from './admin/components/auth/sign-in/signIn'
 function App() {
   return (
     <div className="App">
@@ -25,7 +25,8 @@ function App() {
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
           <Route path='/item/:title' component={ProductPage} />
-          <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
+          <Route exact path='/admin' component={AdminAuthHOC(AdminPage)} />
+          <Route path='/admin/login' component={AdminLogin} />
       
         </Switch>
     </div>

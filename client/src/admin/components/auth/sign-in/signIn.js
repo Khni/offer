@@ -8,7 +8,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {selectAuthLang} from  '../../../../store/reducers/langReducer/langReselect';
-import * as actions from '../../../../store/actions/users.js';
+import * as actions from '../../../../store/actions/admins';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
@@ -19,35 +19,20 @@ class signIn extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
    
-    this.responseGoogle = this.responseGoogle.bind(this);
-    this.responseFacebook = this.responseFacebook.bind(this);
-
   }
 
   async onSubmit(formData) {
 
 
     const { signUp } = this.props;
-    await signUp(formData);
+    await signIn(formData);
 if (!this.props.errorMsg) {
     this.props.history.push('/dashboard')
 } 
   }
 
 
-  async responseGoogle(res) {
-    await this.props.oauthGoogle(res.accessToken);
-    if (!this.props.errorMsg) {
-      this.props.history.push('/');
-    }
-  }
-
-  async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMsg) {
-      this.props.history.push('/');
-    }
-  }
+  
 
   
   
@@ -59,7 +44,7 @@ fieldsets = [
                 ID :"email" ,
                 className: this.props.classN ,
                 placeholder: this.props.emailString ,
-                label: this.props.emailString 
+                label: "Admin Email" 
 }, 
 {
                 type: "password" ,
@@ -67,7 +52,7 @@ fieldsets = [
                 ID :"password" ,
                 className: this.props.classN ,
                 placeholder:this.props.passwordString  ,
-                label: this.props.passwordString
+                label: "Admin Password"
 }
 
 
@@ -81,7 +66,7 @@ fieldsets = [
 
       <div class="main-container-signin">
    <Form
-   title={this.props.signin_title} 
+   title="Admin Login To Dashboard" 
    fieldsets={this.fieldsets}
  //  social={true}
    onSubmit={this.onSubmit } 

@@ -12,15 +12,11 @@ export default (AuthComponent) => {
     }
 
     componentDidMount() {
-      if (!this.props.isAuth && !this.props.jwtToken) {
-        this.props.history.push('/admin/login');
-      }
+     this.checkAuth()
     }
 
     componentDidUpdate() {
-      if (!this.props.isAuth && !this.props.jwtToken) {
-        this.props.history.push('/admin/login');
-      }
+      this.checkAuth()
     }
 
     render() {
