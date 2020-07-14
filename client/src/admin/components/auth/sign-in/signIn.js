@@ -29,7 +29,7 @@ class signIn extends Component {
   const { signIn } = this.props;
   await signIn(formData);
 if (!this.props.errorMsg) {
-  this.props.history.push('/dashboard')
+  this.props.history.push('/admin')
 }
   }
 
