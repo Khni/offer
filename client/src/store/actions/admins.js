@@ -21,7 +21,7 @@ export const signIn = data => {
           
         dispatch({
           type: AUTH_ERROR,
-          //payload: err
+          payload: err.response.data.error
         })
       }
     };
