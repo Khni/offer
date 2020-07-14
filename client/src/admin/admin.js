@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
 
 class AdminPage extends Component {
 
@@ -11,9 +12,22 @@ class AdminPage extends Component {
 
 
         return(
-            <div>admin PAGE</div>
+            <div>admin PAGE
+<h3> welcome {this.props.Name} </h3>
+<h4>{this.props.Email} </h3>
+</div>
         )
     }
+}
+
+const mapStateToProps = state => {
+  return {
+    Name: selectAdminAuth(state).Name,
+    Email: selectAdminAuth(state).Email,
+//state.adminAuth.error
+    
+  }
+
 }
 
 

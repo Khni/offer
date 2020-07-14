@@ -9,7 +9,8 @@ import {
     isAuthenticated: false,
     error: '',
     token:'', 
-    msg: 'hello' 
+    Email:'', 
+    Name:'' 
    } 
   }
   
@@ -18,9 +19,9 @@ import {
       case AUTH_SIGN_UP:
         return { ...state, isAuthenticated: true, token:action.token, error: '' }
       case AUTH_SIGN_IN:
-        return { ...state, isAuthenticated: true, token:action.token, error: '' }
+        return { ...state, isAuthenticated: true, token:action.token, Email:action.Email,  Name:action.Name ,error: '' }
       case AUTH_SIGN_OUT:
-        return { ...state, isAuthenticated: false, token:'', error: '' }
+        return { ...state, isAuthenticated: false, token:'', error: '', Email:'', Name:'' }
       case AUTH_ERROR:
         return { ...state, error: action.payload }
       default:

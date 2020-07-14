@@ -8,6 +8,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {selectAuthLang} from  '../../../../store/reducers/langReducer/langReselect';
+import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
 import * as actions from '../../../../store/actions/admins';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -92,7 +93,8 @@ fieldsets = [
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.adminAuth.error, 
+    errorMsg: selectAdminAuth(state).error,
+//state.adminAuth.error
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 

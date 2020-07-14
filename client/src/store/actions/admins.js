@@ -13,7 +13,9 @@ export const signIn = data => {
   
         dispatch({
           type: AUTH_SIGN_IN, 
-          token: response.data.token
+          token: response.data.token,
+          Email: response.data.adminToLogin.Email,
+          Name: response.data.adminToLogin.Name
         });
        
       } catch(err) {
