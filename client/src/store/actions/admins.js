@@ -17,8 +17,8 @@ export const signIn = data => {
         });
        
       } catch(err) {
-       console.log("err"+ err.response);
-          
+      // console.log();
+          console.error("err"+ err.response)
         dispatch({
           type: AUTH_ERROR,
           payload: err.response.data.error
