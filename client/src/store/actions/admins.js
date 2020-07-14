@@ -9,13 +9,13 @@ export const signIn = data => {
     return async dispatch => {
       try {
      const response =   await axios.post('http://localhost:8080/admin/login', data);
-  console.log('response' +response.data.token);
+  console.log('response' +response.data.adminToLogin.email);
   
         dispatch({
           type: AUTH_SIGN_IN, 
           token: response.data.token,
-          Email: response.data.adminToLogin.Email,
-          Name: response.data.adminToLogin.Name
+          Email: response.data.adminToLogin.email,
+          Name: response.data.adminToLogin.adminname
         });
        
       } catch(err) {

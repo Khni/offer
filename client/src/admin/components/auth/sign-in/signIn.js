@@ -94,6 +94,7 @@ fieldsets = [
 const mapStateToProps = state => {
   return {
     errorMsg: selectAdminAuth(state).error,
+    //selectAdminAuth(state).error,
 //state.adminAuth.error
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 

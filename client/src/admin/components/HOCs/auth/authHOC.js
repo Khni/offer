@@ -32,8 +32,8 @@ inside componentWillUpdate or componentDidUpdate.
 
   function mapStateToProps(state) {
     return {
-      isAuth: state.adminAuth.isAuthenticated,
-      jwtToken:state.adminAuth.token
+      isAuth: selectAdminAuth(state).isAuthenticated,
+      jwtToken:selectAdminAuth(state).token
       /*isAuth: selectUserAuth(state).isAuthenticated,
       jwtToken: selectUserAuth(state).token*/
     }
