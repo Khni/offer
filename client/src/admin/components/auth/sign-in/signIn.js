@@ -19,16 +19,18 @@ class signIn extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
    
+    
   }
 
   async onSubmit(formData) {
 
 
-    const { signIn } = this.props;
-    await signIn(formData);
+  console.log(formData);
+  const { signIn } = this.props;
+  await signIn(formData);
 if (!this.props.errorMsg) {
-    this.props.history.push('/dashboard')
-} 
+  this.props.history.push('/dashboard')
+}
   }
 
 
@@ -68,11 +70,11 @@ fieldsets = [
    <Form
    title="Admin Login To Dashboard" 
    fieldsets={this.fieldsets}
- //  social={true}
+  social={false}
    onSubmit={this.onSubmit } 
    errorMsg= {this.props.errorMsg} 
-  // fbres={this.responseFacebook} 
-  // googleres={this.responseGoogle}
+ // fbres={this.responseFacebook} 
+ //  googleres={this.responseGoogle}
    submitBtnTitle={this.props.submit_signin_btn} 
    signin={true} 
   // signupLink="/signup" 

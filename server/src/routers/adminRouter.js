@@ -59,17 +59,30 @@ router.post('/admin/login', async (req,res)=>{
         
     
     if (!isValidOperation) {
-        return res.status(400).send('The request is only accept Email and Password Keys')
+        return res.status(403).json({
+            error: 'The request is only accept Email and Password'
+            
+        });
+        
     }
     if (!MustProvideData) {
         if (DataLoginInput.includes('email')) {
-            return res.status(400).send('You have to Provide Password')
+            return res.status(403).json({
+                error: 'You have to provide Email'
+                
+            });
          }
          if (DataLoginInput.includes('password')) {
-            return res.status(400).send('You have to Provide Email')
+            return res.status(403).json({
+                error: 'You have to provide Password'
+                
+            });
          }
 
-        return res.status(400).send('You have to Provide Email and Password')
+         return res.status(403).json({
+            error: 'You have to provide Email and password'
+            
+        });
     }
 
 
