@@ -92,7 +92,7 @@ fieldsets = [
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.userAuth.error, 
+    errorMsg: state.adminAuth.error, 
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 
