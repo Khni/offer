@@ -24,7 +24,7 @@ class signIn extends Component {
   async onSubmit(formData) {
 
 
-    const { signUp } = this.props;
+    const { signIn } = this.props;
     await signIn(formData);
 if (!this.props.errorMsg) {
     this.props.history.push('/dashboard')
