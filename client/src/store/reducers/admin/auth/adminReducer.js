@@ -17,9 +17,9 @@ import {
   export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
       case AUTH_SIGN_UP:
-        return { ...state, isAuthenticated: true, token:action.token, error: '' }
+        return { ...state, authAdmin: {...authAdmin, isAuthenticated: true, token:action.token, error: ''} }
       case AUTH_SIGN_IN:
-        return { ...state, isAuthenticated: true, token:action.token, Email:action.Email,  Name:action.Name ,error: '' }
+        return { ...state, authAdmin:{...authAdmin,isAuthenticated: true, token:action.token, Email:action.Email,  Name:action.Name ,error: ''}  }
       case AUTH_SIGN_OUT:
         return { ...state, isAuthenticated: false, token:'', error: '', Email:'', Name:'' }
       case AUTH_ERROR:
