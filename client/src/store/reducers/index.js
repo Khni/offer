@@ -13,7 +13,7 @@ import ProductsReducer from './products/productsReducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard']
+  whitelist: ['dashboard','adminAuth']
 };
 
 const Reducers = combineReducers({
