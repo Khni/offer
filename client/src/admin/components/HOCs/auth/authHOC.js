@@ -7,7 +7,7 @@ export default (AuthComponent) => {
 
     checkAuth() {
       if (!this.props.isAuth && !this.props.jwtToken) {
-        this.props.history.push('/admin/login');
+        this.props.history.push('/admin-login');
       }
     }
 

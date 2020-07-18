@@ -16,12 +16,12 @@ class AdminPage extends Component {
 
         return(
 <div className="admin">
-    <header>
-    <nav>
+    
+    <nav className="admin-nav">
     <ul>
                             <li>
                                 <NavLink
-                                to="/add-product"
+                                to="/admin/add-product"
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
@@ -29,15 +29,22 @@ class AdminPage extends Component {
                                     textDecoration: 'underline'
                                 }}>Add Product</NavLink></li>
                             <li><NavLink to={{
-                                pathname: '/add-section'
-                            }}>Add section</NavLink></li>
+                                pathname: '/admin/add-section'
+                            }}
+                            activeClassName="my-active"
+                                activeStyle={{
+                                    color: '#fa923f',
+                                    textDecoration: 'underline'
+                                }}
+                            >Add section</NavLink></li>
                         </ul>
     </nav>
-    </header>
+    <div className="admin-nav-container">
                 <Switch>
-                    <Route path="/add-product" component={AddProduct} />
-                    <Route path="/add-section" component={AddSection} />
+                    <Route path="/admin/add-product" component={AddProduct} />
+                    <Route path="/admin/add-section" component={AddSection} />
                 </Switch>
+    </div>
 </div>
 
 

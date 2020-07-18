@@ -25,8 +25,10 @@ function App() {
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
           <Route path='/item/:title' component={ProductPage} />
-          <Route exact path='/admin' component={AdminAuthHOC(AdminPage)} />
-          <Route path='/admin/login' component={AdminLogin} />
+          
+          <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
+          <Route path='/admin-login' component={AdminLogin} />
+          
       
         </Switch>
     </div>
