@@ -4,6 +4,7 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import AddProduct from './components/adminPage/addProduct/addProduct.component'
 import AddSection from './components/adminPage/addSection/addSection.component'
 import { connect } from 'react-redux';
+import AdminStyle from './admin.scss'
 class AdminPage extends Component {
 
     constructor(props) {
@@ -20,21 +21,24 @@ class AdminPage extends Component {
     <nav className="admin-nav">
     <ul>
                             <li>
-                                <NavLink
+                                <NavLink className="NavLinkAdmin"
                                 to="/admin/add-product"
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
-                                    color: '#fa923f',
-                                    textDecoration: 'underline'
+                                  //  color: '#fa923f',
+                                  //  textDecoration: 'underline',
+                                    background: '#f7f7f7'
                                 }}>Add Product</NavLink></li>
-                            <li><NavLink to={{
+                            <li><NavLink className="NavLinkAdmin"  to={{
                                 pathname: '/admin/add-section'
                             }}
                             activeClassName="my-active"
                                 activeStyle={{
-                                    color: '#fa923f',
-                                    textDecoration: 'underline'
+                                  //  color: '#fa923f',
+                                   // textDecoration: 'underline'
+                                   background: '#f7f7f7'
+
                                 }}
                             >Add section</NavLink></li>
                         </ul>
