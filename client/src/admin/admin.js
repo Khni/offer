@@ -15,7 +15,7 @@ class AdminPage extends Component {
 
 
         return(
-<div className="admin">
+<div className="adminPage">
     
     <nav className="admin-nav">
     <ul>
