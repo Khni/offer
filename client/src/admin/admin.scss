@@ -8,24 +8,14 @@
 
 .admin-nav{
 display: flex;
+flex-direction: column;
 border-right: 1px solid black;
 margin: 5px;
 width: 30%;
-  ul {
-    list-style-type: none;
-    padding-left: 1px;
-    width: 100%;
-   // border: 1px solid black;
-    text-align: left;
-    li {
-      border: 1px solid black;
-      margin: 10px;
-      width: 200px;
-      //width: 100%;
-      padding-right: 20px ;
-      font-weight: bold;
+
 
       .NavLinkAdmin {
+      display: flex;
         width: 220px;
        // padding-right: 70px ;
        border: 1px solid black;
@@ -34,8 +24,7 @@ width: 30%;
         padding-bottom: 10px;
       }
 
-    }
-}
+    
 
 text-align: center;
 padding: 3;

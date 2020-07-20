@@ -19,8 +19,8 @@ class AdminPage extends Component {
 <div className="adminPage">
     
     <nav className="admin-nav">
-    <ul>
-                            <li>
+    
+                            
                                 <NavLink className="NavLinkAdmin"
                                 to="/admin/add-product"
                                 exact
@@ -29,8 +29,8 @@ class AdminPage extends Component {
                                   //  color: '#fa923f',
                                   //  textDecoration: 'underline',
                                     background: '#f7f7f7'
-                                }}>Add Product</NavLink></li>
-                            <li><NavLink className="NavLinkAdmin"  to={{
+                                }}>Add Product</NavLink>
+                            <NavLink className="NavLinkAdmin"  to={{
                                 pathname: '/admin/add-section'
                             }}
                             activeClassName="my-active"
@@ -40,8 +40,8 @@ class AdminPage extends Component {
                                    background: '#f7f7f7'
 
                                 }}
-                            >Add section</NavLink></li>
-                        </ul>
+                            >Add section</NavLink>
+                        
     </nav>
     <div className="admin-nav-container">
                 <Switch>
