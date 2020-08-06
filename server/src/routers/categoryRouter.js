@@ -55,15 +55,15 @@ router.get('/categories', auth, async (req, res) => {
   
    
        let CategoriesWithSectionsAndProducts = 
-      Promise.all(
+     await Promise.all(
          Categories.map((category)=> {
-           return {...category.toObject(), sectionsOfCategory: 
-             Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
+           return {...category.toObject(), sectionsOfCategory:
+             await Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
     let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
            return {...sections, productsOfSection: 
-             Promise.all( sections.productsOfSection.map(async(POS)=>{
+          await   Promise.all( sections.productsOfSection.map(async(POS)=>{
                     return await Product.findOne({_id: POS.productOfSection })
-               }))
+               })) 
              }}))
 } })
 

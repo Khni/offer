@@ -32,27 +32,3 @@ export const signIn = data => {
 
 
 
-export const fetchCategories = () => {
-
-
-    return async dispatch => {
-      try {
-     const response =   await axios.get('http://localhost:8080/categories');
-  console.log('response' +response.data.adminToLogin.email);
-  
-        dispatch({
-          type: FETCH_CATEGORY, 
-          Categories : response.data.categories,
-          
-        });
-       
-      } catch(err) {
-      // console.log();
-          console.error("err"+ err.response.data.error)
-        dispatch({
-          type: CATEGORY_FETCH_ERROR,
-          payload: err.response.data.error
-        })
-      }
-    };
-  }

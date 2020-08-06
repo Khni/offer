@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputForm.js' 
-
+import * as actions from '../../../../store/actions/product';
 
 
 
@@ -25,22 +25,18 @@ async onSubmit(formData) {
 
    
    
-   console.log(formData);
-  const { signIn } = this.props;
-  await signIn(formData);
-if (!this.props.errorMsg) {
- // this.props.history.push('/admin')
-}
+  
   }
 
-componentDidMount() {
+async componentDidMount() {
 
-    //This function will call on initial rendering.
-    document.title = `You clicked ${this.state.count} times`;
+  const { fetchCategories } = this.props;
+  await fetchCategories();
 
   }
-  componentDidUpdate() {
-     document.title = `You clicked ${this.state.count} times`;
+  async componentDidUpdate() {
+    const { fetchCategories } = this.props;
+    await fetchCategories();
    }
 
 
@@ -63,7 +59,7 @@ const { handleSubmit } = this.props;
                 className='title_ar'
                 placeholder='enter title in Arabic' 
                 component={InputForm}
-                label=''enter title in Arabic' 
+                label='enter title in Arabic' 
               />
             </fieldset>
                <fieldset>
@@ -74,7 +70,7 @@ const { handleSubmit } = this.props;
                 className='title_en'
                 placeholder='enter title in English ' 
                 component={InputForm}
-                label=''enter title in English' 
+                label='enter title in English' 
               />
             </fieldset>
                        <fieldset>
@@ -85,32 +81,28 @@ const { handleSubmit } = this.props;
                 className='title_ar'
                 placeholder='enter title in Arabic' 
                 component={InputForm}
-                label=''enter title in Arabic' 
+                label='enter title in Arabic' 
               />
             </fieldset>
             
             <select name="category" id="category">
  
  <option value="volvo">Volvo</option>
-/*  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>*/
+
 </select>
 
 
 
             
 
-{this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
+
 
 
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
             
           </form>
 </div>
-<form>
 
-</form>
 
          /*   <div>admin PAGE
 <h3> welcome {this.props.Name} </h3>
@@ -130,4 +122,9 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps)(AddProduct);
+
+
+export default compose(
+  connect(mapStateToProps, actions),
+  reduxForm({ form: 'AddProduct' })
+)(AddProduct)
