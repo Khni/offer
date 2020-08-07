@@ -50,10 +50,10 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     }
 })
 
-router.get('/categories', auth, async (req, res) => {
+router.get('/categories',  async (req, res) => {
     let Categories = await Category.find({})
   
-   /* 
+   /*  
        let CategoriesWithSectionsAndProducts = 
      await Promise.all(
          Categories.map((category)=> {
@@ -61,25 +61,28 @@ router.get('/categories', auth, async (req, res) => {
             await Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
     let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
            return {...sections, productsOfSection:  */
-       let CategoriesWithSectionsAndProducts = 
-     await Promise.all(
-         Categories.map((category)=> {
-           return {...category.toObject(), sectionsOfCategory:
-             await Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
-    let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
-           return {...sections, productsOfSection: 
-          await   Promise.all( sections.productsOfSection.map(async(POS)=>{
-                    return await Product.findOne({_id: POS.productOfSection })
-               })) 
-             }}))
-} })
-
-) 
+            let CategoriesWithSectionsAndProducts = 
+            await Promise.all(
+                Categories.map(async(category)=> {
+                  return {...category.toObject(), sectionsOfCategory: 
+                   
+                   await Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
+           let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
+                  return {...sections.toObject(), productsOfSection: 
+                   
+                   await Promise.all( sections.productsOfSection.map(async(POS)=>{
+                           return await Product.findOne({_id: POS.productOfSection })
+                     
+                      }))
+                    }}))
+       } })
+       
+       ) 
 
 
     try {
  
-        res.status(201).send(CategoriesWithSectionsAndProducts)
+        res.status(201).send({CategoriesWithSectionsAndProducts})
     } catch (e) {
         res.status(400).send(e)
     }

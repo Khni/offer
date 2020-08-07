@@ -12,14 +12,30 @@
 	text-align: left;
 	
 }
-
+.input-text-admin{
+	font-size: 12pt;
+	width: 130px;
+	margin-left: 5px;
+	transition: width 1s;
+	height: 20px;
+	/*margin-bottom: 1px;*/
+	border: 1px solid rgba(81, 203, 238, 1);
+	border-radius: 2px;
+	padding: 5px;
+	padding-right: 30px;
+	padding-left: 30px;
+	text-align: left;
+}
 .input-text-auth:focus {
 	width: 310px;
 	box-shadow: 0 0 5px #00ccff;
 	border: 1px solid #0066cc;
 }
 
-
+.input-text-admin:focus {
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
 .label-auth-en {
 	text-align: left;
 	display: block;

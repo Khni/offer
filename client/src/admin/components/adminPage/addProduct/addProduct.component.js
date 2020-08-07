@@ -7,7 +7,7 @@ import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
-import InputForm from '../../../../components/form/inputForm.js' 
+import InputForm from '../../../../components/form/inputAdminForm' 
 import * as actions from '../../../../store/actions/product';
 
 
@@ -59,7 +59,7 @@ const { handleSubmit } = this.props;
                 className='title_ar'
                 placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='enter title in Arabic' 
+                label='Enter title in Arabic' 
               />
             </fieldset>
                <fieldset>
@@ -70,7 +70,7 @@ const { handleSubmit } = this.props;
                 className='title_en'
                 placeholder='enter title in English ' 
                 component={InputForm}
-                label='enter title in English' 
+                label='Enter title in English' 
               />
             </fieldset>
                        <fieldset>
@@ -81,13 +81,15 @@ const { handleSubmit } = this.props;
                 className='title_ar'
                 placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='enter title in Arabic' 
+                label='Enter the Link ' 
               />
             </fieldset>
             
             <select name="category" id="category">
  
- <option value="volvo">Volvo</option>
+ <option value="volvo">Clothes</option>
+ <option value="volvo">Phones</option>
+ <option value="volvo">Supermarket</option>
 
 </select>
 
@@ -98,7 +100,7 @@ const { handleSubmit } = this.props;
 
 
 
-            <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
+            <button type="submit" class="custum-btn-form">submit</button>
             
           </form>
 </div>

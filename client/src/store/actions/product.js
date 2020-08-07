@@ -11,11 +11,11 @@ export const fetchCategories = () => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/categories');
-  console.log('response' +response);
+  console.log('response' +response.data.CategoriesWithSectionsAndProducts);
   
         dispatch({
           type: FETCH_CATEGORY, 
-          Categories : response.data.categories,
+          Categories : response.data.CategoriesWithSectionsAndProducts,
           
         });
        
