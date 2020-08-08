@@ -13,7 +13,7 @@ import {
           case FETCH_CATEGORY :
             return {
            ...state, 
-           categories: action.categories
+           categories: action.Categories
              
             };
             

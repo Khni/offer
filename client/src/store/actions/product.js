@@ -15,7 +15,7 @@ export const fetchCategories = () => {
   
         dispatch({
           type: FETCH_CATEGORY, 
-          Categories : response.data.CategoriesWithSectionsAndProducts,
+          Categories : response.data.CategoriesWithSectionsAndProducts
           
         });
        

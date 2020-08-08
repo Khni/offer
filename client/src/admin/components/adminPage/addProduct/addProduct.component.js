@@ -32,6 +32,7 @@ async componentDidMount() {
 
   const { fetchCategories } = this.props;
   await fetchCategories();
+  console.log("log from add product" +this.props.categories)
 
   }
   async componentDidUpdate() {
@@ -57,9 +58,9 @@ const { handleSubmit } = this.props;
                 name='title_ar' 
                 id='title_ar' 
                 className='title_ar'
-                placeholder='enter title in Arabic' 
+            //    placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='Enter title in Arabic' 
+                label='Title in Arabic' 
               />
             </fieldset>
                <fieldset>
@@ -68,9 +69,9 @@ const { handleSubmit } = this.props;
                 name='title_en' 
                 id='title_en' 
                 className='title_en'
-                placeholder='enter title in English ' 
+         //       placeholder='enter title in English ' 
                 component={InputForm}
-                label='Enter title in English' 
+                label='Title in English' 
               />
             </fieldset>
                        <fieldset>
@@ -79,11 +80,34 @@ const { handleSubmit } = this.props;
                 name='title_ar' 
                 id='title_ar' 
                 className='title_ar'
-                placeholder='enter title in Arabic' 
+             //   placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='Enter the Link ' 
+                label='Quantity ' 
               />
             </fieldset>
+            
+              </fieldset>
+               <fieldset>
+              <Field
+                type='text' 
+                name='title_en' 
+                id='title_en' 
+                className='title_en'
+          //      placeholder='enter title in English ' 
+                component={InputForm}
+                label=' description in Arabic' 
+              />
+                </fieldset>
+               <fieldset>
+              <Field
+                type='text' 
+                name='title_en' 
+                id='title_en' 
+                className='title_en'
+          //      placeholder='enter title in English ' 
+                component={InputForm}
+                label=' Description in English' 
+              />
             
             <select name="category" id="category">
  
@@ -116,6 +140,7 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
+  	categories : state.categoryReducer.categories, 
     Name: selectAdminAuth(state).Name,
     Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
