@@ -10,9 +10,9 @@ export default class CustomInput extends Component {
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
           className="input-text-admin"
-          type={ this.props.type }
-          value={ value }
-          onChange={ onChange }
+          
+          
+         // onChange={ onChange }
          required   >
          
          <select name="category" id="category">

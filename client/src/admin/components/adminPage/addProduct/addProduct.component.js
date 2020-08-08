@@ -121,7 +121,7 @@ const { handleSubmit } = this.props;
             </fieldset>
             <fieldset>
             <Field
-                type='text' 
+                
                 categories={this.props.categories}
                 name='categoris' 
                 id='categoris' 
