@@ -8,7 +8,9 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
+import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
+///import Category from '../../../../../../server/src/models/Category';
 
 
 
@@ -22,7 +24,7 @@ class AddProduct extends Component {
 
 async onSubmit(formData) {
 
-
+console.log("form data: " + JSON.stringify(formData) )
    
    
   
@@ -32,12 +34,13 @@ async componentDidMount() {
 
   const { fetchCategories } = this.props;
   await fetchCategories();
-  console.log("log from add product" +this.props.categories)
+  console.log("log from add product mound" +this.props.categories)
 
   }
   async componentDidUpdate() {
     const { fetchCategories } = this.props;
     await fetchCategories();
+    console.log("log from add product Update" +this.props.categories)
    }
 
 
@@ -50,6 +53,13 @@ const { handleSubmit } = this.props;
         return(
 <div className="addProduct">
        <h4 class="form-title"> Add New Product </h4>
+
+       <div>
+         {this.props.categories.map((c)=> {
+
+         return <p>{c.name}</p>
+         })}
+       </div>
           <form onSubmit={handleSubmit(this.onSubmit)}>
                  
              <fieldset>
@@ -77,22 +87,22 @@ const { handleSubmit } = this.props;
                        <fieldset>
               <Field
                 type='text' 
-                name='title_ar' 
-                id='title_ar' 
-                className='title_ar'
+                name='Quantity' 
+                id='Quantity' 
+                className='Quantityr'
              //   placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Quantity ' 
               />
             </fieldset>
             
-              </fieldset>
+              
                <fieldset>
               <Field
                 type='text' 
-                name='title_en' 
-                id='title_en' 
-                className='title_en'
+                name='desc_ar' 
+                id='desc_ar' 
+                className='desc_ar'
           //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' description in Arabic' 
@@ -101,22 +111,27 @@ const { handleSubmit } = this.props;
                <fieldset>
               <Field
                 type='text' 
-                name='title_en' 
-                id='title_en' 
-                className='title_en'
+                name='desc_en' 
+                id='desc_en' 
+                className='desc_en'
           //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' Description in English' 
               />
-            
-            <select name="category" id="category">
- 
- <option value="volvo">Clothes</option>
- <option value="volvo">Phones</option>
- <option value="volvo">Supermarket</option>
-
-</select>
-
+            </fieldset>
+            <fieldset>
+            <Field
+                type='text' 
+                categories={this.props.categories}
+                name='categoris' 
+                id='categoris' 
+                className='categoris'
+          //      placeholder='enter title in English ' 
+                component={SelectForm}
+                label=' categoris' 
+              />
+                </fieldset>
+               
 
 
             
@@ -130,10 +145,7 @@ const { handleSubmit } = this.props;
 </div>
 
 
-         /*   <div>admin PAGE
-<h3> welcome {this.props.Name} </h3>
-<h4>{this.props.Email} </h4>
-</div>*/
+         
         )
     }
 }
