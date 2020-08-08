@@ -54,12 +54,7 @@ const { handleSubmit } = this.props;
 <div className="addProduct">
        <h4 class="form-title"> Add New Product </h4>
 
-       <div>
-         {this.props.categories.map((c)=> {
-
-         return <p>{c.name}</p>
-         })}
-       </div>
+      
           <form onSubmit={handleSubmit(this.onSubmit)}>
                  
              <fieldset>
@@ -123,12 +118,12 @@ const { handleSubmit } = this.props;
             <Field
                 
                 categories={this.props.categories}
-                name='categoris' 
-                id='categoris' 
-                className='categoris'
+                name='sectionID' 
+                id='sectionID' 
+                className='sectionID'
           //      placeholder='enter title in English ' 
                 component={SelectForm}
-                label=' categoris' 
+                label=' section' 
               />
                 </fieldset>
                
