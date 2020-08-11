@@ -8,7 +8,7 @@ import { FETCH_PRODUCTS ,
 
   } from '../types/productsTypes'
 
-sections
+
 export const fetchCategories = () => {
 
 
