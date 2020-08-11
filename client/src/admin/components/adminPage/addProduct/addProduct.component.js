@@ -32,15 +32,15 @@ console.log("form data: " + JSON.stringify(formData) )
 
 async componentDidMount() {
 
-  const { fetchCategories } = this.props;
-  await fetchCategories();
-  console.log("log from add product mound" +this.props.categories)
+  const { fetchSections } = this.props;
+  await fetchSections();
+  console.log("log from add product mound" +this.props.sections)
 
   }
   async componentDidUpdate() {
-    const { fetchCategories } = this.props;
-    await fetchCategories();
-    console.log("log from add product Update" +this.props.categories)
+    const { fetchSections } = this.props;
+    await fetchSections();
+    console.log("log from add product Update" +this.props.sections)
    }
 
 
@@ -60,9 +60,9 @@ const { handleSubmit } = this.props;
              <fieldset>
               <Field
                 type='text' 
-                name='title_ar' 
-                id='title_ar' 
-                className='title_ar'
+                name='nameAr' 
+                id='nameAr' 
+                className='nameAr'
             //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Title in Arabic' 
@@ -71,20 +71,34 @@ const { handleSubmit } = this.props;
                <fieldset>
               <Field
                 type='text' 
-                name='title_en' 
-                id='title_en' 
-                className='title_en'
+                name='nameEn' 
+                id='nameEn' 
+                className='nameEn'
          //       placeholder='enter title in English ' 
                 component={InputForm}
                 label='Title in English' 
               />
             </fieldset>
+            
+                    <fieldset>
+              <Field
+                type='text' 
+                name='price' 
+                id='price' 
+                className='price'
+         //       placeholder='enter title in English ' 
+                component={InputForm}
+                label='Title in English' 
+              />
+            </fieldset>
+            
+            
                        <fieldset>
               <Field
                 type='text' 
-                name='Quantity' 
-                id='Quantity' 
-                className='Quantityr'
+                name='quantity' 
+                id='quantity' 
+                className='quantity'
              //   placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Quantity ' 
@@ -95,9 +109,9 @@ const { handleSubmit } = this.props;
                <fieldset>
               <Field
                 type='text' 
-                name='desc_ar' 
-                id='desc_ar' 
-                className='desc_ar'
+                name='descAr' 
+                id='descAr' 
+                className='descAr'
           //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' description in Arabic' 
@@ -106,9 +120,9 @@ const { handleSubmit } = this.props;
                <fieldset>
               <Field
                 type='text' 
-                name='desc_en' 
-                id='desc_en' 
-                className='desc_en'
+                name='descEn' 
+                id='descEn' 
+                className='descEn'
           //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' Description in English' 
@@ -117,7 +131,7 @@ const { handleSubmit } = this.props;
             <fieldset>
             <Field
                 
-                categories={this.props.categories}
+                sections={this.props.sections}
                 name='sectionID' 
                 id='sectionID' 
                 className='sectionID'
@@ -148,6 +162,7 @@ const { handleSubmit } = this.props;
 const mapStateToProps = state => {
   return {
   	categories : state.categoryReducer.categories, 
+  sections: state.categoryReducer.sections, 
     Name: selectAdminAuth(state).Name,
     Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

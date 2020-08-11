@@ -27,6 +27,23 @@ router.post('/section/add', auth, async (req, res) => {
 
 
 
+router.get('/sections',  async (req, res) => {
+	
+	let sections = await Section.find({})
+	
+	
+    
+
+    try {
+   res.status(201).send({sections})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
 
 
 

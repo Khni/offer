@@ -17,11 +17,9 @@ export default class CustomInput extends Component {
            >
          
          <option>Choose Category</option>
-            {this.props.categories.map((c)=> {
-                 c.sectionsOfCategory.map((sec)=>{
-                   return <option value={sec._id}>{sec.name}</option>
-                 })
-              //return<option value={c._id}>{c.name}</option>
+            {this.props.sections.map((s)=> {
+                 
+              return<option value={s._id}>{s.name}</option>
  
                        })}
  
