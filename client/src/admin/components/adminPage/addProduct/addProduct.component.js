@@ -10,6 +10,7 @@ import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
+import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
 ///import Category from '../../../../../../server/src/models/Category';
 
 
@@ -23,9 +24,10 @@ class AddProduct extends Component {
     }
 
 async onSubmit(formData) {
-
+const AdminToken = this.props.AdminToken
+const { addProductToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
-   
+   addProductToServer(formData,AdminToken)
    
   
   }
@@ -163,6 +165,7 @@ const mapStateToProps = state => {
   return {
   	categories : state.categoryReducer.categories, 
   sections: state.categoryReducer.sections, 
+  AdminToken: selectAdminAuth(state).token,
     Name: selectAdminAuth(state).Name,
     Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

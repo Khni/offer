@@ -2,16 +2,30 @@ import {
     FETCH_PRODUCTS ,
   FETCH_CATEGORY ,
   FETCH_SECTIONS, 
+  FETCH_COLLECTIONS, 
+  FETCH_ERROR, 
   FETCH_CATEGORY_ERROR ,
   FETCH_PRODUCTS_ERROR, 
-  FETCH_SECTIONS_ERROR
+  FETCH_SECTIONS_ERROR, 
+  FETCH_COLLECTIONS_ERROR
+  ADDED_TO_SERVER, 
+  ADDED_TO_SERVER_ERROR
       } from '../../types/productsTypes'
 
 
     const INITIAL_STATE = {
         categories: [], 
+  
         sections: [], 
-        products:[] 
+        
+        products:[], 
+        
+        collections:[], 
+        FetchError: false, 
+        AddToServer: {
+        	added: false, 
+            error:'' 
+         } 
       };
       
       const CategoriesReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +37,8 @@ import {
              
             };
             
-            
+          
+  
             case FETCH_SECTIONS :
             return {
            ...state, 
@@ -31,10 +46,45 @@ import {
              
             };
             
+            
+            
             case FETCH_PRODUCTS :
             return {
            ...state, 
            products: action.Products
+             
+            };
+            case FETCH_COLLECTIONS :
+            return {
+           ...state, 
+           collections: action.Collections
+             
+            };
+            case FETCH_ERROR :
+            return {
+           ...state, 
+           FetchError: true
+             
+            };
+            
+            
+            case ADDED_TO_SERVER :
+            return {
+           ...state, 
+           AddToServer: {
+        	added: true, 
+            error:'' 
+         } 
+             
+            };
+            
+            case ADDED_TO_SERVER_ERROR :
+            return {
+           ...state, 
+           AddToServer: {
+        	added: false, 
+            error: action.error
+         } 
              
             };
             
