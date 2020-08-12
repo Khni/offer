@@ -6,11 +6,11 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
+import AddproductStyle from './addCategoryStyle.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
-import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
+
 ///import Category from '../../../../../../server/src/models/Category';
 
 

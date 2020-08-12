@@ -10,8 +10,7 @@ import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
-import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
-///import Category from '../../../../../../server/src/models/Category';
+
 
 
 

@@ -72,10 +72,10 @@ class AdminPage extends Component {
     <div className="admin-nav-container">
                 <Switch>
                     <Route path="/admin/add-product" component={AddProduct} />
-                    <Route path="/admin/add-section" component={AddSection} 
-                    <Route path="/admin/add-category" component={AddCategory}
-                    <Route path="/admin/add-collection" component={AddCollection}
-                    />
+                    <Route path="/admin/add-section" component={AddSection}  />
+                    <Route path="/admin/add-category" component={AddCategory} />
+                    <Route path="/admin/add-collection" component={AddCollection} />
+                   
                 </Switch>
     </div>
 </div>

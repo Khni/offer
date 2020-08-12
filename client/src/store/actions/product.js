@@ -45,8 +45,8 @@ export const fetchCategories = () => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/category/add', data, {
-      headers = { Authorization: `Bearer ${adminToken}`
-       } );
+      headers : { Authorization: `Bearer ${adminToken}`
+       }} );
   console.log('response' +response.data.CategoriesWithSectionsAndProducts);
   
         dispatch({
@@ -101,8 +101,8 @@ export const addSectionToServer = (data, adminToken) => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/section/add', data, {
-      headers = { Authorization: `Bearer ${adminToken}`
-       } );
+      headers : { Authorization: `Bearer ${adminToken}`
+       } });
   console.log('response' +response.data);
   
         dispatch({
@@ -157,8 +157,8 @@ export const addProductToServer = (data, adminToken) => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/product/add', data, {
-      headers = { Authorization: `Bearer ${adminToken}`
-       } );
+      headers : { Authorization: `Bearer ${adminToken}`
+       } });
   console.log('response' +response.data);
   
         dispatch({
@@ -212,8 +212,8 @@ export const addCollectionToServer = (data, adminToken) => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/collection/add', data, {
-      headers = { Authorization: `Bearer ${adminToken}`
-       } );
+      headers : { Authorization: `Bearer ${adminToken}`
+       }} );
   console.log('response' +response.data);
   
         dispatch({
