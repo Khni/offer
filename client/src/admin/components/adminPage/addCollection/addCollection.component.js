@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddSectionStyle from './addCollectionStyle.scss'
+import AddCollectionStyle from './addCollectionStyle.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
@@ -15,7 +15,7 @@ import * as actions from '../../../../store/actions/product';
 
 
 
-class AddSection extends Component {
+class AddCollection extends Component {
 
     constructor(props) {
         super(props)
@@ -25,22 +25,23 @@ class AddSection extends Component {
 async onSubmit(formData) {
 
 console.log("form data: " + JSON.stringify(formData) )
-   
+   const AdminToken = this.props.AdminToken
+const { addCollectionToServer } = this.props;
+console.log("form data: " + JSON.stringify(formData) )
+   addCollectionToServer(formData,AdminToken)
    
   
   }
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  await fetchSections();
-  console.log("log from add product mound" +this.props.sections)
+  
+  console.log("log from add collection mound" +this.props.sections)
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-    await fetchSections();
-    console.log("log from add product Update" +this.props.sections)
+    
+    console.log("log from add collection Update" +this.props.sections)
    }
 
 
@@ -51,13 +52,12 @@ async componentDidMount() {
 const { handleSubmit } = this.props;
 
         return(
-<div className="addProduct">
-       <h4 class="form-title"> Add New Section </h4>
+<div className="addCollection">
+       <h4 class="form-title"> Add New Collection</h4>
 
       
           <form onSubmit={handleSubmit(this.onSubmit)}>
-                 
-             <fieldset>
+           <fieldset>
               <Field
                 type='text' 
                 name='nameAr' 
@@ -80,30 +80,7 @@ const { handleSubmit } = this.props;
               />
             </fieldset>
             
-                    <fieldset>
-              <Field
-                type='text' 
-                name='price' 
-                id='price' 
-                className='price'
-         //       placeholder='enter title in English ' 
-                component={InputForm}
-                label='Title in English' 
-              />
-            </fieldset>
-            
-            
-                       <fieldset>
-              <Field
-                type='text' 
-                name='quantity' 
-                id='quantity' 
-                className='quantity'
-             //   placeholder='enter title in Arabic' 
-                component={InputForm}
-                label='Quantity ' 
-              />
-            </fieldset>
+              
             
               
                <fieldset>
@@ -128,18 +105,8 @@ const { handleSubmit } = this.props;
                 label=' Description in English' 
               />
             </fieldset>
-            <fieldset>
-            <Field
-                
-                sections={this.props.sections}
-                name='sectionID' 
-                id='sectionID' 
-                className='sectionID'
-          //      placeholder='enter title in English ' 
-                component={SelectForm}
-                label=' section' 
-              />
-                </fieldset>
+            
+
                
 
 
@@ -161,10 +128,11 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
-  	categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-    Name: selectAdminAuth(state).Name,
-    Email: selectAdminAuth(state).Email,
+  	AdminToken: selectAdminAuth(state).token,
+  //	categories : state.categoryReducer.categories, 
+ // sections: state.categoryReducer.sections, 
+    //Name: selectAdminAuth(state).Name,
+    //Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
     
   }
@@ -175,5 +143,5 @@ const mapStateToProps = state => {
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: 'AddSection' })
-)(AddSection)
+  reduxForm({ form: 'AddCollection' })
+)(AddCollection)

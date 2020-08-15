@@ -163,11 +163,11 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
-  	categories : state.categoryReducer.categories, 
+  	//categories : state.categoryReducer.categories, 
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
-    Name: selectAdminAuth(state).Name,
-    Email: selectAdminAuth(state).Email,
+ //   Name: selectAdminAuth(state).Name,
+   // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
     
   }

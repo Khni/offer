@@ -36,15 +36,13 @@ console.log("form data: " + JSON.stringify(formData) )
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  await fetchSections();
-  console.log("log from add product mound" +this.props.sections)
+  
+  console.log("log from add category" )
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-    await fetchSections();
-    console.log("log from add product Update" +this.props.sections)
+    
+    console.log("log from add category Update" )
    }
 
 
@@ -55,7 +53,7 @@ async componentDidMount() {
 const { handleSubmit } = this.props;
 
         return(
-<div className="addProduct">
+<div className="addCategory">
        <h4 class="form-title"> Add New Category </h4>
 
       
@@ -126,10 +124,10 @@ const { handleSubmit } = this.props;
 const mapStateToProps = state => {
   return {
   	AdminToken: selectAdminAuth(state).token,
-  	categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-    Name: selectAdminAuth(state).Name,
-    Email: selectAdminAuth(state).Email,
+  	//categories : state.categoryReducer.categories, 
+//  sections: state.categoryReducer.sections, 
+ //   Name: selectAdminAuth(state).Name,
+  //  Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
     
   }

@@ -25,22 +25,25 @@ class AddSection extends Component {
 async onSubmit(formData) {
 
 console.log("form data: " + JSON.stringify(formData) )
-   
+   const AdminToken = this.props.AdminToken
+const { addSectionToServer } = this.props;
+console.log("form data: " + JSON.stringify(formData) )
+   addSectionToServer(formData,AdminToken)
    
   
   }
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  await fetchSections();
-  console.log("log from add product mound" +this.props.sections)
+  const { fetchCategories } = this.props;
+  await fetchCategories();
+  console.log("log from add section mound" +this.props.categories)
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-    await fetchSections();
-    console.log("log from add product Update" +this.props.sections)
+    const { fetchCategories } = this.props;
+    await fetchCategories();
+    console.log("log from add section Update" +this.props.categories)
    }
 
 
@@ -51,7 +54,7 @@ async componentDidMount() {
 const { handleSubmit } = this.props;
 
         return(
-<div className="addProduct">
+<div className="addSection">
        <h4 class="form-title"> Add New Section </h4>
 
       
@@ -80,30 +83,8 @@ const { handleSubmit } = this.props;
               />
             </fieldset>
             
-                    <fieldset>
-              <Field
-                type='text' 
-                name='price' 
-                id='price' 
-                className='price'
-         //       placeholder='enter title in English ' 
-                component={InputForm}
-                label='Title in English' 
-              />
-            </fieldset>
-            
-            
-                       <fieldset>
-              <Field
-                type='text' 
-                name='quantity' 
-                id='quantity' 
-                className='quantity'
-             //   placeholder='enter title in Arabic' 
-                component={InputForm}
-                label='Quantity ' 
-              />
-            </fieldset>
+              
+        
             
               
                <fieldset>
@@ -131,13 +112,13 @@ const { handleSubmit } = this.props;
             <fieldset>
             <Field
                 
-                sections={this.props.sections}
-                name='sectionID' 
-                id='sectionID' 
-                className='sectionID'
+                sections={this.props.categories}
+                name='categoryID' 
+                id='categoryID' 
+                className='categoryID'
           //      placeholder='enter title in English ' 
                 component={SelectForm}
-                label=' section' 
+                label='category' 
               />
                 </fieldset>
                
@@ -161,10 +142,11 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
+  	AdminToken: selectAdminAuth(state).token,
   	categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-    Name: selectAdminAuth(state).Name,
-    Email: selectAdminAuth(state).Email,
+  //sections: state.categoryReducer.sections, 
+ //   Name: selectAdminAuth(state).Name,
+ //   Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
     
   }
