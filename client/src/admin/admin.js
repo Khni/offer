@@ -6,13 +6,21 @@ import AddCollection from './components/adminPage/addCollection/addCollection.co
 import AddProduct from './components/adminPage/addProduct/addProduct.component'
 import AddSection from './components/adminPage/addSection/addSection.component'
 import { connect } from 'react-redux';
+import * as actions from '../store/actions/admins'
 import AdminStyle from './admin.scss'
 class AdminPage extends Component {
 
     constructor(props) {
         super(props)
+        this.AdminSignOut = this.AdminSignOut.bind(this);
     }
-
+    AdminSignOut() {
+  console.log('SignOut');
+  
+        const {signOut} = this.props
+           signOut()
+          
+          }
 
     render() {
 
@@ -68,7 +76,10 @@ class AdminPage extends Component {
 
                                 }}
                             >Add Collection</NavLink>
+                            <button onClick={this.AdminSignOut }>Sign Up</button>
+
     </nav>
+    
     <div className="admin-nav-container">
                 <Switch>
                     <Route path="/admin/add-product" component={AddProduct} />
@@ -78,6 +89,7 @@ class AdminPage extends Component {
                    
                 </Switch>
     </div>
+    
 </div>
 
 
@@ -99,4 +111,4 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps)(AdminPage);
+export default connect(mapStateToProps,actions)(AdminPage);

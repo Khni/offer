@@ -44,7 +44,7 @@ export const fetchCategories = () => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('http://localhost:8080/category/add', data, {
+     const response =   await axios.post('http://localhost:8080/category/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
        }} );
   console.log('response' +response.data.CategoriesWithSectionsAndProducts);
