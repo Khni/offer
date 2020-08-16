@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_SIGN_IN, AUTH_ERROR,AUTH_SIGN_UP,AUTH_SIGN_OUT } from '../types/authAdminTypes'
+import { AUTH_SIGN_IN, AUTH_ERROR,AUTH_SIGN_UP,ADMIN_SIGN_OUT } from '../types/authAdminTypes'
 
 
 
@@ -37,7 +37,7 @@ export const signIn = data => {
     return  dispatch => {
      
         dispatch({
-          type: AUTH_SIGN_OUT
+          type: ADMIN_SIGN_OUT
          
         });
        
