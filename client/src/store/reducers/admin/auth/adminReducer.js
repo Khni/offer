@@ -21,7 +21,7 @@ import {
       case AUTH_SIGN_IN:
         return { ...state, authAdmin:{...state.authAdmin,isAuthenticated: true, token:action.token, Email:action.Email,  Name:action.Name ,error:''}  }
       case ADMIN_SIGN_OUT:
-        return { ...state, isAuthenticated: false, token:'', error: '', Email:'', Name:'' }
+        return { ...state, isAuthenticated: false, token:'', error: 's', Email:'', Name:'' }
       case AUTH_ERROR:
         return { ...state, authAdmin:{error: action.payload}}
       default:

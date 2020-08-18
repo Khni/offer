@@ -33,7 +33,7 @@ export const signIn = data => {
 
   export const signOut = () => {
 
-
+ console.log("signOut from adminjs");
     return  dispatch => {
      
         dispatch({
