@@ -16,11 +16,20 @@ class AdminPage extends Component {
     }
     AdminSignOut() {
   console.log('SignOut');
-  
+  console.log('AdminSignOut adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
         const {signOut} = this.props
            signOut()
           
           }
+          
+          componentDidMount() {
+     console.log('CDMount AdminAuth'+ this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
+    }
+
+    componentDidUpdate() {
+      console.log('CDUpdate adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
+    }
+          
 
     render() {
 
@@ -105,6 +114,7 @@ const mapStateToProps = state => {
   return {
     Name: selectAdminAuth(state).Name,
     Email: selectAdminAuth(state).Email,
+    AdminAuth: selectAdminAuth(state)
 //state.adminAuth.error
     
   }
