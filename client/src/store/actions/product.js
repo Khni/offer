@@ -40,8 +40,8 @@ export const fetchCategories = () => {
   }
   
   export const addCategoryToServer = (data, adminToken) => {
-
-
+ 
+ 
     return async dispatch => {
       try {
      const response =   await axios.post('http://localhost:8080/category/add', data, {
@@ -85,7 +85,7 @@ export const fetchSections = () => {
        
       } catch(err) {
       // console.log();
-          console.error("err"+ err.response.data.error)
+          console.error("err"+ err)
         dispatch({
           type: FETCH_ERROR,
        //   payload: err.response.data.error
@@ -156,19 +156,19 @@ export const addProductToServer = (data, adminToken) => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('http://localhost:8080/product/add', data, {
+     const response =   await axios.post('http://localhost:8080/product/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
        } });
-  console.log('response' +response.data);
+  console.log('response' );
   
         dispatch({
-          type: ADDED_TO_SERVER, 
+          type: ADDED_TO_SERVER
           
         });
        
       } catch(err) {
       // console.log();
-          console.error("err"+ err.response.data.error)
+          console.error("err"+ err.response)
         dispatch({
           type: ADDED_TO_SERVER_ERROR,
           error: err.response.data.error

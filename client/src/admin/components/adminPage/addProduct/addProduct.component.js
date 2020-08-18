@@ -25,8 +25,9 @@ class AddProduct extends Component {
 async onSubmit(formData) {
 const AdminToken = this.props.AdminToken
 const { addProductToServer } = this.props;
-console.log("form data: " + JSON.stringify(formData) )
+console.log("form data: "  )
    addProductToServer(formData,AdminToken)
+   console.log(formData);
    
   
   }
@@ -35,13 +36,13 @@ async componentDidMount() {
 
   const { fetchSections } = this.props;
   await fetchSections();
-  console.log("log from add product mound" +this.props.sections)
+  console.log("log from add product mound" )
 
   }
   async componentDidUpdate() {
     const { fetchSections } = this.props;
     await fetchSections();
-    console.log("log from add product Update" +this.props.sections)
+    console.log("log from add product Update" )
    }
 
 
@@ -89,7 +90,7 @@ const { handleSubmit } = this.props;
                 className='price'
          //       placeholder='enter title in English ' 
                 component={InputForm}
-                label='Title in English' 
+                label='price' 
               />
             </fieldset>
             

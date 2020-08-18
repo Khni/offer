@@ -18,7 +18,10 @@ class AdminPage extends Component {
   console.log('SignOut');
   console.log('AdminSignOut adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
         const {signOut} = this.props
+
            signOut()
+           console.log('after AdminSignOut adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
+         
           
           }
           
