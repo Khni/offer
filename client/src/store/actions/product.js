@@ -50,7 +50,7 @@ export const fetchCategories = () => {
   console.log('response' +response.data.CategoriesWithSectionsAndProducts);
   
         dispatch({
-          type: ADDED_TO_SERVER, 
+          type: ADDED_TO_SERVER
           
         });
        
@@ -100,13 +100,13 @@ export const addSectionToServer = (data, adminToken) => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('http://localhost:8080/section/add', data, {
+     const response =   await axios.post('http://localhost:8080/section/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
        } });
   console.log('response' +response.data);
   
         dispatch({
-          type: ADDED_TO_SERVER, 
+          type: ADDED_TO_SERVER
           
         });
        
@@ -211,7 +211,7 @@ export const addCollectionToServer = (data, adminToken) => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('http://localhost:8080/collection/add', data, {
+     const response =   await axios.post('http://localhost:8080/collection/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
        }} );
   console.log('response' +response.data);

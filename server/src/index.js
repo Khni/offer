@@ -15,6 +15,7 @@ const adminRouter = require('./routers/adminRouter')
 const CategoryRouter = require('./routers/categoryRouter')
 const SectionRouter = require('./routers/sectionRouter')
 const ProductRouter = require('./routers/productRouter')
+const CollectionRouter = require('./routers/collectionRouter')
 //app.use(cors())
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 //enable for using both ports client and server for developement
@@ -90,7 +91,7 @@ app.use(adminRouter)
 app.use(CategoryRouter)
 app.use(SectionRouter)
 app.use(ProductRouter)
-
+app.use(CollectionRouter)
 
 
 app.listen(port,()=>{

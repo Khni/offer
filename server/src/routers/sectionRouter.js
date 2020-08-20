@@ -19,7 +19,7 @@ router.post('/section/add', auth, async (req, res) => {
      relatedCategory.sectionsOfCategory = relatedCategory.sectionsOfCategory.concat({sectionOfCategory : section._id})
         
        await relatedCategory.save()
-        res.status(201).send(relatedCategory)
+        res.status(201).send({section})
     } catch (e) {
         res.status(400).send(e)
     }

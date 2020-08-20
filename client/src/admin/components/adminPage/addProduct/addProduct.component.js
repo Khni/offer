@@ -28,14 +28,18 @@ const { addProductToServer } = this.props;
 console.log("form data: "  )
    addProductToServer(formData,AdminToken)
    console.log(formData);
-   
+   if (this.props.AddetToServer) {
+      
+     alert("item has been added successfully) 
+     this.props.history.push('/admin/add-product');
+    }
   
   }
 
 async componentDidMount() {
 
   const { fetchSections } = this.props;
-  await fetchSections();
+  awa. it fetchSections();
   console.log("log from add product mound" )
 
   }
@@ -166,6 +170,7 @@ const mapStateToProps = state => {
   	//categories : state.categoryReducer.categories, 
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
+  AddetToServer : state.categoryReducer.AddToServer.added,
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

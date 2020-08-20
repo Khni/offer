@@ -15,7 +15,7 @@ router.post('/category/add', auth, async (req, res) => {
 
     try {
         await category.save()
-        res.status(201).send(category)
+        res.status(201).send({category})
     } catch (e) {
         res.status(400).send(e)
     }
