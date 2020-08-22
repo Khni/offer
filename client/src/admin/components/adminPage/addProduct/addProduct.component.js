@@ -181,14 +181,19 @@ const { handleSubmit } = this.props;
 
 
 
-          <div className="productsList">
-<ol>
+     
+     <div className="productsList">
+ 
+
+    <table>
+    <ol>
 {this.props.products.map((product)=>{
-return <li>{product.nameEn}</li>
+return  <div> <tr><th>product name</th></tr> <tr><th>Quantity </th></tr>     <tr><li><td>{product.nameEn}</td><td>{product.quantity }</td></li></tr></div>
    })}
-    
-    
-</ol>
+    </ol>
+      </table>
+
+   
 </div>
 </div>
 
