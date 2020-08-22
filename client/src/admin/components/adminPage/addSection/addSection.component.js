@@ -28,10 +28,10 @@ console.log("form data: " + JSON.stringify(formData) )
    const AdminToken = this.props.AdminToken
 const { addSectionToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
-   addSectionToServer(formData,AdminToken)
+   await addSectionToServer(formData,AdminToken)
    if (this.props.AddetToServer) {
       
-     alert("item has been added successfully) 
+     alert("item has been added successfully") 
      this.props.history.push('/admin/add-section');
     }
   

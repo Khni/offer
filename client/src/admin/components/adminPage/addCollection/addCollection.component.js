@@ -28,10 +28,10 @@ console.log("form data: " + JSON.stringify(formData) )
    const AdminToken = this.props.AdminToken
 const { addCollectionToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
-   addCollectionToServer(formData,AdminToken)
+   await addCollectionToServer(formData,AdminToken)
    if (this.props.AddetToServer) {
       
-     alert("item has been added successfully) 
+     alert("item has been added successfully") 
      this.props.history.push('/admin/add-collection');
     }
   

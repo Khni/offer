@@ -29,10 +29,10 @@ console.log("form data: " + JSON.stringify(formData) )
    const AdminToken = this.props.AdminToken
 const { addCategoryToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
-   addCategoryToServer(formData,AdminToken)
+   await addCategoryToServer(formData,AdminToken)
    if (this.props.AddetToServer) {
       
-     alert("item has been added successfully) 
+     alert("item has been added successfully") 
      this.props.history.push('/admin/add-category');
     }
   

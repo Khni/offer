@@ -74,7 +74,7 @@ export const fetchSections = () => {
     return async dispatch => {
       try {
      const response =   await axios.get('http://localhost:8080/sections');
-  console.log('response' +response.data.sections);
+ // console.log('response' +response.data.sections);
   
         dispatch({
           type: FETCH_SECTIONS, 
@@ -159,7 +159,7 @@ export const addProductToServer = (data, adminToken) => {
      const response =   await axios.post('http://localhost:8080/product/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
        } });
-  console.log('response' );
+  console.log('added product succefully' );
   
         dispatch({
           type: ADDED_TO_SERVER
