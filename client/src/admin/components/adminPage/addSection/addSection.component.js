@@ -29,7 +29,11 @@ console.log("form data: " + JSON.stringify(formData) )
 const { addSectionToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
    addSectionToServer(formData,AdminToken)
-   
+   if (this.props.AddetToServer) {
+      
+     alert("item has been added successfully) 
+     this.props.history.push('/admin/add-section');
+    }
   
   }
 
@@ -143,7 +147,8 @@ const { handleSubmit } = this.props;
 const mapStateToProps = state => {
   return {
   	AdminToken: selectAdminAuth(state).token,
-  	categories : state.categoryReducer.categories, 
+  AddetToServer : state.categoryReducer.AddToServer.added,
+  	categories : state.categoryReducer.categories
   //sections: state.categoryReducer.sections, 
  //   Name: selectAdminAuth(state).Name,
  //   Email: selectAdminAuth(state).Email,

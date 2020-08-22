@@ -29,7 +29,11 @@ console.log("form data: " + JSON.stringify(formData) )
 const { addCollectionToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
    addCollectionToServer(formData,AdminToken)
-   
+   if (this.props.AddetToServer) {
+      
+     alert("item has been added successfully) 
+     this.props.history.push('/admin/add-collection');
+    }
   
   }
 
@@ -129,6 +133,7 @@ const { handleSubmit } = this.props;
 const mapStateToProps = state => {
   return {
   	AdminToken: selectAdminAuth(state).token,
+  AddetToServer : state.categoryReducer.AddToServer.added,
   //	categories : state.categoryReducer.categories, 
  // sections: state.categoryReducer.sections, 
     //Name: selectAdminAuth(state).Name,
