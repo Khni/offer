@@ -50,7 +50,8 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                   //  textDecoration: 'underline',
-                                    background: '#f7f7f7'
+                                  background: "#4CAF50",
+                                  color: "#ffffff"
                                 }}>Add Product</NavLink>
                                
                             <NavLink className="NavLinkAdmin"  to={{
@@ -60,7 +61,8 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: '#f7f7f7'
+                                   background: "#4CAF50",
+                                   color: "#ffffff"
 
                                 }}
                             >Add Section</NavLink>
@@ -72,7 +74,8 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: '#f7f7f7'
+                                   background: "#4CAF50",
+                                   color: "#ffffff"
 
                                 }}
                             >Add Category</NavLink>
@@ -84,7 +87,8 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: '#f7f7f7'
+                                   background: "#4CAF50",
+                                   color: "#ffffff"
 
                                 }}
                             >Add Collection</NavLink>
