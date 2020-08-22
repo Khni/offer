@@ -130,7 +130,7 @@ export const fetchProducts= () => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('http://localhost:8080/sections');
+     const response =   await axios.get('http://localhost:8080/products');
   console.log('response' +response.data.sections);
   
         dispatch({

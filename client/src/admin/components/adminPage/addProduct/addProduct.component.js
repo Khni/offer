@@ -46,13 +46,17 @@ console.log("form data: "  )
 async componentDidMount() {
 
   const { fetchSections } = this.props;
+  const { fetchProducts } = this.props;
   await fetchSections();
+  await fetchProducts();
   console.log("log from add product mound" )
 
   }
   async componentDidUpdate() {
     const { fetchSections } = this.props;
-    await fetchSections();
+  const { fetchProducts } = this.props;
+  await fetchSections();
+  await fetchProducts();
     console.log("log from add product Update" )
    }
 
@@ -64,12 +68,20 @@ async componentDidMount() {
 const { handleSubmit } = this.props;
 
         return(
-<div className="addProduct">
-       <h4 class="form-title"> Add New Product </h4>
+<div className="addProduct-container">
+
+
+
+
+
+
+
+<div className="addProductToServer">
+       
 
       
           <form onSubmit={handleSubmit(this.onSubmit)}>
-                 
+          <h4 class="form-title"> Add New Product </h4>
              <fieldset>
               <Field
                 type='text' 
@@ -164,6 +176,20 @@ const { handleSubmit } = this.props;
             <button type="submit" class="custum-btn-form">submit</button>
             
           </form>
+          </div>
+
+
+
+
+          <div className="productsList">
+<ol>
+{this.props.products.map((product)=>{
+return <li>{product.nameEn}</li>
+   })}
+    
+    
+</ol>
+</div>
 </div>
 
 
@@ -177,7 +203,8 @@ const mapStateToProps = state => {
   	//categories : state.categoryReducer.categories, 
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
-  AddedToServer : state.categoryReducer.AddToServer.added
+  AddedToServer : state.categoryReducer.AddToServer.added,
+  products: state.categoryReducer.products
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

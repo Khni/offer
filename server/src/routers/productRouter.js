@@ -35,4 +35,22 @@ router.post('/product/add', auth, async (req, res) => {
 })
 
 
+
+router.get('/products',  async (req, res) => {
+	
+	let products = await Product.find({})
+	
+	
+    
+
+    try {
+   res.status(201).send({products})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
 module.exports = router

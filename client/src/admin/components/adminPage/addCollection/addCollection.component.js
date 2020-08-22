@@ -58,15 +58,7 @@ const { handleSubmit } = this.props;
         return(
 <div className="addCollection">
 
-<div className="productsList">
-<ol>
-{this.props.products.map((product)=>{
-return <li>{product.nameEn} </li>
-   })}
-    
-    
-</ol>
-</div>
+
        <h4 class="form-title"> Add New Collection</h4>
 
       

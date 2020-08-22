@@ -16,7 +16,7 @@ export default class CustomInput extends Component {
          required 
            >
          
-         <option>Choose Category</option>
+         <option></option>
             {this.props.sections.map((s)=> {
                  
               return<option value={s._id}>{s.nameEn}</option>
