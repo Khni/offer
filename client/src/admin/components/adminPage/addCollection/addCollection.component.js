@@ -31,8 +31,8 @@ console.log("form data: " + JSON.stringify(formData) )
    await addCollectionToServer(formData,AdminToken)
    if (this.props.AddetToServer) {
       
-     alert("item has been added successfully") 
-     this.props.history.push('/admin/add-collection');
+       alert("Item has been added!") 
+    window.location.reload();
     }
   
   }
@@ -57,6 +57,16 @@ const { handleSubmit } = this.props;
 
         return(
 <div className="addCollection">
+
+<div className="productsList">
+<ol>
+{this.props.products.map((product)=>{
+return <li>{product.nameEn} </li>
+   })}
+    
+    
+</ol>
+</div>
        <h4 class="form-title"> Add New Collection</h4>
 
       
@@ -134,6 +144,7 @@ const mapStateToProps = state => {
   return {
   	AdminToken: selectAdminAuth(state).token,
   AddetToServer : state.categoryReducer.AddToServer.added,
+  products: state.categoryReducer.products
   //	categories : state.categoryReducer.categories, 
  // sections: state.categoryReducer.sections, 
     //Name: selectAdminAuth(state).Name,

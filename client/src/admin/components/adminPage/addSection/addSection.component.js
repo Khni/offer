@@ -31,8 +31,8 @@ console.log("form data: " + JSON.stringify(formData) )
    await addSectionToServer(formData,AdminToken)
    if (this.props.AddetToServer) {
       
-     alert("item has been added successfully") 
-     this.props.history.push('/admin/add-section');
+       alert("Item has been added!") 
+    window.location.reload();
     }
   
   }
