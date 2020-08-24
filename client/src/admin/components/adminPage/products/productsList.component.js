@@ -9,13 +9,14 @@ import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
+import AddProduct from './addProduct.component'
 import * as actions from '../../../../store/actions/product';
 
 
 
 
 
-class productsList extends Component {
+class ProductsList extends Component {
 
     constructor(props) {
         super(props)
@@ -46,24 +47,32 @@ async componentDidMount() {
 
 
     render() {
-const { handleSubmit } = this.props;
+
 
         return(
 
 
      <div className="productsList">
- 
+      
+ <div>Product List</div>
 
     <table className="productsList-table">
-    <tr><th>product name</th> <th>Quantity </th></tr>
+    <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
 {this.props.products.map((product)=>{
-return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td></tr>
+return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
    })}
   
       </table>
 
-   
+      <div className="products-nav-container">
+                <Switch>
+                    
+                    <Route exact path="/admin/products/add-product" component={AddProduct}  />
+                   
+                   
+                </Switch>
+    </div>
 </div>
 
 
@@ -90,5 +99,4 @@ const mapStateToProps = state => {
 
 
 
-export default compose(
-  connect(mapStateToProps, actions)(productsList)
+export default  connect(mapStateToProps, actions)(ProductsList);

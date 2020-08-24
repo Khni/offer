@@ -10,6 +10,7 @@ import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
+import ProductsList from './productsList.component'
 
 
 
@@ -70,37 +71,7 @@ const { handleSubmit } = this.props;
         return(
 <div className="addProduct-container">
 
-<nav className="items-nav">
-    
-                            
-                                <NavLink className="NavLinkItems"
-                                to="/admin/add-product/list"
-                                exact
-                                activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                  //  textDecoration: 'underline',
-                                  background: "#4CAF50",
-                                  color: "#ffffff"
-                                }}>Add Product</NavLink>
-                               
-                            <NavLink className="NavLinkItems"  to={{
-                                pathname: '/admin/add-section/add'
-                            }}
-                            activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                   // textDecoration: 'underline'
-                                   background: "#4CAF50",
-                                   color: "#ffffff"
 
-                                }}
-                            >Add Section</NavLink>
-                        
-                                                 
-                           
-
-    </nav>
 
 
 
@@ -221,20 +192,12 @@ const { handleSubmit } = this.props;
 
 
      
-     <div className="productsList">
- 
 
-    <table className="productsList-table">
-    <tr><th>product name</th> <th>Quantity </th></tr>
-   
-{this.props.products.map((product)=>{
-return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td></tr>
-   })}
-  
-      </table>
 
-   
-</div>
+
+
+     
+     
 </div>
 
 

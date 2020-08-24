@@ -23,7 +23,7 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=chrome react-scripts start",
     "roid": "node node_modules/react-scripts/scripts/start.js",
     "mon": "nodemon --exec 'npm roid -s'",
     "close-termux": "lsof -i tcp:3000",

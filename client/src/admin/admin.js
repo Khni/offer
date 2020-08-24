@@ -3,7 +3,8 @@ import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import AddCategory from './components/adminPage/addCategory/addCategory.component'
 import AddCollection from './components/adminPage/addCollection/addCollection.component'
-import AddProduct from './components/adminPage/addProduct/addProduct.component'
+import AddProduct from './components/adminPage/products/addProduct.component'
+import ProductsNav from './components/adminPage/products/productsNav.component'
 import AddSection from './components/adminPage/addSection/addSection.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
@@ -44,7 +45,7 @@ class AdminPage extends Component {
     
                             
                                 <NavLink className="NavLinkAdmin"
-                                to="/admin/add-product"
+                                to="/admin/products"
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
@@ -52,7 +53,7 @@ class AdminPage extends Component {
                                   //  textDecoration: 'underline',
                                   background: "#4CAF50",
                                   color: "#ffffff"
-                                }}>Add Product</NavLink>
+                                }}>Products</NavLink>
                                
                             <NavLink className="NavLinkAdmin"  to={{
                                 pathname: '/admin/add-section'
@@ -98,7 +99,7 @@ class AdminPage extends Component {
     
     <div className="admin-nav-container">
                 <Switch>
-                    <Route path="/admin/add-product" component={AddProduct} />
+                    <Route path="/admin/products" component={ProductsNav} />
                     <Route path="/admin/add-section" component={AddSection}  />
                     <Route path="/admin/add-category" component={AddCategory} />
                     <Route path="/admin/add-collection" component={AddCollection} />
