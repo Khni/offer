@@ -141,7 +141,7 @@ export const fetchProducts= () => {
        
       } catch(err) {
       // console.log();
-          console.error("err"+ err.response.data.error)
+        //  console.error("err"+ err.response.data.error)
         dispatch({
           type: FETCH_ERROR,
       //    payload: err.response.data.error
