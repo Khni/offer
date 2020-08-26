@@ -11,7 +11,7 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
-import TableListStyle from './TableList.scss"
+import TableListStyle from './TableList.scss'
 
 
 

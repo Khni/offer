@@ -10,7 +10,7 @@ import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../../store/actions/product';
-import ProductsList from './productsList.component'
+//import ProductsList from './productsList.component'
 
 
 
