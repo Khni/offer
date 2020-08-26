@@ -11,7 +11,7 @@ import InputForm from '../../../../components/form/inputAdminForm'
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddProduct from './addProduct.component'
 import * as actions from '../../../../store/actions/product';
-
+import TableStyle from './TableList.scss'
 
 
 
@@ -52,11 +52,11 @@ async componentDidMount() {
         return(
 
 
-     <div className="productsList">
+     <div className="TableList-container">
       
  <div>Product List</div>
 
-    <table className="productsList-table">
+    <table className="TableList-container">
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
 {this.props.categoriess.map((category)=>{

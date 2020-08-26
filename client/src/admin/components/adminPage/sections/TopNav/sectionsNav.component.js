@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import InputForm from '../../../../../components/form/inputAdminForm' 
-import SelectForm from '../../../../../components/form/selectOptions.component' 
-import * as actions from '../../../../../store/actions/product';
 import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
@@ -10,11 +7,12 @@ import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 //import AddproductStyle from './addProduct.scss'
-
-import AddCollection from '../addItemToServer/addCollection.component'
-import CollectionsList from '../TableList/collectionsList.component'
-import CollectionNavStyle from './collectionsNavStyle.scss'
-
+//import InputForm from '../../../../components/form/inputAdminForm' 
+//import SelectForm from '../../../../components/form/selectOptions.component' 
+import AddSection from '../addSection.component'
+import ProductsList from '../TableList/sectionsList.component'
+import SectionsNavStyle from './sectionsNavStyle.scss'
+import * as actions from '../../../../../store/actions/product';
 
 
 
@@ -46,7 +44,7 @@ class ProductsNav extends Component {
     
                             
     <NavLink className="NavLinkItems"
-    to="/admin/collections/add-collection"
+    to="/admin/products/add-product"
     exact
     activeClassName="my-active"
     activeStyle={{
@@ -54,10 +52,10 @@ class ProductsNav extends Component {
       //  textDecoration: 'underline',
       background: "#4CAF50",
       color: "#ffffff"
-    }}>add Collection</NavLink>
+    }}>add Product</NavLink>
    
 <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/collections/collections-list"
+    pathname: "/admin/products/products-list"
 }}
 activeClassName="my-active"
     activeStyle={{
@@ -67,7 +65,7 @@ activeClassName="my-active"
        color: "#ffffff"
 
     }}
->Collections List</NavLink>
+>Products List</NavLink>
 
                      
 
@@ -80,9 +78,9 @@ activeClassName="my-active"
       <div className="TopNav-container">
                 <Switch>
                     
-                    <Route exact path="/admin/collections/add-collection" component={AddCollection}  />
-                    <Route exact path="/admin/collections/collections-list" component={CollectionsList}  />
-                         <Redirect from="/admin/collections" to="/admin/collections/collections-list" />
+                    <Route exact path="/admin/sections/add-section" component={AddSection}  />
+                    <Route exact path="/admin/sections/sections-list" component={SectionsList}  />
+                         <Redirect from="/admin/sections" to="/admin/sections/sections-list" />
                    
                    
                 </Switch>

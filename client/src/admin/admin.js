@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import AddCategory from './components/adminPage/addCategory/addCategory.component'
-import AddCollection from './components/adminPage/collections/TopNav/collectionsNav.component'
+import CategoriesNav from './components/adminPage/categories/categoriesNav.component.js'
+import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
 import ProductsNav from './components/adminPage/products/TopNav/productsNav.component'
-import AddSection from './components/adminPage/addSection/addSection.component'
+import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component''
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
 import AdminStyle from './admin.scss'
@@ -100,9 +100,9 @@ class AdminPage extends Component {
     <div className="admin-nav-container">
                 <Switch>
                     <Route path="/admin/products" component={ProductsNav} />
-                    <Route path="/admin/add-section" component={AddSection}  />
-                    <Route path="/admin/add-category" component={AddCategory} />
-                    <Route path="/admin/add-collection" component={AddCollection} />
+                    <Route path="/admin/section" component={SectionsNav}  />
+                    <Route path="/admin/categories" component={CategoriesNav} />
+                    <Route path="/admin/collections" component={CollectionNav} />
                    
                 </Switch>
     </div>

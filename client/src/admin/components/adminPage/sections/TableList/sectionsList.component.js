@@ -17,7 +17,7 @@ import TableListStyle from './TableList.scss'
 
 
 
-class CollectionsList extends Component {
+class ProductsList extends Component {
 
     constructor(props) {
         super(props)
@@ -36,9 +36,9 @@ async componentDidMount() {
 
   }
   async componentDidUpdate() {
-    const { fetchCollections } = this.props;
+    const { fetchSections } = this.props;
   const { fetchProducts } = this.props;
-  await fetchCollections();
+  await fetchSections();
   await fetchProducts();
     console.log("log from add product Update" )
    }
@@ -56,16 +56,17 @@ async componentDidMount() {
           <div className="TableList-container">
       
  <div>Product List</div>
-  <div>
-    <table className="TableList">
-    <tr><th>collection name</th></tr>
+<div >
+    <table className="TableList" >
+    <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
-{this.props.collections.map((collection)=>{
-return     <tr><td>{collection.nameEn}</td></tr>
+{this.props.products.map((product)=>{
+return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
    })}
   
       </table>
-</div>
+     </div>
+
    
 </div>
 
@@ -79,7 +80,7 @@ return     <tr><td>{collection.nameEn}</td></tr>
 const mapStateToProps = state => {
   return {
   	//categories : state.categoryReducer.categories, 
-  collections: state.categoryReducer.collections, 
+  sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
   products: state.categoryReducer.products
@@ -93,4 +94,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(CollectionsList);
+export default  connect(mapStateToProps, actions)(ProductsList);

@@ -42,19 +42,7 @@ class CategoriesNav extends Component {
      <div className="ProductsNav">
        <nav className="items-nav">
     
-                            
-    <NavLink className="NavLinkItems"
-    to="/admin/categories/add-category"
-    exact
-    activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#4CAF50",
-      color: "#ffffff"
-    }}>add Category</NavLink>
-   
-<NavLink className="NavLinkItems"  to={{
+                            <NavLink className="NavLinkItems"  to={{
     pathname: "/admin/categories/categories-list"
 }}
 activeClassName="my-active"
@@ -66,6 +54,21 @@ activeClassName="my-active"
 
     }}
 >Products List</NavLink>
+
+
+
+    <NavLink className="NavLinkItems"
+    to="/admin/categories/add-category"
+    exact
+    activeClassName="my-active"
+    activeStyle={{
+      //  color: '#fa923f',
+      //  textDecoration: 'underline',
+      background: "#4CAF50",
+      color: "#ffffff"
+    }}>add Category</NavLink>
+   
+
 
                      
 
