@@ -56,8 +56,8 @@ async componentDidMount() {
           <div className="TableList-container">
       
  <div>Product List</div>
-
-    <table className="TableList">
+<div >
+    <table className="TableList" >
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
 {this.props.products.map((product)=>{
@@ -65,6 +65,7 @@ return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product
    })}
   
       </table>
+     </div>
 
    
 </div>

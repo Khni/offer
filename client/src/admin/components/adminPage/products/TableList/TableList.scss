@@ -1,23 +1,24 @@
 .TableList-container{
-    display: flex;
-    max-width: 100%;
-    flex-direction: column;
-    
-   /* overflow: auto;*/
-    border: 2px solid black;
-    
-   
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  
+ /* overflow: auto;*/
+  border: 1px solid black;
+  
+ 
 }
 
 
 .TableList {
-   
-   margin: 5px;
-    
-   /* overflow: auto;*/
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    
+ 
+ margin: 5px;
+ border-collapse: collapse;
+ border: 1px solid black;
+ /* overflow: auto;*/
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+ 
+  
 }
 
 .TableList td, .productsList-table th {
