@@ -6,10 +6,10 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
+//import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
-import AddProduct from './addProduct.component'
+//import AddProduct from './addProduct.component'
 import * as actions from '../../../../store/actions/product';
 import TableStyle from './TableList.scss'
 
@@ -59,20 +59,13 @@ async componentDidMount() {
     <table className="TableList-container">
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
-{this.props.categoriess.map((category)=>{
+{this.props.categories.map((category)=>{
 return     <tr><td>{category.nameEn}</td></tr>
    })}
   
       </table>
 
-      <div className="products-nav-container">
-                <Switch>
-                    
-                    <Route exact path="/admin/products/add-product" component={AddProduct}  />
-                   
-                   
-                </Switch>
-    </div>
+      
 </div>
 
 
