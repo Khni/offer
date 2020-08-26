@@ -1,22 +1,23 @@
 import React, {Component} from 'react'
-import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
+import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
-import InputForm from '../../../../components/form/inputAdminForm' 
-import SelectForm from '../../../../components/form/selectOptions.component' 
-import AddProduct from './addProduct.component'
-import * as actions from '../../../../store/actions/product';
+//import AddproductStyle from './addProduct.scss'
+//import InputForm from '../../../../../components/form/inputAdminForm' 
+//import SelectForm from '../../../../../components/form/selectOptions.component' 
+//import AddProduct from './addProduct.component'
+import * as actions from '../../../../../store/actions/product';
+import TableListStyle from './TableList.scss"
 
 
 
 
 
-class ProductsList extends Component {
+class CollectionsList extends Component {
 
     constructor(props) {
         super(props)
@@ -35,9 +36,9 @@ async componentDidMount() {
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
+    const { fetchCollections } = this.props;
   const { fetchProducts } = this.props;
-  await fetchSections();
+  await fetchCollections();
   await fetchProducts();
     console.log("log from add product Update" )
    }
@@ -52,27 +53,20 @@ async componentDidMount() {
         return(
 
 
-     <div className="productsList">
+          <div className="TableList-container">
       
  <div>Product List</div>
 
-    <table className="productsList-table">
-    <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
+    <table className="TableList">
+    <tr><th>collection name</th></tr>
    
-{this.props.products.map((product)=>{
-return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
+{this.props.collections.map((collection)=>{
+return     <tr><td>{collection.nameEn}</td></tr>
    })}
   
       </table>
 
-      <div className="products-nav-container">
-                <Switch>
-                    
-                    <Route exact path="/admin/products/add-product" component={AddProduct}  />
-                   
-                   
-                </Switch>
-    </div>
+   
 </div>
 
 
@@ -85,7 +79,7 @@ return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product
 const mapStateToProps = state => {
   return {
   	//categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
+  collections: state.categoryReducer.collections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
   products: state.categoryReducer.products
@@ -99,4 +93,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(ProductsList);
+export default  connect(mapStateToProps, actions)(CollectionsList);

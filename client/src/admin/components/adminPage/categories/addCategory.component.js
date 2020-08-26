@@ -6,17 +6,17 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
+import AddproductStyle from './addCategoryStyle.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
-import ProductsList from './productsList.component'
+
+///import Category from '../../../../../../server/src/models/Category';
 
 
 
 
-
-class AddProduct extends Component {
+class AddCategory extends Component {
 
     constructor(props) {
         super(props)
@@ -24,21 +24,15 @@ class AddProduct extends Component {
     }
 
 async onSubmit(formData) {
-const AdminToken = this.props.AdminToken
-let AddetToServerCond = this.props.AddedToServer
-console.log("added cond before submit" +AddetToServerCond);
 
-const { addProductToServer } = this.props;
-console.log("form data: "  )
-   await addProductToServer(formData,AdminToken)
-  
-   console.log(formData);
-   let AddetToServerCondafter = this.props.AddedToServer
-   console.log("added cond after submit" +AddetToServerCondafter);
-   
-   if (this.props.AddedToServer) {
+console.log("form data: " + JSON.stringify(formData) )
+   const AdminToken = this.props.AdminToken
+const { addCategoryToServer } = this.props;
+console.log("form data: " + JSON.stringify(formData) )
+   await addCategoryToServer(formData,AdminToken)
+   if (this.props.AddetToServer) {
       
-     alert("Item has been added!") 
+       alert("Item has been added!") 
     window.location.reload();
     }
   
@@ -46,19 +40,13 @@ console.log("form data: "  )
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
-  console.log("log from add product mound" )
+  
+  console.log("log from add category" )
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
-    console.log("log from add product Update" )
+    
+    console.log("log from add category Update" )
    }
 
 
@@ -69,29 +57,12 @@ async componentDidMount() {
 const { handleSubmit } = this.props;
 
         return(
-<div className="addProduct-container">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div className="addProductToServer">
-       
+<div className="addCategory">
+       <h4 class="form-title"> Add New Category </h4>
 
       
           <form onSubmit={handleSubmit(this.onSubmit)}>
-          <h4 class="form-title"> Add New Product </h4>
+                 
              <fieldset>
               <Field
                 type='text' 
@@ -115,30 +86,7 @@ const { handleSubmit } = this.props;
               />
             </fieldset>
             
-                    <fieldset>
-              <Field
-                type='text' 
-                name='price' 
-                id='price' 
-                className='price'
-         //       placeholder='enter title in English ' 
-                component={InputForm}
-                label='price' 
-              />
-            </fieldset>
-            
-            
-                       <fieldset>
-              <Field
-                type='text' 
-                name='quantity' 
-                id='quantity' 
-                className='quantity'
-             //   placeholder='enter title in Arabic' 
-                component={InputForm}
-                label='Quantity ' 
-              />
-            </fieldset>
+              
             
               
                <fieldset>
@@ -163,41 +111,12 @@ const { handleSubmit } = this.props;
                 label=' Description in English' 
               />
             </fieldset>
-            <fieldset>
-            <Field
-                
-                sections={this.props.sections}
-                name='sectionID' 
-                id='sectionID' 
-                className='sectionID'
-          //      placeholder='enter title in English ' 
-                component={SelectForm}
-                label=' section' 
-              />
-                </fieldset>
-               
-
-
             
-
-
 
 
             <button type="submit" class="custum-btn-form">submit</button>
             
           </form>
-          </div>
-
-
-
-
-     
-
-
-
-
-     
-     
 </div>
 
 
@@ -208,13 +127,12 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
+  	AdminToken: selectAdminAuth(state).token,
+  AddetToServer : state.categoryReducer.AddToServer.added
   	//categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-  AdminToken: selectAdminAuth(state).token,
-  AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
+//  sections: state.categoryReducer.sections, 
  //   Name: selectAdminAuth(state).Name,
-   // Email: selectAdminAuth(state).Email,
+  //  Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
     
   }
@@ -225,5 +143,5 @@ const mapStateToProps = state => {
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: 'AddProduct' })
-)(AddProduct)
+  reduxForm({ form: 'AddCategory' })
+)(AddCategory)

@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import AddCategory from './components/adminPage/addCategory/addCategory.component'
-import AddCollection from './components/adminPage/addCollection/addCollection.component'
+import AddCollection from './components/adminPage/collections/TopNav/collectionsNav.component'
 import AddProduct from './components/adminPage/products/addProduct.component'
-import ProductsNav from './components/adminPage/products/productsNav.component'
+import ProductsNav from './components/adminPage/products/TopNav/productsNav.component'
 import AddSection from './components/adminPage/addSection/addSection.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
