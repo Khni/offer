@@ -21,10 +21,16 @@ class ProductsList extends Component {
 
     constructor(props) {
         super(props)
-        
+        this
+       this.state = {
+          search : '' 
+
+        } 
     }
 
-
+    searchUpdate(event) {
+   this.setState({search: event.target.value.substr(0,20)})
+} 
 
 async componentDidMount() {
 
@@ -48,7 +54,9 @@ async componentDidMount() {
 
 
     render() {
-
+let productsFiltered = this.props.products.filter((product)=>{
+return product.nameEn.toLowerCase().indexOf(this.state.search.toLowerCase())!== - 1
+} )
 
         return(
 
@@ -56,11 +64,12 @@ async componentDidMount() {
           <div className="TableList-container">
       
  <div>Product List</div>
+ <input type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} />
 <div >
     <table className="TableList" >
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
-{this.props.products.map((product)=>{
+{this.props.productsFiltered.map((product)=>{
 return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
    })}
   
