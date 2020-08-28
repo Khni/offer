@@ -5,7 +5,7 @@ import CategoriesNav from './components/adminPage/categories/categoriesNav.compo
 import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
 import ProductsNav from './components/adminPage/products/TopNav/productsNav.component'
-import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component''
+import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
 import AdminStyle from './admin.scss'
@@ -56,7 +56,7 @@ class AdminPage extends Component {
                                 }}>Products</NavLink>
                                
                             <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/add-section'
+                                pathname: '/admin/sections'
                             }}
                             activeClassName="my-active"
                                 activeStyle={{
@@ -69,7 +69,7 @@ class AdminPage extends Component {
                             >Add Section</NavLink>
                         
                                                     <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/add-category'
+                                pathname: '/admin/categories'
                             }}
                             activeClassName="my-active"
                                 activeStyle={{
@@ -82,7 +82,7 @@ class AdminPage extends Component {
                             >Add Category</NavLink>
                             
                                                         <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/add-collection'
+                                pathname: '/admin/collections'
                             }}
                             activeClassName="my-active"
                                 activeStyle={{

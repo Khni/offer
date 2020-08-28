@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddcategoriesStyle from './addCategory.scss'
+//import AddcategoriesStyle from './addCategory.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddCategory from './addCategory.component'

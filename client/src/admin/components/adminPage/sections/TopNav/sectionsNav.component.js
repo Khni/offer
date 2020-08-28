@@ -10,7 +10,7 @@ import { compose } from 'redux';
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddSection from '../addSection.component'
-import ProductsList from '../TableList/sectionsList.component'
+import SectionsList from '../TableList/sectionsList.component'
 import SectionsNavStyle from './sectionsNavStyle.scss'
 import * as actions from '../../../../../store/actions/product';
 
@@ -18,7 +18,7 @@ import * as actions from '../../../../../store/actions/product';
 
 
 
-class ProductsNav extends Component {
+class SectionsNav extends Component {
 
     constructor(props) {
         super(props)
@@ -44,7 +44,7 @@ class ProductsNav extends Component {
     
                             
     <NavLink className="NavLinkItems"
-    to="/admin/products/add-product"
+    to="/admins/sections/add-section"
     exact
     activeClassName="my-active"
     activeStyle={{
@@ -55,7 +55,7 @@ class ProductsNav extends Component {
     }}>add Product</NavLink>
    
 <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/products/products-list"
+    pathname: "/admin/products/sections-list"
 }}
 activeClassName="my-active"
     activeStyle={{
@@ -111,4 +111,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(ProductsNav);
+export default  connect(mapStateToProps, actions)(SectionsNav);
