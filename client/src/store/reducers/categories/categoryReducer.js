@@ -15,13 +15,14 @@ import {
 
     const INITIAL_STATE = {
         categories: [], 
-  
+        
         sections: [], 
-        
+        sectionsFetched: false, 
         products:[], 
-        
+        productsFetched: false, 
         collections:[], 
         FetchError: false, 
+        
         AddToServer: {
         	added: false, 
             error:'' 
@@ -42,7 +43,8 @@ import {
             case FETCH_SECTIONS :
             return {
            ...state, 
-           sections: action.Sections
+           sections: action.Sections, 
+           sectionsFetched: true
              
             };
             
@@ -51,8 +53,8 @@ import {
             case FETCH_PRODUCTS :
             return {
            ...state, 
-           products: action.Products
-             
+           products: action.Products, 
+           productsFetched: true, 
             };
             case FETCH_COLLECTIONS :
             return {

@@ -34,18 +34,38 @@ class ProductsList extends Component {
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+  if(!this.props.productsFetched) {
+
+const { fetchProducts } = this.props;
+await fetchProducts();
+console.log("log from add product moundfetchProduct" )
+}
+  
+  	if(!this.props.sectionsFetched) {
+
+const { fetchSections } = this.props;
+await fetchSections();
+console.log("log from add product moundfetchSections" )
+}
   console.log("log from add product mound" )
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+  	if(!this.props.productsFetched) {
+
+const { fetchProducts } = this.props;
+await fetchProducts();
+
+}console.log("log from add product Updatefetchproduct" )
+  
+  	if(!this.props.sectionsFetched) {
+
+const { fetchSections } = this.props;
+await fetchSections();
+console.log("log from add product UpdatefetchSectction" )
+}
+  
+    
     console.log("log from add product Update" )
    }
 
@@ -88,7 +108,9 @@ return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product
 
 const mapStateToProps = state => {
   return {
-  	//categories : state.categoryReducer.categories, 
+   productsFetched : state.categoryReducer.productsFetched,
+  sectionsFetched : state.categoryReducer.sectionsFetched,
+  
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,

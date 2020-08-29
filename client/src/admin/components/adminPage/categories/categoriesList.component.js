@@ -26,22 +26,22 @@ class CategoryList extends Component {
 
 
 async componentDidMount() {
-
+if (!this.props.sectionsFetched) {
   const { fetchSections } = this.props;
   //const { fetchCategories } = this.props;
  await fetchSections();
   //await fetchCategories();
   console.log("log from add product mound" )
-
+} 
   }
-  async componentDidUpdate(prevProps, prevState) {
-  
+  async componentDidUpdate() {
+  if (!this.props.sectionsFetched) {
       const { fetchSections } = this.props;
   //const { fetchProducts } = this.props;
   await fetchSections();
   //await fetchProducts();
   console.log("log from add category Update" + this.props.sections.nameEn )
-   
+  } 
    
    
    }
@@ -82,7 +82,8 @@ return     <tr><td>{category.nameEn}</td></tr>
 const mapStateToProps = state => {
   return {
   	categories : state.categoryReducer.categories,
-  sections: state.categoryReducer.sections 
+  sections: state.categoryReducer.sections, 
+  sectionsFetched: state.categoryReducer.sectionsFetched
  // AdminToken: selectAdminAuth(state).token,
   //AddedToServer : state.categoryReducer.AddToServer.added,
  // products: state.categoryReducer.products
