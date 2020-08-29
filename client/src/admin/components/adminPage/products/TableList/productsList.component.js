@@ -28,7 +28,7 @@ class ProductsList extends Component {
         } 
     }
 
-  async  searchUpdate(event) {
+    searchUpdate(event) {
    this.setState({search: event.target.value.substr(0,20)})
 } 
 
@@ -54,8 +54,8 @@ async componentDidMount() {
 
 
     render() {
-let productsFiltered = this.props.products.filter(async(itemProduct)=>{
-  return await itemProduct.nameEn.indexOf(this.state.search) !== -1
+let productsFiltered = this.props.products.filter((itemProduct)=>{
+  return  itemProduct.nameEn.indexOf(this.state.search) !== -1
   } )
 
         return(
