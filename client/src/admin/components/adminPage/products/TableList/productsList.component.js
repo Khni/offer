@@ -51,19 +51,20 @@ console.log("log from add product moundfetchSections" )
 
   }
   async componentDidUpdate() {
-  	if(!this.props.productsFetched) {
+  //	if(!this.props.productsFetched) {
 
 const { fetchProducts } = this.props;
 await fetchProducts();
 
-}console.log("log from add product Updatefetchproduct" )
+//}
+console.log("log from add product Updatefetchproduct" )
   
-  	if(!this.props.sectionsFetched) {
+  //	if(!this.props.sectionsFetched) {
 
 const { fetchSections } = this.props;
 await fetchSections();
 console.log("log from add product UpdatefetchSectction" )
-}
+//}
   
     
     console.log("log from add product Update" )
@@ -74,9 +75,12 @@ console.log("log from add product UpdatefetchSectction" )
 
 
     render() {
-let productsFiltered = this.props.products.filter((itemProduct)=>{
+let productsFiltered =   this.props.products.filter((itemProduct)=>{
   return  itemProduct.nameEn.indexOf(this.state.search) !== -1
   } )
+//.filter((itemProduct)=>{
+//  return  itemProduct.nameEn.indexOf(this.state.search) !== -1
+ // } )
 
         return(
 
