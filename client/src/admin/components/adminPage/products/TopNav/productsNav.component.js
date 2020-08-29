@@ -80,7 +80,7 @@ activeClassName="my-active"
                     
                     <Route exact path="/admin/products/add-product" component={AddProduct}  />
                     <Route exact path="/admin/products/products-list" component={ProductsList}  />
-                         <Redirect from="/admin/products" to="/admin/products/products-list" />
+                       
                    
                    
                 </Switch>

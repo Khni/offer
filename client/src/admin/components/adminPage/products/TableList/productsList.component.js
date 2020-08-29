@@ -31,7 +31,24 @@ class ProductsList extends Component {
     searchUpdate(event) {
    this.setState({search: event.target.value.substr(0,20)})
 } 
+async fetching(){
+ //	if(!this.props.productsFetched) {
 
+  const { fetchProducts } = this.props;
+  await fetchProducts();
+  
+  //}
+  console.log("log from add product Updatefetchproduct" )
+    
+    //	if(!this.props.sectionsFetched) {
+  
+  const { fetchSections } = this.props;
+  await fetchSections();
+  console.log("log from add product UpdatefetchSectction" )
+  //}
+    
+      
+}
 async componentDidMount() {
 
   if(!this.props.productsFetched) {
@@ -51,22 +68,7 @@ console.log("log from add product moundfetchSections" )
 
   }
   async componentDidUpdate() {
-  //	if(!this.props.productsFetched) {
-
-const { fetchProducts } = this.props;
-await fetchProducts();
-
-//}
-console.log("log from add product Updatefetchproduct" )
-  
-  //	if(!this.props.sectionsFetched) {
-
-const { fetchSections } = this.props;
-await fetchSections();
-console.log("log from add product UpdatefetchSectction" )
-//}
-  
-    
+ this.fetching()
     console.log("log from add product Update" )
    }
 
@@ -75,25 +77,25 @@ console.log("log from add product UpdatefetchSectction" )
 
 
     render() {
+      
+//this.fetching()
 let productsFiltered =   this.props.products.filter((itemProduct)=>{
-  return  itemProduct.nameEn.indexOf(this.state.search) !== -1
+  console.log("testing");
+ // return  itemProduct.nameEn.indexOf(this.state.search) !== -1
   } )
-//.filter((itemProduct)=>{
-//  return  itemProduct.nameEn.indexOf(this.state.search) !== -1
- // } )
 
         return(
 
 
           <div className="TableList-container">
       
- <div>Product List</div>
+<div>Product List</div>
  <input type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} />
 <div >
     <table className="TableList" >
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
-{productsFiltered.map((product)=>{
+{this.props.products.map((product)=>{
 return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
    })}
   
