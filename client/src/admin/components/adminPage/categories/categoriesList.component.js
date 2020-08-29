@@ -16,7 +16,7 @@ import TableStyle from './TableList.scss'
 
 
 
-class ProductsList extends Component {
+class CategoryList extends Component {
 
     constructor(props) {
         super(props)
@@ -28,18 +28,22 @@ class ProductsList extends Component {
 async componentDidMount() {
 
   const { fetchSections } = this.props;
-  const { fetchCategories } = this.props;
-  await fetchSections();
-  await fetchCategories();
+  //const { fetchCategories } = this.props;
+ await fetchSections();
+  //await fetchCategories();
   console.log("log from add product mound" )
 
   }
-  async componentDidUpdate() {
-    const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
+  async componentDidUpdate(prevProps, prevState) {
+  
+      const { fetchSections } = this.props;
+  //const { fetchProducts } = this.props;
   await fetchSections();
-  await fetchProducts();
-    console.log("log from add product Update" )
+  //await fetchProducts();
+  console.log("log from add category Update" + this.props.sections.nameEn )
+   
+   
+   
    }
 
 
@@ -77,11 +81,11 @@ return     <tr><td>{category.nameEn}</td></tr>
 
 const mapStateToProps = state => {
   return {
-  	categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-  AdminToken: selectAdminAuth(state).token,
-  AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
+  	categories : state.categoryReducer.categories,
+  sections: state.categoryReducer.sections 
+ // AdminToken: selectAdminAuth(state).token,
+  //AddedToServer : state.categoryReducer.AddToServer.added,
+ // products: state.categoryReducer.products
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error
@@ -92,4 +96,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(ProductsList);
+export default  connect(mapStateToProps, actions)(CategoryList);

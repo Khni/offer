@@ -42,7 +42,18 @@ class ProductsNav extends Component {
      <div className="TopNav">
        <nav className="items-nav">
     
-                            
+       <NavLink className="NavLinkItems"  to={{
+    pathname: "/admin/products/products-list"
+}}
+activeClassName="my-active"
+    activeStyle={{
+      //  color: '#fa923f',
+       // textDecoration: 'underline'
+       background: "#4CAF50",
+       color: "#ffffff"
+
+    }}
+>Products List</NavLink>                
     <NavLink className="NavLinkItems"
     to="/admin/products/add-product"
     exact
@@ -54,18 +65,7 @@ class ProductsNav extends Component {
       color: "#ffffff"
     }}>add Product</NavLink>
    
-<NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/products/products-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#4CAF50",
-       color: "#ffffff"
 
-    }}
->Products List</NavLink>
 
                      
 

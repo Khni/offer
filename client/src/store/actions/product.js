@@ -82,7 +82,7 @@ export const fetchSections = () => {
 
           
         });
-       
+       console.log("log  from fetchSections");
       } catch(err) {
       // console.log();
           console.error("err"+ err)
