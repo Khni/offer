@@ -43,21 +43,33 @@ console.log("form data: "  )
     }
   
   }
+  
+  
+  async FetchSectionsFromServer() {
+if(!this.props.sectionsFetched) {
+  
+  const { fetchSections } = this.props;
+  await fetchSections();
+  console.log("log from add product UpdatefetchSectction" )
+  }
+} 
+  
 
 async componentDidMount() {
-
-  const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+await this.FetchSectionsFromServer()
+  //const { fetchSections } = this.props;
+  //const { fetchProducts } = this.props;
+  //await fetchSections();
+  //await fetchProducts();
   console.log("log from add product mound" )
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+  await this.FetchSectionsFromServer()
+    //const { fetchSections } = this.props;
+ // const { fetchProducts } = this.props;
+  //await fetchSections();
+ // await fetchProducts();
     console.log("log from add product Update" )
    }
 
@@ -208,11 +220,11 @@ const { handleSubmit } = this.props;
 
 const mapStateToProps = state => {
   return {
-  	//categories : state.categoryReducer.categories, 
+   sectionsFetched : state.categoryReducer.sectionsFetched, 
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
+ // products: state.categoryReducer.products
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

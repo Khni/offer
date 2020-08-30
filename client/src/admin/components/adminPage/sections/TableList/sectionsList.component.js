@@ -25,21 +25,24 @@ class ProductsList extends Component {
     }
 
 
+async FetchSectionsFromServer() {
+if(!this.props.sectionsFetched) {
+  
+  const { fetchSections } = this.props;
+  await fetchSections();
+  console.log("log from add product UpdatefetchSectction" )
+  }
+} 
+
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+ await this.FetchSectionsFromServer()
   console.log("log from add product mound" )
 
   }
   async componentDidUpdate() {
-    const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
+    await this.FetchSectionsFromServer()
     console.log("log from add product Update" )
    }
 
@@ -58,10 +61,10 @@ async componentDidMount() {
  <div>Product List</div>
 <div >
     <table className="TableList" >
-    <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
+    <tr><th>sections name</th></tr>
    
-{this.props.products.map((product)=>{
-return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
+{this.props.sections.map((section)=>{
+return     <tr><td>{section.nameEn}</td></tr>
    })}
   
       </table>
@@ -83,7 +86,7 @@ const mapStateToProps = state => {
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
+  sectionsFetched: state.categoryReducer.sectionsFetched
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

@@ -43,18 +43,8 @@ class SectionsNav extends Component {
        <nav className="items-nav">
     
                             
-    <NavLink className="NavLinkItems"
-    to="/admins/sections/add-section"
-    exact
-    activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#4CAF50",
-      color: "#ffffff"
-    }}>add Product</NavLink>
-   
-<NavLink className="NavLinkItems"  to={{
+                            
+                    <NavLink className="NavLinkItems"  to={{
     pathname: "/admin/products/sections-list"
 }}
 activeClassName="my-active"
@@ -65,9 +55,22 @@ activeClassName="my-active"
        color: "#ffffff"
 
     }}
->Products List</NavLink>
+>Sections List</NavLink>
 
-                     
+                             
+                            
+    <NavLink className="NavLinkItems"
+    to="/admins/sections/add-section"
+    exact
+    activeClassName="my-active"
+    activeStyle={{
+      //  color: '#fa923f',
+      //  textDecoration: 'underline',
+      background: "#4CAF50",
+      color: "#ffffff"
+    }}>Add Section</NavLink>
+   
+
 
 
 </nav>

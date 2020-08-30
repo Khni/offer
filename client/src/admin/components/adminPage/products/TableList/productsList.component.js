@@ -31,45 +31,25 @@ class ProductsList extends Component {
     searchUpdate(event) {
    this.setState({search: event.target.value.substr(0,20)})
 } 
-async fetching(){
- //	if(!this.props.productsFetched) {
+async FetchProductsFromServer(){
+ 	if(!this.props.productsFetched) {
 
   const { fetchProducts } = this.props;
   await fetchProducts();
   
-  //}
+  }
   console.log("log from add product Updatefetchproduct" )
     
-    //	if(!this.props.sectionsFetched) {
-  
-  const { fetchSections } = this.props;
-  await fetchSections();
-  console.log("log from add product UpdatefetchSectction" )
-  //}
-    
-      
 }
 async componentDidMount() {
 
-  if(!this.props.productsFetched) {
-
-const { fetchProducts } = this.props;
-await fetchProducts();
-console.log("log from add product moundfetchProduct" )
-}
-  
-  	if(!this.props.sectionsFetched) {
-
-const { fetchSections } = this.props;
-await fetchSections();
-console.log("log from add product moundfetchSections" )
-}
-  console.log("log from add product mound" )
+  await this.FetchProductsFromServer() 
+  console.log("log from list product mound" )
 
   }
   async componentDidUpdate() {
- this.fetching()
-    console.log("log from add product Update" )
+await this.FetchProductsFromServer() 
+    console.log("log from list product Update" )
    }
 
 
@@ -78,10 +58,10 @@ console.log("log from add product moundfetchSections" )
 
     render() {
       
-//this.fetching()
+
 let productsFiltered =   this.props.products.filter((itemProduct)=>{
-  console.log("testing");
- // return  itemProduct.nameEn.indexOf(this.state.search) !== -1
+  
+ return  itemProduct.nameEn.indexOf(this.state.search) !== -1
   } )
 
         return(
