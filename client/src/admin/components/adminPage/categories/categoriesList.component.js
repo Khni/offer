@@ -23,27 +23,22 @@ class CategoryList extends Component {
         
     }
 
-
+    async FetchCategoriesFromServer(){
+      if(!this.props.categoriesFetched) {
+   
+     const { fetchCategories } = this.props;
+     await fetchCategories();
+     
+     }
+     console.log("log from add product Updatefetchproduct" )
+       
+   }
 
 async componentDidMount() {
-if (!this.props.sectionsFetched) {
-  const { fetchSections } = this.props;
-  //const { fetchCategories } = this.props;
- await fetchSections();
-  //await fetchCategories();
-  console.log("log from add product mound" )
-} 
+await this.FetchCategoriesFromServer()
   }
   async componentDidUpdate() {
-  if (!this.props.sectionsFetched) {
-      const { fetchSections } = this.props;
-  //const { fetchProducts } = this.props;
-  await fetchSections();
-  //await fetchProducts();
-  console.log("log from add category Update" + this.props.sections.nameEn )
-  } 
-   
-   
+ await this.FetchCategoriesFromServer()
    }
 
 
@@ -58,17 +53,17 @@ if (!this.props.sectionsFetched) {
 
      <div className="TableList-container">
       
- <div>Product List</div>
-
-    <table className="TableList-container">
-    <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
+ <div>Categories List</div>
+<div>
+    <table className="TableList">
+    <tr><th>Category Name</th> </tr>
    
 {this.props.categories.map((category)=>{
 return     <tr><td>{category.nameEn}</td></tr>
    })}
   
       </table>
-
+      </div>
       
 </div>
 
@@ -82,8 +77,8 @@ return     <tr><td>{category.nameEn}</td></tr>
 const mapStateToProps = state => {
   return {
   	categories : state.categoryReducer.categories,
-  sections: state.categoryReducer.sections, 
-  sectionsFetched: state.categoryReducer.sectionsFetched
+ // sections: state.categoryReducer.sections, 
+  categoriesFetched: state.categoryReducer.categoriesFetched
  // AdminToken: selectAdminAuth(state).token,
   //AddedToServer : state.categoryReducer.AddToServer.added,
  // products: state.categoryReducer.products

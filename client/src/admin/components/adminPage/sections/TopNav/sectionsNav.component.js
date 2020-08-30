@@ -45,13 +45,13 @@ class SectionsNav extends Component {
                             
                             
                     <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/products/sections-list"
+    pathname: "/admin/sections/sections-list"
 }}
 activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
        // textDecoration: 'underline'
-       background: "#4CAF50",
+       background: "#0083B0",
        color: "#ffffff"
 
     }}
@@ -60,13 +60,13 @@ activeClassName="my-active"
                              
                             
     <NavLink className="NavLinkItems"
-    to="/admins/sections/add-section"
+    to="/admin/sections/add-section"
     exact
     activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
       //  textDecoration: 'underline',
-      background: "#4CAF50",
+      background: "#0083B0",
       color: "#ffffff"
     }}>Add Section</NavLink>
    

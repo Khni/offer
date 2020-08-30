@@ -24,23 +24,31 @@ class CollectionsList extends Component {
         
     }
 
+    async FetchCollectionsFromServer(){
+      if(!this.props.collectionsFetched) {
+   
+        const { fetchCollections } = this.props;
+      
+        await fetchCollections();
 
+          console.log("log from add product Update" )
+         }
+      
+     
+     }
+   
+       
+  
 
 async componentDidMount() {
 
-  const { fetchSections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchSections();
-  await fetchProducts();
-  console.log("log from add product mound" )
+await this.FetchCollectionsFromServer()
+  console.log("log from  collection mound" )
 
   }
   async componentDidUpdate() {
-    const { fetchCollections } = this.props;
-  const { fetchProducts } = this.props;
-  await fetchCollections();
-  await fetchProducts();
-    console.log("log from add product Update" )
+    await this.FetchCollectionsFromServer()
+    console.log("log from  collection Update" )
    }
 
 
@@ -82,7 +90,7 @@ const mapStateToProps = state => {
   collections: state.categoryReducer.collections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
+  collectionsFetched: state.categoryReducer.collectionsFetched
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,
 //state.adminAuth.error

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
 import CategoriesNav from './components/adminPage/categories/categoriesNav.component.js'
 import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
@@ -42,17 +42,21 @@ class AdminPage extends Component {
 <div className="adminPage">
     
     <nav className="admin-nav">
+    <h3>Admin Dashboard  </h3>
     
                             
                                 <NavLink className="NavLinkAdmin"
-                                to="/admin/products"
-                                exact
+                                to={{
+                                  pathname:"/admin/products"
+                              }}
+                             
+                               
                                 activeClassName="my-active"
                                 activeStyle={{
                                   //  color: '#fa923f',
                                   //  textDecoration: 'underline',
-                                  background: "#4CAF50",
-                                  color: "#ffffff"
+                                  background: "#dfe3ee",
+                                 // color: "#ffffff"
                                 }}>Products</NavLink>
                                
                             <NavLink className="NavLinkAdmin"  to={{
@@ -62,11 +66,11 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: "#4CAF50",
-                                   color: "#ffffff"
+                                   background: "#dfe3ee",
+                                  // color: "#ffffff"
 
                                 }}
-                            >Add Section</NavLink>
+                            >Sections</NavLink>
                         
                                                     <NavLink className="NavLinkAdmin"  to={{
                                 pathname: '/admin/categories'
@@ -75,11 +79,11 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: "#4CAF50",
-                                   color: "#ffffff"
+                                   background: "#dfe3ee",
+                                   //color: "#ffffff"
 
                                 }}
-                            >Add Category</NavLink>
+                            >Categories</NavLink>
                             
                                                         <NavLink className="NavLinkAdmin"  to={{
                                 pathname: '/admin/collections'
@@ -88,22 +92,22 @@ class AdminPage extends Component {
                                 activeStyle={{
                                   //  color: '#fa923f',
                                    // textDecoration: 'underline'
-                                   background: "#4CAF50",
-                                   color: "#ffffff"
+                                   background: "#dfe3ee",
+                                  // color: "#ffffff"
 
                                 }}
-                            >Add Collection</NavLink>
-                            <button onClick={this.AdminSignOut }>Sign Up</button>
+                            >Collections</NavLink>
+                            <button className="custum-btn-signup-admin" onClick={this.AdminSignOut }>Sign Up</button>
 
     </nav>
     
     <div className="admin-nav-container">
                 <Switch>
                     <Route path="/admin/products" component={ProductsNav} />
-                    <Route path="/admin/section" component={SectionsNav}  />
+                    <Route path="/admin/sections" component={SectionsNav}  />
                     <Route path="/admin/categories" component={CategoriesNav} />
                     <Route path="/admin/collections" component={CollectionNav} />
-                   
+                    <Redirect from="/admin" to="/admin/products" />
                 </Switch>
     </div>
     

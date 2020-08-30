@@ -68,14 +68,15 @@ let productsFiltered =   this.props.products.filter((itemProduct)=>{
 
 
           <div className="TableList-container">
-      
-<div>Product List</div>
- <input type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} />
+ <div className="Tabel-Header">    
+<h3>Products List</h3>
+ <input className="input-search" type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} placeholder="search....." />
+ </div> 
 <div >
     <table className="TableList" >
     <tr><th>product name</th> <th>Quantity </th> <th>Price </th></tr>
    
-{this.props.products.map((product)=>{
+{productsFiltered.map((product)=>{
 return     <tr><td>{product.nameEn}</td><td>{product.quantity }</td><td>{product.price }</td></tr>
    })}
   

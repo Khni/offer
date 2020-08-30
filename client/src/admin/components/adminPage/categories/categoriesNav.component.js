@@ -49,8 +49,8 @@ activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
        // textDecoration: 'underline'
-       background: "#4CAF50",
-       color: "#ffffff"
+       background: "#0083B0",
+      color: "#ffffff"
 
     }}
 >Products List</NavLink>
@@ -64,7 +64,7 @@ activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
       //  textDecoration: 'underline',
-      background: "#4CAF50",
+      background: "#0083B0",
       color: "#ffffff"
     }}>add Category</NavLink>
    

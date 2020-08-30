@@ -52,7 +52,7 @@ class ProductsNav extends Component {
     activeStyle={{
       //  color: '#fa923f',
       //  textDecoration: 'underline',
-      background: "#4CAF50",
+      background: "#0083B0",
       color: "#ffffff"
     }}>add Collection</NavLink>
    
@@ -63,7 +63,7 @@ activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
        // textDecoration: 'underline'
-       background: "#4CAF50",
+       background: "#0083B0",
        color: "#ffffff"
 
     }}

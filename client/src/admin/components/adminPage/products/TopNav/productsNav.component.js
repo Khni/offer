@@ -49,7 +49,7 @@ activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
        // textDecoration: 'underline'
-       background: "#4CAF50",
+       background: "#0083B0",
        color: "#ffffff"
 
     }}
@@ -61,7 +61,7 @@ activeClassName="my-active"
     activeStyle={{
       //  color: '#fa923f',
       //  textDecoration: 'underline',
-      background: "#4CAF50",
+      background: "#0083B0",
       color: "#ffffff"
     }}>add Product</NavLink>
    
@@ -80,7 +80,7 @@ activeClassName="my-active"
                     
                     <Route exact path="/admin/products/add-product" component={AddProduct}  />
                     <Route exact path="/admin/products/products-list" component={ProductsList}  />
-                       
+                    <Redirect from="/admin/products" to="/admin/products/products-list" />
                    
                    
                 </Switch>
