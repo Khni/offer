@@ -11,7 +11,7 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddProduct from '../addItemToServer/addProduct.component'
 import ProductsList from '../TableList/productsList.component'
-import ProductNavStyle from './productsNavStyle.scss'
+import TopNavStyle from './TopNavStyle.scss'
 import * as actions from '../../../../../store/actions/product';
 
 
@@ -41,7 +41,24 @@ class ProductsNav extends Component {
 
      <div className="TopNav">
        <nav className="items-nav">
-    
+        {this.props.navlinks.map((navlink)=>{
+return     <NavLink className="NavLinkAdmin-side"
+                                to={{
+                                  pathname:{navlink.pathname} 
+                              }}
+                             
+                               
+                                activeClassName="active-NavLinkAdmin-side"
+                                activeStyle={{
+                                  //  color: '#fa923f',
+                                  //  textDecoration: 'underline',
+                                  background: "#dfe3ee",
+                                 // color: "#ffffff"
+                                }}>{navlink.title}</NavLink>
+      })} 
+      
+      
+      
        <NavLink className="NavLinkItems"  to={{
     pathname: "/admin/products/products-list"
 }}
@@ -53,7 +70,10 @@ activeClassName="my-active"
        color: "#ffffff"
 
     }}
->Products List</NavLink>                
+>Products List</NavLink>      
+
+
+          
     <NavLink className="my-active"
     to="/admin/products/add-product"
     exact

@@ -1,0 +1,40 @@
+
+.TopNav{
+    width: 100%;
+}
+
+
+
+
+.items-nav{
+    display: flex;
+    flex-direction: row;
+    
+    margin: 5px;
+    width: 30%;
+    
+    
+          .NavLinkItems {
+          display: flex;
+            min-width: 100%;
+           // padding-right: 70px ;
+           border: 1px solid black;
+           padding-left: 19px;
+           padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: white;
+          }
+    
+        
+    
+    text-align: center;
+    padding: 3;
+      
+     }
+     
+     
+
+.my-active{
+background-color: #0083B0;
+       color: #ffffff
+}
