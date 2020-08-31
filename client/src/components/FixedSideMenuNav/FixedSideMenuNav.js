@@ -39,7 +39,7 @@ class AdminPage extends Component {
 
 
         return(
-<div className="adminPage">
+<div className="SideNavPage">
     
     <nav className="admin-nav">
     <h3>this.props.title</h3>
