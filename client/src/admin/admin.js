@@ -8,7 +8,9 @@ import ProductsNav from './components/adminPage/products/TopNav/productsNav.comp
 import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
-import AdminStyle from './admin.scss'
+
+import SideNavStyle from '../components/FixedSideMenuNav/FixedSideMenuNav.scss'
+import SideNavComponent from '../components/FixedSideMenuNav/FixedSideMenuNav'
 class AdminPage extends Component {
 
     constructor(props) {
@@ -36,72 +38,41 @@ class AdminPage extends Component {
           
 
     render() {
+const navlinks = [{
+  path: "/admin/products",
+  title: "Products"
+},
+{
+  path: "/admin/sections",
+  title: "Sections"
+},
+{
+  path: "/admin/categories",
+  title: "Categories"
+},
+{
+  path: "/admin/collections",
+  title: "Collections"
+}]
 
+const buttons = [{
+  title: "Sign Up",
+  onClickFunc :this.AdminSignOut
+}]
 
         return(
-<div className="adminPage">
+<div className="SideNavPage">
+
+
+  <SideNavComponent navlinksArr={navlinks}
+  title='Admin Dashboard'
+  btns={true} 
+  buttons={buttons}/>
     
-    <nav className="admin-nav">
-    <h3>Admin Dashboard  </h3>
     
-                            
-                                <NavLink className="NavLinkAdmin"
-                                to={{
-                                  pathname:"/admin/products"
-                              }}
-                             
-                               
-                                activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                  //  textDecoration: 'underline',
-                                  background: "#dfe3ee",
-                                 // color: "#ffffff"
-                                }}>Products</NavLink>
-                               
-                            <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/sections'
-                            }}
-                            activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                   // textDecoration: 'underline'
-                                   background: "#dfe3ee",
-                                  // color: "#ffffff"
-
-                                }}
-                            >Sections</NavLink>
-                        
-                                                    <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/categories'
-                            }}
-                            activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                   // textDecoration: 'underline'
-                                   background: "#dfe3ee",
-                                   //color: "#ffffff"
-
-                                }}
-                            >Categories</NavLink>
-                            
-                                                        <NavLink className="NavLinkAdmin"  to={{
-                                pathname: '/admin/collections'
-                            }}
-                            activeClassName="my-active"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                   // textDecoration: 'underline'
-                                   background: "#dfe3ee",
-                                  // color: "#ffffff"
-
-                                }}
-                            >Collections</NavLink>
-                            <button className="custum-btn-signup-admin" onClick={this.AdminSignOut }>Sign Up</button>
-
-    </nav>
+  
     
-    <div className="admin-nav-container">
+    <div className="side-nav-container">
                 <Switch>
                     <Route path="/admin/products" component={ProductsNav} />
                     <Route path="/admin/sections" component={SectionsNav}  />
@@ -109,6 +80,7 @@ class AdminPage extends Component {
                     <Route path="/admin/collections" component={CollectionNav} />
                     <Redirect from="/admin" to="/admin/products" />
                 </Switch>
+               
     </div>
     
 </div>

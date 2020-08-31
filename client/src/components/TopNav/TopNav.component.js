@@ -1,134 +1,53 @@
 import React, {Component} from 'react'
-import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
+
 import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
-import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
-//import AddproductStyle from './addProduct.scss'
-//import InputForm from '../../../../components/form/inputAdminForm' 
-//import SelectForm from '../../../../components/form/selectOptions.component' 
-import AddProduct from '../addItemToServer/addProduct.component'
-import ProductsList from '../TableList/productsList.component'
+
 import TopNavStyle from './TopNavStyle.scss'
-import * as actions from '../../../../../store/actions/product';
-
-
-
-
-
-class ProductsNav extends Component {
-
-    constructor(props) {
-        super(props)
-        
-    }
 
 
 
 
 
 
+const TopNav = (props) => {
 
+   
 
-
-    render() {
-
-
-        return(
-
-
-     <div className="TopNav">
-       <nav className="items-nav">
-        {this.props.navlinks.map((navlink)=>{
-return     <NavLink className="NavLinkAdmin-side"
+  return(   
+       <nav className="top-items-nav">
+        {props.navlinksArr.map((navlink)=>{
+    
+    return <NavLink className="top-NavLinkItems"
                                 to={{
-                                  pathname:{navlink.pathname} 
+                                  pathname:navlink.path
                               }}
                              
                                
-                                activeClassName="active-NavLinkAdmin-side"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                  //  textDecoration: 'underline',
-                                  background: "#dfe3ee",
-                                 // color: "#ffffff"
-                                }}>{navlink.title}</NavLink>
+                                activeClassName="active-top-NavLinkItems"
+                               >{navlink.title}</NavLink>
       })} 
       
       
       
-       <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/products/products-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#0083B0",
-       color: "#ffffff"
-
-    }}
->Products List</NavLink>      
-
-
-          
-    <NavLink className="my-active"
-    to="/admin/products/add-product"
-    exact
-    activeClassName="TopNavActive"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#0083B0",
-      color: "#ffffff"
-    }}>add Product</NavLink>
    
-
-
-                     
-
 
 </nav>
  
 
     
 
-      <div className="TopNav-container">
-                <Switch>
-                    
-                    <Route exact path="/admin/products/add-product" component={AddProduct}  />
-                    <Route exact path="/admin/products/products-list" component={ProductsList}  />
-                    <Redirect from="/admin/products" to="/admin/products/products-list" />
-                   
-                   
-                </Switch>
-    </div>
-</div>
+     
+
 
 
 
          
         )
-    }
-}
-
-const mapStateToProps = state => {
-  return {
-  	//categories : state.categoryReducer.categories, 
-  sections: state.categoryReducer.sections, 
-  AdminToken: selectAdminAuth(state).token,
-  AddedToServer : state.categoryReducer.AddToServer.added,
-  products: state.categoryReducer.products
- //   Name: selectAdminAuth(state).Name,
-   // Email: selectAdminAuth(state).Email,
-//state.adminAuth.error
-    
-  }
-
+   
 }
 
 
 
-export default  connect(mapStateToProps, actions)(ProductsNav);
+
+
+export default TopNav

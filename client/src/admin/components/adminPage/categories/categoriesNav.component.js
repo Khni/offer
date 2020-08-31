@@ -11,8 +11,12 @@ import InputForm from '../../../../components/form/inputAdminForm'
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddCategory from './addCategory.component'
 import CategoriesList from './categoriesList.component'
-import CategoryNavStyle from './categoriesNavStyle.scss'
+
 import * as actions from '../../../../store/actions/product';
+import TopNavStyle from '../../../../components/TopNav/TopNavStyle.scss'
+import TopNavComponent from '../../../../components/TopNav/TopNav.component'
+
+
 
 
 
@@ -35,50 +39,25 @@ class CategoriesNav extends Component {
 
     render() {
 
-
+      const navlinks = [{
+        path: "/admin/categories/categories-list",
+        title: "Categories List"
+      },
+      {
+        path: "/admin/categories/add-category",
+        title: "Add Category"
+      }]
         return(
 
 
-     <div className="ProductsNav">
-       <nav className="items-nav">
-    
-                            <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/categories/categories-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#0083B0",
-      color: "#ffffff"
-
-    }}
->Products List</NavLink>
-
-
-
-    <NavLink className="NavLinkItems"
-    to="/admin/categories/add-category"
-    exact
-    activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#0083B0",
-      color: "#ffffff"
-    }}>add Category</NavLink>
-   
-
-
-                     
-
-
-</nav>
+     <div className="TopNavPage">
+       <TopNavComponent navlinksArr={navlinks} />
+      
  
 
     
 
-      <div className="products-nav-container">
+      <div className="TopNav-container">
                 <Switch>
                     
                     <Route exact path="/admin/categories/add-category" component={AddCategory}  />

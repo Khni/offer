@@ -1,12 +1,13 @@
 
-.TopNav{
+.TopNavPage{
     width: 100%;
+    height: 100%;
 }
 
 
 
 
-.items-nav{
+.top-items-nav{
     display: flex;
     flex-direction: row;
     
@@ -14,15 +15,17 @@
     width: 30%;
     
     
-          .NavLinkItems {
+          .top-NavLinkItems {
           display: flex;
             min-width: 100%;
            // padding-right: 70px ;
-           border: 1px solid black;
+           border-bottom: 0.1px solid black;
+           margin-right: 5px;
            padding-left: 19px;
            padding-top: 10px;
             padding-bottom: 10px;
             background-color: white;
+            font-weight: bold;
           }
     
         
@@ -33,7 +36,20 @@
      }
      
      
-
+.active-top-NavLinkItems{
+    
+   //font-size: 13px;
+    Background: linear-gradient(to right, #00B4DB, #0083B0);
+    color: white;
+    //text-transform: uppercase;
+    //font-family: 'Open Sans Condensed';
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2.5px 5px 9px #888888;
+   
+    transition: 0.5s ease;
+}
  /*   
      .TopNav-container {
       width: 100%;

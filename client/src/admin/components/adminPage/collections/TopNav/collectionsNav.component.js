@@ -13,7 +13,9 @@ import { compose } from 'redux';
 
 import AddCollection from '../addItemToServer/addCollection.component'
 import CollectionsList from '../TableList/collectionsList.component'
-import CollectionNavStyle from './collectionsNavStyle.scss'
+
+import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
+import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 
 
 
@@ -37,42 +39,20 @@ class ProductsNav extends Component {
 
     render() {
 
-
+      const navlinks = [{
+        path: "/admin/collections/collections-list",
+        title: "Collections List"
+      },
+      {
+        path: "/admin/collections/add-collection",
+        title: "Add Collection"
+      }]
         return(
 
 
-     <div className="TopNav">
-       <nav className="items-nav">
-    
-                            
-    <NavLink className="NavLinkItems"
-    to="/admin/collections/add-collection"
-    exact
-    activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#0083B0",
-      color: "#ffffff"
-    }}>add Collection</NavLink>
-   
-<NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/collections/collections-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#0083B0",
-       color: "#ffffff"
-
-    }}
->Collections List</NavLink>
-
-                     
-
-
-</nav>
+     <div className="TopNavPage">
+       <TopNavComponent navlinksArr={navlinks} />
+      
  
 
     

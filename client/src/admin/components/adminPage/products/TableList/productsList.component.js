@@ -11,7 +11,7 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
-import TableListStyle from './TableList.scss'
+import TableListStyle from '../../../../../components/TableList/TableList.scss'
 
 
 
@@ -70,7 +70,7 @@ let productsFiltered =   this.props.products.filter((itemProduct)=>{
           <div className="TableList-container">
  <div className="Tabel-Header">    
 <h3>Products List</h3>
- <input className="input-search" type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} placeholder="search....." />
+ <input className="input-search-table" type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} placeholder="search....." />
  </div> 
 <div >
     <table className="TableList" >

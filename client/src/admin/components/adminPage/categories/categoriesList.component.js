@@ -11,7 +11,7 @@ import InputForm from '../../../../components/form/inputAdminForm'
 import SelectForm from '../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../store/actions/product';
-import TableStyle from './TableList.scss'
+import TableListStyle from '../../../../components/TableList/TableList.scss'
 
 
 
@@ -53,7 +53,7 @@ await this.FetchCategoriesFromServer()
 
      <div className="TableList-container">
       
- <div>Categories List</div>
+ <h3>Categories List</h3>
 <div>
     <table className="TableList">
     <tr><th>Category Name</th> </tr>

@@ -11,7 +11,8 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddProduct from '../addItemToServer/addProduct.component'
 import ProductsList from '../TableList/productsList.component'
-import ProductNavStyle from './productsNavStyle.scss'
+import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
+import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/product';
 
 
@@ -35,42 +36,20 @@ class ProductsNav extends Component {
 
     render() {
 
-
+      const navlinks = [{
+        path: "/admin/products/products-list",
+        title: "Products List"
+      },
+      {
+        path: "/admin/products/add-product",
+        title: "Add Product"
+      }]
         return(
 
 
-     <div className="TopNav">
-       <nav className="items-nav">
-    
-       <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/products/products-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#0083B0",
-       color: "#ffffff"
-
-    }}
->Products List</NavLink>                
-    <NavLink className="my-active"
-    to="/admin/products/add-product"
-    exact
-    activeClassName="TopNavActive"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#0083B0",
-      color: "#ffffff"
-    }}>add Product</NavLink>
-   
-
-
-                     
-
-
-</nav>
+     <div className="TopNavPage">
+       <TopNavComponent navlinksArr={navlinks} />
+      
  
 
     

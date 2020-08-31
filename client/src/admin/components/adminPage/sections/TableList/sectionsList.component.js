@@ -11,7 +11,7 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
-import TableListStyle from './TableList.scss'
+import TableListStyle from '../../../../../components/TableList/TableList.scss'
 
 
 
@@ -58,7 +58,7 @@ async componentDidMount() {
 
           <div className="TableList-container">
       
- <div>Product List</div>
+ <h3>Sections List</h3>
 <div >
     <table className="TableList" >
     <tr><th>sections name</th></tr>

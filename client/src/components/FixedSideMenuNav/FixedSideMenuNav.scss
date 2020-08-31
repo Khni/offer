@@ -1,4 +1,4 @@
-.adminPage {
+.SideNavPage {
    display: flex;
    flex-direction: row;
    width: 100%;
@@ -7,7 +7,7 @@
 
  }
 
-.admin-nav{
+.side-nav{
 display: flex;
 flex-direction: column;
 
@@ -15,7 +15,7 @@ margin: 10px;
 width: 20%;
 
 
-      .NavLinkAdmin {
+      .side-NavLink {
       display: flex;
         min-width: 100%;
        // padding-right: 70px ;
@@ -36,9 +36,9 @@ padding: 3;
   
  }
 
-.admin-nav-container{
+.side-nav-container{
   width: 70%;
- 
+ height: 100%;
 margin: 20px;
 margin-top: 5px;
 margin-right: 5px;
@@ -49,7 +49,7 @@ padding: 5px;
 
 
 
-.custum-btn-signup-admin {
+.custum-btn-sidenav{
 
   margin: 5px;
   height: 40px;
@@ -64,4 +64,10 @@ padding: 5px;
   box-shadow: 2.5px 5px 9px #888888;
   margin-top: 20px;
   transition: 1s ease;
+}
+
+
+.side-nav-title {
+  border-bottom: 1px solid black;
+  padding: 3px;
 }

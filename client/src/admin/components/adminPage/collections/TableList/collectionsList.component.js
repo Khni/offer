@@ -11,7 +11,7 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
-import TableListStyle from './TableList.scss'
+import TableListStyle from '../../../../../components/TableList/TableList.scss'
 
 
 
@@ -63,7 +63,7 @@ await this.FetchCollectionsFromServer()
 
           <div className="TableList-container">
       
- <div>Product List</div>
+ <h3>Collection List</h3>
   <div>
     <table className="TableList">
     <tr><th>collection name</th></tr>

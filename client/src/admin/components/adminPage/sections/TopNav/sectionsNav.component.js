@@ -11,9 +11,10 @@ import { compose } from 'redux';
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddSection from '../addSection.component'
 import SectionsList from '../TableList/sectionsList.component'
-import SectionsNavStyle from './sectionsNavStyle.scss'
-import * as actions from '../../../../../store/actions/product';
 
+import * as actions from '../../../../../store/actions/product';
+import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
+import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 
 
 
@@ -35,45 +36,20 @@ class SectionsNav extends Component {
 
     render() {
 
-
+      const navlinks = [{
+        path: "/admin/sections/sections-list",
+        title: "sections List"
+      },
+      {
+        path: "/admin/sections/add-section",
+        title: "Add Section"
+      }]
         return(
 
 
-     <div className="TopNav">
-       <nav className="items-nav">
-    
-                            
-                            
-                    <NavLink className="NavLinkItems"  to={{
-    pathname: "/admin/sections/sections-list"
-}}
-activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-       // textDecoration: 'underline'
-       background: "#0083B0",
-       color: "#ffffff"
-
-    }}
->Sections List</NavLink>
-
-                             
-                            
-    <NavLink className="NavLinkItems"
-    to="/admin/sections/add-section"
-    exact
-    activeClassName="my-active"
-    activeStyle={{
-      //  color: '#fa923f',
-      //  textDecoration: 'underline',
-      background: "#0083B0",
-      color: "#ffffff"
-    }}>Add Section</NavLink>
-   
-
-
-
-</nav>
+     <div className="TopNavPage">
+       <TopNavComponent navlinksArr={navlinks} />
+      
  
 
     
