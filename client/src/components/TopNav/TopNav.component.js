@@ -15,9 +15,9 @@ const TopNav = (props) => {
 
   return(   
        <nav className="top-items-nav">
-        {props.navlinksArr.map((navlink)=>{
+        {props.navlinksArr.map((navlink, i)=>{
     
-    return <NavLink className="top-NavLinkItems"
+    return <NavLink key={i} className="top-NavLinkItems"
                                 to={{
                                   pathname:navlink.path
                               }}
