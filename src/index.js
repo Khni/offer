@@ -1,4 +1,5 @@
 require('./db/mongoose');
+require("dotenv").config()
 const User = require('./models/User')
 const Admin = require('./models/Admin')
 //import Admin from './models/Admin'
@@ -101,7 +102,10 @@ app.use(SectionRouter)
 app.use(ProductRouter)
 app.use(CollectionRouter)
 
-
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(port,()=>{
     console.log('ok')
 })
