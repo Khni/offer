@@ -42,7 +42,7 @@ class Header extends Component {
             <div class="logo-container-right">
               {!this.props.isAuth ?
                 <Link className="icontext margin-right10" to='/signin'>
-                  <p className="signin-text icontext-text"> دخول </p>
+                  <p className="signin-text icontext-text"> sign in </p>
                   <img src={iconuser} className="icontext-icon" />
                 </Link> : null}
 
