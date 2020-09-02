@@ -15,7 +15,7 @@ app.use(express.json());
 
 // add this line
 app.use(express.static('client/build'));
-
+const path = require('path')
 
 
 const userRouter = require('./routers/userRouter')
@@ -106,7 +106,7 @@ app.use(CollectionRouter)
 
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 app.listen(port,()=>{
     console.log('ok')
