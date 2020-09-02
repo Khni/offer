@@ -25,7 +25,7 @@ const CategoryRouter = require('./routers/categoryRouter')
 const SectionRouter = require('./routers/sectionRouter')
 const ProductRouter = require('./routers/productRouter')
 const CollectionRouter = require('./routers/collectionRouter')
-//app.use(cors())
+app.use(cors())
 
 app.use(cors({credentials: true, origin: 'https://node-app-kh.herokuapp.com'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
@@ -106,7 +106,7 @@ app.use(CollectionRouter)
 
 // Right before your app.listen(), add this:
 app.use(express.static('client/build'));
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
   })
 
