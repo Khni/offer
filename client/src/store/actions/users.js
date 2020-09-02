@@ -42,7 +42,7 @@ import {
 export const signIn = data => {
   return async dispatch => {
     try {
-   const response =   await axios.post('http://localhost:3000/8080/signin', data);
+   const response =   await axios.post('/signin', data);
 
       dispatch({
         type: AUTH_SIGN_IN, 
