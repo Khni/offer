@@ -26,6 +26,8 @@ const SectionRouter = require('./routers/sectionRouter')
 const ProductRouter = require('./routers/productRouter')
 const CollectionRouter = require('./routers/collectionRouter')
 //app.use(cors())
+
+app.use(cors({credentials: true, origin: 'https://node-app-kh.herokuapp.com'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 //enable for using both ports client and server for developement
 /*app.use(function(req, res, next) {
