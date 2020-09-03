@@ -57,7 +57,7 @@ class Header extends Component {
 
               <div className="cartSection" onClick={this.props.toggle}>
                 {this.props.hidden ? <div className="cartSection" >  <p className="icontext-text" >
-                  cart
+                  cart shop
                     {/*this.props.msg*/}
                 </p>
                   <img src={carticon} className="icontext-icon-cart" /></div>

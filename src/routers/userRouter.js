@@ -12,7 +12,7 @@ const {HandelErrors} = require('./userUtils')
 
 //post/create new user 
 //
-router.post('/signup', async (req, res) => {
+router.post('/api/signup', async (req, res) => {
 
     const email = req.body.email
     const password = req.body.password
@@ -105,7 +105,7 @@ return res.status(403).json({
     }
 })
 //list of users
-router.get('/users', async (req, res) => {
+router.get('/api/users', async (req, res) => {
     try {
         const users = await User.find({})
         res.send(users)
@@ -127,7 +127,7 @@ router.get('/users', async (req, res) => {
 })
 
 //profile from AuthToken
-router.get('/profile', auth, async (req, res) => {
+router.get('/api/profile', auth, async (req, res) => {
     res.send(req.user)
 })
 /*
@@ -143,7 +143,7 @@ router.get('/users/:id',(req,res) => {
 */
 
 //logout
-router.get('/logout', auth, async (req, res) => {
+router.get('/api/logout', auth, async (req, res) => {
 
 
     try {
@@ -160,7 +160,7 @@ router.get('/logout', auth, async (req, res) => {
 })
 
 //logout from all sesions
-router.get('/logoutall', auth, async (req, res) => {
+router.get('/api/logoutall', auth, async (req, res) => {
     try {
         req.user.tokens = []
         await req.user.save()
@@ -172,7 +172,7 @@ router.get('/logoutall', auth, async (req, res) => {
 })
 
 //login (check of the username and password)
-router.post('/login', async (req, res) => {
+router.post('/api/login', async (req, res) => {
     const EmailInput = req.body.email
     const PasswordInput = req.body.password
     const DataLoginInput = Object.keys(req.body)
@@ -199,7 +199,7 @@ router.post('/login', async (req, res) => {
 
 
     /*
-    router.post('/users/login', async (req, res) => {
+    router.post('/api/users/login', async (req, res) => {
         try {
             const user = await User.findByCredentials(req.body.email, req.body.password)
             res.send(user)
@@ -272,7 +272,7 @@ router.post('/login', async (req, res) => {
      */
 })
 
-router.get('/admin/removeuser/:id', (req, res) => {
+router.get('/api/admin/removeuser/:id', (req, res) => {
     User.deleteOne({ _id: req.params.id }).then((user) => {
         res.send('succefully ' + user.count + 'member has been removed');
     }).catch((e) => {

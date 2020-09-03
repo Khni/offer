@@ -15,8 +15,8 @@ app.use(express.json());
 
 // add this line
 
-const path = require('path')
-
+//const path = require('path')
+var path = require('path');
 
 const userRouter = require('./routers/userRouter')
 const {router , routerPromise} =require('./routers/userRouter')
@@ -25,7 +25,7 @@ const CategoryRouter = require('./routers/categoryRouter')
 const SectionRouter = require('./routers/sectionRouter')
 const ProductRouter = require('./routers/productRouter')
 const CollectionRouter = require('./routers/collectionRouter')
-//app.use(cors())
+app.use(cors())
 
 app.use(cors({credentials: true, origin: 'https://node-app-kh.herokuapp.com'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
@@ -104,11 +104,16 @@ app.use(SectionRouter)
 app.use(ProductRouter)
 app.use(CollectionRouter)
 
-// Right before your app.listen(), add this:
-app.use(express.static('client/build'));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+//if (process.env.NODE_ENV === 'production') {
+    app.use(express.static( '../client/build' ));
+ 
+    app.get('*', (req, res) => {
+      //  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+//}
+ 
+
 app.listen(port,()=>{
     console.log('ok')
 })

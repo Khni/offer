@@ -5,7 +5,7 @@ const auth = require('../middleware/adminAuth')
 
 
 
-router.post('/admin/add', async (req,res)=>{
+router.post('/api/admin/add', async (req,res)=>{
      const DataLoginInput = Object.keys(req.body)
     const DataLoginMust = ['email', 'verifypassword', 'adminname', 'phone', 'password', 'personalCardId' ]
     const isValidOperation = DataLoginInput.every((LoginInput) => DataLoginMust.includes(LoginInput))
@@ -49,7 +49,7 @@ router.post('/admin/add', async (req,res)=>{
 
 })
 
-router.post('/admin/login', async (req,res)=>{
+router.post('/api/admin/login', async (req,res)=>{
        const EmailInput = req.body.email
     const PasswordInput = req.body.password
     const DataLoginInput = Object.keys(req.body)
@@ -107,7 +107,7 @@ router.post('/admin/login', async (req,res)=>{
 
    
 })
-router.get('/admin/profile' , auth, async (req,res) =>{
+router.get('/api/admin/profile' , auth, async (req,res) =>{
     res.send(req.admin)
 })
 
@@ -155,7 +155,7 @@ router.get('/admin/logout', auth , async (req,res)=>{
 })
 
 //logout from all sesions
-router.get('/admin/logoutall' , auth , async(req,res)=>{
+router.get('/api/admin/logoutall' , auth , async(req,res)=>{
     try {
         req.admin.tokens = []
      await req.admin.save()
