@@ -15,8 +15,8 @@ app.use(express.json());
 
 // add this line
 
-const path = require('path')
-
+//const path = require('path')
+var path = require('path');
 
 const userRouter = require('./routers/userRouter')
 const {router , routerPromise} =require('./routers/userRouter')
@@ -108,8 +108,9 @@ app.use(CollectionRouter)
     app.use(express.static( 'client/build' ));
  
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
-    });
+      //  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
 //}
  
 
