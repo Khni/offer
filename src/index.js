@@ -16,7 +16,7 @@ app.use(express.json());
 // add this line
 
 //const path = require('path')
-var path = require('path');
+const path = require('path');
 
 const userRouter = require('./routers/userRouter')
 const {router , routerPromise} =require('./routers/userRouter')
@@ -27,7 +27,7 @@ const ProductRouter = require('./routers/productRouter')
 const CollectionRouter = require('./routers/collectionRouter')
 app.use(cors())
 
-app.use(cors({credentials: true, origin: 'https://node-app-kh.herokuapp.com'}));
+app.use(cors({credentials: true, origin: 'https://juv-khaled.herokuapp.com'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 //enable for using both ports client and server for developement
 /*app.use(function(req, res, next) {
@@ -104,16 +104,10 @@ app.use(SectionRouter)
 app.use(ProductRouter)
 app.use(CollectionRouter)
 
-//if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path_join(__dirname, '../client/build')));
- 
-    app.get('*', (req, res) => {
-      //  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-//}
-
-
+app.use(express.static(path.join(__dirname, '../client/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+})
 app.listen(port,()=>{
     console.log('ok')
 })
