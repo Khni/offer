@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 
 
 
-router.post('/cart/add', auth, async (req, res) => {
+router.post('/api/cart/add', auth, async (req, res) => {
     const cart = new Cart({
         ...req.body,
         userID: req.user._id
@@ -19,7 +19,7 @@ router.post('/cart/add', auth, async (req, res) => {
     }
 })
 
-router.post('/cart/update', auth, async (req, res) => {
+router.post('/api/cart/update', auth, async (req, res) => {
    
 const cartID = await req.body.cartID
 const cart = Cart.find({_id: CartID})

@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 
 
 
-router.post('/order/add', auth, async (req, res) => {
+router.post('/api/order/add', auth, async (req, res) => {
     const order = new Order({
         ...req.body,
         userID: req.user._id

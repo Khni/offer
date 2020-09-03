@@ -5,7 +5,7 @@ const router = new express.Router()
 const auth = require('../middleware/adminAuth')
 
 
-router.post('/product/add', auth, async (req, res) => {
+router.post('/api/product/add', auth, async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
@@ -36,7 +36,7 @@ router.post('/product/add', auth, async (req, res) => {
 
 
 
-router.get('/products',  async (req, res) => {
+router.get('/api/products',  async (req, res) => {
 	
 	let products = await Product.find({})
 	

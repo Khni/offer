@@ -6,7 +6,7 @@ const auth = require('../middleware/adminAuth')
 
 
 
-router.post('/collection/add', auth, async (req, res) => {
+router.post('/api/collection/add', auth, async (req, res) => {
     const collection = new Collection({
         ...req.body,
         adminID: req.admin._id
@@ -27,7 +27,7 @@ router.post('/collection/add', auth, async (req, res) => {
 
 
 
-router.get('/collections',  async (req, res) => {
+router.get('/api/collections',  async (req, res) => {
 	
 	let collections = await Collection.find({})
 	

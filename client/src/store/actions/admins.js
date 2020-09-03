@@ -8,7 +8,7 @@ export const signIn = data => {
 
     return async dispatch => {
       try {
-     const response =   await axios.post('/admin/login', data);
+     const response =   await axios.post('/api/admin/login', data);
   //console.log('response' +response.data.adminToLogin.email);
   
         dispatch({

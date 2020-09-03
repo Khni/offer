@@ -14,7 +14,7 @@ import {
  	
   return async dispatch => {
     try {
-      const response = await axios.post('/signup', data);
+      const response = await axios.post('/api/signup', data);
      console.log(response.data) 
      console.log('data'+data.email + data.password +data.name)
       dispatch({
@@ -42,7 +42,7 @@ import {
 export const signIn = data => {
   return async dispatch => {
     try {
-   const response =   await axios.post('/signin', data);
+   const response =   await axios.post('/api/signin', data);
 
       dispatch({
         type: AUTH_SIGN_IN, 

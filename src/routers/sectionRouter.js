@@ -6,7 +6,7 @@ const auth = require('../middleware/adminAuth')
 
 
 
-router.post('/section/add', auth, async (req, res) => {
+router.post('/api/section/add', auth, async (req, res) => {
     const section = new Section({
         ...req.body,
         adminID: req.admin._id
@@ -27,7 +27,7 @@ router.post('/section/add', auth, async (req, res) => {
 
 
 
-router.get('/sections',  async (req, res) => {
+router.get('/api/sections',  async (req, res) => {
 	
 	let sections = await Section.find({})
 	

@@ -111,7 +111,7 @@ router.get('/api/admin/profile' , auth, async (req,res) =>{
     res.send(req.admin)
 })
 
-router.post('/admins',async (req,res) => {
+router.post('/api/admins',async (req,res) => {
 	
 	const DataLoginInput = Object.keys(req.body)
     const DataLoginMust = ['verifypassword']
@@ -138,7 +138,7 @@ router.post('/admins',async (req,res) => {
   })
   
   //logout
-router.get('/admin/logout', auth , async (req,res)=>{
+router.get('/api/admin/logout', auth , async (req,res)=>{
 
    
     try {

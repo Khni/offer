@@ -7,7 +7,7 @@ const Product= require('../models/Product')
 
 
 
-router.post('/category/add', auth, async (req, res) => {
+router.post('/api/category/add', auth, async (req, res) => {
     const category = new Category({
         ...req.body,
         adminID: req.admin._id
@@ -21,7 +21,7 @@ router.post('/category/add', auth, async (req, res) => {
     }
 })
 
-router.get('/category/findone/:id', auth, async (req, res) => {
+router.get('/api/category/findone/:id', auth, async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     //let sections = await Section.find({})
   
@@ -50,7 +50,7 @@ router.get('/category/findone/:id', auth, async (req, res) => {
     }
 })
 
-router.get('/categories',  async (req, res) => {
+router.get('/api/categories',  async (req, res) => {
     let Categories = await Category.find({})
   
    /*  
@@ -91,7 +91,7 @@ router.get('/categories',  async (req, res) => {
 
 
 
-router.get('/categoriegenderfilter/:gender', auth, async (req, res) => {
+router.get('/api/categoriegenderfilter/:gender', auth, async (req, res) => {
 	
     let Categories = await Category.find({})
   
