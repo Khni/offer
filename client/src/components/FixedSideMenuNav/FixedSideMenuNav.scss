@@ -15,20 +15,7 @@ margin: 10px;
 width: 20%;
 
 
-      .side-NavLink {
-      display: flex;
-        min-width: 100%;
-       // padding-right: 70px ;
-      // border: 1px solid black;
-       padding-left: 15px;
-       padding-right: 15px;
-       padding-top: 10px;
-        padding-bottom: 10px;
-        background-color: white;
-        font-weight: bold;
-        border-radius: 30px;
-        margin: 5px;
-      }
+  
 
     
 
@@ -103,6 +90,28 @@ flex-direction: column;
         font-weight: bold;
         border-radius: 30px;
         margin: 1px;
+      }
+
+}
+
+
+
+@media only screen and (min-width: 600px) {
+
+
+     .side-NavLink {
+      display: flex;
+        min-width: 100%;
+       // padding-right: 70px ;
+      // border: 1px solid black;
+       padding-left: 15px;
+       padding-right: 15px;
+       padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;
+        font-weight: bold;
+        border-radius: 30px;
+        margin: 5px;
       }
 
 }
