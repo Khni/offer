@@ -9,12 +9,10 @@
     "start": "node src/index.js",
     "heroku-postbuild": "cd client && npm install && npm run build", 
     "mon": "nodemon --exec npm start",
-    "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\"",
-    
+    "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\""
   },
   "engines": {
-    "node": "13.0.0",
-  
+    "node": "13.0.0"
   },
   "author": "",
   "license": "ISC",
