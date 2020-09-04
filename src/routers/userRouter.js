@@ -277,6 +277,7 @@ router.get('/api/admin/removeuser/:id', (req, res) => {
         res.send('succefully ' + user.count + 'member has been removed');
     }).catch((e) => {
         res.status(400).send(e);
+        
     })
 })
 

@@ -5,17 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" exit 1",
-    "roid": "node client/node_modules/react-scripts/scripts/start.js",
+    "roid": "cd client && node node_modules/react-scripts/scripts/start.js",
     "start": "node src/index.js",
-    "heroku-postbuild":"cd client && npm install && npm run build"
+    "mon": "nodemon --exec npm start",
+    "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "engines": {
-        "node": "10.16.0"
-    }, 
+    "node": "10.16.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
