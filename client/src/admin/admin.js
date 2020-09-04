@@ -66,7 +66,7 @@ const buttons = [{
 
   <SideNavComponent navlinksArr={navlinks}
   title='Admin Dashboard'
-  btns={true} 
+  btns={false} 
   buttons={buttons}/>
     
     
