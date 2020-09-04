@@ -13,7 +13,7 @@
     "postinstall": "ng build --aot"
   },
   "engines": {
-    "node": "10.16.0"
+    "node": "13.0.0"
   },
   "author": "",
   "license": "ISC",
