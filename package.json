@@ -7,13 +7,15 @@
     "test": "echo \"Error: no test specified\" exit 1",
     "roid": "cd client && node node_modules/react-scripts/scripts/start.js",
     "start": "node src/index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build", 
     "mon": "nodemon --exec npm start",
     "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\"",
-    "heroku-postbuild": "cd client && npm install && npm run build", 
+    
     "postinstall": "ng build --aot"
   },
   "engines": {
-    "node": "13.0.0"
+    "node": "13.0.0", 
+    "npm": "6.12.0"
   },
   "author": "",
   "license": "ISC",
