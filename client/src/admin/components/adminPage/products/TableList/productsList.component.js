@@ -58,7 +58,7 @@ class ProductsList extends Component {
       <div className="TableList-container">
         <div className="Tabel-Header">
           <h3>Products List</h3>
-          <input className="input-search-table" type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} placeholder="search....." />
+          <input className="input-search-tableList" type='text' value={this.state.search} onChange={this.searchUpdate.bind(this)} placeholder="search....." />
         </div>
         <div >
           <table className="TableList">
