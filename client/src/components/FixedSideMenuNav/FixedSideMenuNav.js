@@ -15,6 +15,7 @@ const FixedSideMenuNav = (props) => {
 
     <nav className="side-nav">
     <h3 className="side-nav-title">{props.title}</h3>
+    <div className="NavLinks-container" >
     {props.navlinksArr.map((navlink, i)=>{
 return     <NavLink key={i} className="side-NavLink"
                                 to={{
@@ -39,7 +40,7 @@ return     <NavLink key={i} className="side-NavLink"
                        )   
                        : null}  
     
-    
+    </div>
 
     </nav>
     
