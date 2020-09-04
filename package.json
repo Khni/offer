@@ -9,7 +9,8 @@
     "start": "node src/index.js",
     "mon": "nodemon --exec npm start",
     "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build", 
+    "postinstall": "ng build --aot"
   },
   "engines": {
     "node": "10.16.0"
