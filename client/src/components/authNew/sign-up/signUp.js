@@ -33,8 +33,10 @@ class signUp extends Component {
     console.log(lang)
     await signUp(formData, lang);
     
-    if (!this.props.errorMsg) {
-      this.props.history.push('/')
+    if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
+	
+      this.props.history.push('/');
+      
     }
   }
 
@@ -131,8 +133,9 @@ class signUp extends Component {
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.userAuth.error,
-    
+    isAuth: state.userAuth.authUser.isAuthenticated,
+    errorMsg: state.userAuth.authUser.error,
+    token: state.userAuth.authUser.token,
     submit_signin_btn: selectAuthLang(state).submit_signin_btn,
     signin_title: selectAuthLang(state).signin_title,
     emailString: selectAuthLang(state).email,

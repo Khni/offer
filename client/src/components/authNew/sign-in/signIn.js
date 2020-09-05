@@ -29,7 +29,7 @@ class signIn extends Component {
 
     const { signIn } = this.props;
     await signIn(formData);
-if (this.props.isAuthenticated && !this.props.errorMsg) {
+if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
       this.props.history.push('/');
       
@@ -109,6 +109,7 @@ const mapStateToProps = state => {
   return {
     errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
+    token: state.userAuth.authUser.token,
     isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 

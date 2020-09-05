@@ -46,9 +46,9 @@ class Header extends Component {
                   <img src={iconuser} className="icontext-icon" />
                 </Link> : null}
 
-              {this.props.isAuth ?
+              {this.props.isAuth && this.props.token && !this.props.errorMsg?
                 <Link className="icontext margin-right10" to='/account'>
-                  <p className="signin-text icontext-text"> اهلا </p>
+                  <p className="signin-text icontext-text">  account </p>
                   <img src={iconuser} className="icontext-icon" />
                 </Link> : null}
 
@@ -88,8 +88,9 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    isAuth: state.userAuth.isAuthenticated,
-    msg: state.userAuth.msg,
+    isAuth: state.userAuth.authUser.isAuthenticated,
+    errorMsg: state.userAuth.authUser.error,
+    token: state.userAuth.authUser.token,
     hidden: cartHidden(state) ,
     hiddenSidebar: sidebarHidden(state) 
 
