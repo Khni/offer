@@ -32,7 +32,7 @@ class signIn extends Component {
 if (this.props.isAuthenticated && !this.props.errorMsg) {
 	
       this.props.history.push('/');
-      alert(this.props.name) 
+      
     }
   }
 
