@@ -33,12 +33,14 @@ class signUp extends Component {
     console.log(lang)
     await signUp(formData, lang);
     
-    if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
+    if (this.props.isAuth && !this.props.errorMsg && this.props.token ) {
 	
       this.props.history.push('/');
       
     }
   }
+
+
 
 
   async responseGoogle(res) {
