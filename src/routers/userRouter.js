@@ -71,7 +71,8 @@ return res.status(403).json({
         try {
            await userjson.save()
             const token = await userjson.generateAuthToken()
-            res.status(201).send({ userjson, token })
+           // res.status(201).send({ userjson, token })
+           res.send({ userjson, token })
         } catch (e) {
             res.status(400).send(e.message)
         }
@@ -96,7 +97,8 @@ return res.status(403).json({
         try {
             await user.save()
             const token = await user.generateAuthToken()
-            res.status(201).send({ user, token })
+         //   res.status(201).send({ user, token })
+         res.send({ user, token })
         } catch (e) {
 
             res.status(400).send(HandelErrors(e.message))

@@ -39,7 +39,7 @@ if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 
   async responseGoogle(res) {
     await this.props.oauthGoogle(res.accessToken);
-    if (this.props.isAuthenticated && !this.props.errorMsg) {
+    if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
       this.props.history.push('/');
     }
   }
