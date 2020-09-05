@@ -107,9 +107,9 @@ fieldsets = [
 
 const mapStateToProps = state => {
   return {
-    errorMsg: state.userAuth.error, 
-    name: state.userAuth.name, 
-    isAuthenticated: state.userAuth.isAuthenticated, 
+    errorMsg: state.userAuth.authUser.error, 
+    name: state.userAuth.authUser.name, 
+    isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 
