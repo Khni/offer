@@ -19,7 +19,10 @@ import {
      console.log('data'+data.email + data.password +data.name)
       dispatch({
         type: AUTH_SIGN_UP, 
-        token: response.data.token
+        token: response.data.token, 
+        email: response.data.user.email,
+        name: response.data.user.name
+        
       });
     //  localStorage.setItem('JWT_TOKEN', response.token);
    // axios.defaults.headers.common['Authorization'] = response.token;
@@ -42,11 +45,13 @@ import {
 export const signIn = data => {
   return async dispatch => {
     try {
-   const response =   await axios.post('/api/signin', data);
+   const response =   await axios.post('/api/login', data);
 
       dispatch({
         type: AUTH_SIGN_IN, 
-        token: response.token
+        token: response.data.token, 
+        email: response.data.user.email,
+        name: response.data.user.name
       });
       localStorage.setItem('JWT_TOKEN', response.token);
     axios.defaults.headers.common['Authorization'] = response.token;

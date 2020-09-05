@@ -27,17 +27,19 @@ class signIn extends Component {
   async onSubmit(formData) {
 
 
-    const { signUp } = this.props;
-    await signUp(formData);
-if (!this.props.errorMsg) {
-    this.props.history.push('/dashboard')
-} 
+    const { signIn } = this.props;
+    await signIn(formData);
+if (this.props.isAuthenticated && !this.props.errorMsg) {
+	
+      this.props.history.push('/');
+      alert(this.props.name) 
+    }
   }
 
 
   async responseGoogle(res) {
     await this.props.oauthGoogle(res.accessToken);
-    if (!this.props.errorMsg) {
+    if (this.props.isAuthenticated && !this.props.errorMsg) {
       this.props.history.push('/');
     }
   }
@@ -106,6 +108,8 @@ fieldsets = [
 const mapStateToProps = state => {
   return {
     errorMsg: state.userAuth.error, 
+    name: state.userAuth.name, 
+    isAuthenticated: state.userAuth.isAuthenticated, 
     submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
     signin_title: selectAuthLang(state).signin_title, 
     emailString:selectAuthLang(state).email, 

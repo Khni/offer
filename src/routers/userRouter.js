@@ -211,9 +211,9 @@ router.post('/api/login', async (req, res) => {
 
 
     try {
-        const userToLogin = await User.findByCredentials(EmailInput, PasswordInput)
+        const user = await User.findByCredentials(EmailInput, PasswordInput)
         const token = await userToLogin.generateAuthToken()
-        res.send({ userToLogin, token })
+        res.send({ user, token })
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(400).send(error)

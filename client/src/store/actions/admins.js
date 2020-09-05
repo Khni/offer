@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_SIGN_IN, AUTH_ERROR,AUTH_SIGN_UP,ADMIN_SIGN_OUT } from '../types/authAdminTypes'
+import { ADMIN_SIGN_IN, AUTH_ERROR,ADMIN_SIGN_UP,ADMIN_SIGN_OUT } from '../types/authAdminTypes'
 
 
 
@@ -12,7 +12,7 @@ export const signIn = data => {
   //console.log('response' +response.data.adminToLogin.email);
   
         dispatch({
-          type: AUTH_SIGN_IN, 
+          type: ADMIN_SIGN_IN, 
           token: response.data.token,
           Email: response.data.adminToLogin.email,
           Name: response.data.adminToLogin.adminname
@@ -22,7 +22,7 @@ export const signIn = data => {
       // console.log();
           console.error("err"+ err.response.data.error)
         dispatch({
-          type: AUTH_ERROR,
+          type: ADMIN_AUTH_ERROR,
           payload: err.response.data.error
         })
       }

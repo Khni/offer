@@ -41,8 +41,8 @@ class Header extends Component {
             </div>{/*logo cont left*/}
             <div class="logo-container-right">
               {!this.props.isAuth ?
-                <Link className="icontext margin-right10" to='/signup'>
-                  <p className="signin-text icontext-text">sign up</p>
+                <Link className="icontext margin-right10" to='/signin'>
+                  <p className="signin-text icontext-text">signin</p>
                   <img src={iconuser} className="icontext-icon" />
                 </Link> : null}
 

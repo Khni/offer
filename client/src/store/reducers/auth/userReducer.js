@@ -1,29 +1,24 @@
-import { 
-  AUTH_SIGN_UP, 
-  AUTH_SIGN_OUT, 
-  AUTH_SIGN_IN, 
-  AUTH_ERROR } from '../../types/authUserTypes';
-
 const DEFAULT_STATE = {
-	authUser :{
-  isAuthenticated: false,
-  error: '',
-  token:'', 
-  msg: 'hello' 
- } 
-}
-
-export default (state = DEFAULT_STATE, action) => {
-  switch(action.type) {
-    case AUTH_SIGN_UP:
-      return { ...state, isAuthenticated: true, token:action.token, error: '' }
-    case AUTH_SIGN_IN:
-      return { ...state, isAuthenticated: true, token:action.token, error: '' }
-    case AUTH_SIGN_OUT:
-      return { ...state, isAuthenticated: false, token:'', error: '' }
-    case AUTH_ERROR:
-      return { ...state, error: action.payload }
-    default:
-      return state
+    authUser :{
+    isAuthenticated: false,
+    error: '',
+    token:'', 
+    email:'', 
+    name:'' 
+   } 
   }
-}
+  
+  export default (state = DEFAULT_STATE, action) => {
+    switch(action.type) {
+      case AUTH_SIGN_UP:
+        return { ...state, authUser: {...state.authAdmin,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''} }
+      case AUTH_SIGN_IN:
+        return { ...state, authUser:{...state.authAdmin,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''}  }
+      case AUTH_SIGN_OUT:
+        return { ...state,authUser:{...state.authAdmin, isAuthenticated: false, token:'', error: '', email:'', name:''} }
+      case AUTH_ERROR:
+        return { ...state, authUser:{error: action.payload}}
+      default:
+        return state
+    }
+  }

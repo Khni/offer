@@ -1,8 +1,8 @@
 import { 
-  AUTH_SIGN_UP, 
+  ADMIN_SIGN_UP, 
   ADMIN_SIGN_OUT, 
-  AUTH_SIGN_IN, 
-  AUTH_ERROR } from '../../../types/authAdminTypes';
+  ADMIN_SIGN_IN, 
+  ADMIN_AUTH_ERROR } from '../../../types/authAdminTypes';
 
   const DEFAULT_STATE = {
     authAdmin :{
@@ -16,13 +16,13 @@ import {
   
   export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
-      case AUTH_SIGN_UP:
+      case ADMIN_SIGN_UP:
         return { ...state, authAdmin: {...state.authAdmin, isAuthenticated: true, token:action.token, error: ''} }
-      case AUTH_SIGN_IN:
+      case ADMIN_SIGN_IN:
         return { ...state, authAdmin:{...state.authAdmin,isAuthenticated: true, token:action.token, Email:action.Email,  Name:action.Name ,error:''}  }
       case ADMIN_SIGN_OUT:
         return { ...state,authAdmin:{...state.authAdmin, isAuthenticated: false, token:'', error: '', Email:'', Name:''} }
-      case AUTH_ERROR:
+      case ADMIN_AUTH_ERROR:
         return { ...state, authAdmin:{error: action.payload}}
       default:
         return state
