@@ -212,11 +212,11 @@ router.post('/api/login', async (req, res) => {
 
     try {
         const user = await User.findByCredentials(EmailInput, PasswordInput)
-        const token = await userToLogin.generateAuthToken()
+        const token = await user.generateAuthToken()
         res.send({ user, token })
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(400).send(error)
+        res.status(400).send()
     }
 
 
@@ -277,7 +277,7 @@ router.get('/api/admin/removeuser/:id', (req, res) => {
         res.send('succefully ' + user.count + 'member has been removed');
     }).catch((e) => {
         res.status(400).send(e);
-        
+
     })
 })
 

@@ -91,9 +91,9 @@ class Form extends Component {
     </div>
      : null}
      
-{this.props.social ? 
+         {this.props.social ? 
    
-<div>
+               <div>
           <h5 > أو تسجيل الدخول عن طريق حسابك فيسبوك أو جوجل</h5>
           <div className="social-btns">
             
