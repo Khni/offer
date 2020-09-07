@@ -9,8 +9,8 @@ import ViewedItems from './components/userPages/ViewedItems/ViewedItems.js'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/users.js'
 
-import SideNavStyle from '../components/FixedSideMenuNav/FixedSideMenuNav.scss'
-import SideNavComponent from '../components/FixedSideMenuNav/FixedSideMenuNav'
+import SideNavStyle from '../FixedSideMenuNav/FixedSideMenuNav.scss'
+import SideNavComponent from '../FixedSideMenuNav/FixedSideMenuNav'
 class AdminPage extends Component {
 
     constructor(props) {
