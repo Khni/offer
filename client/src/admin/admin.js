@@ -78,7 +78,7 @@ const buttons = [{
                     <Route path="/admin/sections" component={SectionsNav}  />
                     <Route path="/admin/categories" component={CategoriesNav} />
                     <Route path="/admin/collections" component={CollectionNav} />
-                    <Redirect from="/admin" to="/admin/products" />
+                    
                 </Switch>
                
     </div>
