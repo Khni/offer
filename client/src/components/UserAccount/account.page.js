@@ -11,7 +11,7 @@ import * as actions from '../../store/actions/users.js'
 
 import SideNavStyle from '../FixedSideMenuNav/FixedSideMenuNav.scss'
 import SideNavComponent from '../FixedSideMenuNav/FixedSideMenuNav'
-class AdminPage extends Component {
+class  AccountUser extends Component {
 
     constructor(props) {
         super(props)
@@ -62,7 +62,7 @@ const navlinks = [{
 
 
   <SideNavComponent navlinksArr={navlinks}
-  title={this.props.name}
+  title="User" 
   btns={false} 
  
 />
@@ -104,4 +104,4 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps,actions)(AdminPage);
+export default connect(mapStateToProps,actions)(AccountUser);
