@@ -55,10 +55,7 @@ const navlinks = [{
   title: "Viewed Products"
 }]
 
-/*const buttons = [{
-  title: "Sign Up",
-  onClickFunc :this.AdminSignOut
-}]*/
+
 
         return(
 <div className="SideNavPage">
@@ -67,7 +64,7 @@ const navlinks = [{
   <SideNavComponent navlinksArr={navlinks}
   title={this.props.name}
   btns={false} 
- /* buttons={buttons}*/
+ 
 />
     
     
