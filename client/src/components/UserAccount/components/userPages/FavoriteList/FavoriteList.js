@@ -40,7 +40,7 @@ class UserFavorites extends Component {
      <div className="TopNavPage">
        
       
- <h3>Orders List</h3>
+ <h3>Favorite List</h3>
 
     
 

@@ -40,7 +40,7 @@ class UserSettings extends Component {
      <div className="TopNavPage">
        
       
- <h3>Orders List</h3>
+ <h3>Settings </h3>
 
     
 

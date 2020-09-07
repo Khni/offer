@@ -91,6 +91,7 @@ const navlinks = [{
 const mapStateToProps = state => {
   return {
     errorMsg: state.userAuth.authUser.error, 
+    email: state.userAuth.authUser.email, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     isAuthenticated: state.userAuth.authUser.isAuthenticated
