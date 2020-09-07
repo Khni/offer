@@ -39,20 +39,20 @@ class  AccountUser extends Component {
 
     render() {
 const navlinks = [{
-  path: "/account/settings",
-  title: "Account Settings"
+  path: "/admin/products",
+  title: "Products"
 },
 {
-  path: "/account/orders",
-  title: "Orders"
+  path: "/admin/sections",
+  title: "Sections"
 },
 {
-  path: "/account/favorite-list",
-  title: "Favorite List"
+  path: "/admin/categories",
+  title: "Categories"
 },
 {
-  path: "/account/viewed-items",
-  title: "Viewed Products"
+  path: "/admin/collections",
+  title: "Collections"
 }]
 
 
