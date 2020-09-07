@@ -29,11 +29,11 @@ class  AccountUser extends Component {
           }*/
           
           componentDidMount() {
-     console.log('CDMount AdminAuth'+ this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
+     console.log('CDMount' );
     }
 
     componentDidUpdate() {
-      console.log('CDUpdate adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
+      console.log('CDUpdate' );
     }
           
 
