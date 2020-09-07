@@ -50,7 +50,7 @@ export const signIn = data => {
       dispatch({
         type: AUTH_SIGN_IN, 
         token: response.data.token, 
-        email: response.data.user.email,
+        email: response.data.user.local.email,
         name: response.data.user.name
       });
       localStorage.setItem('JWT_TOKEN', response.token);
