@@ -61,7 +61,7 @@ const navlinks = [{
 <div className="SideNavPage">
 
 
-  <p> welcome</>
+  <p> welcome</p>
     
     
   
