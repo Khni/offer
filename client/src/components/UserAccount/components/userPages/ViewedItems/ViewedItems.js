@@ -40,7 +40,7 @@ class ViewedProducts extends Component {
      <div className="TopNavPage">
        
       
- <h3>Viewed Products/h3>
+ <h3>Viewed Products </h3>
 
     
 
