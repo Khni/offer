@@ -62,7 +62,7 @@ const navlinks = [{
 
 
   <SideNavComponent navlinksArr={navlinks}
-  title={this.props.name}
+  title={this.props.name || this.props.email}
   btns={false} 
   />
     
