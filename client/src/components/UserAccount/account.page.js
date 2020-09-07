@@ -61,32 +61,7 @@ const navlinks = [{
 <div className="SideNavPage">
 
 
-  <nav className="side-nav">
-    <h3 className="side-nav-title">user</h3>
-    <div className="NavLinks-container" >
-    {navlinks.map((navlink, i)=>{
-return     <NavLink key={i} className="side-NavLink"
-                                to={{
-                                  pathname:navlink.path
-                              }}
-                             
-                               
-                                activeClassName="active-NavLinkAdmin-side"
-                                activeStyle={{
-                                  //  color: '#fa923f',
-                                  //  textDecoration: 'underline',
-                                  background: "#dfe3ee",
-                                 // color: "#ffffff"
-                                }}>{navlink.title}</NavLink>
-      })} 
-                            
-                                
-          
-                      
-    
-    </div>
-
-    </nav>
+  <p> welcome</>
     
     
   
@@ -105,10 +80,7 @@ return     <NavLink key={i} className="side-NavLink"
 </div>
 
 
-         /*   <div>admin PAGE
-<h3> welcome {this.props.Name} </h3>
-<h4>{this.props.Email} </h4>
-</div>*/ 
+         
         )
     }
 }
