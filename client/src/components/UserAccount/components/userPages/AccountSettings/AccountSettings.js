@@ -40,7 +40,8 @@ class UserSettings extends Component {
      <div className="TopNavPage">
        
       
- <h3>Settings </h3>
+ <h3>Emal : {this.props.email} </h3>
+ 
 
     
 
@@ -59,6 +60,7 @@ const mapStateToProps = state => {
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
+    email: state.userAuth.authUser.email, 
     isAuthenticated: state.userAuth.authUser.isAuthenticated
     
   }
