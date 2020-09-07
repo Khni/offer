@@ -16,7 +16,7 @@ import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/product';
 
 
-class ProductsNav extends Component {
+class UserOrders extends Component {
 
     constructor(props) {
         super(props)
@@ -67,4 +67,4 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(ProductsNav);
+export default  connect(mapStateToProps, actions)(UserOrders);
