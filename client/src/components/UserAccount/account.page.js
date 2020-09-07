@@ -79,7 +79,7 @@ const navlinks = [{
                     <Route path="/account/orders" component={Orders}  />
                     <Route path="/account/favorite-list" component={FavoriteList} />
                     <Route path="/account/viewed-items" component={FavoriteList} />
-                    <Redirect from="/account" to="/account/settings" />
+                    
                 </Switch>
                
     </div>
