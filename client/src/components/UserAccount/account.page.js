@@ -39,20 +39,20 @@ class  AccountUser extends Component {
 
     render() {
 const navlinks = [{
-  path: "/admin/products",
-  title: "Products"
+  path: "/account/settings",
+  title: "Account Settings"
 },
 {
-  path: "/admin/sections",
-  title: "Sections"
+  path: "/account/orders",
+  title: "Orders"
 },
 {
-  path: "/admin/categories",
-  title: "Categories"
+  path: "/account/favorite-list",
+  title: "Favorite List"
 },
 {
-  path: "/admin/collections",
-  title: "Collections"
+  path: "/account/viewed-items",
+  title: "Viewed Products"
 }]
 
 
@@ -62,10 +62,9 @@ const navlinks = [{
 
 
   <SideNavComponent navlinksArr={navlinks}
-  title="User" 
+  title='User Dashboard'
   btns={false} 
- 
-/>
+  />
     
     
   
