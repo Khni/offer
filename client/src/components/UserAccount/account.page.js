@@ -61,10 +61,32 @@ const navlinks = [{
 <div className="SideNavPage">
 
 
-  <SideNavComponent navlinksArr={navlinks}
-  title='User Dashboard'
-  btns={false} 
-  />
+  <nav className="side-nav">
+    <h3 className="side-nav-title">user</h3>
+    <div className="NavLinks-container" >
+    {navlinks.map((navlink, i)=>{
+return     <NavLink key={i} className="side-NavLink"
+                                to={{
+                                  pathname:navlink.path
+                              }}
+                             
+                               
+                                activeClassName="active-NavLinkAdmin-side"
+                                activeStyle={{
+                                  //  color: '#fa923f',
+                                  //  textDecoration: 'underline',
+                                  background: "#dfe3ee",
+                                 // color: "#ffffff"
+                                }}>{navlink.title}</NavLink>
+      })} 
+                            
+                                
+          
+                      
+    
+    </div>
+
+    </nav>
     
     
   
