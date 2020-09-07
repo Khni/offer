@@ -61,7 +61,10 @@ const navlinks = [{
 <div className="SideNavPage">
 
 
-  <p> welcome</p>
+  <SideNavComponent navlinksArr={navlinks}
+  title={this.props.name}
+  btns={false} 
+  />
     
     
   
