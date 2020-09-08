@@ -42,12 +42,7 @@ console.log("form data: " + JSON.stringify(formData) )
     }
   
   }
-
-
-
-    render() {
-
-      fieldsets = [
+fieldsets = [
 
  {
                type: "text" ,
@@ -66,6 +61,11 @@ console.log("form data: " + JSON.stringify(formData) )
                 label: "Name" 
 }
 ] 
+
+
+    render() {
+
+      
         return(
 
 
