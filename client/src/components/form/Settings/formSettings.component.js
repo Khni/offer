@@ -57,7 +57,7 @@ class Form extends Component {
                 placeholder={field.placeholder}
                 component={InputForm}
                 label={field.label}
-                value={field.value}
+                val={field.val}
               />
             </fieldset>
                     )} 
