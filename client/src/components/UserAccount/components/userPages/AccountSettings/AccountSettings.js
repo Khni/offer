@@ -50,8 +50,8 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   SettingState() {
-    this.setState({ Username: this.props.name, 
-      Useremail: this.props.email })
+    this.setState({ Username: "user email z" , 
+      Useremail: "username e" })
   
   }
    componentDidMount() {
