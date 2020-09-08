@@ -79,7 +79,7 @@ console.log("form data: " + JSON.stringify(formData) )
    onSubmit={this.onSubmit } 
    
    
-   submitBtnTitle="submit'
+   submitBtnTitle="submit" 
    
    
    />
