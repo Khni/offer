@@ -21,8 +21,8 @@ class UserSettings extends Component {
     constructor(props) {
         super(props)
         this.state = {
-      Username: props.name, 
-      Useremail: props.email
+      Username: '', 
+      Useremail: ''
     }
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -46,6 +46,26 @@ console.log("form data: " + JSON.stringify(formData) )
     }
   
   }
+  
+  
+  
+  SettingState() {
+    this.setState({ Username: this.props.name, 
+      Useremail: this.props.email })
+  
+  }
+   componentDidMount() {
+
+    this.SettingState()
+  }
+   componentDidUpdate() {
+    this.SettingState()
+  } 
+  
+  
+  
+  
+  
 fieldsets = [
 
  {
