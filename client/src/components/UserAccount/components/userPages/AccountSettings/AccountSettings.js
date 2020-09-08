@@ -20,6 +20,10 @@ class UserSettings extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+      Username: this.props.name, 
+      Useremail: this.props.email
+    }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -49,14 +53,14 @@ fieldsets = [
                 name:"email" ,
                 ID :"email" ,
                 className: "settingsFormInput" ,
-                val: this.props.email,
+                val: this.state.name,
                 label: "Email" 
 }, 
 {
                 type: "name" ,
                 name:"name" ,
                 ID :"name" ,
-                val:this.props.name ,
+                val:this.state.email,
                 className: "settingsFormInput" ,
                 
                 label: "Name" 
