@@ -21,7 +21,11 @@ class UserSettings extends Component {
     constructor(props) {
         super(props)
          this.onSubmit = this.onSubmit.bind(this);
-         
+              
+this.state = {
+      username: 'bbb', 
+      useremail: 'kooo' 
+    }
     }
 
 
