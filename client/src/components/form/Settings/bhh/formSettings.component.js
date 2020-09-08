@@ -56,6 +56,7 @@ class Form extends Component {
                 placeholder={field.placeholder}
                 component={InputForm}
                 label={field.label}
+                value={this.props.value}
               />
             </fieldset>
                     )} 

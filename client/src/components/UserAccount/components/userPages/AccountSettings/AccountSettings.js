@@ -49,13 +49,14 @@ fieldsets = [
                 name:"email" ,
                 ID :"email" ,
                 className: "settingsFormInput" ,
-                
+                value:this.props.email,
                 label: "Email" 
 }, 
 {
                 type: "name" ,
                 name:"name" ,
                 ID :"name" ,
+                value:this.props.name,
                 className: "settingsFormInput" ,
                 
                 label: "Name" 
