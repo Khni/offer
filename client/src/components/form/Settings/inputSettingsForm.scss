@@ -1,0 +1,37 @@
+.input-text-settings {
+	font-size: 12pt;
+	width: 270px;
+	transition: width 1s;
+	height: 20px;
+	/*margin-bottom: 1px;*/
+	border-bottom: 1px solid rgba(81, 203, 238, 1);
+	
+	padding: 5px;
+	padding-right: 30px;
+	padding-left: 30px;
+	text-align: left;
+	
+}
+
+
+.input-text-settings:focus {
+	width: 280px;
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
+
+
+.label-auth-en {
+	text-align: left;
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 700;
+	color: #753a88;
+}
+.label-auth-ar {
+	text-align: right;
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 700;
+	color: #753a88;
+}

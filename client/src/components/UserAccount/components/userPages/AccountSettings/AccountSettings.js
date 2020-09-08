@@ -14,13 +14,13 @@ import { compose } from 'redux';
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/product';
-
+import Form from '../../../../form/Settings/formSettings.component.js';
 
 class UserSettings extends Component {
 
     constructor(props) {
         super(props)
-        
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
 
@@ -28,19 +28,60 @@ class UserSettings extends Component {
 
 
 
+async onSubmit(formData) {
+
+console.log("form data: " + JSON.stringify(formData) )
+
+const { UpdateUser } = this.props;
+console.log("form data: " + JSON.stringify(formData) )
+   await UpdateUser(formData)
+   if (this.props.updated) {
+      
+       alert("details updated successfully! ") 
+    window.location.reload();
+    }
+  
+  }
 
 
 
     render() {
 
-      
+      fieldsets = [
+
+ {
+               type: "text" ,
+                name:"email" ,
+                ID :"email" ,
+                className: "settingsFormInput" ,
+                
+                label: "Email" 
+}, 
+{
+                type: "name" ,
+                name:"name" ,
+                ID :"name" ,
+                className: "settingsFormInput" ,
+                
+                label: "Name" 
+}
         return(
 
 
      <div className="TopNavPage">
        
       
- <h3>Emal : {this.props.email} </h3>
+ <Form
+   title="Account Details" 
+   fieldsets={this.fieldsets}
+   
+   onSubmit={this.onSubmit } 
+   
+   
+   submitBtnTitle="submit'
+   
+   
+   />
  
 
     
@@ -58,6 +99,8 @@ class UserSettings extends Component {
 const mapStateToProps = state => {
   return {
   	errorMsg: state.userAuth.authUser.error, 
+  updated: state.userAuth.authUser.updated, 
+  
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     email: state.userAuth.authUser.email, 

@@ -2,7 +2,10 @@ import {
   AUTH_SIGN_UP, 
   AUTH_SIGN_OUT, 
   AUTH_SIGN_IN, 
-  AUTH_ERROR } from '../../types/authUserTypes';
+  AUTH_ERROR, 
+UPDATE_USER, 
+  UPDATE_USER_ERROR
+} from '../../types/authUserTypes';
 
 const DEFAULT_STATE = {
     authUser :{
@@ -10,7 +13,8 @@ const DEFAULT_STATE = {
     error: '',
     token:'', 
     email:'', 
-    name:'' 
+    name:'', 
+    updated:false
    } 
   }
   
@@ -20,6 +24,13 @@ const DEFAULT_STATE = {
         return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''} }
       case AUTH_SIGN_IN:
         return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''}  }
+        
+        case UPDATE_USER:
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:'', updated:true}  }
+        
+        case UPDATE_USER_ERROR:
+        return { ...state, authUser:{...state.authUser, updated:false}  }
+        
       case AUTH_SIGN_OUT:
         return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:''} }
       case AUTH_ERROR:
