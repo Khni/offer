@@ -42,7 +42,7 @@ class Form extends Component {
 
 
 
-        <div class="form-container-form">
+        <div class="form-container-userSettings">
           <Link class="logo-pic-form" to="/" />
           
           <h4 class="form-title"> {this.props.title} </h4>
