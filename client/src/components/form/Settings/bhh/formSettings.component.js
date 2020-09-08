@@ -8,8 +8,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import InputForm from './inputSettingsForm.js';
 
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+
 import { Link } from 'react-router-dom';
 
 class Form extends Component {
