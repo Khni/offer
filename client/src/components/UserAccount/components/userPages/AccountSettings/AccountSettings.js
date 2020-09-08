@@ -20,14 +20,14 @@ class UserSettings extends Component {
 
     constructor(props) {
         super(props)
-        
+        this.state = {
+      Username: 'hhhh', 
+      Useremail: 'oo'
+    }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-state = {
-      Username: '', 
-      Useremail: ''
-    }
+
 
 
 
@@ -49,18 +49,7 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   
-  SettingState() {
-    this.setState({ Username: "user email z" , 
-      Useremail: "username e" })
   
-  }
-   componentDidMount() {
-
-    this.SettingState()
-  }
-   componentDidUpdate() {
-    this.SettingState()
-  } 
   
   
   
