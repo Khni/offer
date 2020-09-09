@@ -13,7 +13,7 @@ export default class InputSettings extends Component {
           className="input-text-settings"
           type={ this.props.type }
           value={this.props.val} 
-         /* onChange={ onChange }*/
+         onChange={ this.props.change}
          required   
            />
       </div>

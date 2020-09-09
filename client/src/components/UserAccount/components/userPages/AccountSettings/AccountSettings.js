@@ -51,10 +51,14 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   
+  handleChangeName(event) {
+  this.setState({username: event.target.value})
+}
   
   
-  
-  
+  handleChangeEmail(event) {
+  this.setState({useremail: event.target.value})
+}
   
 
 
@@ -68,18 +72,20 @@ let fieldsets = [
                 ID :"email" ,
                 className: "settingsFormInput" ,
             //    val: this.props.email,
-            val:this.state.username,
-                label: "Email" 
+            val:this.state.useremail,
+                label: "Email", 
+                change: this.handleChangeEmail
 }, 
 {
                 type: "name" ,
                 name:"name" ,
                 ID :"name" ,
               //  val:this.props.name,
-                val:this.state.useremail, 
+                val:this.state.username, 
                 className: "settingsFormInput" ,
                 
-                label: "Name" 
+                label: "Name", 
+                change: this.handleChangeName
 }
 ] 
       
