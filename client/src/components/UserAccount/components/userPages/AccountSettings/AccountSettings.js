@@ -56,7 +56,11 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   
-fieldsets = [
+
+
+
+    render() {
+let fieldsets = [
 
  {
                type: "text" ,
@@ -78,10 +82,6 @@ fieldsets = [
                 label: "Name" 
 }
 ] 
-
-
-    render() {
-
       
         return(
 
@@ -91,7 +91,7 @@ fieldsets = [
       
  <Form
    title="Account Details" 
-   fieldsets={this.fieldsets}
+   fieldsets={fieldsets}
    
    onSubmit={this.onSubmit } 
    
