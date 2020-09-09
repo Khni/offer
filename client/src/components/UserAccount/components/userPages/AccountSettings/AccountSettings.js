@@ -63,14 +63,16 @@ fieldsets = [
                 name:"email" ,
                 ID :"email" ,
                 className: "settingsFormInput" ,
-                val: this.props.email,
+            //    val: this.props.email,
+            val:this.state.username,
                 label: "Email" 
 }, 
 {
                 type: "name" ,
                 name:"name" ,
                 ID :"name" ,
-                val:this.props.name,
+              //  val:this.props.name,
+                val:this.state.useremail, 
                 className: "settingsFormInput" ,
                 
                 label: "Name" 
