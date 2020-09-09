@@ -23,8 +23,8 @@ class UserSettings extends Component {
          this.onSubmit = this.onSubmit.bind(this);
               
 this.state = {
-      username: 'bbb', 
-      useremail: 'kooo' 
+      username: props.name, 
+      useremail: props.email
     }
     }
 
