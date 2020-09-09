@@ -21,6 +21,8 @@ class UserSettings extends Component {
     constructor(props) {
         super(props)
          this.onSubmit = this.onSubmit.bind(this);
+         this.handleChangeName = this.handleChangeName.bind(this);
+         this.handleChangeEmail = this.handleChangeEmail.bind(this);
               
 this.state = {
       username: props.name, 
