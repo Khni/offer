@@ -132,9 +132,9 @@ router.get('/api/users', async (req, res) => {
 router.get('/api/profile', auth, async (req, res) => {
     res.send(req.user)
 })
-/*
+
 //find user by id
-router.get('/users/:id',(req,res) => {
+router.get('/api/user/:id',(req,res) => {
     User.findById(req.params.id).then((user)=>{
        res.send(user)
     }).catch((e)=>{
@@ -142,7 +142,7 @@ router.get('/users/:id',(req,res) => {
     })
   
 })
-*/
+
 
 //logout
 router.get('/api/logout', auth, async (req, res) => {
