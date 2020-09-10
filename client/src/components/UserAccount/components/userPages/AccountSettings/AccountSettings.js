@@ -41,7 +41,7 @@ console.log("form data: " + JSON.stringify(formData) )
 
 const { UpdateUser } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
-   await UpdateUser(formData)
+   await UpdateUser(formData, this.props.userID)
    if (this.props.updated) {
       
        alert("details updated successfully! ") 
@@ -125,6 +125,7 @@ let fieldsets = [
 const mapStateToProps = state => {
   return {
   	errorMsg: state.userAuth.authUser.error, 
+  userID: state.userAuth.authUser.id, 
   updated: state.userAuth.authUser.updated, 
   
     name: state.userAuth.authUser.name, 

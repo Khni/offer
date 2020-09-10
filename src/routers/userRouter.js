@@ -144,6 +144,29 @@ router.get('/api/user/:id',(req,res) => {
 })
 
 
+//update user
+router.post('/api/user/update/:id',(req,res) => {
+	
+	const filter = { _id: req.params.id};
+const update = { email: req.body.email, name:req.body.name};
+
+
+
+
+try {
+        let user = await User.findOneAndUpdate(filter, update, {
+  returnOriginal: false
+});
+        res.send({ user})
+    } catch (error) {
+        //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
+        res.status(400).send(error)
+    }
+
+
+  
+})
+
 //logout
 router.get('/api/logout', auth, async (req, res) => {
 
@@ -218,7 +241,7 @@ router.post('/api/login', async (req, res) => {
         res.send({ user, token })
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(400).send()
+        res.status(400).send(error)
     }
 
 

@@ -14,6 +14,7 @@ const DEFAULT_STATE = {
     token:'', 
     email:'', 
     name:'', 
+    id:'', 
     updated:false
    } 
   }
@@ -21,12 +22,12 @@ const DEFAULT_STATE = {
   export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
       case AUTH_SIGN_UP:
-        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''} }
+        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''} }
       case AUTH_SIGN_IN:
-        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:''}  }
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''}  }
         
         case UPDATE_USER:
-        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,error:'', updated:true}  }
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}  }
         
         case UPDATE_USER_ERROR:
         return { ...state, authUser:{...state.authUser, updated:false}  }

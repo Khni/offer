@@ -53,7 +53,8 @@ export const signIn = data => {
         type: AUTH_SIGN_IN, 
         token: response.data.token, 
         email: response.data.user.local.email,
-        name: response.data.user.name
+        name: response.data.user.name, 
+        id: response.data.user._id
       });
       localStorage.setItem('JWT_TOKEN', response.token);
     axios.defaults.headers.common['Authorization'] = response.token;
@@ -105,16 +106,17 @@ export const oauthFacebook = data => {
 
 
 
-export const UpdateUser = data => {
+export const UpdateUser = (data, userID) => {
   return async dispatch => {
     try {
-   const response =   await axios.post('/api/update:id', data);
+   const response =   await axios.post('/api/user/update/'+ userID, data);
 
       dispatch({
         type: UPDATE_USER, 
         token: response.data.token, 
         email: response.data.user.local.email,
-        name: response.data.user.name
+        name: response.data.user.name, 
+        id: response.data.user._id
       });
       localStorage.setItem('JWT_TOKEN', response.token);
     axios.defaults.headers.common['Authorization'] = response.token;
