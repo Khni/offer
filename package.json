@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" exit 1",
     "roid": "cd client && node node_modules/react-scripts/scripts/start.js",
     "start": "node src/index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build", 
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "mon": "nodemon --exec npm start",
     "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\""
   },
@@ -26,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.6",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-google-plus-token": "^2.1.0",
     "passport-jwt": "^4.0.0",
