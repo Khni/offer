@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputCss from './inputSettingsForm.scss';
 export default class InputSettings extends Component {
   render() {
-    const { input: { value, onChange } } = this.props;
+   // const { input: { value, onChange } } = this.props;
     //const { input: { val, change } } = this.props;
     return (
       <div className="form-group-settings">
