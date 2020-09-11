@@ -16,7 +16,7 @@ export default class InputSettings extends Component {
      //   value={this.props.val} 
     //  onChange={ this.props.change}
       value={ value}
-  //     onChange={ change }
+    onChange={ onChange }
         // required   
            />
       </div>
