@@ -139,4 +139,8 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(UserSettings);
+
+export default compose(
+  connect(mapStateToProps, actions),
+  reduxForm({ form: 'AccountSettings' })
+)(UserSettings)
