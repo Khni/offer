@@ -8,17 +8,25 @@
  }
 
 
+.side-nav{
+display: flex;
+flex-direction: column;
+margin: 10px;
+width: 20%;
+text-align: center;
+padding: 3;
+  
+ }
 
 
 
 
 
 
-
-.side-nav-title {
+/*.side-nav-title {
   border-bottom: 1px solid black;
   padding: 3px;
-}
+}*/
 .NavLinks-container{
 display: flex;
 flex-direction: column;
@@ -81,10 +89,10 @@ padding: 5px;
 .side-nav{
 display: flex;
 flex-direction: column;
-margin: 3px;
-
+margin: 2px;
+width: 20%;
 text-align: center;
-padding: 2px;
+padding: 3;
   
  }
 
@@ -137,14 +145,6 @@ padding: 5px;
   transition: 1s ease;
 }
 
-.side-nav{
-display: flex;
-flex-direction: column;
-margin: 10px;
-width: 20%;
-text-align: center;
-padding: 3;
-  
- }
+
 
 }
