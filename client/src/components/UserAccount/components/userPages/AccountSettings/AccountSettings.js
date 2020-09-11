@@ -23,6 +23,7 @@ class UserSettings extends Component {
          this.onSubmit = this.onSubmit.bind(this);
          this.handleChangeName = this.handleChangeName.bind(this);
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
+         this.setValues = this.setValues.bind(this);
               
 this.state = {
       username: props.name, 
@@ -52,7 +53,11 @@ console.log("form data: " + JSON.stringify(formData) )
   }
   
   
-  
+  setValues() {
+this.props.initialize({ email: this.state.useremail,
+name:this.state.username
+});
+} 
   
   handleChangeName(event) {
   this.setState({username: event.target.value})
@@ -74,8 +79,8 @@ let fieldsets = [
                 name:"email" ,
                 ID :"email" ,
                 className: "settingsFormInput" ,
-            //    val: this.props.email,
-            val:this.state.useremail,
+                
+           // val:this.state.useremail,
                 label: "Email", 
                 change: this.handleChangeEmail
 }, 
@@ -103,7 +108,7 @@ let fieldsets = [
    fieldsets={fieldsets}
    
    onSubmit={this.onSubmit } 
-   
+   setVal ={this.setValues}
    
    submitBtnTitle="submit" 
    

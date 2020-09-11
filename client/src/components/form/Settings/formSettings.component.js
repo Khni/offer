@@ -27,7 +27,14 @@ class Form extends Component {
   }
 
   
+  componentDidMount() {
+    this.props.setVal()
+  }
+  componentDidUpdate() {
+    this.props.setVal()
+  }
   
+   
 
   render() {
     const { handleSubmit } = this.props;
@@ -57,7 +64,7 @@ class Form extends Component {
                 placeholder={field.placeholder}
                 component={InputForm}
                 label={field.label}
-                val={field.val}
+               // val={field.val}
                 change={field.change}
               />
             </fieldset>
