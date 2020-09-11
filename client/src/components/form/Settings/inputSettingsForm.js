@@ -13,9 +13,9 @@ export default class InputSettings extends Component {
          /* placeholder={ this.props.placeholder } */
           className="input-text-settings"
           type={ this.props.type }
-     // value={this.props.val} 
+     value={this.props.val} 
      onChange={ this.props.change}
-   value={ value}
+  // value={ value}
  //   onChange={ onChange }
         // required   
            />

@@ -43,6 +43,7 @@ console.log("form data: " + JSON.stringify(formData) )
 const { UpdateUser } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
    await UpdateUser(formData, this.props.userID)
+   alert("form username: " + this.state.username) 
    alert("form data: " + JSON.stringify(formData)) 
    if (this.props.updated) {
       
