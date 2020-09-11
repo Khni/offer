@@ -113,7 +113,7 @@ export const UpdateUser = (data, userID) => {
 
       dispatch({
         type: UPDATE_USER, 
-        token: response.data.token, 
+        
         email: response.data.user.local.email,
         name: response.data.user.name, 
         id: response.data.user._id

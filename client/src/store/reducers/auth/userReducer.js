@@ -27,7 +27,7 @@ const DEFAULT_STATE = {
         return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''}  }
         
         case UPDATE_USER:
-        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}  }
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}  }
         
         case UPDATE_USER_ERROR:
         return { ...state, authUser:{...state.authUser, updated:false}  }
