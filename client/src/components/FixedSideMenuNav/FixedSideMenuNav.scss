@@ -8,15 +8,7 @@
  }
 
 
-.side-nav{
-display: flex;
-flex-direction: column;
-margin: 10px;
-width: 20%;
-text-align: center;
-padding: 3;
-  
- }
+
 
 
 
@@ -89,7 +81,7 @@ padding: 5px;
 .side-nav{
 display: flex;
 flex-direction: column;
-margin: 2px;
+margin: 5px;
 width: 20%;
 text-align: center;
 padding: 3;
@@ -145,6 +137,14 @@ padding: 5px;
   transition: 1s ease;
 }
 
-
+.side-nav{
+display: flex;
+flex-direction: column;
+margin: 10px;
+width: 20%;
+text-align: center;
+padding: 3;
+  
+ }
 
 }
