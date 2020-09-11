@@ -13,7 +13,7 @@ import { compose } from 'redux';
 //import ProductsList from '../TableList/productsList.component'
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
-import * as actions from '../../../../../store/actions/product';
+import * as actions from '../../../../../store/actions/users';
 import Form from '../../../../form/Settings/formSettings.component.js';
 
 class UserSettings extends Component {
