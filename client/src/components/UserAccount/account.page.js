@@ -60,7 +60,7 @@ const buttons = [{
 
 
   <SideNavComponent navlinksArr={navlinks}
-  title={this.props.name}
+ // title={this.props.name}
   btns={true} 
   buttons={buttons}
   />
