@@ -15,7 +15,7 @@ class  AccountUser extends Component {
 
     constructor(props) {
         super(props)
-       this.UserSignOut = this.UserSignOut.bind(this);
+       this.signOutUser = this.signOutUser.bind(this);
     }
 signOutUser() {
 const {UserSignOut} = this.props 
