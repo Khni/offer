@@ -80,7 +80,7 @@ let fieldsets = [
                 ID :"email" ,
                 className: "settingsFormInput" ,
                 
-           // val:this.state.useremail,
+           val:this.state.useremail,
                 label: "Email", 
                 change: this.handleChangeEmail
 }, 
