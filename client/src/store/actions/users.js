@@ -130,3 +130,20 @@ export const UpdateUser = (data, userID) => {
 }
 
 
+export const UserSignOut = () => {
+
+ console.log("signOut from user");
+    return  dispatch => {
+     
+        dispatch({
+          type: AUTH_SIGN_OUT
+         
+        });
+       
+      
+    };
+  }
+  
+  
+
+

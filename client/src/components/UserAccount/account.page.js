@@ -17,16 +17,10 @@ class  AccountUser extends Component {
         super(props)
       // this.AdminSignOut = this.AdminSignOut.bind(this);
     }
- /*   AdminSignOut() {
-  console.log('SignOut');
-  console.log('AdminSignOut adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
-        const {signOut} = this.props
+signOutUser() {
+const {UserSignOut} = this.props 
 
-           signOut()
-           console.log('after AdminSignOut adminAuth'+this.props.AdminAuth.isAuthenticated+ this.props.AdminAuth.token);
-         
-          
-          }*/
+} 
           
           componentDidMount() {
      console.log('CDMount' );
@@ -55,6 +49,10 @@ const navlinks = [{
   title: "Viewed"
 }]
 
+const buttons = [{
+  title: "Sign Out",
+  onClickFunc :this.signOutUser
+}]
 
 
         return(
@@ -63,7 +61,8 @@ const navlinks = [{
 
   <SideNavComponent navlinksArr={navlinks}
   title={this.props.name}
-  btns={false} 
+  btns={true} 
+  buttons={buttons}
   />
     
     

@@ -33,7 +33,7 @@ const DEFAULT_STATE = {
         return { ...state, authUser:{...state.authUser, updated:false}  }
         
       case AUTH_SIGN_OUT:
-        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:''} }
+        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' } }
       case AUTH_ERROR:
         return { ...state, authUser:{error: action.payload}}
       default:
