@@ -148,7 +148,7 @@ router.get('/api/user/:id',(req,res) => {
 router.post('/api/user/update/:id',async(req,res) => {
 	
 	const filter = { _id: req.params.id};
-const update = { email: req.body.email, name:req.body.name};
+const update = { "local.email": req.body.email, name:req.body.name};
 
 
 

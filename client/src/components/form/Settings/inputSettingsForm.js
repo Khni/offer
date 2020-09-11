@@ -3,6 +3,7 @@ import InputCss from './inputSettingsForm.scss';
 export default class InputSettings extends Component {
   render() {
     const { input: { value, onChange } } = this.props;
+    //const { input: { val, change } } = this.props;
     return (
       <div className="form-group-settings">
         <label htmlFor={ this.props.id } className={ this.props.className}>{ this.props.label }</label>
@@ -12,9 +13,11 @@ export default class InputSettings extends Component {
          /* placeholder={ this.props.placeholder } */
           className="input-text-settings"
           type={ this.props.type }
-          value={this.props.val} 
-         onChange={ this.props.change}
-         required   
+        value={this.props.val} 
+      onChange={ this.props.change}
+      //value={ value}
+     //  onChange={ change }
+        // required   
            />
       </div>
     );

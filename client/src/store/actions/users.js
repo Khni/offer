@@ -22,7 +22,7 @@ import {
       dispatch({
         type: AUTH_SIGN_UP, 
         token: response.data.token, 
-        email: response.data.user.email,
+        email: response.data.user.local.email,
         name: response.data.user.name
         
       });
