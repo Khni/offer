@@ -23,8 +23,8 @@ import {
         type: AUTH_SIGN_UP, 
         token: response.data.token, 
         email: response.data.user.local.email,
-        name: response.data.user.name
-        
+        name: response.data.user.name, 
+        id: response.data.user._id
       });
     //  localStorage.setItem('JWT_TOKEN', response.token);
    // axios.defaults.headers.common['Authorization'] = response.token;

@@ -14,7 +14,7 @@ const FixedSideMenuNav = (props) => {
         return(
 
     <nav className="side-nav">
-    <h3 className="side-nav-title">{props.title}</h3>
+    <h5 className="side-nav-title">{props.title}</h5>
     <div className="NavLinks-container" >
     {props.navlinksArr.map((navlink, i)=>{
 return     <NavLink key={i} className="side-NavLink"
