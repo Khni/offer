@@ -155,7 +155,8 @@ const update = { "local.email": req.body.email, name:req.body.name};
 
 try {
         let user = await User.findOneAndUpdate(filter, update, {
-  returnOriginal: false
+ // returnOriginal: false
+ new: true
 });
         res.send({ user})
     } catch (error) {

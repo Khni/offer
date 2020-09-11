@@ -61,10 +61,7 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   
-  signOutUser() {
-const {UserSignOut} = this.props 
-
-} 
+  
   
   setValues() {
 this.props.initialize({ email: this.state.useremail,

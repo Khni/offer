@@ -19,7 +19,7 @@ class  AccountUser extends Component {
     }
 signOutUser() {
 const {UserSignOut} = this.props 
-
+UserSignOut()
 } 
           
           componentDidMount() {
