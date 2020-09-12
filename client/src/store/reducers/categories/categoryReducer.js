@@ -9,19 +9,30 @@ import {
   FETCH_SECTIONS_ERROR, 
   FETCH_COLLECTIONS_ERROR,
   ADDED_TO_SERVER, 
-  ADDED_TO_SERVER_ERROR
+  ADDED_TO_SERVER_ERROR, 
+  PRODUCTS_IS_FETCHING, 
+  SECTIONS_IS_FETCHING, 
+  CATEGORIES_IS_FETCHING, 
+  COLLECTIONS_IS_FETCHING
       } from '../../types/productsTypes'
 
 
     const INITIAL_STATE = {
         categories: [], 
         categoriesFetched: false,
+        categoriesIsFetching: false,
+        
         sections: [], 
         sectionsFetched: false, 
+        sectionsIsFetching: false,
+        
         products:[], 
         productsFetched: false, 
+        productsIsFetching: false,
+        
         collections:[], 
         collectionsFetched: false,
+        collectionsIsFetching: false,
         FetchError: false, 
         
         AddToServer: {
@@ -36,17 +47,20 @@ import {
             return {
            ...state, 
            categories: action.Categories,
-           categoriesFetched: true
+           categoriesFetched: true, 
+           categoriesIsFetching: false
              
             };
             
           
+            
   
             case FETCH_SECTIONS :
             return {
            ...state, 
            sections: action.Sections, 
-           sectionsFetched: true
+           sectionsFetched: true, 
+           sectionsIsFetching: false
              
             };
             
@@ -57,12 +71,14 @@ import {
            ...state, 
            products: action.Products, 
            productsFetched: true, 
+           productsIsFetching: false 
             };
             case FETCH_COLLECTIONS :
             return {
            ...state, 
            collections: action.Collections,
-           collectionsFetched: true
+           collectionsFetched: true, 
+           collectionsIsFetching: false 
              
             };
             case FETCH_ERROR :
@@ -92,6 +108,37 @@ import {
          } 
              
             };
+            
+            case CATEGORIES_IS_FETCHING :
+            return {
+           ...state, 
+           categoriesIsFetching: true
+             
+            };
+            
+            case COLLECTIONS_IS_FETCHING :
+            return {
+           ...state, 
+           collectionsIsFetching: true
+             
+            };
+            
+            case SECTIONS_IS_FETCHING :
+            return {
+           ...state, 
+           sectionsIsFetching: true
+             
+            };
+            
+            
+            case PRODUCTS_IS_FETCHING :
+            return {
+           ...state, 
+           productsIsFetching: true
+             
+            };
+            
+            
             
             
           default:

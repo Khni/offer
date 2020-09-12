@@ -8,8 +8,11 @@ import { FETCH_PRODUCTS ,
   FETCH_SECTIONS_ERROR, 
   FETCH_ERROR, 
   ADDED_TO_SERVER, 
-  ADDED_TO_SERVER_ERROR
-  
+  ADDED_TO_SERVER_ERROR, 
+  PRODUCTS_IS_FETCHING, 
+  SECTIONS_IS_FETCHING, 
+  CATEGORIES_IS_FETCHING, 
+  COLLECTIONS_IS_FETCHING
 
   } from '../types/productsTypes'
 
@@ -129,6 +132,14 @@ export const fetchProducts= () => {
 
 
     return async dispatch => {
+    	
+    dispatch({
+          type: PRODUCTS_IS_FETCHING
+          
+          
+        });
+    
+    
       try {
      const response =   await axios.get('/api/products');
   console.log('response' +response.data.sections);
