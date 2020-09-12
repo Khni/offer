@@ -64,7 +64,7 @@ class ProductsList extends Component {
           <table className="TableList">
             <tr><th>product name</th> <th>Quantity</th> <th>Price</th></tr>
             
-            {!this.props.productsIsFetching ?
+            {this.props.productsIsFetching ?
                             productsFiltered.map((product, i) => {
               return <tr key={i + 1}><td key={i + 2}>{product.nameEn}</td><td key={i + 3}>{product.quantity}</td><td key={i + 4}>{product.price}</td></tr>
             }):  <div className="loader">loading...</div>}
