@@ -63,7 +63,7 @@ class ProductsList extends Component {
         <div >
 
             
-            {this.props.productsIsFetching ?
+            {!this.props.productsIsFetching ?
                       <table className="TableList">
             <tr><th>product name</th> <th>Quantity</th> <th>Price</th></tr>
                             {productsFiltered.map((product, i) => {
