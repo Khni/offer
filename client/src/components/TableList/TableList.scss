@@ -13,8 +13,8 @@ width: 100%
 }
 
 .TableList {
-   
-  
+   border: 1px solid #ddd;
+  text-align: center;
     width: 100%;
     overflow: auto;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -67,7 +67,7 @@ width: 100%
 }
 
 .loader {
-margin: 0 auto;
+
 border: 8px solid #f3f3f3;
 border-radius: 50%;
 border-top: 8px solid #3498db;
