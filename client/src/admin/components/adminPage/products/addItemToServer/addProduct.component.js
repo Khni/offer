@@ -22,7 +22,7 @@ class AddProduct extends Component {
         super(props)
         
         this.state = {
-          addingProduct: false
+          addingToServer: false
         }
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -37,19 +37,19 @@ console.log("added cond before submit" +AddetToServerCond);
 
 const { addProductToServer } = this.props;
 //console.log("form data: "  )
-this.setState({addingProduct: true})
+this.setState({addingToServer: true})
 console.log("isAdding After setting True///" +this.state.addingProduct );
    await addProductToServer(formData,AdminToken)
- //  this.setState({addingProduct: false})
+ //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
    let AddetToServerCondafter = this.props.AddedToServer
    console.log("added cond after submit" +AddetToServerCondafter);
    
    if (this.props.AddedToServer) {
-    this.setState({addingProduct: false})
+    this.setState({addingToServer: false})
      //alert("Item has been added!") 
-  //  window.location.reload();
+  window.location.reload();
     }
   
   }
@@ -204,9 +204,9 @@ const { handleSubmit } = this.props;
                 
 
 
-             {!this.state.addingProduct? <button type="submit" class="custum-btn-form">  
+             {!this.state.addingToServer? <button type="submit" class="custum-btn-form">  
                       submit</button> :null }
-             {this.state.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
+             {this.state.addingToServer ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
 
             
           </form>
