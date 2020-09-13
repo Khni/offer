@@ -101,7 +101,7 @@ import {
             case ADDED_TO_SERVER :
             return {
            ...state, 
-           addingProduct: false;
+           addingProduct: false, 
            AddToServer: {
         	added: true, 
             error:'' 
