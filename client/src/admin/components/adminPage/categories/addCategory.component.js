@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import AddproductStyle from './addCategoryStyle.scss'
+import AddcategoryStyle from './addCategoryStyle.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';
@@ -20,20 +20,23 @@ class AddCategory extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+          addingToServer: false
+        }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
 async onSubmit(formData) {
-
+this.setState({addingToServer: true})
 console.log("form data: " + JSON.stringify(formData) )
    const AdminToken = this.props.AdminToken
 const { addCategoryToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
    await addCategoryToServer(formData,AdminToken)
-   if (this.props.AddetToServer) {
-      
-       alert("Item has been added!") 
-    window.location.reload();
+   if (this.props.AddedToServer) {
+    this.setState({addingToServer: false})
+     //alert("Item has been added!") 
+  window.location.reload();
     }
   
   }
@@ -114,8 +117,9 @@ const { handleSubmit } = this.props;
             
 
 
-            <button type="submit" class="custum-btn-form">submit</button>
-            
+            {!this.state.addingToServer? <button type="submit" class="custum-btn-form">  
+                      submit</button> :null }
+             {this.state.addingToServer ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
           </form>
 </div>
 

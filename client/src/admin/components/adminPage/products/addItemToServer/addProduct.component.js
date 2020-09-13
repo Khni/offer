@@ -31,13 +31,14 @@ class AddProduct extends Component {
     
 
 async onSubmit(formData) {
+	this.setState({addingToServer: true})
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
 console.log("added cond before submit" +AddetToServerCond);
 
 const { addProductToServer } = this.props;
 //console.log("form data: "  )
-this.setState({addingToServer: true})
+
 console.log("isAdding After setting True///" +this.state.addingProduct );
    await addProductToServer(formData,AdminToken)
  //  this.setState({addingToServer: false})

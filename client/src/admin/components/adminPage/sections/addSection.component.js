@@ -19,20 +19,23 @@ class AddSection extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+          addingToServer: false
+        }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
 async onSubmit(formData) {
-
+this.setState({addingToServer: true})
 console.log("form data: " + JSON.stringify(formData) )
    const AdminToken = this.props.AdminToken
 const { addSectionToServer } = this.props;
 console.log("form data: " + JSON.stringify(formData) )
    await addSectionToServer(formData,AdminToken)
-   if (this.props.AddetToServer) {
-      
-       alert("Item has been added!") 
-    window.location.reload();
+   if (this.props.AddedToServer) {
+    this.setState({addingToServer: false})
+     //alert("Item has been added!") 
+  window.location.reload();
     }
   
   }
@@ -133,8 +136,9 @@ const { handleSubmit } = this.props;
 
 
 
-            <button type="submit" class="custum-btn-form">submit</button>
-            
+            {!this.state.addingToServer? <button type="submit" class="custum-btn-form">  
+                      submit</button> :null }
+             {this.state.addingToServer ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
           </form>
 </div>
 

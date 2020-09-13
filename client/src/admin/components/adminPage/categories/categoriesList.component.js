@@ -20,15 +20,17 @@ class CategoryList extends Component {
 
     constructor(props) {
         super(props)
-        
+        this.state = {
+          Loading: false
+        }
     }
 
     async FetchCategoriesFromServer(){
       if(!this.props.categoriesFetched) {
-   
+   this.setState({Loading: true})
      const { fetchCategories } = this.props;
      await fetchCategories();
-     
+     this.setState({Loading: false})
      }
      console.log("log from add product Updatefetchproduct" )
        
@@ -55,14 +57,22 @@ await this.FetchCategoriesFromServer()
       
  <h3>Categories List</h3>
 <div>
-    <table className="TableList">
+ 
+
+{!this.state.Loading?
+                      <table className="TableList">
     <tr><th>Category Name</th> </tr>
    
 {this.props.categories.map((category)=>{
 return     <tr><td>{category.nameEn}</td></tr>
    })}
   
-      </table>
+      </table>:  <div className="loader"/>}
+
+            
+
+
+   
       </div>
       
 </div>
