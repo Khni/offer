@@ -20,11 +20,13 @@ class AddProduct extends Component {
 
     constructor(props) {
         super(props)
-        this.onSubmit = this.onSubmit.bind(this);
-
+        
         this.state = {
           addingProduct: false
         }
+        this.onSubmit = this.onSubmit.bind(this);
+
+        
     }
 
 async onSubmit(formData) {
