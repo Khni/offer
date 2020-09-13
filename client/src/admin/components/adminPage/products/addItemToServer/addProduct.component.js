@@ -48,7 +48,7 @@ console.log("isAdding After setting True///" +this.state.addingProduct );
    
    if (this.props.AddedToServer) {
     this.setState({addingProduct: false})
-     alert("Item has been added!") 
+     //alert("Item has been added!") 
     window.location.reload();
     }
   
