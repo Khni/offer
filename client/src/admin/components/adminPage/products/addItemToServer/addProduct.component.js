@@ -40,7 +40,7 @@ const { addProductToServer } = this.props;
 this.setState({addingProduct: true})
 console.log("isAdding After setting True///" +this.state.addingProduct );
    await addProductToServer(formData,AdminToken)
-   this.setState({addingProduct: false})
+ //  this.setState({addingProduct: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
    let AddetToServerCondafter = this.props.AddedToServer
@@ -204,9 +204,9 @@ const { handleSubmit } = this.props;
                 
 
 
-             {!this.props.addingProduct? <button type="submit" class="custum-btn-form">  
+             {!this.state.addingProduct? <button type="submit" class="custum-btn-form">  
                       submit</button> :null }
-             {this.props.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
+             {this.state.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
 
             
           </form>
