@@ -48,6 +48,7 @@ console.log("isAdding After setting True///" +this.state.addingProduct );
    console.log("added cond after submit" +AddetToServerCondafter);
    
    if (this.props.AddedToServer) {
+   	
     this.setState({addingToServer: false})
      //alert("Item has been added!") 
   window.location.reload();

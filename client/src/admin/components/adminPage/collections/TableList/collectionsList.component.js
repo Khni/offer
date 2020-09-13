@@ -21,16 +21,19 @@ class CollectionsList extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+          Loading: false
+        }
         
     }
 
     async FetchCollectionsFromServer(){
       if(!this.props.collectionsFetched) {
-   
+   this.setState({Loading: true})
         const { fetchCollections } = this.props;
       
         await fetchCollections();
-
+this.setState({Loading: false})
           console.log("log from add product Update" )
          }
       
@@ -65,14 +68,23 @@ await this.FetchCollectionsFromServer()
       
  <h3>Collection List</h3>
   <div>
-    <table className="TableList">
+  {!this.state.Loading?
+                      <table className="TableList">
     <tr><th>collection name</th></tr>
    
 {this.props.collections.map((collection)=>{
 return     <tr><td>{collection.nameEn}</td></tr>
    })}
   
-      </table>
+      </table>:  <div className="loader"/>}
+
+  
+ 
+    
+      
+      
+      
+      
 </div>
    
 </div>

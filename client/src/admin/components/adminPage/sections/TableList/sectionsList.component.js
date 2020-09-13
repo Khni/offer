@@ -21,15 +21,18 @@ class ProductsList extends Component {
 
     constructor(props) {
         super(props)
-        
+        this.state = {
+          Loading: false
+        }
     }
 
 
 async FetchSectionsFromServer() {
 if(!this.props.sectionsFetched) {
-  
+  this.setState({Loading: true})
   const { fetchSections } = this.props;
   await fetchSections();
+  this.setState({Loading: false})
   console.log("log from add product UpdatefetchSectction" )
   }
 } 
@@ -60,14 +63,22 @@ async componentDidMount() {
       
  <h3>Sections List</h3>
 <div >
-    <table className="TableList" >
+
+{!this.state.Loading?
+                      <table className="TableList" >
     <tr><th>sections name</th></tr>
    
 {this.props.sections.map((section)=>{
 return     <tr><td>{section.nameEn}</td></tr>
    })}
   
-      </table>
+      </table>:  <div className="loader"/>}
+
+            
+
+
+
+    
      </div>
 
    

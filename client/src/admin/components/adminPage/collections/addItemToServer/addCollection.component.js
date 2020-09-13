@@ -139,7 +139,7 @@ const { handleSubmit } = this.props;
 const mapStateToProps = state => {
   return {
   	AdminToken: selectAdminAuth(state).token,
-  AddetToServer : state.categoryReducer.AddToServer.added,
+  AddedToServer : state.categoryReducer.AddToServer.added,
   products: state.categoryReducer.products
   //	categories : state.categoryReducer.categories, 
  // sections: state.categoryReducer.sections, 
