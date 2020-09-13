@@ -142,13 +142,18 @@ export const fetchProducts= () => {
     
       try {
      const response =   await axios.get('/api/products');
-  console.log('response' +response.data.sections);
+  console.log('response' );
   
-        dispatch({
+  setTimeout(() => {
+    dispatch({
           type: FETCH_PRODUCTS, 
           Products : response.data.products
           
         });
+  }, 3000);
+  
+  
+        
        
       } catch(err) {
       // console.log();
