@@ -128,32 +128,32 @@ export const addSectionToServer = (data, adminToken) => {
 
 
 
-export const fetchProducts= () => {
+export const fetchProducts= (isFetching) => {
 
 
     return async dispatch => {
-    	
+      console.log("before Start"+isFetching);
     dispatch({
           type: PRODUCTS_IS_FETCHING
           
           
         });
-    
+    console.log("after Start"+isFetching);
     
       try {
      const response =   await axios.get('/api/products');
   console.log('response' );
   
-  setTimeout(() => {
+  //setTimeout(() => {
     dispatch({
           type: FETCH_PRODUCTS, 
           Products : response.data.products
           
         });
-  }, 3000);
+  //}, 3000);
   
   
-        
+  console.log("after fetch Start"+isFetching);
        
       } catch(err) {
       // console.log();

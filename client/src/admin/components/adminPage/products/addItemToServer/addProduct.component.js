@@ -21,6 +21,10 @@ class AddProduct extends Component {
     constructor(props) {
         super(props)
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.state = {
+          addingProduct: false
+        }
     }
 
 async onSubmit(formData) {
@@ -29,15 +33,18 @@ let AddetToServerCond = this.props.AddedToServer
 console.log("added cond before submit" +AddetToServerCond);
 
 const { addProductToServer } = this.props;
-console.log("form data: "  )
+//console.log("form data: "  )
+this.setState({addingProduct: true})
+console.log("isAdding After setting True///" +this.state.addingProduct );
    await addProductToServer(formData,AdminToken)
-  
-   console.log(formData);
+   this.setState({addingProduct: false})
+   console.log("isAdding After setting false///" +this.state.addingProduct );
+   //console.log(formData);
    let AddetToServerCondafter = this.props.AddedToServer
    console.log("added cond after submit" +AddetToServerCondafter);
    
    if (this.props.AddedToServer) {
-      
+    this.setState({addingProduct: false})
      alert("Item has been added!") 
     window.location.reload();
     }
@@ -191,11 +198,13 @@ const { handleSubmit } = this.props;
 
 
             
+                
 
 
+             {!this.state.addingProduct ? <button type="submit" class="custum-btn-form">  
+                      submit</button> :null }
+             {this.state.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
 
-
-            <button type="submit" class="custum-btn-form">submit</button>
             
           </form>
           </div>

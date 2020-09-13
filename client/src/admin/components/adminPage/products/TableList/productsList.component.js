@@ -34,7 +34,8 @@ class ProductsList extends Component {
     if (!this.props.productsFetched) {
 
       const { fetchProducts } = this.props;
-      await fetchProducts();
+      
+      await fetchProducts(this.props.productsIsFetching);
 
     }
     console.log("log from add product Updatefetchproduct")

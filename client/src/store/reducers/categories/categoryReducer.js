@@ -13,7 +13,12 @@ import {
   PRODUCTS_IS_FETCHING, 
   SECTIONS_IS_FETCHING, 
   CATEGORIES_IS_FETCHING, 
-  COLLECTIONS_IS_FETCHING
+  COLLECTIONS_IS_FETCHING,
+
+  ADDING_PRODUCT,
+ ADDING_SECTION,
+ ADDING_CATEGORY,
+ ADDING_COLLECTION
       } from '../../types/productsTypes'
 
 
@@ -21,18 +26,22 @@ import {
         categories: [], 
         categoriesFetched: false,
         categoriesIsFetching: false,
+        addingCategory:false,
         
         sections: [], 
         sectionsFetched: false, 
         sectionsIsFetching: false,
+        addingSection:false,
         
         products:[], 
         productsFetched: false, 
         productsIsFetching: false,
+        addingProduct:false,
         
         collections:[], 
         collectionsFetched: false,
         collectionsIsFetching: false,
+        addingCollection:false,
         FetchError: false, 
         
         AddToServer: {
@@ -140,6 +149,13 @@ import {
             
             
             
+
+
+           
+
+
+
+
             
           default:
             return state;
