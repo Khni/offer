@@ -28,6 +28,7 @@ class AddProduct extends Component {
 
         
     }
+    
 
 async onSubmit(formData) {
 const AdminToken = this.props.AdminToken
@@ -203,9 +204,9 @@ const { handleSubmit } = this.props;
                 
 
 
-             {!this.state.addingProduct ? <button type="submit" class="custum-btn-form">  
+             {!this.props.addingProduct? <button type="submit" class="custum-btn-form">  
                       submit</button> :null }
-             {this.state.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
+             {this.props.addingProduct ? <div className="loadingBtnDiv"><div className="loaderbTn"/></div> : null }
 
             
           </form>
@@ -235,6 +236,8 @@ const mapStateToProps = state => {
   sections: state.categoryReducer.sections, 
   AdminToken: selectAdminAuth(state).token,
   AddedToServer : state.categoryReducer.AddToServer.added,
+  addingProduct: state.categoryReducer.addingProduct, 
+  
  // products: state.categoryReducer.products
  //   Name: selectAdminAuth(state).Name,
    // Email: selectAdminAuth(state).Email,

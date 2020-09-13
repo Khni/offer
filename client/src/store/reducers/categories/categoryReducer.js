@@ -101,6 +101,7 @@ import {
             case ADDED_TO_SERVER :
             return {
            ...state, 
+           addingProduct: false;
            AddToServer: {
         	added: true, 
             error:'' 
@@ -111,6 +112,7 @@ import {
             case ADDED_TO_SERVER_ERROR :
             return {
            ...state, 
+           addingProduct: false;
            AddToServer: {
         	added: false, 
             error: action.error
@@ -144,6 +146,13 @@ import {
             return {
            ...state, 
            productsIsFetching: true
+             
+            };
+            
+            case ADDING_PRODUCT :
+            return {
+           ...state, 
+           addingProduct: true
              
             };
             

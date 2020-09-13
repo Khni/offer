@@ -171,6 +171,12 @@ export const addProductToServer = (data, adminToken) => {
 
 
     return async dispatch => {
+    	
+    dispatch({
+          type: ADDING_PRODUCT
+          
+        });
+    
       try {
      const response =   await axios.post('/api/product/add', data, {
       headers : { Authorization: `Bearer ${adminToken}`
