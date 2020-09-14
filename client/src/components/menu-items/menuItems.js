@@ -12,7 +12,7 @@ const menuItems = (props, {history,match})=>{
    <div>
    
     <div  className="item" 
-    onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.id}`)}>
+    onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}>
    
    
    
