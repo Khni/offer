@@ -1,6 +1,16 @@
-import React from 'react'
+import React , {Component}  from 'react'
 import Searchboxstyle from './searchbox.scss'
-const Searchbox = () => {
+class Searchbox extends Component {
+
+constructor(props){
+		super(props);
+	
+	
+  }
+
+  searchUpdate(event) {
+    this.props.SearchChange()
+  }
 
 
     return (
@@ -8,6 +18,7 @@ const Searchbox = () => {
         <input type="text"
             className="input-text-searchbox"
             placeholder="search... "
+            value={this.props.SearchVal} onChange={this.searchUpdate.bind(this)} 
         />
     );
 

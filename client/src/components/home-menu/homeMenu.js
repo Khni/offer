@@ -11,15 +11,32 @@ class homeMenu extends Component {
 	constructor(props){
 		super(props);
 	
-	}
+	this.state = {
+      search: ''
+    }
+  }
+
+  searchUpdate(event) {
+    this.setState({ search: event.target.value.substr(0, 20) })
+  }
+  
 	render() {
 		let {collections} =this.props
+		
+		let collectionsFiltered = collections.flatMap.((collection)=>collection.items).filter((item)=>
+item.name.indexOf(this.state.search) !== -1) 
+		
+		
+		
 		return(
 		<div className="menu-container">
 		
-		  <Header searchbox={true} />
+		  <Header searchbox={true}
+          SearchVal={this.state.search} 
+           SearchChange={this.searchUpdate} />
+           
 		<div className="full-menu">
-		{collections.map((col)=>
+		{collectionsFiltered.map((col)=>
   <Section key={col.id}  items={col.items} title={col.title} />
     )}
 		</div>
