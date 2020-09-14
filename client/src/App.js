@@ -27,7 +27,7 @@ function App() {
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
          <Route path='/account' component={UserAccount} />
-          <Route path='/item/:title' component={ProductPage} />
+          <Route path='/item/:id' component={ProductPage} />
           
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />

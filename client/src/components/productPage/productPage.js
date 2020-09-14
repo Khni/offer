@@ -14,7 +14,7 @@ import Style from './ProductPage.scss'
 
 
       render(){
-        console.log(this.props.match.params.title);
+        console.log(this.props.match.params.id);
         console.log("IMGURL"+this.props.Item.imgURL);
 
         return(
@@ -40,8 +40,8 @@ import Style from './ProductPage.scss'
     return col.id ===1
   })*/
   
-  Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.name === ownProps.match.params.title ),
- Product: selectItem(ownProps.match.params.title)(state)
+  Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.id === ownProps.match.params.id ),
+ //Product: selectItem(ownProps.match.params.id)(state)
 });
 
 export default connect(mapStateToProps)(ProductPage);

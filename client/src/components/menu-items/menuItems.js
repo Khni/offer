@@ -11,8 +11,14 @@ const menuItems = (props, {history,match})=>{
    return(
    <div>
    
-   <div  className="item" 
-    onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}`)}>
+    <div  className="item" 
+    onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.id}`)}>
+   
+   
+   
+   
+ /"  <div  className="item" 
+    onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}`)}>*/
 {/*<Link className="item"
 to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}
 >*/} 
