@@ -44,9 +44,12 @@ async componentDidMount() {
   console.log("log from add product mound" )
 
   }
-  async componentDidUpdate() {
+  async componentDidUpdate(prevProps, prevState) {
+    console.log("prevState:" + prevState.Loading);
+    if (!prevState.Loading) {
     await this.FetchSectionsFromServer()
     console.log("log from add product Update" )
+    }
    }
 
 

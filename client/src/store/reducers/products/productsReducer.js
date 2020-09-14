@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+  /*switch (action.type) {
     case FETCH_PRODUCTS :
       return {
      ...state, 
@@ -16,7 +16,9 @@ const productsReducer = (state = INITIAL_STATE, action) => {
       
     default:
       return state;
-  }
+  }*/
+
+  return state;
 };
 
 export default productsReducer;

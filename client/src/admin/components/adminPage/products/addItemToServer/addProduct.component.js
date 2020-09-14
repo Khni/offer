@@ -68,6 +68,7 @@ if(!this.props.sectionsFetched) {
   
 
 async componentDidMount() {
+  
 await this.FetchSectionsFromServer()
   //const { fetchSections } = this.props;
   //const { fetchProducts } = this.props;
@@ -76,7 +77,7 @@ await this.FetchSectionsFromServer()
   console.log("log from add product mound" )
 
   }
-  async componentDidUpdate() {
+  async componentDidUpdate(prevState) {
   await this.FetchSectionsFromServer()
     //const { fetchSections } = this.props;
  // const { fetchProducts } = this.props;

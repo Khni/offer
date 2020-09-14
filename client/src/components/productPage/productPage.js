@@ -3,6 +3,7 @@ import PicComponent from './pic/pic.component'
 import MiddleComponent from './middle/middle.component'
 import DiscComponent from './disc/disc.component'
 import {connect} from 'react-redux'
+import {selectItem} from '../../store/reducers/products/productsReselect'
 import Style from './ProductPage.scss'
 
  class ProductPage extends Component {
@@ -14,11 +15,12 @@ import Style from './ProductPage.scss'
 
       render(){
         console.log(this.props.match.params.title);
+        console.log("IMGURL"+this.props.Product.imgURL);
 
         return(
 <div className="productPage">
     <div className="PicComponent">
-   <PicComponent />
+   <PicComponent imgURL={this.props.Product.imgURL}/>
    </div>
    <div className="MiddleComponent">
    <MiddleComponent />
@@ -33,7 +35,7 @@ import Style from './ProductPage.scss'
  }
 
  const mapStateToProps = (state, ownProps) => ({
- // collection: selectCollection(ownProps.match.params.collectionId)(state)
+ Product: selectItem(ownProps.match.params.collectionId)(state)
 });
 
 export default connect(mapStateToProps)(ProductPage);

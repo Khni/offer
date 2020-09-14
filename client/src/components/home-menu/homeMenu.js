@@ -13,13 +13,13 @@ class homeMenu extends Component {
 	
 	}
 	render() {
-		
+		let {collections} =this.props
 		return(
 		<div className="menu-container">
 		
 		  <Header />
 		<div className="full-menu">
-		{this.props.collections.map((col)=>
+		{collections.map((col)=>
   <Section key={col.id}  items={col.items} title={col.title} />
     )}
 		</div>
@@ -40,6 +40,7 @@ class homeMenu extends Component {
 const mapStateToProps =(state) =>{
 	return {
  collections: selectProducts(state)
+ //collections: state.ProductsReducer.products
 	}
 }
 

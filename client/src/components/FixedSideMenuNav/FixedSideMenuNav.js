@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 
-import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
+import { Route, NavLink, Switch ,Redirect, Link} from 'react-router-dom';
+import Offerenologo from '../header/img/Offereno.png';
+
 
 import FixedSideMenuNavStyle from './FixedSideMenuNav.scss'
 const FixedSideMenuNav = (props) => {
@@ -14,7 +16,9 @@ const FixedSideMenuNav = (props) => {
         return(
 
     <nav className="side-nav">
-    <h5 className="side-nav-title">{props.title}</h5>
+    <Link className="homeLogo" to='/'>
+                <img className="logo" src={Offerenologo} />
+              </Link>
     <div className="NavLinks-container" >
     {props.navlinksArr.map((navlink, i)=>{
 return     <NavLink key={i} className="side-NavLink"

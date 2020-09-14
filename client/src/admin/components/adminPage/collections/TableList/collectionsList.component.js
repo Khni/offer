@@ -43,15 +43,19 @@ this.setState({Loading: false})
        
   
 
-async componentDidMount() {
-
+async componentDidMount(prevProps, prevState) {
+ // console.log("prevState:" + prevState.Loading);
 await this.FetchCollectionsFromServer()
   console.log("log from  collection mound" )
 
   }
-  async componentDidUpdate() {
-    await this.FetchCollectionsFromServer()
+  async componentDidUpdate(prevProps, prevState) {
+    console.log("prevState:" + prevState.Loading);
+    if (!prevState.Loading) {
+      await this.FetchCollectionsFromServer()
     console.log("log from  collection Update" )
+    }
+    
    }
 
 

@@ -39,8 +39,11 @@ class CategoryList extends Component {
 async componentDidMount() {
 await this.FetchCategoriesFromServer()
   }
-  async componentDidUpdate() {
+  async componentDidUpdate(prevProps, prevState) {
+    console.log("prevState:" + prevState.Loading);
+    if (!prevState.Loading) {
  await this.FetchCategoriesFromServer()
+    }
    }
 
 
