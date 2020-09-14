@@ -17,7 +17,7 @@ const menuItems = (props, {history,match})=>{
    
    
    
- /"  <div  className="item" 
+ /*  <div  className="item" 
     onClick={() => props.history.push(`${props.match.url+"item/" }${props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}`)}>
 {<Link className="item"
 to={props.name.replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-").replace(" ", "-")}
