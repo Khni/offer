@@ -20,7 +20,7 @@ import Style from './ProductPage.scss'
         return(
 <div className="productPage">
     <div className="PicComponent">
-   <PicComponent imgURL={this.props.Item.imgURL}/>
+   <PicComponent imgURL={this.props.Item.imageUrl}/>
    </div>
    <div className="MiddleComponent">
    <MiddleComponent />
