@@ -123,6 +123,7 @@ a {
 .cartSection {
 	display: flex;
 	flex-direction: row;
+	cursor: pointer;
 }
 
 .icontext-text {

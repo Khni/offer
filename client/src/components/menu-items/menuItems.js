@@ -33,7 +33,8 @@ const menuItems = (props, {history,match})=>{
 
 
 </div>
-<button className="custum-btn "  onClick={() => props.addItem(props.item)}>ADD TO CART  </button>
+
+{/*<button className="custum-btn "  onClick={() => props.addItem(props.item)}>ADD TO CART  </button>*/}
 
 
 

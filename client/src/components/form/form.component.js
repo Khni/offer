@@ -76,7 +76,7 @@ class Form extends Component {
  
             
  
-{this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
+{/*this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null */ }
  
  
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>

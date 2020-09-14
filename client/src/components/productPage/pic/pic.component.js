@@ -6,7 +6,7 @@ const ProductPic = (props) => {
     return (
 
 <div className="ProductPic">
-<img src={props.imgURL}  className="item-img"/>
+<img src={props.imgURL}  className="product-img"/>
 </div>
 
     );

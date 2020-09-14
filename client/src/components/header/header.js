@@ -74,8 +74,8 @@ class Header extends Component {
           </div>
           <CartDropdown show={this.props.hidden} />
           {/*this.props.hidden ? null : <CartDropdown />*/}
-          
-          <Searchbox />
+          {this.props.searchbox ?  <Searchbox /> : null}
+         
 
         </div>
  

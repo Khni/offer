@@ -17,7 +17,7 @@ class homeMenu extends Component {
 		return(
 		<div className="menu-container">
 		
-		  <Header />
+		  <Header searchbox={true} />
 		<div className="full-menu">
 		{collections.map((col)=>
   <Section key={col.id}  items={col.items} title={col.title} />
