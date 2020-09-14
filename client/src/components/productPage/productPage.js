@@ -20,7 +20,7 @@ import Style from './ProductPage.scss'
         return(
 <div className="productPage">
     <div className="PicComponent">
-   <PicComponent imgURL={this.props.Product.imgURL}/>
+   <PicComponent imgURL={this.props.Item.imgURL}/>
    </div>
    <div className="MiddleComponent">
    <MiddleComponent />
@@ -40,12 +40,7 @@ import Style from './ProductPage.scss'
     return col.id ===1
   })*/
   
-  Item: state.ProductsReducer.products.map((col)=>{
-
-    return col.items.find((item)=>{
-       return item.name === ownProps.match.params.title
-    })
-  }),
+  Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.name === ownProps.match.params.title ),
  Product: selectItem(ownProps.match.params.title)(state)
 });
 
