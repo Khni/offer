@@ -15,7 +15,7 @@ import Style from './ProductPage.scss'
 
       render(){
         console.log(this.props.match.params.title);
-        console.log("IMGURL"+this.props.ItemProduct.title);
+        console.log("IMGURL"+this.props.Item.imgURL);
 
         return(
 <div className="productPage">
@@ -35,17 +35,17 @@ import Style from './ProductPage.scss'
  }
 
  const mapStateToProps = (state, ownProps) => ({
-  ItemProduct: state.ProductsReducer.products.filter((col)=>{
+  /*ItemProduct: state.ProductsReducer.products.find((col)=>{
 
-    return col.id ==1
-  })
+    return col.id ===1
+  })*/
   
- /* Item: state.ProductsReducer.products.map((col)=>{
+  Item: state.ProductsReducer.products.map((col)=>{
 
-    return col.items.filter((item)=>{
+    return col.items.find((item)=>{
        return item.name === ownProps.match.params.title
     })
-  })*/,
+  }),
  Product: selectItem(ownProps.match.params.title)(state)
 });
 
