@@ -61,6 +61,7 @@ cartdropdown = "cart-dropdown open" ;
 
 
 </div>{/*cart-Item-drop-container*/} 
+<div className="total-sum" >{"Total: "+props.total}</div>
 <div className="checkout-cart-btns">
 <button className="custum-btn " onClick={()=>props.history.push("/cart")} >CART LIST</button>
 
@@ -77,7 +78,15 @@ cartdropdown = "cart-dropdown open" ;
 
 function mapStateToProps(state)  {
   return {
-    cartItems: selectCartItems(state)
+    cartItems: selectCartItems(state), 
+    total: selectCartItems(state).reduce(
+
+(accumalatedQuantity, item) =>
+
+accumalatedQuantity + item quantity * item.price, 0
+
+)
+
     
   };
 }

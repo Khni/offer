@@ -27,15 +27,16 @@ type: mongoose.Schema.Types.ObjectId,
        type: Number,
         required: true
        }, 
-       priceQuantity: {
-       type: Number,
-        required: true
-       }, 
-       totalPrice: {
+       price: {
        type: Number,
         required: true
        }
+       
         }] , 
+        totalPrice: {
+       type: Number,
+        required: true
+       }
      
 	
 	}, 
