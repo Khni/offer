@@ -13,9 +13,10 @@ const MiddleProduct = (props) => {
     return (
 
 <div className="MiddleProduct">
-<p>{props.name}</p>
-    <p>Price: {props.price}EGP</p>
-    <button type="submit" class="custum-btn-form" onClick={() => props.addItem(props.item)} >ADD TO CART</button>
+<h1 className="product-page-title">{props.name}</h1>
+    <p className="product-page-price">Price: {" "+props.price+" "}EGP</p>
+    <p className="brand-text">Brand: Fashion | Similar products from Fashion</p>
+    <button type="submit" className="custum-btn-form middle-btn" onClick={() => props.addItem(props.item)} >ADD TO CART</button>
 </div>
 
     );

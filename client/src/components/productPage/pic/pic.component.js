@@ -7,7 +7,11 @@ const ProductPic = (props) => {
 
 <div className="ProductPic">
 <img src={props.imgURL}  className="product-img"/>
+<div>
+    <p><h2 className="share-this-product">SHARE THIS PRODUCT</h2></p>
+    </div>
 </div>
+
 
     );
 }

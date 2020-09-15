@@ -36,7 +36,7 @@ item.name.indexOf(this.state.search) !== -1)
            SearchChange={this.searchUpdate} />
            
 		<div className="full-menu">
-		{collectionsFiltered.map((col)=>
+		{collections.map((col)=>
   <Section key={col.id}  items={col.items} title={col.title} />
     )}
 		</div>
