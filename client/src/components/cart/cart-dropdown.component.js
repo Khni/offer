@@ -79,7 +79,7 @@ cartdropdown = "cart-dropdown open" ;
 function mapStateToProps(state)  {
   return {
     cartItems: selectCartItems(state), 
-    total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item quantity * item.price, 0)
+    total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity * item.price, 0)
 
     
   };
