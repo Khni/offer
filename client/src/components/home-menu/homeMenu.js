@@ -23,7 +23,7 @@ class homeMenu extends Component {
 	render() {
 		let {collections} =this.props
 		
-		let collectionsFiltered = collections.flatMap.((collection)=>collection.items).filter((item)=>
+		let collectionsFiltered = collections.flatMap((collection)=>collection.items).filter((item)=>
 item.name.indexOf(this.state.search) !== -1) 
 		
 		
