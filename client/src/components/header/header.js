@@ -51,8 +51,7 @@ class Header extends Component {
 
               {this.props.isAuth && this.props.token && !this.props.errorMsg?
                 <Link className="icontext margin-right10" to='/account'>
-                  <p className="signin-text icontext-text">  {"Welcome, "
-+ this.props.name} </p>
+                
 <p className="signin-text icontext-text">  Welcome, <br />
  {this.props.name} </p>
                   <img src={iconuser} className="icontext-icon" />
