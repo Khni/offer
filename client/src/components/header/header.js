@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import headercss from './header.scss';
-import Offerenologo from './img/Offereno.png';
-import menuicon from './img/menuicon.png';
+import Offerenologo from './img/juv.png';
+import menuicon from './img/menu.png';
 import iconuser from './img/newuser.png';
 import carticon from './img/newcart.png';
 import closeCart from './img/close.png';
@@ -42,7 +42,7 @@ class Header extends Component {
               
             </div>{/*logo cont left*/}
             <div class="logo-container-right">
-            <p className="cartCounter">{this.props.totalItems}</p>
+            <p className="cartCounter"onClick={this.props.toggle}  >{this.props.totalItems}</p>
               {!this.props.isAuth ?
                 <Link className="icontext margin-right10" to='/signin'>
                   <p className="signin-text icontext-text">signin</p>
