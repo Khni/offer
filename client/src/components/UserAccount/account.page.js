@@ -20,6 +20,8 @@ class  AccountUser extends Component {
 signOutUser() {
 const {UserSignOut} = this.props 
 UserSignOut()
+this.props.history.push('/')
+
 } 
           
           componentDidMount() {
@@ -74,6 +76,7 @@ const buttons = [{
                     <Route path="/account/orders" component={Orders}  />
                     <Route path="/account/favorite-list" component={FavoriteList} />
                     <Route path="/account/viewed-items" component={FavoriteList} />
+                    <Redirect from="/account" to="/account/settings" />
                     
                 </Switch>
                

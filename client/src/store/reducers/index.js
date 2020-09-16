@@ -13,7 +13,7 @@ import categoryReducer from './categories/categoryReducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard','adminAuth', 'userAuth' ]
+  whitelist: ['dashboard','adminAuth', 'userAuth', 'cartItemsReducer' ]
 };
 
 const Reducers = combineReducers({
