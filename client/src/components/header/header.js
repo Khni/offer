@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import headercss from './header.css';
+import headercss from './header.scss';
 import Offerenologo from './img/Offereno.png';
 import menuicon from './img/menuicon.png';
 import iconuser from './img/Iconuser.png';
@@ -11,7 +11,8 @@ import * as actions from '../../store/actions/cartAction.js';
 import CartDropdown from '../cart/cart-dropdown.component';
 import Sidebar from '../sidebar/sidebar.js'
 import Searchbox from '../searchbox/searchbox.component'
-import {cartHidden, sidebarHidden} from  '../../store/reducers/cart/cartReselect';
+import {cartHidden, sidebarHidden, selectCartItems} from  '../../store/reducers/cart/cartReselect';
+
 class Header extends Component {
 
   constructor(props) {
@@ -48,7 +49,7 @@ class Header extends Component {
 
               {this.props.isAuth && this.props.token && !this.props.errorMsg?
                 <Link className="icontext margin-right10" to='/account'>
-                  <p className="signin-text icontext-text">  account </p>
+                  <p className="signin-text icontext-text">  {"Welcome, "+ this.props.name} </p>
                   <img src={iconuser} className="icontext-icon" />
                 </Link> : null}
 
@@ -56,10 +57,8 @@ class Header extends Component {
 
 
               <div className="cartSection" onClick={this.props.toggle}>
-                {this.props.hidden ? <div className="cartSection" >  <p className="icontext-text" >
-                  cart shop
-                    {/*this.props.msg*/}
-                </p>
+                {this.props.hidden ? <div className="cartSection" > 
+                <p className="cartCounter">{this.props.totalItems}</p>
                   <img src={carticon} className="icontext-icon-cart" /></div>
                   : <img src={closeCart} className="icontext-icon-cart" />}
 
@@ -91,8 +90,10 @@ function mapStateToProps(state) {
     isAuth: state.userAuth.authUser.isAuthenticated,
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,
+    name: state.userAuth.authUser.name,
     hidden: cartHidden(state) ,
-    hiddenSidebar: sidebarHidden(state) 
+    hiddenSidebar: sidebarHidden(state),
+    totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 
 
   };
