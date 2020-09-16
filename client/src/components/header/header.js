@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import headercss from './header.scss';
 import Offerenologo from './img/Offereno.png';
 import menuicon from './img/menuicon.png';
-import iconuser from './img/Iconuser.png';
-import carticon from './img/carticon.png';
+import iconuser from './img/newuser.png';
+import carticon from './img/newcart.png';
 import closeCart from './img/close.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -39,8 +39,10 @@ class Header extends Component {
               <Link to='/'>
                 <img className="logo" src={Offerenologo} />
               </Link>
+              
             </div>{/*logo cont left*/}
             <div class="logo-container-right">
+            <p className="cartCounter">{this.props.totalItems}</p>
               {!this.props.isAuth ?
                 <Link className="icontext margin-right10" to='/signin'>
                   <p className="signin-text icontext-text">signin</p>
@@ -54,17 +56,19 @@ class Header extends Component {
                 </Link> : null}
 
 
-
-
+                
+                
               <div className="cartSection" onClick={this.props.toggle}>
-                {this.props.hidden ? <div className="cartSection" > 
-                <p className="cartCounter">{this.props.totalItems}</p>
+              
+                {this.props.hidden ? <div className="cart-Section" > 
+                
                   <img src={carticon} className="icontext-icon-cart" /></div>
                   : <img src={closeCart} className="icontext-icon-cart" />}
 
 
 
               </div>
+              
 
             </div>
 

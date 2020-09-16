@@ -1,8 +1,5 @@
 import React from 'react'
 import Style from './pic.scss'
-
-
-
 const ProductPic = (props) => {
 
 
@@ -10,9 +7,7 @@ const ProductPic = (props) => {
 
 <div className="ProductPic">
 <img src={props.imgURL}  className="product-img"/>
-
 </div>
-
 
     );
 }
