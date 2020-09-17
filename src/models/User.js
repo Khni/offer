@@ -15,6 +15,12 @@ const userSchema = mongoose.Schema({
     name: {
         type: String
     },
+    firstName: {
+        type: String
+    },
+    LastName: {
+        type: String
+    },
     age: {
         type: Number
     },
@@ -88,18 +94,53 @@ const userSchema = mongoose.Schema({
 
 
 
-    phone: {
-        type: Number,
-        trim: true,
-
-    },
+    
 
     addresses: [
         {
-            address: {
+            firstName: {
                 type: String,
+                trim: true
+            }, 
+            lastName: {
+                type: String,
+                trim: true
+            }, 
+            phone: {
+               type: Number,
+              trim: true,
 
-            }
+              },
+              country: {
+        type: String,
+        trim: true,
+
+            },
+            city: {
+        type: String,
+        trim: true,
+
+            },
+            street: {
+        type: String,
+        trim: true,
+
+            },
+            floor: {
+        type: Number,
+        trim: true,
+
+            },
+            apartment : {
+        type: Number,
+        trim: true,
+
+            },
+            landmark: {
+        type: String,
+        trim: true
+
+            },
         }
     ],
 
@@ -113,6 +154,9 @@ const userSchema = mongoose.Schema({
             }
         }
     ]
+
+
+
 
 
 

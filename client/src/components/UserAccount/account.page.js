@@ -8,7 +8,7 @@ import FavoriteList from './components/userPages/FavoriteList/FavoriteList.js'
 import ViewedItems from './components/userPages/ViewedItems/ViewedItems.js'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/users.js'
-
+import Header from '../header/header'
 import SideNavStyle from '../FixedSideMenuNav/FixedSideMenuNav.scss'
 import SideNavComponent from '../FixedSideMenuNav/FixedSideMenuNav'
 class  AccountUser extends Component {
@@ -34,6 +34,7 @@ this.props.history.push('/')
           
 
     render() {
+    	
 const navlinks = [{
   path: "/account/settings",
   title: "Settings"
@@ -60,11 +61,11 @@ const buttons = [{
         return(
 <div className="SideNavPage">
 
-
+<Header />
   <SideNavComponent navlinksArr={navlinks}
  // title={this.props.name}
-  btns={true} 
-  buttons={buttons}
+//  btns={true} 
+  //buttons={buttons}
   />
     
     
@@ -81,7 +82,7 @@ const buttons = [{
                 </Switch>
                
     </div>
-    
+    <button  className="custum-btn-sidenav" onClick={this.signOutUser }>Sign out</button>
 </div>
 
 
