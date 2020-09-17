@@ -13,7 +13,7 @@ type: mongoose.Schema.Types.ObjectId,
 	products:[{
         productID:{
           type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        //required: true,
         ref: 'Product'
 
             }, 
