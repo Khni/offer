@@ -143,11 +143,13 @@ return <div>
 <p>{address.firstName}</p>
 
 </div>
-})
+})}
       
  
     
- <button  className="custum-btn" onClick={this.fetchAddresses }>Sign out</button>
+ <button  className="custum-btn" onClick={this.fetchAddresses }>click </button>
+
+      
       
 </div>
 
