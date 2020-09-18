@@ -147,7 +147,7 @@ return <div>
       
  
     
- <button  className="custum-btn" onClick={this.signOutUser }>Sign out</button>
+ <button  className="custum-btn" onClick={this.fetchAddresses }>Sign out</button>
       
 </div>
 
