@@ -24,6 +24,7 @@ class UserSettings extends Component {
          this.handleChangeName = this.handleChangeName.bind(this);
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
          this.setValues = this.setValues.bind(this);
+         this.signOutUser = this.signOutUser.bind(this);
               
 this.state = {
       username: props.name, 
@@ -32,7 +33,12 @@ this.state = {
     }
 
 
+signOutUser() {
+const {UserSignOut} = this.props 
+UserSignOut()
+this.props.history.push('/')
 
+} 
 
 
 
@@ -131,7 +137,7 @@ let fieldsets = [
  
 
     
-
+ <button  className="custum-btn" onClick={this.signOutUser }>Sign out</button>
       
 </div>
 
