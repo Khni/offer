@@ -163,7 +163,7 @@ return <div className="cart-Item" >
 
 {/*cart-item */} 
 </div> 
-  ))} 
+
 
 
 
