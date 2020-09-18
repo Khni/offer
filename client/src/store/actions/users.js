@@ -10,7 +10,11 @@ import {
   AUTH_ERROR,
   UPDATE_USER, 
   UPDATE_USER_ERROR, 
-  DASHBOARD_GET_DATA } from '../types/authUserTypes'
+  DASHBOARD_GET_DATA, 
+
+  SET_DEFAULT_ADDRESS, 
+  FETCH_ADDRESSES
+} from '../types/authUserTypes'
  
  export const signUp =( data, lang) => {
  	
@@ -143,6 +147,24 @@ export const UserSignOut = () => {
       
     };
   }
+  
+  export const FetchAddressesList = (AddressesArray) => {
+
+ console.log("FetchAddressesList from user");
+    return  dispatch => {
+     
+        dispatch({
+          type: FETCH_ADDRESSES, 
+          addresses: AddressesArray
+         
+        });
+       
+      
+    };
+  }
+  
+  
+  
   
   
 

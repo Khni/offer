@@ -16,7 +16,7 @@ import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
 import Form from '../../../../form/Settings/formSettings.component.js';
 
-class UserSettings extends Component {
+class Addresses extends Component {
 
     constructor(props) {
         super(props)
@@ -24,7 +24,7 @@ class UserSettings extends Component {
          this.handleChangeName = this.handleChangeName.bind(this);
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
          this.setValues = this.setValues.bind(this);
-         this.signOutUser = this.signOutUser.bind(this);
+         this.fetchAddresses = this.fetchAddresses.bind(this);
               
 this.state = {
       username: props.name, 
@@ -33,10 +33,10 @@ this.state = {
     }
 
 
-signOutUser() {
-const {UserSignOut} = this.props 
-UserSignOut()
-this.props.history.push('/')
+fetchAddresses(addressesArray) {
+const {FetchAddressesList} = this.props 
+FetchAddressesList(addressesArray)
+
 
 } 
 
@@ -68,6 +68,9 @@ console.log("form data: " + JSON.stringify(formData) )
   
   
   
+
+
+  
   
   setValues() {
 this.props.initialize({ email: this.state.useremail,
@@ -89,7 +92,18 @@ name:this.state.username
 
     render() {
     	
-
+const Adresses = [
+{
+street: '6 Zaki Abo soud', 
+phone: 12345,
+firstName: 'khaled' 
+}, 
+{
+street: '8 soudan', 
+phone: 6789,
+firstName: 'bsa' 
+} 
+] 
 
 
 let fieldsets = [
@@ -121,21 +135,17 @@ let fieldsets = [
 
 
      <div className="TopNavPage">
-       
-      
- <Form
-   title="Account Details" 
-   fieldsets={fieldsets}
-   
-   onSubmit={this.onSubmit } 
-   setVal ={this.setValues}
-   
-   submitBtnTitle="submit" 
-   
-   
-   />
- 
+       {this.props.addressesList.map((address)=>{
 
+return <div>
+<p>{address.street}</p>
+<p>{address.phone}</p>
+<p>{address.firstName}</p>
+
+</div>
+})
+      
+ 
     
  <button  className="custum-btn" onClick={this.signOutUser }>Sign out</button>
       
@@ -152,7 +162,7 @@ const mapStateToProps = state => {
   return {
   	errorMsg: state.userAuth.authUser.error, 
   userID: state.userAuth.authUser.id, 
-  updated: state.userAuth.authUser.updated, 
+  addressesList: state.userAuth.addresses.list, 
   
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
@@ -169,4 +179,4 @@ const mapStateToProps = state => {
 export default compose(
   connect(mapStateToProps, actions),
   reduxForm({ form: 'AccountSettings' })
-)(UserSettings)
+)(Addresses)

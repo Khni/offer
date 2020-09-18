@@ -4,7 +4,10 @@ import {
   AUTH_SIGN_IN, 
   AUTH_ERROR, 
 UPDATE_USER, 
-  UPDATE_USER_ERROR
+  UPDATE_USER_ERROR،
+  
+  SET_DEFAULT_ADDRESS, 
+  FETCH_ADDRESSES
 } from '../../types/authUserTypes';
 
 const DEFAULT_STATE = {
@@ -16,7 +19,12 @@ const DEFAULT_STATE = {
     name:'', 
     id:'', 
     updated:false
-   } 
+   }, 
+   
+   addresses:{
+      list:[], 
+      default:'' 
+     } 
   }
   
   export default (state = DEFAULT_STATE, action) => {
@@ -36,6 +44,11 @@ const DEFAULT_STATE = {
         return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' } }
       case AUTH_ERROR:
         return { ...state, authUser:{error: action.payload}}
+        
+        case FETCH_ADDRESSES:
+        return { ...state, addresses:{...state.addresses, list: action.addresses}}
+        case SET_DEFAULT_ADDRESS:
+        return { ...state, addresses:{...state.addresses, default: action.defaultAddress}}
       default:
         return state
     }
