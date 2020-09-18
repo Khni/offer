@@ -172,7 +172,7 @@ return <div className="cart-Item" >
 
 
 
-</div>
+
 })}
       
  
