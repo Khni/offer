@@ -38,11 +38,11 @@ class AccountSettingsNav extends Component {
     render() {
 
       const navlinks = [{
-        path="/account/settings/details" ,
+        path:"/account/settings/details" ,
         title: "Account Details"
       },
       {
-        path="/account/settings/address",
+        path:"/account/settings/address",
         title: "Address"
       }]
         return(
