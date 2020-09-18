@@ -164,7 +164,7 @@ const mapStateToProps = state => {
   return {
   	errorMsg: state.userAuth.authUser.error, 
   userID: state.userAuth.authUser.id, 
-  addressesList: state.userAuth.addresses.list, 
+  addressesList: state.userAuth.addresses.list,
   
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
