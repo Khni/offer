@@ -149,8 +149,8 @@ return <div className="cart-Item" >
   </div>{/* end of cart-item-desc*/}
   
    <div className="cart-item-bar">
-     <div className="remove-text-icon" onClick={() => props.removeItem(item)}>
-         <img src={Trashicon} className="trash-icon"/>
+     <div className="remove-text-icon" >
+         
          <p className="remove-text" >REMOVE </p>
       </div>{/*remove-text-icon */}
       
