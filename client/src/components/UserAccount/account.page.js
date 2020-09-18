@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
-import AccountSettings from './components/userPages/AccountSettings/AccountSettings.js'
+import AccountSettingsNav from './components/userPages/AccountSettings/AccountSettingsNav.js'
 import Orders from'./components/userPages/Orders/Orders.js'
 //import AddProduct from './components/adminPage/products/addProduct.component'
 import FavoriteList from './components/userPages/FavoriteList/FavoriteList.js'
@@ -15,14 +15,9 @@ class  AccountUser extends Component {
 
     constructor(props) {
         super(props)
-       this.signOutUser = this.signOutUser.bind(this);
+       
     }
-signOutUser() {
-const {UserSignOut} = this.props 
-UserSignOut()
-this.props.history.push('/')
 
-} 
           
           componentDidMount() {
      console.log('CDMount' );
@@ -75,7 +70,7 @@ const buttons = [{
     
     <div className="side-nav-container">
                 <Switch>
-                    <Route path="/account/settings" component={AccountSettings} />
+                    <Route path="/account/settings" component={AccountSettingsNav} />
                     <Route path="/account/orders" component={Orders}  />
                     <Route path="/account/favorite-list" component={FavoriteList} />
                     <Route path="/account/viewed-items" component={FavoriteList} />
@@ -85,7 +80,7 @@ const buttons = [{
                
     </div>
     
-<button  className="custum-btn-sidenav" onClick={this.signOutUser }>Sign out</button>
+
 </div>
 </div>
 
