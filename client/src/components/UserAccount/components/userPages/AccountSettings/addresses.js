@@ -137,11 +137,46 @@ let fieldsets = [
      <div className="TopNavPage">
        {this.props.addressesList.map((address)=>{
 
-return <div>
-<p>{address.street}</p>
-<p>{address.phone}</p>
-<p>{address.firstName}</p>
+return <div className="cart-Item" >
+ 
+ <div className="cart-item-desc">
+   
+   <div className="cart-item-details">
+      <p className="cart-item-title margin0">{address.street} </p>
+      <p className="cart-item-before-price margin0">    {address.phone}</p>
+      <p className="cart-item-price margin0">    {address.name}  </p>
+    </div>{/* end of cart-utem-details*/}
+  </div>{/* end of cart-item-desc*/}
+  
+   <div className="cart-item-bar">
+     <div className="remove-text-icon" onClick={() => props.removeItem(item)}>
+         <img src={Trashicon} className="trash-icon"/>
+         <p className="remove-text" >REMOVE </p>
+      </div>{/*remove-text-icon */}
+      
+      
+      
+  
+   </div> {/*end of cart-item-bar */}
 
+
+
+{/*cart-item */} 
+</div> 
+  ))} 
+
+
+
+
+
+
+
+<div className="checkout-cart-footer">
+
+
+
+<button className="custum-btn-checkout" >Checkout</button>
+<p className="total-sum-cart" > {"Total: "+props.total}</p>
 </div>
 })}
       
