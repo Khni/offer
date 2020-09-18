@@ -171,12 +171,7 @@ return <div className="cart-Item" >
 
 
 
-<div className="checkout-cart-footer">
 
-
-
-<button className="custum-btn-checkout" >Checkout</button>
-<p className="total-sum-cart" > {"Total: "+props.total}</p>
 </div>
 })}
       
