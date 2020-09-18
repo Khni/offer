@@ -62,6 +62,8 @@ const buttons = [{
 <div className="SideNavPage">
 
 <Header />
+
+<div className="SideNavPage-container" >
   <SideNavComponent navlinksArr={navlinks}
  // title={this.props.name}
 //  btns={true} 
@@ -82,7 +84,9 @@ const buttons = [{
                 </Switch>
                
     </div>
-    <button  className="custum-btn-sidenav" onClick={this.signOutUser }>Sign out</button>
+    
+<button  className="custum-btn-sidenav" onClick={this.signOutUser }>Sign out</button>
+</div>
 </div>
 
 
