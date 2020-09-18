@@ -147,7 +147,7 @@ return <div>
       
  
     
- <button  className="custum-btn" onClick={this.fetchAddresses }>click </button>
+ <button  className="custum-btn" onClick={() => this.fetchAddresses(Adresses)}>click </button>
 
       
       
