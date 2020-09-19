@@ -164,6 +164,22 @@ export const UserSignOut = () => {
   }
   
   
+  export const setDefaultAddress = (address) => {
+
+ console.log("FetchAddressesList from user");
+    return  dispatch => {
+     
+        dispatch({
+          type: SET_DEFAULT_ADDRESS, 
+          defaultAddress: address
+         
+        });
+       
+      
+    };
+  }
+  
+  
   
   
   

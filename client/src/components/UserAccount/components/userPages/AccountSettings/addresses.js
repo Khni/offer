@@ -25,6 +25,7 @@ class Addresses extends Component {
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
          this.setValues = this.setValues.bind(this);
          this.fetchAddresses = this.fetchAddresses.bind(this);
+         this.setDefault = this.setDefault.bind(this);
               
 this.state = {
       username: props.name, 
@@ -40,6 +41,12 @@ FetchAddressesList(addressesArray)
 
 } 
 
+setDefault(address) {
+const {setDefaultAddress} = this.props 
+setDefaultAddress(address)
+
+
+} 
 
 
 async onSubmit(formData) {
@@ -96,13 +103,22 @@ const Adresses = [
 {
 street: '6 Zaki Abo soud', 
 phone: 12345,
-firstName: 'khaled' 
+firstName: 'khaled' ,
+id: 2
 }, 
 {
 street: '8 soudan', 
 phone: 6789,
-firstName: 'bsa' 
-} 
+firstName: 'bsa' ,
+id: 3
+},
+{
+street: '9 makram', 
+phone: 676466,
+firstName: 'bezo' ,
+id: 9
+}, 
+
 ] 
 
 
@@ -150,8 +166,9 @@ return <div className="cart-Item" >
   
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
+         {!this.defaultAddress.id == address.id? 
+         <p className="remove-text"  onClick={() => this.setDefault(address) }>SET DEFAULT ADDRESS </p> : null} 
          
-         <p className="remove-text" >REMOVE </p>
       </div>{/*remove-text-icon */}
       
       
@@ -195,6 +212,7 @@ const mapStateToProps = state => {
   	errorMsg: state.userAuth.authUser.error, 
   userID: state.userAuth.authUser.id, 
   addressesList: state.userAuth.addresses.list,
+  defaultAddress: state.userAuth.addresses.default,
   
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
