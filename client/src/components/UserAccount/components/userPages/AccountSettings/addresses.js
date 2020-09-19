@@ -152,6 +152,9 @@ let fieldsets = [
 let cartItemClass=  "cart-Item" 
 
 let  DefaultBorder=(DefaultAddressID, addressID)=> {
+	
+	
+	
 if(DefaultAddressID == addressID)
  {cartItemClass=  "cart-Item borderCard"}else{
 cartItemClass=  "cart-Item" 
@@ -180,7 +183,11 @@ return <div className={cartItemClass} >
          <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text"  > DEFAULT ADDRESS </p> 
 } 
-{DefaultBorder(this.props.defaultAddress.id, address.id)}  
+{setInterval(() => {
+  DefaultBorder(this.props.defaultAddress.id, address.id)
+}, 1000);
+
+}  
 
          
       </div>{/*remove-text-icon */}
