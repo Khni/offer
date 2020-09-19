@@ -170,7 +170,7 @@ export const UserSignOut = () => {
  let addressesList =addressesArray
  const indexOfDefault = addressesList.findIndex(a => a.id ==address.id) 
  let cutOut = addressesList.splice(indexOfDefault, 1) [0]; // cut the element at index 'from'
-    addressesList.splice(to, 0, cutOut);    
+    addressesList.splice(0, 0, cutOut);    
     
     return  dispatch => {
      
