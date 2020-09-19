@@ -117,6 +117,7 @@ padding: 3;
 padding-top: 60px;
 display: flex;
 flex-direction: row;
+width: 100%;
 }
       
       .side-nav-container{
@@ -125,7 +126,9 @@ flex-direction: row;
 margin: 20px;
 margin-top: 5px;
 margin-right: 5px;
-
+margin-left: 50px;
+    padding: 20px;
+    border: 1px solid black;
 display: flex;
 padding: 5px;
 }

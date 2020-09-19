@@ -25,7 +25,7 @@ class Addresses extends Component {
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
          this.setValues = this.setValues.bind(this);
          this.fetchAddresses = this.fetchAddresses.bind(this);
-         this.setDefaulti = this.setDefault.bind(this);
+         this.setDefaulti = this.setDefaulti.bind(this);
               
 this.state = {
       username: props.name, 
@@ -104,20 +104,20 @@ name:this.state.username
 const Adresses = [
 {
 street: '6 Zaki Abo soud', 
-phone: 12345,
-firstName: 'khaled' ,
+phone: '01034543455',
+firstName: 'khaled mohamed' ,
 id: 2
 }, 
 {
 street: '8 soudan', 
-phone: 6789,
-firstName: 'bsa' ,
+phone: '012012012012',
+firstName: 'ahmed hassen' ,
 id: 3
 },
 {
 street: '9 makram', 
-phone: 676466,
-firstName: 'bezo' ,
+phone: '012010201201',
+firstName: 'zaki ahmed' ,
 id: 9
 }
 
@@ -149,21 +149,22 @@ let fieldsets = [
 }
 ] 
 
-let setDefault=(address, list)=> {
+let setDefault=async(address, list)=> {
 const {setDefaultAddress} = this.props 
-setDefaultAddress(address, list)
+await setDefaultAddress(address, list)
 
 
 } 
 
 
 let cartItemClass=  "cart-Item" 
+let setdefaultclass=  "remove-text default" 
 
 let  DefaultBorder=(DefaultAddressID, addressID)=> {
 	
 	
-	
-if(DefaultAddressID == addressID)
+	console.log("defaultAddresiD" + DefaultAddressID + "addressID" + addressID);
+if(DefaultAddressID === addressID)
  {cartItemClass=  "cart-Item borderCard"}else{
 cartItemClass=  "cart-Item" 
 } 
@@ -173,15 +174,17 @@ cartItemClass=  "cart-Item"
 
      <div className="TopNavPage">
        {this.props.addressesList.map((address)=>{
-
+{DefaultBorder(this.props.defaultAddress.id, address.id)}  
 return <div className={cartItemClass} >
  
  <div className="cart-item-desc">
    
    <div className="cart-item-details">
+      <p className="cart-item-title margin0">{address.firstName} </p>
       <p className="cart-item-title margin0">{address.street} </p>
-      <p className="cart-item-before-price margin0">    {address.phone}</p>
-      <p className="cart-item-price margin0">    {address.name}  </p>
+      <p className="cart-item-title margin0">{address.phone} </p>
+
+     
     </div>{/* end of cart-utem-details*/}
   </div>{/* end of cart-item-desc*/}
   
@@ -189,9 +192,9 @@ return <div className={cartItemClass} >
      <div className="remove-text-icon" >
          {this.props.defaultAddress.id != address.id ? 
          <p className="remove-text"  onClick={() => setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
-<p className="remove-text"  > DEFAULT ADDRESS </p> 
+<p className="remove-text default-address"  > DEFAULT ADDRESS </p> 
 } 
-{DefaultBorder(this.props.defaultAddress.id, address.id)}  
+
 
          
       </div>{/*remove-text-icon */}

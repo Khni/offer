@@ -23,14 +23,16 @@ class Header extends Component {
 
     return (
       <div className="header-container">
+         
         <Sidebar show={this.props.hiddenSidebar} />
 
 
 
         <div className="header">
+        
           <div className="logo-Container">
 
-
+          
             <div className="logo-container-left">
 
               <img src={menuicon} className="menuicon" onClick={this.props.openSidebar} />
@@ -42,7 +44,7 @@ class Header extends Component {
               
             </div>{/*logo cont left*/}
             <div class="logo-container-right">
-            <p className="cartCounter"onClick={this.props.toggle}  >{this.props.totalItems}</p>
+           
               {!this.props.isAuth ?
                 <Link className="icontext margin-right10" to='/signin'>
                   <p className="signin-text icontext-text">signin</p>
@@ -58,7 +60,7 @@ class Header extends Component {
                 </Link> : null}
 
 
-                
+                <p className="cartCounter"onClick={this.props.toggle}  >{this.props.totalItems}</p>
                 
               <div className="cartSection" onClick={this.props.toggle}>
               
@@ -74,8 +76,8 @@ class Header extends Component {
 
             </div>
 
-         <p className="cartCounter"onClick={this.props.toggle}  >{this.props.totalItems}</p>
-
+        
+          
           </div>
           <CartDropdown show={this.props.hidden} />
           {/*this.props.hidden ? null : <CartDropdown />*/}
@@ -83,7 +85,7 @@ class Header extends Component {
          
 
         </div>
- 
+       
       </div>
     );
   }
