@@ -93,6 +93,8 @@ name:this.state.username
   handleChangeEmail(event) {
   this.setState({useremail: event.target.value})
 }
+
+
   
 
 
@@ -148,7 +150,11 @@ let fieldsets = [
 ] 
 
 let cartItemClass=  "cart-Item" 
-      
+
+let  DefaultBorder=(DefaultAddressID, addressID)=> {
+if(DefaultAddressID == addressID)
+ {cartItemClass=  "cart-Item borderCard"}
+}     
         return(
 
 
@@ -172,7 +178,7 @@ return <div className={cartItemClass} >
          <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text"  > DEFAULT ADDRESS </p> 
 } 
-{if(this.props.defaultAddress.id == address.id) {cartItemClass=  "cart-Item borderCard"} }  
+{DefaultBorder(this.props.defaultAddress.id, address.id)}  
 
          
       </div>{/*remove-text-icon */}
