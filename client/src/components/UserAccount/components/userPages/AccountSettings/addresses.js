@@ -172,7 +172,7 @@ return <div className={cartItemClass} >
          <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text"  > DEFAULT ADDRESS </p> 
 } 
-{this.props.defaultAddress.id == address.id ? cartItemClass=  "cart-Item borderCard"} 
+{this.props.defaultAddress.id == address.id ? cartItemClass=  "cart-Item borderCard" : cartItemClass=  "cart-Item"}  
 
          
       </div>{/*remove-text-icon */}
