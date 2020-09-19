@@ -25,7 +25,7 @@ class Addresses extends Component {
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
          this.setValues = this.setValues.bind(this);
          this.fetchAddresses = this.fetchAddresses.bind(this);
-         this.setDefault = this.setDefault.bind(this);
+         this.setDefaulti = this.setDefault.bind(this);
               
 this.state = {
       username: props.name, 
@@ -41,7 +41,7 @@ FetchAddressesList(addressesArray)
 
 } 
 
-setDefault(address, list) {
+setDefaulti(address, list) {
 const {setDefaultAddress} = this.props 
 setDefaultAddress(address, list)
 
@@ -149,6 +149,14 @@ let fieldsets = [
 }
 ] 
 
+let setDefault=(address, list)=> {
+const {setDefaultAddress} = this.props 
+setDefaultAddress(address, list)
+
+
+} 
+
+
 let cartItemClass=  "cart-Item" 
 
 let  DefaultBorder=(DefaultAddressID, addressID)=> {
@@ -180,14 +188,10 @@ return <div className={cartItemClass} >
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
          {this.props.defaultAddress.id != address.id ? 
-         <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
+         <p className="remove-text"  onClick={() => setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text"  > DEFAULT ADDRESS </p> 
 } 
-{setInterval(() => {
-  DefaultBorder(this.props.defaultAddress.id, address.id)
-}, 1000);
-
-}  
+{DefaultBorder(this.props.defaultAddress.id, address.id)}  
 
          
       </div>{/*remove-text-icon */}
