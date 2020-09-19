@@ -166,7 +166,7 @@ return <div className="cart-Item" >
   
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
-         {!this.props.defaultAddress.id == address.id ? 
+         {this.props.defaultAddress.id != address.id ? 
          <p className="remove-text"  onClick={() => this.setDefault(address) }>SET DEFAULT ADDRESS </p> : null} 
          
       </div>{/*remove-text-icon */}
