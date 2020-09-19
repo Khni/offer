@@ -41,9 +41,9 @@ FetchAddressesList(addressesArray)
 
 } 
 
-setDefault(address) {
+setDefault(address, list) {
 const {setDefaultAddress} = this.props 
-setDefaultAddress(address)
+setDefaultAddress(address, list)
 
 
 } 
@@ -167,7 +167,7 @@ return <div className="cart-Item" >
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
          {this.props.defaultAddress.id != address.id ? 
-         <p className="remove-text"  onClick={() => this.setDefault(address) }>SET DEFAULT ADDRESS </p> : null} 
+         <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : null} 
          
       </div>{/*remove-text-icon */}
       

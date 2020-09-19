@@ -164,14 +164,20 @@ export const UserSignOut = () => {
   }
   
   
-  export const setDefaultAddress = (address) => {
+  export const setDefaultAddress = (address, addressesArray) => {
 
  console.log("FetchAddressesList from user");
+ let addressesList =addressesArray
+ const indexOfDefault = addressesList.findIndex(a => a.id ==address.id) 
+ let cutOut = addressesList.splice(indexOfDefault, 1) [0]; // cut the element at index 'from'
+    addressesList.splice(to, 0, cutOut);    
+    
     return  dispatch => {
      
         dispatch({
           type: SET_DEFAULT_ADDRESS, 
-          defaultAddress: address
+          defaultAddress: address, 
+          addresses: addressesList
          
         });
        

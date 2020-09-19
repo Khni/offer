@@ -74,7 +74,7 @@ class Header extends Component {
 
             </div>
 
-
+         <p className="cartCounter"onClick={this.props.toggle}  >{this.props.totalItems}</p>
 
           </div>
           <CartDropdown show={this.props.hidden} />

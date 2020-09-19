@@ -48,7 +48,7 @@ const DEFAULT_STATE = {
         case FETCH_ADDRESSES:
         return { ...state, addresses:{...state.addresses, list: action.addresses}}
         case SET_DEFAULT_ADDRESS:
-        return { ...state, addresses:{...state.addresses, default: action.defaultAddress}}
+        return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.defaultAddress}}
       default:
         return state
     }
