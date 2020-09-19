@@ -153,7 +153,9 @@ let cartItemClass=  "cart-Item"
 
 let  DefaultBorder=(DefaultAddressID, addressID)=> {
 if(DefaultAddressID == addressID)
- {cartItemClass=  "cart-Item borderCard"}
+ {cartItemClass=  "cart-Item borderCard"}else{
+cartItemClass=  "cart-Item" 
+} 
 }     
         return(
 
