@@ -27,6 +27,7 @@ flex-direction: column;
 @media only screen and (max-width: 600px) {
 .SideNavPage {
     flex-direction: column;
+    max-width: 100%;
   }
 .NavLinks-container
 {
