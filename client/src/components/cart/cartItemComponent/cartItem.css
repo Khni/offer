@@ -200,3 +200,7 @@ box-shadow: 5px 10px 18px #888888;
   color: blueviolet;
   font-size: 17px;
 }
+
+.borderCard{
+border :3px solid black;
+}

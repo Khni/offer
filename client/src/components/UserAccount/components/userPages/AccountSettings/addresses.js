@@ -146,6 +146,8 @@ let fieldsets = [
                 change: this.handleChangeName
 }
 ] 
+
+let cartItemClass=  "cart-Item" 
       
         return(
 
@@ -153,7 +155,7 @@ let fieldsets = [
      <div className="TopNavPage">
        {this.props.addressesList.map((address)=>{
 
-return <div className="cart-Item" >
+return <div className={cartItemClass} >
  
  <div className="cart-item-desc">
    
@@ -167,7 +169,11 @@ return <div className="cart-Item" >
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
          {this.props.defaultAddress.id != address.id ? 
-         <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : null} 
+         <p className="remove-text"  onClick={() => this.setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
+<p className="remove-text"  > DEFAULT ADDRESS </p> 
+} 
+{this.props.defaultAddress.id == address.id ? cartItemClass=  "cart-Item borderCard"} 
+
          
       </div>{/*remove-text-icon */}
       
