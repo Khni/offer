@@ -50,7 +50,7 @@ router.get('/api/category/findone/:id', auth, async (req, res) => {
     }
 })
 
-router.get('/api/categoriesWithSectionsAndProducts',  async (req, res) => {
+router.get('/api/categoriesWithAll',  async (req, res) => {
     let Categories = await Category.find({})
   
    /*  

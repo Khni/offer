@@ -23,12 +23,12 @@ export const fetchCategories = () => {
 
     return async dispatch => {
       try {
-     const response =   await axios.get('/api/categories');
-  console.log('response' +response.data.Categories);
+     const response =   await axios.get('/api/categoriesWithAll');
+  console.log('response' +response.data.CategoriesWithSectionsAndProducts);
   
         dispatch({
           type: FETCH_CATEGORY, 
-          Categories : response.data.Categories
+          Categories : response.data.CategoriesWithSectionsAndProducts
           
         });
        
