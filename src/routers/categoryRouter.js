@@ -50,7 +50,7 @@ router.get('/api/category/findone/:id', auth, async (req, res) => {
     }
 })
 
-router.get('/api/categories',  async (req, res) => {
+router.get('/api/categoriesWithSectionsAndProducts',  async (req, res) => {
     let Categories = await Category.find({})
   
    /*  
@@ -87,6 +87,28 @@ router.get('/api/categories',  async (req, res) => {
         res.status(400).send(e)
     }
 })
+
+
+
+
+
+router.get('/api/categories',  async (req, res) => {
+    let Categories = await Category.find({})
+  
+   
+
+
+    try {
+ 
+        res.status(201).send({Categories})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
+
 
 
 
