@@ -21,7 +21,7 @@ router.post('/api/category/add', auth, async (req, res) => {
     }
 })
 
-router.get('/api/category/findone/:id', auth, async (req, res) => {
+router.get('/api/category/findone/:id',  async (req, res) => {
     let foundCategory = await Category.findOne({_id: req.params.id})
     //let sections = await Section.find({})
   
@@ -61,6 +61,11 @@ router.get('/api/categoriesWithAll',  async (req, res) => {
             await Promise.all(category.sectionsOfCategory.map(async(SOC)=>{
     let sections=  await Section.findOne({_id: SOC.sectionOfCategory })
            return {...sections, productsOfSection:  */
+
+//important   this code cause errir when deleteing sections and products and they
+//need to be deleted also from Section of category and products of sections
+
+
             let CategoriesWithSectionsAndProducts = 
             await Promise.all(
                 Categories.map(async(category)=> {
