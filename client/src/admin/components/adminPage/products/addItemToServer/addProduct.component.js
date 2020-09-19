@@ -189,6 +189,19 @@ const { handleSubmit } = this.props;
               />
             </fieldset>
             <fieldset>
+              <Field
+                type='text' 
+                name='imgURL' 
+                id='imgURL' 
+                className='imgURL'
+          //      placeholder='enter title in English ' 
+                component={InputForm}
+                label='imgURL' 
+              />
+            </fieldset>
+            
+
+            <fieldset>
             <Field
                 
                 sections={this.props.sections}

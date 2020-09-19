@@ -1,7 +1,7 @@
 .SideNavPage {
    display: flex;
    flex-direction: row;
-   max-width: 100%;
+   width: 90%;
    height: 100%;
  //  background-color: red($color: #000000);
 
@@ -42,6 +42,7 @@ flex-direction: column;
   padding-top: 60px;
   display: flex;
   flex-direction: column;
+  width: 100%;
   }
 
      .side-NavLink {
