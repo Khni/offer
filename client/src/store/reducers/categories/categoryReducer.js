@@ -2,6 +2,7 @@ import {
     FETCH_PRODUCTS ,
   FETCH_CATEGORY ,
   FETCH_SECTIONS, 
+  FETCH_SECTIONS_WITH_PRODUCTS,
   FETCH_COLLECTIONS, 
   FETCH_ERROR, 
   FETCH_CATEGORY_ERROR ,
@@ -33,6 +34,12 @@ import {
         sectionsIsFetching: false,
         addingSection:false,
         
+        sectionsWithProducts: [], 
+        sectionsWithProductsFetched: false, 
+        sectionsWithProductsIsFetching: false,
+       
+
+
         products:[], 
         productsFetched: false, 
         productsIsFetching: false,
@@ -44,6 +51,7 @@ import {
         addingCollection:false,
         FetchError: false, 
         
+
         AddToServer: {
         	added: false, 
             error:'' 
@@ -73,7 +81,15 @@ import {
              
             };
             
-            
+            case FETCH_SECTIONS_WITH_PRODUCTS :
+              return {
+             ...state, 
+             sectionsWithProducts: action.sections, 
+             sectionsWithProductsFetched: true, 
+             //sectionsIsFetching: false
+               
+              };
+              
             
             case FETCH_PRODUCTS :
             return {

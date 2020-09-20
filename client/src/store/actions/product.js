@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_PRODUCTS ,
   FETCH_CATEGORY ,
   FETCH_SECTIONS, 
+  FETCH_SECTIONS_WITH_PRODUCTS,
   FETCH_COLLECTIONS, 
   FETCH_CATEGORY_ERROR ,
   FETCH_PRODUCTS_ERROR, 
@@ -83,6 +84,33 @@ export const fetchSections = () => {
         dispatch({
           type: FETCH_SECTIONS, 
           Sections : response.data.sections
+
+          
+        });
+       console.log("log  from fetchSections");
+      } catch(err) {
+      // console.log();
+          console.error("err"+ err)
+        dispatch({
+          type: FETCH_ERROR,
+       //   payload: err.response.data.error
+        })
+      }
+    };
+  }
+
+
+  export const fetchSectionsWithProducts = () => {
+
+
+    return async dispatch => {
+      try {
+     const response =   await axios.get('/api/sections-with-products');
+ // console.log('response' +response.data.sections);
+  
+        dispatch({
+          type: FETCH_SECTIONS_WITH_PRODUCTS, 
+          sections : response.data.SectionsWithProducts
 
           
         });

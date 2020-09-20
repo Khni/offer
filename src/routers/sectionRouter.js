@@ -1,5 +1,6 @@
 const express = require('express')
 const Section= require('../models/Section')
+const Product = require('../models/Product')
 const Category = require('../models/Category')
 const router = new express.Router()
 const auth = require('../middleware/adminAuth')
@@ -25,6 +26,26 @@ router.post('/api/section/add', auth, async (req, res) => {
     }
 })
 
+
+
+router.get('/api/sections-with-products',  async (req, res) => {
+	
+	let sections = await Section.find({})
+	
+	let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
+        return {...section.toObject(), productsOfSection: await Promise.all(section.productsOfSection.map(async(pos)=>{
+            return Product.findOne({_id: pos.productOfSection})
+        }))}
+    }))
+    
+
+    try {
+   res.status(201).send({SectionsWithProducts})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 
 router.get('/api/sections',  async (req, res) => {

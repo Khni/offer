@@ -24,8 +24,8 @@ class homeMenu extends Component {
   async FetchCategoriesFromServer(){
    //   if(!this.props.categoriesFetched) {
   // this.setState({Loading: true})
-     const { fetchCategories } = this.props;
-     await fetchCategories();
+     const { fetchSectionsWithProducts } = this.props;
+     await fetchSectionsWithProducts();
   //   this.setState({Loading: false})
   //   }
      console.log("log from add product Updatefetchproduct" )
@@ -55,7 +55,7 @@ item.name.indexOf(this.state.search) !== -1)
            SearchChange={this.searchUpdate} />
            
 		<div className="full-menu">
-		{categories[0].sectionsOfCategory.map((col)=>
+		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
     )}
 		</div>
@@ -76,7 +76,9 @@ item.name.indexOf(this.state.search) !== -1)
 const mapStateToProps =(state) =>{
 	return {
  collections: selectProducts(state), 
- categories : state.categoryReducer.categories
+ categories : state.categoryReducer.categories,
+
+ sectionsWithProducts: state.categoryReducer.sectionsWithProducts
  //collections: state.ProductsReducer.products
 	}
 }
