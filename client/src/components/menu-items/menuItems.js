@@ -21,7 +21,7 @@ const menuItems = (props, {history,match})=>{
 
 <img src={props.imgURL}  className="item-img"/>
 
-<p className="item-title-menu-item">{props.item.name} </p>
+<p className="item-title-menu-item">{props.item.nameEn} </p>
 
 
 
