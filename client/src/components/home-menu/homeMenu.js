@@ -12,7 +12,8 @@ class homeMenu extends Component {
 		super(props);
 	
 	this.state = {
-      search: ''
+	  search: '',
+	  Loading: false
     }
   }
 
@@ -21,20 +22,26 @@ class homeMenu extends Component {
   }
   
   
-  async FetchCategoriesFromServer(){
-   //   if(!this.props.categoriesFetched) {
-  // this.setState({Loading: true})
+  async FetchSectionsFromServer(){
+     if(!this.props.sectionsWithProductsFetched) {
+   this.setState({Loading: true})
      const { fetchSectionsWithProducts } = this.props;
      await fetchSectionsWithProducts();
-  //   this.setState({Loading: false})
-  //   }
+     this.setState({Loading: false})
+    }
      console.log("log from add product Updatefetchproduct" )
        
    }
   
   async componentDidMount() {
-await this.FetchCategoriesFromServer()
+await this.FetchSectionsFromServer()
   }
+  async componentDidUpdate(prevProps, prevState) {
+    console.log("prevState:" + prevState.Loading);
+    if (!prevState.Loading) {
+ await this.FetchSectionsFromServer()
+    }
+   }
   
   
   
@@ -54,11 +61,11 @@ item.name.indexOf(this.state.search) !== -1)
           SearchVal={this.state.search} 
            SearchChange={this.searchUpdate} />
            
-		<div className="full-menu">
+		   {!this.state.Loading?	<div className="full-menu">
 		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
     )}
-		</div>
+		</div>: <div className="loaderHome"/> }
   
   
          </div>
@@ -77,7 +84,7 @@ const mapStateToProps =(state) =>{
 	return {
  collections: selectProducts(state), 
  categories : state.categoryReducer.categories,
-
+ sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
  sectionsWithProducts: state.categoryReducer.sectionsWithProducts
  //collections: state.ProductsReducer.products
 	}

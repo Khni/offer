@@ -50,7 +50,20 @@ router.get('/api/products',  async (req, res) => {
     }
 })
 
+router.get('/api/product/find/:id',  async (req, res) => {
+	
+	let product = await Product.findOne({_id: req.params.id})
+	
+	
+    
 
+    try {
+   res.status(201).send({product})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 //photos upload
 const upload = multer({
