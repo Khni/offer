@@ -1,4 +1,5 @@
 import React ,{Component} from 'react'
+import axios from 'axios';
 import PicComponent from './pic/pic.component'
 import MiddleComponent from './middle/middle.component'
 import DiscComponent from './disc/disc.component'
@@ -11,33 +12,48 @@ import {addItem} from '../../store/actions/CartItemsAction';
  class ProductPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          product:'',
+          Loading: true
+        }
         
       }
+async fetchProduct(){
+ 
+  const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
+  await this.setState({product:  response.data.product})
+  
+  console.log("productPage: " + this.state.product.price);
+}
+
+async componentDidMount(){
+await this.fetchProduct()
+this.setState({Loading: false})
+}
+
 
 
       render(){
         console.log(this.props.match.params.id);
-       console.log("IMGURL"+this.props.Item);
+    
 
         return(
-<div className="productPage">
-<div className="Header-productPage"><Header /></div>
 
-
-<div className="container-productPage">
+<div>
+  <Header />
+          {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
-   <PicComponent imgURL={this.props.Item.imageUrl}/>
+    <PicComponent imgURL={this.state.product.imgURLs[0].imgURL}/>
    </div>
    <div className="MiddleComponent">
-   <MiddleComponent name={this.props.Item.name} price={this.props.Item.price} item={this.props.Item} />
+   <MiddleComponent name={this.state.product.nameEn} price={this.state.product.price} item={this.state.product} />
    </div>
    <div className="DiscComponent">
    <DiscComponent />
-   </div>
+   </div> 
 
-   </div>
+   </div>: <div className="loaderHome"/> }
 </div>
-
         );
       }
  }
@@ -48,7 +64,7 @@ import {addItem} from '../../store/actions/CartItemsAction';
     return col.id ===1
   })*/
   
-  Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.id ==  ownProps.match.params.id )
+ // Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.id ==  ownProps.match.params.id )
  //Product: selectItem(ownProps.match.params.id)(state)
 });
 
