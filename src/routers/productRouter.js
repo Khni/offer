@@ -112,10 +112,12 @@ var storage = multer.diskStorage({
   var upload = multer({ storage: storage })
 
 router.post('/api/product/upload', upload.single('upload'), (req, res) => {
-    res.send({n: res.filename})
+let name = 'http://localhost:8080/' + req.file.destination+'/' +req.file.filename
+let path = req.file.path
+    res.send({name})
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
-})
+}) 
 
 
 
