@@ -66,12 +66,15 @@ router.get('/api/product/find/:id',  async (req, res) => {
 })
 
 //photos upload
-const upload = multer({
-    destination: function (req, file, cb) {
-    cb(null, '/tmp/uploads')
+/*const upload = multer({
+
+   destination: function (req, file, cb) {
+    cb(null, 'uploads')
   },
+ 
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now()+'.png')
+   // cb(null, file.fieldname + '-' + Date.now()+'.png')
+    cb(null, "atofile")
   }, 
     limits: {
         fileSize: 2000000
@@ -83,12 +86,38 @@ const upload = multer({
 
         cb(undefined, true)
     }
-})
-router.post('/upload', upload.single('upload'), (req, res) => {
-    res.send()
+})*/
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'uploads/products')
+  },
+ 
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now()+'.png')
+    //cb(null, "atofile")
+  }, 
+    limits: {
+        fileSize: 2000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(png|jpg)$/)) {
+            return cb(new Error('Please upload a photo png or jpg'))
+        }
+
+        cb(undefined, true)
+    }
+  })
+
+  var upload = multer({ storage: storage })
+
+router.post('/api/product/upload', upload.single('upload'), (req, res) => {
+    res.send({n: res.filename})
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
 })
+
+
 
 
 
