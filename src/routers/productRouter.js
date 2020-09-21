@@ -3,6 +3,7 @@ const Product = require('../models/Product')
 const Section = require('../models/Section')
 const router = new express.Router()
 const auth = require('../middleware/adminAuth')
+const authUploadProduct = require('../middleware/adminAuthUpload')
 const multer = require('multer')
 router.post('/api/product/add', auth, async (req, res) => {
     const product = new Product({
@@ -87,10 +88,10 @@ router.get('/api/product/find/:id',  async (req, res) => {
         cb(undefined, true)
     }
 })*/
-
+/*
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, 'uploads/products')
+    cb(null, 'uploads')
   },
  
   filename: function (req, file, cb) {
@@ -112,13 +113,47 @@ var storage = multer.diskStorage({
   var upload = multer({ storage: storage })
 
 router.post('/api/product/upload', upload.single('upload'), (req, res) => {
-let name = 'http://localhost:8080/' + req.file.destination+'/' +req.file.filename
+let imgUrlPath = req.file.destination+'/' +req.file.filename
 let path = req.file.path
     res.send({name})
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
 }) 
 
+
+*/
+
+
+router.post('/api/add/product', authUploadProduct, async (req, res) => {
+    const product = new Product({
+        ...req.body,
+        adminID: req.admin._id
+    })
+    
+    let imgUrlPath = req.file.destination+'/' +req.file.filename
+    product.imgURLs = product.imgURLs.concat({imgURL: imgUrlPath}) 
+     product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
+     
+    try {
+
+        await product.save()
+        const relatedSection = await Section.findOne({_id: req.body.sectionID})
+        
+        relatedSection.productsOfSection =  relatedSection.productsOfSection.concat({productOfSection : product._id})
+         
+        await relatedSection.save()
+
+
+
+
+
+
+        
+        res.status(201).send({product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 
 
