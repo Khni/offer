@@ -92,7 +92,7 @@ Show 8 more frames
 signup:1 Access to XMLHttpRequest at 'http://localhost:8080/signup' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.
 */
 const pathupload = path.join(__dirname, '../uploads')
-//app.use('../uploads', express.static(pathupload));
+app.use('../uploads', express.static(pathupload));
 console.log(pathupload);
 console.log(__dirname);
 
