@@ -188,17 +188,7 @@ const { handleSubmit } = this.props;
                 label=' Description in English' 
               />
             </fieldset>
-            <fieldset>
-              <Field
-                type='text' 
-                name='imgURL' 
-                id='imgURL' 
-                className='imgURL'
-          //      placeholder='enter title in English ' 
-                component={InputForm}
-                label='imgURL' 
-              />
-            </fieldset>
+            
             
             <fieldset>
               <Field
@@ -208,7 +198,7 @@ const { handleSubmit } = this.props;
                 className='imgURL'
           //      placeholder='enter title in English ' 
                 component={InputForm}
-                label='Upload A Pic' 
+                label='Pic' 
               />
             </fieldset>
             
