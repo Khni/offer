@@ -42,7 +42,7 @@ class UserOrders extends Component {
       
  <h3>Orders List</h3>
 
-    
+    <img src='/imgs/upload-1600693335641.png' alt="addidas"  />
 
       
 </div>
