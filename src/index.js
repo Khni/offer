@@ -98,7 +98,7 @@ console.log(__dirname);
 
 
 app.use('/imgs',express.static(path.join(__dirname, '../uploads')));
-app.use(express.static('../uploads'));
+
 
 //to get data jason from postman
 app.use(express.json())

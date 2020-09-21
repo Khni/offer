@@ -64,6 +64,7 @@ const sectionSchema = mongoose.Schema({
          productsOfSection: [{
             productOfSection:  {
           type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product'
            } 
       }] 
 		

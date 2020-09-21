@@ -72,7 +72,7 @@ const productSchema = mongoose.Schema({
             sectionID:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Category'
+        ref: 'Section'
          },
     collectionID:{
         type: mongoose.Schema.Types.ObjectId,
@@ -128,7 +128,7 @@ const productSchema = mongoose.Schema({
 productSchema.virtual('section', {
     ref: 'Section',
     localField: '_id',
-    foreignField: 'productsOfSection'
+    foreignField: 'productsOfSection.productOfSection'
 })
 
 productSchema.virtual('Orders', {

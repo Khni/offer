@@ -2,22 +2,7 @@ const express = require('express')
 const Admin = require('../models/Admin')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')
-
-const authToken = async(req ,res , next) =>{
-    try {
-        const token = req.header('Authorization').replace('Bearer ','')
-        const decoded = jwt.verify(token, 'secret')
-        const admin = await Admin.findOne({ _id: decoded._id, 'tokens.token': token })
-      
-        if (!admin) {
-            throw new Error()
-        }
-        req.token = token
-        req.admin = admin
-        
-        
-        
-        var storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function (req, file, cb) {
     cb(null, 'uploads/products')
   },
@@ -39,9 +24,22 @@ const authToken = async(req ,res , next) =>{
   })
 
   var upload = multer({ storage: storage })
-        
-        
+const authToken = async(req ,res , next) =>{
+    try {
+        const token = req.header('Authorization').replace('Bearer ','')
+        const decoded = jwt.verify(token, 'secret')
+        const admin = await Admin.findOne({ _id: decoded._id, 'tokens.token': token })
+      
+        if (!admin) {
+            throw new Error()
+        }
+        req.token = token
+        req.admin = admin
         upload.single('upload')
+        
+        
+        
+       
         
         
         next()
@@ -50,7 +48,10 @@ const authToken = async(req ,res , next) =>{
         console.log(error);
         
     }
-   
+  
+            
+            
+            
     
 }
 

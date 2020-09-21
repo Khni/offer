@@ -88,7 +88,7 @@ router.get('/api/product/find/:id',  async (req, res) => {
         cb(undefined, true)
     }
 })*/
-/*
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
     cb(null, 'uploads')
@@ -112,19 +112,19 @@ var storage = multer.diskStorage({
 
   var upload = multer({ storage: storage })
 
-router.post('/api/product/upload', upload.single('upload'), (req, res) => {
+/*router.post('/api/product/upload', upload.single('upload'), (req, res) => {
 let imgUrlPath = req.file.destination+'/' +req.file.filename
 let path = req.file.path
     res.send({name})
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
-}) 
+}) */
 
 
-*/
 
 
-router.post('/api/add/product', authUploadProduct, async (req, res) => {
+
+router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
