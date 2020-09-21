@@ -96,8 +96,8 @@ const pathupload = path.join(__dirname, '../uploads')
 console.log(pathupload);
 console.log(__dirname);
 
-const directory = path.join(__dirname, '../uploads');
-app.use('/upload', express.static(directory));
+
+app.use(express.static(path.join(__dirname, '../uploads')));
 
 //to get data jason from postman
 app.use(express.json())
