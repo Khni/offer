@@ -21,7 +21,7 @@ import {addItem} from '../../store/actions/CartItemsAction';
 async fetchProduct(){
  
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
-  await this.setState({product:  response.data.product})
+  this.setState({product:  response.data.product})
   
   console.log("productPage: " + this.state.product.price);
 }
@@ -30,6 +30,7 @@ async componentDidMount(){
 await this.fetchProduct()
 this.setState({Loading: false})
 }
+
 
 
 
