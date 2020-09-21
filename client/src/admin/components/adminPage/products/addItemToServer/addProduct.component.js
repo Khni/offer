@@ -200,6 +200,18 @@ const { handleSubmit } = this.props;
               />
             </fieldset>
             
+            <fieldset>
+              <Field
+                type='file' 
+                name='upload' 
+                id='upload' 
+                className='imgURL'
+          //      placeholder='enter title in English ' 
+                component={InputForm}
+                label='Upload A Pic' 
+              />
+            </fieldset>
+            
 
             <fieldset>
             <Field
