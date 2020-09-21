@@ -130,7 +130,7 @@ router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, r
         adminID: req.admin._id
     })
     
-    let imgUrlPath = req.file.destination+'/' +req.file.filename
+    let imgUrlPath = 'imgs/' +req.file.filename
     product.imgURLs = product.imgURLs.concat({imgURL: imgUrlPath}) 
      product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
      
