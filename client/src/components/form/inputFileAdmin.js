@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import InputCss from './inputAdminForm.scss';
 export default class CustomInput extends Component {
+
+  constructor(props) {
+    super(props)
+    this.onChange = this.onChange.bind(this)
+  }
+
+
+  onChange(e) {
+    const { input: { onChange } } = this.props
+    onChange(e.target.files[0])
+  }
+
   render() {
     const { input: { value, onChange } } = this.props;
     return (
@@ -13,9 +25,9 @@ export default class CustomInput extends Component {
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
           className="inputText-admin"
-          type={ this.props.type }
-          value={ value }
-          onChange={ this.props.change }
+          type='file'
+         // value={ value }
+          onChange={this.onChange}
          required   
           oninvalid="this.setCustomValidity('The Field can not be Empty ')"
     oninput="this.setCustomValidity('')"  /> 

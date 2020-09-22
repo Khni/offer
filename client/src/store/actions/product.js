@@ -209,6 +209,7 @@ export const addProductToServer = (data, adminToken) => {
       try {
      const response =   await axios.post('/api/add/product', data, {
       headers : { Authorization: `Bearer ${adminToken}`
+      
        } });
   console.log('added product succefully' );
   

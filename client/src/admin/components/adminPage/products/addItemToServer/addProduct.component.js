@@ -37,21 +37,21 @@ async onSubmit(formData) {
  // formData.append('file', this.state.selectedFile)
  const data = new FormData()
  data.append('upload', this.state.selectedFile)
-   console.log(data.name + 'dataapend');
-   const filen = this.state.selectedFile
-   console.log(this.state.selectedFile.name  + 'filen');
+  // console.log(data.name + 'dataapend');
+//const filen = this.state.selectedFile
+  // console.log(this.state.selectedFile.name  + 'filen');
    
-  formData['file'] = this.state.selectedFile
+  //formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
-console.log("form Data" + formData.file.name + JSON.stringify(formData) );
+console.log("form Data" + JSON.stringify(formData) );
 
-  
+console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;
 //console.log("form data: "  )
 
 console.log("isAdding After setting True///" +this.state.addingProduct );
- // await addProductToServer(formData,AdminToken)
+  await addProductToServer(formData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
@@ -211,12 +211,12 @@ const { handleSubmit } = this.props;
             <fieldset>
               <Field
                 type='file' 
-                name='uploads' 
-                id='uploads' 
+                name='upload' 
+                id='upload' 
                 className='imgURL'
           //      placeholder='enter title in English ' 
                 component={InputFile}
-                change={this.onChangeHandler}
+                //change={this.onChangeHandler}
                 label='Pic' 
               />
             </fieldset>
