@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, Form } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
 import InputForm from '../../../../../components/form/inputAdminForm' 
+import InputFile from '../../../../../components/form/inputFileAdmin' 
 import SelectForm from '../../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../../store/actions/product';
 //import ProductsList from './productsList.component'
@@ -22,25 +23,35 @@ class AddProduct extends Component {
         super(props)
         
         this.state = {
-          addingToServer: false
+          addingToServer: false,
+          selectedFile: null
         }
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.onChangeHandler = this.onChangeHandler.bind(this)
         
     }
     
 
 async onSubmit(formData) {
-	this.setState({addingToServer: true})
+  this.setState({addingToServer: true})
+ // formData.append('file', this.state.selectedFile)
+ const data = new FormData()
+ data.append('upload', this.state.selectedFile)
+   console.log(data.name + 'dataapend');
+   const filen = this.state.selectedFile
+   console.log(this.state.selectedFile.name  + 'filen');
+   
+  formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
-console.log("added cond before submit" +AddetToServerCond);
+console.log("form Data" + formData.file.name + JSON.stringify(formData) );
 
+  
 const { addProductToServer } = this.props;
 //console.log("form data: "  )
 
 console.log("isAdding After setting True///" +this.state.addingProduct );
-   await addProductToServer(formData,AdminToken)
+ // await addProductToServer(formData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
@@ -66,7 +77,14 @@ if(!this.props.sectionsFetched) {
   }
 } 
   
+onChangeHandler=(event)=>{
+  this.setState({
+    selectedFile: event.target.files[0],
+   
+  })
+  console.log('state' + this.state.selectedFile)
 
+}
 async componentDidMount() {
   
 await this.FetchSectionsFromServer()
@@ -193,11 +211,12 @@ const { handleSubmit } = this.props;
             <fieldset>
               <Field
                 type='file' 
-                name='upload' 
-                id='upload' 
+                name='uploads' 
+                id='uploads' 
                 className='imgURL'
           //      placeholder='enter title in English ' 
-                component={InputForm}
+                component={InputFile}
+                change={this.onChangeHandler}
                 label='Pic' 
               />
             </fieldset>
