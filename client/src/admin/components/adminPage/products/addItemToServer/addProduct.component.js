@@ -36,7 +36,15 @@ async onSubmit(formData) {
   this.setState({addingToServer: true})
  // formData.append('file', this.state.selectedFile)
  const data = new FormData()
- data.append('upload', this.state.selectedFile)
+ data.append("nameAr", "sas")
+ data.append("nameEn", "apend")
+ data.append("descEn"	, "ddddd")
+ data.append("descAr"	, "ddddd")
+ data.append('upload', this.state.selectedFile )
+ data.append("nameAr", "sas")
+ data.append("price", 45 )
+ data.append("quantity", 45 )
+ data.append("sectionID", "5f6681eea6cac600174014a3")
   // console.log(data.name + 'dataapend');
 //const filen = this.state.selectedFile
   // console.log(this.state.selectedFile.name  + 'filen');
@@ -44,14 +52,14 @@ async onSubmit(formData) {
   //formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
-console.log("form Data" + JSON.stringify(formData) );
+console.log("form Data" + formData.upload.name );
 
-console.log("form name" + formData.upload.name );
+//console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;
-//console.log("form data: "  )
+console.log("apend data: " + data )
 
 console.log("isAdding After setting True///" +this.state.addingProduct );
-  await addProductToServer(formData,AdminToken)
+ await addProductToServer(formData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
@@ -216,7 +224,7 @@ const { handleSubmit } = this.props;
                 className='imgURL'
           //      placeholder='enter title in English ' 
                 component={InputFile}
-                //change={this.onChangeHandler}
+//change={this.onChangeHandler}
                 label='Pic' 
               />
             </fieldset>

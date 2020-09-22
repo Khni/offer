@@ -21,7 +21,7 @@ export default class CustomInput extends Component {
         
         <label htmlFor={ this.props.id } className="label-input-admin">{ this.props.label }</label>
        <input 
-          name={ this.props.name }
+          name="upload"
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
           className="inputText-admin"
@@ -29,8 +29,7 @@ export default class CustomInput extends Component {
          // value={ value }
           onChange={this.onChange}
          required   
-          oninvalid="this.setCustomValidity('The Field can not be Empty ')"
-    oninput="this.setCustomValidity('')"  /> 
+           /> 
   
       </div>
     );
