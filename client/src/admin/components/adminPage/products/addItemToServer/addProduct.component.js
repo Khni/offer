@@ -141,7 +141,7 @@ const { handleSubmit } = this.props;
        
 
       
-          <form onSubmit={handleSubmit(this.onSubmit)}>
+          <form enctype="multipart/form-data" onSubmit={handleSubmit(this.onSubmit)}>
           <h4 class="form-title"> Add New Product </h4>
              <fieldset>
               <Field
