@@ -52,7 +52,7 @@ async onSubmit(formData) {
   //formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
-console.log("form Data" + formData.upload.name );
+console.log("form Data" + JSON.stringify(formData) );
 
 //console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;

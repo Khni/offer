@@ -209,7 +209,9 @@ export const addProductToServer = (data, adminToken) => {
       try {
      const response =   await axios.post('/api/add/product', data, {
       headers : { Authorization: `Bearer ${adminToken}`,
-      'Content-type': `multipart/form-data; boundary=${data._boundary}`
+      Accept: 'application/json',
+      'content-type': `multipart/form-data; boundary=${data._boundary}`
+
       
        } });
   console.log('added product succefully' );
