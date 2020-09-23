@@ -7,6 +7,7 @@ import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import AddproductStyle from './addProduct.scss'
+import FormData from 'form-data'
 import InputForm from '../../../../../components/form/inputAdminForm' 
 import InputFile from '../../../../../components/form/inputFileAdmin' 
 import SelectForm from '../../../../../components/form/selectOptions.component' 
@@ -35,12 +36,22 @@ class AddProduct extends Component {
 async onSubmit(formData) {
   this.setState({addingToServer: true})
  // formData.append('file', this.state.selectedFile)
- const data = new FormData()
+ let data = new FormData()
+ let formData_FormData = new FormData()
+ //let FormDataObj = new FormData(formData)
+ for ( var key in formData ) {
+  formData_FormData.append(key, formData[key]);
+}
+
+
+console.log("formdata keys"+formData_FormData.get('upload'));
+
+
  data.append("nameAr", "sas")
  data.append("nameEn", "apend")
  data.append("descEn"	, "ddddd")
  data.append("descAr"	, "ddddd")
- data.append('upload', this.state.selectedFile )
+ data.append('upload', formData.upload )
  data.append("nameAr", "sas")
  data.append("price", 45 )
  data.append("quantity", 45 )
@@ -48,18 +59,18 @@ async onSubmit(formData) {
   // console.log(data.name + 'dataapend');
 //const filen = this.state.selectedFile
   // console.log(this.state.selectedFile.name  + 'filen');
-   
+  // console.log("formOBJ", JSON.stringify(FormDataObj));
   //formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
 let AddetToServerCond = this.props.AddedToServer
-console.log("form Data" + JSON.stringify(formData) );
+console.log("form Data apeend" + data.nameEn);
 
 //console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;
-console.log("apend data: " + data )
+console.log("apend data: " + JSON.stringify(data)  )
 
 console.log("isAdding After setting True///" +this.state.addingProduct );
- await addProductToServer(formData,AdminToken)
+ await addProductToServer(formData_FormData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
