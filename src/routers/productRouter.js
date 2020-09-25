@@ -133,7 +133,7 @@ router.get('/api/product/find/:id',  async (req, res) => {
         cb(null, {fieldName: file.fieldname});
       },
       key: function (req, file, cb) {
-        cb(null, Date.now().toString())
+        cb(null, Date.now().toString()+ ".png")
       }
     })
   })
@@ -156,7 +156,7 @@ router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, r
         adminID: req.admin._id
     })
     
-    let imgUrlPath = 'imgs/' +req.file.filename
+    let imgUrlPath = 'imgs/' +req.file.key
     product.imgURLs = product.imgURLs.concat({imgURL: imgUrlPath}) 
      product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
      
