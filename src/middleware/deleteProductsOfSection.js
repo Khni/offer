@@ -6,11 +6,15 @@ const Product = require('../models/Product')
 const deletePOS = async(req ,res , next) =>{
     try {
     	
-    const product = await Product.findById(req.params.id)
-        const section = await Section.findById(product.sectionID)
-    
-await Promise.all( section.productsOfSection.find((pos)=>pos.productOfSection=== req.params.id)) = undefined 
-    await section.save()
+    let product = await Product.findById(req.params.id)
+    let section = await Section.findById(product.sectionID)
+ // await  section.productsOfSection.pull({ productOfSection: req.params.id })
+
+ // await  Section.updateOne( {_id: product._id}, { $pullAll: {productsOfSection: [req.params.id] } } )
+       // let section = await Section.findById(product.sectionID)
+       // section.set('productsOfSection'=== req.params.id), undefined, {strict: false} );
+//section.productsOfSection.find((pos)=>pos.productOfSection=== req.params.id) = undefined 
+   // await section.save()
     
     
     
