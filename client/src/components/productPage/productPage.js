@@ -44,7 +44,7 @@ this.setState({Loading: false})
   <Header />
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
-    <PicComponent imgURL={this.state.product.imgURLs[0].imgURL}/>
+    <PicComponent imgURL={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+this.state.product.imgURLs[0].imgURL}/>
    </div>
    <div className="MiddleComponent">
    <MiddleComponent name={this.state.product.nameEn} price={this.state.product.price} item={this.state.product} />

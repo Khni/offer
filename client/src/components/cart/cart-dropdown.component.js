@@ -27,7 +27,7 @@ cartdropdown = "cart-dropdown open" ;
 <div className="cart-Item-drop" >
  
  <div className="cart-item-desc">
-   <img src={item.imgURLs[0].imgURL} className="cart-item-img-drop"/>
+   <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img-drop"/>
    <div className="cart-item-details">
       <p className="cart-item-title margin0">{item.nameEn} </p>
       <p className="cart-item-before-price margin0">   EGP {item.price *1.24} </p>

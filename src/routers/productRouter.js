@@ -128,10 +128,11 @@ router.get('/api/product/find/:id',  async (req, res) => {
   var upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'juvkhaled',
+      bucket: 'juvkhaled/productsimgs',
       metadata: function (req, file, cb) {
         cb(null, {fieldName: file.fieldname});
       },
+      contentType: multerS3.AUTO_CONTENT_TYPE,
       key: function (req, file, cb) {
         cb(null, Date.now().toString()+ ".png")
       }
@@ -156,7 +157,7 @@ router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, r
         adminID: req.admin._id
     })
     
-    let imgUrlPath = 'imgs/' +req.file.key
+    let imgUrlPath =  req.file.key
     product.imgURLs = product.imgURLs.concat({imgURL: imgUrlPath}) 
      product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
      
