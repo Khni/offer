@@ -3,6 +3,7 @@ const Product = require('../models/Product')
 const Section = require('../models/Section')
 const router = new express.Router()
 const auth = require('../middleware/adminAuth')
+const deletePOS = require('../middleware/deleteProductsOfSection.js')
 const authUploadProduct = require('../middleware/adminAuthUpload')
 var aws = require('aws-sdk')
 
@@ -182,6 +183,20 @@ router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, r
     }
 })
 
+
+
+router.delete('/api/product/delete/:id', [auth, deletePOS] , async (req, res) => {
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id)
+        if (!product) {
+            res.status(404).send()
+        }
+
+        res.send(product)
+    } catch (e) {
+        res.status(500).send()
+    }
+})
 
 
 
