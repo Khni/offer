@@ -4,7 +4,19 @@ const Section = require('../models/Section')
 const router = new express.Router()
 const auth = require('../middleware/adminAuth')
 const authUploadProduct = require('../middleware/adminAuthUpload')
-const multer = require('multer')
+var aws = require('aws-sdk')
+
+var multer = require('multer')
+var multerS3 = require('multer-s3')
+aws.config.update({
+    secretAccessKey: 'UhV9jBH3AFlNYJaqKK43mIURzQLUeE7naDmTgc24',
+    accessKeyId: 'AKIAVHDPNUJVSRX7XEHO',
+    region: 'us-west-1'
+});
+var s3 = new aws.S3()
+
+
+
 router.post('/api/product/add', auth, async (req, res) => {
     const product = new Product({
         ...req.body,
@@ -89,7 +101,7 @@ router.get('/api/product/find/:id',  async (req, res) => {
     }
 })*/
 
-var storage = multer.diskStorage({
+/*var storage = multer.diskStorage({
     destination: function (req, file, cb) {
     cb(null, 'uploads')
   },
@@ -108,9 +120,23 @@ var storage = multer.diskStorage({
 
         cb(undefined, true)
     }
-  })
+  })*/
 
-  var upload = multer({ storage: storage })
+  
+
+  //var upload = multer({ storage: storage })
+  var upload = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'some-bucket',
+      metadata: function (req, file, cb) {
+        cb(null, {fieldName: file.fieldname});
+      },
+      key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+      }
+    })
+  })
 
 /*router.post('/api/product/upload', upload.single('upload'), (req, res) => {
 let imgUrlPath = req.file.destination+'/' +req.file.filename
