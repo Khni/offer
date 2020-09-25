@@ -128,7 +128,7 @@ router.get('/api/product/find/:id',  async (req, res) => {
   var upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'some-bucket',
+      bucket: 'juvkhaled',
       metadata: function (req, file, cb) {
         cb(null, {fieldName: file.fieldname});
       },
