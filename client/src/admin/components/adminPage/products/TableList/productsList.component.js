@@ -12,7 +12,9 @@ import { compose } from 'redux';
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
 import TableListStyle from '../../../../../components/TableList/TableList.scss'
-
+import PupupMenu from "../../../../../components/popup-menu/popup"
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 
@@ -51,10 +53,42 @@ class ProductsList extends Component {
     await this.FetchProductsFromServer()
     console.log("log from list product Update")
   }
+
+
+  submit = (title) => {
+    confirmAlert({
+      title: 'Confirm to Delete Product'+" " + title,
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => alert('Click Yes')
+        },
+        {
+          label: 'No',
+          onClick: () => alert('Click No')
+        }
+      ]
+    });
+  };
+
+
+
+
   render() {
     let productsFiltered = this.props.products.filter((itemProduct) => {
       return itemProduct.nameEn.indexOf(this.state.search) !== -1
     })
+
+
+    let menuPopup = [
+      {
+        title: "Edit"
+      },
+      {
+        title: "Delete"
+      }
+    ]
     return (
       <div className="TableList-container">
         <div className="Tabel-Header">
@@ -68,7 +102,7 @@ class ProductsList extends Component {
                       <table className="TableList">
             <tr><th>product name</th> <th>Quantity</th> <th>Price</th></tr>
                             {productsFiltered.map((product, i) => {
-              return <tr key={i + 1}><td key={i + 2}>{product.nameEn}</td><td key={i + 3}>{product.quantity}</td><td key={i + 4}>{product.price}</td><td>Delete</td></tr>
+              return <tr key={i + 1}><td key={i + 2}>{product.nameEn}</td><td key={i + 3}>{product.quantity}</td><td key={i + 4}>{product.price}</td><p>Edit</p><p className="menu-product" onClick={()=>this.submit(product.nameEn)}>Delete</p></tr>
             })} </table>:  <div className="loader"/>}
 
             
