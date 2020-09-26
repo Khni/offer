@@ -193,6 +193,7 @@ router.delete('/api/product/delete/:id', [auth, deletePOS] , async (req, res) =>
         }
 
         res.send(product)
+        
     } catch (e) {
         res.status(500).send()
     }
