@@ -47,7 +47,8 @@ class ProductsList extends Component {
   async DeleteProduct(id) {
   	console.log('id' +id) 
     try {
-     const response =   await axios.get('/api/product/delete/' +id);
+     const response =   await axios.delete('/api/product/delete/' +id, {
+      headers : { Authorization: `Bearer ${this.props.AdminToken}` } });
   const { fetchProducts } = this.props;
       
       await fetchProducts(this.props.productsIsFetching);
@@ -56,8 +57,8 @@ class ProductsList extends Component {
      console.log(err);
           
       }
-    };
-  }
+    }
+  
   
   
   
@@ -77,7 +78,7 @@ class ProductsList extends Component {
 
   submit = (title, id) => {
     confirmAlert({
-      title: 'Confirm to Delete Product'+" " + title,
+      title: 'Confirm to Delete Product: '+" " + title,
       message: 'Are you sure to do this.',
       buttons: [
         {
@@ -86,7 +87,7 @@ class ProductsList extends Component {
         },
         {
           label: 'No',
-          onClick: () => alert('Click No')
+         // onClick: () => alert('Click No')
         }
       ]
     });
