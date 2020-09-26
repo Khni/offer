@@ -15,7 +15,7 @@ import TableListStyle from '../../../../../components/TableList/TableList.scss'
 import PupupMenu from "../../../../../components/popup-menu/popup"
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-
+import axios from 'axios';
 
 
 
@@ -43,6 +43,26 @@ class ProductsList extends Component {
     console.log("log from add product Updatefetchproduct")
 
   }
+  
+  async DeleteProduct(id) {
+  	console.log('id' +id) 
+    try {
+     const response =   await axios.get('/api/product/delete/' +id);
+  const { fetchProducts } = this.props;
+      
+      await fetchProducts(this.props.productsIsFetching);
+       
+      } catch(err) {
+     console.log(err);
+          
+      }
+    };
+  }
+  
+  
+  
+  
+  
   async componentDidMount() {
 
     await this.FetchProductsFromServer()
@@ -55,14 +75,14 @@ class ProductsList extends Component {
   }
 
 
-  submit = (title) => {
+  submit = (title, id) => {
     confirmAlert({
       title: 'Confirm to Delete Product'+" " + title,
       message: 'Are you sure to do this.',
       buttons: [
         {
           label: 'Yes',
-          onClick: () => alert('Click Yes')
+          onClick: () => this.DeleteProduct(id)
         },
         {
           label: 'No',
@@ -102,7 +122,7 @@ class ProductsList extends Component {
                       <table className="TableList">
             <tr><th>product name</th> <th>Quantity</th> <th>Price</th></tr>
                             {productsFiltered.map((product, i) => {
-              return <tr key={i + 1}><td key={i + 2}>{product.nameEn}</td><td key={i + 3}>{product.quantity}</td><td key={i + 4}>{product.price}</td><p>Edit</p><p className="menu-product" onClick={()=>this.submit(product.nameEn)}>Delete</p></tr>
+              return <tr key={i + 1}><td key={i + 2}>{product.nameEn}</td><td key={i + 3}>{product.quantity}</td><td key={i + 4}>{product.price}</td><p>Edit</p><p className="menu-product" onClick={()=>this.submit(product.nameEn, product._id)}>Delete</p></tr>
             })} </table>:  <div className="loader"/>}
 
             
