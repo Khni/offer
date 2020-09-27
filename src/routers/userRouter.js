@@ -309,6 +309,48 @@ router.get('/api/admin/removeuser/:id', (req, res) => {
 
 
 
+
+router.post('/api/user/add-address/:id', async (req, res) => {
+
+
+
+
+    try {
+        console.log("before"+ req.params.id );
+        let user = await  User.findOne({_id: req.params.id})
+        console.log("name:"+user.name);
+        user.addresses = user.addresses.concat({address: {
+            country: "Egypt",
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phone: req.body.phone,
+            city: req.body.city,
+            street: req.body.street,
+            floor: req.body.floor,
+            apartment: req.body.apartment
+        
+        } 
+        })
+            await user.save()
+        res.send({user});
+    } catch (error) {
+        res.status(400).send({error});
+    }
+
+//   await  User.findById(req.params.id).then(async(user) => {
+//         user.addresses = user.addresses.concat(
+//             {firstName: req.body.firstName}
+//             )
+//             await user.save()
+//         res.send({user});
+//     }).catch((e) => {
+//         res.status(400).send({e});
+
+//     })
+})
+
+
+
 //google
 
 

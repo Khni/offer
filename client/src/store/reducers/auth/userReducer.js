@@ -7,7 +7,8 @@ UPDATE_USER,
   UPDATE_USER_ERROR, 
   
   SET_DEFAULT_ADDRESS, 
-  FETCH_ADDRESSES
+  FETCH_ADDRESSES,
+  ADD_NEW_ADDRESS
 } from '../../types/authUserTypes';
 
 const DEFAULT_STATE = {
@@ -49,6 +50,9 @@ const DEFAULT_STATE = {
         return { ...state, addresses:{...state.addresses, list: action.addresses}}
         case SET_DEFAULT_ADDRESS:
         return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.defaultAddress}}
+        case ADD_NEW_ADDRESS:
+          return { ...state, addresses:{...state.addresses, list: state.addresses.list.concat(action.address), default: action.address}}
+
       default:
         return state
     }

@@ -11,7 +11,7 @@ import {
   UPDATE_USER, 
   UPDATE_USER_ERROR, 
   DASHBOARD_GET_DATA, 
-
+  ADD_NEW_ADDRESS,
   SET_DEFAULT_ADDRESS, 
   FETCH_ADDRESSES
 } from '../types/authUserTypes'
@@ -189,5 +189,25 @@ export const UserSignOut = () => {
   
   
   
-
+  export const AddNewAddress = (data, userID) => {
+    return async dispatch => {
+      try {
+     const response =   await axios.post('/api/user/add-address/'+ userID, data);
+  
+        dispatch({
+          type: ADD_NEW_ADDRESS, 
+          
+          address: response.data.address,
+          
+        });
+        localStorage.setItem('JWT_TOKEN', response.token);
+      axios.defaults.headers.common['Authorization'] = response.token;
+      } catch(err) {
+        dispatch({
+          type: UPDATE_USER_ERROR,
+          payload: err
+        })
+      }
+    };
+  }
 

@@ -14,6 +14,7 @@ import AdminPage from './admin/admin'
 import AdminAuthHOC from './admin/components/HOCs/auth/authHOC'
 import AdminLogin from './admin/components/auth/sign-in/signIn'
 import UserAccount from './components/UserAccount/account.page.js'
+import AddAddress from './components/UserAccount/components/userPages/AccountSettings/AddAddressForm/AddAddressForm'
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
          <Route path='/cart' component={Cart} />
          <Route path='/account' component={UserAccount} />
           <Route path='/item/:id' component={ProductPage} />
-          
+          <Route path='/addaddress' component={AddAddress} />
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />
           

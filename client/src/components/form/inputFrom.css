@@ -20,6 +20,42 @@
 	border: 1px solid #0066cc;
 }
 
+.halfInput{
+	font-size: 12pt;
+	width: 130px;
+	transition: width 1s;
+	height: 20px;
+	/*margin-bottom: 1px;*/
+	border: 1px solid rgba(81, 203, 238, 1);
+	border-radius: 2px;
+	padding: 5px;
+	
+	text-align: left;
+}
+.halfInput:focus {
+	
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
+
+.fullInput {
+	font-size: 12pt;
+	width: 250px;
+	transition: width 1s;
+	height: 20px;
+	/*margin-bottom: 1px;*/
+	border: 1px solid rgba(81, 203, 238, 1);
+	border-radius: 2px;
+	padding: 5px;
+	
+	text-align: left;
+}
+
+.fullInput:focus {
+	box-shadow: 0 0 5px #00ccff;
+	border: 1px solid #0066cc;
+}
+
 
 .label-auth-en {
 	text-align: left;
