@@ -134,7 +134,7 @@ cartItemClass=  "cart-Item"
      <div className="TopNavPage">
      
      
-  {this.props.addressesList ?   <div className="Address-container">
+  {!this.props.addressesList ?   <div className="Address-container">
        {this.props.addressesList.map((address)=>{
 {DefaultBorder(this.props.defaultAddress.id, address.id)}  
 return <div className={cartItemClass} >

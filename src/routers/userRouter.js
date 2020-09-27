@@ -298,19 +298,38 @@ router.post('/api/login', async (req, res) => {
      */
 })
 
-router.get('/api/user/addresses',auth, (req, res) => {
+router.get('/api/user-addresses',auth ,(req, res) => {
+    
+    
+
+    try {
+        console.log("address");
+        let user = req.user
+        const addresses = user.addresses
+        res.send({addresses});
+      
+    } catch (error) {
+        //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
+        res.status(400).send(error)
+    }
+
 	
-	
-	let user = req.user
-	const addresses = user.addresses
-	res.send({addresses});
     
 })
 
 
+router.get('/api/lists/list' , async (req, res)=>{
 
+    try {
+        const users = await User.find({})
+        res.send({users});
+    } catch (error) {
+        res.status(400).send({error})
+    }
+   
+})
 
-router.post('/api/user/add-address/:id', auth, async (req, res) => {
+router.post('/api/user-add-address', auth, async (req, res) => {
 
 
 

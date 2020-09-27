@@ -25,10 +25,10 @@ class AddAddress extends Component {
   async onSubmit(formData) {
 
  console.log("data" + JSON.stringify(formData));
-    // const { AddNewAddress } = this.props;
+     const { AddNewAddress } = this.props;
     // let lang = this.props.lang
     // console.log(lang)
-    // await AddNewAddress(formData, this.props.token);
+     await AddNewAddress(formData, this.props.token);
     
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	

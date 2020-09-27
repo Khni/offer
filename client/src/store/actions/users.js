@@ -192,12 +192,12 @@ export const UserSignOut = () => {
   export const AddNewAddress = (data, token) => {
     return async dispatch => {
       try {
-     const response =   await axios.post('/api/user/add-address/' , data, {
+     const response =   await axios.post('/api/user-add-address' , data, {
       headers : { Authorization: `Bearer ${token}`
        }} );
   
         dispatch({
-          type: ADD_NEW_ADDRESS
+          type: ADD_NEW_ADDRESS,
           
           address: response.data.address,
           addresses: response.data.addresses
@@ -206,7 +206,7 @@ export const UserSignOut = () => {
       } catch(err) {
       	console.log(err) 
         dispatch({
-          //type: UPDATE_USER_ERROR,
+          type: "ERRRRR"
         //  payload: err
         })
       }
@@ -217,12 +217,12 @@ export const UserSignOut = () => {
 export const FetchAddresses = ( token) => {
     return async dispatch => {
       try {
-     const response =   await axios.get('/api/user/addresses/', {
+     const response =   await axios.get('/api/user-addresses', {
       headers : { Authorization: `Bearer ${token}`
        }} );
   
         dispatch({
-          type: FETCH_ADDRESSES
+          type: FETCH_ADDRESSES,
           
           
           addresses: response.data.addresses
@@ -232,7 +232,7 @@ export const FetchAddresses = ( token) => {
       } catch(err) {
       	console.log(err) 
         dispatch({
-          //type: UPDATE_USER_ERROR,
+          type: "ERRRRR"
         //  payload: err
         
         })
