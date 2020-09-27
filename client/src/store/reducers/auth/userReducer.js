@@ -51,7 +51,7 @@ const DEFAULT_STATE = {
         case SET_DEFAULT_ADDRESS:
         return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.defaultAddress}}
         case ADD_NEW_ADDRESS:
-          return { ...state, addresses:{...state.addresses, list: state.addresses.list.concat(action.address), default: action.address}}
+          return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.address}}
 
       default:
         return state

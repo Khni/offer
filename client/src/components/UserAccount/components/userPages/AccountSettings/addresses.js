@@ -15,22 +15,17 @@ import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
 import Form from '../../../../form/Settings/formSettings.component.js';
-
+import AddAddressForm from './AddAddressForm/AddAddressForm.js' 
 class Addresses extends Component {
 
     constructor(props) {
         super(props)
-         this.onSubmit = this.onSubmit.bind(this);
-         this.handleChangeName = this.handleChangeName.bind(this);
-         this.handleChangeEmail = this.handleChangeEmail.bind(this);
-         this.setValues = this.setValues.bind(this);
+         
+         
          this.fetchAddresses = this.fetchAddresses.bind(this);
          this.setDefaulti = this.setDefaulti.bind(this);
               
-this.state = {
-      username: props.name, 
-      useremail: props.email
-    }
+
     }
 
 
@@ -48,29 +43,31 @@ setDefaultAddress(address, list)
 
 } 
 
+async FetchAddressesFromServer() {
+  //  if (!this.props.productsFetched) {
 
-async onSubmit(formData) {
-
-console.log("form data: " + JSON.stringify(formData) )
-
-const { UpdateUser } = this.props;
-
-let UserToUpdate = {
-email: this.state.useremail, 
-name:this.state.username
-} 
-
-console.log("form data: " + JSON.stringify(formData) )
-   await UpdateUser(UserToUpdate, this.props.userID)
-   alert("form userData: " + JSON.stringify(UserToUpdate)) 
-   alert("form data: " + JSON.stringify(formData)) 
-   if (this.props.updated) {
+      const { FetchAddresses } = this.props;
       
-       alert("details updated successfully! ") 
-    window.location.reload();
-    }
-  
+      await FetchAddresses(this.props.token);
+
+   // }
+    console.log("log from add product Updatefetchproduct")
+
   }
+
+
+async componentDidMount() {
+
+    await this.FetchAddressesFromServer()
+    console.log("log from list product mound")
+
+  }
+  async componentDidUpdate() {
+ //   await this.FetchAddressesFromServer()
+    console.log("log from list product Update")
+  }
+
+
   
   
   
@@ -79,21 +76,7 @@ console.log("form data: " + JSON.stringify(formData) )
 
   
   
-  setValues() {
-this.props.initialize({ email: this.state.useremail,
-name:this.state.username
-});
-} 
   
-  handleChangeName(event) {
-  this.setState({username: event.target.value})
-}
-  
-  
-  handleChangeEmail(event) {
-  this.setState({useremail: event.target.value})
-}
-
 
   
 
@@ -124,30 +107,6 @@ id: 9
 ] 
 
 
-let fieldsets = [
-
- {
-               type: "text" ,
-                name:"email" ,
-                ID :"email" ,
-                className: "settingsFormInput" ,
-                
-           val:this.state.useremail,
-                label: "Email", 
-                change: this.handleChangeEmail
-}, 
-{
-                type: "name" ,
-                name:"name" ,
-                ID :"name" ,
-              //  val:this.props.name,
-                val:this.state.username, 
-                className: "settingsFormInput" ,
-                
-                label: "Name", 
-                change: this.handleChangeName
-}
-] 
 
 let setDefault=async(address, list)=> {
 const {setDefaultAddress} = this.props 
@@ -173,6 +132,9 @@ cartItemClass=  "cart-Item"
 
 
      <div className="TopNavPage">
+     
+     
+  {this.props.addressesList ?   <div className="Address-container">
        {this.props.addressesList.map((address)=>{
 {DefaultBorder(this.props.defaultAddress.id, address.id)}  
 return <div className={cartItemClass} >
@@ -222,8 +184,8 @@ return <div className={cartItemClass} >
       
  
     
- <button  className="custum-btn" onClick={() => this.fetchAddresses(Adresses)}>click </button>
-
+ 
+</div> : <AddAddressForm /> } 
       
       
 </div>

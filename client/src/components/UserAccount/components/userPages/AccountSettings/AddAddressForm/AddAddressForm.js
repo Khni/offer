@@ -25,10 +25,10 @@ class AddAddress extends Component {
   async onSubmit(formData) {
 
  console.log("data" + JSON.stringify(formData));
-    // const { signUp } = this.props;
+    // const { AddNewAddress } = this.props;
     // let lang = this.props.lang
     // console.log(lang)
-    // await signUp(formData, lang);
+    // await AddNewAddress(formData, this.props.token);
     
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
@@ -182,7 +182,7 @@ const mapStateToProps = state => {
   return {
     // errorMsg: state.userAuth.authUser.error, 
     // name: state.userAuth.authUser.name, 
-    // token: state.userAuth.authUser.token,
+     token: state.userAuth.authUser.token,
     // isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     // submit_signin_btn: selectAuthLang(state).submit_signin_btn,
     // signin_title: selectAuthLang(state).signin_title,

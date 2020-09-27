@@ -298,26 +298,26 @@ router.post('/api/login', async (req, res) => {
      */
 })
 
-router.get('/api/admin/removeuser/:id', (req, res) => {
-    User.deleteOne({ _id: req.params.id }).then((user) => {
-        res.send('succefully ' + user.count + 'member has been removed');
-    }).catch((e) => {
-        res.status(400).send(e);
-
-    })
+router.get('/api/user/addresses',auth, (req, res) => {
+	
+	
+	let user = req.user
+	const addresses = user.addresses
+	res.send({addresses});
+    
 })
 
 
 
 
-router.post('/api/user/add-address/:id', async (req, res) => {
+router.post('/api/user/add-address/:id', auth, async (req, res) => {
 
 
 
 
     try {
-        console.log("before"+ req.params.id );
-        let user = await  User.findOne({_id: req.params.id})
+        
+        let user = req.user
         console.log("name:"+user.name);
         user.addresses = user.addresses.concat({address: {
             country: "Egypt",
@@ -332,7 +332,9 @@ router.post('/api/user/add-address/:id', async (req, res) => {
         } 
         })
             await user.save()
-        res.send({user});
+            const addresses =user.addresses
+            const address = user.addresses.slice(-1).pop()
+        res.send({user,address, addresses});
     } catch (error) {
         res.status(400).send({error});
     }
@@ -347,7 +349,24 @@ router.post('/api/user/add-address/:id', async (req, res) => {
 //         res.status(400).send({e});
 
 //     })
+
 })
+
+
+
+router.get('/api/admin/deleteuser/:id', (req, res) => {
+	
+	
+	
+    User.deleteOne({ _id: req.params.id }).then((user) => {
+        res.send('succefully ' + user.count + 'member has been removed');
+    }).catch((e) => {
+        res.status(400).send(e);
+
+    })
+})
+
+
 
 
 

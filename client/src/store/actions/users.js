@@ -189,25 +189,55 @@ export const UserSignOut = () => {
   
   
   
-  export const AddNewAddress = (data, userID) => {
+  export const AddNewAddress = (data, token) => {
     return async dispatch => {
       try {
-     const response =   await axios.post('/api/user/add-address/'+ userID, data);
+     const response =   await axios.post('/api/user/add-address/' , data, {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
   
         dispatch({
-          type: ADD_NEW_ADDRESS, 
+          type: ADD_NEW_ADDRESS
           
           address: response.data.address,
-          
+          addresses: response.data.addresses
         });
-        localStorage.setItem('JWT_TOKEN', response.token);
-      axios.defaults.headers.common['Authorization'] = response.token;
+        
       } catch(err) {
+      	console.log(err) 
         dispatch({
-          type: UPDATE_USER_ERROR,
-          payload: err
+          //type: UPDATE_USER_ERROR,
+        //  payload: err
         })
       }
     };
   }
+
+
+export const FetchAddresses = ( token) => {
+    return async dispatch => {
+      try {
+     const response =   await axios.get('/api/user/addresses/', {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
+  
+        dispatch({
+          type: FETCH_ADDRESSES
+          
+          
+          addresses: response.data.addresses
+        });
+        
+      
+      } catch(err) {
+      	console.log(err) 
+        dispatch({
+          //type: UPDATE_USER_ERROR,
+        //  payload: err
+        
+        })
+      }
+    };
+  }
+
 
