@@ -48,7 +48,7 @@ async FetchAddressesFromServer() {
 
       const { FetchAddresses } = this.props;
       
-      await FetchAddresses(this.props.token);
+      await FetchAddresses(this.props.token,this.props.defaultAddress );
 
    // }
     console.log("log from add product Updatefetchproduct")
@@ -60,7 +60,7 @@ async componentDidMount() {
 
     await this.FetchAddressesFromServer()
     console.log("log from list product mound")
-
+  console.log("default" + JSON.stringify(this.props.defaultAddress));
   }
   async componentDidUpdate() {
  //   await this.FetchAddressesFromServer()
@@ -134,16 +134,34 @@ cartItemClass=  "cart-Item"
      <div className="TopNavPage">
      
      
-  {!this.props.addressesList ?   <div className="Address-container">
+  {this.props.addressesList.length > 0 ?   <div className="Address-container">
+
+  <NavLink  
+ className="add-new-address"
+   to={{
+                                  pathname:"/addaddress"
+                              }}
+        
+                           ><h4>Add New Address</h4></NavLink>
+
+
+
        {this.props.addressesList.map((address)=>{
-{DefaultBorder(this.props.defaultAddress.id, address.id)}  
+{DefaultBorder(this.props.defaultAddress._id, address._id)}  
 return <div className={cartItemClass} >
  
+ 
+
+
+
+
+
  <div className="cart-item-desc">
    
    <div className="cart-item-details">
-      <p className="cart-item-title margin0">{address.firstName} </p>
+      <p className="cart-item-title margin0">{address.firstName +" "+ address.lastName} </p>
       <p className="cart-item-title margin0">{address.street} </p>
+      <p className="cart-item-title margin0">{address.city} </p>
       <p className="cart-item-title margin0">{address.phone} </p>
 
      
@@ -152,7 +170,7 @@ return <div className={cartItemClass} >
   
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
-         {this.props.defaultAddress.id != address.id ? 
+         {this.props.defaultAddress._id != address._id ? 
          <p className="remove-text"  onClick={() => setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text default-address"  > DEFAULT ADDRESS </p> 
 } 

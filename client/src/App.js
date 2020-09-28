@@ -14,6 +14,7 @@ import AdminPage from './admin/admin'
 import AdminAuthHOC from './admin/components/HOCs/auth/authHOC'
 import AdminLogin from './admin/components/auth/sign-in/signIn'
 import UserAccount from './components/UserAccount/account.page.js'
+import CheckoutAddress from './components/checkout/addresses/checkoutAddress'
 import AddAddress from './components/UserAccount/components/userPages/AccountSettings/AddAddressForm/AddAddressForm'
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />
           
-      
+          <Route path='/checkout-address' component={CheckoutAddress} />
         </Switch>
     </div>
   );

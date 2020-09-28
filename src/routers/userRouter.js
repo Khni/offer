@@ -338,7 +338,7 @@ router.post('/api/user-add-address', auth, async (req, res) => {
         
         let user = req.user
         console.log("name:"+user.name);
-        user.addresses = user.addresses.concat({address: {
+        user.addresses = user.addresses.concat( {
             country: "Egypt",
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -349,7 +349,7 @@ router.post('/api/user-add-address', auth, async (req, res) => {
             apartment: req.body.apartment
         
         } 
-        })
+        )
             await user.save()
             const addresses =user.addresses
             const address = user.addresses.slice(-1).pop()

@@ -97,7 +97,7 @@ const userSchema = mongoose.Schema({
     
 
     addresses: [{
-       address: {
+      // address: {
             firstName: {
                 type: String,
                 trim: true
@@ -141,7 +141,7 @@ const userSchema = mongoose.Schema({
         trim: true
 
             },
-        }
+       // }
     }],
 
 

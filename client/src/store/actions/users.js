@@ -15,6 +15,7 @@ import {
   SET_DEFAULT_ADDRESS, 
   FETCH_ADDRESSES
 } from '../types/authUserTypes'
+import {ObjIndexToZero} from './users.utils'
  
  export const signUp =( data, lang) => {
  	
@@ -167,10 +168,12 @@ export const UserSignOut = () => {
   export const setDefaultAddress = (address, addressesArray) => {
 
  console.log("FetchAddressesList from user");
- let addressesList =addressesArray
- const indexOfDefault = addressesList.findIndex(a => a.id ==address.id) 
- let cutOut = addressesList.splice(indexOfDefault, 1) [0]; // cut the element at index 'from'
-    addressesList.splice(0, 0, cutOut);    
+
+ let addressesList  = ObjIndexToZero(addressesArray,address)
+ //let addressesList =addressesArray
+//  const indexOfDefault = addressesList.findIndex(a => a._id ==address._id) 
+//  let cutOut = addressesList.splice(indexOfDefault, 1) [0]; // cut the element at index 'from'
+//     addressesList.splice(0, 0, cutOut);    
     
     return  dispatch => {
      
@@ -214,18 +217,18 @@ export const UserSignOut = () => {
   }
 
 
-export const FetchAddresses = ( token) => {
+export const FetchAddresses = ( token, address) => {
     return async dispatch => {
       try {
      const response =   await axios.get('/api/user-addresses', {
       headers : { Authorization: `Bearer ${token}`
        }} );
-  
+       let addressesList  = ObjIndexToZero(response.data.addresses,address)
         dispatch({
           type: FETCH_ADDRESSES,
           
           
-          addresses: response.data.addresses
+          addresses: addressesList
         });
         
       
