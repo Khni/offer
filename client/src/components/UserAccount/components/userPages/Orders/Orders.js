@@ -26,9 +26,23 @@ class UserOrders extends Component {
 
 
 
+async FetchOrdersFromServer() {
+   // if (!this.props.productsFetched) {
 
+      const { FetchOrders } = this.props;
+      
+      await FetchOrders(this.props.token);
 
+ //   }
+    console.log("log from add product Updatefetchproduct")
 
+  }
+  
+
+async componentDidMount() {
+await this.FetchOrdersFromServer()
+  }
+  
 
 
     render() {
@@ -37,15 +51,30 @@ class UserOrders extends Component {
         return(
 
 
-     <div className="TopNavPage">
-       
+ <div className="TableList-container">
       
- <h3>Orders List</h3>
+ <h3>Orders</h3>
+<div>
+ 
 
-    
 
+                      <table className="TableList">
+    <tr><th>Category Name</th> </tr>
+   
+{this.props.orders.map((order)=>{
+return     <tr><td>{order._id}</td></tr>
+   })}
+  
+      </table>  
+
+            
+
+
+   
+      </div>
       
 </div>
+
 
 
 
@@ -59,6 +88,7 @@ const mapStateToProps = state => {
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
+    orders: state.userAuth.orders,
     isAuthenticated: state.userAuth.authUser.isAuthenticated
     
   }

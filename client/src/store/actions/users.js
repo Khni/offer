@@ -13,7 +13,9 @@ import {
   DASHBOARD_GET_DATA, 
   ADD_NEW_ADDRESS,
   SET_DEFAULT_ADDRESS, 
-  FETCH_ADDRESSES
+  FETCH_ADDRESSES, 
+  MAKE_ORDER, 
+  FETCH_ORDERS
 } from '../types/authUserTypes'
 import {ObjIndexToZero} from './users.utils'
  
@@ -242,5 +244,60 @@ export const FetchAddresses = ( token, address) => {
       }
     };
   }
+  
+  
+  
+  
+  
+  export const MakeOrder = (data, token) => {
+    return async dispatch => {
+      try {
+     const response =   await axios.post('/api/order/add' , data, {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
+  
+        dispatch({
+          type: MAKE_ORDER
+          
+          
+        //  orders: response.data.orders
+        });
+        
+      } catch(err) {
+      	console.log(err) 
+        dispatch({
+          type: "ERRRRR"
+        //  payload: err
+        })
+      }
+    };
+  }
+  
 
+
+export const FetchOrders = ( token) => {
+    return async dispatch => {
+      try {
+     const response =   await axios.get('/api/user-orders', {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
+       
+        dispatch({
+          type: FETCH_ADDRESSES,
+          
+          
+          addresses: response.data.orders
+        });
+        
+      
+      } catch(err) {
+      	console.log(err) 
+        dispatch({
+          type: "ERRRRR"
+        //  payload: err
+        
+        })
+      }
+    };
+  }
 

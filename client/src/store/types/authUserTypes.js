@@ -15,6 +15,9 @@ export const SET_DEFAULT_ADDRESS = 'SET_DEFAULT_ADDRESS';
 export const FETCH_ADDRESSES = 'FETCH_ADDRESSES';
 export const ADD_NEW_ADDRESS = 'ADD_NEW_ADDRESS';
 
+export const MAKE_ORDER = 'MAKE_ORDER';
+export const FETCH_ORDERS = 'FETCH_ORDERS';
+
 
 
 

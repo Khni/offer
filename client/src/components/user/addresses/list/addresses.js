@@ -84,30 +84,6 @@ async componentDidMount() {
 
     render() {
     	
-const Adresses = [
-{
-street: '6 Zaki Abo soud', 
-phone: '01034543455',
-firstName: 'khaled mohamed' ,
-id: 2
-}, 
-{
-street: '8 soudan', 
-phone: '012012012012',
-firstName: 'ahmed hassen' ,
-id: 3
-},
-{
-street: '9 makram', 
-phone: '012010201201',
-firstName: 'zaki ahmed' ,
-id: 9
-}
-
-] 
-
-
-
 let setDefault=async(address, list)=> {
 const {setDefaultAddress} = this.props 
 await setDefaultAddress(address, list)
@@ -131,10 +107,7 @@ cartItemClass=  "cart-Item"
         return(
 
 
-     <div className="TopNavPage">
-     
-     
-  {this.props.addressesList.length > 0 ?   <div className="Address-container">
+     <div className="Address-container">
 
   <NavLink  
  className="add-new-address"
@@ -203,9 +176,6 @@ return <div className={cartItemClass} >
  
     
  
-</div> : <AddAddressForm /> } 
-      
-      
 </div>
 
 

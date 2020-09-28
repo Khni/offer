@@ -21,5 +21,17 @@ router.post('/api/order/add', auth, async (req, res) => {
 })
 
 
+
+router.get('/api/user-orders', auth, async (req, res) => {
+    const orders = await Order.find({userId : req.user._id})
+
+    try {
+        
+        res.status(200).send({orders})
+    } catch (e) {
+        res.status(400).send({e})
+    }
+})
+
 module.exports = router
 

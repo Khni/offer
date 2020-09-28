@@ -8,7 +8,9 @@ UPDATE_USER,
   
   SET_DEFAULT_ADDRESS, 
   FETCH_ADDRESSES,
-  ADD_NEW_ADDRESS
+  ADD_NEW_ADDRESS, 
+  MAKE_ORDER, 
+  FETCH_ORDERS
 } from '../../types/authUserTypes';
 
 const DEFAULT_STATE = {
@@ -26,6 +28,8 @@ const DEFAULT_STATE = {
       list:[], 
       default:'' 
      } 
+     
+     orders: [] 
   }
   
   export default (state = DEFAULT_STATE, action) => {
@@ -52,6 +56,9 @@ const DEFAULT_STATE = {
         return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.defaultAddress}}
         case ADD_NEW_ADDRESS:
           return { ...state, addresses:{...state.addresses, list: action.addresses, default: action.address}}
+          
+          case FETCH_ORDERS:
+        return { ...state, orders: action.orders}
 
       default:
         return state

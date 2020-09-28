@@ -1,8 +1,8 @@
 import React , {Component} from 'react';
-import './checkoutAddressStyle.scss';
-//import {selectProducts} from '../../store/reducers/products/productsReselect'
+import './checkoutPayment.scss';
+
 import * as actions from '../../../store/actions/product';
-import Addresses from '../../UserAccount/components/userPages/AccountSettings/addresses.js'
+import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 
 import Header from '../../header/header.js'
 import { connect } from 'react-redux';
@@ -17,21 +17,27 @@ class homeMenu extends Component {
     }
   }
 
+  async sendOrder(data,token) {
+const {MakeOrder} = this.props
+await MakeOrder(data,token)
+} 
+  
+  
   
 	render() {
-		
 		
 		return(
 		<div className="menu-container">
 		
-		  <Header />
+		  <Header  />
            
-		<Addresses />
+		   <p></p>
+
   <div className="checkout-cart-footer">
 
 
 
-<button className="custum-btn-checkout" >Continue </button>
+<button onClick={async() =>await this.sendOrder(this.props.cartItems,this.props.token) } className="custum-btn-checkout" >Confirm Order</button>
 
 </div>
          </div>
@@ -48,9 +54,10 @@ class homeMenu extends Component {
 
 const mapStateToProps =(state) =>{
 	return {
- addressesList: state.userAuth.addresses.list,
-  defaultAddress: state.userAuth.addresses.default
- //collections: state.ProductsReducer.products
+		token: state.userAuth.authUser.token,
+ total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity * item.price, 0), 
+ cartItems: selectCartItems(state), 
+
 	}
 }
 

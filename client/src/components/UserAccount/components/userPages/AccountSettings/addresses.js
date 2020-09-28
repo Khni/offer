@@ -21,7 +21,11 @@ class Addresses extends Component {
     constructor(props) {
         super(props)
          
-         
+         this.state ={
+             
+             list: true
+
+              } 
          this.fetchAddresses = this.fetchAddresses.bind(this);
          this.setDefaulti = this.setDefaulti.bind(this);
               
@@ -134,15 +138,9 @@ cartItemClass=  "cart-Item"
      <div className="TopNavPage">
      
      
-  {this.props.addressesList.length > 0 ?   <div className="Address-container">
+  {this.props.addressesList.length > 0 && this.state.list ?   <div className="Address-container">
 
-  <NavLink  
- className="add-new-address"
-   to={{
-                                  pathname:"/addaddress"
-                              }}
-        
-                           ><h4>Add New Address</h4></NavLink>
+  <h3 onClick={this.setState({list:false})> Add New Address</h3>
 
 
 
