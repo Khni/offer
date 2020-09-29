@@ -15,7 +15,7 @@ import categoryReducer from './categories/categoryReducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer', 'userAuth']
+  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer']
 };
 
 const Reducers = combineReducers({
