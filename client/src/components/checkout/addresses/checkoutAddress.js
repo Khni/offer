@@ -31,7 +31,7 @@ class homeMenu extends Component {
 
 
 
-<button className="custum-btn-checkout" >Continue </button>
+<button onClick={()=> this.props.history.push('/checkout-confirm')} className="custum-btn-checkout" >Continue </button>
 
 </div>
          </div>
@@ -48,8 +48,7 @@ class homeMenu extends Component {
 
 const mapStateToProps =(state) =>{
 	return {
- addressesList: state.userAuth.addresses.list,
-  defaultAddress: state.userAuth.addresses.default
+ 
  //collections: state.ProductsReducer.products
 	}
 }

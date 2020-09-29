@@ -255,7 +255,7 @@ export const FetchAddresses = ( token, address) => {
      const response =   await axios.post('/api/order/add' , data, {
       headers : { Authorization: `Bearer ${token}`
        }} );
-  
+    console.log(response.data.order);
         dispatch({
           type: MAKE_ORDER
           
@@ -281,12 +281,13 @@ export const FetchOrders = ( token) => {
      const response =   await axios.get('/api/user-orders', {
       headers : { Authorization: `Bearer ${token}`
        }} );
-       
+
+       console.log("orders" + JSON.stringify(response.data.orders) );
         dispatch({
-          type: FETCH_ADDRESSES,
+          type: FETCH_ORDERS,
           
           
-          addresses: response.data.orders
+          orders: response.data.orders
         });
         
       

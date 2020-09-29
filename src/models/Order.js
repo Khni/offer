@@ -11,13 +11,13 @@ type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
        }, 
 	products:[{
-        productID:{
+        _id:{
           type: mongoose.Schema.Types.ObjectId,
         //required: true,
         ref: 'Product'
 
             }, 
-            productName:{
+            nameEn:{
           type: String,
         required: true,
         ref: 'Product'

@@ -1,13 +1,13 @@
 import React , {Component} from 'react';
 import './checkoutPayment.scss';
 
-import * as actions from '../../../store/actions/product';
+import * as actions from '../../../store/actions/users';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 
 import Header from '../../header/header.js'
 import { connect } from 'react-redux';
 
-class homeMenu extends Component {
+class CheckPayment extends Component {
 	constructor(props){
 		super(props);
 	
@@ -20,10 +20,13 @@ class homeMenu extends Component {
   async sendOrder(data,token) {
 const {MakeOrder} = this.props
 await MakeOrder(data,token)
+console.log("sendPrder");
 } 
   
   
-  
+//   async componentDidMount() {
+//   await this.sendOrder()
+//   }
 	render() {
 		
 		return(
@@ -31,13 +34,13 @@ await MakeOrder(data,token)
 		
 		  <Header  />
            
-		   <p></p>
+		   <p>Total Order : {this.props.total+ " EGP"}</p>
 
   <div className="checkout-cart-footer">
 
 
 
-<button onClick={async() =>await this.sendOrder(this.props.cartItems,this.props.token) } className="custum-btn-checkout" >Confirm Order</button>
+<button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-checkout" >Confirm Order</button>
 
 </div>
          </div>
@@ -61,4 +64,4 @@ const mapStateToProps =(state) =>{
 	}
 }
 
-export default connect(mapStateToProps, actions)(homeMenu);
+export default connect(mapStateToProps, actions)(CheckPayment);

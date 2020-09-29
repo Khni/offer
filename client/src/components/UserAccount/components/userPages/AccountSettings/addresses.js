@@ -66,10 +66,7 @@ async componentDidMount() {
     console.log("log from list product mound")
   console.log("default" + JSON.stringify(this.props.defaultAddress));
   }
-  async componentDidUpdate() {
- //   await this.FetchAddressesFromServer()
-    console.log("log from list product Update")
-  }
+  
 
 
   
@@ -88,27 +85,8 @@ async componentDidMount() {
 
     render() {
     	
-const Adresses = [
-{
-street: '6 Zaki Abo soud', 
-phone: '01034543455',
-firstName: 'khaled mohamed' ,
-id: 2
-}, 
-{
-street: '8 soudan', 
-phone: '012012012012',
-firstName: 'ahmed hassen' ,
-id: 3
-},
-{
-street: '9 makram', 
-phone: '012010201201',
-firstName: 'zaki ahmed' ,
-id: 9
-}
 
-] 
+
 
 
 
@@ -138,14 +116,15 @@ cartItemClass=  "cart-Item"
      <div className="TopNavPage">
      
      
-  {this.props.addressesList.length > 0 && this.state.list ?   <div className="Address-container">
+  {this.props.addressesList.length > 0 && this.state.list    ? <div className="Address-container">
 
-  <h3 onClick={this.setState({list:false})> Add New Address</h3>
+  <h3 onClick={()=>this.setState({list:false})}> Add New Address</h3>
 
 
 
        {this.props.addressesList.map((address)=>{
-{DefaultBorder(this.props.defaultAddress._id, address._id)}  
+         
+{this.props.defaultAddress ? DefaultBorder(this.props.defaultAddress._id, address._id) : " "}  
 return <div className={cartItemClass} >
  
  

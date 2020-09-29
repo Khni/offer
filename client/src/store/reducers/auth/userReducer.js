@@ -27,7 +27,7 @@ const DEFAULT_STATE = {
    addresses:{
       list:[], 
       default:'' 
-     } 
+     } ,
      
      orders: [] 
   }

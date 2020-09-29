@@ -9,12 +9,13 @@ router.post('/api/order/add', auth, async (req, res) => {
     const order = new Order({
         ...req.body,
         userID: req.user._id,
-        totalPrice: req.body.products.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
+        products: req.body,
+       totalPrice: req.body.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
     })
 
     try {
         await order.save()
-        res.status(201).send(order)
+        res.status(201).send({order})
     } catch (e) {
         res.status(400).send({e})
     }
@@ -23,7 +24,7 @@ router.post('/api/order/add', auth, async (req, res) => {
 
 
 router.get('/api/user-orders', auth, async (req, res) => {
-    const orders = await Order.find({userId : req.user._id})
+    const orders = await Order.find({userID : req.user._id})
 
     try {
         
