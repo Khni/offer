@@ -280,6 +280,7 @@ export const FetchAddresses = ( token, address) => {
 
 
 export const FetchOrders = ( token) => {
+  console.log("orders");
     return async dispatch => {
       try {
      const response =   await axios.get('/api/user-orders', {
