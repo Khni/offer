@@ -88,7 +88,7 @@ const mapStateToProps = state => {
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
-    orders: state.userAuth.orders,
+    orders: state.ordersReducer.orders,
     isAuthenticated: state.userAuth.authUser.isAuthenticated
     
   }

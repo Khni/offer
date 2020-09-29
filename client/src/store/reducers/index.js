@@ -12,10 +12,12 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import ProductsReducer from './products/productsReducer';
 import categoryReducer from './categories/categoryReducer'
+import ordersReducer from './auth/ordersReducer.js';
+
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer']
+  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer', 'userAuth']
 };
 
 const Reducers = combineReducers({
@@ -29,6 +31,7 @@ const Reducers = combineReducers({
     ProductsReducer: ProductsReducer,
     categoryReducer: categoryReducer, 
     checkoutReducer: checkoutReducer,
+    ordersReducer: ordersReducer, 
     addressReducer: addressReducer
 });
 
