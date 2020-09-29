@@ -23,7 +23,7 @@ class Addresses extends Component {
          
          this.state ={
              
-             list: true
+             listToshow: true
 
               } 
          this.fetchAddresses = this.fetchAddresses.bind(this);
@@ -61,8 +61,9 @@ async FetchAddressesFromServer() {
 
 
 async componentDidMount() {
-
+console.log("addresseslost"+this.props.addressesList.length);
     await this.FetchAddressesFromServer()
+    console.log("addresseslost after fetching"+this.props.addressesList.length);
     console.log("log from list product mound")
   console.log("default" + JSON.stringify(this.props.defaultAddress));
   }
@@ -101,11 +102,13 @@ await setDefaultAddress(address, list)
 let cartItemClass=  "cart-Item" 
 let setdefaultclass=  "remove-text default" 
 
-let  DefaultBorder=(DefaultAddressID, addressID)=> {
+let  DefaultBorder=(DefaultAddress, addressID)=> {
+	if (!DefaultAddress) {
+    return;
+  }
 	
-	
-	console.log("defaultAddresiD" + DefaultAddressID + "addressID" + addressID);
-if(DefaultAddressID === addressID)
+//	console.log("defaultAddresiD" + DefaultAddressID + "addressID" + addressID);
+if(DefaultAddress._id === addressID)
  {cartItemClass=  "cart-Item borderCard"}else{
 cartItemClass=  "cart-Item" 
 } 
@@ -116,15 +119,16 @@ cartItemClass=  "cart-Item"
      <div className="TopNavPage">
      
      
-  {this.props.addressesList.length > 0 && this.state.list    ? <div className="Address-container">
+  {this.props.addressesList.length !== 0 && this.state.listToshow  ? <div className="Address-container">
 
-  <h3 onClick={()=>this.setState({list:false})}> Add New Address</h3>
+  <h3 onClick={()=>this.setState({listToshow:false})}> Add New Address</h3>
 
 
 
        {this.props.addressesList.map((address)=>{
          
-{this.props.defaultAddress ? DefaultBorder(this.props.defaultAddress._id, address._id) : " "}  
+{ DefaultBorder(this.props.defaultAddress, address._id) 
+}  
 return <div className={cartItemClass} >
  
  
@@ -180,7 +184,7 @@ return <div className={cartItemClass} >
  
     
  
-</div> : <AddAddressForm /> } 
+</div> :<div><AddAddressForm /> {console.log("length arry" + this.props.addressesList)}</div>  } 
       
       
 </div>
@@ -196,8 +200,8 @@ const mapStateToProps = state => {
   return {
   	errorMsg: state.userAuth.authUser.error, 
   userID: state.userAuth.authUser.id, 
-  addressesList: state.userAuth.addresses.list,
-  defaultAddress: state.userAuth.addresses.default,
+  addressesList: state.addressReducer.list,
+  defaultAddress: state.addressReducer.default,
   
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,

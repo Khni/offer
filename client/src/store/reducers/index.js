@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import userReducer from './auth/userReducer';
+import addressReducer from './auth/addressReducer'
 import adminReducer from './admin/auth/adminReducer';
 import dashboardReducer from './auth/dashboardReducer';
 import cartReducer from './cart/cartReducer';
@@ -14,7 +15,7 @@ import categoryReducer from './categories/categoryReducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer' ]
+  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer', 'userAuth']
 };
 
 const Reducers = combineReducers({
@@ -27,7 +28,8 @@ const Reducers = combineReducers({
     langReducer: langReducer, 
     ProductsReducer: ProductsReducer,
     categoryReducer: categoryReducer, 
-    checkoutReducer: checkoutReducer
+    checkoutReducer: checkoutReducer,
+    addressReducer: addressReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 

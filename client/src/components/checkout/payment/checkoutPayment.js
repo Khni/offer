@@ -20,6 +20,7 @@ class CheckPayment extends Component {
   async sendOrder(data,token) {
 const {MakeOrder} = this.props
 await MakeOrder(data,token)
+this.props.history.push('/account/orders')
 console.log("sendPrder");
 } 
   

@@ -225,7 +225,11 @@ export const FetchAddresses = ( token, address) => {
      const response =   await axios.get('/api/user-addresses', {
       headers : { Authorization: `Bearer ${token}`
        }} );
+      
+       console.log("users length of empty"+ response.data.addresses.length);
        let addressesList  = ObjIndexToZero(response.data.addresses,address)
+      console.log("users length of empty agter ibjundexzert"+ addressesList.length);
+       let array = []
         dispatch({
           type: FETCH_ADDRESSES,
           

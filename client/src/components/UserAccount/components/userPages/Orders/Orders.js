@@ -59,10 +59,10 @@ await this.FetchOrdersFromServer()
 
 
                       <table className="TableList">
-    <tr><th>Category Name</th> </tr>
+    <tr><th>Price</th><th>Order ID</th> </tr>
    
 {this.props.orders.map((order)=>{
-return     <tr><td>{order._id}</td></tr>
+return     <tr><td>{order.totalPrice}</td><td>{order._id}</td></tr>
    })}
   
       </table>  
