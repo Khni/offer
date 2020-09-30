@@ -2,8 +2,15 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const shortid = require('shortid');
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 const orderSchema = mongoose.Schema({
+
+
+  shortid: {
+    'type': String,
+    'default': shortid.generate
+  },
 	
 	userID: {
 type: mongoose.Schema.Types.ObjectId,

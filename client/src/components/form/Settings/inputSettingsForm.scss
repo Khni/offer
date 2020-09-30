@@ -1,5 +1,5 @@
 .input-text-settings {
-	font-size: 12pt;
+//	font-size: 12pt;
 	width: 270px;
 	transition: width 1s;
 	height: 30px;
@@ -14,12 +14,12 @@
 	padding-right: 30px;
 	padding-left: 30px;
 	text-align: left;
-	
+	border-color: orange;
 }
 
 
 .input-text-settings:focus {
-	width: 280px;
+	//width: 280px;
 	border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;

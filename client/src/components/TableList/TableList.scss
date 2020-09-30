@@ -34,18 +34,19 @@ margin-bottom:5px;
   
   .TableList th {
     margin: 5px;
-  height: 40px;
-  font-size: 13px;
-  Background: linear-gradient(to right, #00B4DB, #0083B0);
-  color: white;
-  text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
-  font-weight: bolder;
-  border: none;
-  cursor: pointer;
-  box-shadow: 2.5px 5px 9px #888888;
-  margin-top: 20px;
-  transition: 1s ease;
+    height: 30px;
+    font-size: 13px;
+    Background: linear-gradient(to right, #00B4DB, #0083B0);
+    color: white;
+    text-transform: uppercase;
+    /* font-family: 'Open Sans Condensed'; */
+    font-weight: bolder;
+    border: none;
+    /* cursor: pointer; */
+    /* box-shadow: 2.5px 5px 9px #888888; */
+    margin-top: 20px;
+    transition: 1s ease;
+
   }
 
   .input-search-tableList {

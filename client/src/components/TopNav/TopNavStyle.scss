@@ -19,13 +19,13 @@
           display: flex;
             min-width: 100%;
            // padding-right: 70px ;
-           border-bottom: 0.1px solid black;
+           border-bottom: 1px solid blue;
            margin-right: 5px;
-           padding: 7px;
+           padding: 3px;
            
             
             background-color: white;
-            font-weight: bold;
+//font-weight: bold;
           }
     
         
@@ -39,14 +39,15 @@
 .active-top-NavLinkItems{
     
    //font-size: 13px;
-    Background: linear-gradient(to right, #00B4DB, #0083B0);
+  //  Background: linear-gradient(to right, #00B4DB, #0083B0);
     color: white;
     //text-transform: uppercase;
     //font-family: 'Open Sans Condensed';
     font-weight: bold;
-    border: none;
+    //border: none;
     cursor: pointer;
-    
+    border-bottom: 1px bold orange;
+    color: orange;
     
     //box-shadow: 2.5px 5px 9px #888888;
    

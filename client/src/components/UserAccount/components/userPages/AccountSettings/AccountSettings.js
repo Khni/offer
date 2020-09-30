@@ -15,6 +15,7 @@ import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
 import Form from '../../../../form/Settings/formSettings.component.js';
+import "./AccountSettings.scss"
 
 class UserSettings extends Component {
 
@@ -124,7 +125,7 @@ let fieldsets = [
        
       
  <Form
-   title="Account Details" 
+   //title="Account Details" 
    fieldsets={fieldsets}
    
    onSubmit={this.onSubmit } 
@@ -137,7 +138,7 @@ let fieldsets = [
  
  
     
- <button  className="custum-btn" onClick={this.signOutUser }>Sign out</button>
+ <p  className="sign-up-p" onClick={this.signOutUser }>Sign out</p>
       
 </div>
 

@@ -62,7 +62,7 @@ await this.FetchOrdersFromServer()
     <tr><th>Price</th><th>Order ID</th> </tr>
    
 {this.props.orders.map((order)=>{
-return     <tr><td>{order.totalPrice}</td><td>{order._id}</td></tr>
+return     <tr><td>{order.totalPrice}</td><td>{order.shortid}</td></tr>
    })}
   
       </table>  

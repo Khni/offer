@@ -39,7 +39,7 @@ class AccountSettingsNav extends Component {
 
       const navlinks = [{
         path:"/account/settings/details" ,
-        title: "Account Details"
+        title: "Details"
       },
       {
         path:"/account/settings/address",
@@ -49,6 +49,9 @@ class AccountSettingsNav extends Component {
 
 
      <div className="TopNavPage">
+
+
+       <h5>Account Settings</h5>
        <TopNavComponent navlinksArr={navlinks} />
       
  

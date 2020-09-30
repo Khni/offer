@@ -30,7 +30,7 @@ return     <NavLink key={i} className="side-NavLink"
                                 activeStyle={{
                                   //  color: '#fa923f',
                                   //  textDecoration: 'underline',
-                                  background: "#dfe3ee",
+                                //  background: "#dfe3ee",
                                  // color: "#ffffff"
                                 }}>{navlink.title}</NavLink>
       })} 
