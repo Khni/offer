@@ -17,6 +17,11 @@ type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
        }, 
+       orderNum: {
+         type: Number,
+         required: true
+
+       },
 	products:[{
         _id:{
           type: mongoose.Schema.Types.ObjectId,
