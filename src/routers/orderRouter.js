@@ -8,7 +8,8 @@ const auth = require('../middleware/auth')
 router.post('/api/order/add', auth, async (req, res) => {
     const order = new Order({
         ...req.body,
-        userID: req.user._id,
+        orderNum:  new Date().valueOf() ,
+         userID: req.user._id,
         products: req.body,
        totalPrice: req.body.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
     })
