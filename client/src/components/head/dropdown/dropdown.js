@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { ReactComponent as BoltIcon } from '../icons/bolt.svg';
+import { ReactComponent as Useraccount } from '../icons/useraccount.svg';
+import { ReactComponent as Favorite } from '../icons/favorite.svg';
+import { ReactComponent as Orders } from '../icons/orders.svg';
+import { ReactComponent as View } from '../icons/view.svg';
+import { ReactComponent as Settings } from '../icons/setting.svg';
 const DropdownMenu =() =>{
 
 
@@ -15,8 +20,10 @@ const DropdownMenu =() =>{
   
     return (
       <div className="dropdown">
-          <DropdownItem>Foo</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>Bar</DropdownItem>
+          <DropdownItem leftIcon={<Settings />}>Account Settings</DropdownItem>
+          <DropdownItem leftIcon={<Orders />}>Orders</DropdownItem>
+          <DropdownItem leftIcon={<Favorite />}>Favorite Items</DropdownItem>
+          <DropdownItem leftIcon={<View />}>Viewed Items</DropdownItem>
       </div>
     )
   }
