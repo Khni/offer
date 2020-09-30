@@ -8,7 +8,7 @@ import ProductsNav from './components/adminPage/products/TopNav/productsNav.comp
 import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
-
+import Header from '../components/head/header/header'
 import SideNavStyle from '../components/FixedSideMenuNav/FixedSideMenuNav.scss'
 import SideNavComponent from '../components/FixedSideMenuNav/FixedSideMenuNav'
 class AdminPage extends Component {

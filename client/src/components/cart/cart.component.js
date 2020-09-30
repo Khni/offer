@@ -10,7 +10,7 @@ import {addItem, removeItem} from '../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 import { withRouter } from 'react-router-dom';
 import Header from '../header/header'
-
+import Head from '../head/header/header'
 const CartItem = (props) =>{
 	let cartdropdown = "cart-dropdown" ;
   if (!props.show) {
@@ -21,7 +21,7 @@ cartdropdown = "cart-dropdown open" ;
 
 
  <div className="cart" >
-<Header />
+<Head />
 <div className="cartItemContainer">
 {props.cartItems.map(item=>(
 

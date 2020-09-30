@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ReactComponent as BoltIcon } from '../icons/bolt.svg';
 const DropdownMenu =() =>{
 
 
@@ -19,3 +20,5 @@ const DropdownMenu =() =>{
       </div>
     )
   }
+
+  export default DropdownMenu
