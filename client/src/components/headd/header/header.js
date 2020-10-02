@@ -48,7 +48,7 @@ link: '/account/viewed-items'
     {props.token ? 
 <NavItem icon={<User />}  >
         <DropdownMenu dropDownItems={this.props.dropDownItems}></DropdownMenu>
-    </NavItem> :   <NavItem link='/signup' icon={<User />} } 
+    </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
       
