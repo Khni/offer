@@ -20,7 +20,7 @@ class Header extends Component {
 
   }
   render() {
-  const dropDownItems ={
+  const dropDownItems =[
 {
 icon:{<Settings />} , 
 title:'Settings', 
@@ -40,8 +40,8 @@ link: '/account/favorite-list'
 icon:{<View />} , 
 title:'View', 
 link: '/account/viewed-items' 
-},
-} 
+}
+] 
   
   return (
     <Navbar>
