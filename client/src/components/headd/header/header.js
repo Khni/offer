@@ -24,22 +24,22 @@ class Header extends Component {
 {
 icon:<Settings /> , 
 title:'Settings', 
-link: '/account/settings' 
+link: '/settings' 
 }, 
 {
 icon:<Orders /> , 
 title:'Orders', 
-link: '/account/orders' 
+link: '/orders' 
 }, 
 {
 icon:<Favorite /> , 
 title:'Favorite', 
-link: '/account/favorite-list' 
+link: '/favorite-list' 
 }, 
 {
 icon:<View /> , 
 title:'View', 
-link: '/account/viewed-items' 
+link: '/viewed-items' 
 }
 ] 
   

@@ -17,6 +17,11 @@ import UserAccount from './components/UserAccount/account.page.js'
 import CheckoutAddress from './components/checkout/addresses/checkoutAddress'
 import AddAddress from './components/UserAccount/components/userPages/AccountSettings/AddAddressForm/AddAddressForm'
 import CheckoutPayment from './components/checkout/payment/checkoutPayment' 
+import AccountSettingsNav from './components/UserAccount/components/userPages/AccountSettings/AccountSettingsNav.js'
+import Orders from'./components/UserAccount/components/userPages/Orders/Orders.js'
+//import AddProduct from './components/UserAccount/components/adminPage/products/addProduct.component'
+import FavoriteList from './components/UserAccount/components/userPages/FavoriteList/FavoriteList.js'
+import ViewedItems from './components/UserAccount/components/userPages/ViewedItems/ViewedItems.js'
 function App() {
   return (
     <div className="App">
@@ -36,6 +41,10 @@ function App() {
           
           <Route path='/checkout-address' component={CheckoutAddress} />
           <Route path='/checkout-confirm' component={CheckoutPayment} />
+          <Route path="/settings" component={AccountSettingsNav} />
+                    <Route path="/orders" component={Orders}  />
+                    <Route path="/favorite-list" component={FavoriteList} />
+                    <Route path="/viewed-items" component={FavoriteList} />
         </Switch>
     </div>
   );

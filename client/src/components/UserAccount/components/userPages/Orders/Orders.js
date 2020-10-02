@@ -14,7 +14,7 @@ import { compose } from 'redux';
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
-
+import Head from '../../../../components/headd/header/header'
 
 class UserOrders extends Component {
 
@@ -52,7 +52,7 @@ await this.FetchOrdersFromServer()
 
 
  <div className="TableList-container">
-      
+      <Head />
  <h3>Orders</h3>
 <div>
  

@@ -6,6 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import Head from '../../../../components/headd/header/header'
 
 import AccountSettings from './AccountSettings.js'
 import Address from './addresses.js'
@@ -49,7 +50,7 @@ class AccountSettingsNav extends Component {
 
 
      <div className="TopNavPage">
-
+<Head />
 
        <h5>Account Settings</h5>
        <TopNavComponent navlinksArr={navlinks} />
