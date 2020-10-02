@@ -78,6 +78,20 @@ a {
   transition: filter 300ms;
 }
 
+.icon-button-menu{
+  --button-size: calc(var(--nav-size) * 0.5);
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: #f7f7f7;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+
 .icon-button:hover {
   filter: brightness(1.2);
 }
@@ -111,7 +125,7 @@ a {
   width: 100%;
 }
 
-.menu-item {
+.miniMenu-item {
   height: 50px;
   display: flex;
   align-items: center;
@@ -120,16 +134,16 @@ a {
   padding: 0.5rem;
 }
 
-.menu-item .icon-button {
+.miniMenu-item .icon-button-menu {
   margin-right: 0.5rem;
 }
 
 
-.menu-item .icon-button:hover {
+.miniMenu-item .icon-button-menu:hover {
   filter: none;
 }
 
-.menu-item:hover {
+.miniMenu-item:hover {
   background-color: #525357;
   color: white;
 }
