@@ -22,22 +22,22 @@ class Header extends Component {
   render() {
   const dropDownItems =[
 {
-icon:{<Settings />} , 
+icon:<Settings /> , 
 title:'Settings', 
 link: '/account/settings' 
 }, 
 {
-icon:{<Orders />} , 
+icon:<Orders /> , 
 title:'Orders', 
 link: '/account/orders' 
 }, 
 {
-icon:{<Favorite />} , 
+icon:<Favorite /> , 
 title:'Favorite', 
 link: '/account/favorite-list' 
 }, 
 {
-icon:{<View />} , 
+icon:<View /> , 
 title:'View', 
 link: '/account/viewed-items' 
 }
