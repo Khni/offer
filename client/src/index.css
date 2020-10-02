@@ -16,7 +16,7 @@ code {
     monospace;
 }
 :root {
-  --bg: white;
+  --bg: #f7f7f7;
   --bg-accent: white;
   --text-color: linear-gradient(to right, #00B4DB, #0083B0);
   --nav-size: 60px;
@@ -93,7 +93,7 @@ a {
 }
 
 .icon-button:hover {
-  filter: brightness(50%);
+  
 }
 
 .icon-button svg { 

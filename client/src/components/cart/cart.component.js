@@ -1,7 +1,7 @@
 import React from 'react';
-import Trashicon from './img/trash.png';
-import Plusicon from './img/add.png';
-import Minusicon from './img/minus.png';
+import Trashicon from './img/trash.svg';
+import Plusicon from './img/plus.svg';
+import Minusicon from './img/minus.svg';
 import { Link } from 'react-router-dom';
 import Style from './cartItemComponent/cartItem.css'
 import CartItemstyle from './cart-dropdown.styles.css';
