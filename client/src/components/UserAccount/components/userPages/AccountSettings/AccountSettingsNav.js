@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import Head from '../../../../components/headd/header/header'
+import Head from '../../../../headd/header/header'
 
 import AccountSettings from './AccountSettings.js'
 import Address from './addresses.js'
