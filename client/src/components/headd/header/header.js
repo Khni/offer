@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Navbar from '../navbar/navbar'
 import DropdownMenu from '../../miniMenus/ChoicesMenuContainer/ChoicesMenuContainer' 
 import NavItem from '../NavItem/NavItem'
 import { ReactComponent as BoltIcon } from '../../icons/header/usernew.svg';
 import { ReactComponent as CartIcon } from '../../icons/header/cart.svg';
-import { ReactComponent as User } from '../../icons/header/user.svg';
+import { ReactComponent as User } from '../../icons/header/usern.svg';
 import { ReactComponent as Favorite } from '../../icons/header/favorite.svg';
 import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
@@ -45,9 +45,9 @@ link: '/account/viewed-items'
   
   return (
     <Navbar>
-    {props.token ? 
+    {this.props.token ? 
 <NavItem icon={<User />}  >
-        <DropdownMenu dropDownItems={this.props.dropDownItems}></DropdownMenu>
+        <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
@@ -65,9 +65,9 @@ function mapStateToProps(state) {
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,
     name: state.userAuth.authUser.name,
-    hidden: cartHidden(state) ,
-    hiddenSidebar: sidebarHidden(state),
-    totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
+    // hidden: cartHidden(state) ,
+    // hiddenSidebar: sidebarHidden(state),
+    // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 
 
   };

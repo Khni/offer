@@ -1,15 +1,15 @@
 import React from 'react';
-
-const MenuIcontText =() =>{
+import { Link } from 'react-router-dom';
+const MenuIcontText =(props) =>{
 
 
     
       return (
-        <a href={props.link} className="menu-item">
+        <Link to={props.link} className="menu-item">
           <span className="icon-button">{props.leftIcon}</span>
           {props.children}
           <span className="icon-right">{props.rightIcon}</span>
-        </a>
+        </Link>
       );
     
 

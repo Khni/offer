@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import MenuIcontText from '../MenuIcontText/MenuIcontText' 
+import MenuIcontText from '../MenuIconText/MenuIcontText' 
 const ChoicesMenuContainer =(props) =>{
 
 
