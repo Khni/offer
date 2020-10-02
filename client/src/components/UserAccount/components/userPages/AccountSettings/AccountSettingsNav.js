@@ -39,11 +39,11 @@ class AccountSettingsNav extends Component {
     render() {
 
       const navlinks = [{
-        path:"/account/settings/details" ,
+        path:"/settings/details" ,
         title: "Details"
       },
       {
-        path:"/account/settings/address",
+        path:"/settings/address",
         title: "Address"
       }]
         return(
@@ -62,9 +62,9 @@ class AccountSettingsNav extends Component {
       <div className="TopNav-container">
                 <Switch>
                     
-                    <Route exact path="/account/settings/details"  component={AccountSettings}  />
-                    <Route exact path="/account/settings/address" component={Address}  />
-                         <Redirect from="/account/settings" to="/account/settings/details"  />
+                    <Route exact path="/settings/details"  component={AccountSettings}  />
+                    <Route exact path="/settings/address" component={Address}  />
+                         <Redirect from="/settings" to="/settings/details"  />
                    
                    
                 </Switch>
