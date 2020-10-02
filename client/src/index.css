@@ -65,12 +65,12 @@ a {
 
 /* Icon Button */
 .icon-button {
-  --button-size: calc(var(--nav-size) * 0.8);
+  --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
   background-color: white;
   border-radius: 50%;
-  padding: 1px;
+  padding: 5px;
   margin: 2px;
   display: flex;
   align-items: center;
