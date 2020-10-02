@@ -6,7 +6,7 @@ import { ReactComponent as BoltIcon } from '../../icons/header/usernew.svg';
 import { ReactComponent as CartIcon } from '../../icons/header/cart.svg';
 import { ReactComponent as User } from '../../icons/header/user.svg';
 import { ReactComponent as Favorite } from '../../icons/header/favorite.svg';
-import { ReactComponent as Orders } from '../../icons/header/gorders.svg';
+import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
 
