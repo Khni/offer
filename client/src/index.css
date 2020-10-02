@@ -102,6 +102,16 @@ a {
   height: 20px;
 }
 
+.icon-button-menu:hover {
+  filter: brightness(0.8);
+}
+
+.icon-button-menu svg { 
+  fill: var(--text-color);
+  width: 20px;
+  height: 20px;
+}
+
 
 
 
@@ -127,6 +137,7 @@ a {
 
 .miniMenu-item {
   height: 50px;
+    z-index: 15;
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
