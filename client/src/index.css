@@ -43,6 +43,7 @@ a {
 	position: fixed;
 	top: 0;
 	left: 0;
+	width: 100%
   height: var(--nav-size);
   background-color: var(--bg-accent);
   padding: 0 1rem;
