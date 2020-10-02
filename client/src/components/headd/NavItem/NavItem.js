@@ -4,13 +4,14 @@ const NavItem =(props)=> {
     const [open, setOpen] = useState(false);
   
     return (
-      <li className="nav-item">
+      
         <Link to={props.link} className="icon-button" onClick={() => setOpen(!open)}>
           {props.icon}
+          {open && props.children}
         </Link>
   
-        {open && props.children}
-      </li>
+        
+      
     );
   }
 

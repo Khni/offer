@@ -18,7 +18,7 @@ code {
 :root {
   --bg: white;
   --bg-accent: white;
-  --text-color: #dd4124;
+  --text-color: linear-gradient(to right, #00B4DB, #0083B0);
   --nav-size: 60px;
   --border: 1px solid #474a4d;
   --border-radius: 8px;
@@ -65,12 +65,12 @@ a {
 
 /* Icon Button */
 .icon-button {
-  --button-size: calc(var(--nav-size) * 0.5);
+  --button-size: calc(var(--nav-size) * 0.8);
   width: var(--button-size);
   height: var(--button-size);
   background-color: #f7f7f7;
   border-radius: 50%;
-  padding: 5px;
+  padding: 1px;
   margin: 2px;
   display: flex;
   align-items: center;
