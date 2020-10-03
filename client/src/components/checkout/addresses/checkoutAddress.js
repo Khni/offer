@@ -22,7 +22,7 @@ class homeMenu extends Component {
 		
 		
 		return(
-		<div className="menu-container">
+		<div className="checkoutAddresses-container">
 		
 		  <Header />
            

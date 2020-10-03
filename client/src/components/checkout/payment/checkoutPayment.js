@@ -31,7 +31,7 @@ console.log("sendPrder");
 	render() {
 		
 		return(
-		<div className="menu-container">
+		<div className="checkoutPayment-container">
 		
 		  <Header  />
            
