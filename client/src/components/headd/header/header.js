@@ -5,6 +5,7 @@ import NavItem from '../NavItem/NavItem'
 import { ReactComponent as BoltIcon } from '../../icons/header/usernew.svg';
 import { ReactComponent as CartIcon } from '../../icons/header/cart.svg';
 import { ReactComponent as User } from '../../icons/header/usern.svg';
+import { ReactComponent as UserLogged } from '../../icons/header/userlogged.svg';
 import { ReactComponent as Favorite } from '../../icons/header/favorite.svg';
 import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
@@ -67,7 +68,7 @@ link: '/viewed-items'
 <div className="user-corner-head">
 
 {this.props.token ? 
-<NavItem icon={<User />}  >
+<NavItem icon={<UserLogged />}  >
 
         <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 

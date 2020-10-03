@@ -2,9 +2,9 @@ import React , {Component} from 'react';
 import './homeMenu.css';
 import {selectProducts} from '../../store/reducers/products/productsReselect'
 import * as actions from '../../store/actions/product';
-
+import Header from '../headd/header/header'
 import Section from '../section/section.js';
-import Header from '../header/header.js'
+
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
