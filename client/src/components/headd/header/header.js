@@ -74,7 +74,7 @@ link: '/viewed-items'
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
-      
+      <p className="CounterCart" >{this.props.totalItems}</p>
 
 </div>
     
@@ -92,6 +92,7 @@ function mapStateToProps(state) {
     name: state.userAuth.authUser.name,
     // hidden: cartHidden(state) ,
      hiddenSidebar: sidebarHidden(state),
+     totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
     // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 
 
