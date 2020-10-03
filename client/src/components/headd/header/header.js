@@ -45,14 +45,25 @@ link: '/viewed-items'
   
   return (
     <Navbar>
-    {this.props.token ? 
+
+<div className="logo-corner-head">
+<NavItem icon={<CartIcon />} link='/cart' />
+</div>
+
+
+<div className="user-corner-head">
+
+{this.props.token ? 
 <NavItem icon={<User />}  >
+
         <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
       
 
+</div>
+    
     
     </Navbar>
   );
