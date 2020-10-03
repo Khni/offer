@@ -126,9 +126,9 @@ display: flex;
 
 .icon-button svg { 
   fill: blue;
-  width: 30px;
+  width: 25px;
   color: red;
-  height: 30px;
+  height: 25px;
 }
 
 .icon-button-menu:hover {
