@@ -4,7 +4,7 @@ import './checkoutAddressStyle.scss';
 import * as actions from '../../../store/actions/product';
 import Addresses from '../../UserAccount/components/userPages/AccountSettings/addresses.js'
 
-import Header from '../headd/header/header'
+import Header from '../../headd/header/header'
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
