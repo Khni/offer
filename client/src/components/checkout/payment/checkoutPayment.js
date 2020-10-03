@@ -4,7 +4,7 @@ import './checkoutPayment.scss';
 import * as actions from '../../../store/actions/users';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 
-import Header from '../../header/header.js'
+import Header from '../headd/header/header'
 import { connect } from 'react-redux';
 
 class CheckPayment extends Component {
@@ -20,7 +20,7 @@ class CheckPayment extends Component {
   async sendOrder(data,token) {
 const {MakeOrder} = this.props
 await MakeOrder(data,token)
-this.props.history.push('/account/orders')
+this.props.history.push('/orders')
 console.log("sendPrder");
 } 
   

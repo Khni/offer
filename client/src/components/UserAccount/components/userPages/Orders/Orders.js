@@ -53,9 +53,9 @@ await this.FetchOrdersFromServer()
 
  <div className="TableList-container">
       <Head />
- <h3>Orders</h3>
-<div>
  
+<div className="checkoutAddresses-container" >
+ <h3>Orders</h3>
 
 
                       <table className="TableList">
