@@ -131,6 +131,17 @@ productSchema.virtual('section', {
     foreignField: 'productsOfSection.productOfSection'
 })
 
+productSchema.virtual('Favorite', {
+    ref: 'Favorite',
+    localField: '_id',
+    foreignField: 'productID'
+})
+productSchema.virtual('Viewed', {
+    ref: 'Viewed',
+    localField: '_id',
+    foreignField: 'productID'
+})
+
 productSchema.virtual('Orders', {
     ref: 'Order',
     localField: '_id',

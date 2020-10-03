@@ -74,7 +74,7 @@ link: '/viewed-items'
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
-      <p className="CounterCart" >{this.props.totalItems}</p>
+      <p onClick={this.props.history.push('/cart')} className="CounterCart" >{this.props.totalItems}</p>
 
 </div>
     

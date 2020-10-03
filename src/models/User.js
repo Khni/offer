@@ -173,6 +173,17 @@ userSchema.virtual('orders', {
     localField: '_id',
     foreignField: 'userID'
 })
+userSchema.virtual('Favorite', {
+    ref: 'Favorite',
+    localField: '_id',
+    foreignField: 'userID'
+})
+userSchema.virtual('Viewed', {
+    ref: 'Viewed',
+    localField: '_id',
+    foreignField: 'userID'
+})
+
 
 userSchema.virtual('cart', {
     ref: 'Cart',

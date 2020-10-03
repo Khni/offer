@@ -25,7 +25,10 @@ const CategoryRouter = require('./routers/categoryRouter')
 const SectionRouter = require('./routers/sectionRouter')
 const ProductRouter = require('./routers/productRouter')
 const CollectionRouter = require('./routers/collectionRouter')
+
 const orderRouter = require('./routers/orderRouter')
+const ViewedRouter = require('./routers/ViewedRouter')
+const FavoriteRouter = require('./routers/FavoriteRouter')
 app.use(cors())
 
 app.use(cors({credentials: true, origin: 'https://juv-khaled.herokuapp.com'}));
@@ -111,6 +114,8 @@ app.use(SectionRouter)
 app.use(ProductRouter)
 app.use(CollectionRouter)
 app.use(orderRouter)
+app.use(ViewedRouter)
+app.use(FavoriteRouter)
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 app.get('*', (req, res) => {
