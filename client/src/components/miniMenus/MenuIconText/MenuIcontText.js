@@ -5,7 +5,7 @@ const MenuIcontText =(props) =>{
 
     
       return (
-        <Link to={props.link} className="miniMenu-item">
+        <Link to={props.link} className="miniMenu-item" onClick={props.click}>
           <span className="icon-button-menu">{props.leftIcon}</span>
           {props.children}
           <span className="icon-right">{props.rightIcon}</span>

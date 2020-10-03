@@ -9,7 +9,12 @@ import { ReactComponent as Favorite } from '../../icons/header/favorite.svg';
 import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
-
+import { ReactComponent as Menu } from '../../icons/header/menu.svg';
+import {cartHidden, sidebarHidden, selectCartItems} from  '../../../store/reducers/cart/cartReselect';
+import * as actions from '../../../store/actions/cartAction.js'
+import CartDropdown from '../../cart/cart-dropdown.component';
+import Sidebar from '../../sidebar/sidebar.js'
+import Offerenologo from '../../header/img/juv.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -45,9 +50,17 @@ link: '/viewed-items'
   
   return (
     <Navbar>
-
+<Sidebar show={this.props.hiddenSidebar} />
 <div className="logo-corner-head">
-<NavItem icon={<CartIcon />} link='/cart' />
+
+<Link className="icon-button"  onClick={this.props.openSidebar}>
+<Menu />
+                
+              </Link>
+
+<Link className="icon-button-noBorder"  to='/'>
+                <img className="logo" src={Offerenologo} />
+              </Link>
 </div>
 
 
@@ -77,7 +90,7 @@ function mapStateToProps(state) {
     token: state.userAuth.authUser.token,
     name: state.userAuth.authUser.name,
     // hidden: cartHidden(state) ,
-    // hiddenSidebar: sidebarHidden(state),
+     hiddenSidebar: sidebarHidden(state),
     // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 
 
@@ -86,4 +99,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,actions)(Header);
