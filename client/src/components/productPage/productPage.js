@@ -6,7 +6,8 @@ import DiscComponent from './disc/disc.component'
 import {connect} from 'react-redux'
 import {selectItem} from '../../store/reducers/products/productsReselect'
 import Style from './ProductPage.scss'
-import Header from '../header/header'
+
+import Header from '../headd/header/header'
 import {addItem} from '../../store/actions/CartItemsAction';
 
  class ProductPage extends Component {
