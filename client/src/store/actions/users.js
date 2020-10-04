@@ -17,6 +17,7 @@ import {
   MAKE_ORDER, 
   FETCH_ORDERS
 } from '../types/authUserTypes'
+import {CHECKOUT_FINISHED} from '../types/cartTypes';
 import {ObjIndexToZero} from './users.utils'
  
  export const signUp =( data, lang) => {
@@ -307,3 +308,23 @@ export const FetchOrders = ( token) => {
     };
   }
 
+
+
+
+
+
+
+/* CHECKOUT */
+export const clearCart = () => {
+
+ 
+    return  dispatch => {
+     
+        dispatch({
+          type: CHECKOUT_FINISHED
+         
+        });
+       
+      
+    };
+  }

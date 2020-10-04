@@ -18,8 +18,9 @@ class CheckPayment extends Component {
   }
 
   async sendOrder(data,token) {
-const {MakeOrder} = this.props
+const {MakeOrder, clearCart} = this.props
 await MakeOrder(data,token)
+clearCart() 
 this.props.history.push('/orders')
 console.log("sendPrder");
 } 
