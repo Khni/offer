@@ -34,7 +34,7 @@ const MiddleProduct = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item, items))
+    addItem: (item, items) => dispatch(addItem(item, items))
   });
 
 const mapStateToProps = state => {
