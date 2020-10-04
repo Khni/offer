@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   checkoutAddress: false,  
   checkoutPayment: false, 
   checkoutConfirmed: false, 
-  cart =[] 
+  cart :[] 
   
 };
 
