@@ -8,6 +8,7 @@ import CartItemstyle from './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
 import {addItem, removeItem} from '../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
+import * as actions  from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
 import Header from '../header/header'
 import Head from '../headd/header/header'
@@ -38,15 +39,15 @@ cartdropdown = "cart-dropdown open" ;
   </div>{/* end of cart-item-desc*/}
   
    <div className="cart-item-bar">
-     <div className="remove-text-icon" onClick={() => props.removeItem(item)}>
+     <div className="remove-text-icon" onClick={() => props.removeItemFromCartItem(item, props.cartItems)} >
          <img src={Trashicon} className="trash-icon"/>
          <p className="remove-text" >REMOVE </p>
       </div>{/*remove-text-icon */}
       
       <div className="adjust-item-number">
-             <img src={Minusicon} className="minus-icon" onClick={() => props.removeItem(item)}/>
+             <img src={Minusicon} className="minus-icon" onClick={() => props.removeItemFromCartItem(item, props.cartItems)} />
              <p className="item-number">{item.quantity}</p>
-             <img src={Plusicon} className="plus-icon" onClick={() => props.addItem(item)}/>
+             <img src={Plusicon} className="plus-icon" onClick={() => props.addItemToCartItem(item, props.cartItems)} />
       </div>{/*adjust-item-number */}
       
   
@@ -91,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
  
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartItem));
+export default withRouter(connect(mapStateToProps, actions)(CartItem));

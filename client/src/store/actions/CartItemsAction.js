@@ -41,6 +41,23 @@ export const addItemToCartItem = (item, items) => {
     };
   }
   
+  
+  
+  export const removeItemFromCartItem = (item, items) => {
+
+ const updatedItems= removeItemFromCart(items, item)
+    return  dispatch => {
+     
+        dispatch({
+          type: REMOVE_ITEM_FROM_CART, 
+          items : updatedItems
+         
+        });
+       
+      
+    };
+  }
+  
 
 export const removeItem = (item, items)  => ({
   type: REMOVE_ITEM_FROM_CART,

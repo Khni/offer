@@ -18,7 +18,7 @@ const cartItemsReducer = (state = INITIAL_STATE, action) => {
       case REMOVE_ITEM_FROM_CART:
       return {
         ...state,
-        cartItems: removeItemFromCart(state.cartItems, action.item)
+        cartItems: action.items
       };
       
       
