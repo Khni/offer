@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {addItem} from '../../../store/actions/CartItemsAction';
-
+import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {
 
 
@@ -17,7 +17,7 @@ const MiddleProduct = (props) => {
 <h1 className="product-page-title">{props.name}</h1>
     <p className="product-page-price">Price: {" "+props.price+" "}EGP</p>
     <p className="brand-text">Brand: Fashion | Similar products from Fashion</p>
-    <button type="submit" className="custum-btn-form middle-btn" onClick={() => props.addItem(props.item)} >ADD TO CART</button>
+    <button type="submit" className="custum-btn-form middle-btn" onClick={() => props.addItem(props.item, props.cartItems)} >ADD TO CART</button>
 
     <div>
     <p><h2 className="share-this-product">SHARE THIS PRODUCT</h2></p>
@@ -34,9 +34,16 @@ const MiddleProduct = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
+    addItem: item => dispatch(addItem(item, items))
   });
 
+const mapStateToProps = state => {
+  return {
+  	
+    cartItems: selectCartItems(state)
+  }
+
+}
 
 export default connect(
     null,

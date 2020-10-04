@@ -19,6 +19,21 @@ const INITIAL_STATE = {
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  	
+  case CHECKOUT_STARTED :
+      return {
+        ...state,
+        cart: action.cart
+      };
+      
+      case CHECKOUT_FINISHED :
+      return {
+        ...state,
+        cart: [] 
+      };
+  
+  
+  
     case CHECKOUT_ADDRESS_START :
       return {
         ...state,

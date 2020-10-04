@@ -38,7 +38,9 @@ a {
 }
 
 /* Top Navigation Bar */
-
+div, img, a {
+pointer-events: none;
+} 
 /* <nav> */
 .navbar {
 	position: fixed;
