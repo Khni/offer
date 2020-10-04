@@ -38,9 +38,12 @@ a {
 }
 
 /* Top Navigation Bar */
-div, img, a {
-pointer-events: none;
-} 
+
+
+div, img, div:focus, img:focus{
+    outline: 0 !important;
+    border:0 none !important;
+}
 /* <nav> */
 .navbar {
 	position: fixed;
