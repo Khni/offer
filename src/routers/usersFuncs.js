@@ -1,4 +1,6 @@
-export const ObjIndexToZero = (ArrayList , Obj ) => {
+ 
+ 
+ const ObjIndexToZero = (ArrayList , Obj ) => {
     if (ArrayList.length == 0) {
         return ArrayList
     }
@@ -7,3 +9,5 @@ export const ObjIndexToZero = (ArrayList , Obj ) => {
  ArrayList.splice(0, 0, cutOut); 
  return ArrayList
 }
+
+module.exports = ObjIndexToZero

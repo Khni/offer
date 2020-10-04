@@ -15,9 +15,12 @@ import {cartHidden, sidebarHidden, selectCartItems} from  '../../../store/reduce
 import * as actions from '../../../store/actions/cartAction.js'
 import CartDropdown from '../../cart/cart-dropdown.component';
 import Sidebar from '../../sidebar/sidebar.js'
+import Backdrop from '../../sidebar/backdrop'
 import Offerenologo from '../../header/img/juv.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as RouterDom from 'react-router-dom';
 
 class Header extends Component {
 
@@ -50,7 +53,9 @@ link: '/viewed-items'
 ] 
   
   return (
+    
     <Navbar>
+   < Backdrop show={this.props.hiddenSidebar}/>
 <Sidebar show={this.props.hiddenSidebar} />
 <div className="logo-corner-head">
 
@@ -74,12 +79,13 @@ link: '/viewed-items'
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
-      <p onClick={this.props.history.push('/cart')} className="CounterCart" >{this.props.totalItems}</p>
-
+      <buttom onClick={()=> this.props.history.push('/cart')} className="CounterCart" >{this.props.totalItems}</buttom>
+     
 </div>
     
     
     </Navbar>
+   
   );
  } 
 }
@@ -101,4 +107,7 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps,actions)(Header);
+
+export default withRouter(connect(
+  mapStateToProps,actions
+)(Header));

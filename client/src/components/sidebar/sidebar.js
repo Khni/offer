@@ -19,7 +19,9 @@ let sidebar = "sidebar" ;
 sidebar = "sidebar open" ;
 } 
 return (
+
    <div className={sidebar} >
+    
   <div>
 <p className="closeSidebar"  onClick={props.openSidebar}>Close</p>
   <Link className="avatar-sidebar" to='/signup' >
@@ -44,7 +46,7 @@ return (
 
   </div>
   </div>
-  
+ 
   
 )
 } 

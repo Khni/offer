@@ -4,7 +4,7 @@ const Viewed = require('../models/Viewed')
 const Product= require('../models/Product')
 const User= require('../models/User')
 const router = new express.Router()
-const auth = require('../middleware/auth')
+
 
 
 

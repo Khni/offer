@@ -9,7 +9,7 @@ const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
 const {HandelErrors} = require('./userUtils')
-const {ObjIndexToZero} require('./usersFuncs')
+const {ObjIndexToZero}= require('./usersFuncs')
 //post/create new user 
 //
 router.post('/api/signup', async (req, res) => {
@@ -407,7 +407,7 @@ router.post('/api/user-add-defaultAddress', auth, async (req, res) => {
     } catch (error) {
         res.status(400).send({error});
     }
-
+})
 router.get('/api/admin/deleteuser/:id', (req, res) => {
 	
 	
