@@ -9,7 +9,7 @@ const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
 const {HandelErrors} = require('./userUtils')
-
+const {ObjIndexToZero} require('./usersFuncs')
 //post/create new user 
 //
 router.post('/api/signup', async (req, res) => {
@@ -306,7 +306,9 @@ router.get('/api/user-addresses',auth ,(req, res) => {
         console.log("address");
         let user = req.user
         const addresses = user.addresses
-        res.send({addresses});
+        const defaultAddress = user.defaultAddress
+        let addressesList  = ObjIndexToZero(addresses,defaultAddress)
+        res.send({addressesList, defaultAddress});
       
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
@@ -352,11 +354,20 @@ router.post('/api/user-add-address', auth, async (req, res) => {
         )
             await user.save()
             const addresses =user.addresses
+            //get last item in array
             const address = user.addresses.slice(-1).pop()
-        res.send({user,address, addresses});
+            user.defaultAddress = address
+            await user.save()
+            
+            
+            const defaultAddress = user.defaultAddress
+        let addressesList  = ObjIndexToZero(addresses,defaultAddress)
+        
+        res.send({user,address, addressesList});
     } catch (error) {
         res.status(400).send({error});
     }
+
 
 //   await  User.findById(req.params.id).then(async(user) => {
 //         user.addresses = user.addresses.concat(
@@ -372,6 +383,30 @@ router.post('/api/user-add-address', auth, async (req, res) => {
 })
 
 
+
+
+
+
+
+router.post('/api/user-add-defaultAddress', auth, async (req, res) => {
+
+
+
+
+    try {
+        
+        let user = req.user
+        console.log("name:"+user.name);
+        user.defaultAddress = req.body
+            await user.save()
+            const defaultAddress =user.defaultAddress
+            
+            const addresses =user.addresses
+            let addressesList  = ObjIndexToZero(addresses,defaultAddress)
+        res.send({user,defaultAddress, addresses});
+    } catch (error) {
+        res.status(400).send({error});
+    }
 
 router.get('/api/admin/deleteuser/:id', (req, res) => {
 	
