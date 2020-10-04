@@ -159,7 +159,7 @@ display: flex;
 }
 
 .icon-button svg { 
-  fill: blue;
+  fill: var(--svg-color);;
   width: 25px;
   color: red;
   height: 25px;
@@ -170,7 +170,7 @@ display: flex;
 }
 
 .icon-button-menu svg { 
-  fill: var(--text-color);
+  fill: var(--svg-color);
   width: 20px;
   height: 20px;
 }
@@ -192,7 +192,7 @@ display: flex;
 }
 
 .avatar-sidebar svg { 
-  fill: blue;
+  fill: var(--svg-color);;
   width: 70px;
   color: red;
   height: 70px;
