@@ -6,7 +6,8 @@ import googleicon from "../../form/img/googleicon.png"
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {addItem} from '../../../store/actions/CartItemsAction';
+import {addItem, addItemToCartItem} from '../../../store/actions/CartItemsAction';
+import * as actions  from '../../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {
 
@@ -46,6 +47,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(MiddleProduct);

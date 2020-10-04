@@ -24,6 +24,24 @@ export const addItem = (item, items) => ({
   items: addItemToCart(items, item)
 });
 
+
+
+export const addItemToCartItem = (item, items) => {
+
+ const updatedItems= addItemToCart(items, item)
+    return  dispatch => {
+     
+        dispatch({
+          type: ADD_ITEM_TO_CART, 
+          items : updatedItems
+         
+        });
+       
+      
+    };
+  }
+  
+
 export const removeItem = (item, items)  => ({
   type: REMOVE_ITEM_FROM_CART,
   item: item
