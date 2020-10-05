@@ -145,6 +145,10 @@ const userSchema = mongoose.Schema({
     }],
 
      defaultAddress: {
+         _id: {
+            type: mongoose.Schema.Types.ObjectId,
+
+         },
         firstName: {
                 type: String,
                 trim: true

@@ -168,7 +168,7 @@ export const UserSignOut = () => {
   }
   
   
-  export const setDefaultAddress = (address, addressesArray) => {
+  export const setDefaultAddressold = (address, addressesArray) => {
 
  console.log("FetchAddressesList from user");
 
@@ -220,7 +220,36 @@ export const UserSignOut = () => {
   }
 
 
-export const FetchAddresses = ( token, address) => {
+export const setDefaultAddress = ( token, id) => {
+    return async dispatch => {
+      try {
+     const response =   await axios.post('/api/user-add-defaultAddress',id, {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
+      
+      
+        dispatch({
+          type: FETCH_ADDRESSES,
+          
+          
+          addresses: response.data.addressesList,
+          defaultAddress: response.data.defaultAddress
+        });
+        
+      
+      } catch(err) {
+      	console.log("error"+err) 
+        dispatch({
+          type: "ERRRRR"
+        //  payload: err
+        
+        })
+      }
+    };
+  }
+  
+  
+  export const FetchAddresses = ( token, address) => {
     return async dispatch => {
       try {
      const response =   await axios.get('/api/user-addresses', {
@@ -235,7 +264,8 @@ export const FetchAddresses = ( token, address) => {
           type: FETCH_ADDRESSES,
           
           
-          addresses: addressesList
+          addresses: response.data.addresses,
+          defaultAddress: response.data.defaultAddress
         });
         
       
@@ -249,8 +279,6 @@ export const FetchAddresses = ( token, address) => {
       }
     };
   }
-  
-  
   
   
   
