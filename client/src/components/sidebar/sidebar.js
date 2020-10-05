@@ -7,6 +7,7 @@ import { ReactComponent as View } from '../icons/header/view.svg';
 import { ReactComponent as Settings } from '../icons/header/setting.svg';
 import { ReactComponent as User } from '../icons/header/usern.svg';
 import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
+import { ReactComponent as UserLogged } from '../icons/header/userlogged.svg';
 import * as actions from '../../store/actions/cartAction.js'
 import NavItem from '../headd/NavItem/NavItem'
 
@@ -25,7 +26,7 @@ return (
   <div>
 <p className="closeSidebar"  onClick={props.openSidebar}>Close</p>
   <Link className="avatar-sidebar" to='/signup' >
- <Avatar />
+ <UserLogged />
  </Link>
  
  
