@@ -158,7 +158,7 @@ display: flex;
 
 /* Icon Button */
 .icon-button {
-@include iconButton($navsize * 0.8, $bgcolor,25px, $darkcolor);
+@include iconButton($navsize * 0.8, $white,25px, $darkcolor);
 padding: 1px;
   margin: 2px;
 }
@@ -168,7 +168,7 @@ padding: 1px;
   margin: 2px;
 }
 .icon-button-menu{
-@include iconButton($navsize * 0.5, $bgcolor,25px, $darkcolor);
+@include iconButton($navsize * 0.5, $white,25px, $darkcolor);
 padding: 1px;
   margin: 2px;
 }
