@@ -298,7 +298,7 @@ router.post('/api/login', async (req, res) => {
      */
 })
 
-router.get('/api/user-addresses',auth ,(req, res) => {
+router.get('/api/user-addresses',auth , (req, res) => {
     
     
 
@@ -308,7 +308,7 @@ router.get('/api/user-addresses',auth ,(req, res) => {
         const addresses = user.addresses
         const defaultAddress = user.defaultAddress
         let addressesList  = ObjIndexToZero(addresses,defaultAddress)
-        res.send({addressesList, defaultAddress});
+        res.send({addresses, defaultAddress});
       
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
@@ -396,14 +396,20 @@ router.post('/api/user-add-defaultAddress', auth, async (req, res) => {
     try {
         
         let user = req.user
+        AddressFind = user.addresses.find((address) => address._id == req.body.id)
+        if (!AddressFind) {
+            return res.send("Address is not found")
+        }
+
+
         console.log("name:"+user.name);
-        user.defaultAddress = req.body
+        user.defaultAddress = AddressFind
             await user.save()
             const defaultAddress =user.defaultAddress
             
             const addresses =user.addresses
-            let addressesList  = ObjIndexToZero(addresses,defaultAddress)
-        res.send({user,defaultAddress, addresses});
+            let addressesList  = ObjIndexToZero(addresses,AddressFind)
+        res.send({user,defaultAddress, addressesList});
     } catch (error) {
         res.status(400).send({error});
     }

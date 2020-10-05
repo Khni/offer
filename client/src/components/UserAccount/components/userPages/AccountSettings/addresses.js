@@ -91,9 +91,16 @@ console.log("addresseslost"+this.props.addressesList.length);
 
 
 
-let setDefault=async(address, list)=> {
+let setDefault=async(token, address)=> {
+
+  const id = {
+    id: address._id
+  }
+  console.log(id);
 const {setDefaultAddress} = this.props 
-await setDefaultAddress(address, list)
+
+
+await setDefaultAddress(token, id)
 
 
 } 
@@ -152,7 +159,7 @@ return <div className={cartItemClass} >
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
          {this.props.defaultAddress._id != address._id ? 
-         <p className="remove-text"  onClick={() => setDefault(address, this.props.addressesList) }>SET DEFAULT ADDRESS </p> : 
+         <p className="remove-text"  onClick={async() =>await setDefault(this.props.token, address) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text default-address"  > DEFAULT ADDRESS </p> 
 } 
 
