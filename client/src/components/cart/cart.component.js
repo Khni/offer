@@ -23,6 +23,11 @@ cartdropdown = "cart-dropdown open" ;
 
  <div className="cart" >
 <Head />
+{!props.total  ? <h2 className="EmprtCart">Cart is Empty</h2> :     
+
+
+
+
 <div className="cartItemContainer">
 {props.cartItems.map(item=>(
 
@@ -60,8 +65,8 @@ cartdropdown = "cart-dropdown open" ;
   ))} 
 
 
-
-
+<p className="total-sum-cart" > {"Total: "+props.total}</p>
+<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-checkout" >Checkout</button>
 
 
 
@@ -69,10 +74,17 @@ cartdropdown = "cart-dropdown open" ;
 
 
 
-<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-checkout" >Checkout</button>
-<p className="total-sum-cart" > {"Total: "+props.total}</p>
+
+
 </div>
 </div>
+
+}
+
+
+
+
+
 </div>
 );
 

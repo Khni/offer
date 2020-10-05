@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import backdrop from '../../sidebar/backdrop';
+
 const NavItem =(props)=> {
     const [open, setOpen] = useState(false);
   
@@ -8,6 +10,7 @@ const NavItem =(props)=> {
         <Link to={props.link} className="icon-button" onClick={() => setOpen(!open)}>
           {props.icon}
           {open && props.children}
+         
         </Link>
   
         

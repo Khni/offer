@@ -16,6 +16,7 @@ import * as actions from '../../../store/actions/cartAction.js'
 import CartDropdown from '../../cart/cart-dropdown.component';
 import Sidebar from '../../sidebar/sidebar.js'
 import Backdrop from '../../sidebar/backdrop'
+import BackDropMenu from '../../miniMenus/backdrop'
 import Offerenologo from '../../header/img/juv.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -75,7 +76,8 @@ link: '/viewed-items'
 {this.props.token ? 
 <NavItem icon={<UserLogged />}  >
 
-        <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
+      <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
+      < BackDropMenu/>
     </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
