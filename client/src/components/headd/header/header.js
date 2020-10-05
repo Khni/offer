@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as RouterDom from 'react-router-dom';
-
+import Searchbox from '../../searchbox/searchbox.component'
 class Header extends Component {
 
   constructor(props) {

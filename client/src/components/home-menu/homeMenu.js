@@ -4,7 +4,7 @@ import {selectProducts} from '../../store/reducers/products/productsReselect'
 import * as actions from '../../store/actions/product';
 import Header from '../headd/header/header'
 import Section from '../section/section.js';
-
+import Searchbox from '../searchbox/searchbox.component'
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
@@ -60,7 +60,7 @@ item.name.indexOf(this.state.search) !== -1)
 		  <Header searchbox={true}
           SearchVal={this.state.search} 
            SearchChange={this.searchUpdate} />
-           
+           <Searchbox />
 		   {!this.state.Loading?	<div className="full-menu">
 		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
