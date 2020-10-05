@@ -1,3 +1,11 @@
+$darkcolor: #5B5EA6;
+$bgcolor: #f7f7f7;
+$colored: #EFC050;
+$white : white;
+$gradbluecolor: linear-gradient(to right, #00B4DB, #0083B0);
+$navsize: 60px;
+
+
 html, body {
  height: 100%;
 } 
@@ -70,6 +78,26 @@ input[type="text"], textarea, [contenteditable]
 }
 
 
+/*mixins */
+
+
+@mixin iconButton($size, $bg,$svgsize, $svgbg) {
+ width: $size;
+  height: $size;
+  background-color: $bg;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+    svg { 
+  fill:  $svgbg;
+  width: $svgsize;
+  
+  height: $svgsize;
+}
+  
+}
 
 
 
@@ -177,26 +205,11 @@ display: flex;
 
 
 .avatar-sidebar{
-  --avatar-size: 80px;
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  background-color: #f7f7f7;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: filter 300ms;
-  margin: 0 auto;
+
+ @include iconButton(80px, $colored,70px, $darkcolor);
+
 }
 
-.avatar-sidebar svg { 
-  fill: var(--svg-color);;
-  width: 70px;
-  color: red;
-  height: 70px;
-}
 
   .CounterCart {
     position: relative;
