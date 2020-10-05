@@ -4,10 +4,11 @@ $colored: #EFC050;
 $white : white;
 $gradbluecolor: linear-gradient(to right, #00B4DB, #0083B0);
 $navsize: 60px;
-
-
+$border-radius: 8px
+$speed: 500ms; 
 html, body {
  height: 100%;
+ width: 100%;
 } 
 
 body {
@@ -91,7 +92,6 @@ input[type="text"], textarea, [contenteditable]
   justify-content: center;
   transition: filter 300ms;
   border-radius: 50%;
- 
     svg { 
   fill:  $svgbg;
   width: $svgsize;
@@ -100,6 +100,24 @@ input[type="text"], textarea, [contenteditable]
 }
   
 }
+
+
+@mixin miniMenuItem ($height, $bg,$hoverbg, $hoverfont) {
+height: $height;
+    margin: 5px;
+    background-color: $bg;
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius;
+  transition: background $speed;
+  padding: 0.5rem;
+    &:hover{
+background-color: $hoverbg;
+  color: $hoverfont;
+   } 
+}
+
+
 
 
 
@@ -112,7 +130,7 @@ input[type="text"], textarea, [contenteditable]
   height: var(--nav-size);
   background-color: var(--bg-accent);
  
-  box-shadow: 0 4px 2px -2px orange;
+  box-shadow: 0 4px 2px -2px $colored;
 }
 
 .logo-corner-head{
@@ -145,20 +163,24 @@ padding: 1px;
   margin: 2px;
 }
 .icon-button-noBorder{
-
   @include iconButton($navsize * 0.8, $white,20px, $darkcolor);
 padding: 1px;
   margin: 2px;
-}
-
-.logo{
-  margin-left: 30px;
 }
 .icon-button-menu{
 @include iconButton($navsize * 0.5, $bgcolor,25px, $darkcolor);
 padding: 1px;
   margin: 2px;
 }
+.avatar-sidebar{
+ @include iconButton(80px, $bgcolor,70px, $darkcolor);
+padding: 5px;
+  margin: 0 auto;
+}
+.logo{
+  margin-left: 30px;
+}
+
 
 .icon-button:hover {
   
@@ -172,11 +194,7 @@ padding: 1px;
 
 
 
-.avatar-sidebar{
- @include iconButton(80px, $bgcolor,70px, $darkcolor);
-padding: 5px;
-  margin: 0 auto;
-}
+
 
 
   .CounterCart {
@@ -226,15 +244,9 @@ z-index: 2;
 }
 
 .miniMenu-item {
-  height: 50px;
-    margin: 5px;
-    background-color: #f7f7f7;
-  display: flex;
-  align-items: center;
-  border-radius: var(--border-radius);
-  transition: background var(--speed);
-  padding: 0.5rem;
+@include miniMenuItem (50px, $bgcolor,$darkcolor, $white);
 }
+
 
 .miniMenu-item .icon-button-menu {
   margin-right: 0.5rem;
@@ -245,10 +257,8 @@ z-index: 2;
   filter: none;
 }
 
-.miniMenu-item:hover {
-  background-color: var(--svg-color);
-  color: white;
-}
+
+
 
 .icon-right {
   margin-left: auto;
