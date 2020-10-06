@@ -20,11 +20,11 @@ import {
       switch(action.type) {
         
           case FETCH_ADDRESSES:
-          return { ...state, list: action.addresses}
+          return { ...state, list: action.addresses, default: action.defaultAddress}
           case SET_DEFAULT_ADDRESS:
           return { ...state,  list: action.addresses, default: action.defaultAddress}
           case ADD_NEW_ADDRESS:
-            return { ...state, list: action.addresses, default: action.address}
+            return { ...state, list: action.addresses, default: action.defaultAddress}
             
           
   

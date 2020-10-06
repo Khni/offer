@@ -305,10 +305,10 @@ router.get('/api/user-addresses',auth , (req, res) => {
     try {
         console.log("address");
         let user = req.user
-        const addresses = user.addresses
+        const addressesList = user.addresses
         const defaultAddress = user.defaultAddress
-        let addressesList  = ObjIndexToZero(addresses,defaultAddress)
-        res.send({addresses, defaultAddress});
+       // let addressesList  = ObjIndexToZero(addresses,defaultAddress)
+        res.send({user,addressesList, defaultAddress});
       
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
@@ -409,7 +409,10 @@ router.post('/api/user-add-defaultAddress', auth, async (req, res) => {
             
             const addresses =user.addresses
             let addressesList  = ObjIndexToZero(addresses,AddressFind)
+            await user.save()
         res.send({user,defaultAddress, addressesList});
+
+        
     } catch (error) {
         res.status(400).send({error});
     }

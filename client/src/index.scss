@@ -60,14 +60,14 @@ a {
     /*You just need this if you are only concerned with android and not desktop browsers.*/
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }    
-input[type="text"], textarea, [contenteditable]
-{
+// input[type="text"], textarea, [contenteditable]
+// {
 
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
+//     -webkit-user-select: text;
+//     -moz-user-select: text;
+//     -ms-user-select: text;
+//     user-select: text;
+// }
 
 
 /*mixins */

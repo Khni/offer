@@ -256,15 +256,13 @@ export const setDefaultAddress = ( token, id) => {
       headers : { Authorization: `Bearer ${token}`
        }} );
       
-       console.log("users length of empty"+ response.data.addresses.length);
-       let addressesList  = ObjIndexToZero(response.data.addresses,address)
-      console.log("users length of empty agter ibjundexzert"+ addressesList.length);
-       let array = []
+       
+       
         dispatch({
           type: FETCH_ADDRESSES,
           
           
-          addresses: response.data.addresses,
+          addresses: response.data.addressesList,
           defaultAddress: response.data.defaultAddress
         });
         
