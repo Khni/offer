@@ -48,7 +48,7 @@ console.log("sendPrder");
            
            
 		   <p>Total Order : {this.props.total+ " EGP"}</p>
-<p>address details <p>
+<p>address details </p>
 <p className="cart-item-title margin0">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
       <p className="cart-item-title margin0">{this.props.defaultAddress.street} </p>
       <p className="cart-item-title margin0">{this.props.defaultAddress.city} </p>
