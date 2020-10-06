@@ -5,13 +5,13 @@ export default class InputSettings extends Component {
    // const { input: { value, onChange } } = this.props;
     //const { input: { val, change } } = this.props;
     return (
-      <div className="form-group-settings">
-        <label htmlFor={ this.props.id } className={ this.props.className}>{ this.props.label }</label>
+      <div className="form-group">
+        <label htmlFor={ this.props.id }  class="input-label">{ this.props.label }</label>
         <input 
           name={ this.props.name }
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
-          className="input-text-settings"
+         className="input-form-set"
           type={ this.props.type }
      value={this.props.val} 
      onChange={ this.props.change}

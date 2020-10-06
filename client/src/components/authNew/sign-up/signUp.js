@@ -119,6 +119,8 @@ class signUp extends Component {
           onSubmit={this.onSubmit}
           errorMsg={this.props.errorMsg}
           fbres={this.responseFacebook}
+          classN="input-form-set"
+          labelClass="input-label"
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
           errorMsg = {this.props.errorMsg}

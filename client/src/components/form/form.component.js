@@ -66,10 +66,11 @@ class Form extends Component {
                 type={field.type}
                 name={field.name}
                 id={field.id}
-                className={field.className}
+                classN={this.props.classN}
                 placeholder={field.placeholder}
                 component={InputForm}
                 label={field.label}
+                labelClass={this.props.labelClass}
               />
             </fieldset>
                     )} 

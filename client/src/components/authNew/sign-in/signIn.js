@@ -85,6 +85,8 @@ fieldsets = [
    <Form
    title={this.props.signin_title} 
    fieldsets={this.fieldsets}
+   classN="input-form-set"
+   labelClass="input-label"
    social={true}
    onSubmit={this.onSubmit } 
    errorMsg= {this.props.errorMsg} 

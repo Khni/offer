@@ -5,6 +5,7 @@ import { ReactComponent as Favorite } from '../icons/header/favorite.svg';
 import { ReactComponent as Orders } from '../icons/header/orders.svg';
 import { ReactComponent as View } from '../icons/header/view.svg';
 import { ReactComponent as Settings } from '../icons/header/setting.svg';
+import { ReactComponent as Close } from '../icons/close.svg';
 import { ReactComponent as User } from '../icons/header/usern.svg';
 import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
 import { ReactComponent as UserLogged } from '../icons/header/userlogged.svg';
@@ -24,10 +25,10 @@ return (
    <div className={sidebar} >
     
   <div>
-<p className="closeSidebar"  onClick={props.openSidebar}>Close</p>
-  <Link className="avatar-sidebar" to='/signup' >
+<div className="icon-s svg-darkbg centerdiv"  onClick={props.openSidebar}><Close /></div>
+  {/* <Link className="avatar-sidebar" to='/signup' >
  <UserLogged />
- </Link>
+ </Link> */}
  
  
   {props.isAuth && props.token && !props.errorMsg?

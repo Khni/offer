@@ -116,6 +116,7 @@ let fieldsets = [
                 label: "Name", 
                 change: this.handleChangeName
 }
+
 ] 
       
         return(
