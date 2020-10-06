@@ -32,12 +32,16 @@ return (
  
  
   {props.isAuth && props.token && !props.errorMsg?
-                <Link  to='/account'>
+                <Link  to='/settings'>
                 
 <h5>Welcome  , 
  {props.name}</h5>
                   
-                </Link> : null}
+                </Link> : <Link  to='/signup'>
+                
+<h5>Login or Sign up here</h5>
+                  
+                </Link>}
 
   <MenuIcontText class="miniMenuItem-sidebar" leftIcon={<Settings />} link='/settings' click={props.openSidebar}>Settings</MenuIcontText>
   <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>Orders</MenuIcontText>
