@@ -23,7 +23,8 @@ class Addresses extends Component {
          
          this.state ={
              
-             listToshow: true
+             listToshow: true, 
+             isLoading: false
 
               } 
          this.fetchAddresses = this.fetchAddresses.bind(this);
@@ -48,12 +49,13 @@ setDefaultAddress(address, list)
 } 
 
 async FetchAddressesFromServer() {
+	this.setState({isLoading: true}) 
   //  if (!this.props.productsFetched) {
 
       const { FetchAddresses } = this.props;
       
       await FetchAddresses(this.props.token,this.props.defaultAddress );
-
+this.setState({isLoading: false}) 
    // }
     console.log("log from add product Updatefetchproduct")
 
@@ -124,9 +126,9 @@ cartItemClass=  "cart-Item"
 
 
      <div className="TopNavPage">
+     {this.state.isLoading ? <div className="loaderHome"/> : null} 
      
-     
-  {this.props.addressesList.length !== 0 && this.state.listToshow  ? <div className="Address-container">
+  {!this.state.isLoading && this.props.addressesList.length !== 0 && this.state.listToshow  ? <div className="Address-container">
 
   <h3 onClick={()=>this.setState({listToshow:false})}> Add New Address</h3>
 
@@ -191,9 +193,9 @@ return <div className={cartItemClass} >
  
     
  
-</div> :<div><AddAddressForm /> {console.log("length arry" + this.props.addressesList)}</div>  } 
+</div> : null   } 
       
-      
+    {!this.state.isLoading && this.props.addressesList.length == 0 && !this.state.listToshow  ? <AddAddressForm /> : null} 
 </div>
 
 
