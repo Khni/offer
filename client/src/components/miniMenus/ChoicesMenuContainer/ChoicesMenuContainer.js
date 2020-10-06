@@ -7,7 +7,7 @@ const ChoicesMenuContainer =(props) =>{
 
    return (
       <div className="dropdown">
-      {props.dropDownItems.map((item)=><MenuIcontText leftIcon={item.icon} link={item.link}>{item.title}</MenuIcontText>)}
+      {props.dropDownItems.map((item)=><MenuIcontText class="miniMenuItem-drop" leftIcon={item.icon} link={item.link}>{item.title}</MenuIcontText>)}
       
       
           

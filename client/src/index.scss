@@ -24,16 +24,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-:root {
-  --bg: #f7f7f7;
-  --bg-accent: white;
-  --text-color: linear-gradient(to right, #00B4DB, #0083B0);
-  --nav-size: 60px;
-  --border: 1px solid #474a4d;
-  --border-radius: 8px;
-  --speed: 500ms; 
-  --svg-color: #4267B2;
-}
+
 
 ul {
   list-style: none;
@@ -118,18 +109,18 @@ background-color: $hoverbg;
 }
 
 
-
+.miniMenuItem-sidebar{
+@include miniMenuItem (35px, $white,$white, $darkcolor);
+}
 
 
 /* <nav> */
 .navbar {
 	position: fixed;
 	top: 0;
-	
 	width: 100%;
-  height: var(--nav-size);
-  background-color: var(--bg-accent);
- 
+  height: $navsize
+  background-color: $white;
   box-shadow: 0 4px 2px -2px $colored;
 }
 
@@ -150,7 +141,7 @@ display: flex;
 
 /* <li> */
 .nav-item {
-  width: calc(var(--nav-size) * 0.8);
+  width: calc($navsize * 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,21 +172,9 @@ padding: 5px;
   margin-left: 30px;
 }
 
-
-.icon-button:hover {
-  
-}
-
-
-
 .icon-button-menu:hover {
   filter: brightness(1.2);
 }
-
-
-
-
-
 
   .CounterCart {
     position: relative;
@@ -230,12 +209,12 @@ z-index: 2;
   top: 58px;
   width: 300px;
   transform: translateX(-45%);
-  background-color: var(--bg-accent);
-  border: var(--border);
-  border-radius: var(--border-radius);
+  background-color: $white;
+  border: 1px solid black ;
+  border-radius: $border-radius;
   padding: 1rem;
   overflow: hidden;
-  transition: height var(--speed) ease;
+  transition: height $speed ease;
   box-shadow: 5px 10px 18px white;
 }
 
@@ -243,7 +222,7 @@ z-index: 2;
   width: 100%;
 }
 
-.miniMenu-item {
+.miniMenuItem-drop {
 @include miniMenuItem (50px, $bgcolor,$darkcolor, $white);
 }
 
@@ -256,9 +235,6 @@ z-index: 2;
 .miniMenu-item .icon-button-menu:hover {
   filter: none;
 }
-
-
-
 
 .icon-right {
   margin-left: auto;

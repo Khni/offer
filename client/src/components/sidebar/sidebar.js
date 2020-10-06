@@ -38,10 +38,10 @@ return (
                   
                 </Link> : null}
 
-  <MenuIcontText leftIcon={<Settings />} link='/settings' click={props.openSidebar}>Settings</MenuIcontText>
-  <MenuIcontText leftIcon={<Orders />} link='/orders' click={props.openSidebar}>Orders</MenuIcontText>
-  <MenuIcontText leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>Favorites</MenuIcontText>
-  <MenuIcontText leftIcon={<View />} link='/orders' click={props.openSidebar}>View</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar" leftIcon={<Settings />} link='/settings' click={props.openSidebar}>Settings</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>Orders</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>Favorites</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.openSidebar}>View</MenuIcontText>
 
 
 

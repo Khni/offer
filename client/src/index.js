@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers,  applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk';
 import './index.scss';
+import './models.scss';
+
 import App from './App';
 import axios from 'axios';
 import * as serviceWorker from './serviceWorker';

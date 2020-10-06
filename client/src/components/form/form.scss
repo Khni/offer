@@ -139,18 +139,7 @@ form {
 	align-items: center;
 }
 
-.btn-google {
-	color: white;
-	background-color: #ea4335;
-	box-shadow: 5px 10px 18px #888888;
-	margin-bottom: 20px;
-}
 
-.btn-facebook {
-	color: white;
-	background-color: #3b5998;
-	box-shadow: 5px 10px 18px #888888;
-}
 
 footer {
 	margin-top: 2px;
@@ -163,25 +152,7 @@ footer {
 .grad {
 	background: linear-gradient(to right, #0066cc, #00ccff);
 }
-.custum-btn-form {
-    width: 200px;
-    margin: 5px;
-    height: 40px;
-    font-size: 13px;
-    Background: linear-gradient(to right, #00B4DB, #0083B0);
-    color: white;
-    text-transform: uppercase;
-    font-family: 'Open Sans Condensed';
-    font-weight: bolder;
-    border: none;
-	cursor: pointer;
-	box-shadow: 2.5px 5px 9px #888888;
-	margin-top: 20px;
-	transition:  1s ease;
-	&:hover {
-		transform: scale(1.1);
-	}
-}
+
 
 .social-btns {
 	display: flex;
@@ -189,33 +160,7 @@ footer {
 	justify-content: center;
 }
 
-.fb-btn {
-	display: flex;
-	margin: 8px;
-	width: 40px;
-	height: 40px;
-	cursor: pointer;
-	box-shadow: 5px 10px 18px #888888;
-	transition:  1s ease;
-	&:hover {
-		transform: scale(1.2);
-	}
-}
 
-.google-btn {
-	display: flex;
-	
-	width: 40px;
-	height: 40px;
-	margin: 8px;
-	cursor: pointer;
-	box-shadow: 5px 10px 18px #888888;
-	
-	transition:  1s ease;
-	&:hover {
-		transform: scale(1.2);
-	}
-}
 
 .errorMsg {
 	
