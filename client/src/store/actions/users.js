@@ -205,8 +205,8 @@ export const UserSignOut = () => {
         dispatch({
           type: ADD_NEW_ADDRESS,
           
-          address: response.data.address,
-          addresses: response.data.addresses
+          addresses: response.data.addressesList,
+          defaultAddress: response.data.defaultAddress
         });
         
       } catch(err) {

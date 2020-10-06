@@ -362,8 +362,8 @@ router.post('/api/user-add-address', auth, async (req, res) => {
             
             const defaultAddress = user.defaultAddress
         let addressesList  = ObjIndexToZero(addresses,defaultAddress)
-        
-        res.send({user,address, addressesList});
+        await user.save()
+        res.send({user,defaultAddress, addressesList});
     } catch (error) {
         res.status(400).send({error});
     }
