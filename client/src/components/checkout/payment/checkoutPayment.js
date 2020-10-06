@@ -34,7 +34,7 @@ console.log("sendPrder");
 		return(
 		<div className="checkoutPayment-container">
 		
-		  <h4>Confirm Order</h4>
+		  <h4>Confirm Order / payment on arrival  </h4>
            <table className="TableList">
            <tr><th>Price</th><th>Quantity </th><th>Product</th> </tr>
            {this.props.cartItems.map(item=>(
@@ -42,21 +42,22 @@ console.log("sendPrder");
 <tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
 
   ))} 
-           
+       <tr><td>{this.props.total+ " EGP"}</td > <td colspan="2">Total</td></tr>    
       </table>     
            
            
            
 		   <p>Total Order : {this.props.total+ " EGP"}</p>
-<h5>address details </h5>
+
 
 <div className="cart-Item borderCard" > 
+
 <p className="centerdiv">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
       <p className="centerdiv">{this.props.defaultAddress.street} </p>
       <p className="centerdiv">{this.props.defaultAddress.city} </p>
       <p className="centerdiv">{this.props.defaultAddress.phone} </p>
       </div>
-      <h4>payment on arrival </h4>
+      
       <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button>
   <div className="checkout-cart-footer">
 
