@@ -145,7 +145,7 @@ display: flex;
 
 /* <li> */
 .nav-item {
-  width: calc($navsize * 0.8);
+  width: $navsize * 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
