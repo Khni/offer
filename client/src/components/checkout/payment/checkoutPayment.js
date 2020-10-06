@@ -37,7 +37,7 @@ console.log("sendPrder");
 		  <Header  />
            <table>
            <tr><th>Price</th><th>Quantity </th><th>Name Of Product</th> </tr>
-           {props.cartItems.map(item=>(
+           {this.props.cartItems.map(item=>(
 
 <tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
 
