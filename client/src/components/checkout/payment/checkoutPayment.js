@@ -49,10 +49,13 @@ console.log("sendPrder");
            
 		   <p>Total Order : {this.props.total+ " EGP"}</p>
 <h5>address details </h5>
+
+<div className="cart-Item borderCard" > 
 <p className="centerdiv">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
       <p className="centerdiv">{this.props.defaultAddress.street} </p>
       <p className="centerdiv">{this.props.defaultAddress.city} </p>
       <p className="centerdiv">{this.props.defaultAddress.phone} </p>
+      </div>
       <h4>payment on arrival </h4>
       <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button>
   <div className="checkout-cart-footer">
