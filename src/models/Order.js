@@ -48,7 +48,10 @@ type: mongoose.Schema.Types.ObjectId,
         totalPrice: {
        type: Number,
         required: true
-       }
+       }, 
+       status:{
+          type: String 
+            }, 
      
 	
 	}, 
