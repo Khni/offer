@@ -35,14 +35,31 @@ console.log("sendPrder");
 		<div className="checkoutPayment-container">
 		
 		  <Header  />
+           <table>
+           <tr><th>Price</th><th>Quantity </th><th>Name Of Product</th> </tr>
+           {props.cartItems.map(item=>(
+
+<tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
+
+  ))} 
+           
+      </table>     
+           
+           
            
 		   <p>Total Order : {this.props.total+ " EGP"}</p>
-
+<p>address details <p>
+<p className="cart-item-title margin0">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
+      <p className="cart-item-title margin0">{this.props.defaultAddress.street} </p>
+      <p className="cart-item-title margin0">{this.props.defaultAddress.city} </p>
+      <p className="cart-item-title margin0">{this.props.defaultAddress.phone} </p>
+      <h4>payment on arrival </h4>
+      <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button>
   <div className="checkout-cart-footer">
 
 
 
-<button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-checkout" >Confirm Order</button>
+
 
 </div>
          </div>
@@ -62,6 +79,7 @@ const mapStateToProps =(state) =>{
 		token: state.userAuth.authUser.token,
  total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity * item.price, 0), 
  cartItems: selectCartItems(state), 
+ defaultAddress: state.addressReducer.default
 
 	}
 }
