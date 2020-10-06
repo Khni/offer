@@ -34,12 +34,12 @@ console.log("sendPrder");
 		return(
 		<div className="checkoutPayment-container">
 		
-		  <Header  />
-           <table>
-           <tr><th>Price</th><th>Quantity </th><th>Name Of Product</th> </tr>
+		  <h4>Confirm Order</h4>
+           <table className="TableList">
+           <tr><th>Price</th><th>Quantity </th><th>Product</th> </tr>
            {this.props.cartItems.map(item=>(
 
-<tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
+<tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
 
   ))} 
            
@@ -48,11 +48,11 @@ console.log("sendPrder");
            
            
 		   <p>Total Order : {this.props.total+ " EGP"}</p>
-<p>address details </p>
-<p className="cart-item-title margin0">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
-      <p className="cart-item-title margin0">{this.props.defaultAddress.street} </p>
-      <p className="cart-item-title margin0">{this.props.defaultAddress.city} </p>
-      <p className="cart-item-title margin0">{this.props.defaultAddress.phone} </p>
+<h5>address details </5>
+<p className="centerdiv">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
+      <p className="centerdiv">{this.props.defaultAddress.street} </p>
+      <p className="centerdiv">{this.props.defaultAddress.city} </p>
+      <p className="centerdiv">{this.props.defaultAddress.phone} </p>
       <h4>payment on arrival </h4>
       <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button>
   <div className="checkout-cart-footer">
