@@ -195,7 +195,7 @@ return <div className={cartItemClass} >
  
 </div> : null   } 
       
-    {!this.state.isLoading && this.props.addressesList.length == 0 && !this.state.listToshow  ? <AddAddressForm /> : null} 
+    {!this.state.isLoading &&  !this.state.listToshow  ? <AddAddressForm /> : null} 
 </div>
 
 
