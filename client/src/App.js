@@ -22,6 +22,7 @@ import Orders from'./components/UserAccount/components/userPages/Orders/Orders.j
 //import AddProduct from './components/UserAccount/components/adminPage/products/addProduct.component'
 import FavoriteList from './components/UserAccount/components/userPages/FavoriteList/FavoriteList.js'
 import ViewedItems from './components/UserAccount/components/userPages/ViewedItems/ViewedItems.js'
+import OrderPageAdmin from './admin/components/adminPage/orders/orderPage'
 function App() {
   return (
     <div className="App">
@@ -43,6 +44,7 @@ function App() {
           <Route path='/checkout-confirm' component={CheckoutPayment} />
           <Route path="/settings" component={AccountSettingsNav} />
                     <Route path="/orders" component={Orders}  />
+                    <Route path="/orderpage-admin/:id" component={OrderPageAdmin}  />
                     <Route path="/favorite-list" component={FavoriteList} />
                     <Route path="/viewed-items" component={FavoriteList} />
         </Switch>

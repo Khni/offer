@@ -3,14 +3,14 @@ import axios from 'axios'
 
 export const fetchAllOrders = (adminToken,status) => {
 
-       let OrderStatus = status
-       if (status == 'all') {
-        OrderStatus= ''
-       }
+      //  let OrderStatus = status
+      //  if (status == 'all') {
+      //   OrderStatus= ''
+      //  }
     return async dispatch => {
         try {
-            console.log('status from action'+ OrderStatus);
-            const response =   await axios.get('/api/admin/orders'+ OrderStatus, {
+            console.log('status from action'+ status);
+            const response =   await axios.get('/api/admin/orders/'+ status, {
              headers : { Authorization: `Bearer ${adminToken}`
               }} );
    

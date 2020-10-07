@@ -35,7 +35,18 @@ router.get('/api/user-orders', auth, async (req, res) => {
     }
 })
 
-router.get('/api/admin/orders:status', authAdmin, async (req, res) => {
+router.get('/api/admin/orders/:status', authAdmin, async (req, res) => {
+    if (req.params.status == 'all') {
+        const orders = await Order.find({})
+    
+    try {
+        
+        res.status(200).send({orders})
+    } catch (e) {
+        res.status(400).send({e})
+    }
+
+    }else{
     const orders = await Order.find({status: req.params.status})
 
     try {
@@ -43,19 +54,36 @@ router.get('/api/admin/orders:status', authAdmin, async (req, res) => {
         res.status(200).send({orders})
     } catch (e) {
         res.status(400).send({e})
-    }
+    }}
 })
 
-router.get('/api/admin/orders', authAdmin, async (req, res) => {
-    const orders = await Order.find({})
+
+router.get('/api/admin/order/find/:id',  async (req, res) => {
+	
+	let order = await Order.findOne({_id: req.params.id})
+	
+	
+    
 
     try {
+   res.status(201).send({order})
         
-        res.status(200).send({orders})
     } catch (e) {
-        res.status(400).send({e})
+        res.status(400).send(e)
     }
 })
+
+
+// router.get('/api/admin/orders', authAdmin, async (req, res) => {
+//     const orders = await Order.find({})
+
+//     try {
+        
+//         res.status(200).send({orders})
+//     } catch (e) {
+//         res.status(400).send({e})
+//     }
+// })
 
 module.exports = router
 

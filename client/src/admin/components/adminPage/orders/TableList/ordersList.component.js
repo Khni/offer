@@ -30,35 +30,34 @@ class CategoryList extends Component {
 
      orderStatus ='';
     async FetchCategoriesFromServer(){
-   //   if(!this.props.categoriesFetched) {
-   this.setState({Loading: true})
+   
+     if (!this.state.Loading) {
+       //this if statment to prevent infinity loop in componentdidupdate
+      this.setState({Loading: true})
+     }
+
      const { fetchAllOrders } = this.props;
      await fetchAllOrders(this.props.AdminToken,this.props.match.params.status);
-     this.setState({Loading: false})
-     this.setState({status: this.props.match.params.status})
-    // }
-     console.log("log from add product Updatefetchproduct" )
+    this.setState({Loading: false , status :this.props.match.params.status})
+
        
    }
 
 async componentDidMount() {
 await this.FetchCategoriesFromServer()
   }
-//   async componentDidUpdate(prevProps, prevState) {
-//     console.log("prevState:" + prevState.Loading);
-//     if (!prevState.Loading) {
-//  await this.FetchCategoriesFromServer()
-//     }
-  // }
+
 
 
 
 async componentDidUpdate(prevProps,prevState){
 	
-  if (prevState.status !== this.state.status) {
-    console.log("prevstate"+ prevState.status);
-   // await this.FetchCategoriesFromServer()
-  //  this.orderStatus = this.props.match.params.status
+  if (this.state.status !== this.props.match.params.status) {
+    console.log("statusbeforeset"+ this.state.status);
+  await this.FetchCategoriesFromServer()
+   
+   console.log("statusafterset"+ this.state.status);
+ 
   }
  
   
@@ -82,9 +81,10 @@ async componentDidUpdate(prevProps,prevState){
 {!this.state.Loading?
                       <table className="TableList">
     <tr><td> </td><th>Order Number</th> <th>Total</th></tr>
-   
+    {/* onClick={() => this.props.history.push(`${this.props.match.url+"orderpage-admin/" }${orders._id}`)} */}
 {this.props.orders.map((orders,i)=>{
-return     <tr><td>{i +1}</td><td>{orders.orderNum}</td><td>{orders.totalPrice}</td></tr>
+return     <tr onClick={() => this.props.history.push(/orderpage-admin/+orders._id) }>
+  <td>{i +1}</td><td>{orders.orderNum}</td><td>{orders.totalPrice}</td></tr>
    })}
   
       </table>:  <div className="loader"/>}
@@ -122,4 +122,5 @@ const mapStateToProps = state => {
 
 
 
-export default  connect(mapStateToProps, actions)(CategoryList);
+
+export default withRouter(connect(mapStateToProps, actions)(CategoryList));
