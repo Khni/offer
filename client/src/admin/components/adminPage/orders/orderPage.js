@@ -56,7 +56,7 @@ this.setState({Loading: false})
          
          <div className="cart-Item borderCard" > 
 
-<p className="centerdiv">{this.state.order.address.firstName +" "+ this.props.defaultAddress.lastName} </p>
+<p className="centerdiv">{this.state.order.address.firstName} </p>
       <p className="centerdiv">{this.state.order.address.street} </p>
       <p className="centerdiv">{this.state.order.address.city} </p>
       <p className="centerdiv">{this.state.order.address.phone} </p>
