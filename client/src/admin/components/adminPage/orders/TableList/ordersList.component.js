@@ -22,7 +22,7 @@ class CategoryList extends Component {
         this.state = {
           Loading: false,
           update: true,
-          status: this.props.match.params.status
+          status: '' 
         }
     }
 
@@ -47,10 +47,11 @@ await this.FetchCategoriesFromServer()
 //     }
   // }
 async componentDidUpdate(prevState){
-  if (prevState.status == this.state.status) {
+	
+  if (this.state.status != this.props.match.params.status) {
     await this.FetchCategoriesFromServer()
   }
- // this.setState({update: false})
+ this.setState({status: this.props.match.params.status})
   
 }
 
