@@ -3,7 +3,7 @@ const Order= require('../models/Order')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 const authAdmin =  require('../middleware/adminAuth')
-
+const User = require('../models/User')
 
 
 router.post('/api/order/add', auth, async (req, res) => {
@@ -13,10 +13,13 @@ router.post('/api/order/add', auth, async (req, res) => {
          userID: req.user._id,
         products: req.body,
         status: "unconfirmed",
+        
        totalPrice: req.body.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
     })
 
     try {
+        await order.save()
+        order.address: req.user.defaultAddress
         await order.save()
         res.status(201).send({order})
     } catch (e) {
@@ -58,14 +61,14 @@ router.get('/api/admin/orders/:status', authAdmin, async (req, res) => {
 })
 
 
-router.get('/api/admin/order/find/:id',  async (req, res) => {
+router.get('/api/admin/order/find/:id',authAdmin,  async (req, res) => {
 	
 	let order = await Order.findOne({_id: req.params.id})
 	
-	
-    
+
 
     try {
+    	
    res.status(201).send({order})
         
     } catch (e) {
@@ -73,6 +76,21 @@ router.get('/api/admin/order/find/:id',  async (req, res) => {
     }
 })
 
+
+router.post('/api/admin/order/updatestatus/:id',  async (req, res) => {
+	
+	let order = await Order.findOne({_id: req.params.id})
+	
+	
+    try {
+    	order.status = req.body.status
+    order.save()
+   res.status(201).send({order})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 // router.get('/api/admin/orders', authAdmin, async (req, res) => {
 //     const orders = await Order.find({})
