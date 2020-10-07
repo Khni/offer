@@ -16,7 +16,7 @@ router.post('/api/order/add', auth, async (req, res) => {
         defaultAddress: req.user.defaultAddress,
        totalPrice: req.body.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
     })
-console.log("addresuser"+req.user.defaultAddress);
+
     try {
         await order.save()
         
@@ -84,7 +84,8 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
 	
 	
     try {
-    	order.status = req.body.statusToUpdate
+        order.status = req.body.status
+       
     order.save()
    res.status(201).send({order})
         

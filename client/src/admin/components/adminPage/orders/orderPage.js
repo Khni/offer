@@ -34,24 +34,24 @@ async fetchOrder(){
 
 async updateOrder(){
  
- let statusToUpdate= '' 
+ let statusToUpdate= 'aa' 
  if(this.state.order.status== "unconfirmed" ) {
-let statusToUpdate= "confirmed" 
+ statusToUpdate= "confirmed" 
 } 
 if(this.state.order.status== "confirmed" ) {
-let statusToUpdate= "shipped" 
+ statusToUpdate= "shipped" 
 } 
  if(this.state.order.status== "shipped" ) {
-let statusToUpdate= "delivered" 
+ statusToUpdate= "delivered" 
 } 
  
  
  
-  const response =   await axios.get('/api/admin/order/updatestatus/'+this.props.match.params.id, statusToUpdate , {
+  const response =   await axios.post('/api/admin/order/updatestatus/'+this.props.match.params.id, {status: statusToUpdate} , {
     headers : { Authorization: `Bearer ${this.props.AdminToken}`
      }} );
-  
-  
+  //console.log("statustoo"+ statusToUpdate);
+  window.location.reload();
  
 }
 
@@ -105,10 +105,11 @@ this.setState({Loading: false})
     </div> */}
     
     {/* <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button> */}
+    <button onClick={async()=>{await this.updateOrder();} } className="custum-btn-form" >Change Order Status</button>
 <div className="checkout-cart-footer">
 
 
-   <button onClick={async()=>{await this.updateOrder();} } className="custum-btn-form" >Change Order Status</button>
+   
 
 
 </div>
