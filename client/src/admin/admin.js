@@ -5,6 +5,7 @@ import CategoriesNav from './components/adminPage/categories/categoriesNav.compo
 import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
 import ProductsNav from './components/adminPage/products/TopNav/productsNav.component'
+import OrdersNav from './components/adminPage/orders/TopNav/ordersNav.component'
 import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
@@ -53,7 +54,12 @@ const navlinks = [{
 {
   path: "/admin/collections",
   title: "Collections"
-}]
+},
+{
+  path: "/admin/orders",
+  title: "Orders"
+}
+]
 
 const buttons = [{
   title: "Sign Up",
@@ -78,6 +84,7 @@ const buttons = [{
                     <Route path="/admin/sections" component={SectionsNav}  />
                     <Route path="/admin/categories" component={CategoriesNav} />
                     <Route path="/admin/collections" component={CollectionNav} />
+                    <Route path="/admin/orders" component={OrdersNav} />
                     <Redirect from="/admin" to="/admin/products" />
                 </Switch>
                

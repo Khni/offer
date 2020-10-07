@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import ProductsReducer from './products/productsReducer';
 import categoryReducer from './categories/categoryReducer'
 import ordersReducer from './auth/ordersReducer.js';
+import OrdersAdminReducer from './admin/orders/ordersReducer'
 
 const persistConfig = {
   key: 'root',
@@ -32,7 +33,8 @@ const Reducers = combineReducers({
     categoryReducer: categoryReducer, 
     checkoutReducer: checkoutReducer,
     ordersReducer: ordersReducer, 
-    addressReducer: addressReducer
+    addressReducer: addressReducer,
+    OrdersAdminReducer: OrdersAdminReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 
