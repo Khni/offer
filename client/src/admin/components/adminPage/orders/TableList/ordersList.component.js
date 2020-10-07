@@ -50,8 +50,9 @@ async componentDidUpdate(prevState){
 	
   if (this.state.status != this.props.match.params.status) {
     await this.FetchCategoriesFromServer()
+    this.setState({status: this.props.match.params.status})
   }
- this.setState({status: this.props.match.params.status})
+ 
   
 }
 
