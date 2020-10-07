@@ -22,16 +22,20 @@ class CategoryList extends Component {
         this.state = {
           Loading: false,
           update: true,
-          status: '' 
+          status: ''
         }
     }
 
+
+
+     orderStatus ='';
     async FetchCategoriesFromServer(){
    //   if(!this.props.categoriesFetched) {
    this.setState({Loading: true})
      const { fetchAllOrders } = this.props;
      await fetchAllOrders(this.props.AdminToken,this.props.match.params.status);
      this.setState({Loading: false})
+     this.setState({status: this.props.match.params.status})
     // }
      console.log("log from add product Updatefetchproduct" )
        
@@ -46,11 +50,15 @@ await this.FetchCategoriesFromServer()
 //  await this.FetchCategoriesFromServer()
 //     }
   // }
-async componentDidUpdate(prevState){
+
+
+
+async componentDidUpdate(prevProps,prevState){
 	
-  if (this.state.status != this.props.match.params.status) {
-    await this.FetchCategoriesFromServer()
-    this.setState({status: this.props.match.params.status})
+  if (prevState.status !== this.state.status) {
+    console.log("prevstate"+ prevState.status);
+   // await this.FetchCategoriesFromServer()
+  //  this.orderStatus = this.props.match.params.status
   }
  
   
