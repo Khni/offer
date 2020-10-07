@@ -54,55 +54,58 @@ type: mongoose.Schema.Types.ObjectId,
             }, 
             
             
-            address : {
-         _id: {
-            type: mongoose.Schema.Types.ObjectId,
-
-         },
-        firstName: {
-                type: String,
-                trim: true
-            }, 
-            lastName: {
-                type: String,
-                trim: true
-            }, 
-            phone: {
-               type: Number,
-              trim: true,
-
+            defaultAddress: {
+              _id: {
+                 type: mongoose.Schema.Types.ObjectId,
+     
               },
-              country: {
-        type: String,
-        trim: true,
-
-            },
-            city: {
-        type: String,
-        trim: true,
-
-            },
-            street: {
-        type: String,
-        trim: true,
-
-            },
-            floor: {
-        type: Number,
-        trim: true,
-
-            },
-            apartment : {
-        type: Number,
-        trim: true,
-
-            },
-            landmark: {
-        type: String,
-        trim: true
-
-            }
-    },
+             firstName: {
+                     type: String,
+                     trim: true
+                 }, 
+                 lastName: {
+                     type: String,
+                     trim: true
+                 }, 
+                 phone: {
+                    type: Number,
+                   trim: true,
+     
+                   },
+                   country: {
+             type: String,
+             trim: true,
+     
+                 },
+                 city: {
+             type: String,
+             trim: true,
+     
+                 },
+                 street: {
+             type: String,
+             trim: true,
+     
+                 },
+                 floor: {
+             type: Number,
+             trim: true,
+     
+                 },
+                 apartment : {
+             type: Number,
+             trim: true,
+     
+                 },
+                 landmark: {
+             type: String,
+             trim: true
+     
+                 }
+         },
+     
+     
+     
             
      
 	

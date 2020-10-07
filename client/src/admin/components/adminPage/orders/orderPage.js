@@ -1,6 +1,7 @@
 import React ,{Component} from 'react'
 import axios from 'axios';
 
+import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
 import {connect} from 'react-redux'
  
 
@@ -18,7 +19,9 @@ import {connect} from 'react-redux'
       }
 async fetchOrder(){
  
-  const response =   await axios.get('/api/admin/order/find/'+this.props.match.params.id);
+  const response =   await axios.get('/api/admin/order/find/'+this.props.match.params.id  , {
+    headers : { Authorization: `Bearer ${this.props.AdminToken}`
+     }} );
   this.setState({order:  response.data.order})
   
  // console.log("productPage: " + this.state.product.price);
@@ -56,10 +59,10 @@ this.setState({Loading: false})
          
          <div className="cart-Item borderCard" > 
 
-<p className="centerdiv">{this.state.order.address.firstName} </p>
-      <p className="centerdiv">{this.state.order.address.street} </p>
-      <p className="centerdiv">{this.state.order.address.city} </p>
-      <p className="centerdiv">{this.state.order.address.phone} </p>
+<p className="centerdiv">{this.state.order.defaultAddress.firstName} </p>
+      <p className="centerdiv">{this.state.order.defaultAddress.street} </p>
+      <p className="centerdiv">{this.state.order.defaultAddress.city} </p>
+      <p className="centerdiv">{this.state.order.defaultAddress.phone} </p>
       </div>
         
 
@@ -91,7 +94,7 @@ this.setState({Loading: false})
 
     return col.id ===1
   })*/
-  
+  AdminToken: selectAdminAuth(state).token,
  // Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.id ==  ownProps.match.params.id )
  //Product: selectItem(ownProps.match.params.id)(state)
 });

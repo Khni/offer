@@ -13,13 +13,14 @@ router.post('/api/order/add', auth, async (req, res) => {
          userID: req.user._id,
         products: req.body,
         status: "unconfirmed",
-        
+        defaultAddress: req.user.defaultAddress,
        totalPrice: req.body.reduce((accumalatedQuantity, product) =>accumalatedQuantity + product.quantity * product.price , 0)
     })
-
+console.log("addresuser"+req.user.defaultAddress);
     try {
         await order.save()
-        order.address: req.user.defaultAddress
+        
+        order.address= req.user.defaultAddress
         await order.save()
         res.status(201).send({order})
     } catch (e) {
