@@ -84,7 +84,7 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
 	
 	
     try {
-    	order.status = req.body.status
+    	order.status = req.body.statusToUpdate
     order.save()
    res.status(201).send({order})
         
