@@ -13,10 +13,15 @@ import {connect} from 'react-redux'
         super(props);
         this.state = {
           order:'',
-          Loading: true
+          Loading: true, 
+          
+          
         }
         
       }
+      
+      
+      
 async fetchOrder(){
  
   const response =   await axios.get('/api/admin/order/find/'+this.props.match.params.id  , {
@@ -24,8 +29,32 @@ async fetchOrder(){
      }} );
   this.setState({order:  response.data.order})
   
- // console.log("productPage: " + this.state.product.price);
+ 
 }
+
+async updateOrder(){
+ 
+ let statusToUpdate= '' 
+ if(this.state.order.status== "unconfirmed" ) {
+let statusToUpdate= "confirmed" 
+} 
+if(this.state.order.status== "confirmed" ) {
+let statusToUpdate= "shipped" 
+} 
+ if(this.state.order.status== "shipped" ) {
+let statusToUpdate= "delivered" 
+} 
+ 
+ 
+ 
+  const response =   await axios.get('/api/admin/order/updatestatus/'+this.props.match.params.id, statusToUpdate , {
+    headers : { Authorization: `Bearer ${this.props.AdminToken}`
+     }} );
+  
+  
+ 
+}
+
 
 async componentDidMount(){
 await this.fetchOrder()
@@ -79,7 +108,7 @@ this.setState({Loading: false})
 <div className="checkout-cart-footer">
 
 
-
+   <button onClick={async()=>{await this.updateOrder();} } className="custum-btn-form" >Change Order Status</button>
 
 
 </div>
