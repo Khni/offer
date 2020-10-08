@@ -98,6 +98,30 @@ const productSchema = mongoose.Schema({
         {type: String,
         trim: true,
         require: true,}, 
+        
+        reviews : [
+         {
+             rate:{
+             	type: Number,
+               trim: true,
+                }, 
+                title :{
+               type: String,
+                trim: true
+        
+                   }, 
+                   comment :{
+               type: String,
+                trim: true
+        
+                   }, 
+                   userID : {
+             type: mongoose.Schema.Types.ObjectId,
+        required: true
+          
+       } 
+       ], 
+        
 	 pricehistory:[
             {
             price:{

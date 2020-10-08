@@ -200,5 +200,36 @@ router.delete('/api/product/delete/:id', [auth, deletePOS] , async (req, res) =>
 })
 
 
+//add comments 
+router.post('/api/product/add-comment/:id',  async (req, res) => {
+	
+	let product = await Product.findOne({_id: req.params.id})
+	let review =  req.body
+    product.reviews = product.reviews.concat({review}) 
+	
+    
+
+    try {
+   res.status(201).send({product.reviews})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+//fetch product review 
+router.get('/api/product-reviews/find/:id',  async (req, res) => {
+	
+	let product = await Product.findOne({_id: req.params.id})
+	let reviews = product.reviews
+	
+    
+
+    try {
+   res.status(201).send({reviews})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 module.exports = router
