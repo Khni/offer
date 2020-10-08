@@ -2,7 +2,8 @@ const express = require('express')
 const Product = require('../models/Product')
 const Section = require('../models/Section')
 const router = new express.Router()
-const auth = require('../middleware/adminAuth')
+const authAdmin = require('../middleware/adminAuth')
+const auth = require('../middleware/auth')
 const deletePOS = require('../middleware/deleteProductsOfSection.js')
 const authUploadProduct = require('../middleware/adminAuthUpload')
 var aws = require('aws-sdk')
@@ -18,7 +19,7 @@ var s3 = new aws.S3()
 
 
 
-router.post('/api/product/add', auth, async (req, res) => {
+router.post('/api/product/add', authAdmin, async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
@@ -152,7 +153,7 @@ let path = req.file.path
 
 
 
-router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, res) => {
+router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
@@ -185,7 +186,7 @@ router.post('/api/add/product',[auth , upload.single('upload') ] , async (req, r
 
 
 
-router.delete('/api/product/delete/:id', [auth, deletePOS] , async (req, res) => {
+router.delete('/api/product/delete/:id', [authAdmin, deletePOS] , async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id)
         if (!product) {
@@ -201,16 +202,21 @@ router.delete('/api/product/delete/:id', [auth, deletePOS] , async (req, res) =>
 
 
 //add comments 
-router.post('/api/product/add-comment/:id',  async (req, res) => {
+router.post('/api/product/add-comment/:id',auth,  async (req, res) => {
 	
 	let product = await Product.findOne({_id: req.params.id})
 	let review =  req.body
-    product.reviews = product.reviews.concat({review}) 
-	
-    
+    product.reviews = product.reviews.concat({title: review.title,
+    rate: review.rate,
+    comment: review.comment,
+userID: req.user._id}) 
+  
+	console.log("review"+review.title);
+    //product.review.userID = req.user._id
 
     try {
-   res.status(201).send({product.reviews})
+       await   product.save()
+   res.status(201).send(product.reviews)
         
     } catch (e) {
         res.status(400).send(e)

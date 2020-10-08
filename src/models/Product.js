@@ -4,147 +4,154 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const productSchema = mongoose.Schema({
-	
-	nameEn:{
-		type: String,
+
+    nameEn: {
+        type: String,
         trim: true,
         require: true,
-		 }, 
-		nameAr:{
-		type: String,
+    },
+    nameAr: {
+        type: String,
         trim: true,
         require: true,
-		 }, 
-		descEn:{
-		type: String,
+    },
+    descEn: {
+        type: String,
         trim: true,
         require: true,
-		 }, 
-		descAr:{
-		type: String,
+    },
+    descAr: {
+        type: String,
         trim: true,
         require: true,
-		 }, 
-		
-		
-	adminID:{
-      type: mongoose.Schema.Types.ObjectId,
+    },
+
+
+    adminID: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Admin'
-        }, 
-	price:{
-		type: Number,
+    },
+    price: {
+        type: Number,
         trim: true,
         require: true,
-		 },
-	quantity :{
+    },
+    quantity: {
         type: Number,
         trim: true,
         require: true
-         }, 
-         sizes: [
-               {
-             size:{
-               type: String,
-               trim: true,
-                }, 
-                quantity :{
-               type: Number,
+    },
+    sizes: [
+        {
+            size: {
+                type: String,
                 trim: true,
-        
-                   }
-                
-             } 
+            },
+            quantity: {
+                type: Number,
+                trim: true,
 
-            ], 
-         
-     imgURLs: [
-               {
-             imgURL:{
-               type: String,
-               trim: true,
-             require: true
-                } 
-             } 
+            }
 
-            ], 
-         
-            sectionID:{
+        }
+
+    ],
+
+    imgURLs: [
+        {
+            imgURL: {
+                type: String,
+                trim: true,
+                require: true
+            }
+        }
+
+    ],
+
+    sectionID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Section'
-         },
-    collectionID:{
+    },
+    collectionID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Collection'
-         },
-	oldprice:{
-		type: String,
+    },
+    oldprice: {
+        type: String,
         trim: true,
         require: true,
-        
-		 },
-		gender: 
-          {type: String,
-        trim: true,
-        require: true,}, 
-        
-        age: 
-         {type: String,
-        trim: true,
-        require: true,}, 
-        
-        color: 
-        {type: String,
-        trim: true,
-        require: true,}, 
-        
-        reviews : [
-         {
-             rate:{
-             	type: Number,
-               trim: true,
-                }, 
-                title :{
-               type: String,
-                trim: true
-        
-                   }, 
-                   comment :{
-               type: String,
-                trim: true
-        
-                   }, 
-                   userID : {
-             type: mongoose.Schema.Types.ObjectId,
-        required: true
-          
-       } 
-       ], 
-        
-	 pricehistory:[
-            {
-            price:{
-           type: Number,
-           trim: true,
-        
 
-             }
-          }
-        ],
-	
-	},
-{
-    timestamps: true
-}
+    },
+    gender:
+    {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    age:
+    {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    color:
+    {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    reviews: [
+        {
+            rate: {
+                type: Number,
+                trim: true,
+            },
+            title: {
+                type: String,
+                trim: true
+
+            },
+            comment: {
+                type: String,
+                trim: true
+
+            },
+            userID: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true
+
+            }
+        }
+    ],
+
+    pricehistory: [
+        {
+            price: {
+                type: Number,
+                trim: true,
+
+
+            }
+        }
+    ],
+
+},
+    {
+        timestamps: true
+    }
 )
-	
-	productSchema.virtual('Orders', {
+
+productSchema.virtual('Orders', {
     ref: 'Order',
     localField: 'nameEn',
     foreignField: 'productName'
 })
-	productSchema.virtual('cart', {
+productSchema.virtual('cart', {
     ref: 'Cart',
     localField: 'name',
     foreignField: 'productName'
@@ -171,13 +178,12 @@ productSchema.virtual('Orders', {
     localField: '_id',
     foreignField: 'productID'
 })
-	productSchema.virtual('cart', {
+productSchema.virtual('cart', {
     ref: 'Cart',
     localField: 'name',
     foreignField: 'productName'
 })
-	
-const Product = mongoose.model('Product', productSchema );
+
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product
-	
