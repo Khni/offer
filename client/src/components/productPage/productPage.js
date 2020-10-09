@@ -71,10 +71,10 @@ if (this.state.fetched){
     <div className="PicComponent">
     <PicComponent imgURL={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+this.state.product.imgURLs[0].imgURL}/>
    </div>
-   <div>
+   <div className="StarRatingsContainer" >
 <StarRatings
           rating={this.state.rating}
-          starRatedColor="blue"
+          starRatedColor='rgb(255,215,0)'
          
           numberOfStars={5}
           name='rating'
