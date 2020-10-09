@@ -11,8 +11,8 @@ export default class CustomInput extends Component {
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
           className={this.props.classN}
-          rows={5}
-          cols={30}
+          
+          cols={40}
           value={ value }
           onChange={ onChange }
           placeholder={this.props.label}
