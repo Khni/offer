@@ -69,11 +69,19 @@ router.get('/api/product/find/:id',  async (req, res) => {
 	
 	let product = await Product.findOne({_id: req.params.id})
 	
-	
+	let rev5 = product.reviews.filter((rev)=>rev.rate==5).length 
+    let rev4 = product.reviews.filter((rev)=>rev.rate==4).length * 0.8
+    let rev3 = product.reviews.filter((rev)=>rev.rate==3).length * 0.6
+    let rev2 = product.reviews.filter((rev)=>rev.rate==2).length * 0.4
+    let rev1 = product.reviews.filter((rev)=>rev.rate==4).length * 0.2
+    let rating = (rev5+rev4+rev3+rev2+rev1) 
+
+
     
 
+
     try {
-   res.status(201).send({product})
+   res.status(201).send({product, rating})
         
     } catch (e) {
         res.status(400).send(e)

@@ -17,6 +17,7 @@ import {addItem} from '../../store/actions/CartItemsAction';
         
         this.state = {
           product:'',
+          rating:'', 
           Loading: true, 
           fetch: false
         }
@@ -32,7 +33,7 @@ import {addItem} from '../../store/actions/CartItemsAction';
 async fetchProduct(){
  
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
-  this.setState({product:  response.data.product, Loading: false})
+  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,})
   if (this.state.fetched){
   this.setState({fetch: false})
   }
@@ -69,6 +70,7 @@ if (this.state.fetched){
     <div className="PicComponent">
     <PicComponent imgURL={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+this.state.product.imgURLs[0].imgURL}/>
    </div>
+   <div>{"rating " +this.state.rating} </div>
    <div className="MiddleComponent">
    <MiddleComponent name={this.state.product.nameEn} price={this.state.product.price} item={this.state.product} />
    </div>
