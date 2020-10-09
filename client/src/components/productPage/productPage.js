@@ -75,7 +75,7 @@ if (this.state.fetched){
 <StarRatings
           rating={this.state.rating}
           starRatedColor="blue"
-         {/* changeRating={this.changeRating}*/} 
+         
           numberOfStars={5}
           name='rating'
         />
