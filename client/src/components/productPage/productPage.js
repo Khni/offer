@@ -77,7 +77,7 @@ if (this.state.fetched){
     
     <Carousel>
     {this.state.product.imgURLs.map(img=> <div>
-                    <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img} />
+                    <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
                     <p className="legend">Legend 1</p>
                 </div>)} 
                 
