@@ -15,6 +15,15 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
      ordersFetched: true
        
       };
+
+    //   case FETCH_ORDERS_ADMIN :
+    //   return {
+    //  ...state, 
+    //  orders: action.orders,
+    //  ordersFetched: true
+       
+    //   };
+      
       
     default:
       return state;
