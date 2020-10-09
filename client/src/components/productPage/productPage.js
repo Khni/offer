@@ -13,6 +13,8 @@ import {addItem} from '../../store/actions/CartItemsAction';
  class ProductPage extends Component {
     constructor(props) {
         super(props);
+        this.fetchHandle = this.fetchHandle.bind(this)
+        
         this.state = {
           product:'',
           Loading: true, 
