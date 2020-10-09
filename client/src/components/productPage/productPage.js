@@ -9,7 +9,8 @@ import Style from './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js' 
 import Header from '../headd/header/header'
 import {addItem} from '../../store/actions/CartItemsAction';
-
+import StarRatings from './react-star-ratings';
+ 
  class ProductPage extends Component {
     constructor(props) {
         super(props);
@@ -70,7 +71,15 @@ if (this.state.fetched){
     <div className="PicComponent">
     <PicComponent imgURL={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+this.state.product.imgURLs[0].imgURL}/>
    </div>
-   <div>{"rating " +this.state.rating} </div>
+   <div>
+<StarRatings
+          rating={this.state.rating}
+          starRatedColor="blue"
+         {/* changeRating={this.changeRating}*/} 
+          numberOfStars={5}
+          name='rating'
+        />
+</div>
    <div className="MiddleComponent">
    <MiddleComponent name={this.state.product.nameEn} price={this.state.product.price} item={this.state.product} />
    </div>
