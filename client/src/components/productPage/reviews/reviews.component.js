@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { render } from "react-dom";
  import axios from 'axios';
 import Style from './middle.scss'
-import InputForm from '.. /../form/inputForm.js';
+import InputForm from '../../form/inputForm.js';
  
 import FBicon from "../../form/img/Facebookicon.png"
 import googleicon from "../../form/img/googleicon.png"
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import {addItem, addItemToCartItem} from '../../../store/actions/CartItemsAction';
 import * as actions  from '../../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
@@ -45,19 +45,19 @@ console.log("err: " + err);
 }
 	
 	async onSubmit(formData) {
-		formData.rate = this.state.newRate
- await addReview(formData)
+    formData.rate = this.state.newRate
+    console.log(formData);
+ await this.addReview(formData)
  
-   this.props.onSubmit(formData) 
   }
 	
 ratingChanged = (newRating) => {
   console.log(newRating);
-  this.setState({newRate: newRating.value}) 
+  this.setState({newRate: newRating}) 
 };
 
 render() {
-
+const {handleSubmit} =this.props
     return (
 
 <div className="MiddleProduct">
@@ -65,9 +65,10 @@ render() {
 
 <div className="reviewsMenu">
 {this.props.reviews.map(review=>
-<div className="comment-review">
+<div className="comment-review cart-item">
 <p>{review.title}</p>
 <p>{review.comment}</p>
+<p>{review.rate}</p>
 </div>)}
 
 </div>
@@ -77,7 +78,7 @@ render() {
 <form onSubmit={handleSubmit(this.onSubmit)}>
 <ReactStars
     count={5}
-    onChange={ratingChanged}
+    onChange={this.ratingChanged}
     size={24}
     activeColor="#ffd700"
   />
@@ -131,7 +132,9 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(
-    mapStateToProps,
-    actions
-  )(Reviews);
+
+
+  export default compose(
+    connect(mapStateToProps, actions),
+    reduxForm({ form: 'addReview' })
+  )(Reviews)
