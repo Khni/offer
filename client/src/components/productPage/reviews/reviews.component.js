@@ -24,7 +24,7 @@ class Reviews extends Component{
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state ={
-newRate: 5
+newRate:'' 
     } 
 
   }
@@ -45,11 +45,15 @@ console.log("err: " + err);
 }
 	
 	async onSubmit(formData) {
+		if(this.state.newRate){
     formData.rate = this.state.newRate
     console.log(formData);
  await this.addReview(formData)
  this.props.fetchHandle(true)
  window.location.reload();
+ }else{
+ 	alert('please rate the product from the rating bar") 
+ 	}
   }
 	
 ratingChanged = (newRating) => {
