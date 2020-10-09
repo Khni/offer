@@ -9,7 +9,7 @@ import Style from './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js' 
 import Header from '../headd/header/header'
 import {addItem} from '../../store/actions/CartItemsAction';
-import StarRatings from './react-star-ratings';
+import StarRatings from 'react-star-ratings';
  
  class ProductPage extends Component {
     constructor(props) {
