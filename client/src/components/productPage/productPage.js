@@ -38,15 +38,16 @@ async fetchProduct(){
 }
 
 async componentDidMount(){
-	if (this.state.fetched){
-  await this.fetchProduct()
-  }
 	
+	await this.fetchProduct()
 
 
 }
 async componentDidUpdate(){
-await this.fetchProduct()
+
+if (this.state.fetched){
+  await this.fetchProduct()
+  }
 
 }
  
