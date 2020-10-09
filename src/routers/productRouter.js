@@ -78,6 +78,9 @@ router.get('/api/product/find/:id',  async (req, res) => {
     let revsCount = product.reviews.length
     let ratingCount = (rev5+rev4+rev3+rev2+rev1) 
 let rating=(ratingCount/revsCount) *5
+if(rating== null) {
+	rating=0
+	} 
 
     
 
