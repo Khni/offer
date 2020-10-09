@@ -68,7 +68,8 @@ const {handleSubmit} =this.props
 {this.props.reviews.map(review=>
 <div className="comment-review ">
 <div className="bold" >{review.userName}</div><br />
-{review.comment}
+<div className="comment-rev" >{review.comment}</div>
+
 
 </div>)}
 
