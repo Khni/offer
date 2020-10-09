@@ -5,7 +5,7 @@ import { render } from "react-dom";
 import Style from './middle.scss'
 import InputForm from '../../form/TextAreaForm.js';
  import StarRatings from 'react-star-ratings';
- 
+ import { ReactComponent as User } from './usercomment.svg';
 import FBicon from "../../form/img/Facebookicon.png"
 import googleicon from "../../form/img/googleicon.png"
 import { useHistory } from 'react-router-dom';
@@ -71,8 +71,15 @@ const {handleSubmit} =this.props
 
 <div className="reviewsMenu">
 {this.props.reviews.map(review=>
+
+<div className="flex-row">
+<div className="icon-button">
+<User />
+
+</div>
+
 <div className="comment-review ">
-<div className="bold" >{review.userName}</div><br />
+<div className="bold" >{review.userName}</div>
 <StarRatings
           rating={review.rate}
           starRatedColor='rgb(255,215,0)'
@@ -84,7 +91,11 @@ const {handleSubmit} =this.props
 <div className="comment-rev" >{review.comment}</div>
 
 
-</div>)}
+</div>
+
+</div>
+
+)}
 
 </div>
 
