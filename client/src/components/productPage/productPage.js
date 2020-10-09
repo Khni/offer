@@ -75,7 +75,7 @@ if (this.state.fetched){
 <StarRatings
           rating={this.state.rating}
           starRatedColor='rgb(255,215,0)'
-         
+         starDimension="25px"
           numberOfStars={5}
           name='rating'
         />
