@@ -121,6 +121,11 @@ const productSchema = mongoose.Schema({
                 trim: true
 
             },
+            userName: {
+                type: String,
+                trim: true
+
+            },
             userID: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true

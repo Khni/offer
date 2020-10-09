@@ -67,7 +67,7 @@ const {handleSubmit} =this.props
 <div className="reviewsMenu">
 {this.props.reviews.map(review=>
 <div className="comment-review ">
-
+<p className="bold" >{review.userName}</p><br />
 <p>{review.comment}</p>
 
 </div>)}
