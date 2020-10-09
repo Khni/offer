@@ -12,7 +12,7 @@ export default class CustomInput extends Component {
          /* placeholder={ this.props.placeholder } */
           className={this.props.classN}
           
-          cols={40}
+          cols={35}
           value={ value }
           onChange={ onChange }
           placeholder={this.props.label}
