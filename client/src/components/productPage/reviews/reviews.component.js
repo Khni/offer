@@ -49,7 +49,7 @@ console.log("err: " + err);
     console.log(formData);
  await this.addReview(formData)
  this.props.fetchHandle(true)
- 
+ window.location.reload();
   }
 	
 ratingChanged = (newRating) => {
@@ -61,14 +61,14 @@ render() {
 const {handleSubmit} =this.props
     return (
 
-<div className="MiddleProduct">
+<div className="review-container">
 
 
 <div className="reviewsMenu">
 {this.props.reviews.map(review=>
 <div className="comment-review ">
-<p className="bold" >{review.userName}</p><br />
-<p>{review.comment}</p>
+<div className="bold" >{review.userName}</div><br />
+{review.comment}
 
 </div>)}
 
@@ -76,7 +76,7 @@ const {handleSubmit} =this.props
 
 
 
-<form onSubmit={handleSubmit(this.onSubmit)}>
+<form className="review-form" onSubmit={handleSubmit(this.onSubmit)}>
 <ReactStars
     count={5}
     onChange={this.ratingChanged}
@@ -90,7 +90,7 @@ const {handleSubmit} =this.props
                 name="title" 
                 id="title" 
                 classN="reviewTitle" 
-                placeholder="Title" 
+                
                 component={InputForm}
                 label="Title"
                 labelClass="reviewTitleLabel" 
