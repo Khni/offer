@@ -48,6 +48,7 @@ console.log("err: " + err);
     formData.rate = this.state.newRate
     console.log(formData);
  await this.addReview(formData)
+ this.props.fetchHandle(true)
  
   }
 	

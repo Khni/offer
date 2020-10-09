@@ -15,22 +15,41 @@ import {addItem} from '../../store/actions/CartItemsAction';
         super(props);
         this.state = {
           product:'',
-          Loading: true
+          Loading: true, 
+          fetch: false
         }
         
       }
+      
+     fetchHandle = (val) => {
+    this.setState({
+      fetch: val
+    })
+  } 
+      
 async fetchProduct(){
  
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
-  this.setState({product:  response.data.product})
-  
+  this.setState({product:  response.data.product, Loading: false})
+  if (this.state.fetched){
+  this.setState({fetch: false})
+  }
   console.log("productPage: " + this.state.product.price);
 }
 
 async componentDidMount(){
-await this.fetchProduct()
-this.setState({Loading: false})
+	if (this.state.fetched){
+  await this.fetchProduct()
+  }
+	
+
+
 }
+async componentDidUpdate(){
+await this.fetchProduct()
+
+}
+ 
 
 
 
@@ -57,6 +76,7 @@ this.setState({Loading: false})
 
 
 <Reviews 
+fetchHandle = {this.fetchHandle}
 productID ={this.state.product._id}
 reviews ={this.state.product.reviews}
 userToken ={this.props.token}
