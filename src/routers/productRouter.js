@@ -209,7 +209,7 @@ router.post('/api/product/add-comment/:id',auth,  async (req, res) => {
     product.reviews = product.reviews.concat({title: review.title,
     rate: review.rate,
     comment: review.comment,
-    userName : req.user.name
+    userName : req.user.name, 
 userID: req.user._id}) 
   
 	console.log("review"+review.title);
