@@ -65,10 +65,10 @@ const {handleSubmit} =this.props
 
 <div className="reviewsMenu">
 {this.props.reviews.map(review=>
-<div className="comment-review cart-item">
-<p>{review.title}</p>
+<div className="comment-review ">
+
 <p>{review.comment}</p>
-<p>{review.rate}</p>
+
 </div>)}
 
 </div>
@@ -83,7 +83,7 @@ const {handleSubmit} =this.props
     activeColor="#ffd700"
   />
 
-<fieldset>
+{/*<fieldset>
               <Field
                 type="text" 
                 name="title" 
@@ -94,14 +94,14 @@ const {handleSubmit} =this.props
                 label="Title"
                 labelClass="reviewTitleLabel" 
               />
-            </fieldset>
+            </fieldset>*/} 
             
          <fieldset>
               <Field
                 type="text" 
                 name="comment" 
                 id="comment" 
-                classN="reviewComment" 
+                classN="reviewCommentInput" 
                 placeholder="Comment" 
                 component={InputForm}
                 label="Comment"
@@ -111,7 +111,7 @@ const {handleSubmit} =this.props
             
             
             
-            <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
+            <button type="submit" class="custum-btn-form">post</button>
             
           </form>
 </div>
