@@ -6,7 +6,7 @@ import DiscComponent from './disc/disc.component'
 import {connect} from 'react-redux'
 import {selectItem} from '../../store/reducers/products/productsReselect'
 import Style from './ProductPage.scss'
-
+import Reviews from './reviews/reviews.component.js' 
 import Header from '../headd/header/header'
 import {addItem} from '../../store/actions/CartItemsAction';
 
@@ -54,21 +54,26 @@ this.setState({Loading: false})
    <DiscComponent />
    </div> 
 
+
+
+<Reviews 
+productID ={this.state.product._id}
+reviews ={this.state.product.reviews}
+userToken ={this.props.token}
+/>
+
    </div>: <div className="loaderHome"/> }
 </div>
         );
       }
  }
 
- const mapStateToProps = (state, ownProps) => ({
-  /*ItemProduct: state.ProductsReducer.products.find((col)=>{
-
-    return col.id ===1
-  })*/
-  
- // Item: state.ProductsReducer.products.flatMap((col)=>  col.items).find((item)=> item.id ==  ownProps.match.params.id )
- //Product: selectItem(ownProps.match.params.id)(state)
-});
+ const mapStateToProps =(state) =>{
+	return {
+		token: state.userAuth.authUser.token,
+ 
+	}
+}
 
 
 
