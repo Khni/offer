@@ -10,6 +10,11 @@ import Reviews from './reviews/reviews.component.js'
 import Header from '../headd/header/header'
 import {addItem} from '../../store/actions/CartItemsAction';
 import StarRatings from 'react-star-ratings';
+ import ReactDOM from 'react-dom';
+//import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+ 
+ 
  
  class ProductPage extends Component {
     constructor(props) {
@@ -69,7 +74,19 @@ if (this.state.fetched){
   <Header />
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
-    <PicComponent imgURL={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+this.state.product.imgURLs[0].imgURL}/>
+    
+    <Carousel>
+    {this.state.product.imgURLs.map(img=> <div>
+                    <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img} />
+                    <p className="legend">Legend 1</p>
+                </div>)} 
+                
+                
+            </Carousel>
+    
+    
+    
+    
    </div>
    <StarRatings
           rating={this.state.rating}
