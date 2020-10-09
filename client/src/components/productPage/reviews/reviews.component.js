@@ -69,38 +69,6 @@ const {handleSubmit} =this.props
 <div className="review-container">
 
 
-<div className="reviewsMenu">
-{this.props.reviews.map(review=>
-
-<div className="flex-row">
-<div className="icon-button">
-<User />
-
-</div>
-
-<div className="comment-review ">
-<div className="bold" >{review.userName}</div>
-<StarRatings
-          rating={review.rate}
-          starRatedColor='rgb(255,215,0)'
-         starDimension="15px"
-         starSpacing="1px"
-          numberOfStars={5}
-          name='rating'
-        />
-<div className="comment-rev" >{review.comment}</div>
-
-
-</div>
-
-</div>
-
-)}
-
-</div>
-
-
-
 <form className="review-form" onSubmit={handleSubmit(this.onSubmit)}>
 <ReactStars
     count={5}
@@ -140,6 +108,45 @@ const {handleSubmit} =this.props
             <button type="submit" class="custum-btn-form">post</button>
             
           </form>
+
+
+
+
+
+
+
+<div className="reviewsMenu">
+{this.props.reviews.map(review=>
+
+<div className="flex-row">
+<div className="icon-button">
+<User />
+
+</div>
+
+<div className="comment-review ">
+<div className="bold" >{review.userName}</div>
+<StarRatings
+          rating={review.rate}
+          starRatedColor='rgb(255,215,0)'
+         starDimension="15px"
+         starSpacing="1px"
+          numberOfStars={5}
+          name='rating'
+        />
+<div className="comment-rev" >{review.comment}</div>
+
+
+</div>
+
+</div>
+
+)}
+
+</div>
+
+
+
 </div>
 
     );
