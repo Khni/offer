@@ -103,9 +103,9 @@ const {handleSubmit} =this.props
                 name="comment" 
                 id="comment" 
                 classN="reviewCommentInput" 
-                placeholder="Comment" 
+                
                 component={InputForm}
-                label="Comment"
+                
                 labelClass="reviewCommentLabel" 
               />
             </fieldset>
