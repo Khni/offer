@@ -4,6 +4,7 @@ import { render } from "react-dom";
  import axios from 'axios';
 import Style from './middle.scss'
 import InputForm from '../../form/TextAreaForm.js';
+ import StarRatings from 'react-star-ratings';
  
 import FBicon from "../../form/img/Facebookicon.png"
 import googleicon from "../../form/img/googleicon.png"
@@ -72,6 +73,14 @@ const {handleSubmit} =this.props
 {this.props.reviews.map(review=>
 <div className="comment-review ">
 <div className="bold" >{review.userName}</div><br />
+<StarRatings
+          rating={review.rate}
+          starRatedColor='rgb(255,215,0)'
+         starDimension="15px"
+         starSpacing="1px"
+          numberOfStars={5}
+          name='rating'
+        />
 <div className="comment-rev" >{review.comment}</div>
 
 
@@ -104,7 +113,7 @@ const {handleSubmit} =this.props
             
          <fieldset>
               <Field
-                type="text" 
+                
                 name="comment" 
                 id="comment" 
                 classN="reviewCommentInput" 
