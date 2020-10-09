@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { render } from "react-dom";
  import axios from 'axios';
 import Style from './middle.scss'
-import InputForm from '../../form/inputForm.js';
+import InputForm from '../../form/TextAreaForm.js';
  
 import FBicon from "../../form/img/Facebookicon.png"
 import googleicon from "../../form/img/googleicon.png"
