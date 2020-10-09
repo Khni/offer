@@ -52,7 +52,7 @@ console.log("err: " + err);
  this.props.fetchHandle(true)
  window.location.reload();
  }else{
- 	alert('please rate the product from the rating bar") 
+ 	alert('please rate the product from the rating bar') 
  	}
   }
 	
