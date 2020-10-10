@@ -6,6 +6,8 @@ import Slide from './slide'
 
 import Arrow from './Arrow'
 
+import Dots from './Dots'
+
 /**
  * @function Slider
  */
@@ -66,6 +68,8 @@ const Slider = props => {
 
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
+
+      <Dots slides={props.slides} activeIndex={activeIndex} />
     </div>
   )
 }
