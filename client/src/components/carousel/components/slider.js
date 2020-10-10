@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
 import Slide from './slide'
-import { useState, useEffect, useRef } from 'react'
 
 import Arrow from './Arrow'
 
