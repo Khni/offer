@@ -88,7 +88,7 @@ if (this.state.fetched){
     <div className="PicComponent">
     
     
-    <Slider slides={this.state.imgUrlsArr} autoPlay={2} />
+    <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
     
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>

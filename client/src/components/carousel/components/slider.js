@@ -27,12 +27,12 @@ useEffect(() => {
     return () => clearInterval(interval)
   }, [])
 	
-  const getWidth = () => 250
+  const getWidth = () => 350
 
   const [state, setState] = useState({
     activeIndex: 0,
     translate: 0,
-    transition: 0.45
+    transition: 0.98
   })
 
   const { translate, transition, activeIndex } = state
@@ -91,8 +91,8 @@ useEffect(() => {
 
 const SliderCSS = css`
   position: relative;
-  height: 300px;
-  width: 250px;
+  height: 420px;
+  width: 350px;
   margin: 0 auto;
   overflow: hidden;
 `
