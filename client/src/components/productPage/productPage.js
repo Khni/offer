@@ -29,7 +29,8 @@ import { Carousel } from 'react-responsive-carousel';
           product:'',
           rating:'', 
           Loading: true, 
-          fetch: false
+          fetch: false, 
+          imgUrlsArr:[] 
         }
         
       }
@@ -39,16 +40,21 @@ import { Carousel } from 'react-responsive-carousel';
       fetch: val
     })
   } 
-      
+    
 async fetchProduct(){
  
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
-  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,})
+  const imgUrls =response.data.product.imgURLs.map(img=>
+  "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL) 
+  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,imgUrlsArr:imgUrls})
+  
   if (this.state.fetched){
   this.setState({fetch: false})
   }
   console.log("productPage: " + this.state.product.price);
 }
+
+
 
 async componentDidMount(){
 	
@@ -70,9 +76,7 @@ if (this.state.fetched){
 
       render(){
         console.log(this.props.match.params.id);
-    const imgURLsArr = this.state.product.imgURLs.map(img=>
-  "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL) 
-
+    
         return(
 
 <div>
@@ -81,7 +85,7 @@ if (this.state.fetched){
     <div className="PicComponent">
     
     <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
-    {imgURLsArr.map(img=> <div>
+    {this.state.imgUrlsArr.map(img=> <div>
                     <img  src={img} />
                     <p className="legend">Legend 1</p>
                 </div>)} 
