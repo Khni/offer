@@ -82,7 +82,7 @@ if (this.state.fetched){
     
         return(
 
-<div>
+<div className="product-container" >
   <Header />
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">

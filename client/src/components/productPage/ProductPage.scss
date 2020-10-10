@@ -1,10 +1,14 @@
 .productPage {
-
+width:100%;
 background-color: #f7f7f7;
 display: flex;
 flex-direction: row;
 
 
+}
+
+.product-container{
+width:100%;
 }
 
 .Header-productPage{
@@ -19,7 +23,7 @@ flex-direction: row;
 
 
 .PicComponent{
-         width: 25%;
+         width: 35%;
         padding: 30px;
         display: flex;
 
@@ -46,6 +50,12 @@ flex-direction: row;
             margin-top: 70px;
            
         }
+       .PicComponent{
+         width: 100%;
+        padding: 30px;
+        display: flex;
+
+    }
         .MiddleComponent{
             width: 25%;
             padding: 10px;
