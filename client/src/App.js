@@ -22,6 +22,7 @@ import Orders from'./components/UserAccount/components/userPages/Orders/Orders.j
 //import AddProduct from './components/UserAccount/components/adminPage/products/addProduct.component'
 import FavoriteList from './components/UserAccount/components/userPages/FavoriteList/FavoriteList.js'
 import ViewedItems from './components/UserAccount/components/userPages/ViewedItems/ViewedItems.js'
+import Carousel from './components/carousel'
 import OrderPageAdmin from './admin/components/adminPage/orders/orderPage'
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
    
           <Route exact path='/' component={HomeMenu} />
           <Route path='/signup' component={authHOC(SignUp) } />
+          <Route path='/carousel' component={Carousel} />
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
          <Route path='/account' component={UserAccount} />
