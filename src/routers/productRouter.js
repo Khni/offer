@@ -197,7 +197,26 @@ router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (r
     }
 })
 
+router.post('/api/uploadpic/product/:id',[authAdmin , upload.single('upload') ] , async (req, res) => {
+    const product = await Product.findById(req.params.id)
+    
+    let imgUrlPath =  req.file.key
+    product.imgURLs = product.imgURLs.concat({imgURL: imgUrlPath}) 
+      
+     
+    try {
 
+        await product.save()
+        
+
+
+
+        
+        res.status(201).send({product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
 
 router.delete('/api/product/delete/:id', [authAdmin, deletePOS] , async (req, res) => {
     try {

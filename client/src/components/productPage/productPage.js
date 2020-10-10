@@ -13,9 +13,13 @@ import StarRatings from 'react-star-ratings';
  import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
- 
- 
- 
+// import AwesomeSlider from 'react-awesome-slider';
+// import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
+// import AwesomeSliderStyles from 'react-awesome-slider/dist/custom-animations/cube-animation.css';
+// import withCaption from 'react-awesome-slider/dist/captioned';
+// import 'react-awesome-slider/dist/styles.css';
+// import 'react-awesome-slider/dist/captioned.css';
+ import MenuItem from '../menu-items/menuItems'
  class ProductPage extends Component {
     constructor(props) {
         super(props);
@@ -75,19 +79,35 @@ if (this.state.fetched){
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
     
-    <Carousel>
+    <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.product.imgURLs.map(img=> <div>
-                    <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
+                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
                     <p className="legend">Legend 1</p>
                 </div>)} 
                 
                 
             </Carousel>
+            
+            {/* <AwesomeSlider cssModule={AwesomeSliderStyles}>
+            {this.state.product.imgURLs.map(img=> <div>
+                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
+                    
+                </div>)} 
+  </AwesomeSlider> */}
     
+
+   
     
     
     
    </div>
+   {/* <div className="menu-items">
+{this.state.product.imgURLs.map((img) => 
+<div className="itemj">
+  <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+img.imgURL}  className="item-imgs"/>  
+  </div>
+ )}
+ </div> */}
    <StarRatings
           rating={this.state.rating}
           starRatedColor='rgb(255,215,0)'
