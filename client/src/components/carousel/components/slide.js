@@ -5,10 +5,10 @@ import { css, jsx } from '@emotion/core'
 const Slide = ({ content }) => (
   <div
     css={css`
-      height: 100;
-      width: 100%;
+      height: 300px;
+      width: 250px;
       background-image: url('${content}');
-      background-size: cover;
+      background-size: 250px 300px;
       background-repeat: no-repeat;
       background-position: center;
     `}
