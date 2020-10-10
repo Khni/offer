@@ -15,7 +15,7 @@ const images = [
 
 return (
 
-<Slider slides={images} />
+<Slider slides={images} autoPlay={2} />
 );
 
 } 

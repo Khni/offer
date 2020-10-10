@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
 import Slide from './slide'
+import React, { useState, useEffect, useRef } from 'react'
 
 import Arrow from './Arrow'
 
@@ -12,6 +13,21 @@ import Dots from './Dots'
  * @function Slider
  */
 const Slider = props => {
+	const autoPlayRef = useRef()
+
+useEffect(() => {
+  autoPlayRef.current = nextSlide
+})
+
+useEffect(() => {
+    const play = () => {
+      autoPlayRef.current()
+    }
+
+    const interval = setInterval(play, props.autoPlay * 1000)
+    return () => clearInterval(interval)
+  }, [])
+	
   const getWidth = () => window.innerWidth
 
   const [state, setState] = useState({
