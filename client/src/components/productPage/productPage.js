@@ -8,6 +8,9 @@ import {selectItem} from '../../store/reducers/products/productsReselect'
 import Style from './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js' 
 import Header from '../headd/header/header'
+import Slider from '../carousel/components/slider'
+
+
 import {addItem} from '../../store/actions/CartItemsAction';
 import StarRatings from 'react-star-ratings';
  import ReactDOM from 'react-dom';
@@ -84,14 +87,17 @@ if (this.state.fetched){
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
     
-    <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
+    
+    <Slider slides={this.state.imgUrlsArr} autoPlay={2} />
+    
+   {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>
                     <img  src={img} />
                     <p className="legend">Legend 1</p>
                 </div>)} 
                 
                 
-            </Carousel>
+            </Carousel>*/} 
             
             {/*this.state.product.imgURLs.map(img=> <div>
                     <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
