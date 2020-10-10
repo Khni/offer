@@ -70,7 +70,8 @@ if (this.state.fetched){
 
       render(){
         console.log(this.props.match.params.id);
-    
+    const imgURLsArr = this.state.product.imgURLs.map(img=>
+  "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL) 
 
         return(
 
@@ -80,13 +81,20 @@ if (this.state.fetched){
     <div className="PicComponent">
     
     <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
-    {this.state.product.imgURLs.map(img=> <div>
-                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
+    {imgURLsArr.map(img=> <div>
+                    <img  src={img} />
                     <p className="legend">Legend 1</p>
                 </div>)} 
                 
                 
             </Carousel>
+            
+            {/*this.state.product.imgURLs.map(img=> <div>
+                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
+                    <p className="legend">Legend 1</p>
+                </div>)*/} 
+            
+            
             
             {/* <AwesomeSlider cssModule={AwesomeSliderStyles}>
             {this.state.product.imgURLs.map(img=> <div>
