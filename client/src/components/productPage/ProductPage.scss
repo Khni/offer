@@ -21,7 +21,10 @@ width:100%;
    
 }
 .product-container{
-
+position: relative;
+    top: 1px;
+    left: 1px;
+        z-index:-3;
 }
 
 .PicComponent{
@@ -32,7 +35,7 @@ width:100%;
         position: relative;
     top: 1px;
     left: 1px;
-        z-index:20;
+        z-index:-1;
 
     }
 
@@ -65,7 +68,7 @@ width:100%;
         position: relative;
     top: 1px;
     left: 1px;
-    z-index:20;
+    z-index:-1;
 
     }
         .MiddleComponent{
