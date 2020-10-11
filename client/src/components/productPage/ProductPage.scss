@@ -18,6 +18,10 @@ width:100%;
 .container-productPage {
     display: flex;
     margin-top: 70px;
+    position: relative;
+    top: 1px;
+    left: 1px;
+        z-index:-3;
    
 }
 .product-container{
