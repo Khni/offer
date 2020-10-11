@@ -26,6 +26,10 @@ width:100%;
        
         padding: 30px;
         display: flex;
+        position: relative;
+    top: 1px;
+    left: 1px;
+    z-index:-1;
 
     }
 
@@ -54,6 +58,10 @@ width:100%;
          width: 80%;
         padding: 30px;
         display: flex;
+        position: relative;
+    top: 1px;
+    left: 1px;
+    z-index:-1;
 
     }
         .MiddleComponent{
