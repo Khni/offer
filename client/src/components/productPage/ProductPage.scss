@@ -58,12 +58,21 @@ position: relative;
 
 
     @media only screen and (max-width: 600px) {
-        .container-productPage {
-            display: flex;
-            flex-direction: column;
-            margin-top: 70px;
-           
-        }
+    .product-container{
+position: relative;
+    top: 1px;
+    left: 1px;
+        z-index:-5;
+}
+     .container-productPage {
+    display: flex;
+    margin-top: 70px;
+    position: relative;
+    top: 1px;
+    left: 1px;
+        z-index:-3;
+   
+}
        .PicComponent{
          width: 80%;
         padding: 30px;
