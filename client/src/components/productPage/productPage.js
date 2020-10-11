@@ -90,7 +90,14 @@ if (this.state.fetch){
     
     
     <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
-    
+    <StarRatings
+          rating={this.state.rating}
+          starRatedColor='rgb(255,215,0)'
+         starDimension="25px"
+         starSpacing="1px"
+          numberOfStars={5}
+          name='rating'
+        />
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>
                     <img  src={img} />
@@ -127,14 +134,7 @@ if (this.state.fetch){
   </div>
  )}
  </div> */}
-   <StarRatings
-          rating={this.state.rating}
-          starRatedColor='rgb(255,215,0)'
-         starDimension="25px"
-         starSpacing="1px"
-          numberOfStars={5}
-          name='rating'
-        />
+   
    <div className="StarRatingsContainer" >
 
 </div>
