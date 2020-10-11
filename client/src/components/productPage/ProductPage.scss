@@ -17,26 +17,18 @@ flex-direction: row;
    
 }
 
-
-.PicComponent{
-         display: flex;
-         flex-direction: column ;
-        padding: 30px;
-        display: flex;
-        position: relative ;
-        top: 1px;
-        left:1px;
-        z-index:50;
-
-    }
+.product-container{
+    
+}
 
 
-.DiscComponent{
-        width: 25%;
-        padding: 30px;
-        display: flex;
 
-    }
+// .DiscComponent{
+//         width: 25%;
+//         padding: 30px;
+//         display: flex;
+
+//     }
 
 
 
@@ -52,7 +44,7 @@ flex-direction: row;
            
         }
         .PicComponent{
-        
+            flex-direction: column ;
          width: 85%;
         padding: 30px;
         display: flex;
@@ -60,19 +52,24 @@ flex-direction: row;
         top: 1px;
         left:1px;
         z-index:50;
+        margin: 0 auto;
 
     }
         .MiddleComponent{
-            width: 25%;
+           
             padding: 10px;
             display: flex;
-            margin-left: 5px;
+            margin: 0 auto;
     
         }
         
         }
         
-        
+  .header-container {
+    position: relative ;
+   
+    z-index:150;
+  }      
         
         @media only screen and (min-width: 600px) {
         
@@ -80,8 +77,22 @@ flex-direction: row;
                 width: 25%;
                 padding: 30px;
                 display: flex;
+                
         
             }
+
+            .PicComponent{
+                
+                display: flex;
+                flex-direction: column ;
+               padding: 30px;
+               display: flex;
+               position: relative ;
+               top: 1px;
+               left:1px;
+               z-index:50;
+       
+           }
         
         }
         

@@ -99,7 +99,7 @@ setState({
 
 const SliderCSS = css`
   position: relative;
-  z-index: 100;
+ 
   height: 420px;
   width: 350px;
   margin: 0 auto;

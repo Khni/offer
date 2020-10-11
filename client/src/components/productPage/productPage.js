@@ -50,12 +50,22 @@ async fetchProduct(){
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
   const imgUrls =response.data.product.imgURLs.map(img=>
   "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL) 
-  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,imgUrlsArr:imgUrls, reviews:response.data.product.reviews.reverse()})
+  let ProductRating = response.data.rating
+  if (ProductRating == null) {
+    ProductRating = 0
+  }
+
+  this.setState({product:  response.data.product, Loading: false, rating:ProductRating  ,imgUrlsArr:imgUrls, reviews:response.data.product.reviews.reverse()})
   
   if (this.state.fetch){
   this.setState({fetch: false})
   }
   console.log("productPage: " + this.state.product.price);
+  // if (this.state.rating== null) {
+  //   this.setState({rating: 0})
+
+  // }
+  console.log("rating"+this.state.rating);
 }
 
 
@@ -67,9 +77,10 @@ async componentDidMount(){
 
 }
 async componentDidUpdate(){
-
+  
 if (this.state.fetch){
   await this.fetchProduct()
+  
   }
 
 }
@@ -84,7 +95,10 @@ if (this.state.fetch){
         return(
 
 <div className="product-container" >
+  <div className="header-container">
   <Header />
+  </div>
+ 
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
     
@@ -98,6 +112,7 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
+       
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>
                     <img  src={img} />

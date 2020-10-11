@@ -20,7 +20,7 @@ const MiddleProduct = (props) => {
     <p className="brand-text">Brand: Fashion | Similar products from Fashion</p>
     <button type="submit" className="custum-btn-form middle-btn" onClick={() => props.addItemToCartItem(props.item, props.cartItems)} >ADD TO CART</button>
 
-    <div>
+    {/* <div>
     <p><h2 className="share-this-product">SHARE THIS PRODUCT</h2></p>
     <div className="share-icons-product">
     <img className="fb-btn" src={FBicon}  />
@@ -28,7 +28,7 @@ const MiddleProduct = (props) => {
 
     </div>
     
-    </div>
+    </div> */}
 </div>
 
     );
