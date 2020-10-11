@@ -1,9 +1,14 @@
 /** @jsx jsx */
 import React from 'react'
 import { css, jsx } from '@emotion/core'
+import Slide from './slide';
 
-const Dot = ({ active }) => (
-  <span
+const Dot = ({ active, slides, slide,DotSet }) =>{ 
+  
+  
+  
+  return(
+  <span onClick={()=> DotSet( slides.indexOf(slide))}
     css={css`
       padding: 10px;
       margin-right: 5px;
@@ -12,7 +17,8 @@ const Dot = ({ active }) => (
       background: ${active ? 'black' : 'white'};
     `}
   />
-)
+  
+)}
 
 const Dots = ({ slides, activeIndex, DotSet}) => (
   <div
@@ -26,7 +32,7 @@ const Dots = ({ slides, activeIndex, DotSet}) => (
     `}
   >
     {slides.map((slide, i) => (
-      <Dot key={slide} active={activeIndex === i} DotSet={DotSet} />
+      <Dot key={slide} active={activeIndex === i} DotSet={DotSet} slides={slides} slide={slide}/>
     ))}
   </div>
 )

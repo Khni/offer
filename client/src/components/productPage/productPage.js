@@ -33,7 +33,8 @@ import { Carousel } from 'react-responsive-carousel';
           rating:'', 
           Loading: true, 
           fetch: false, 
-          imgUrlsArr:[] 
+          imgUrlsArr:[] ,
+          reviews: []
         }
         
       }
@@ -49,9 +50,9 @@ async fetchProduct(){
   const response =   await axios.get('/api/product/find/'+this.props.match.params.id);
   const imgUrls =response.data.product.imgURLs.map(img=>
   "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL) 
-  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,imgUrlsArr:imgUrls})
+  this.setState({product:  response.data.product, Loading: false, rating:  response.data.rating,imgUrlsArr:imgUrls, reviews:response.data.product.reviews.reverse()})
   
-  if (this.state.fetched){
+  if (this.state.fetch){
   this.setState({fetch: false})
   }
   console.log("productPage: " + this.state.product.price);
@@ -67,7 +68,7 @@ async componentDidMount(){
 }
 async componentDidUpdate(){
 
-if (this.state.fetched){
+if (this.state.fetch){
   await this.fetchProduct()
   }
 
@@ -79,7 +80,7 @@ if (this.state.fetched){
 
       render(){
         console.log(this.props.match.params.id);
-    
+    // const ReviewReserve = this.state.product.reviews.reverse()
         return(
 
 <div className="product-container" >
@@ -149,7 +150,7 @@ if (this.state.fetched){
 <Reviews 
 fetchHandle = {this.fetchHandle}
 productID ={this.state.product._id}
-reviews ={this.state.product.reviews}
+reviews ={this.state.reviews}
 userToken ={this.props.token}
 />
 

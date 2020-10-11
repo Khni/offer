@@ -11,7 +11,7 @@ const Slide = ({ content }) => (
       background-size: 350px 420px;
       background-repeat: no-repeat;
       background-position: center;
-      z-index: 10;
+      z-index: -1;
     `}
   />
 )

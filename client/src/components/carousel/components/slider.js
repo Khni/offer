@@ -58,7 +58,7 @@ const DotSet =(position) =>{
 setState({
       ...state,
       activeIndex: position ,
-      translate: (position * getWidth()
+      translate: position * getWidth()
     })
 } 
   const prevSlide = () => {

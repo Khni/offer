@@ -51,7 +51,7 @@ console.log("err: " + err);
     console.log(formData);
  await this.addReview(formData)
  this.props.fetchHandle(true)
- window.location.reload();
+ //window.location.reload();
  }else{
  	alert('please rate the product from the rating bar') 
  	}
