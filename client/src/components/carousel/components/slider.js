@@ -53,6 +53,14 @@ useEffect(() => {
     })
   }
 
+
+const DotSet =(position) =>{
+setState({
+      ...state,
+      activeIndex: position ,
+      translate: (position * getWidth()
+    })
+} 
   const prevSlide = () => {
     if (activeIndex === 0) {
       return setState({
@@ -84,7 +92,7 @@ useEffect(() => {
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
 
-      <Dots slides={props.slides} activeIndex={activeIndex} />
+      <Dots slides={props.slides} activeIndex={activeIndex} DotSet={DotSet} />
     </div>
   )
 }
