@@ -10,7 +10,7 @@ import Reviews from './reviews/reviews.component.js'
 import Header from '../headd/header/header'
 import Slider from '../carousel/components/slider'
 
-
+import { ReactComponent as AddFavorite } from './icons/heartempty.svg'
 import {addItem} from '../../store/actions/CartItemsAction';
 import StarRatings from 'react-star-ratings';
  import ReactDOM from 'react-dom';
@@ -112,6 +112,9 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
+       <div  className="icon-button">
+         <AddFavorite />
+       </div>
        
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>
@@ -168,6 +171,7 @@ productID ={this.state.product._id}
 reviews ={this.state.reviews}
 userToken ={this.props.token}
 />
+
 
    </div>: <div className="loaderHome"/> }
 </div>

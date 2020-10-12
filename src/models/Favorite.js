@@ -6,7 +6,8 @@ const favoriteSchema = mongoose.Schema({
       productID:{
 		type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Product'
+		ref: 'Product',
+		unique: true
 		 }, 
 		userID:{
 		type: mongoose.Schema.Types.ObjectId,

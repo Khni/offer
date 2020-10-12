@@ -9,9 +9,25 @@ const router = new express.Router()
 
 
 
-router.post('/api/favorite/add', auth, async (req, res) => {
+router.post('/api/favorite/addanddelete', auth, async (req, res) => {
+
+    const favorites = await Favorite.find({userID : req.user._id})
+    const foundFavoriteProduct = favorites.find((f)=> f.productID == req.body.productID)
+    console.log("found favorite"+foundFavoriteProduct);
+   if (foundFavoriteProduct) {
+      
+ try {
+    
+    const deletedFavorite = await Favorite.deleteOne({_id :foundFavoriteProduct._id})
+         return res.status(200).send({deleted:"deleted Recoard"})
+ } catch (error) {
+    return res.status(400).send({error: error})
+ }
+ 
+    
+   }
     const favorite = new Favorite({
-        ...req.body,
+        productID: req.body.productID,
         userID: req.user._id
         
     })
@@ -31,8 +47,7 @@ router.get('/api/user-favorites', auth, async (req, res) => {
 const products = await Product.find({})
 
 const favoriteProducts = 
-    favorites.map((f)=>products.filter((p) => p._id == f.userID ))
-    
+    favorites.map((f)=>products.filter((p) => p._id = f.productID ))
 
     try {
         
