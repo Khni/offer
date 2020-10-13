@@ -302,7 +302,7 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
     { safe: true },
     function publishReview(err, obj) {
      console.log("obj"+JSON.stringify(obj));
-    });)    
+    })    
         product.save()
     } catch (error) {
         res.status(401).send({ error: 'activate review POS error .' })
@@ -311,7 +311,7 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
     }
    
     
-}
+})
 
 
 /* HIDE REVIEW*/
@@ -325,7 +325,7 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
     { safe: true },
     function publishReview(err, obj) {
      console.log("obj"+JSON.stringify(obj));
-    });)    
+    })    
         product.save()
     } catch (error) {
         res.status(401).send({ error: 'activate review POS error .' })
@@ -334,13 +334,21 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
     }
    
     
-}
+})
 /*add or remove favorite if it already exists */
 router.post('/api/favorite-toggle',auth , async (req, res) => {
-    
-    foundID =product.favorites.filter((f) =>f.userID ==req.user._id ) 
+    const product = await Product.findById(req.body.productID)
+  
+    // if (product.favorites == undefined) {
+        
+    //     product.favorites = product.favorites.concat({userID: req.user._id}) 
+    //     product.save()
+    //     return res.status(200).send({product})
+    // }
+   const foundID = product.favorites.find((fav)=> fav.userID === req.user._id) 
+   console.log("foundID"+foundID + req.user._id);
     if(foundID) {
-       
+       console.log("foundID"+foundID);
        try {
     
  const product  =  await Product.update( 
@@ -363,10 +371,6 @@ router.post('/api/favorite-toggle',auth , async (req, res) => {
     try {
 
         await product.save()
-        
-
-
-
         
         res.status(201).send({product})
     } catch (e) {

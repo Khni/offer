@@ -90,6 +90,7 @@ const productSchema = mongoose.Schema({
         type: Boolean
         
     },
+    
 
     sectionID: {
         type: mongoose.Schema.Types.ObjectId,
