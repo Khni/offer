@@ -25,7 +25,10 @@ const collectionSchema = mongoose.Schema({
         trim: true,
         require: true,
 		 }, 
-		
+		active: {
+        type: Boolean
+        
+    }, 
 		adminID:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,

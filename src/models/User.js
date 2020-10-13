@@ -24,7 +24,10 @@ const userSchema = mongoose.Schema({
     age: {
         type: Number
     },
-
+active: {
+        type: Boolean
+        
+    }, 
     local: {
 
         email: {

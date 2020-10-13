@@ -28,6 +28,10 @@ const sectionSchema = mongoose.Schema({
         trim: true,
         require: true,
          }, 
+         active: {
+        type: Boolean
+        
+    }, 
          
 		returnPolicyEn:{
 		type: String,

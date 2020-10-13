@@ -47,6 +47,10 @@ const adminSchema = mongoose.Schema({
             }
         }
     }, 
+    active: {
+        type: Boolean
+        
+    }, 
     tokens:[
         {
             token:{

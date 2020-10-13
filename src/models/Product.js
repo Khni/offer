@@ -68,6 +68,28 @@ const productSchema = mongoose.Schema({
         }
 
     ],
+    
+    favorites : [
+        {
+            userID: {
+                type: mongoose.Schema.Types.ObjectId
+            }
+        }
+
+    ],
+    seen : [
+        {
+            userID: {
+                type: mongoose.Schema.Types.ObjectId
+            }
+        }
+
+    ],
+    
+    active: {
+        type: Boolean
+        
+    },
 
     sectionID: {
         type: mongoose.Schema.Types.ObjectId,
@@ -106,7 +128,12 @@ const productSchema = mongoose.Schema({
     },
 
     reviews: [
+    
         {
+        	active: {
+        type: Boolean
+        
+    }, 
             rate: {
                 type: Number,
                 trim: true,

@@ -242,7 +242,10 @@ router.post('/api/product/add-comment/:id',auth,  async (req, res) => {
     rate: review.rate,
     comment: review.comment,
     userName : req.user.name, 
-userID: req.user._id}) 
+userID: req.user._id, 
+active: false
+
+}) 
   
 	console.log("review"+review.title);
     //product.review.userID = req.user._id
@@ -268,6 +271,125 @@ router.get('/api/product-reviews/find/:id',  async (req, res) => {
         
     } catch (e) {
         res.status(400).send(e)
+    }
+})
+
+
+//hide product
+router.post('/api/hide-product/:id',authAdmin , async (req, res) => {
+    const product = await Product.findById(req.params.id)
+    
+    product.active = false;
+      
+     
+    try {
+
+        await product.save()
+        res.status(201).send({product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+/* APPROVE REVIEW*/
+router.post('/api/approve-product-review/:id',authAdmin , async (req, res) => {
+    
+     
+    try {
+      
+const product =await Product.update({"_id": req.params.id, "reviews._id": req.body.reviewID}, 
+{$set: {"reviews.$.active": true}},
+    { safe: true },
+    function publishReview(err, obj) {
+     console.log("obj"+JSON.stringify(obj));
+    });)    
+        product.save()
+    } catch (error) {
+        res.status(401).send({ error: 'activate review POS error .' })
+        console.log(error);
+        
+    }
+   
+    
+}
+
+
+/* HIDE REVIEW*/
+router.post('/api/hide-product-review/:id',authAdmin , async (req, res) => {
+    
+     
+    try {
+      
+const product =await Product.update({"_id": req.params.id, "reviews._id": req.body.reviewID}, 
+{$set: {"reviews.$.active": false}},
+    { safe: true },
+    function publishReview(err, obj) {
+     console.log("obj"+JSON.stringify(obj));
+    });)    
+        product.save()
+    } catch (error) {
+        res.status(401).send({ error: 'activate review POS error .' })
+        console.log(error);
+        
+    }
+   
+    
+}
+/*add or remove favorite if it already exists */
+router.post('/api/favorite-toggle',auth , async (req, res) => {
+    
+    foundID =product.favorites.filter((f) =>f.userID ==req.user._id ) 
+    if(foundID) {
+       
+       try {
+    
+ const product  =  await Product.update( 
+    { _id: req.params.id },
+    { $pull: { favorites : { userID : req.user._id  } } },
+    { safe: true },
+    function removeConnectionsCB(err, obj) {
+     //   console.log("obj"+JSON.stringify(obj));
+    });
+         return res.status(200).send({deleted:"deleted Recoard"})
+ } catch (error) {
+    return res.status(400).send({error: error})
+ }
+ 
+       
+      } 
+    product.favorites = product.favorites.concat({userID: req.user._id}) 
+      
+     
+    try {
+
+        await product.save()
+        
+
+
+
+        
+        res.status(201).send({product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
+//fetch favorite users
+router.get('/api/user-favorites-list/:id', auth, async (req, res) => {
+    
+const products = await Product.find({})
+
+const Favorites =products.flatMap((p) =>p.favorites) 
+const UserFavorites =Favorites.filter((f)=>f.userID == req.params.id)
+
+
+    try {
+        
+        res.status(200).send({UserFavorites})
+    } catch (e) {
+        res.status(400).send({e})
     }
 })
 

@@ -31,6 +31,10 @@ const categorySchema = mongoose.Schema({
         required: true,
         ref: 'Admin'
             },
+            active: {
+        type: Boolean
+        
+    }, 
             
           sectionsOfCategory: [{
             sectionOfCategory:  {
