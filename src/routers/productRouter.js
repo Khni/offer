@@ -336,44 +336,45 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
     
 })
 /*add or remove favorite if it already exists */
-router.post('/api/favorite-toggle',auth , async (req, res) => {
-    const product = await Product.findById(req.body.productID)
-  const checkFavorite = await Product.findOne({_id: req.body.productID}, {"favorites.userID" : req.user._id)
+router.get('/api/favorite-toggle/:id',auth , async (req, res) => {
+    
+  const checkFavorite = await Product.findOne({$and: [{_id: req.params.id}, {"favorites.userID" : req.user._id}]})
   
-    // if (product.favorites == undefined) {
-        
-    //     product.favorites = product.favorites.concat({userID: req.user._id}) 
-    //     product.save()
-    //     return res.status(200).send({product})
-    // }
-   const foundID = product.favorites.find((fav)=> fav.userID === req.user._id) 
-   console.log("foundID"+foundID + req.user._id);
+   
+ 
     if(checkFavorite) {
-       console.log("foundID"+checkFavorite);
+       
        try {
     
- const product  =  await Product.update( 
+  await Product.update( 
     { _id: req.params.id },
     { $pull: { favorites : { userID : req.user._id  } } },
     { safe: true },
     function removeConnectionsCB(err, obj) {
-     //   console.log("obj"+JSON.stringify(obj));
+       
+    
     });
-         return res.status(200).send({deleted:"deleted Recoard"})
+    
+    return res.status(200).send("done deleted")
  } catch (error) {
     return res.status(400).send({error: error})
  }
  
        
       } 
-    product.favorites = product.favorites.concat({userID: req.user._id}) 
+
+
+
+      const product = await Product.findById(req.params.id)
+   
+      product.favorites = product.favorites.concat({userID: req.user._id}) 
       
      
     try {
 
         await product.save()
         
-        res.status(201).send({product})
+        res.status(201).send({ product})
     } catch (e) {
         res.status(400).send(e)
     }
@@ -382,17 +383,15 @@ router.post('/api/favorite-toggle',auth , async (req, res) => {
 
 
 //fetch favorite users
-router.get('/api/user-favorites-list/:id', auth, async (req, res) => {
-    
-const products = await Product.find({})
+router.get('/api/user-favorites-list', auth, async (req, res) => {
+    const UserFavorites = await Product.find({"favorites.userID" : req.user._id})
+  
 
-const Favorites =products.flatMap((p) =>p.favorites) 
-const UserFavorites =Favorites.filter((f)=>f.userID == req.params.id)
 
 
     try {
         
-        res.status(200).send({UserFavorites})
+        res.status(200).send({list: UserFavorites})
     } catch (e) {
         res.status(400).send({e})
     }
