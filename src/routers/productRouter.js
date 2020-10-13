@@ -338,6 +338,7 @@ const product =await Product.update({"_id": req.params.id, "reviews._id": req.bo
 /*add or remove favorite if it already exists */
 router.post('/api/favorite-toggle',auth , async (req, res) => {
     const product = await Product.findById(req.body.productID)
+  const checkFavorite = await Product.findOne({_id: req.body.productID}, {"favorites.userID" : req.user._id)
   
     // if (product.favorites == undefined) {
         
@@ -347,8 +348,8 @@ router.post('/api/favorite-toggle',auth , async (req, res) => {
     // }
    const foundID = product.favorites.find((fav)=> fav.userID === req.user._id) 
    console.log("foundID"+foundID + req.user._id);
-    if(foundID) {
-       console.log("foundID"+foundID);
+    if(checkFavorite) {
+       console.log("foundID"+checkFavorite);
        try {
     
  const product  =  await Product.update( 
