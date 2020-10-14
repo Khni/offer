@@ -389,10 +389,11 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
     const UserFavorite = await Product.find({"favorites.userID" : req.user._id})
   
 
-    function compare(a, b) {
-    	const userIndex =a.favorites.indexOf(a.favorites.find(f=> f.userID ==req.user._id))
-    
-        const createdA = a favorites.[userIndex].created; 
+  const compare = async(a, b)=> {
+        const userIndex = await a.favorites.indexOf(a.favorites.find(async(f)=> await f.userID ===req.user._id))
+         console.log("fav"+a.favorites.find(async(f)=> await f.userID ===req.user._id));
+      console.log("index"+ userIndex);
+        const createdA = a.favorites[userIndex].created; 
         const createdB = b.favorites[userIndex].created; 
         
      
@@ -406,9 +407,9 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
 
 
 
-const UserFavorites = UserFavorite.sort(compare)
+const UserFavorites = await UserFavorite.sort(compare)
 
-console.log(UserFavorites);
+//console.log(UserFavorites);
     try {
         
         res.status(200).send({UserFavorites})
