@@ -39,9 +39,8 @@ async fetchFavorites(){
      }} );
      
      const compare = async(a, b)=> {
-        const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ==req.user._id))
-         console.log("fav"+a.favorites.find(async(f)=> await f.userID ===req.user._id));
-      console.log("index"+ userIndex);
+        const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ==this.props.id))
+         
         const createdA = a.favorites[userIndex].created; 
         const createdB = b.favorites[userIndex].created; 
         
@@ -139,6 +138,7 @@ const mapStateToProps = state => {
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
+    id: state.userAuth.authUser.id,
     isAuthenticated: state.userAuth.authUser.isAuthenticated
     
   }
