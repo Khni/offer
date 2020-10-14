@@ -73,6 +73,9 @@ const productSchema = mongoose.Schema({
         {
             userID: {
                 type: mongoose.Schema.Types.ObjectId
+            },
+            created: {
+                type: Number
             }
         }
 
@@ -81,6 +84,9 @@ const productSchema = mongoose.Schema({
         {
             userID: {
                 type: mongoose.Schema.Types.ObjectId
+            },
+            created: {
+                type: Number
             }
         }
 
@@ -92,7 +98,10 @@ const productSchema = mongoose.Schema({
             }, 
             quantity: {
               type: Number
-              } 
+              } ,
+              created: {
+                type: Number
+            }
         }
 
     ],

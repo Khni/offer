@@ -367,7 +367,9 @@ router.get('/api/favorite-toggle/:id',auth , async (req, res) => {
 
       const product = await Product.findById(req.params.id)
    
-      product.favorites = product.favorites.concat({userID: req.user._id}) 
+      product.favorites = product.favorites.concat({userID: req.user._id,
+        created: new Date().valueOf()
+    }) 
       
      
     try {
@@ -384,11 +386,27 @@ router.get('/api/favorite-toggle/:id',auth , async (req, res) => {
 
 //fetch favorite users
 router.get('/api/user-favorites-list', auth, async (req, res) => {
-    const UserFavorites = await Product.find({"favorites.userID" : req.user._id})
+    const UserFavorite = await Product.find({"favorites.userID" : req.user._id})
   
 
+    function compare(a, b) {
+        const createdA = a.favorites.created; 
+        const createdB = b.favorites.created; 
+        
+     
+        
+        let comparison = 0;
+         if (createdA > createdB) { comparison = 1; } else if
+          (createdA < createdB) { 
+          comparison = -1;
+           } 
+          return comparison; }
 
 
+
+const UserFavorites = UserFavorite.sort(compare)
+
+console.log(UserFavorites);
     try {
         
         res.status(200).send({UserFavorites})
@@ -411,6 +429,7 @@ router.get('/api/product-seen/:id',auth , async (req, res) => {
    
  
     if(checkSeen) {
+        console.log("checkseen"+ checkSeen.seen);
        //remove and add it again to renew it
        try {
     await Product.update( 
@@ -423,11 +442,14 @@ router.get('/api/product-seen/:id',auth , async (req, res) => {
     });
           const product = await Product.findById(req.params.id)
    
-      product.seen = product.seen.concat({userID: req.user._id}) 
+          product.seen = product.seen.concat({userID: req.user._id,
+            created: new Date().valueOf()
+        }) 
       await product.save()
-    
+    console.log("added");
     return res.status(200).send("seen renewed ")
  } catch (error) {
+    console.log("error");
     return res.status(400).send({error: error})
  }
  
@@ -438,8 +460,10 @@ router.get('/api/product-seen/:id',auth , async (req, res) => {
 
       const product = await Product.findById(req.params.id)
    
-      product.seen = product.seen.concat({userID: req.user._id}) 
-      
+      product.seen = product.seen.concat({userID: req.user._id,
+        created: new Date().valueOf()
+    }) 
+      console.log("new seen");
      
     try {
 
