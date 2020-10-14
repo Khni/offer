@@ -37,7 +37,33 @@ async fetchFavorites(){
   const response =   await axios.get('/api/user-favorites-list', {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
-     this.setState({products: response.data.UserFavorites, Loading: false})
+     
+     const compare = async(a, b)=> {
+        const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ==req.user._id))
+         console.log("fav"+a.favorites.find(async(f)=> await f.userID ===req.user._id));
+      console.log("index"+ userIndex);
+        const createdA = a.favorites[userIndex].created; 
+        const createdB = b.favorites[userIndex].created; 
+        
+     
+        
+        let comparison = 0;
+         if (createdA > createdB) { comparison = 1; } else if
+          (createdA < createdB) { 
+          comparison = -1;
+           } 
+          return comparison; }
+
+let favList =  response.data.UserFavorites
+
+let FavoritesUser =  favList.sort(compare)
+
+     
+     
+     
+     
+     
+     this.setState({products: FavoritesUser, Loading: false})
      
   //   this.fetchHandle(true)
    console.log("response favoirte toggle"+JSON.stringify(response) );
