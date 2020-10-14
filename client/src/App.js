@@ -48,7 +48,7 @@ function App() {
                     <Route path="/orders" component={Orders}  />
                     <Route path="/orderpage-admin/:id" component={OrderPageAdmin}  />
                     <Route path="/favorite-list" component={FavoriteList} />
-                    <Route path="/viewed-items" component={FavoriteList} />
+                    <Route path="/viewed-items" component={ViewedItems} />
         </Switch>
     </div>
   );
