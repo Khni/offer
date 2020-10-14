@@ -391,7 +391,7 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
 
     try {
         
-        res.status(200).send({list: UserFavorites})
+        res.status(200).send({UserFavorites})
     } catch (e) {
         res.status(400).send({e})
     }
@@ -462,7 +462,7 @@ router.get('/api/products-seen-list', auth, async (req, res) => {
 
     try {
         
-        res.status(200).send({list: SeenProducts})
+        res.status(200).send({SeenProducts})
     } catch (e) {
         res.status(400).send({e})
     }

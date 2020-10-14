@@ -138,9 +138,9 @@ if (this.state.fetch){
         />
         {this.favLength() ==0 ?
         <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.ToggleFavorite();}}>
-        <AddFavorite />ADD TO FAVORITE
+        <AddFavorite />
         </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.ToggleFavorite();}}>
-REMOVE FROM FAVORITE
+
 <FavoriteAdded /></div>
         
         }
