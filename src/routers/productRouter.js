@@ -390,8 +390,10 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
   
 
     function compare(a, b) {
-        const createdA = a.favorites.created; 
-        const createdB = b.favorites.created; 
+    	const userIndex =a.favorites.indexOf(a.favorites.find(f=> f.userID ==req.user._id))
+    
+        const createdA = a favorites.[userIndex].created; 
+        const createdB = b.favorites[userIndex].created; 
         
      
         
