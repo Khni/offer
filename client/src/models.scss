@@ -24,9 +24,11 @@ $speed: 500ms;
 	margin-top: 20px;
 	transition:  1s ease;
 	// &:hover {
-	// 	transform: scale(1.1);
+	// 	transform: scale(.9,.9);
 	// }
 }
+
+
 
 .fb-btn {
 	display: flex;
@@ -214,4 +216,12 @@ flex-direction: row;
 		fill: $darkcolor;
 	}
 }
+
+
+.hoverscalein {
+transition:  1s ease;
+	 &:hover {
+		transform: scale(.9,.9);
+	 }
+} 
 

@@ -137,9 +137,9 @@ if (this.state.fetch){
           name='rating'
         />
         {this.favLength() ==0 ?
-        <div  className="icon-button pointer" onClick={async()=>{ await this.ToggleFavorite();}}>
+        <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.ToggleFavorite();}}>
         <AddFavorite />
-        </div> : <div  className="icon-button pointer"  onClick={async()=>{ await this.ToggleFavorite();}}><FavoriteAdded /></div>
+        </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.ToggleFavorite();}}><FavoriteAdded /></div>
         
         }
        
