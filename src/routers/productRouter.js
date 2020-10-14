@@ -409,6 +409,7 @@ router.get('/api/product-seen/:id',auth , async (req, res) => {
   const checkSeen = await Product.findOne({$and: [{_id: req.params.id}, {"seen.userID" : req.user._id}]})
   
    
+   
  
     if(checkSeen) {
        //remove and add it again to renew it

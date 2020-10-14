@@ -61,3 +61,112 @@ function compare(a, b) {
    return comparison; }
    
   console.log(JSON.stringify(product.sort(compare)))
+ 
+
+
+//1- find index of userID to sort the favorites products depend on created time 
+const product =[
+    
+    
+   {
+   
+   id: 1,
+   favorites:[
+       {
+         userID: 100,
+         created: 1267
+     },
+     
+     {
+         userID: 200,
+         created: 1567
+     },
+     
+     {
+         userID: 300,
+         created: 1846
+     }
+       
+   ]
+   
+   } ,
+   
+   
+   {
+   
+   id: 2,
+  favorites:[
+       {
+         userID: 100,
+         created: 234
+     },
+     
+     {
+         userID: 200,
+         created: 662
+     },
+     
+     {
+         userID: 300,
+         created: 762
+     }
+   ]
+   
+   },
+   
+   { 
+   
+   
+   
+   
+   
+   id: 3,
+   favorites:[
+     {
+         userID: 100,
+         created: 99
+     },
+     
+     {
+         userID: 200,
+         created: 987
+     },
+     
+     {
+         userID: 300,
+         created: 8888
+     }
+     
+       
+   ]
+   
+   } 
+   
+]
+
+
+function compare(a, b) {
+// const favoriteLengthA =
+const userIndex =a.favorites.indexOf(a.favorites.find(f=> f.userID ==300))
+ console.log('index'+userIndex) //a.favorites[a.favorites.indexOf(a.favorites.filter(f=> f.userID ==200))].created; 
+ 
+ const favoriteLengthA = b.favorites[userIndex].created; 
+ const favoriteLengthB = a.favorites[userIndex].created; 
+ 
+ 
+ 
+ 
+ 
+ 
+ let comparison = 0;
+  if (favoriteLengthA > favoriteLengthB) { comparison = 1; } else if
+   (favoriteLengthA < favoriteLengthB) { 
+   comparison = -1;
+    } 
+   return comparison; }
+   
+  console.log(JSON.stringify(product.sort(compare)))
+
+
+
+
