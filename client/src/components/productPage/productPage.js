@@ -83,6 +83,15 @@ async ToggleFavorite(){
    console.log("response favoirte toggle"+JSON.stringify(response) );
 }
 
+async addSeenProduct(){
+ console.log("started");
+  const response =   await axios.get('/api/product-seen/'+this.state.product._id, {
+    headers : { Authorization: `Bearer ${this.props.token}`
+     }} );
+    // this.fetchHandle(true)
+   console.log("response favoirte toggle"+JSON.stringify(response) );
+}
+
 
 favLength(){
   const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
@@ -95,7 +104,7 @@ favLength(){
 async componentDidMount(){
 	
 	await this.fetchProduct()
-
+    await this.addSeenProduct()
 
 }
 async componentDidUpdate(){
