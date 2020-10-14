@@ -11,6 +11,7 @@ import Header from '../headd/header/header'
 import Slider from '../carousel/components/slider'
 
 import { ReactComponent as AddFavorite } from './icons/heartempty.svg'
+import { ReactComponent as FavoriteAdded } from './icons/Heartfull.svg'
 import {addItem} from '../../store/actions/CartItemsAction';
 import StarRatings from 'react-star-ratings';
  import ReactDOM from 'react-dom';
@@ -55,6 +56,10 @@ async fetchProduct(){
     ProductRating = 0
   }
 
+
+ 
+  
+
   this.setState({product:  response.data.product, Loading: false, rating:ProductRating  ,imgUrlsArr:imgUrls, reviews:response.data.product.reviews.reverse()})
   
   if (this.state.fetch){
@@ -69,6 +74,23 @@ async fetchProduct(){
 }
 
 
+async ToggleFavorite(){
+ console.log("started");
+  const response =   await axios.get('/api/favorite-toggle/'+this.state.product._id, {
+    headers : { Authorization: `Bearer ${this.props.token}`
+     }} );
+     this.fetchHandle(true)
+   console.log("response favoirte toggle"+JSON.stringify(response) );
+}
+
+
+favLength(){
+  const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
+ 
+  
+  return fav.length
+  //console.log("favorite"+fav.length )
+}
 
 async componentDidMount(){
 	
@@ -80,7 +102,9 @@ async componentDidUpdate(){
   
 if (this.state.fetch){
   await this.fetchProduct()
-  
+
+    
+   
   }
 
 }
@@ -112,9 +136,13 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
-       <div  className="icon-button">
-         <AddFavorite />
-       </div>
+        {this.favLength() ==0 ?
+        <div  className="icon-button pointer" onClick={async()=>{ await this.ToggleFavorite();}}>
+        <AddFavorite />
+        </div> : <div  className="icon-button pointer"  onClick={async()=>{ await this.ToggleFavorite();}}><FavoriteAdded /></div>
+        
+        }
+       
        
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
     {this.state.imgUrlsArr.map(img=> <div>
@@ -181,7 +209,8 @@ userToken ={this.props.token}
 
  const mapStateToProps =(state) =>{
 	return {
-		token: state.userAuth.authUser.token,
+    token: state.userAuth.authUser.token,
+    id: state.userAuth.authUser.id,
  
 	}
 }
