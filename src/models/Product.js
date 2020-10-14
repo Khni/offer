@@ -85,6 +85,18 @@ const productSchema = mongoose.Schema({
         }
 
     ],
+    ordered : [
+        {
+            userID: {
+                type: mongoose.Schema.Types.ObjectId
+            }, 
+            quantity: {
+              type: Number
+              } 
+        }
+
+    ],
+    
     
     active: {
         type: Boolean

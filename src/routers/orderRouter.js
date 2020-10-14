@@ -22,6 +22,32 @@ router.post('/api/order/add', auth, async (req, res) => {
 
         order.address = req.user.defaultAddress
         await order.save()
+        
+        
+        /*
+        
+        const product = Product
+     req.body.map((p)=> 
+     {
+     	return
+   try{
+   	const product = Product.findById(p._id)
+   //    const product = Product.update({_id:p._id},{quantity: p.quantity+ quantity} ) 
+   product.quantity = product.quantity +p.quantity 
+   product.orderd = product.orderd.concat({userID: req.user._id, quantity: p.quantity )
+       product.save()
+       if(product.quantity < 3) {
+       	//send email to administrator 
+     } 
+       }catch(e){
+       	console.log(e) 
+       }
+    ) 
+   }    
+        */
+        
+        
+        
         res.status(201).send({ order })
     } catch (e) {
         res.status(400).send({ e })

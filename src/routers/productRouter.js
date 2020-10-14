@@ -397,4 +397,75 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
     }
 })
 
+
+
+
+
+
+
+/*seen product */
+router.get('/api/product-seen/:id',auth , async (req, res) => {
+    
+  const checkSeen = await Product.findOne({$and: [{_id: req.params.id}, {"seen.userID" : req.user._id}]})
+  
+   
+ 
+    if(checkSeen) {
+       //remove and add it again to renew it
+       try {
+    await Product.update( 
+    { _id: req.params.id },
+    { $pull: { seen : { userID : req.user._id  } } },
+    { safe: true },
+    function removeConnectionsCB(err, obj) {
+       
+    
+    });
+          const product = await Product.findById(req.params.id)
+   
+      product.seen = product.seen.concat({userID: req.user._id}) 
+      await product.save()
+    
+    return res.status(200).send("seen renewed ")
+ } catch (error) {
+    return res.status(400).send({error: error})
+ }
+ 
+       
+      } 
+
+
+
+      const product = await Product.findById(req.params.id)
+   
+      product.seen = product.seen.concat({userID: req.user._id}) 
+      
+     
+    try {
+
+        await product.save()
+        
+        res.status(201).send({ product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
+//fetch seen for user
+router.get('/api/products-seen-list', auth, async (req, res) => {
+    const SeenProducts = await Product.find({"seen.userID" : req.user._id})
+  
+
+
+
+    try {
+        
+        res.status(200).send({list: SeenProducts})
+    } catch (e) {
+        res.status(400).send({e})
+    }
+})
+
 module.exports = router
