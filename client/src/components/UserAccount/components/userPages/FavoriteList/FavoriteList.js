@@ -38,7 +38,7 @@ async fetchFavorites(){
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
      
-     let compare =(a, b) =>{
+     let compare = async (a, b) =>{
         const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ==this.props.id))
          
         const createdA = a.favorites[userIndex].created; 
