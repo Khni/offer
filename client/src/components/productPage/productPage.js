@@ -95,7 +95,7 @@ if (e) {
 } 
     
   //   this.fetchHandle(true)
-   console.log("response favoirte toggle"+JSON.stringify(response) );
+   
 }
 
 async addSeenProduct(){
