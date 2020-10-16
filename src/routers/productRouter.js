@@ -357,7 +357,7 @@ router.get('/api/favorite-toggle/:id',auth , async (req, res) => {
     
     return res.status(200).send("done deleted")
  } catch (error) {
-    return res.status(400).send({error: error})
+    return res.status(400).send({error})
  }
  
        
@@ -377,8 +377,8 @@ router.get('/api/favorite-toggle/:id',auth , async (req, res) => {
         await product.save()
         
         res.status(201).send({ product})
-    } catch (e) {
-        res.status(400).send(e)
+    } catch (error) {
+        res.status(400).send({error})
     }
 })
 

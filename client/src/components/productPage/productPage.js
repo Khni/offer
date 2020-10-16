@@ -82,10 +82,18 @@ const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.
 
 async ToggleFavorite(){
  console.log("started");
- this.setState({favorite: !this.state.favorite}) 
+ this.setState({favorite: !this.state.favorite})
+ try{
   const response =   await axios.get('/api/favorite-toggle/'+this.state.product._id, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
+    } catch(e) {
+if (e) {
+	this.setState({favorite: !this.state.favorite})
+	//here set message for failure of response 
+} 
+} 
+    
   //   this.fetchHandle(true)
    console.log("response favoirte toggle"+JSON.stringify(response) );
 }
