@@ -61,9 +61,9 @@ and don't fetch
 case 2 when logging concat reducer 
 To server and fetch
 case 3 signed out REMOVE REDUCERS DATA
-) 
-1 DAY
 
+1 DAY
+) 
 
 npm install --no-bin-links
 Shift alt f orgnaized code

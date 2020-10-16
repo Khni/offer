@@ -1,6 +1,6 @@
 .sidebar {
 height : 100%;
-width: 60%;
+width: 80%;
 position: fixed;
 top: 0px;
 overflow: scroll;
@@ -27,7 +27,7 @@ top: 0px;
 opacity: .8 ;
 
 left: 0;
-background : white;
+background : black;
 cursor: default;
 z-index: 190;
 transform: translateX(-100%);
