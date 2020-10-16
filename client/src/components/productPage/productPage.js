@@ -35,7 +35,8 @@ import { Carousel } from 'react-responsive-carousel';
           Loading: true, 
           fetch: false, 
           imgUrlsArr:[] ,
-          reviews: []
+          reviews: [], 
+          favorite: false
         }
         
       }
@@ -76,6 +77,7 @@ async fetchProduct(){
 
 async ToggleFavorite(){
  console.log("started");
+ this.setState({favorite: !favorite}) 
   const response =   await axios.get('/api/favorite-toggle/'+this.state.product._id, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
@@ -101,10 +103,21 @@ favLength(){
   //console.log("favorite"+fav.length )
 }
 
+favoriteLength (){
+  const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
+ if (fav.length==0) {
+this.setState({favorite: false}) 
+} else {
+this.setState({favorite: true}) 
+} 
+  
+}
+
 async componentDidMount(){
 	
 	await this.fetchProduct()
     await this.addSeenProduct()
+    this.favoriteLength()
 
 }
 async componentDidUpdate(){
@@ -145,7 +158,7 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
-        {this.favLength() ==0 ?
+        {!this.state.favorite?
         <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.ToggleFavorite();}}>
         <AddFavorite />
         </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.ToggleFavorite();}}>
