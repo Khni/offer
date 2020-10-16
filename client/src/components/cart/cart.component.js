@@ -66,7 +66,7 @@ cartdropdown = "cart-dropdown open" ;
 
 
 <p className="total-sum-cart" > {"Total: "+props.total}</p>
-<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-checkout" >Checkout</button>
+<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>
 
 
 

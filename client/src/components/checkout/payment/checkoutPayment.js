@@ -58,7 +58,7 @@ console.log("sendPrder");
       <p className="centerdiv">{this.props.defaultAddress.phone} </p>
       </div>
       
-      <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form" >Confirm Order</button>
+      <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form-fixed" >Confirm Order</button>
   <div className="checkout-cart-footer">
 
 

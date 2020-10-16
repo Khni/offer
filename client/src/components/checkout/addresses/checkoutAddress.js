@@ -23,15 +23,17 @@ class homeMenu extends Component {
 		
 		return(
 		<div className="checkoutAddresses-container">
-		
+		<div className="header-container" >
 		  <Header />
-           
+           </div>
 		<Addresses />
 		
-  <div className="checkout-cart-footer">
+		
+		<button onClick={()=> this.props.history.push('/checkout-confirm')} className="custum-btn-form-fixed" >Continue </button>
+
+  <div className="checkout-footer">
 
 
-<button onClick={()=> this.props.history.push('/checkout-confirm')} className="custum-btn-form" >Continue </button>
 
 
 </div>

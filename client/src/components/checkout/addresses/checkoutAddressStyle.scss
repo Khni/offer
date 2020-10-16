@@ -8,4 +8,16 @@ height: 100%;
 .full-menu{
 
 
-} 
+}
+
+.checkout-footer {position: fixed;
+  display: flex;
+  flex-direction: row;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: white;
+z-index: 160;
+text-align: center;
+box-shadow: 5px 10px 18px #888888;
+}
