@@ -103,12 +103,12 @@ favLength(){
   //console.log("favorite"+fav.length )
 }
 
-favoriteLength (){
+async favoriteLength (){
   const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
  if (fav.length==0) {
-this.setState({favorite: false}) 
+await this.setState({favorite: false}) 
 } else {
-this.setState({favorite: true}) 
+await this.setState({favorite: true}) 
 } 
   
 }
@@ -117,7 +117,7 @@ async componentDidMount(){
 	
 	await this.fetchProduct()
     await this.addSeenProduct()
-    this.favoriteLength()
+  await  this.favoriteLength()
 
 }
 async componentDidUpdate(){
