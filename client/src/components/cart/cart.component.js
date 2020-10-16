@@ -22,7 +22,10 @@ cartdropdown = "cart-dropdown open" ;
 
 
  <div className="cart" >
-<Head />
+ <div className="header-container" >
+		  <Head />
+           </div>
+
 {!props.total  ? <h2 className="EmprtCart">Cart is Empty</h2> :     
 
 
