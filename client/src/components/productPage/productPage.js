@@ -77,7 +77,7 @@ async fetchProduct(){
 
 async ToggleFavorite(){
  console.log("started");
- this.setState({favorite: !favorite}) 
+ this.setState({favorite: !this.state.favorite}) 
   const response =   await axios.get('/api/favorite-toggle/'+this.state.product._id, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
