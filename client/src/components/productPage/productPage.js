@@ -57,7 +57,12 @@ async fetchProduct(){
     ProductRating = 0
   }
 
-
+const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.id)
+ if (fav.length==0) {
+ this.setState({favorite: false}) 
+} else {
+ this.setState({favorite: true}) 
+} 
  
   
 
@@ -117,7 +122,7 @@ async componentDidMount(){
 	
 	await this.fetchProduct()
     await this.addSeenProduct()
-  await  this.favoriteLength()
+  
 
 }
 async componentDidUpdate(){
