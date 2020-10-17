@@ -17,6 +17,8 @@ import {
   MAKE_ORDER, 
   FETCH_ORDERS
 } from '../types/authUserTypes'
+
+import APIs from './APIs.js'
 import {CHECKOUT_FINISHED} from '../types/cartTypes';
 import {ObjIndexToZero} from './users.utils'
  
@@ -24,7 +26,7 @@ import {ObjIndexToZero} from './users.utils'
  	
   return async dispatch => {
     try {
-      const response = await axios.post('/api/signup', data);
+      const response = await axios.post(APIs.USER_POST_SIGNUP, data);
      console.log(response.data) 
      console.log('data'+data.email + data.password +data.name)
       dispatch({
@@ -55,7 +57,7 @@ import {ObjIndexToZero} from './users.utils'
 export const signIn = data => {
   return async dispatch => {
     try {
-   const response =   await axios.post('/api/login', data);
+   const response =   await axios.post(APIs.USER_POST_LOGIN, data);
 
       dispatch({
         type: AUTH_SIGN_IN, 
@@ -117,7 +119,7 @@ export const oauthFacebook = data => {
 export const UpdateUser = (data, userID) => {
   return async dispatch => {
     try {
-   const response =   await axios.post('/api/user/update/'+ userID, data);
+   const response =   await axios.post(APIs.USER_POST_UPDATE+ userID, data);
 
       dispatch({
         type: UPDATE_USER, 

@@ -3,12 +3,17 @@ import { createStore, applyMiddleware } from 'redux';
 import Reducers from "./reducers" ;
 import reduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
+import createSagaMiddleware from 'redux-saga'
 
 
 
 
 
+const sagaMiddleware = createSagaMiddleware()
 
-export const store = createStore(Reducers , {}, applyMiddleware(reduxThunk));
+
+const middleWares = [sagaMiddleware, reduxThunk]
+
+export const store = createStore(Reducers , {}, applyMiddleware(...middleWares));
 
 export const persistor = persistStore(store);

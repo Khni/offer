@@ -7,7 +7,7 @@ UPDATE_USER,
   UPDATE_USER_ERROR, 
   
 } from '../../types/authUserTypes';
-
+ 
 const DEFAULT_STATE = {
     authUser :{
     isAuthenticated: false,

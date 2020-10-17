@@ -10,7 +10,9 @@ import {
     
   
         list:[], 
-        default:'' 
+        default:'', 
+        Loading: false, 
+        error: '' 
     
        
        
