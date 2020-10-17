@@ -18,7 +18,7 @@ import {
   FETCH_ORDERS
 } from '../types/authUserTypes'
 
-import APIs from './APIs.js'
+import * as APIs from './APIs.js'
 import {CHECKOUT_FINISHED} from '../types/cartTypes';
 import {ObjIndexToZero} from './users.utils'
  
