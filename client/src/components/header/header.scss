@@ -82,8 +82,9 @@ a {
 	width: 84px;
 	margin-left: 40px;
 	transition:  1s ease;
+	transform: scale(1.1);
 	&:hover {
-		transform: scale(1.1);
+		transform: scale(0.9,0.9);
 	}
 }
 
