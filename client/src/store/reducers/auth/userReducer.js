@@ -21,7 +21,7 @@ const DEFAULT_STATE = {
     id:'', 
     updated:false, 
     Loading: false
-   }
+   }, 
    updatedUser :{
    error:'' 
 } 
@@ -32,12 +32,12 @@ const DEFAULT_STATE = {
   export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
       case AUTH_SIGN_UP:
-        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''} }
+        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''}, updatedUser: {...state.updatedUser, error:''} }
       case AUTH_SIGN_IN:
-        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''}  }
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''}, updatedUser: {...state.updatedUser, error:''} }
         
         case UPDATE_USER:
-        return { ...state, authUser:{...state.authUser,isAuthenticated: true, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}  }
+        return { ...state, authUser:{...state.authUser,isAuthenticated: true, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}, updatedUser: {...state.updatedUser, error:''} }
         
         case UPDATE_USER_ERROR:
         return { ...state, authUser:{...state.authUser, updated:false}  }
@@ -58,7 +58,7 @@ const DEFAULT_STATE = {
         return { ...state, authUser: {...state.authUser, Loading: true} }
       
       case actionTypes.AUTH_SUCCESS:
-        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:'',Loading:false} }
+        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:'',Loading:false}, updatedUser: {...state.updatedUser, error:''}}
       
       case actionTypes.AUTH_FAIL:
         return { ...state, authUser:{...state.authUser, error: action.error,Loading:false}}
