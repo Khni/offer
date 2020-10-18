@@ -8,7 +8,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { selectAuthLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
-import * as actions from '../../../store/actions/users.js';
+import * as actions from '../../../store/actions/userActions.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,8 @@ class signUp extends Component {
     const { signUp } = this.props;
     let lang = this.props.lang
     console.log(lang)
-    await signUp(formData, lang);
+    await this.props.signUpAuth(formData,"signup") 
+  //  await signUp(formData, lang);
     
     if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
@@ -44,14 +45,14 @@ class signUp extends Component {
 
 
   async responseGoogle(res) {
-    await this.props.oauthGoogle(res.accessToken);
+  //  await this.props.oauthGoogle(res.accessToken);
     if (!this.props.errorMsg) {
       this.props.history.push('/');
     }
   }
 
   async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
+  //  await this.props.oauthFacebook(res.accessToken);
     if (!this.props.errorMsg) {
       this.props.history.push('/');
     }
@@ -154,6 +155,13 @@ const mapStateToProps = state => {
   }
 
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        signUpAuth: ( data, signup) => dispatch( actions.auth( data, signup ) ),
+      //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+    };
+};
 
 export default compose(
   connect(mapStateToProps, actions),

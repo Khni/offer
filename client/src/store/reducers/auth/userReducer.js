@@ -7,6 +7,9 @@ UPDATE_USER,
   UPDATE_USER_ERROR, 
   
 } from '../../types/authUserTypes';
+
+import * as actionTypes from '../../types';
+
  
 const DEFAULT_STATE = {
     authUser :{
@@ -16,7 +19,8 @@ const DEFAULT_STATE = {
     email:'', 
     name:'', 
     id:'', 
-    updated:false
+    updated:false, 
+    Loading: false
    }
    
    
@@ -43,7 +47,23 @@ const DEFAULT_STATE = {
         return { ...state, authUser:{error: action.payload}}
         
         
-
+        
+        
+        
+        
+        case actionTypes.AUTH_START:
+        return { ...state, authUser: {...state.authUser, Loading: true} }
+      
+      case actionTypes.AUTH_SUCCESS:
+        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''} }
+      
+      case actionTypes.AUTH_FAIL:
+        return { ...state, authUser:{...state.authUser, error: action.error}}
+        case AUTH_LOGOUT:
+        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' }}
+      }
+        
+        
       default:
         return state
     }
