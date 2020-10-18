@@ -19,14 +19,14 @@ const MiddleProduct = (props) => {
 
     <p className="product-page-price">Price: {" "+props.price+" "}EGP</p>
     <div className="flex-row margin0">
-    {/* <button type="submit" className="custum-btn-form"
-    //  onClick={() => props.addItemToCartItem(props.item, props.cartItems)}
-      >ADD TO CART</button> */}
+     <button type="submit" className="custum-btn-form"
+     onClick={() => props.addItemToCartItem(props.item, props.cartItems)}
+      >ADD TO CART</button> 
 
-  {!this.props.favorite?
-        <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.props.ToggleFavorite();}}>
+  {!props.favorite?
+        <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await props.ToggleFavorite();}}>
         <AddFavorite />
-        </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.props.ToggleFavorite();}}>
+        </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await props.ToggleFavorite();}}>
 
 <FavoriteAdded /></div>
         
