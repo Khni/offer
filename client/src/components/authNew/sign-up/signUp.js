@@ -19,26 +19,25 @@ class signUp extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
 
+    this.state ={
+      Loading: this.props.Loading,
+    }
+
     this.responseGoogle = this.responseGoogle.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
 
   }
 
 
-  async onSubmit(formData) {
+   async onSubmit(formData) {
 
 
-    const { signUp } = this.props;
+    //const { signUp } = this.props;
     let lang = this.props.lang
     console.log(lang)
-    await this.props.signUpAuth(formData,"signup") 
+     await this.props.signUpAuth(formData,"signup") 
   //  await signUp(formData, lang);
     
-    if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
-	
-      this.props.history.push('/');
-      
-    }
   }
 
 
@@ -106,7 +105,20 @@ class signUp extends Component {
 
 
   ]
-
+componentDidUpdate(){
+  if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
+	
+    this.props.history.push('/');
+    
+  }
+}
+componentDidMount(){
+  if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
+	
+    this.props.history.push('/');
+    
+  }
+}
 
   render() {
     const { handleSubmit } = this.props;
@@ -125,6 +137,7 @@ class signUp extends Component {
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
           errorMsg = {this.props.errorMsg}
+          LoadingBtn = {this.props.Loading}
           
         />
       </div>
@@ -150,6 +163,7 @@ const mapStateToProps = state => {
     repasswordString: selectAuthLang(state).repassword,
     phoneString: selectAuthLang(state).phone,
     classN: selectAuthLang(state).classN,
+    Loading: state.userAuth.authUser.Loading,
     //lang: selectLang(state)
     lang: state.langReducer.lang
   }
@@ -158,12 +172,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signUpAuth: ( data, signup) => dispatch( actions.auth( data, signup ) ),
+        signUpAuth: ( data,action) => dispatch( actions.auth( data,action) ),
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({ form: 'signup' })
 )(signUp)

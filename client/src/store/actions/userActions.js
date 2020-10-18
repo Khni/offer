@@ -24,11 +24,11 @@ export const authFail = error => {
 };
 
 
-export const auth = (data, action) => {
+export const auth = (data,action) => {
   return {
     type: actionTypes.AUTH_USER,
     data: data,
-    action: action
+    action:action
   };
 };
 

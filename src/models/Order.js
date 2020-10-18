@@ -11,113 +11,113 @@ const orderSchema = mongoose.Schema({
     'type': String,
     'default': shortid.generate
   },
-	
-	userID: {
-type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-       }, 
-       orderNum: {
-         type: Number,
-         required: true
 
-       },
-	products:[{
-        _id:{
-          type: mongoose.Schema.Types.ObjectId,
-        //required: true,
-        ref: 'Product'
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
+  orderNum: {
+    type: Number,
+    required: true
 
-            }, 
-            nameEn:{
-          type: String,
-        required: true,
-        ref: 'Product'
+  },
+  products: [{
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      //required: true,
+      ref: 'Product'
 
-            }, 
-      quantity: {
-       type: Number,
-        required: true
-       }, 
-       price: {
-       type: Number,
-        required: true
-       }
-       
-        }] , 
-        totalPrice: {
-       type: Number,
-        required: true
-       }, 
-       status:{
-          type: String 
-            }, 
-            
-            
-            defaultAddress: {
-              _id: {
-                 type: mongoose.Schema.Types.ObjectId,
-     
-              },
-             firstName: {
-                     type: String,
-                     trim: true
-                 }, 
-                 lastName: {
-                     type: String,
-                     trim: true
-                 }, 
-                 phone: {
-                    type: Number,
-                   trim: true,
-     
-                   },
-                   country: {
-             type: String,
-             trim: true,
-     
-                 },
-                 city: {
-             type: String,
-             trim: true,
-     
-                 },
-                 street: {
-             type: String,
-             trim: true,
-     
-                 },
-                 floor: {
-             type: Number,
-             trim: true,
-     
-                 },
-                 apartment : {
-             type: Number,
-             trim: true,
-     
-                 },
-                 landmark: {
-             type: String,
-             trim: true
-     
-                 }
-         },
-     
-     
-     
-            
-     
-	
-	}, 
-{
+    },
+    nameEn: {
+      type: String,
+      required: true,
+      ref: 'Product'
+
+    },
+    quantity: {
+      type: Number,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
+
+  }],
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  status: {
+    type: String
+  },
+
+
+  defaultAddress: {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+
+    },
+    firstName: {
+      type: String,
+      trim: true
+    },
+    lastName: {
+      type: String,
+      trim: true
+    },
+    phone: {
+      type: Number,
+      trim: true,
+
+    },
+    country: {
+      type: String,
+      trim: true,
+
+    },
+    city: {
+      type: String,
+      trim: true,
+
+    },
+    street: {
+      type: String,
+      trim: true,
+
+    },
+    floor: {
+      type: Number,
+      trim: true,
+
+    },
+    apartment: {
+      type: Number,
+      trim: true,
+
+    },
+    landmark: {
+      type: String,
+      trim: true
+
+    }
+  },
+
+
+
+
+
+
+},
+  {
     timestamps: true
-}
+  }
 )
-	
-	
-	
-	
-const Order = mongoose.model('Order', orderSchema );
+
+
+
+
+const Order = mongoose.model('Order', orderSchema);
 
 module.exports = Order;

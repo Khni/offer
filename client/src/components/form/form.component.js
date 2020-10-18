@@ -17,6 +17,9 @@ class Form extends Component {
  
   constructor(props) {
     super(props);
+    this.state ={
+      Loading: this.props.LoadingBtn,
+    }
     this.onSubmit = this.onSubmit.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
@@ -29,6 +32,10 @@ class Form extends Component {
    this.props.onSubmit(formData) 
   }
  
+
+  componentDidMount(){
+    console.log("loading"+ this.state.Loading);
+  }
   async responseGoogle(res) {
    this.props.googleres(res)
   }
@@ -78,9 +85,12 @@ class Form extends Component {
             
  
 {/*this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null */ }
- 
- 
+ {!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
+            : <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>}
             
           </form>
          

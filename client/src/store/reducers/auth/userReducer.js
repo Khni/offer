@@ -40,7 +40,7 @@ const DEFAULT_STATE = {
         return { ...state, authUser:{...state.authUser, updated:false}  }
         
       case AUTH_SIGN_OUT:
-        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' },
+        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'',Loading:false },
         addresses:{...state.addresses, list: [], default:''}
       }
       case AUTH_ERROR:
@@ -55,13 +55,13 @@ const DEFAULT_STATE = {
         return { ...state, authUser: {...state.authUser, Loading: true} }
       
       case actionTypes.AUTH_SUCCESS:
-        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:''} }
+        return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id, error:'',Loading:false} }
       
       case actionTypes.AUTH_FAIL:
-        return { ...state, authUser:{...state.authUser, error: action.error}}
-        case AUTH_LOGOUT:
+        return { ...state, authUser:{...state.authUser, error: action.error,Loading:false}}
+        case actionTypes.AUTH_LOGOUT:
         return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' }}
-      }
+      
         
         
       default:
