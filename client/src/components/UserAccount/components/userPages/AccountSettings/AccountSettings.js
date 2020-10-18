@@ -56,10 +56,10 @@ name:this.state.username
 } 
 const token =this.props.token
 console.log("form data: " + JSON.stringify(formData) )
-this.props.updateUser(UserToUpdate,"updateuser",token)
- //  await UpdateUser(UserToUpdate, this.props.userID)
-   alert("form userData: " + JSON.stringify(UserToUpdate)) 
-   alert("form data: " + JSON.stringify(formData)) 
+this.props.updateUser(data,"updateuser",token)
+ //  await UpdateUser(data, this.props.userID)
+  // alert("form userData: " + JSON.stringify(UserToUpdate)) 
+ //  alert("form data: " + JSON.stringify(formData)) 
    if (this.props.updated) {
       
        alert("details updated successfully! ") 
