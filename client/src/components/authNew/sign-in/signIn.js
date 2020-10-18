@@ -24,7 +24,7 @@ class signIn extends Component {
     this.responseFacebook = this.responseFacebook.bind(this);
 
   }
-componentDidMount(){
+componentDidUpdate(){
   if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
       this.props.history.push('/');

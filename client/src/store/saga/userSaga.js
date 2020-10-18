@@ -5,14 +5,6 @@ import * as calls from './axiosCalls.js'
 import { put, call } from 'redux-saga/effects'
 
 
-export function fetchUser(url, data) {
-    return axios.post(url, data);
-};
-export function postDataHeader(url, data, token) {
-	return axios.post(url, data, {
-      headers : { Authorization: `Bearer ${token}`
-       }} );
-};
 export function* authUserSaga(data, action) {
   console.log("data" + JSON.stringify(data.data));
   yield put(actions.authStart());
