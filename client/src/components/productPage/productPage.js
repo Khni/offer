@@ -172,20 +172,7 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
-        <div className="flex-row margin0">
-  <button type="submit" className="custum-btn-form" 
-   onClick={() => this.props.addItemToCartItem(this.state.product, this.props.cartItems)}
-   >ADD TO CART</button>
-
-  {!this.state.favorite?
-        <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.ToggleFavorite();}}>
-        <AddFavorite />
-        </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.ToggleFavorite();}}>
-
-<FavoriteAdded /></div>
         
-        }
-        </div>
        
        
        
