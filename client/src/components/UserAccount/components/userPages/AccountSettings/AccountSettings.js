@@ -175,6 +175,6 @@ const mapDispatchToProps = dispatch => {
 
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({ form: 'AccountSettings' })
 )(UserSettings)
