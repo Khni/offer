@@ -145,9 +145,9 @@ router.get('/api/user/:id',(req,res) => {
 
 
 //update user
-router.post('/api/user/update/:id',async(req,res) => {
+router.post('/api/user/update',auth, async(req,res) => {
 	
-	const filter = { _id: req.params.id};
+	const filter = { _id: req.user._id};
 const update = { "local.email": req.body.email, name:req.body.name};
 
 
@@ -158,7 +158,8 @@ try {
  // returnOriginal: false
  new: true
 });
-        res.send({ user})
+const token = req.token
+        res.send({ user, token})
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(400).send(error)

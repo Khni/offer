@@ -1,11 +1,17 @@
 import * as actions from '../actions/userActions'
 import * as APIs from '../actions/APIs'
 import axios from "axios"
+import * as calls from './axiosCalls.js'
 import { put, call } from 'redux-saga/effects'
 
 
 export function fetchUser(url, data) {
     return axios.post(url, data);
+};
+export function postDataHeader(url, data, token) {
+	return axios.post(url, data, {
+      headers : { Authorization: `Bearer ${token}`
+       }} );
 };
 export function* authUserSaga(data, action) {
   console.log("data" + JSON.stringify(data.data));
@@ -17,10 +23,21 @@ export function* authUserSaga(data, action) {
     url = APIs.USER_POST_LOGIN
 
   }
+  if (data.action == "updateuser") {
+    url = APIs.USER_POST_UPDATE
+
+  }
   try {
     //   const response = yield axios.post(url, data)
-    const response = yield call(fetchUser, url, data.data)
+     let response ='' 
+  if (data.action == "login" ||data.action == "signup") {
+    response = yield call(calls.postData, url, data.data)
+  }
     
+    if (data.action == "updateuser") {
+    response = yield call(calls.postDataHeaderAuth, url, data.data, data.token)
+  } 
+ 
     yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,
@@ -29,7 +46,10 @@ export function* authUserSaga(data, action) {
     );
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
-    
+    if (data.action == "updateuser") {
+    return yield put(actions.updateUserFail('error'));
+
+  }
     yield put(actions.authFail('error'));
   }
 }

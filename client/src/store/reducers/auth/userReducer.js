@@ -22,6 +22,9 @@ const DEFAULT_STATE = {
     updated:false, 
     Loading: false
    }
+   updatedUser :{
+   error:'' 
+} 
    
    
   }
@@ -62,9 +65,11 @@ const DEFAULT_STATE = {
         case actionTypes.AUTH_LOGOUT:
         return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'', Loading:false}}
       
-        
-        
-      default:
+      case actionTypes.UPDATE_USER_FAIL:
+        return { ...state,updatedUser:{...state.updatedUser, error: action.error}}
+      
+      
+       default:
         return state
     }
   }

@@ -50,13 +50,14 @@ console.log("form data: " + JSON.stringify(formData) )
 
 const { UpdateUser } = this.props;
 
-let UserToUpdate = {
+let data = {
 email: this.state.useremail, 
 name:this.state.username
 } 
-
+const token =this.props.token
 console.log("form data: " + JSON.stringify(formData) )
-   await UpdateUser(UserToUpdate, this.props.userID)
+this.props.updateUser(UserToUpdate,"updateuser",token)
+ //  await UpdateUser(UserToUpdate, this.props.userID)
    alert("form userData: " + JSON.stringify(UserToUpdate)) 
    alert("form data: " + JSON.stringify(formData)) 
    if (this.props.updated) {
@@ -169,6 +170,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         logOut: () => dispatch( actions.logout() ),
+        updateUser: (data, action, token) => dispatch( actions.updateUser(data, action, token) ),
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };

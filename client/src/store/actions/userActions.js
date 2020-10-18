@@ -22,6 +22,13 @@ export const authFail = error => {
     error: error
   };
 };
+export const updateUserFail = error => {
+  return {
+    type: actionTypes.UPDATE_USER_FAIL,
+    error: error
+  };
+};
+
 
 
 export const auth = (data,action) => {
@@ -31,6 +38,15 @@ export const auth = (data,action) => {
     action:action
   };
 };
+export const updateUser = (data,action, token) => {
+  return {
+    type: actionTypes.AUTH_USER,
+    data: data,
+    action:action, 
+    token: token
+  };
+};
+
 
 export const logoutSucceed = () => {
   return {
