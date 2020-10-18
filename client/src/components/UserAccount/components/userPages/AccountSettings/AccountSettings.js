@@ -13,7 +13,8 @@ import { compose } from 'redux';
 //import ProductsList from '../TableList/productsList.component'
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
-import * as actions from '../../../../../store/actions/users';
+//import * as actions from '../../../../../store/actions/users';
+import * as actions from '../../../../../store/actions/userActions.js';
 import Form from '../../../../form/Settings/formSettings.component.js';
 import "./AccountSettings.scss"
 
@@ -35,8 +36,8 @@ this.state = {
 
 
 signOutUser() {
-const {UserSignOut} = this.props 
-UserSignOut()
+const {logOut} = this.props 
+logOut()
 this.props.history.push('/')
 
 } 
@@ -165,7 +166,12 @@ const mapStateToProps = state => {
 
 }
 
-
+const mapDispatchToProps = dispatch => {
+    return {
+        logOut: () => dispatch( actions.logout() ),
+      //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+    };
+};
 
 
 export default compose(

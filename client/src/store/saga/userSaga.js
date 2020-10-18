@@ -5,10 +5,7 @@ import { put, call } from 'redux-saga/effects'
 
 
 export function fetchUser(url, data) {
-  console.log("data" + url);
-  // `axios` function returns promise, you can use any ajax lib, which can
-  // return promise, or wrap in promise ajax call
-  return axios.post(url, data);
+    return axios.post(url, data);
 };
 export function* authUserSaga(data, action) {
   console.log("data" + JSON.stringify(data.data));
@@ -23,7 +20,7 @@ export function* authUserSaga(data, action) {
   try {
     //   const response = yield axios.post(url, data)
     const response = yield call(fetchUser, url, data.data)
-    console.log("response" + response);
+    
     yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,
@@ -32,7 +29,7 @@ export function* authUserSaga(data, action) {
     );
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
-    console.log("error" + error);
+    
     yield put(actions.authFail('error'));
   }
 }

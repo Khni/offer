@@ -162,7 +162,7 @@ if (this.state.fetch){
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
     
-    <h4 className="product-page-title margin0">{this.state.product.nameEn}</h4>
+    
     <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
     <StarRatings
           rating={this.state.rating}

@@ -18,7 +18,7 @@ import OrdersAdminReducer from './admin/orders/ordersReducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer']
+  whitelist: ['dashboard','adminAuth', 'cartItemsReducer', 'checkoutReducer', 'userAuth' ]
 };
 
 const Reducers = combineReducers({

@@ -60,7 +60,7 @@ const DEFAULT_STATE = {
       case actionTypes.AUTH_FAIL:
         return { ...state, authUser:{...state.authUser, error: action.error,Loading:false}}
         case actionTypes.AUTH_LOGOUT:
-        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'' }}
+        return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'', Loading:false}}
       
         
         

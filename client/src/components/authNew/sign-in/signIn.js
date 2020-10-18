@@ -8,7 +8,8 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {selectAuthLang} from  '../../../store/reducers/langReducer/langReselect';
-import * as actions from '../../../store/actions/users.js';
+//import * as actions from '../../../store/actions/users.js';
+import * as actions from '../../../store/actions/userActions.js';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
@@ -23,12 +24,19 @@ class signIn extends Component {
     this.responseFacebook = this.responseFacebook.bind(this);
 
   }
-
+componentDidMount(){
+  if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
+	
+      this.props.history.push('/');
+      
+    }
+}
   async onSubmit(formData) {
 
 
-    const { signIn } = this.props;
-    await signIn(formData);
+  //  const { signIn } = this.props;
+ //   await signIn(formData);
+ this.props.signInAuth(formData,"login")
 if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
       this.props.history.push('/');
@@ -38,14 +46,14 @@ if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 
 
   async responseGoogle(res) {
-    await this.props.oauthGoogle(res.accessToken);
+  //  await this.props.oauthGoogle(res.accessToken);
     if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
       this.props.history.push('/');
     }
   }
 
   async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
+ //   await this.props.oauthFacebook(res.accessToken);
     if (!this.props.errorMsg) {
       this.props.history.push('/');
     }
@@ -124,7 +132,14 @@ const mapStateToProps = state => {
 
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        signInAuth: ( data,action) => dispatch( actions.auth( data,action) ),
+      //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+    };
+};
+
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({ form: 'signin' })
 )(signIn)
