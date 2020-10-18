@@ -9,12 +9,13 @@ import Style from './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js' 
 import Header from '../headd/header/header'
 import Slider from '../carousel/components/slider'
-
+import * as Cartactions  from '../../store/actions/CartItemsAction';
 import { ReactComponent as AddFavorite } from './icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from './icons/Heartfull.svg'
 import {addItem} from '../../store/actions/CartItemsAction';
 import StarRatings from 'react-star-ratings';
  import ReactDOM from 'react-dom';
+ import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 // import AwesomeSlider from 'react-awesome-slider';
@@ -28,7 +29,7 @@ import { Carousel } from 'react-responsive-carousel';
     constructor(props) {
         super(props);
         this.fetchHandle = this.fetchHandle.bind(this)
-        
+        this.ToggleFavorite = this.ToggleFavorite.bind(this)
         this.state = {
           product:'',
           rating:'', 
@@ -161,7 +162,7 @@ if (this.state.fetch){
           {!this.state.Loading?    <div className="container-productPage">
     <div className="PicComponent">
     
-    
+    <h4 className="product-page-title margin0">{this.state.product.nameEn}</h4>
     <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
     <StarRatings
           rating={this.state.rating}
@@ -171,7 +172,12 @@ if (this.state.fetch){
           numberOfStars={5}
           name='rating'
         />
-        {!this.state.favorite?
+        <div className="flex-row margin0">
+  <button type="submit" className="custum-btn-form" 
+   onClick={() => this.props.addItemToCartItem(this.state.product, this.props.cartItems)}
+   >ADD TO CART</button>
+
+  {!this.state.favorite?
         <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await this.ToggleFavorite();}}>
         <AddFavorite />
         </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await this.ToggleFavorite();}}>
@@ -179,6 +185,8 @@ if (this.state.fetch){
 <FavoriteAdded /></div>
         
         }
+        </div>
+       
        
        
    {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
@@ -222,7 +230,13 @@ if (this.state.fetch){
 
 </div>
    <div className="MiddleComponent">
-   <MiddleComponent name={this.state.product.nameEn} price={this.state.product.price} item={this.state.product} />
+   <MiddleComponent
+   favorite={this.state.favorite}
+    name={this.state.product.nameEn} 
+    price={this.state.product.price} 
+    item={this.state.product}
+    ToggleFavorite={this.ToggleFavorite}
+    />
    </div>
    <div className="DiscComponent">
    <DiscComponent />
@@ -248,14 +262,17 @@ userToken ={this.props.token}
 	return {
     token: state.userAuth.authUser.token,
     id: state.userAuth.authUser.id,
+    cartItems: selectCartItems(state)
  
 	}
 }
 
+const mapDispatchToProps = dispatch => ({
+  addItemToCartItem: ( item,items) => dispatch( Cartactions.addItemToCartItem(item,items)),
+});
 
 
 
-
-export default connect(mapStateToProps)(ProductPage);
+export default connect(mapStateToProps,mapDispatchToProps )(ProductPage);
 
  

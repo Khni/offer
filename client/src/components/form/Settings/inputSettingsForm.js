@@ -11,7 +11,7 @@ export default class InputSettings extends Component {
           name={ this.props.name }
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
-         className="input-form-set"
+         className="juv-input-form-set"
           type={ this.props.type }
      value={this.props.val} 
      onChange={ this.props.change}

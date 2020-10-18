@@ -85,7 +85,7 @@ fieldsets = [
    <Form
    title={this.props.signin_title} 
    fieldsets={this.fieldsets}
-   classN="input-form-set"
+   classN="juv-input-form-set"
    labelClass="input-label"
    social={true}
    onSubmit={this.onSubmit } 

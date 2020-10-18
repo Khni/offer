@@ -396,7 +396,7 @@ router.get('/api/user-favorites-list', auth, async (req, res) => {
         const createdA = a.favorites[userIndex].created; 
         const createdB = b.favorites[userIndex].created; 
         
-     
+      
         
         let comparison = 0;
          if (createdA > createdB) { comparison = 1; } else if

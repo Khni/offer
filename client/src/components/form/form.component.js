@@ -87,10 +87,7 @@ class Form extends Component {
 {/*this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null */ }
  {!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
-            : <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            Loading...
-          </button>}
+            : <div className="loadingBtnDiv"><div className="loaderbTn"/></div>}
             
           </form>
          

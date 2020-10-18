@@ -21,7 +21,7 @@ $speed: 500ms;
 	cursor: pointer;
 	border-radius: 5px;
 	box-shadow: 1px 2px 3px #888888;
-	margin-top: 20px;
+	margin-top: 7px;
 	transition:  1s ease;
 	// &:hover {
 	// 	transform: scale(.9,.9);
@@ -95,7 +95,7 @@ z-index: 120;
 }
 
 /*inputs  */
-.input-form-set {
+.juv-input-form-set {
 
 	font-size: 12pt;
 	width: 270px;
@@ -113,7 +113,7 @@ z-index: 120;
 }
 
 
-.input-form-set:focus {
+.juv-input-form-set:focus {
 	border-radius: 5px;
 	box-shadow: 0 0 5px #00ccff;
 	border: 1px solid #0066cc;
@@ -254,3 +254,6 @@ transition:  1s ease;
   }      
 
 
+.margin0{
+	margin: 0 auto;
+}
