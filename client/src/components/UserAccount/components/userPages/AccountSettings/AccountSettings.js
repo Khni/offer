@@ -14,7 +14,7 @@ import { compose } from 'redux';
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 //import * as actions from '../../../../../store/actions/users';
-import * as actions from '../../../../../store/actions/userActions.js';
+import * as actions from '../../../../../store/actions';
 import Form from '../../../../form/Settings/formSettings.component.js';
 import "./AccountSettings.scss"
 

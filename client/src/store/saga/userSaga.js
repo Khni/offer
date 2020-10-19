@@ -1,4 +1,4 @@
-import * as actions from '../actions/userActions'
+import * as actions from '../actions'
 import * as APIs from '../actions/APIs'
 import axios from "axios"
 import * as calls from './axiosCalls.js'

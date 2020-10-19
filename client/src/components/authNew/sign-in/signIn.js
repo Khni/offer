@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {selectAuthLang} from  '../../../store/reducers/langReducer/langReselect';
 //import * as actions from '../../../store/actions/users.js';
-import * as actions from '../../../store/actions/userActions.js';
+import * as actions from '../../../store/actions';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Link } from 'react-router-dom';
