@@ -66,13 +66,16 @@ const DEFAULT_STATE = {
         return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'', Loading:false}}
       
       case actionTypes.UPDATE_USER_FAIL:
-        return { ...state,updatedUser:{...state.updatedUser, error: action.error}}
+        return { ...state,updatedUser:{...state.updatedUser, error: action.error}, authUser:{...state.authUser,Loading:false} }
       
       
         case actionTypes.AUTH_USER_LEFT:
-          return { ...state,authUser:{...state.authUser, error:''}}
+          return { ...state,authUser:{...state.authUser, error:'', Loading:false}}
         
         
+        case actionTypes.UPDATE_USER_LEFT:
+          return { ...state,updatedUser:{...state.updatedUser, error: '' }, authUser:{...state.authUser,Loading:false} }
+      
 
        default:
         return state

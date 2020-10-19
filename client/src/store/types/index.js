@@ -7,6 +7,8 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_INITIATE_LOGOUT = 'AUTH_INITIATE_LOGOUT';
 export const UPDATE_USER_FAIL = 'UPDATE_USER_FAIL';
 export const AUTH_USER_LEFT = 'AUTH_USER_LEFT';
+export const UPDATE_USER_LEFT = 'UPDATE_USER_LEFT';
+
 
 export const AUTH_SIGN_UP = 'AUTH_SIGN_UP';
 export const AUTH_SIGN_IN = 'AUTH_SIGN_IN';

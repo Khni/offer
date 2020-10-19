@@ -135,7 +135,10 @@ let fieldsets = [
    setVal ={this.setValues}
    
    submitBtnTitle="submit" 
-   
+   errorMsg = {this.props.errorMsg}
+          LoadingBtn = {this.props.Loading}
+          removeErr={this.props.updateLeft} 
+          
    
    />
  
@@ -171,6 +174,7 @@ const mapDispatchToProps = dispatch => {
     return {
         logOut: () => dispatch( actions.logout() ),
         updateUser: (data, action, token) => dispatch( actions.updateUser(data, action, token) ),
+        updateLeft: () => dispatch( actions.updateLeft())
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };

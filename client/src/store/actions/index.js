@@ -6,6 +6,8 @@ export {
     auth, 
     updateUser, 
     logoutSucceed, 
-    logout
+    logout, 
+    updateLeft, 
+    authLeft
     
 } from './userActions';

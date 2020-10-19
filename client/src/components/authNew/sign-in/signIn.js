@@ -108,6 +108,7 @@ fieldsets = [
    ToSignUp={this.props.ToSignUp}
    signup_title={this.props.signup_title}
    removeErr={this.props.authLeft} 
+   LoadingBtn = {this.props.Loading}
    />
       </div>
 
@@ -120,6 +121,7 @@ fieldsets = [
 
 const mapStateToProps = state => {
   return {
+  	Loading: state.userAuth.authUser.Loading,
     errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,

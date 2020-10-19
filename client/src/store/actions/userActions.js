@@ -28,6 +28,13 @@ export const authLeft = () => {
   };
 };
 
+export const updateLeft = () => {
+  return {
+    type: actionTypes.UPDATE_USER_LEFT
+  };
+};
+
+
 export const updateUserFail = error => {
   return {
     type: actionTypes.UPDATE_USER_FAIL,

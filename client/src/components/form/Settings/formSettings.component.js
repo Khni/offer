@@ -29,12 +29,19 @@ class Form extends Component {
   
   componentDidMount() {
     this.props.setVal()
+    if (this.props.errorMsg) {
+      this.props.removeErr()
+    }
   }
   componentDidUpdate() {
     this.props.setVal()
   }
   
-   
+   componentWillUnmount() {
+    if (this.props.errorMsg) {
+      this.props.removeErr()
+    }
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -74,9 +81,9 @@ class Form extends Component {
 
 {this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
 
-
+{!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
-            
+            : <div className="loadingBtnDiv"><div className="loaderbTn"/></div>}
           </form>
          
          
