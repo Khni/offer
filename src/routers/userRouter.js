@@ -148,7 +148,7 @@ router.get('/api/user/:id',(req,res) => {
 router.post('/api/user/update',auth, async(req,res) => {
 	
 	let user = await User.findOne({ "local.email": req.body.email })
-    if (user) {
+    if (user && user.local.emal !== req.user.local.emal ) {
         return res.status(403).json({
             error_en: 'Email is already in use',
             error_ar: 'البريد الالكترونى مسجل مسبقا '

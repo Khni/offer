@@ -157,7 +157,8 @@ let fieldsets = [
 
 const mapStateToProps = state => {
   return {
-  	errorMsg: state.userAuth.authUser.error, 
+  	Loading: state.userAuth.authUser.Loading,
+  	errorMsg: state.userAuth.updatedUser.error, 
   userID: state.userAuth.authUser.id, 
   updated: state.userAuth.authUser.updated, 
   
