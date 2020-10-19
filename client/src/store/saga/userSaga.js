@@ -5,7 +5,7 @@ import * as calls from './axiosCalls.js'
 import { put, call } from 'redux-saga/effects'
 
 
-export function* authUserSaga(data, action) {
+export function* authUserSaga(data) {
   console.log("data" + JSON.stringify(data.data));
   yield put(actions.authStart());
   console.log("auth saga started");
@@ -42,7 +42,9 @@ export function* authUserSaga(data, action) {
     return yield put(actions.updateUserFail('error'));
 
   }
-    yield put(actions.authFail('error'));
+  
+    yield put(actions.authFail(error.response.data.error_en));
+
   }
 }
 

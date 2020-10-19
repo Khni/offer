@@ -45,16 +45,16 @@ class signUp extends Component {
 
   async responseGoogle(res) {
   //  await this.props.oauthGoogle(res.accessToken);
-    if (!this.props.errorMsg) {
-      this.props.history.push('/');
-    }
+    // if (!this.props.errorMsg) {
+    //   this.props.history.push('/');
+    // }
   }
 
   async responseFacebook(res) {
   //  await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMsg) {
-      this.props.history.push('/');
-    }
+    // if (!this.props.errorMsg) {
+    //   this.props.history.push('/');
+    // }
   }
 
 
@@ -115,6 +115,10 @@ componentDidUpdate(){
 componentDidMount(){
   
 }
+// componentWillUnmount() {
+//   this.props.authLeft()
+// }
+
 
   render() {
     const { handleSubmit } = this.props;
@@ -134,6 +138,7 @@ componentDidMount(){
           submitBtnTitle={this.props.submit_signin_btn}
           errorMsg = {this.props.errorMsg}
           LoadingBtn = {this.props.Loading}
+          removeErr={this.props.authLeft} 
           
         />
       </div>
@@ -169,6 +174,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signUpAuth: ( data,action) => dispatch( actions.auth( data,action) ),
+        authLeft: () => dispatch( actions.authLeft())
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };

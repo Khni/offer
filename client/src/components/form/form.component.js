@@ -34,7 +34,10 @@ class Form extends Component {
  
 
   componentDidMount(){
-    console.log("loading"+ this.state.Loading);
+    if (this.props.errorMsg) {
+      this.props.removeErr()
+    }
+    
   }
   async responseGoogle(res) {
    this.props.googleres(res)
@@ -47,6 +50,11 @@ class Form extends Component {
   
   responseGoogle(response) {
     console.log(response);
+  }
+  componentWillUnmount() {
+    if (this.props.errorMsg) {
+      this.props.removeErr()
+    }
   }
  
   render() {
@@ -84,7 +92,7 @@ class Form extends Component {
  
             
  
-{/*this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null */ }
+{this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
  {!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
             : <div className="loadingBtnDiv"><div className="loaderbTn"/></div>}
