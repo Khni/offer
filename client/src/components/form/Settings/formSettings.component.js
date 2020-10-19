@@ -29,18 +29,18 @@ class Form extends Component {
   
   componentDidMount() {
     this.props.setVal()
-    if (this.props.errorMsg) {
+    
       this.props.removeErr()
-    }
+    
   }
   componentDidUpdate() {
     this.props.setVal()
   }
   
    componentWillUnmount() {
-    if (this.props.errorMsg) {
+    
       this.props.removeErr()
-    }
+    
   }
 
   render() {

@@ -34,9 +34,9 @@ class Form extends Component {
  
 
   componentDidMount(){
-    if (this.props.errorMsg) {
+    
       this.props.removeErr()
-    }
+   
     
   }
   async responseGoogle(res) {
@@ -52,9 +52,9 @@ class Form extends Component {
     console.log(response);
   }
   componentWillUnmount() {
-    if (this.props.errorMsg) {
+    
       this.props.removeErr()
-    }
+    
   }
  
   render() {
