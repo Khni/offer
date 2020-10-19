@@ -69,6 +69,11 @@ const DEFAULT_STATE = {
         return { ...state,updatedUser:{...state.updatedUser, error: action.error}}
       
       
+        case actionTypes.AUTH_USER_LEFT:
+          return { ...state,authUser:{...state.authUser, error:''}}
+        
+        
+
        default:
         return state
     }

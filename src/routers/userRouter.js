@@ -162,7 +162,7 @@ const token = req.token
         res.send({ user, token})
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(400).send(error)
+        res.status(400).send({error})
     }
 
 
@@ -243,7 +243,10 @@ router.post('/api/login', async (req, res) => {
         res.send({ user, token })
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(400).send(error)
+        res.status(400).json({
+            error_en: 'Email or Password Incorrect',
+            error_ar: 'البريد الالكتروني او الرقم السري خطأ'
+        });
     }
 
 

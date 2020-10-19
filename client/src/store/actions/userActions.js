@@ -22,6 +22,12 @@ export const authFail = error => {
     error: error
   };
 };
+export const authLeft = () => {
+  return {
+    type: actionTypes.AUTH_USER_LEFT
+  };
+};
+
 export const updateUserFail = error => {
   return {
     type: actionTypes.UPDATE_USER_FAIL,

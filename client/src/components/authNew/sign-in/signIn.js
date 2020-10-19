@@ -85,6 +85,8 @@ fieldsets = [
 ] 
 
 
+
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -104,7 +106,8 @@ fieldsets = [
    signin={true} 
    signupLink="/signup" 
    ToSignUp={this.props.ToSignUp}
-   signup_title={this.props.signup_title} 
+   signup_title={this.props.signup_title}
+   removeErr={this.props.authLeft} 
    />
       </div>
 
@@ -135,6 +138,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signInAuth: ( data,action) => dispatch( actions.auth( data,action) ),
+        authLeft: () => dispatch( actions.authLeft())
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };
