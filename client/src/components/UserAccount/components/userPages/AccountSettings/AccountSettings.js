@@ -160,7 +160,7 @@ let fieldsets = [
    errorMsg = {this.props.errorMsg}
           LoadingBtn = {this.props.Loading}
           removeErr={this.props.updateLeft}
-          title="Account Details" 
+          
           
    
    />

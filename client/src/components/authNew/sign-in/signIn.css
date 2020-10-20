@@ -94,7 +94,7 @@ fieldset {
 
 .main-container-signin {
 	display: flex;
-	background-color: #f1f1f1;
+	
 	/*'background-color: #0066cc;*/
 	/*		background: linear-gradient(#000428, #004e92);*/
 	justify-content: space-around;
