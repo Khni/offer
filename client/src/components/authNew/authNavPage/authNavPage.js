@@ -12,8 +12,8 @@ import Head from '../../headd/header/header'
 
 
 
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
-import TopNavComponent from '../../../../TopNav/TopNav.component'
+import TopNavStyle from '../../TopNav/TopNavStyle.scss'
+import TopNavComponent from '../../TopNav/TopNav.component'
 
 
 
