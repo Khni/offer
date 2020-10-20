@@ -20,7 +20,8 @@
     
           .top-NavLinkItems {
             
-    
+    box-shadow: 2.5px 5px 9px #888888;
+   
           display: flex;
           //  min-width: 100%;
            // padding-right: 70px ;
@@ -28,8 +29,9 @@
            margin-right: 5px;
            padding: 15px;
            width: 100%;
+           color: gray;
             
-            background-color:#f7f7f7;
+            background-color: white;
 //font-weight: bold;
           }
     
@@ -45,15 +47,15 @@
     
    //font-size: 13px;
   //  Background: linear-gradient(to right, #00B4DB, #0083B0);
-    color: white;
+    
     //text-transform: uppercase;
     //font-family: 'Open Sans Condensed';
     font-weight: bold;
     //border: none;
     cursor: pointer;
     border-bottom: 1px solid orange;
-    color: orange;
-    
+    color: linear-gradient(to right, #00B4DB, #0083B0);;
+    background-color:#f7f7f7;
     //box-shadow: 2.5px 5px 9px #888888;
    
    // transition: 0.5s ease;
