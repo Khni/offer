@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {selectAuthLang} from  '../../../store/reducers/langReducer/langReselect';
+import {selectTermsLang} from  '../../../store/reducers/langReducer/langReselect';
 //import * as actions from '../../../store/actions/users.js';
 import * as actions from '../../../store/actions';
 import GoogleLogin from 'react-google-login';
@@ -126,13 +126,13 @@ const mapStateToProps = state => {
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     isAuthenticated: state.userAuth.authUser.isAuthenticated, 
-    submit_signin_btn :selectAuthLang(state).submit_signin_btn, 
-    signin_title: selectAuthLang(state).signin_title, 
-    emailString:selectAuthLang(state).email, 
-    passwordString: selectAuthLang(state).password, 
-    classN: selectAuthLang(state).classN, 
-    ToSignUp: selectAuthLang(state).ToSignUp, 
-    signup_title :selectAuthLang(state).signup_title
+    submit_signin_btn :selectTermsLang(state).submit_signin_btn, 
+    signin_title: selectTermsLang(state).signin_title, 
+    emailString:selectTermsLang(state).email, 
+    passwordString: selectTermsLang(state).password, 
+    classN: selectTermsLang(state).classN, 
+    ToSignUp: selectTermsLang(state).ToSignUp, 
+    signup_title :selectTermsLang(state).signup_title
   }
 
 }

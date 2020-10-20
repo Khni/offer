@@ -71,4 +71,27 @@ export const header_en = {
   headerClass: 'header_en',
   sidebarClass: 'sidebar_en'
 
+}
+
+
+
+export const settings_ar = {
+  my_account: 'حسابي',
+  favorite_list: 'المنتجات المفضلة',
+  my_orders: 'طلباتي',
+  customer_service: 'خدمة العملاء',
+  headerClass: 'header_ar',
+  sidebarClass: 'sidebar_ar'
+
+}
+
+
+export const settings_en = {
+  my_account: 'My Account',
+  favorite_list: 'Favorite List',
+  my_orders: 'My Orders',
+  customer_service: 'Customer Service',
+  headerClass: 'header_en',
+  sidebarClass: 'sidebar_en'
+
 } 

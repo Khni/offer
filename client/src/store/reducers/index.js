@@ -6,6 +6,7 @@ import adminReducer from './admin/auth/adminReducer';
 import dashboardReducer from './auth/dashboardReducer';
 import cartReducer from './cart/cartReducer';
 import langReducer from './langReducer/langReducer';
+import langsReducer from './langReducer/langsReducer';
 import cartItemsReducer from './cart/cartItemsReducer';
 import checkoutReducer from './checkout/checkoutReducer';
 import { persistReducer } from 'redux-persist';
@@ -40,7 +41,8 @@ const Reducers = combineReducers({
     checkoutReducer: checkoutReducer,
     ordersReducer: ordersReducer, 
     addressReducer: addressReducer,
-    OrdersAdminReducer: OrdersAdminReducer
+    OrdersAdminReducer: OrdersAdminReducer, 
+    langsReducer : langsReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 
