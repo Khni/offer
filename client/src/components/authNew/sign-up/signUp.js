@@ -7,7 +7,8 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { selectAuthLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
+import {selectTermsLang, selectLang} from  '../../../store/reducers/langReducer/langsReselect';
+//import { selectTermsLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -156,14 +157,14 @@ const mapStateToProps = state => {
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     isAuthenticated: state.userAuth.authUser.isAuthenticated, 
-    submit_signin_btn: selectAuthLang(state).submit_signin_btn,
-    signin_title: selectAuthLang(state).signin_title,
-    emailString: selectAuthLang(state).email,
-    passwordString: selectAuthLang(state).password,
-    nameString: selectAuthLang(state).name,
-    repasswordString: selectAuthLang(state).repassword,
-    phoneString: selectAuthLang(state).phone,
-    classN: selectAuthLang(state).classN,
+    submit_signin_btn: selectTermsLang(state).submit_signin_btn,
+    signin_title: selectTermsLang(state).signin_title,
+    emailString: selectTermsLang(state).email,
+    passwordString: selectTermsLang(state).password,
+    nameString: selectTermsLang(state).name,
+    repasswordString: selectTermsLang(state).repassword,
+    phoneString: selectTermsLang(state).phone,
+    classN: selectTermsLang(state).classN,
     Loading: state.userAuth.authUser.Loading,
     //lang: selectLang(state)
     lang: state.langReducer.lang

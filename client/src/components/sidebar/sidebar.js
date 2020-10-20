@@ -13,7 +13,7 @@ import { ReactComponent as Egypt } from '../icons/egypt.svg';
 import { ReactComponent as Us } from '../icons/us.svg';
 //import * as actions from '../../store/actions/cartAction.js'
 import * as actions from '../../store/actions'
-import { selectAuthLang, selectLang} from '../../store/reducers/langReducer/langReselect';
+import {selectTermsLang, selectLang}  from '../../store/reducers/langReducer/langsReselect';
 import NavItem from '../headd/NavItem/NavItem'
 
 import {cartHidden, sidebarHidden, selectCartItems} from  '../../store/reducers/cart/cartReselect'

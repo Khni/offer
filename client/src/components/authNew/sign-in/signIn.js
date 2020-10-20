@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {selectTermsLang} from  '../../../store/reducers/langReducer/langReselect';
+import {selectTermsLang} from  '../../../store/reducers/langReducer/langsReselect';
 //import * as actions from '../../../store/actions/users.js';
 import * as actions from '../../../store/actions';
 import GoogleLogin from 'react-google-login';
