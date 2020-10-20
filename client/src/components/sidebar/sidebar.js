@@ -9,7 +9,9 @@ import { ReactComponent as Close } from '../icons/close.svg';
 import { ReactComponent as User } from '../icons/header/usern.svg';
 import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
 import { ReactComponent as UserLogged } from '../icons/header/userlogged.svg';
-import * as actions from '../../store/actions/cartAction.js'
+//import * as actions from '../../store/actions/cartAction.js'
+import * as actions from '../../store/actions'
+import { selectAuthLang, selectLang} from '../../store/reducers/langReducer/langReselect';
 import NavItem from '../headd/NavItem/NavItem'
 
 import {cartHidden, sidebarHidden, selectCartItems} from  '../../store/reducers/cart/cartReselect'
@@ -47,6 +49,18 @@ return (
   <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>Orders</MenuIcontText>
   <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>Favorites</MenuIcontText>
   <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.openSidebar}>View</MenuIcontText>
+  {props.lang == 'ar' ? 
+  <div>
+<p> Languages </p>
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.setEnglish}>Set English</MenuIcontText>
+</div> :
+
+<div>
+<p> اللغة </p>
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.setArabic}> حول للعربية </MenuIcontText>
+</div>
+} 
+
 
 
 
@@ -59,6 +73,7 @@ return (
 
 function mapStateToProps(state) {
   return {
+  	lang: selectLang(state), 
     isAuth: state.userAuth.authUser.isAuthenticated,
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,
@@ -70,6 +85,13 @@ function mapStateToProps(state) {
 
   };
 }
-
+const mapDispatchToProps = dispatch => {
+    return {
+        
+        openSidebar: () => dispatch( actions.openSidebar()), 
+      setEnglish: () => dispatch( actions.setEnglish()), 
+      setArabic: () => dispatch( actions.setArabic())
+    };
+};
 
 export default connect(mapStateToProps,actions)(Sidebar);

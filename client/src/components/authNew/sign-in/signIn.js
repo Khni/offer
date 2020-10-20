@@ -91,7 +91,7 @@ fieldsets = [
     const { handleSubmit } = this.props;
     return (
 
-      <div class="main-container-signin">
+      <div class="main-container-auth">
    <Form
    title={this.props.signin_title} 
    fieldsets={this.fieldsets}
