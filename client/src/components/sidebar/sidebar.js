@@ -106,4 +106,6 @@ return dispatch =>{
 } 
 };
 
+} 
+
 export default connect(mapStateToProps,actions)(Sidebar);
