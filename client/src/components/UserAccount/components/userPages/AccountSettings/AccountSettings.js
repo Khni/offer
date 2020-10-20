@@ -30,7 +30,8 @@ class UserSettings extends Component {
               
 this.state = {
       username: props.name, 
-      useremail: props.email
+      useremail: props.email, 
+      phone: props.phone
     }
     }
 
@@ -86,6 +87,9 @@ name:this.state.username
   handleChangeEmail(event) {
   this.setState({useremail: event.target.value})
 }
+handleChangePhone(event) {
+  this.setState({phone: event.target.value})
+}
   
 
 
@@ -130,11 +134,13 @@ let fieldsets = [
  <Form
    //title="Account Details" 
    fieldsets={fieldsets}
-   
+   classNamePhone='settingsFormInput' 
+   placeholderPhone='Phone Number' 
    onSubmit={this.onSubmit } 
    setVal ={this.setValues}
-   
-   submitBtnTitle="submit" 
+   changePhone={this.handleChangePhone}
+   valPhone={this.state.phone} 
+   submitBtnTitle="save" 
    errorMsg = {this.props.errorMsg}
           LoadingBtn = {this.props.Loading}
           removeErr={this.props.updateLeft} 
@@ -160,6 +166,7 @@ const mapStateToProps = state => {
   	Loading: state.userAuth.authUser.Loading,
   	errorMsg: state.userAuth.updatedUser.error, 
   userID: state.userAuth.authUser.id, 
+  phone: state.userAuth.authUser.phone, 
   updated: state.userAuth.authUser.updated, 
   
     name: state.userAuth.authUser.name, 

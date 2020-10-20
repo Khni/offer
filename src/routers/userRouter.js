@@ -10,6 +10,7 @@ const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
 const {HandelErrors} = require('./userUtils')
 const {ObjIndexToZero}= require('./usersFuncs')
+const validator = require('validator')
 //post/create new user 
 //
 router.post('/api/signup', async (req, res) => {
@@ -18,6 +19,13 @@ router.post('/api/signup', async (req, res) => {
     const password = req.body.password
     const username = req.body.username
     const repassword = req.body.repassword
+    if (!validator.isEmail(email)) {
+                    return res.status(403).json({
+            error_en: 'Email is invalid',
+            error_ar:  'الايميل غير صحيح' 
+        });
+                }
+    
     if (!email || !password) {
 return res.status(403).json({
             error_en: 'You must provide Email and password', 
@@ -146,18 +154,35 @@ router.get('/api/user/:id',(req,res) => {
 
 //update user
 router.post('/api/user/update',auth, async(req,res) => {
+	const email =. req.body.email
 	
-	let user = await User.findOne({ "local.email": req.body.email })
-    if (user && req.user.local.email !== req.body.email ) {
+	if (!validator.isEmail(email)) {
+                    return res.status(403).json({
+            error_en: 'Email is invalid',
+            error_ar:  'الايميل غير صحيح' 
+        });
+                }
+	
+	
+	let user = await User.findOne({ "local.email": email })
+    if (user && req.user.local.email !== email ) {
         return res.status(403).json({
             error_en: 'Email is already in use',
             error_ar: 'البريد الالكترونى مسجل مسبقا '
         });
         
     }
+    let user = await User.findOne({ phone: req.body.phone })
+    if (user && req.user.phone !== req.body.phone ) {
+        return res.status(403).json({
+            error_en: 'Phone is already in use',
+            error_ar:  'الهاتف مسجل مسبقا لمستخدم اخر' 
+        });
+        
+    }
 	
 	const filter = { _id: req.user._id};
-const update = { "local.email": req.body.email, name:req.body.name};
+const update = { "local.email": req.body.email, name:req.body.name, phone:req.body.phone};
 
 
 
@@ -171,7 +196,10 @@ const token = req.token
         res.send({ user, token})
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(400).send({error})
+        res.status(403).json({
+            error_en: 'Error, please try again later',
+        error_ar: 'خطأ ، برجاء المحاولة لاحقا'
+        });
     }
 
 

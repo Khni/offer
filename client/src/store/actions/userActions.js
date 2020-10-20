@@ -6,13 +6,14 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token, userId, name, email) => {
+export const authSuccess = (token, userId, name, email, phone) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token, 
       email: email,
         name: name, 
-        id: userId
+        id: userId, 
+        phone: phone
   };
 };
 

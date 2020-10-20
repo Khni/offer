@@ -95,7 +95,11 @@ active: {
     },
 
 
+phone: {
+               type: Number,
+              trim: true,
 
+              },
 
     
 

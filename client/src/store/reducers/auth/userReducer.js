@@ -19,6 +19,7 @@ const DEFAULT_STATE = {
     email:'', 
     name:'', 
     id:'', 
+    phone:'', 
     updated:false, 
     Loading: false
    }, 

@@ -34,7 +34,9 @@ export function* authUserSaga(data) {
       actions.authSuccess(response.data.token,
         response.data.user._id,
         response.data.user.name,
-        response.data.user.local.email)
+        response.data.user.local.email, 
+response.data.user.local.phone
+)
     );
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {

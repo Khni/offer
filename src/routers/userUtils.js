@@ -24,14 +24,14 @@ const HandelErrors = (erMsg) => {
         }
     }else {
         return {
-            error_en: ' Error',
-            error_ar: 'حطأ'
+            error_en: 'Error, please try again later',
+            error_ar: 'خطأ ، برجاء المحاولة لاحقا'
         }
     }
  
     return {
-        error_en: ' Error',
-        error_ar: 'حطأ'
+        error_en: 'Error, please try again later',
+        error_ar: 'خطأ ، برجاء المحاولة لاحقا'
     }
 }
 module.exports = {
