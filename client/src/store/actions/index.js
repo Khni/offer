@@ -12,6 +12,6 @@ export {
     
 } from './userActions';
 
-export *  as LangActions from './LangActions';
+export {setArabic, setEnglish } from './LangActions';
 
-export *  as CartActions from './CartAction';
+export {openSidebar}   from './CartAction';
