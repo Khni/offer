@@ -47,10 +47,10 @@ return (
                   
                 </Link>}
 
-  <MenuIcontText class="miniMenuItem-sidebar" leftIcon={<Settings />} link='/settings' click={props.openSidebar}>Settings</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>Orders</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>Favorites</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.openSidebar}>View</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar" leftIcon={<Settings />} link='/settings' click={props.openSidebar}>{props.terms.settings}</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>{props.terms.orders}</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
+  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
   {props.lang == 'ar' ? 
   <div>
 <p> Languages </p>
@@ -76,6 +76,7 @@ return (
 function mapStateToProps(state) {
   return {
   	lang: selectLang(state), 
+  terms: selectTermsLang(state), 
     isAuth: state.userAuth.authUser.isAuthenticated,
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,
