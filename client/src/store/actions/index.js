@@ -14,4 +14,4 @@ export {
 
 export {setArabic, setEnglish } from './LangActions';
 
-export {openSidebar}   from './CartAction';
+export {openSidebar}   from './cartAction';
