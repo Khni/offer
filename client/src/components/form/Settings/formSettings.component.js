@@ -77,7 +77,7 @@ class Form extends Component {
             </fieldset>
                     )} 
 
-            <fieldset>
+            {/* <fieldset>
               <Field
                 
                 name="phone" 
@@ -89,7 +89,7 @@ class Form extends Component {
                val={this.props.valPhone}
                 change={this.props.changePhone}
               />
-            </fieldset>
+            </fieldset> */}
 
 {this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg }</div> : null  }
 

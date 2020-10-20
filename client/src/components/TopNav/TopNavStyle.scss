@@ -15,7 +15,7 @@
    // flex-wrap: wrap;
     margin: 5px;
     width: 100%;
-    overflow: scroll;
+    
     
     
           .top-NavLinkItems {
@@ -24,10 +24,10 @@
           display: flex;
           //  min-width: 100%;
            // padding-right: 70px ;
-           border-bottom: .4px solid black;
+          // border-bottom: .4px solid blue;
            margin-right: 5px;
            padding: 15px;
-           
+           width: 100%;
             
             background-color:#f7f7f7;
 //font-weight: bold;
@@ -51,7 +51,7 @@
     font-weight: bold;
     //border: none;
     cursor: pointer;
-    border-bottom: 1px bold orange;
+    border-bottom: 1px solid orange;
     color: orange;
     
     //box-shadow: 2.5px 5px 9px #888888;

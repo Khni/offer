@@ -23,7 +23,7 @@ const persistConfig = {
 ,'adminAuth'
 , 'cartItemsReducer'
 , 'checkoutReducer'
-//, 'userAuth' 
+, 'userAuth' 
 ]
 };
 

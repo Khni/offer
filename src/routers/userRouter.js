@@ -172,8 +172,10 @@ router.post('/api/user/update',auth, async(req,res) => {
         });
         
     }
-    let user = await User.findOne({ phone: req.body.phone })
-    if (user && req.user.phone !== req.body.phone ) {
+    let userphone = await User.findOne({ phone: req.body.phone })
+    console.log("ss"+userphone);
+    console.log("req"+req.body.phone);
+    if (userphone && req.user.phone !== req.body.phone ) {
         return res.status(403).json({
             error_en: 'Phone is already in use',
             error_ar:  'الهاتف مسجل مسبقا لمستخدم اخر' 
@@ -194,6 +196,7 @@ try {
 });
 const token = req.token
         res.send({ user, token})
+        console.log("userphone" + user.phone);
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(403).json({

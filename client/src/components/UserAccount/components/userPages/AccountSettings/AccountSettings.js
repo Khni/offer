@@ -25,6 +25,7 @@ class UserSettings extends Component {
          this.onSubmit = this.onSubmit.bind(this);
          this.handleChangeName = this.handleChangeName.bind(this);
          this.handleChangeEmail = this.handleChangeEmail.bind(this);
+         this.handleChangePhone = this.handleChangePhone.bind(this)
          this.setValues = this.setValues.bind(this);
          this.signOutUser = this.signOutUser.bind(this);
               
@@ -53,7 +54,8 @@ const { UpdateUser } = this.props;
 
 let data = {
 email: this.state.useremail, 
-name:this.state.username
+name:this.state.username,
+phone: this.state.phone
 } 
 const token =this.props.token
 console.log("form data: " + JSON.stringify(formData) )
@@ -71,7 +73,9 @@ this.props.updateUser(data,"updateuser",token)
   
   
   
-  
+  componentDidMount(){
+    console.log("phone" +this.props.phone);
+  }
   
   setValues() {
 this.props.initialize({ email: this.state.useremail,
@@ -88,6 +92,7 @@ name:this.state.username
   this.setState({useremail: event.target.value})
 }
 handleChangePhone(event) {
+  console.log("handlechange"+ event.target.value);
   this.setState({phone: event.target.value})
 }
   
@@ -121,6 +126,17 @@ let fieldsets = [
                 
                 label: "Name", 
                 change: this.handleChangeName
+},
+{
+  type: "number" ,
+  name:"phone" ,
+  ID :"phone" ,
+//  val:this.props.name,
+  val:this.state.phone, 
+  className: "settingsFormInput" ,
+  
+  label: "Phone", 
+  change: this.handleChangePhone
 }
 
 ] 
@@ -143,7 +159,8 @@ let fieldsets = [
    submitBtnTitle="save" 
    errorMsg = {this.props.errorMsg}
           LoadingBtn = {this.props.Loading}
-          removeErr={this.props.updateLeft} 
+          removeErr={this.props.updateLeft}
+          title="Account Details" 
           
    
    />

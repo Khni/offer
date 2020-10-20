@@ -3,7 +3,7 @@ height : 100%;
 width: 80%;
 position: fixed;
 top: 0px;
-overflow: scroll;
+/* overflow: scroll; */
 
 left: 0;
 background : white;
