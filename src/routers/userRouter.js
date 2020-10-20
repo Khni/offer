@@ -154,7 +154,7 @@ router.get('/api/user/:id',(req,res) => {
 
 //update user
 router.post('/api/user/update',auth, async(req,res) => {
-	const email =. req.body.email
+	const email = req.body.email
 	
 	if (!validator.isEmail(email)) {
                     return res.status(403).json({
