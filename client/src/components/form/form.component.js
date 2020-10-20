@@ -71,9 +71,10 @@ class Form extends Component {
  
  
         <div class="form-container-form">
-          <Link class="logo-pic-form" to="/" />
+         {/* <Link class="logo-pic-form" to="/" />
           
-          <h4 class="form-title"> {this.props.title} </h4>
+          <h4 class="form-title"> {this.props.title} </h4>*/} 
+          
           <form onSubmit={handleSubmit(this.onSubmit)}>
                  { this.props.fieldsets.map((field) => 
              <fieldset>

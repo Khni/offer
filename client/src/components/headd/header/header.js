@@ -78,7 +78,7 @@ link: '/viewed-items'
 
       <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
       < BackDropMenu/>
-    </NavItem> :   <NavItem link='/signup' icon={<User />} />} 
+    </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
 
       <NavItem icon={<CartIcon />} link='/cart' />
       <buttom onClick={()=> this.props.history.push('/cart')} className="CounterCart" >{this.props.totalItems}</buttom>

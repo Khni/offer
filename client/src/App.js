@@ -5,6 +5,7 @@ import {Component} from 'react';
 import Header from './components/header/header.js'
 import HomeMenu from './components/home-menu/homeMenu.js'
 import { Switch, Route } from 'react-router-dom';
+import  AuthNav from './components/authNew/authNavPage/authNavPage';
 import SignUp from './components/authNew/sign-up/signUp.js';
 import SignIn from './components/authNew/sign-in/signIn.js';
 import authHOC from './components/HOCs/auth/authHOC.js';
@@ -41,6 +42,7 @@ function App() {
           <Route path='/addaddress' component={AddAddress} />
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />
+          <Route path='/authnav' component={AuthNav} />
           
           <Route path='/checkout-address' component={CheckoutAddress} />
           <Route path='/checkout-confirm' component={CheckoutPayment} />

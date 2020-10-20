@@ -37,7 +37,7 @@ return (
 <h5>Welcome  , 
  {props.name}</h5>
                   
-                </Link> : <Link  to='/signup'>
+                </Link> : <Link  to='/authnav'>
                 
 <h5>Login or Sign up here</h5>
                   
