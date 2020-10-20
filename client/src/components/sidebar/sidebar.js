@@ -9,6 +9,8 @@ import { ReactComponent as Close } from '../icons/close.svg';
 import { ReactComponent as User } from '../icons/header/usern.svg';
 import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
 import { ReactComponent as UserLogged } from '../icons/header/userlogged.svg';
+import { ReactComponent as Egypt } from '../icons/egypt.svg';
+import { ReactComponent as Us } from '../icons/us.svg';
 //import * as actions from '../../store/actions/cartAction.js'
 import * as actions from '../../store/actions'
 import { selectAuthLang, selectLang} from '../../store/reducers/langReducer/langReselect';
@@ -52,12 +54,12 @@ return (
   {props.lang == 'ar' ? 
   <div>
 <p> Languages </p>
-<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.setEnglish}>Set English</MenuIcontText>
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Us />}  click={props.setEnglish}>Set English</MenuIcontText>
 </div> :
 
 <div>
 <p> اللغة </p>
-<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.setArabic}> حول للعربية </MenuIcontText>
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={props.setArabic}> حول للعربية </MenuIcontText>
 </div>
 } 
 
@@ -89,9 +91,19 @@ const mapDispatchToProps = dispatch => {
     return {
         
         openSidebar: () => dispatch( actions.openSidebar()), 
-      setEnglish: () => dispatch( actions.setEnglish()), 
-      setArabic: () => dispatch( actions.setArabic())
-    };
+      setEnglish: () =>{
+return dispatch =>{
+ dispatch( actions.setEnglish())
+ dispatch( actions.openSidebar())
+} 
+} 
+, 
+      setArabic: () =>{
+return dispatch =>{
+ dispatch( actions.setArabic())
+ dispatch( actions.openSidebar())
+} 
+} 
 };
 
 export default connect(mapStateToProps,actions)(Sidebar);
