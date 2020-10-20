@@ -51,7 +51,7 @@ class AuthNavPage extends Component {
 
      <div className="TopNavPage">
 <Head />
-
+<h5>Login or Sign up</h5>
        
        <TopNavComponent navlinksArr={navlinks} />
       
