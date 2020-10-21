@@ -32,28 +32,7 @@ const DEFAULT_STATE = {
   
   export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
-      // case AUTH_SIGN_UP:
-      //   return { ...state, authUser: {...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id,phone:action.phone, error:''}, updatedUser: {...state.updatedUser, error:''} }
-      // case AUTH_SIGN_IN:
-      //   return { ...state, authUser:{...state.authUser,isAuthenticated: true, token:action.token, email:action.email,  name:action.name , id: action.id,phone:action.phone, error:''}, updatedUser: {...state.updatedUser, error:''} }
-        
-      //   case UPDATE_USER:
-      //   return { ...state, authUser:{...state.authUser,isAuthenticated: true, email:action.email,  name:action.name ,id: action.id, error:'', updated:true}, updatedUser: {...state.updatedUser, error:''} }
-        
-      //   case UPDATE_USER_ERROR:
-      //   return { ...state, authUser:{...state.authUser, updated:false}  }
-        
-      // case AUTH_SIGN_OUT:
-      //   return { ...state,authUser:{...state.authUser, isAuthenticated: false, token:'', error: '', email:'', name:'', id:'',Loading:false ,phone:''},
-      //   addresses:{...state.addresses, list: [], default:''}
-      // }
-      // case AUTH_ERROR:
-      //   return { ...state, authUser:{error: action.payload}}
-        
-        
-        
-        
-        
+ 
         
         case actionTypes.AUTH_START:
         return { ...state, authUser: {...state.authUser, Loading: true} }
