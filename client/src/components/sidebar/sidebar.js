@@ -1,5 +1,5 @@
 import React from 'react'
-import sidebarcss from './sidebar.css';
+import sidebarcss from './sidebar.scss';
 import MenuIcontText from '../miniMenus/MenuIconText/MenuIcontText'
 import { ReactComponent as Favorite } from '../icons/header/favorite.svg';
 import { ReactComponent as Orders } from '../icons/header/orders.svg';
@@ -20,10 +20,15 @@ import {cartHidden, sidebarHidden, selectCartItems} from  '../../store/reducers/
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 const Sidebar = props =>{
-let sidebar = "sidebar" ;
+let sidebar = props.class ;
   if (!props.show) {
-sidebar = "sidebar open" ;
+sidebar = props.class+' open' ;
 } 
+
+let miniMenuItem = "miniMenuItem-sidebar"
+if (props.class == "sidebarAr") {
+  miniMenuItem = "miniMenuItem-sidebarAr"
+}
 return (
 
    <div className={sidebar} >
@@ -47,14 +52,14 @@ return (
                   
                 </Link>}
 
-  <MenuIcontText class="miniMenuItem-sidebar" leftIcon={<Settings />} link='/settings' click={props.openSidebar}>{props.terms.settings}</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Orders />} link='/orders' click={props.openSidebar}>{props.terms.orders}</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
-  <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
+  <MenuIcontText class={miniMenuItem} leftIcon={<Settings />} link='/settings' click={props.openSidebar}>{props.terms.settings}</MenuIcontText>
+  <MenuIcontText class={miniMenuItem}   leftIcon={<Orders />} link='/orders' click={props.openSidebar}>{props.terms.orders}</MenuIcontText>
+  <MenuIcontText class={miniMenuItem}  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
+  <MenuIcontText class={miniMenuItem}   leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
   {props.lang == 'ar' ? 
   <div>
 <p> Languages </p>
-<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Us />}  click={props.setEnglish}>Set English</MenuIcontText>
+<MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={props.setEnglish}>Set English</MenuIcontText>
 </div> :
 
 <div>

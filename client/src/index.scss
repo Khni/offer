@@ -120,6 +120,15 @@ background-color: $hoverbg;
      
   
 }
+.miniMenuItem-sidebarAr{
+  @include miniMenuItem (20px, $white,$white, $darkcolor);
+  
+      .text{margin-right: 15px;
+      
+      }
+      flex-flow: row-reverse
+    
+  }
 
 
 /* <nav> */

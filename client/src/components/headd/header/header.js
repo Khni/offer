@@ -12,6 +12,7 @@ import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
 import { ReactComponent as Menu } from '../../icons/header/menu.svg';
 import {cartHidden, sidebarHidden, selectCartItems} from  '../../../store/reducers/cart/cartReselect';
+import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
 import * as actions from '../../../store/actions/cartAction.js'
 import CartDropdown from '../../cart/cart-dropdown.component';
 import Sidebar from '../../sidebar/sidebar.js'
@@ -23,11 +24,17 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as RouterDom from 'react-router-dom';
 import Searchbox from '../../searchbox/searchbox.component'
+import CartCounter from '../cartCounter'
 class Header extends Component {
 
   constructor(props) {
     super(props);
+    this.counterClick = this.counterClick.bind(this)
 
+  }
+
+  counterClick (){
+    this.props.history.push('/cart')
   }
   render() {
   const dropDownItems =[
@@ -52,22 +59,74 @@ title:'View',
 link: '/viewed-items' 
 }
 ] 
+
+// let logoClass = "logo"
+// if (this.props.Lang == 'ar') {
+//   logoClass = "logo-ar"
+// }
   
   return (
-    
-    <Navbar>
-   < Backdrop show={this.props.hiddenSidebar}/>
-<Sidebar show={this.props.hiddenSidebar} />
+    <div>
+
+{this.props.Lang == 'ar'?    
+
+<Navbar>
+<div className="user-corner-head">
+
+<NavItem icon={<CartIcon />} link='/cart' />
+<CartCounter click={this.counterClick} total={this.props.totalItems}/>
+
+{this.props.token ? 
+<NavItem icon={<UserLogged />}  >
+
+   <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
+   < BackDropMenu/>
+ </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
+
+ 
+  
+</div>
+
+
+
+<div className="logo-corner-head">
+
+
+
+<Link className="icon-button-noBorder"  to='/'>
+             <img className="logo-ar" src={Offerenologo} />
+           </Link>
+
+           <Link className="icon-button"  onClick={this.props.openSidebar}>
+<Menu />
+             
+           </Link>
+</div>
+
+
+
+< Backdrop show={this.props.hiddenSidebar}/>
+<Sidebar class="sidebarAr" show={this.props.hiddenSidebar} />
+ 
+ </Navbar>
+
+: 
+// if lang is other
+
+
+<Navbar>
+< Backdrop show={this.props.hiddenSidebar}/>
+<Sidebar class="sidebar" show={this.props.hiddenSidebar} />
 <div className="logo-corner-head">
 
 <Link className="icon-button"  onClick={this.props.openSidebar}>
 <Menu />
-                
-              </Link>
+             
+           </Link>
 
 <Link className="icon-button-noBorder"  to='/'>
-                <img className="logo" src={Offerenologo} />
-              </Link>
+             <img className="logo" src={Offerenologo} />
+           </Link>
 </div>
 
 
@@ -76,24 +135,32 @@ link: '/viewed-items'
 {this.props.token ? 
 <NavItem icon={<UserLogged />}  >
 
-      <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
-      < BackDropMenu/>
-    </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
+   <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
+   < BackDropMenu/>
+ </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
 
-      <NavItem icon={<CartIcon />} link='/cart' />
-      <buttom onClick={()=> this.props.history.push('/cart')} className="CounterCart" >{this.props.totalItems}</buttom>
-     
+   <NavItem icon={<CartIcon />} link='/cart' />
+   <CartCounter click={this.counterClick} total={this.props.totalItems}/>
+  
 </div>
-    
-    
-    </Navbar>
+ 
+ 
+ </Navbar>
+
+}
+
+
+
+
    
+  </div> 
   );
  } 
 }
 
 function mapStateToProps(state) {
   return {
+    Lang : selectLang(state),
     isAuth: state.userAuth.authUser.isAuthenticated,
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,

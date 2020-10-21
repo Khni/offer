@@ -8,7 +8,7 @@ const MenuIcontText =(props) =>{
         <Link to={props.link} className={props.class} onClick={props.click}>
           <span className="icon-button-menu">{props.leftIcon}</span>
           <div className="text">{props.children}</div>
-          <span className="icon-right">{props.rightIcon}</span>
+          {/* <span className="icon-right">{props.rightIcon}</span> */}
         </Link>
       );
     
