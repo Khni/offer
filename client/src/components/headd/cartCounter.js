@@ -7,7 +7,7 @@ const CartCounter = (props)=> {
 
 
     return(
-        <buttom onClick={()=> props.click} className="CounterCart" >{props.total}</buttom>
+        <buttom onClick={()=> props.click} className={props.class} >{props.total}</buttom>
     )
 }
 

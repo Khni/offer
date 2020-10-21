@@ -29,24 +29,35 @@ let miniMenuItem = "miniMenuItem-sidebar"
 if (props.class == "sidebarAr") {
   miniMenuItem = "miniMenuItem-sidebarAr"
 }
+
+let SetEnglishFunc =() =>{
+  props.setEnglish()
+  
+  window.location.reload(false);
+//props.openSidebar()
+}
+let SetArabicFunc =() =>{
+  props.setArabic()
+  
+  window.location.reload(false);
+ // props.openSidebar()
+}
 return (
 
    <div className={sidebar} >
     
   <div>
 <div className="icon-s svg-darkbg centerdiv"  onClick={props.openSidebar}><Close /></div>
-  {/* <Link className="avatar-sidebar" to='/signup' >
- <UserLogged />
- </Link> */}
+   
  
  
   {props.isAuth && props.token && !props.errorMsg?
-                <Link  to='/settings'>
+                <div><Link className="avatar-sidebar" to='/settings/details' >
+                <Avatar />
                 
-<h5>Welcome  , 
- {props.name}</h5>
-                  
-                </Link> : <Link  to='/authnav'>
+                </Link>
+                <h5>Welcome, {props.name}! :)</h5>
+                </div>  : <Link  to='/authnav'>
                 
 <h5>Login or Sign up here</h5>
                   
@@ -59,12 +70,12 @@ return (
   {props.lang == 'ar' ? 
   <div>
 <p> Languages </p>
-<MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={props.setEnglish}>Set English</MenuIcontText>
+<MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={SetEnglishFunc}>Set English</MenuIcontText>
 </div> :
 
 <div>
 <p> اللغة </p>
-<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={props.setArabic}> حول للعربية </MenuIcontText>
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={SetArabicFunc}> حول للعربية </MenuIcontText>
 </div>
 } 
 
@@ -97,19 +108,9 @@ const mapDispatchToProps = dispatch => {
     return {
         
         openSidebar: () => dispatch( actions.openSidebar()), 
-      setEnglish: () =>{
-return dispatch =>{
- dispatch( actions.setEnglish())
- dispatch( actions.openSidebar())
-} 
-} 
-, 
-      setArabic: () =>{
-return dispatch =>{
- dispatch( actions.setArabic())
- dispatch( actions.openSidebar())
-} 
-} 
+      setEnglish: () => dispatch( actions.setEnglish()), 
+ 
+      setArabic: () => dispatch( actions.setArabic())
 };
 
 } 

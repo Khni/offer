@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Head from '../../headd/header/header'
 
+import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
 
 
 
@@ -40,11 +41,11 @@ class AuthNavPage extends Component {
 
       const navlinks = [{
         path:"/authnav/login" ,
-        title: "Login"
+        title: this.props.terms.signin_title
       },
       {
         path:"/authnav/signup",
-        title: "Sign up"
+        title: this.props.terms.signup_title
       }]
         return(
 
@@ -80,6 +81,12 @@ class AuthNavPage extends Component {
 
 
 
+function mapStateToProps(state) {
+  return {
+  	lang: selectLang(state), 
+  terms: selectTermsLang(state),
+  }
+}
 
-
-export default  AuthNavPage
+ 
+export default connect(mapStateToProps)(AuthNavPage);

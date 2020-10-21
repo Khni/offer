@@ -25,6 +25,7 @@ import { withRouter } from 'react-router-dom';
 import * as RouterDom from 'react-router-dom';
 import Searchbox from '../../searchbox/searchbox.component'
 import CartCounter from '../cartCounter'
+import style from '../head.scss'
 class Header extends Component {
 
   constructor(props) {
@@ -64,60 +65,29 @@ link: '/viewed-items'
 // if (this.props.Lang == 'ar') {
 //   logoClass = "logo-ar"
 // }
-  
+
+
+let navBarNav = 'navbar-nav'
+let CounterCart = "CounterCart"
+let logo = "logo"
+let userCorner = "user-corner-head"
+let logoCorner = "logo-corner-head"
+let sideBar = "sidebar"
+
+if (this.props.Lang == 'ar') {
+  navBarNav = "navbar-navAr"
+  CounterCart = "CounterCartAr"
+  logo = "logo-ar"
+   userCorner = "user-corner-headAr"
+ logoCorner = "logo-corner-headAr"
+ sideBar = "sidebarAr"
+}
   return (
-    <div>
-
-{this.props.Lang == 'ar'?    
-
-<Navbar>
-<div className="user-corner-head">
-
-<NavItem icon={<CartIcon />} link='/cart' />
-<CartCounter click={this.counterClick} total={this.props.totalItems}/>
-
-{this.props.token ? 
-<NavItem icon={<UserLogged />}  >
-
-   <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
-   < BackDropMenu/>
- </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
-
- 
   
-</div>
-
-
-
-<div className="logo-corner-head">
-
-
-
-<Link className="icon-button-noBorder"  to='/'>
-             <img className="logo-ar" src={Offerenologo} />
-           </Link>
-
-           <Link className="icon-button"  onClick={this.props.openSidebar}>
-<Menu />
-             
-           </Link>
-</div>
-
-
-
+<Navbar navBarNav={navBarNav}>
 < Backdrop show={this.props.hiddenSidebar}/>
-<Sidebar class="sidebarAr" show={this.props.hiddenSidebar} />
- 
- </Navbar>
-
-: 
-// if lang is other
-
-
-<Navbar>
-< Backdrop show={this.props.hiddenSidebar}/>
-<Sidebar class="sidebar" show={this.props.hiddenSidebar} />
-<div className="logo-corner-head">
+<Sidebar class={sideBar} show={this.props.hiddenSidebar} />
+<div className={logoCorner}>
 
 <Link className="icon-button"  onClick={this.props.openSidebar}>
 <Menu />
@@ -125,12 +95,12 @@ link: '/viewed-items'
            </Link>
 
 <Link className="icon-button-noBorder"  to='/'>
-             <img className="logo" src={Offerenologo} />
+             <img className={logo} src={Offerenologo} />
            </Link>
 </div>
 
 
-<div className="user-corner-head">
+<div className={userCorner}>
 
 {this.props.token ? 
 <NavItem icon={<UserLogged />}  >
@@ -140,20 +110,13 @@ link: '/viewed-items'
  </NavItem> :   <NavItem link='/authnav' icon={<User />} />} 
 
    <NavItem icon={<CartIcon />} link='/cart' />
-   <CartCounter click={this.counterClick} total={this.props.totalItems}/>
+   <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems}/>
   
 </div>
  
  
  </Navbar>
 
-}
-
-
-
-
-   
-  </div> 
   );
  } 
 }

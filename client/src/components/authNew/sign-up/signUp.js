@@ -127,7 +127,7 @@ componentDidMount(){
 
       <div className="container-signup">
         <Form
-          title="sign up" 
+          title={this.props.terms.signup_title} 
           fieldsets={this.fieldsets}
           social={true}
           onSubmit={this.onSubmit}
@@ -159,6 +159,7 @@ const mapStateToProps = state => {
     isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     submit_signin_btn: selectTermsLang(state).submit_signin_btn,
     signin_title: selectTermsLang(state).signin_title,
+    terms: selectTermsLang(state),
     emailString: selectTermsLang(state).email,
     passwordString: selectTermsLang(state).password,
     nameString: selectTermsLang(state).name,

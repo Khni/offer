@@ -11,6 +11,7 @@
     background : white;
     border:  0.5px solid black;
     z-index: 200;
+    transition:  1s ease;
     transform: translateX($transx);
       transition: transform 0.5s ease-out;
     

@@ -25,6 +25,7 @@ const persistConfig = {
 , 'cartItemsReducer'
 , 'checkoutReducer'
 , 'userAuth' 
+,'langsReducer'
 ]
 };
 

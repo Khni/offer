@@ -4,8 +4,8 @@ import { terms_ar, terms_en} from './terms';
 
 
 const INITIAL_STATE = {
-  lang: 'ar', 
-  terms: terms_ar
+  lang: 'en', 
+  terms: terms_en
 };
 
 const langReducer = (state = INITIAL_STATE, action) => {
