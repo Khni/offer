@@ -29,7 +29,7 @@ class Addresses extends Component {
               } 
          this.fetchAddresses = this.fetchAddresses.bind(this);
          this.setDefaulti = this.setDefaulti.bind(this);
-              
+          this.handleAddingAddress = this.handleAddingAddress.bind(this);
 
     }
 
@@ -39,6 +39,10 @@ const {FetchAddressesList} = this.props
 FetchAddressesList(addressesArray)
 
 
+} 
+
+handleAddingAddress() {
+this.setState({listToshow: true}) 
 } 
 
 setDefaulti(address, list) {
@@ -94,7 +98,7 @@ console.log("addresseslost"+this.props.addressesList.length);
 
 
 let setDefault=async(token, address)=> {
-
+this.setState({isLoading: true}) 
   const id = {
     id: address._id
   }
@@ -104,7 +108,7 @@ const {setDefaultAddress} = this.props
 
 await setDefaultAddress(token, id)
 
-
+this.setState({isLoading: false}) 
 } 
 
 
@@ -196,7 +200,7 @@ return <div className={cartItemClass} >
 </div> : null   } 
       
     {!this.state.isLoading &&  !this.state.listToshow   ? <AddAddressForm /> : null} 
-    {!this.state.isLoading &&  this.props.addressesList.length == 0? <AddAddressForm /> : null} 
+    {!this.state.isLoading &&  this.props.addressesList.length == 0? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
 </div>
 
 

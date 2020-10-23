@@ -29,6 +29,7 @@ class AddAddress extends Component {
     // let lang = this.props.lang
     // console.log(lang)
      await AddNewAddress(formData, this.props.token);
+     this.props.showlist()
     // this.props.history.push('/account/settings/address');
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
