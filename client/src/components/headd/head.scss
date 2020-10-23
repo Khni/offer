@@ -143,7 +143,7 @@
    }
    
   /* <nav> */
-.navbar {
+.juv-navbar {
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -167,14 +167,14 @@ display: flex;
       flex-flow: row-reverse;
    }
 /* <ul> */
-.navbar-nav {
+.juv-navbar-nav {
   max-width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.navbar-navAr {
+.juv-navbar-navAr {
    max-width: 100%;
    height: 100%;
    display: flex;
@@ -183,7 +183,7 @@ display: flex;
  }
 
 /* <li> */
-.nav-item {
+.juv-nav-item {
   width: $navsize * 0.8;
   display: flex;
   align-items: center;

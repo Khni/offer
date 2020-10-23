@@ -67,7 +67,7 @@ link: '/viewed-items'
 // }
 
 
-let navBarNav = 'navbar-nav'
+let navBarNav = 'juv-navbar-nav'
 let CounterCart = "CounterCart"
 let logo = "logo"
 let userCorner = "user-corner-head"
@@ -75,7 +75,7 @@ let logoCorner = "logo-corner-head"
 let sideBar = "sidebar"
 
 if (this.props.Lang == 'ar') {
-  navBarNav = "navbar-navAr"
+  navBarNav = "juv-navbar-navAr"
   CounterCart = "CounterCartAr"
   logo = "logo-ar"
    userCorner = "user-corner-headAr"

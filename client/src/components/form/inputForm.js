@@ -4,7 +4,7 @@ export default class CustomInput extends Component {
   render() {
     const { input: { value, onChange } } = this.props;
     return (
-      <div className="form-group">
+      <div className="juv-form-group">
         <label htmlFor={ this.props.id } className={ this.props.labelClass}>{ /*this.props.label*/ }</label>
         <input 
           name={ this.props.name }
