@@ -21,7 +21,8 @@ const DEFAULT_STATE = {
     id:'', 
     phone:'', 
     updated:false, 
-    Loading: false
+    Loading: false, 
+    updatedError: '' 
    }, 
    updatedUser :{
    error:'' 

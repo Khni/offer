@@ -9,16 +9,20 @@ import langReducer from './langReducer/langReducer';
 import langsReducer from './langReducer/langsReducer';
 import cartItemsReducer from './cart/cartItemsReducer';
 import checkoutReducer from './checkout/checkoutReducer';
-import { persistReducer } from 'redux-persist';
+import { persistReducer, createMigrate} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import ProductsReducer from './products/productsReducer';
 import categoryReducer from './categories/categoryReducer'
 import ordersReducer from './auth/ordersReducer.js';
 import OrdersAdminReducer from './admin/orders/ordersReducer'
+import Migrations from './migrations.js' ;
 
 const persistConfig = {
   key: 'root',
+  //version: 0,
   storage,
+  debug: true,
+  //migrate: createMigrate(Migrations, { debug: true }),
   whitelist: [
 'dashboard'
 ,'adminAuth'

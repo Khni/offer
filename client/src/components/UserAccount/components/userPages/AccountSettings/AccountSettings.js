@@ -185,7 +185,7 @@ const mapStateToProps = state => {
   userID: state.userAuth.authUser.id, 
   phone: state.userAuth.authUser.phone, 
   updated: state.userAuth.authUser.updated, 
-  
+  updatedError : state.userAuth.authUser.updatedError, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     email: state.userAuth.authUser.email, 
