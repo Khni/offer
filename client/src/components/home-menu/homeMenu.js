@@ -65,7 +65,13 @@ item.name.indexOf(this.state.search) !== -1)
 		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
     )}
-		</div>: <div className="loaderHome"/> }
+		</div>: 
+    
+    
+    
+    
+    
+    <div className="loaderHome"/> }
   
   
          </div>

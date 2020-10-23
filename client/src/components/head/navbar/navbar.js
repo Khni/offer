@@ -2,8 +2,8 @@ import React from 'react';
 
 const Navbar=(props)=> {
     return (
-      <nav className="navbar">
-        <ul className="navbar-nav">{props.children}</ul>
+      <nav className="juv-navbar">
+        <ul className="juv-navbar-nav">{props.children}</ul>
       </nav>
     );
   }

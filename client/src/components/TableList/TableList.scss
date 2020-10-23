@@ -82,9 +82,8 @@ animation: spin 2s linear infinite;
 }
 
 .loaderHome {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+ margin: 0 auto;
+ margin-top: 140px;
   border: 8px solid #f3f3f3;
   border-radius: 50%;
   border-top: 8px solid #3498db;

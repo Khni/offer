@@ -130,7 +130,7 @@ cartItemClass=  "cart-Item"
      
   {!this.state.isLoading && this.props.addressesList.length !== 0 && this.state.listToshow  ? <div className="Address-container">
 
-  <h3 onClick={()=>this.setState({listToshow:false})}> Add New Address</h3>
+  <button className="custum-btn-form" onClick={()=>this.setState({listToshow:false})}> Add New Address</button>
 
 
 

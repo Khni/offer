@@ -28,6 +28,53 @@ $speed: 500ms;
 	// }
 }
 
+//spiner for custom btn form
+
+.loaderbTn {
+    margin: 0 auto;
+    border: 3.5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 3.5px solid #3498db;
+    width: 35px;
+    height: 35px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+    
+ 
+
+    .loadingBtnDiv {
+		opacity: .8;
+		width: 200px;
+		margin: 5px;
+		height: 40px;
+		font-size: 13px;
+		Background: linear-gradient(to right, #00B4DB, #0083B0);
+		color: white;
+		text-transform: uppercase;
+		font-family: 'Open Sans Condensed';
+		font-weight: bolder;
+		border: none;
+		cursor: pointer;
+		border-radius: 5px;
+		box-shadow: 1px 2px 3px #888888;
+		margin-top: 7px;
+      
+	}
+	
+	/*  ------ */
+
 .custum-btn-form-fixed{
 position: fixed;
     font-size: 13px;
