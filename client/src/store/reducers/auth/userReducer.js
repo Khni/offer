@@ -22,7 +22,9 @@ const DEFAULT_STATE = {
     phone:'', 
     updated:false, 
     Loading: false, 
-    updatedError: '' 
+    updated :{
+   error:'' 
+} 
    }, 
    updatedUser :{
    error:'' 
