@@ -1,7 +1,7 @@
 
-@mixin sideBar ($right, $left,$transx) {
+@mixin sideBar ($right, $left,$transx, $width) {
     height : 100%;
-    width: 50%;
+    width: $width;
     position: fixed;
     top: 0px;
     /* overflow: scroll; */
@@ -30,7 +30,7 @@
 
 
 .sidebar {
-    @include sideBar (null, 0 , -100%);
+    @include sideBar (null, 0 , -100%, 50%);
 }
     
     .sidebar.open{
@@ -39,7 +39,7 @@
     
     
     .sidebarAr {
-        @include sideBar (0, null , +100%);
+        @include sideBar (0, null , +100%,50%);
     }
         
         .sidebarAr.open{
@@ -96,3 +96,20 @@
       width: 100%;
       height: 100%;
     }
+   
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    @include sideBar (null, 0 , -100%,80%);
+    
+}
+    
+
+    
+    
+    .sidebarAr {
+        @include sideBar (0, null , +100%, 80%);
+        
+    }
+        
+}  
+  

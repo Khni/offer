@@ -6,16 +6,25 @@ $gradbluecolor: linear-gradient(to right, #00B4DB, #0083B0);
 $navsize: 60px;
 $border-radius: 8px;
 $speed: 500ms; 
+$btnBg: linear-gradient(to right, #00B4DB, #0083B0);
+/* containers */
+.mainContainerWheader{
+display: flex;
+margin-top: 70px;
+} 
+
 /* buttons */
-.custum-btn-form {
-    width: 200px;
+
+
+@mixin customBtnMixin($width, $btnBg) {
+width: $width;
     margin: 5px;
     height: 40px;
     font-size: 13px;
-    Background: linear-gradient(to right, #00B4DB, #0083B0);
+    Background: $btnBg;
     color: white;
-    text-transform: uppercase;
-    font-family: 'Open Sans Condensed';
+   // text-transform: uppercase;
+  //  font-family: 'Open Sans Condensed';
     font-weight: bolder;
     border: none;
 	cursor: pointer;
@@ -26,7 +35,13 @@ $speed: 500ms;
 	// &:hover {
 	// 	transform: scale(.9,.9);
 	// }
+} 
+
+.custum-btn-form {
+@include customBtnMixin(200px, $btnBg);
+    
 }
+
 
 .custum-btn-form-fixed{
 position: fixed;
@@ -95,10 +110,10 @@ z-index: 120;
 }
 
 /*inputs  */
-.juv-input-form-set {
 
-	font-size: 12pt;
-	width: 270px;
+@mixin input-mixin ($width, $bg ) {
+font-size: 12pt;
+	width: $width;
 	transition: width 1s;
 	height: 20px;
 	/*margin-bottom: 1px;*/
@@ -109,63 +124,39 @@ z-index: 120;
 	padding-left: 30px;
 	text-align: left;
 	transition:  1s ease;
-	background-color: #f7f7f7;
-	
-}
-
-
-.juv-input-form-set:focus {
-	transition:  1s ease;
+	background-color: $bg;
+	&:focus{
+transition:  1s ease;
 	border-radius: 5px;
 	box-shadow: 0 0 5px #00ccff;
 	border: 1px solid #0066cc;
+} 
+} 
+
+.juv-input-form-set {
+@include input-mixin (270px, #f7f7f7);
+	
+	
 }
+
 .input-label {
 margin-right: 5px;
 }
 
 
 .halfInput{
-	font-size: 12pt;
-	width: 100px;
-	transition: width 1s;
-	height: 20px;
-	/*margin-bottom: 1px;*/
-	border: 1px solid rgba(81, 203, 238, 1);
-	border-radius: 5px;
-	padding: 10px;
-	padding-right: 30px;
-	padding-left: 30px;
-	text-align: left;
+	@include input-mixin (100px, #f7f7f7);
 	
-	background-color: #f7f7f7;
 }
-.halfInput:focus {
-	
-	box-shadow: 0 0 5px #00ccff;
-	border: 1px solid #0066cc;
-}
+
 
 .fullInput {
-	font-size: 12pt;
-	width: 250px;
-	transition: width 1s;
-	height: 20px;
-	/*margin-bottom: 1px;*/
-	border: 1px solid rgba(81, 203, 238, 1);
-	border-radius: 5px;
-	padding: 10px;
-	padding-right: 30px;
-	padding-left: 30px;
-	text-align: left;
-	background-color: #f7f7f7;
+	@include input-mixin (250px, #f7f7f7);
+	
 	
 }
 
-.fullInput:focus {
-	box-shadow: 0 0 5px #00ccff;
-	border: 1px solid #0066cc;
-}
+
 
 .input-search-main{
 	font-size: 12pt;
