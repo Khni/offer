@@ -146,7 +146,7 @@ let fieldsets = [
 
      <div className="TopNavPage">
        
-      
+      <p>{this.props.updatedError}</p>
  <Form
    //title="Account Details" 
    fieldsets={fieldsets}
