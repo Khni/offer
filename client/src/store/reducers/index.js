@@ -15,14 +15,14 @@ import ProductsReducer from './products/productsReducer';
 import categoryReducer from './categories/categoryReducer'
 import ordersReducer from './auth/ordersReducer.js';
 import OrdersAdminReducer from './admin/orders/ordersReducer'
-import Migrations from './migrations.js' ;
+import {migrations} from './migrations.js' ;
 
 const persistConfig = {
   key: 'root',
   //version: 0,
   storage,
   debug: true,
-  //migrate: createMigrate(Migrations, { debug: true }),
+  //migrate: createMigrate(migrations, { debug: true }),
   whitelist: [
 'dashboard'
 ,'adminAuth'
