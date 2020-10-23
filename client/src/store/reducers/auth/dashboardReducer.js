@@ -5,7 +5,9 @@ const DEFAULT_STATE = {
   name:'', 
   phone:'', 
  addresses:[''],
- birthday:'' 
+ birthday:'' ,
+ token:'',
+ error:''
 }
  
 export default (state = DEFAULT_STATE, action) => {

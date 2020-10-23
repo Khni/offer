@@ -146,7 +146,7 @@ let fieldsets = [
 
      <div className="TopNavPage">
        
-      <p>{this.props.updatedError}</p>
+     
  <Form
    //title="Account Details" 
    fieldsets={fieldsets}
@@ -185,7 +185,7 @@ const mapStateToProps = state => {
   userID: state.userAuth.authUser.id, 
   phone: state.userAuth.authUser.phone, 
   updated: state.userAuth.authUser.updated, 
-  updatedError : state.userAuth.authUser.updated.error, 
+  
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     email: state.userAuth.authUser.email, 

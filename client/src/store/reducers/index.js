@@ -19,10 +19,10 @@ import {migrations} from './migrations.js' ;
 
 const persistConfig = {
   key: 'root',
-  //version: 0,
+  version: 0,
   storage,
   debug: true,
-  //migrate: createMigrate(migrations, { debug: true }),
+  migrate: createMigrate(migrations, { debug: true }),
   whitelist: [
 'dashboard'
 ,'adminAuth'
