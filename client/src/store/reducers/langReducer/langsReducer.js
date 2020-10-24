@@ -1,4 +1,4 @@
-import {SET_ARABIC, SET_ENGLISH} from '../../types';
+import {SET_ARABIC, SET_ENGLISH, SET_ENGLISH_BROWSER, SET_ARABIC_BROWSER} from '../../types';
 import { terms_ar, terms_en} from './terms';
 
 
