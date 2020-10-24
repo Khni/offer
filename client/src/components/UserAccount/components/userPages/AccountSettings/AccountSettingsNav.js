@@ -89,4 +89,5 @@ const mapStateToProps = state => {
 }
 
 
-export default  AccountSettingsNav
+
+export default connect(mapStateToProps)(AccountSettingsNav);
