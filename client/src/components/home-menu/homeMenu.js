@@ -45,6 +45,7 @@ if (shortLang.indexOf('_') !== -1)
     shortLang = shortLang.split('_')[0];
 
 console.log("lang"+lang+ shortLang);
+console.log("window" + window.Window);
 await this.FetchSectionsFromServer()
   }
   async componentDidUpdate(prevProps, prevState) {
