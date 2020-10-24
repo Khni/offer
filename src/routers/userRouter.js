@@ -486,7 +486,7 @@ router.get('/api/getip', (req, res) => {
 	
          try {
         
-           res.status(200).send(req.ip)
+           res.status(200).send({ip})
             
         } catch (error) {
             res.status(400).send({error});
