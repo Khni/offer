@@ -31,7 +31,7 @@ export const terms_ar = {
   //settings
 
 details : 'التفاصيل', 
-addresses: 'العناوين' 
+addresses: 'العناوين', 
 
 
   //arabic classes
@@ -78,7 +78,7 @@ cart: 'cart',
 //settings
 
 details : 'Details', 
-addresses: 'Addresses' 
+addresses: 'Addresses', 
 
 
 
