@@ -484,12 +484,13 @@ router.get('/api/getip', (req, res) => {
          req.connection.socket.remoteAddress
 
 	
-//    User.deleteOne({ _id: req.params.id }).then((user) => {
-      //  res.send('succefully ' + user.count + 'member has been removed');
-    }).catch((e) => {
-   //     res.status(400).send(e);
-
-    })
+         try {
+        
+           res.status(200).send(req.ip)
+            
+        } catch (error) {
+            res.status(400).send({error});
+        }
 })
 //google
 
