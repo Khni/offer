@@ -11,6 +11,7 @@ const UserController = require('../controllers/userController')
 const {HandelErrors} = require('./userUtils')
 const {ObjIndexToZero}= require('./usersFuncs')
 const validator = require('validator')
+var geoip = require('geoip-lite');
 //post/create new user 
 //
 router.post('/api/signup', async (req, res) => {
@@ -486,7 +487,7 @@ router.get('/api/getip', (req, res) => {
 	
          try {
         
-           res.status(200).send({ip})
+           res.status(200).send({geo: geoip.lookup(ip)})
             
         } catch (error) {
             res.status(400).send({error});
