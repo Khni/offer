@@ -200,12 +200,18 @@ const productSchema = mongoose.Schema({
     }
 )
 
-productSchema.virtual('Orders', {
+productSchema.virtual('Order', {
     ref: 'Order',
     localField: 'nameEn',
     foreignField: 'productName'
 })
-productSchema.virtual('cart', {
+productSchema.virtual('Review', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'productID'
+})
+
+productSchema.virtual('Cart', {
     ref: 'Cart',
     localField: 'name',
     foreignField: 'productName'
@@ -227,7 +233,7 @@ productSchema.virtual('Viewed', {
     foreignField: 'productID'
 })
 
-productSchema.virtual('Orders', {
+productSchema.virtual('Order', {
     ref: 'Order',
     localField: '_id',
     foreignField: 'productID'

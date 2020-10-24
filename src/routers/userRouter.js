@@ -474,9 +474,23 @@ router.get('/api/admin/deleteuser/:id', (req, res) => {
 })
 
 
+//get visitor ip
 
+router.get('/api/getip', (req, res) => {
+	
+	var ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || 
+         req.connection.remoteAddress || 
+         req.socket.remoteAddress || 
+         req.connection.socket.remoteAddress
 
+	
+//    User.deleteOne({ _id: req.params.id }).then((user) => {
+      //  res.send('succefully ' + user.count + 'member has been removed');
+    }).catch((e) => {
+   //     res.status(400).send(e);
 
+    })
+})
 //google
 
 
