@@ -7,7 +7,7 @@ import * as RouterDom from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Head from '../../../../headd/header/header'
-
+import {selectTermsLang} from  '../../../../../store/reducers/langReducer/langsReselect';
 import AccountSettings from './AccountSettings.js'
 import Address from './addresses.js'
 
@@ -40,11 +40,11 @@ class AccountSettingsNav extends Component {
 
       const navlinks = [{
         path:"/settings/details" ,
-        title: "Details"
+        title: this.props.terms.details
       },
       {
         path:"/settings/address",
-        title: "Address"
+        title: this.props.terms.addresses
       }]
         return(
 
@@ -79,7 +79,14 @@ class AccountSettingsNav extends Component {
 }
 
 
+const mapStateToProps = state => {
+  return {
+    term :selectTermsLang(state), 
+//state.adminAuth.error
+    
+  }
 
+}
 
 
 export default  AccountSettingsNav

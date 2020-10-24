@@ -8,6 +8,16 @@ export const migrations = {
       },
     };
   },
+  
+  1: state => {
+    return {
+      ...state,
+      langsReducer: {
+        ...state.langsReducer,
+        set: false
+      },
+    };
+  },
 
 
 

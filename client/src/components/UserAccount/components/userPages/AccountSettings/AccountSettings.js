@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 //import * as actions from '../../../../../store/actions/users';
+import {selectTermsLang} from  '../../../../../store/reducers/langReducer/langsReselect';
 import * as actions from '../../../../../store/actions';
 import Form from '../../../../form/Settings/formSettings.component.js';
 import "./AccountSettings.scss"
@@ -113,7 +114,7 @@ let fieldsets = [
                 className: "settingsFormInput" ,
                 
            val:this.state.useremail,
-                label: "Email", 
+                label: this.props.terms.email, 
                 change: this.handleChangeEmail
 }, 
 {
@@ -124,7 +125,7 @@ let fieldsets = [
                 val:this.state.username, 
                 className: "settingsFormInput" ,
                 
-                label: "Name", 
+                label: this.props.terms.name, 
                 change: this.handleChangeName
 },
 {
@@ -135,7 +136,7 @@ let fieldsets = [
   val:this.state.phone, 
   className: "settingsFormInput" ,
   
-  label: "Phone", 
+  label: this.props.terms.phone, 
   change: this.handleChangePhone
 }
 
@@ -185,7 +186,7 @@ const mapStateToProps = state => {
   userID: state.userAuth.authUser.id, 
   phone: state.userAuth.authUser.phone, 
   updated: state.userAuth.authUser.updated, 
-  
+  terms : selectTermsLang(state), 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     email: state.userAuth.authUser.email, 

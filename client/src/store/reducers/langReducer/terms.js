@@ -28,7 +28,12 @@ export const terms_ar = {
   viewed:' آخر ما تم مشاهدته', 
   customer_service: 'خدمة العملاء',
   
-  
+  //settings
+
+details : 'التفاصيل', 
+addresses: 'العناوين' 
+
+
   //arabic classes
   headerClass: 'header_ar',
   sidebarClass: 'sidebar_ar', 
@@ -70,7 +75,10 @@ cart: 'cart',
   viewed: 'Recently Viewed', 
   customer_service: 'Customer Service',
   
+//settings
 
+details : 'Details', 
+addresses: 'Addresses' 
 
 
 
