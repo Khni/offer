@@ -45,7 +45,7 @@ if (shortLang.indexOf('_') !== -1)
     shortLang = shortLang.split('_')[0];
 
 console.log("lang"+lang+ shortLang);
-console.log("window" + window.Window);
+console.log("window navigator" + navigator.userAgent);
 await this.FetchSectionsFromServer()
   }
   async componentDidUpdate(prevProps, prevState) {
@@ -58,7 +58,30 @@ await this.FetchSectionsFromServer()
   
   
   
-	render() {
+  render() 
+  
+  {
+   // testing
+    let lang = window.navigator.languages ? window.navigator.languages[0] : null;
+    lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
+
+let shortLang = lang;
+if (shortLang.indexOf('-') !== -1)
+    shortLang = shortLang.split('-')[0];
+
+if (shortLang.indexOf('_') !== -1)
+    shortLang = shortLang.split('_')[0];
+
+    function isFacebookApp() {
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+  }
+//for instgram  (ua.indexOf('Instagram') > -1)
+//testing
+
+
+
+
 		let {collections} =this.props
 		let {categories} = this.props
 		let collectionsFiltered = collections.flatMap((collection)=>collection.items).filter((item)=>
@@ -73,6 +96,12 @@ item.name.indexOf(this.state.search) !== -1)
           SearchVal={this.state.search} 
            SearchChange={this.searchUpdate} />
            <Searchbox />
+          {/* testing */}
+<p>"window navigator" +{ navigator.userAgent}</p>
+<p>{"lang: "+lang+" short: " + shortLang}</p>
+<p>{isFacebookApp() ? "fb" : "broswer"}</p>
+<p>{"fbapp: " +isFacebookApp()}</p>
+          {/* testing */}
 		   {!this.state.Loading?	<div className="full-menu">
 		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
