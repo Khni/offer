@@ -9,12 +9,12 @@ const User = require('../models/User')
 passport.use('googleToken', new GooglePlusTokenStrategy({
 /* clientID: oauth.google.clientID,
 clientSecret: oauth.google.clientSecret,*/
-clientID: '746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com',
-clientSecret: 'FGf7UrLXHsGSmwugR52e2_NU',
+clientID: "682621113652-hrspt3l9krupdvsk3gib2nqvdsn20i8m.apps.googleusercontent.com",
+clientSecret: 'fC17RI8rcxZo8tFEJeGVQKNy',
 passReqToCallback: true,
 }, async (req, accessToken, refreshToken, profile, done) => {
 	
-
+console.log("acsess"+accessToken + profile.id+ profile.email);
 try {
 //if Google account is already exist just send it
 let user = await User.findOne({"google.id": profile.id})
@@ -47,7 +47,7 @@ return done(null, user);
 
 
 //insert brand new users
-const user = new User({
+ user = new User({
 	methods: ['Google'],
 google: {
 id: profile.id, 

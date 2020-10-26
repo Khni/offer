@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/styled": "^10.0.27",
-    "aws-sdk": "^2.760.0",
+    "aws-sdk": "^2.778.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
@@ -28,14 +28,15 @@
     "geoip-lite": "^1.4.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.5",
-    "mongoose": "^5.9.6",
+    "mongoose": "^5.10.10",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
     "passport": "^0.4.1",
+    "passport-facebook-token": "^4.0.0",
     "passport-google-plus-token": "^2.1.0",
     "passport-jwt": "^4.0.0",
-    "shortid": "^2.2.15",
+    "shortid": "^2.2.16",
     "validator": "^13.0.0"
   }
 }

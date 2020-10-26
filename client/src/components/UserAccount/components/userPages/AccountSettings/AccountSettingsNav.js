@@ -81,7 +81,7 @@ class AccountSettingsNav extends Component {
 
 const mapStateToProps = state => {
   return {
-    term :selectTermsLang(state), 
+    terms :selectTermsLang(state), 
 //state.adminAuth.error
     
   }
