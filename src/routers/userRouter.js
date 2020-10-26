@@ -497,8 +497,11 @@ router.get('/api/getip', (req, res) => {
 
 
 
-routerPromise.route('/google/oauth')
+routerPromise.route('/api/user/oauth/google')
     .post(passport.authenticate('googleToken', { session: false }), UserController.googleOAuth)
+
+routerPromise.route('/api/user/oauth/facebook')
+    .post(passport.authenticate('facebookToken', { session: false }), UserController.facebookOAuth)
 
 
 

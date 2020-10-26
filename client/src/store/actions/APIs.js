@@ -2,6 +2,10 @@
 export const USER_POST_LOGIN = '/api/login'
 export const USER_POST_SIGNUP = '/api/signup'
 export const USER_POST_UPDATE = '/api/user/update/' 
+export const USER_POST_FB_OAUTH = '/api/user/oauth/google' 
+export const USER_POST_GOOGLE_OAUTH = '/api/user/oauth/facebook' 
+
+
 
 //user addresses
 export const USER_POST_ADDRESS = '/api/user-add-address'

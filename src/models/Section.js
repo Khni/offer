@@ -74,7 +74,12 @@ const sectionSchema = mongoose.Schema({
 		
 	
 	
-	})
+	}
+
+,
+    {
+        timestamps: true
+    })
 	
 sectionSchema.virtual('products', {
     ref: 'Product',

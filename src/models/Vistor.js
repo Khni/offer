@@ -3,16 +3,17 @@ const mongoose = require('mongoose')
 
 const viewedSchema = mongoose.Schema({
 	
-      productID:{
-		type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product'
+      ip:{
+		type: String ,
+        trim : true
 		 }, 
-		userID:{
-		type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
+		times:[
+
+           time{
+		type: Date,
+     
 		 }
+] 
 	
 	}
 
