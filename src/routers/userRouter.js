@@ -503,6 +503,12 @@ routerPromise.route('/api/user/oauth/google')
 routerPromise.route('/api/user/oauth/facebook')
     .post(passport.authenticate('facebookToken', { session: false }), UserController.facebookOAuth)
 
-
-
+    router.post('/api/auth/google',
+    passport.authenticate('google', { scope: ['profile'] }));
+    router.post('/api/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/');
+    });
 module.exports = { router, routerPromise } 
