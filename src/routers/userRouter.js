@@ -12,6 +12,9 @@ const {HandelErrors} = require('./userUtils')
 const {ObjIndexToZero}= require('./usersFuncs')
 const validator = require('validator')
 var geoip = require('geoip-lite');
+var google = require('googleapis').google;
+var OAuth2 = google.auth.OAuth2;
+var oauth2Client = new OAuth2();
 //post/create new user 
 //
 router.post('/api/signup', async (req, res) => {
@@ -494,7 +497,39 @@ router.get('/api/getip', (req, res) => {
         }
 })
 //google
+router.post('/api/goauth', (req, res) => {
+	
+	/*var ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || 
+         req.connection.remoteAddress || 
+         req.socket.remoteAddress || 
+         req.connection.socket.remoteAddress*/
+         
+         
+oauth2Client.setCredentials({access_token: req.body.access_Token});
+var oauth2 = google.oauth2({
+  auth: oauth2Client,
+  version: 'v2'
+});
+oauth2.userinfo.get(
+  function(err, res) {
+    if (err) {
+       console.log(err);
+    } else {
+       console.log(res);
+    }
+});
 
+
+
+	
+         try {
+        
+           res.status(200).send({res: res})
+            
+        } catch (error) {
+            res.status(400).send({error});
+        }
+})
 
 
 routerPromise.route('/api/user/oauth/google')
