@@ -12,6 +12,13 @@ import * as actionTypes from '../../types';
 
 
 const DEFAULT_STATE = {
+
+
+  user:'',
+  Loading: false,
+  error:'',
+  isAuthenticated: false,
+  
   authUser: {
     isAuthenticated: false,
     error: '',
@@ -27,6 +34,8 @@ const DEFAULT_STATE = {
   updatedUser: {
     error: ''
   }
+
+
 
 
 }

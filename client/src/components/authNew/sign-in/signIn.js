@@ -49,7 +49,7 @@ if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
     console.log("google res" + JSON.stringify(res.accessToken));
     //const data = { access_token: res.accessToken }
    // console.log(data+"data");
-   this.props.signInAuth({ access_token: res.accessToken },"goauth") 
+  // this.props.signInAuth({ access_token: res.accessToken },"goauth") 
   //  await this.props.oauthGoogle(res.accessToken);
     if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
       this.props.history.push('/');

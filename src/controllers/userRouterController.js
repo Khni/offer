@@ -38,7 +38,7 @@ email: email
 } 
 
 if (social=="facebook" ) {
-user.methods.push('Faceboom')
+user.methods.push('Facebook')
 user.facebook = {
 id: id,
 email: email
@@ -70,7 +70,7 @@ email: email
 }
 
 if (social=="facebook" ) {
- user = new User({
+ const userNew = new User({
 	methods: ['Facebook'],
 facebook: {
 id: id, 
@@ -78,12 +78,20 @@ email: email
 
 }
 }) 
+
+await userNew.save()
+const token = await userNew.generateAuthToken()
+
+console.log("after token" + userNew);
+console.log("token" + token);
+return res.send({ userNew , token })
+
 }
+console.log("after inserting brand new");
 //end of new User
 
-await user.save()
-const token = await user.generateAuthToken()
-return res.send({ user, token })
+
+
 
     } catch (error) {
         res.status(400).send({ error })
