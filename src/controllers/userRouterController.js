@@ -67,6 +67,14 @@ email: email
 
 }
 })
+await userNew.save()
+const token = await userNew.generateAuthToken()
+
+console.log("after token" + userNew);
+console.log("token" + token);
+const user = userNew
+return res.send({ user , token })
+
 }
 
 if (social=="facebook" ) {
@@ -79,12 +87,7 @@ email: email
 }
 }) 
 
-await userNew.save()
-const token = await userNew.generateAuthToken()
 
-console.log("after token" + userNew);
-console.log("token" + token);
-return res.send({ userNew , token })
 
 }
 console.log("after inserting brand new");
