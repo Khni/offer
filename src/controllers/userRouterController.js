@@ -52,6 +52,7 @@ return res.send({ user, token })
 
     console.log("insert social brand new");
     user= new User({
+    	name: name
 	methods: ['Google'],
 google: {
 id: id, 

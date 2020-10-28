@@ -34,7 +34,8 @@ export function* authUserSaga(data) {
     }
     console.log("phone action" + response.data.user.phone);
 
-    yield put(
+if (data.action == "login" || data.action == "signup" || data.action == 'updateuser') {
+      yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,
         response.data.user.name,
@@ -42,6 +43,22 @@ export function* authUserSaga(data) {
         response.data.user.phone
       )
     );
+    }
+    
+    if ( data.action == 'goauth') {
+      yield put(
+      actions.authSuccess(response.data.token,
+        response.data.user._id,
+        response.data.user.google.name,
+        response.data.user.google.email,
+        response.data.user.phone
+      )
+    );
+    }
+
+
+
+    
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
     if (data.action == "updateuser") {
