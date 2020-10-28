@@ -33,7 +33,7 @@ active: {
         email: {
             type: String,
             trim: true,
-            required: function () { return this.methods === 'local'; }, // Only required if a equals 'test'
+            //required: function () { return this.methods === 'local'; }, // Only required if a equals 'test'
             lowercase: true,
             //unique: true,
             validate(value) {
@@ -57,7 +57,7 @@ active: {
             type: String,
             // required: true,
             //  minlength: 8,
-            required: function () { return this.methods === 'local'; },
+            //required: function () { return this.methods === 'local'; },
             trim: true,
             validate(value) {
                 if (value.toLowerCase().includes('password')) {

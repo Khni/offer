@@ -5,17 +5,17 @@ const validator = require('validator')
 
   const InsertSocialUser = async (req, res, social, id, email, name) => {
 
- console.log("insert social started");
+ console.log("insert social started" +social);
 
     try {
         console.log("insert social started login");
     	let user ='' 
     //login if already exist 
     if (social== 'google' ) {
-        let user = await User.findOne({"google.id": id})
+         user = await User.findOne({"google.id": id})
        } 
        if (social== 'facebook' ) {
-        let user = await User.findOne({"facebook.id": id})
+         user = await User.findOne({"facebook.id": id})
        } 
 if (user) {
 const token = await user.generateAuthToken()
@@ -59,7 +59,7 @@ return res.send({ user, token })
 
 if (social=="google" ) {
     console.log("insert social brand new");
- user = new User({
+    const userNew = new User({
 	methods: ['Google'],
 google: {
 id: id, 
@@ -67,13 +67,18 @@ email: email
 
 }
 })
-await userNew.save()
+try {
+    await userNew.save()
 const token = await userNew.generateAuthToken()
-
+await userNew.save()
 console.log("after token" + userNew);
 console.log("token" + token);
-const user = userNew
-return res.send({ user , token })
+//const user = userNew
+return res.send({  done:"done" })
+} catch (error) {
+    res.status(400).send({ error })
+}
+
 
 }
 
