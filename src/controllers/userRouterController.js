@@ -11,12 +11,10 @@ const validator = require('validator')
         console.log("insert social started login");
     	let user ='' 
     //login if already exist 
-    if (social== 'google' ) {
+    
          user = await User.findOne({"google.id": id})
-       } 
-       if (social== 'facebook' ) {
-         user = await User.findOne({"facebook.id": id})
-       } 
+        
+       
 if (user) {
 const token = await user.generateAuthToken()
 return res.send({ user, token })
@@ -29,21 +27,13 @@ user = await User.findOne({ "local.email": email})
 if (user) {
     console.log("insert social same email ?");
 // We want to merge google's data with local auth
-if (social=="google" ) {
+
 user.methods.push('Google')
 user.google = {
 id: id,
 email: email
 }
-} 
 
-if (social=="facebook" ) {
-user.methods.push('Facebook')
-user.facebook = {
-id: id,
-email: email
-}
-} 
 
 await user.save()
 const token = await user.generateAuthToken()
@@ -57,9 +47,9 @@ return res.send({ user, token })
 
 //insert brand new users
 
-if (social=="google" ) {
+
     console.log("insert social brand new");
-    const userNew = new User({
+    user= new User({
 	methods: ['Google'],
 google: {
 id: id, 
@@ -67,34 +57,20 @@ email: email
 
 }
 })
-try {
-    await userNew.save()
-const token = await userNew.generateAuthToken()
-await userNew.save()
-console.log("after token" + userNew);
+
+    await user.save()
+const token = await user.generateAuthToken()
+await user.save()
+console.log("after token" + user);
 console.log("token" + token);
 //const user = userNew
-return res.send({  done:"done" })
-} catch (error) {
-    res.status(400).send({ error })
-}
-
-
-}
-
-if (social=="facebook" ) {
- const userNew = new User({
-	methods: ['Facebook'],
-facebook: {
-id: id, 
-email: email
-
-}
-}) 
+return res.send({  user, token })
 
 
 
-}
+
+
+
 console.log("after inserting brand new");
 //end of new User
 
