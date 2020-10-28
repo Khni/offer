@@ -49,7 +49,7 @@ if (data.action == "login" || data.action == "signup" || data.action == 'updateu
       yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,
-        response.data.user.google.name,
+        response.data.user.name,
         response.data.user.google.email,
         response.data.user.phone
       )
