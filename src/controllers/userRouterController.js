@@ -5,7 +5,7 @@ const validator = require('validator')
 
   const InsertSocialUser = async (req, res, social, id, email, name) => {
 
- console.log("insert social started" +social);
+ console.log("insert social started" +social + id);
 
     try {
         console.log("insert social started login");
@@ -17,7 +17,9 @@ const validator = require('validator')
        
 if (user) {
 const token = await user.generateAuthToken()
+console.log(user+"user");
 return res.send({ user, token })
+
 } 
 
 
