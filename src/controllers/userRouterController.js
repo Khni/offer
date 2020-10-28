@@ -1,13 +1,14 @@
 const User = require('../models/User')
+const validator = require('validator')
 
 
 
+  const InsertSocialUser = async (req, res, social, id, email, name) => {
 
-export const InsertSocialUser = async (req, res, social, id, email, name) => {
-
- 
+ console.log("insert social started");
 
     try {
+        console.log("insert social started login");
     	let user ='' 
     //login if already exist 
     if (social== 'google' ) {
@@ -26,6 +27,7 @@ return res.send({ user, token })
 // Check if we have someone with the same email in local
 user = await User.findOne({ "local.email": email})
 if (user) {
+    console.log("insert social same email ?");
 // We want to merge google's data with local auth
 if (social=="google" ) {
 user.methods.push('Google')
@@ -56,6 +58,7 @@ return res.send({ user, token })
 //insert brand new users
 
 if (social=="google" ) {
+    console.log("insert social brand new");
  user = new User({
 	methods: ['Google'],
 google: {
@@ -63,7 +66,8 @@ id: id,
 email: email
 
 }
-} 
+})
+}
 
 if (social=="facebook" ) {
  user = new User({
@@ -73,8 +77,9 @@ id: id,
 email: email
 
 }
-} 
-})//end of new User
+}) 
+}
+//end of new User
 
 await user.save()
 const token = await user.generateAuthToken()
@@ -86,13 +91,13 @@ return res.send({ user, token })
 
 }
 
+  
 
 
 
 
 
-
-export const userSignUp = async (req, res, email, password, repassword, name, phone) => {
+ const userSignUp = async (req, res) => {
 
  
 
@@ -198,8 +203,9 @@ export const userSignUp = async (req, res, email, password, repassword, name, ph
     }
 
 }
+ }
 
 
 
 
-
+module.exports = {InsertSocialUser ,userSignUp}

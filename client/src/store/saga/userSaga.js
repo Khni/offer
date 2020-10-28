@@ -19,33 +19,36 @@ export function* authUserSaga(data) {
     url = APIs.USER_POST_UPDATE
 
   }
+  if (data.action == 'goauth') {
+    url = APIs.USER_POST_GOOGLE_OAUTH
+  }
   try {
     //   const response = yield axios.post(url, data)
-     let response ='' 
-  if (data.action == "login" ||data.action == "signup") {
-    response = yield call(calls.postData, url, data.data)
-  }
-    
+    let response = ''
+    if (data.action == "login" || data.action == "signup" || data.action == 'goauth') {
+      response = yield call(calls.postData, url, data.data)
+    }
+
     if (data.action == "updateuser") {
-    response = yield call(calls.postDataHeaderAuth, url, data.data, data.token)
-  } 
-  console.log("phone action"+response.data.user.phone );
- 
+      response = yield call(calls.postDataHeaderAuth, url, data.data, data.token)
+    }
+    console.log("phone action" + response.data.user.phone);
+
     yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,
         response.data.user.name,
-        response.data.user.local.email, 
-response.data.user.phone
-)
+        response.data.user.local.email,
+        response.data.user.phone
+      )
     );
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
     if (data.action == "updateuser") {
-    return yield put(actions.updateUserFail(error.response.data.error_en));
+      return yield put(actions.updateUserFail(error.response.data.error_en));
 
-  }
-  
+    }
+
     yield put(actions.authFail(error.response.data.error_en));
 
   }

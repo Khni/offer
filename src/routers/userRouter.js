@@ -505,7 +505,7 @@ router.get('/api/getip', (req, res) => {
     }
 })
 //google
-router.post('/api/goauth', (req, res) => {
+router.post('/api/goauth', async (req, res) => {
 
     /*var ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || 
          req.connection.remoteAddress || 
@@ -530,13 +530,14 @@ router.post('/api/goauth', (req, res) => {
 
     try {
         oauth2.userinfo.get(
-            function (err, resProfile) {
+             async (err, resProfile)=> {
                 if (err) {
                     console.log(err);
 
                 } else {
                     console.log(resProfile);
-                    res.status(200).send({ resProfile})
+                 //   res.status(200).send({profile: resProfile.data})
+                   await InsertSocialUser(req, res, 'google' ,resProfile.data.id, resProfile.data.email,resProfile.data.name) 
                 }
             });
        

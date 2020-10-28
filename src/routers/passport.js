@@ -3,21 +3,21 @@ const passport = require('passport');
 const oauth = require('../config/oauth.js');
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const FacebookTokenStrategy = require('passport-facebook-token');
- var GoogleStrategy = require('passport-google-oauth20').Strategy;
+//  var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User')
 
 
-passport.use(new GoogleStrategy({
-    clientID: "746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com",
-    clientSecret: 'FGf7UrLXHsGSmwugR52e2_NU',
-    callbackURL: 'localhost:8080/api/google/callback'
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //   return cb(err, user);
-    // });
-  }
-));
+// passport.use(new GoogleStrategy({
+//     clientID: "746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com",
+//     clientSecret: 'FGf7UrLXHsGSmwugR52e2_NU',
+//     callbackURL: 'localhost:8080/api/google/callback'
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//     //   return cb(err, user);
+//     // });
+//   }
+// ));
 
 
 passport.use('googleToken', new GooglePlusTokenStrategy({

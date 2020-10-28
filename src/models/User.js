@@ -298,7 +298,7 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
-    delete userObject.password
+    delete userObject.local.password
     delete userObject.tokens
 
     return userObject
