@@ -9,9 +9,16 @@ import {
   const DEFAULT_STATE = {
     
   
-        favlist:[], 
-       
-        seenlist:[], 
+        favorites : {
+list: [], 
+Loading: false, 
+error: '' 
+} 
+        seen : {
+list: [], 
+Loading: false, 
+error: '' 
+} 
     
        
        

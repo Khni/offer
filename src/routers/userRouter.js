@@ -8,6 +8,7 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
+const {InsertSocialUser, userSignUp} = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
 const validator = require('validator')
@@ -17,6 +18,13 @@ var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2();
 //post/create new user 
 //
+router.post('/api/user-signup', async (req, res) => await  userSignUp(req, res) )
+
+
+
+
+
+
 router.post('/api/signup', async (req, res) => {
 
     const email = req.body.email
