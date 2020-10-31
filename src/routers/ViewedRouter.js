@@ -27,16 +27,28 @@ router.post('/api/viewed/add', auth, async (req, res) => {
 
 
 router.get('/api/user-viewed', auth, async (req, res) => {
-    const viewed = await Viewed.find({userID : req.user._id})
-const products = await Product.find({})
 
-const viewedProducts = 
-    viewed.map((f)=>products.filter((p) => p._id == f.userID ))
+    const viewed = await Viewed.find({userID : req.user._id})
+  
+
+    let ViewedProducts = await Promise.all( viewed.map(async(v) => {
+      
+        return await Product.findById(v.productID)
+    }))
+
+
+
+
+    
+// const products = await Product.find({})
+
+// const viewedProducts = 
+//     viewed.map((f)=>products.filter((p) => p._id == f.userID ))
     
 
     try {
         
-        res.status(200).send({viewedProducts})
+        res.status(200).send({ViewedProducts})
     } catch (e) {
         res.status(400).send({e})
     }

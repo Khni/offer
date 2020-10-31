@@ -3,79 +3,79 @@ const validator = require('validator')
 
 
 
-  const InsertSocialUser = async (req, res, social, id, email, name) => {
+const InsertSocialUser = async (req, res, social, id, email, name) => {
 
- console.log("insert social started" +social + id);
+    console.log("insert social started" + social + id);
 
     try {
         console.log("insert social started login");
-    	let user ='' 
-    //login if already exist 
-    
-         user = await User.findOne({"google.id": id})
-        
-       
-if (user) {
-const token = await user.generateAuthToken()
-console.log(user+"user");
-return res.send({ user, token })
+        let user = ''
+        //login if already exist 
 
-} 
+        user = await User.findOne({ "google.id": id })
 
 
+        if (user) {
+            const token = await user.generateAuthToken()
+            console.log(user + "user");
+            return res.send({ user, token })
 
-// Check if we have someone with the same email in local
-user = await User.findOne({ "local.email": email})
-if (user) {
-    console.log("insert social same email ?");
-// We want to merge google's data with local auth
-
-user.methods.push('Google')
-user.google = {
-id: id,
-email: email
-}
-
-
-await user.save()
-const token = await user.generateAuthToken()
-return res.send({ user, token })
+        }
 
 
 
-}//end of if foundUserLocal
+        // Check if we have someone with the same email in local
+        user = await User.findOne({ "local.email": email })
+        if (user) {
+            console.log("insert social same email ?");
+            // We want to merge google's data with local auth
+
+            user.methods.push('Google')
+            user.google = {
+                id: id,
+                email: email
+            }
+
+
+            await user.save()
+            const token = await user.generateAuthToken()
+            return res.send({ user, token })
 
 
 
-//insert brand new users
+        }//end of if foundUserLocal
 
 
-    console.log("insert social brand new");
-    user= new User({
-    	name: name,
-	methods: ['Google'],
-google: {
-id: id, 
-email: email
 
-}
-})
-
-    await user.save()
-const token = await user.generateAuthToken()
-await user.save()
-console.log("after token" + user);
-console.log("token" + token);
-//const user = userNew
-return res.send({  user, token })
+        //insert brand new users
 
 
+        console.log("insert social brand new");
+        user = new User({
+            name: name,
+            methods: ['Google'],
+            google: {
+                id: id,
+                email: email
+
+            }
+        })
+
+        await user.save()
+        const token = await user.generateAuthToken()
+        await user.save()
+        console.log("after token" + user);
+        console.log("token" + token);
+        //const user = userNew
+        return res.send({ user, token })
 
 
 
 
-console.log("after inserting brand new");
-//end of new User
+
+
+        console.log("after inserting brand new");
+        //end of new User
 
 
 
@@ -86,15 +86,15 @@ console.log("after inserting brand new");
 
 }
 
-  
 
 
 
 
 
- const userSignUp = async (req, res) => {
 
- 
+const userSignUp = async (req, res) => {
+
+
 
     const email = req.body.email
     const password = req.body.password
@@ -189,18 +189,18 @@ console.log("after inserting brand new");
             //   res.status(201).send({ user, token })
             res.send({ user, token })
 
-    } catch (error) {
-        //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
-        res.status(403).json({
-            error_en: 'Error, please try again later',
-            error_ar: 'خطأ ، برجاء المحاولة لاحقا'
-        });
+        } catch (error) {
+            //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
+            res.status(403).json({
+                error_en: 'Error, please try again later',
+                error_ar: 'خطأ ، برجاء المحاولة لاحقا'
+            });
+        }
+
     }
-
 }
- }
 
 
 
 
-module.exports = {InsertSocialUser ,userSignUp}
+module.exports = { InsertSocialUser, userSignUp }
