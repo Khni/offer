@@ -58,9 +58,9 @@ async fetchProduct(){
   if (ProductRating == null) {
     ProductRating = 0
   }
+await  this.props.favoriteListAction(this.props.token)
 
-
-  this.favoriteLength()
+await  this.favoriteCheck()
 //  const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.id)
 //  if (fav.length==0) {
 //  this.setState({favorite: false}) 
@@ -104,7 +104,7 @@ if (e) {
 
 async addSeenProduct(){
  console.log("started");
-  const response =   await axios.get('/api/viewed/add',{productID: this.state.product._id}, {
+  const response =   await axios.post('/api/viewed/add',{productID: this.state.product._id}, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
     // this.fetchHandle(true)
@@ -120,7 +120,7 @@ favLength(){
   //console.log("favorite"+fav.length )
 }
 
- favoriteLength (){
+async favoriteCheck (){
 
   const fav=this.props.FavoritesList.find((favorite) =>favorite.productID ==this.state.product._id  ) 
 
@@ -140,7 +140,7 @@ if (fav) {
 }
 
 async componentDidMount(){
-  this.props.favoriteListAction(this.props.token)
+
   console.log("loading favorite" + this.props.FavoritesLoading);
 	await this.fetchProduct()
     await this.addSeenProduct()
@@ -271,7 +271,7 @@ userToken ={this.props.token}
 
 const mapDispatchToProps = dispatch => ({
   addItemToCartItem: ( item,items) => dispatch( Cartactions.addItemToCartItem(item,items)),
-  favoriteListAction: ( token) => dispatch( actions.favoriteListAction( token) ),
+  favoriteListAction: ( token) => dispatch( actions.fetchFavorites( token) ),
 });
 
 

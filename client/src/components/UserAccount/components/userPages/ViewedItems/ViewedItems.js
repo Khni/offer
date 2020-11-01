@@ -13,7 +13,7 @@ import { compose } from 'redux';
 //import ProductsList from '../TableList/productsList.component'
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
-import * as actions from '../../../../../store/actions/product';
+import * as actions from '../../../../../store/actions';
 import axios from 'axios';
 
 class UserSeenList extends Component {
@@ -64,7 +64,7 @@ await this.fetchSeenList()
       
       <div className="cartItemContainer">
       
-      {this.state.products.map(item=>(
+      {this.props.seenList.map(item=>(
 
 
 <div className="cart-Item" >
@@ -110,6 +110,7 @@ await this.fetchSeenList()
 
 const mapStateToProps = state => {
   return {
+  	seenList: state.FavAndSeenReducer.seen.list,
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
@@ -119,6 +120,13 @@ const mapStateToProps = state => {
 
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSeen: ( token) => dispatch( actions.fetchSeen( token) ),
+      //authLeft: () => dispatch( actions.authLeft())
+    //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+  };
+};
 
 
 export default  connect(mapStateToProps, actions)(UserSeenList);

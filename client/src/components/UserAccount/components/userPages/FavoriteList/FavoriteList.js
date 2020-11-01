@@ -151,7 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    favoriteListAction: ( token) => dispatch( actions.favoriteListAction( token) ),
+    favoriteListAction: ( token) => dispatch( actions.fetchFavorites( token) ),
       //authLeft: () => dispatch( actions.authLeft())
     //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
   };

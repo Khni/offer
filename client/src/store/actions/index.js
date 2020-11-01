@@ -25,6 +25,7 @@ export {
     fetchSeenSuccess, 
     fetchSeenError, 
     seenListAction, 
-    
+    fetchFavorites, 
+    fetchSeen
 } from './FavoritesAndSeenActions.js';
 

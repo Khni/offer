@@ -1,4 +1,55 @@
 import * as actionTypes from "../types";
+import * as APIs from './APIs'
+import axios from "axios"
+import * as calls from './axiosCalls'
+
+export const fetchFavorites(token) {
+	return async dispatch => {
+	
+  dispatch({
+         type: actionTypes.FRTCH_FAVORITES_START
+      });
+  let url = APIs.GET_USER_FAVORITES
+  try {
+    let response = await calls.getDataHeaderAuth(token) 
+    console.log("favories response" +JSON.stringify(response) );
+    dispatch({
+         type: actionTypes.FRTCH_FAVORITES_SUCCESS, 
+         list: response.data.favoriteProducts
+      });
+  } catch (error) {
+    dispatch({
+         type: actionTypes.FRTCH_FAVORITES_ERROR, 
+         error: error.response.data.error
+      });
+  }
+}
+} 
+
+
+export const fetchSeen(token) {
+	return async dispatch => {
+	
+  dispatch({
+         type: actionTypes.FRTCH_SEEN_START
+      });
+  let url = APIs.GET_USER_SEEN
+  try {
+    let response = await calls.getDataHeaderAuth(token) 
+    console.log("seen response" +JSON.stringify(response) );
+    dispatch({
+         type: actionTypes.FRTCH_SEEN_SUCCESS, 
+         list: response.data.ViewedProducts
+      });
+  } catch (error) {
+    dispatch({
+         type: actionTypes.FRTCH_SEEN_ERROR, 
+         error: error.response.data.error
+      });
+  }
+}
+} 
+
 
 
 export const fetchFavoritesStart = () => {
