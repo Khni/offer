@@ -58,9 +58,17 @@ async fetchProduct(){
   if (ProductRating == null) {
     ProductRating = 0
   }
-await  this.props.favoriteListAction(this.props.token)
 
-await  this.favoriteCheck()
+  await  this.props.favoriteListAction(this.props.token)
+  console.log("favoritelist" + this.props.FavoritesList);
+  const fav=this.props.FavoritesList.find((favorite) =>favorite.productID ==response.data.product._id  ) 
+  console.log("fav" +JSON.stringify(fav) );
+  if (fav) {
+    this.setState({favorite: true}) 
+   } else {
+    this.setState({favorite: false}) 
+   } 
+//await  this.favoriteCheck()
 //  const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.id)
 //  if (fav.length==0) {
 //  this.setState({favorite: false}) 
@@ -91,6 +99,7 @@ async ToggleFavorite(){
   const response =   await axios.post('/api/favorite/addanddelete',{productID: this.state.product._id},{
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
+     console.log("add fav response" +JSON.stringify(response) );
     } catch(e) {
 if (e) {
 	this.setState({favorite: !this.state.favorite})
@@ -103,12 +112,12 @@ if (e) {
 }
 
 async addSeenProduct(){
- console.log("started");
+ console.log("seen started");
   const response =   await axios.post('/api/viewed/add',{productID: this.state.product._id}, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
     // this.fetchHandle(true)
-   console.log("response favoirte toggle"+JSON.stringify(response) );
+   console.log("response seen "+JSON.stringify(response) );
 }
 
 
@@ -123,7 +132,7 @@ favLength(){
 async favoriteCheck (){
 
   const fav=this.props.FavoritesList.find((favorite) =>favorite.productID ==this.state.product._id  ) 
-
+console.log("fav" + fav);
 if (fav) {
   this.setState({favorite: true}) 
  } else {

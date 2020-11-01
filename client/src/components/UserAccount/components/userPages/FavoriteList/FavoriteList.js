@@ -91,7 +91,7 @@ console.log("favorite log"+ this.props.FavoritesLoading);
       
       <div className="cartItemContainer">
       
-      {this.props.FavoritesList.map(item=>(
+      {this.props.FavoritesList.reverse().map(item=>(
 
 
 <div className="cart-Item" >

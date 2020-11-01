@@ -39,14 +39,14 @@ async fetchSeenList(){
      }} );
      this.setState({products: response.data.SeenProducts, Loading: false})
      
-  //   this.fetchHandle(true)
-   console.log("response favoirte toggle"+JSON.stringify(response) );
+  // //   this.fetchHandle(true)
+  //  console.log("response favoirte toggle"+JSON.stringify(response) );
 }
 
 
 async componentDidMount() {
-await this.fetchSeenList()
-
+await this.props.fetchSeen(this.props.token)
+console.log("seen" + this.props.seenList);
   }
   
 
@@ -60,11 +60,11 @@ await this.fetchSeenList()
 
      <div className="TopNavPage">
        
-      {!this.state.Loading? 
+      {!this.props.SeenLoading? 
       
       <div className="cartItemContainer">
       
-      {this.props.seenList.map(item=>(
+      {this.props.seenList.reverse().map(item=>(
 
 
 <div className="cart-Item" >
@@ -110,6 +110,7 @@ await this.fetchSeenList()
 
 const mapStateToProps = state => {
   return {
+    SeenLoading : state.FavAndSeenReducer.seen.Loading,
   	seenList: state.FavAndSeenReducer.seen.list,
   	errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 

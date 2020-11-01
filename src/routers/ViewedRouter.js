@@ -10,6 +10,12 @@ const router = new express.Router()
 
 
 router.post('/api/viewed/add', auth, async (req, res) => {
+
+    const ViewedItem =await Viewed.find({$and:[{productID: req.body.productID},{userID: req.user._id}]})
+    if (ViewedItem) {
+        await Viewed.deleteOne({$and:[{productID: req.body.productID},{userID: req.user._id}]})
+        
+    }
     const viewed = new Viewed({
         ...req.body,
         userID: req.user._id
