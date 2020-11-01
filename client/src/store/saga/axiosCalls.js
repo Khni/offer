@@ -13,7 +13,7 @@ export function postDataHeaderAuth(url, data, token) {
 };
 
 export function getDataHeaderAuth(url,token) {
-	return axios.post(url,  {
+	return axios.get(url,  {
       headers : { Authorization: `Bearer ${token}`
        }} );
 };

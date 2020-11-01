@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => ({
 });
 const mapStateToProps =(state) =>{
 	return {
- collections: selectProducts(state), 
+ //collections: selectProducts(state), 
  categories : state.categoryReducer.categories,
  sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
  sectionsWithProducts: state.categoryReducer.sectionsWithProducts

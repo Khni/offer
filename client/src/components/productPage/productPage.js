@@ -10,6 +10,7 @@ import Reviews from './reviews/reviews.component.js'
 import Header from '../headd/header/header'
 import Slider from '../carousel/components/slider'
 import * as Cartactions  from '../../store/actions/CartItemsAction';
+import * as actions from '../../store/actions/index';
 import { ReactComponent as AddFavorite } from './icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from './icons/Heartfull.svg'
 import {addItem} from '../../store/actions/CartItemsAction';
@@ -58,12 +59,14 @@ async fetchProduct(){
     ProductRating = 0
   }
 
-const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.id)
- if (fav.length==0) {
- this.setState({favorite: false}) 
-} else {
- this.setState({favorite: true}) 
-} 
+
+  this.favoriteLength()
+//  const fav = response.data.product.favorites.filter((f)=> f.userID ===this.props.id)
+//  if (fav.length==0) {
+//  this.setState({favorite: false}) 
+// } else {
+//  this.setState({favorite: true}) 
+// } 
  
   
 
@@ -85,7 +88,7 @@ async ToggleFavorite(){
  console.log("started");
  this.setState({favorite: !this.state.favorite})
  try{
-  const response =   await axios.get('/api/favorite/addanddelete',{productID: this.state.product._id},{
+  const response =   await axios.post('/api/favorite/addanddelete',{productID: this.state.product._id},{
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
     } catch(e) {
@@ -117,18 +120,28 @@ favLength(){
   //console.log("favorite"+fav.length )
 }
 
-async favoriteLength (){
-  const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
- if (fav.length==0) {
-await this.setState({favorite: false}) 
-} else {
-await this.setState({favorite: true}) 
-} 
+ favoriteLength (){
+
+  const fav=this.props.FavoritesList.find((favorite) =>favorite.productID ==this.state.product._id  ) 
+
+if (fav) {
+  this.setState({favorite: true}) 
+ } else {
+  this.setState({favorite: false}) 
+ } 
+   
+//   const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
+//  if (fav.length==0) {
+// await this.setState({favorite: false}) 
+// } else {
+// await this.setState({favorite: true}) 
+// } 
   
 }
 
 async componentDidMount(){
-	
+  this.props.favoriteListAction(this.props.token)
+  console.log("loading favorite" + this.props.FavoritesLoading);
 	await this.fetchProduct()
     await this.addSeenProduct()
   
@@ -159,7 +172,7 @@ if (this.state.fetch){
   <Header />
   </div>
  
-          {!this.state.Loading?    <div className="container-productPage">
+          {!this.state.Loading && !this.props.FavoritesLoading?    <div className="container-productPage">
     <div className="PicComponent">
     
     
@@ -247,8 +260,10 @@ userToken ={this.props.token}
 
  const mapStateToProps =(state) =>{
 	return {
+    FavoritesLoading : state.FavAndSeenReducer.favorites.Loading,
     token: state.userAuth.authUser.token,
     id: state.userAuth.authUser.id,
+    FavoritesList: state.FavAndSeenReducer.favorites.list,
     cartItems: selectCartItems(state)
  
 	}
@@ -256,6 +271,7 @@ userToken ={this.props.token}
 
 const mapDispatchToProps = dispatch => ({
   addItemToCartItem: ( item,items) => dispatch( Cartactions.addItemToCartItem(item,items)),
+  favoriteListAction: ( token) => dispatch( actions.favoriteListAction( token) ),
 });
 
 

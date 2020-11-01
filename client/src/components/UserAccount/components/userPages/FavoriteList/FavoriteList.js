@@ -13,7 +13,7 @@ import { compose } from 'redux';
 //import ProductsList from '../TableList/productsList.component'
 import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
-import * as actions from '../../../../../store/actions/product';
+import * as actions from '../../../../../store/actions/index';
 import axios from 'axios';
 
 class UserFavorites extends Component {
@@ -70,8 +70,10 @@ let FavoritesUser =  favList.sort(compare)
 
 
 async componentDidMount() {
-await this.fetchFavorites()
+//await this.fetchFavorites()
 
+this.props.favoriteListAction(this.props.token)
+console.log("favorite log"+ this.props.FavoritesLoading);
   }
   
 
@@ -85,11 +87,11 @@ await this.fetchFavorites()
 
      <div className="TopNavPage">
        
-      {!this.state.Loading? 
+      {!this.props.FavoritesLoading? 
       
       <div className="cartItemContainer">
       
-      {this.state.products.map(item=>(
+      {this.props.FavoritesList.map(item=>(
 
 
 <div className="cart-Item" >
@@ -139,11 +141,21 @@ const mapStateToProps = state => {
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
     id: state.userAuth.authUser.id,
+    FavoritesList: state.FavAndSeenReducer.favorites.list,
+    FavoritesLoading : state.FavAndSeenReducer.favorites.Loading,
     isAuthenticated: state.userAuth.authUser.isAuthenticated
     
   }
 
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    favoriteListAction: ( token) => dispatch( actions.favoriteListAction( token) ),
+      //authLeft: () => dispatch( actions.authLeft())
+    //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+  };
+};
 
 
 
