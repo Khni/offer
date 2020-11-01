@@ -172,7 +172,7 @@ if (this.state.fetch){
   <Header />
   </div>
  
-          {!this.state.Loading && !this.props.FavoritesLoading?    <div className="container-productPage">
+          {!this.state.Loading     <div className="container-productPage">
     <div className="PicComponent">
     
     
