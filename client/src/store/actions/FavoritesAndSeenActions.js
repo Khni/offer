@@ -3,7 +3,7 @@ import * as APIs from './APIs'
 import axios from "axios"
 import * as calls from './axiosCalls'
 
-export const fetchFavorites(token) {
+export const fetchFavorites = (token) =>{
 	return async dispatch => {
 	
   dispatch({
@@ -27,7 +27,7 @@ export const fetchFavorites(token) {
 } 
 
 
-export const fetchSeen(token) {
+export const fetchSeen= (token) => {
 	return async dispatch => {
 	
   dispatch({
