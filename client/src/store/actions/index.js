@@ -15,3 +15,16 @@ export {
 export {setArabic, setEnglish } from './LangActions';
 
 export {openSidebar}   from './cartAction';
+
+export {
+    fetchFavoritesStart,
+    fetchFavoritesSuccess,
+    fetchFavoritesError,
+    favoriteListAction,
+    fetchSeenStart, 
+    fetchSeenSuccess, 
+    fetchSeenError, 
+    seenListAction, 
+    
+} from './FavoritesAndSeenActions.js';
+

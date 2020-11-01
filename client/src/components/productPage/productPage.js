@@ -85,7 +85,7 @@ async ToggleFavorite(){
  console.log("started");
  this.setState({favorite: !this.state.favorite})
  try{
-  const response =   await axios.get('/api/favorite-toggle/'+this.state.product._id, {
+  const response =   await axios.get('/api/favorite/addanddelete',{productID: this.state.product._id},{
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
     } catch(e) {
@@ -101,7 +101,7 @@ if (e) {
 
 async addSeenProduct(){
  console.log("started");
-  const response =   await axios.get('/api/product-seen/'+this.state.product._id, {
+  const response =   await axios.get('/api/viewed/add',{productID: this.state.product._id}, {
     headers : { Authorization: `Bearer ${this.props.token}`
      }} );
     // this.fetchHandle(true)
@@ -111,8 +111,8 @@ async addSeenProduct(){
 
 favLength(){
   const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
- 
-  
+ //const fav=favListReducer.find((favorite) =>favorite._productID ==this.state.product_id  ) 
+  //if(fav) {return true} 
   return fav.length
   //console.log("favorite"+fav.length )
 }

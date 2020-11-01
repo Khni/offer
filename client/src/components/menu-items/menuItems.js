@@ -7,7 +7,14 @@ import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
 
 const menuItems = (props, {history,match})=>{
-
+/*
+const inFavorite() {
+const favProduct = props.favList.find((f)f.productID == props.item._id)
+if (favProduct) {
+return true;
+} 
+} 
+*/
    return(
    <div>
    
@@ -44,8 +51,17 @@ const menuItems = (props, {history,match})=>{
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 });
+const mapStateToProps =(state) =>{
+	return {
+ collections: selectProducts(state), 
+ categories : state.categoryReducer.categories,
+ sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
+ sectionsWithProducts: state.categoryReducer.sectionsWithProducts
+ //collections: state.ProductsReducer.products
+	}
+}
 
 export default withRouter(connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(menuItems));

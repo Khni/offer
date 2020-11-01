@@ -7,6 +7,11 @@ export const USER_POST_UPDATE = '/api/user/update/'
 export const USER_POST_GOOGLE_OAUTH = '/api/goauth' 
 
 
+//favorites and seen 
+export const GET_USER_FAVORITES = '/api/user-favorites' 
+export const GET_USER_SEEN = '/api/user-viewed' 
+
+
 
 //user addresses
 export const USER_POST_ADDRESS = '/api/user-add-address'
