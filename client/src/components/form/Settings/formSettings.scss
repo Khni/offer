@@ -1,4 +1,8 @@
-
+.labletd {
+	width: 150px;
+	display: flex;
+	flex-flow: row-reverse;
+}
 
 .fbicon, .gicon {
 	margin: 5px;

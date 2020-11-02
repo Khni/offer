@@ -93,7 +93,9 @@ console.log("addresseslost"+this.props.addressesList.length);
     render() {
     	
 
-
+const showList = () => {
+  this.setState({listToshow: true})
+}
 
 
 
@@ -199,7 +201,7 @@ return <div className={cartItemClass} >
  
 </div> : null   } 
       
-    {!this.state.isLoading &&  !this.state.listToshow   ? <AddAddressForm /> : null} 
+    {!this.state.isLoading &&  !this.state.listToshow   ? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
     {!this.state.isLoading &&  this.props.addressesList.length == 0? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
 </div>
 

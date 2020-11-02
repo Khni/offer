@@ -5,15 +5,14 @@ import * as calls from './axiosCalls'
 
 export const fetchFavorites = (token) =>{
 	return async dispatch => {
-	console.log("from favorite fetch");
+	
   dispatch({
          type: actionTypes.FRTCH_FAVORITES_START
       });
   let url = APIs.GET_USER_FAVORITES
   try {
     let response = await calls.getDataHeaderAuth(url,token) 
-    console.log("favorites response" +response.data);
-    console.log("favories response" +JSON.stringify(response) );
+  
     dispatch({
          type: actionTypes.FRTCH_FAVORITES_SUCCESS, 
          list: response.data.favoriteProducts
@@ -30,14 +29,14 @@ export const fetchFavorites = (token) =>{
 
 export const fetchSeen= (token) => {
 	return async dispatch => {
-	console.log("fetch seen action started");
+	
   dispatch({
          type: actionTypes.FRTCH_SEEN_START
       });
   let url = APIs.GET_USER_SEEN
   try {
     let response = await calls.getDataHeaderAuth(url,token) 
-    console.log("seen response from action" +JSON.stringify(response) );
+    
     dispatch({
          type: actionTypes.FRTCH_SEEN_SUCCESS, 
          list: response.data.ViewedProducts

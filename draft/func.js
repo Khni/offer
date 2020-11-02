@@ -1,3 +1,20 @@
+"e": {
+    "driver": true,
+    "name": "MongoError",
+    "index": 0,
+    "code": 11000,
+    "keyPattern": {
+        "productID": 1
+    },
+    "keyValue": {
+        "productID": "5f6e12ee4dd46300176473f4"
+    }
+}
+}
+
+it means productID set to be index .. just drop it from mongodb site
+
+
 const product =[
     
     

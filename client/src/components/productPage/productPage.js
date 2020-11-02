@@ -77,16 +77,11 @@ class ProductPage extends Component {
 
 
   async ToggleFavorite() {
-    console.log("started");
+  
     this.setState({ favorite: !this.state.favorite })
     try {
-      const response = await axios.post('/api/favorite/addanddelete', { productID: this.state.product._id }, {
-        headers: {
-          Authorization: `Bearer ${this.props.token}`
-        }
-      });
-      console.log("response add fav" + response);
-    
+      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete',{ productID: this.state.product._id },this.props.token)
+
     } catch (e) {
       if (e) {
         this.setState({ favorite: !this.state.favorite })
@@ -99,58 +94,32 @@ class ProductPage extends Component {
   }
 
   async addSeenProduct() {
-    console.log("seen started");
-    const response = await axios.post('/api/viewed/add', { productID: this.state.product._id }, {
-      headers: {
-        Authorization: `Bearer ${this.props.token}`
-      }
-    });
-    // this.fetchHandle(true)
-    console.log("response seen " + JSON.stringify(response));
+    const response = await Calls.postDataHeaderAuth('/api/viewed/add',{ productID: this.state.product._id },this.props.token)
   }
 
 
-  favLength() {
-    const fav = this.state.product.favorites.filter((f) => f.userID === this.props.id)
-    //const fav=favListReducer.find((favorite) =>favorite._productID ==this.state.product_id  ) 
-    //if(fav) {return true} 
-    return fav.length
-    //console.log("favorite"+fav.length )
-  }
 
   async favoriteCheck(productID) {
 
     const fav = this.props.FavoritesList.find((favorite) => favorite._id == productID)
-    console.log("fav" + fav);
+    
     if (fav) {
       this.setState({ favorite: true })
     } else {
       this.setState({ favorite: false })
     }
 
-    //   const fav = this.state.product.favorites.filter((f)=> f.userID ===this.props.id)
-    //  if (fav.length==0) {
-    // await this.setState({favorite: false}) 
-    // } else {
-    // await this.setState({favorite: true}) 
-    // } 
-
   }
 
   async componentDidMount() {
-
-    console.log("loading favorite" + this.props.FavoritesLoading);
     await this.fetchProduct()
     await this.addSeenProduct()
-
 
   }
   async componentDidUpdate() {
 
     if (this.state.fetch) {
       await this.fetchProduct()
-
-
 
     }
 
@@ -161,8 +130,8 @@ class ProductPage extends Component {
 
 
   render() {
-    console.log(this.props.match.params.id);
-    // const ReviewReserve = this.state.product.reviews.reverse()
+    
+   
     return (
 
       <div className="product-container" >
@@ -184,45 +153,8 @@ class ProductPage extends Component {
               name='rating'
             />
 
-
-
-
-            {/* <Carousel infiniteLoop  showThumbs={true} autoPlay interval="5000" transitionTime="5000"  thumbWidth="100px"  >
-    {this.state.imgUrlsArr.map(img=> <div>
-                    <img  src={img} />
-                    <p className="legend">Legend 1</p>
-                </div>)} 
-                
-                
-            </Carousel>*/}
-
-            {/*this.state.product.imgURLs.map(img=> <div>
-                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
-                    <p className="legend">Legend 1</p>
-                </div>)*/}
-
-
-
-            {/* <AwesomeSlider cssModule={AwesomeSliderStyles}>
-            {this.state.product.imgURLs.map(img=> <div>
-                    <img  src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" +img.imgURL} />
-                    
-                </div>)} 
-  </AwesomeSlider> */}
-
-
-
-
-
-
           </div>
-          {/* <div className="menu-items">
-{this.state.product.imgURLs.map((img) => 
-<div className="itemj">
-  <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+img.imgURL}  className="item-imgs"/>  
-  </div>
- )}
- </div> */}
+        
 
           <div className="StarRatingsContainer" >
 

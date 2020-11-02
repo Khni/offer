@@ -26,8 +26,10 @@ console.log("found in delete"+foundFavoriteProduct);
 
 
     }
+    console.log(req.user._id);
     const favorite = new Favorite({
-        productID: req.body.productID,
+        ...req.body,
+        //productID: req.body.productID,
         userID: req.user._id
 
     })
