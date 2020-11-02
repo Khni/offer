@@ -11,7 +11,7 @@ const router = new express.Router()
 
 router.post('/api/favorite/addanddelete', auth, async (req, res) => {
 
-    const foundFavoriteProduct = await Favorite.find({$and:[{productID: req.body.productID},{userID: req.user._id}]})
+    const foundFavoriteProduct = await Favorite.findOne({$and:[{productID: req.body.productID},{userID: req.user._id}]})
    console.log("produvtID" + req.body.productID);
     //console.log("found favorite" + foundFavoriteProduct);
     if (foundFavoriteProduct) {
@@ -34,6 +34,7 @@ console.log("found in delete"+foundFavoriteProduct);
 
     try {
         await favorite.save()
+        console.log("favorite" + favorite);
         res.status(201).send({ favorite })
     } catch (e) {
         res.status(400).send({ e })

@@ -89,10 +89,10 @@ if (this.props.Lang == 'ar') {
 <Sidebar class={sideBar} show={this.props.hiddenSidebar} />
 <div className={logoCorner}>
 
-<Link className="icon-button"  onClick={this.props.openSidebar}>
+<div className="icon-button"  onClick={this.props.openSidebar}>
 <Menu />
              
-           </Link>
+           </div>
 
 <Link className="icon-button-noBorder"  to='/'>
              <img className={logo} src={Offerenologo} />

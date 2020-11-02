@@ -1,6 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { 
+  // Route,
+   NavLink,
+    // Switch, 
+    // Redirect
+  } from 'react-router-dom';
 
 import TopNavStyle from './TopNavStyle.scss'
 
