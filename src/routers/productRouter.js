@@ -1,5 +1,6 @@
 const express = require('express')
 const Product = require('../models/Product')
+const Favorite = require('../models/Favorite')
 const Section = require('../models/Section')
 const router = new express.Router()
 const authAdmin = require('../middleware/adminAuth')
@@ -491,6 +492,23 @@ router.get('/api/products-seen-list', auth, async (req, res) => {
     try {
         
         res.status(200).send({SeenProducts})
+    } catch (e) {
+        res.status(400).send({e})
+    }
+})
+//sort products depends on favorite
+router.get('/api/products-popular', auth, async (req, res) => {
+    let products = await Product.find({})
+  
+let productsWfav = products.map((product)=>{
+
+return {...product, favoritesNum : await Favorite.find({productID: product._id}).length 
+})
+const sortedProducts =productsWfav.sort(function(a, b){return b.favoritesNum-a.favoritesNum});
+
+    try {
+        
+        res.status(200).send({sortedProducts})
     } catch (e) {
         res.status(400).send({e})
     }
