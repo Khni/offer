@@ -1,24 +1,28 @@
 
 .user-input-wrp {
 	position: relative;
-	width: 50%;
+	z-index: 10;
 }
-.user-input-wrp .inputText{
+.fieldset-container {
+	
+}
+// .user-input-wrp
+ .inputText{
   width: 200px;
   position: relative;
   display: inline-block;
   font-size: 1.25em;
   padding: 0 0 5px 0;
-  color: #004D40;
-  background-color: transparent;
+  color: #353b3a;
+//   background-color: transparent;
   border: none;
   border-bottom: solid 2px #4DB6AC;
   outline: none;
-  z-index: 20;
+  
   font-size: 12pt;
 	
 	transition: width 1s;
-	height: 20px;
+	height: 23px;
 	/*margin-bottom: 1px;*/
 	border: 1px solid rgba(81, 203, 238, 1);
 	border-radius: 5px;
@@ -27,13 +31,14 @@
 	padding-left: 30px;
 	text-align: left;
 	transition:  1s ease;
-	
+
 	&:focus{
 transition:  1s ease;
 	border-radius: 5px;
 	box-shadow: 0 0 5px #00ccff;
-	border: 1px solid #0066cc;
+	 border: 1px solid #0066cc;
 } 
+
 	// outline: none;
 	// border:none;
 	// border-bottom: 1px solid #777;
@@ -41,79 +46,83 @@ transition:  1s ease;
 }
 .user-input-wrp .inputText:focus{
 	border-color: blue;
-	border-width: medium medium 2px;
+	// border-width: medium medium 2px;
 }
-.user-input-wrp .floating-label {
+// .user-input-wrp
+ .floating-label {
 	position: absolute;
 	pointer-events: none;
-	top: 18px;
+	top: 14px;
 	left: 10px;
 	transition: 0.2s ease all;
+	color:  #0066cc;
 }
 .user-input-wrp input:focus ~ .floating-label,
 .user-input-wrp input:not(:focus):valid ~ .floating-label{
-	top: 0px;
+	top: -8px;
 	left: 10px;
-	font-size: 13px;
-	opacity: 1;
+	font-size: 15px;
+	// opacity: 1;
+	color: blueviolet;
+	background-color: white;
 }
 
 
 
-.LabelMove{
-  position: relitive;
-  display: inline-block;
-  color: #004D40;
-  top: 100px;
-  font-size: 1.25em;
-  transition: all .2s ease;
-  z-index: 10;
-  position: relative;
-  top: -30px;
-}
+// .LabelMove{
+//   position: relitive;
+//   display: inline-block;
+//   color: #004D40;
+//   top: 100px;
+//   font-size: 1.25em;
+//   transition: all .2s ease;
+//   z-index: 10;
+//   position: relative;
+//   top: -30px;
+// }
 
-.input-container {
-  width: 75%;
-  position: relative;
-  margin: 45px auto -25px;
-}
+// .input-container {
+//   width: 75%;
+//   position: relative;
+//   margin: 45px auto -25px;
+// }
 
-.inputLabelMove {
-  width: 200px;
-  position: relative;
-  display: inline-block;
-  font-size: 1.25em;
-  padding: 0 0 5px 0;
-  color: #004D40;
-  background-color: transparent;
-  border: none;
-  border-bottom: solid 2px #4DB6AC;
-  outline: none;
-  z-index: 20;
-  font-size: 12pt;
+// .inputLabelMove {
+//   width: 200px;
+//   position: relative;
+//   display: inline-block;
+//   font-size: 1.25em;
+//   padding: 0 0 5px 0;
+//   color: #004D40;
+//   background-color: transparent;
+//   border: none;
+//   border-bottom: solid 2px #4DB6AC;
+//   outline: none;
+//   z-index: 20;
+//   font-size: 12pt;
 	
-	transition: width 1s;
-	height: 20px;
-	/*margin-bottom: 1px;*/
-	border: 1px solid rgba(81, 203, 238, 1);
-	border-radius: 5px;
-	padding: 10px;
-	padding-right: 30px;
-	padding-left: 30px;
-	text-align: left;
-	transition:  1s ease;
+// 	transition: width 1s;
+// 	height: 20px;
+// 	/*margin-bottom: 1px;*/
+// 	border: 1px solid rgba(81, 203, 238, 1);
+// 	border-radius: 5px;
+// 	padding: 10px;
+// 	padding-right: 30px;
+// 	padding-left: 30px;
+// 	text-align: left;
+// 	transition:  1s ease;
 	
-	&:focus{
-transition:  1s ease;
-	border-radius: 5px;
-	box-shadow: 0 0 5px #00ccff;
-	border: 1px solid #0066cc;
-} 
-}
+// 	&:focus{
+// transition:  1s ease;
+// 	border-radius: 5px;
+// 	box-shadow: 0 0 5px #00ccff;
+// 	border: 1px solid #0066cc;
+// } 
+// }
 
-.inputLabelMove:focus ~ .LabelMove, .inputLabelMove:valid ~ .LabelMove ,.inputLabelMove:not(:focus):valid ~ .LabelMove{
-  top: -60px;
-}
+// .inputLabelMove:focus ~ .LabelMove, .inputLabelMove:valid ~ .LabelMove ,.inputLabelMove:not(:focus):valid ~ .LabelMove{
+//   top: -60px;
+// }
 
 
 

@@ -55,8 +55,10 @@ const buttons = [{
 
         return(
 <div className="SideNavPage">
-
+<div className="header-container">
 <Header />
+</div>
+
 
 <div className="SideNavPage-container" >
   <SideNavComponent navlinksArr={navlinks}

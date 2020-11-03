@@ -33,13 +33,13 @@ if (props.class == "sidebarAr") {
 let SetEnglishFunc =() =>{
   props.setEnglish()
   
-  window.location.reload(false);
+  // window.location.reload(false);
 //props.openSidebar()
 }
 let SetArabicFunc =() =>{
   props.setArabic()
   
-  window.location.reload(false);
+  // window.location.reload(false);
  // props.openSidebar()
 }
 return (

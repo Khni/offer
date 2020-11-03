@@ -61,8 +61,9 @@ class Form extends Component {
           
           <h4 class="form-title"> {this.props.title} </h4>
           <form onSubmit={handleSubmit(this.onSubmit)}>
-            <table >
+            
                  { this.props.fieldsets.map((field) => 
+                 <div className="fieldset-container">
              <fieldset>
               <Field
                 type={field.type}
@@ -76,8 +77,9 @@ class Form extends Component {
                 change={field.change}
               />
             </fieldset>
+            </div>
                     )} 
-</table>
+
             {/* <fieldset>
               <Field
                 

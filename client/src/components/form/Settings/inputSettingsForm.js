@@ -5,12 +5,10 @@ class InputSettings extends Component {
    // const { input: { value, onChange } } = this.props;
     //const { input: { val, change } } = this.props;
     return (
-      <div className="form-group">
-        <tr>
-
+      <div className="user-input-wrp">
         
-      <td className="labletd"> <label htmlFor={ this.props.id }  class="input-label">{ this.props.label }</label></td> 
-       <td> <input 
+       <input 
+       className="inputText" 
           name={ this.props.name }
           id={ this.props.id }
          /* placeholder={ this.props.placeholder } */
@@ -21,9 +19,8 @@ class InputSettings extends Component {
   // value={ value}
  //   onChange={ onChange }
         // required   
-           /></td>
-
-</tr>
+           />
+           <span className="floating-label">{this.props.label}</span>
       </div>
     );
   }

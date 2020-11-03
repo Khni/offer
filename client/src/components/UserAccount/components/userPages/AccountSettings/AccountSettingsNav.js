@@ -50,7 +50,8 @@ class AccountSettingsNav extends Component {
 
 
      <div className="TopNavPage">
-<Head />
+       <div className="header-container"><Head /></div>
+
 
        <h5>Account Settings</h5>
        <TopNavComponent navlinksArr={navlinks} />
