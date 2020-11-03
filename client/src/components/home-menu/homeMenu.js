@@ -97,10 +97,10 @@ item.name.indexOf(this.state.search) !== -1)
            SearchChange={this.searchUpdate} />
            <Searchbox />
           {/* testing */}
-<p>"window navigator" +{ navigator.userAgent}</p>
+{/* <p>"window navigator" +{ navigator.userAgent}</p>
 <p>{"lang: "+lang+" short: " + shortLang}</p>
 <p>{isFacebookApp() ? "fb" : "broswer"}</p>
-<p>{"fbapp: " +isFacebookApp()}</p>
+<p>{"fbapp: " +isFacebookApp()}</p> */}
           {/* testing */}
 		   {!this.state.Loading?	<div className="full-menu">
 		{this.props.sectionsWithProducts.map((col)=>

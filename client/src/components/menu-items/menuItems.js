@@ -2,10 +2,15 @@ import React from 'react';
 import MenuItems from './menuItems.scss';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { ReactComponent as AddFavorite } from '../productPage/icons/heartempty.svg'
+import { ReactComponent as FavoriteAdded } from '../productPage/icons/Heartfull.svg'
+
 import { connect } from 'react-redux';
 import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
-
+import * as Cartactions from '../../store/actions/CartItemsAction';
+import { selectCartItems } from '../../store/reducers/cart/cartReselect';
+import * as actions from '../../store/actions/index';
 const menuItems = (props, {history,match})=>{
 /*
 const inFavorite() {
@@ -19,8 +24,8 @@ return true;
    <div>
    
     <div  className="item" 
-    onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}>
-   
+    >
+   <div onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}>
    
    
    
@@ -37,11 +42,19 @@ return true;
 <p className="item-price">  {props.item.price}  EGP  </p>
 
 
-
-
+</div>
+<div className="flex-row">
+<button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
+<div><AddFavorite /></div>
+</div>
 </div>
 
-{/*<button className="custum-btn "  onClick={() => props.addItem(props.item)}>ADD TO CART  </button>*/}
+
+
+
+
+
+
 
 
 
@@ -49,11 +62,14 @@ return true;
      );
 }
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+  addItem: item => dispatch(addItem(item)),
+  addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
+  favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
 });
 const mapStateToProps =(state) =>{
 	return {
  //collections: selectProducts(state), 
+ cartItems: selectCartItems(state),
  categories : state.categoryReducer.categories,
  sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
  sectionsWithProducts: state.categoryReducer.sectionsWithProducts

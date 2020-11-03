@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-number-input'
  
 export default class InputSettings extends Component {
   render() {
-   // const { input: { value, onChange } } = this.props;
+   const { input: { value, onChange } } = this.props;
     //const { input: { val, change } } = this.props;
     return (
       <div className="form-group">

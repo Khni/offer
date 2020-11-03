@@ -497,14 +497,16 @@ router.get('/api/products-seen-list', auth, async (req, res) => {
     }
 })
 //sort products depends on favorite
-router.get('/api/products-popular', auth, async (req, res) => {
+router.get('/api/products-popular', async (req, res) => {
+  
     let products = await Product.find({})
   
-let productsWfav = products.map((product)=>{
+let productsWfav =await Promise.all( products.map(async(product)=>{
+const FavLengh = await Favorite.find({productID: product._id})
 
-return {...product, favoritesNum : await Favorite.find({productID: product._id}).length 
-})
-const sortedProducts =productsWfav.sort(function(a, b){return b.favoritesNum-a.favoritesNum});
+return {...product.toObject(), favoritesNum : FavLengh.length }
+}))
+const sortedProducts =productsWfav.sort(function(a, b){return b.favoritesNum -a.favoritesNum});
 
     try {
         
