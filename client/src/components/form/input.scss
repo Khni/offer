@@ -8,15 +8,16 @@
 }
 // .user-input-wrp
  .inputText{
+ background-color: white;
   width: 200px;
   position: relative;
   display: inline-block;
-  font-size: 1.25em;
-  padding: 0 0 5px 0;
+  
+  
   color: #353b3a;
 //   background-color: transparent;
-  border: none;
-  border-bottom: solid 2px #4DB6AC;
+  
+  
   outline: none;
   
   font-size: 12pt;
@@ -62,7 +63,7 @@ transition:  1s ease;
 	top: -8px;
 	left: 10px;
 	font-size: 15px;
-	// opacity: 1;
+	 opacity: 1;
 	color: blueviolet;
 	background-color: white;
 }
