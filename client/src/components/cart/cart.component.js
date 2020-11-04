@@ -73,7 +73,7 @@ cartdropdown = "cart-dropdown open" ;
 
 <p className="total-sum-cart" > {"Total: "+props.total}</p>
 
-{!props.isAuthenticated && !this.props.token ? 
+{!props.isAuthenticated && !props.token ? 
 <button onClick={()=>props.history.push({
   pathname: '/authnav/login',
   search: '?query=abc',
