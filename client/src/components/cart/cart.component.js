@@ -75,7 +75,7 @@ cartdropdown = "cart-dropdown open" ;
 
 {!props.isAuthenticated && !props.token ? 
 <button onClick={()=>props.history.push({
-  pathname: '/authnav/login',
+  pathname: '/authnav',
   search: '?query=abc',
   state: { targetUrl: '/checkout-address' }
 })} className="custum-btn-form-fixed" >Checkout</button>

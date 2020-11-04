@@ -38,6 +38,8 @@ class AuthNavPage extends Component {
 
 
     render() {
+    	
+    
 
       const navlinks = [{
         path:"/authnav/login" ,

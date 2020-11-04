@@ -27,14 +27,27 @@ class signIn extends Component {
 componentDidUpdate(){
   if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
-      if(this.props.location.state.targetUrl) {
+    if(this.props.location.state) {
+    	if(this.props.location.state.targetUrl) {
 this.props.history.push(this.props.location.state.targetUrl);
+} 
+
+  	if(!this.props.location.state.targetUrl) {
+this.props.history.push(this.props.location.state.targetUrl);
+} 
+
+
        } 
-       if(!this.props.location.state.targetUrl) {
+       
+       
+       
+       
+       if(!this.props.location.state) {
+       	
 this.props.history.push('/');
        } 
-      
-    }
+    
+  }
 }
   async onSubmit(formData) {
 
@@ -42,18 +55,7 @@ this.props.history.push('/');
   //  const { signIn } = this.props;
  //   await signIn(formData);
  this.props.signInAuth(formData,"login")
-if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
-	
-	if(this.props.location.state.targetUrl) {
-this.props.history.push(this.props.location.state.targetUrl);
-       } 
-       if(!this.props.location.state.targetUrl) {
-this.props.history.push('/');
-       } 
-       
-      
-      
-    }
+
   }
 
 
