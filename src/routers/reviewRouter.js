@@ -5,7 +5,7 @@ const Product = require('../models/Product')
 const User = require('../models/User')
 const router = new express.Router()
 
-
+const {getRating} =require('./review.utils')
 
 
 
@@ -31,7 +31,7 @@ router.post('/api/review/add', auth, async (req, res) => {
 
 
 
-router.get('/api/product-reviews/:id', auth, async (req, res) => {
+router.get('/api/productsWithRating', auth, async (req, res) => {
     const reviews = await Review.find({ productID: req.params.id})
   
 
@@ -39,6 +39,7 @@ router.get('/api/product-reviews/:id', auth, async (req, res) => {
   
 let productsWreviews =await Promise.all( products.map(async(product)=>{
 const productReviews = await Review.find({ productID: product._id})
+
 let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
     let rev4 = productReviews.filter((rev)=>rev.rate==4).length * 0.8
     let rev3 = productReviews.filter((rev)=>rev.rate==3).length * 0.6
@@ -78,21 +79,22 @@ router.get('/api/productWithReviews/:id',  async (req, res) => {
     
   
 const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
-let revsCount = productReviews.length
-let rating = 0
-if (revsCount != 0) {
-    let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
-    let rev4 = productReviews.filter((rev)=>rev.rate==4).length * 0.8
-    let rev3 = productReviews.filter((rev)=>rev.rate==3).length * 0.6
-    let rev2 = productReviews.filter((rev)=>rev.rate==2).length * 0.4
-    let rev1 = productReviews.filter((rev)=>rev.rate==1).length * 0.2
+const Rate = getRating(productReviews)
+// let revsCount = productReviews.length
+// let rating = 0
+// if (revsCount != 0) {
+//     let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
+//     let rev4 = productReviews.filter((rev)=>rev.rate==4).length * 0.8
+//     let rev3 = productReviews.filter((rev)=>rev.rate==3).length * 0.6
+//     let rev2 = productReviews.filter((rev)=>rev.rate==2).length * 0.4
+//     let rev1 = productReviews.filter((rev)=>rev.rate==1).length * 0.2
     
   
-    let ratingCount = (rev5+rev4+rev3+rev2+rev1) 
- rating=(ratingCount/revsCount) *5
-console.log( revsCount);
+//     let ratingCount = (rev5+rev4+rev3+rev2+rev1) 
+//  rating=(ratingCount/revsCount) *5
+// console.log( revsCount);
 
-}
+// }
 
 
 
@@ -102,7 +104,7 @@ console.log( revsCount);
 
     try {
 
-        res.status(200).send({ product , rating , productReviews })
+        res.status(200).send({ product , Rate , productReviews })
     } catch (e) {
         res.status(400).send({ e })
     }

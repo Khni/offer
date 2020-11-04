@@ -51,6 +51,7 @@ transition:  1s ease;
 }
 // .user-input-wrp
  .floating-label {
+	background-color: white;
 	position: absolute;
 	pointer-events: none;
 	top: 14px;
@@ -65,6 +66,7 @@ transition:  1s ease;
 	font-size: 15px;
 	 opacity: 1;
 	color: blueviolet;
+	
 	background-color: white;
 }
 
