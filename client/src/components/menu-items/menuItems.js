@@ -27,7 +27,7 @@ onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}
    
     <div  className="item" 
     >
-   <Link to=`${props.match.url+"item/" }${props.id}`>
+   <Link to={`${props.match.url+"item/" }${props.id}`} >
    
    
    
