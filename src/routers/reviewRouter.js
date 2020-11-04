@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth')
+const authAdmin = require('../middleware/authAdmin' )
 const express = require('express')
 const Review = require('../models/Review')
 const Product = require('../models/Product')
@@ -29,39 +30,54 @@ router.post('/api/review/add', auth, async (req, res) => {
 })
 
 
+router.get('/api/review-setactive/:id', authAdmin, async (req, res) => {
+const review = await Review.findOne({ _id: req.params.id})
+  review.active = true
+    
+
+    try {
+        await review.save()
+        
+        res.status(201).send({ review })
+    } catch (e) {
+        res.status(400).send({ e })
+    }
+})
+
+router.get('/api/review-unsetactive/:id', authAdmin, async (req, res) => {
+const review = await Review.findOne({ _id: req.params.id})
+  review.active = false
+    
+
+    try {
+        await review.save()
+        
+        res.status(201).send({ review })
+    } catch (e) {
+        res.status(400).send({ e })
+    }
+})
+
 
 
 router.get('/api/productsWithRating', auth, async (req, res) => {
-    const reviews = await Review.find({ productID: req.params.id})
+    const reviews = await Review.find({ active: true})
   
 
-    let product = await Product.find({_id : req.params.id})
+    let products = await Product.find({})
   
-let productsWreviews =await Promise.all( products.map(async(product)=>{
-const productReviews = await Review.find({ productID: product._id})
-
-let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
-    let rev4 = productReviews.filter((rev)=>rev.rate==4).length * 0.8
-    let rev3 = productReviews.filter((rev)=>rev.rate==3).length * 0.6
-    let rev2 = productReviews.filter((rev)=>rev.rate==2).length * 0.4
-    let rev1 = productReviews.filter((rev)=>rev.rate==1).length * 0.2
-    
-    let revsCount = productReviews.length
-    let ratingCount = (rev5+rev4+rev3+rev2+rev1) 
-let rating=(ratingCount/revsCount) *5
-if(rating== null) {
-	rating=0
-	} 
+let productsWrate =await Promise.all( products.map(async(product)=>{
+const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
+const productRate = getRating(productReviews)
 
 
 
-
-return {...product.toObject(),  reviews : productReviews, rating: rating}
+return {...product.toObject(),   rate : productRate}
 }))
 
     try {
 
-        res.status(200).send({ favoriteProducts })
+        res.status(200).send({ productsWrate })
     } catch (e) {
         res.status(400).send({ e })
     }

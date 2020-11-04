@@ -10,7 +10,7 @@ import App from './App';
 import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
-
+import ScrollToTop from './config/scrollToTop.js';
 
 
 import { PersistGate } from 'redux-persist/integration/react';
@@ -27,7 +27,9 @@ ReactDOM.render(
   <BrowserRouter>
 <Provider store={store}>
 <PersistGate persistor={persistor}>
+<ScrollToTop>
 <App />
+</ScrollToTop>
 </PersistGate>
 </Provider>
   </BrowserRouter>,
