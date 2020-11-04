@@ -39,15 +39,26 @@ class AuthNavPage extends Component {
 
     render() {
     	
-    
+    const targetUrl = () => {
+if(this.props.location.state) {
+    	if(this.props.location.state.targetUrl) {
+return this.props.location.state.targetUrl
+} 
+
+       } 
+       
+       return null
+} 
 
       const navlinks = [{
         path:"/authnav/login" ,
-        title: this.props.terms.signin_title
+        title: this.props.terms.signin_title, 
+        targetUrl: targetUrl
       },
       {
         path:"/authnav/signup",
-        title: this.props.terms.signup_title
+        title: this.props.terms.signup_title, 
+        targetUrl: targetUrl
       }]
         return(
 
