@@ -8,7 +8,9 @@ import { Switch, Route } from 'react-router-dom';
 import  AuthNav from './components/authNew/authNavPage/authNavPage';
 import SignUp from './components/authNew/sign-up/signUp.js';
 import SignIn from './components/authNew/sign-in/signIn.js';
+
 import authHOC from './components/HOCs/auth/authHOC.js';
+import AccountHOC from './components/HOCs/auth/accountHOC.js';
 import Cart from './components/cart/cart.component.js';
 import ProductPage from './components/productPage/productPage'
 import AdminPage from './admin/admin'
@@ -37,20 +39,20 @@ function App() {
           <Route path='/carousel' component={Carousel} />
          <Route path='/signin' component={authHOC(SignIn)} />
          <Route path='/cart' component={Cart} />
-         <Route path='/account' component={UserAccount} />
+         <Route path='/account' component={AccountHOC(UserAccount )} />
           <Route path='/item/:id' component={ProductPage} />
           <Route path='/addaddress' component={AddAddress} />
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />
           <Route path='/authnav' component={AuthNav} />
           
-          <Route path='/checkout-address' component={CheckoutAddress} />
-          <Route path='/checkout-confirm' component={CheckoutPayment} />
-          <Route path="/settings" component={AccountSettingsNav} />
-                    <Route path="/orders" component={Orders}  />
+          <Route path='/checkout-address' component={AccountHOC(CheckoutAddress) } />
+          <Route path='/checkout-confirm' component={AccountHOC(CheckoutPayment) } />
+          <Route path="/settings" component={AccountHOC(AccountSettingsNav) } />
+                    <Route path="/orders" component={AccountHOC(Orders)}  />
                     <Route path="/orderpage-admin/:id" component={OrderPageAdmin}  />
-                    <Route path="/favorite-list" component={FavoriteList} />
-                    <Route path="/viewed-items" component={ViewedItems} />
+                    <Route path="/favorite-list" component={AccountHOC(FavoriteList) } />
+                    <Route path="/viewed-items" component={AccountHOC(ViewedItems) } />
         </Switch>
     </div>
   );
