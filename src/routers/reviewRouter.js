@@ -1,5 +1,5 @@
 const auth = require('../middleware/auth')
-const authAdmin = require('../middleware/authAdmin' )
+const authAdmin = require('../middleware/adminAuth.js' )
 const express = require('express')
 const Review = require('../models/Review')
 const Product = require('../models/Product')
