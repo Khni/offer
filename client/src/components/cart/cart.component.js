@@ -67,11 +67,7 @@ cartdropdown = "cart-dropdown open" ;
 </div> 
   ))} 
 
-props.history.push({
-  pathname: '/authnav',
-  search: '?query=abc',
-  state: { targetUrl: '/checkout-address' }
-})
+
 
 
 
