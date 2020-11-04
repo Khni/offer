@@ -19,13 +19,15 @@ if (favProduct) {
 return true;
 } 
 } 
+
+onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}
 */
    return(
    <div>
    
     <div  className="item" 
     >
-   <div onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}>
+   <Link to=`${props.match.url+"item/" }${props.id}`>
    
    
    
@@ -42,7 +44,7 @@ return true;
 <p className="item-price">  {props.item.price}  EGP  </p>
 
 
-</div>
+</Link>
 <div className="flex-row">
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
 <div><AddFavorite /></div>
