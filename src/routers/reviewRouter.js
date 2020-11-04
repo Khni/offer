@@ -69,37 +69,40 @@ return {...product.toObject(),  reviews : productReviews, rating: rating}
 
 
 
-router.get('/api/productWithReviews:id', auth, async (req, res) => {
-    const reviews = await Review.find({ productID: req.params.id})
+router.get('/api/productWithReviews/:id',  async (req, res) => {
+    
   
 
     let product = await Product.find({_id : req.params.id})
     
     
   
-const productReviews = await Review.find({ productID: product._id})
-let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
+const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
+let revsCount = productReviews.length
+let rating = 0
+if (revsCount != 0) {
+    let rev5 = productReviews.filter((rev)=>rev.rate==5).length 
     let rev4 = productReviews.filter((rev)=>rev.rate==4).length * 0.8
     let rev3 = productReviews.filter((rev)=>rev.rate==3).length * 0.6
     let rev2 = productReviews.filter((rev)=>rev.rate==2).length * 0.4
     let rev1 = productReviews.filter((rev)=>rev.rate==1).length * 0.2
     
-    let revsCount = productReviews.length
+  
     let ratingCount = (rev5+rev4+rev3+rev2+rev1) 
-let rating=(ratingCount/revsCount) *5
-if(rating== null) {
-	rating=0
-	} 
+ rating=(ratingCount/revsCount) *5
+console.log( revsCount);
+
+}
 
 
 
 
-return {...product.toObject(),   rating: rating}
-}))
+
+
 
     try {
 
-        res.status(200).send({ favoriteProducts })
+        res.status(200).send({ product , rating , productReviews })
     } catch (e) {
         res.status(400).send({ e })
     }
