@@ -27,7 +27,12 @@ class signIn extends Component {
 componentDidUpdate(){
   if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
-      this.props.history.push('/');
+      if(this.props.location.state.targetUrl) {
+this.props.history.push(this.props.location.state.targetUrl);
+       } 
+       if(!this.props.location.state.targetUrl) {
+this.props.history.push('/');
+       } 
       
     }
 }
@@ -39,7 +44,14 @@ componentDidUpdate(){
  this.props.signInAuth(formData,"login")
 if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
 	
-      this.props.history.push('/');
+	if(this.props.location.state.targetUrl) {
+this.props.history.push(this.props.location.state.targetUrl);
+       } 
+       if(!this.props.location.state.targetUrl) {
+this.props.history.push('/');
+       } 
+       
+      
       
     }
   }

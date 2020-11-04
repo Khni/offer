@@ -67,9 +67,25 @@ cartdropdown = "cart-dropdown open" ;
 </div> 
   ))} 
 
+props.history.push({
+  pathname: '/authnav',
+  search: '?query=abc',
+  state: { targetUrl: '/checkout-address' }
+})
+
+
 
 <p className="total-sum-cart" > {"Total: "+props.total}</p>
-<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>
+
+{!props.isAuthenticated && !this.props.token ? 
+<button onClick={()=>props.history.push({
+  pathname: '/authnav/login',
+  search: '?query=abc',
+  state: { targetUrl: '/checkout-address' }
+})} className="custum-btn-form-fixed" >Checkout</button>
+:<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>} 
+
+
 
 
 
@@ -95,6 +111,8 @@ cartdropdown = "cart-dropdown open" ;
 
 function mapStateToProps(state)  {
   return {
+  	token: state.userAuth.authUser.token,
+      isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     cartItems: selectCartItems(state), 
     total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity * item.price, 0)
 
