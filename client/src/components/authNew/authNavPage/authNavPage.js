@@ -47,7 +47,7 @@ return this.props.location.state.targetUrl
 
        } 
        
-       return null
+       
 } 
 
       const navlinks = [{
