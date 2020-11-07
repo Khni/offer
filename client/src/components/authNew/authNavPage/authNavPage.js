@@ -35,30 +35,32 @@ class AuthNavPage extends Component {
 
 
 
-
+  //  targetUrl () {
+  //     // if(this.props.location.state) {
+  //     //     	if(this.props.location.state.targetUrl) {
+  //     // return this.props.location.state.targetUrl
+  //     // } 
+      
+  //     //        } 
+  //            return "link"
+             
+  //     } 
 
     render() {
     	
-    const targetUrl = () => {
-if(this.props.location.state) {
-    	if(this.props.location.state.targetUrl) {
-return this.props.location.state.targetUrl
-} 
+   
 
-       } 
-       
-       
-} 
+
 
       const navlinks = [{
         path:"/authnav/login" ,
         title: this.props.terms.signin_title, 
-        targetUrl: targetUrl
+        
       },
       {
         path:"/authnav/signup",
         title: this.props.terms.signup_title, 
-        targetUrl: targetUrl
+        
       }]
         return(
 

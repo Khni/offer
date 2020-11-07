@@ -25,7 +25,7 @@ const TopNav = (props) => {
     return <NavLink key={i} className="top-NavLinkItems"
                                 to={{
                                   pathname:navlink.path, 
-                                  state: { targetUrl: navlink.targetUrl} 
+                                  // state: { targetUrl: navlink.targetUrl} 
                               }}
                              
                              
