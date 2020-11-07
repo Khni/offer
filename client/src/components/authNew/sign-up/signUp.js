@@ -45,8 +45,12 @@ class signUp extends Component {
 
 
   async responseGoogle(res) {
-  //  await this.props.oauthGoogle(res.accessToken);
-    // if (!this.props.errorMsg) {
+    console.log("google res" + JSON.stringify(res.accessToken));
+    //const data = { access_token: res.accessToken }
+    // console.log(data+"data");
+    this.props.signUpAuth({ access_token: res.accessToken }, "goauth")
+    //  await this.props.oauthGoogle(res.accessToken);
+    // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
     //   this.props.history.push('/');
     // }
   }
@@ -106,31 +110,22 @@ class signUp extends Component {
 
 
   ]
-componentDidUpdate(){
-  if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
-	
-    if(this.props.location.state) {
-    	if(this.props.location.state.targetUrl) {
-this.props.history.push(this.props.location.state.targetUrl);
-} 
+  componentDidUpdate() {
+    if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
 
-  	if(!this.props.location.state.targetUrl) {
-this.props.history.push(this.props.location.state.targetUrl);
-} 
+     
+      if (this.props.checkoutRedirectLink) {
+        const link = this.props.checkoutRedirectLink
+        this.props.chechoutRedirectDone()
+        this.props.history.push(link);
+      } else {
+
+        this.props.history.push('/');
+      }
 
 
-       } 
-       
-       
-       
-       
-       if(!this.props.location.state) {
-       	
-this.props.history.push('/');
-       } 
-    
+    }
   }
-}
 componentDidMount(){
   
 }
@@ -171,6 +166,7 @@ componentDidMount(){
 
 const mapStateToProps = state => {
   return {
+    checkoutRedirectLink: state.redirectAuthReducer.authLink,
     errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
@@ -193,6 +189,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+      chechoutRedirectDone: () => dispatch(actions.chechoutRedirectDone()),
         signUpAuth: ( data,action) => dispatch( actions.auth( data,action) ),
         authLeft: () => dispatch( actions.authLeft())
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )

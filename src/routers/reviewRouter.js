@@ -29,8 +29,29 @@ router.post('/api/review/add', auth, async (req, res) => {
     }
 })
 
+router.get('/api/reviews-active',  async (req, res) => {
+    const reviews = await Review.find({ active: true})
+  
+    try {
 
-router.get('/api/review-setactive/:id', authAdmin, async (req, res) => {
+        res.status(200).send({ reviews })
+    } catch (e) {
+        res.status(400).send({ e })
+    }
+})
+
+router.get('/api/reviews-notactive', authAdmin, async (req, res) => {
+    const reviews = await Review.find({ active: false})
+  
+    try {
+
+        res.status(200).send({ reviews })
+    } catch (e) {
+        res.status(400).send({ e })
+    }
+})
+
+router.get('/api/review-activate/:id', authAdmin, async (req, res) => {
 const review = await Review.findOne({ _id: req.params.id})
   review.active = true
     
@@ -44,7 +65,7 @@ const review = await Review.findOne({ _id: req.params.id})
     }
 })
 
-router.get('/api/review-unsetactive/:id', authAdmin, async (req, res) => {
+router.get('/api/review-deactivate/:id', authAdmin, async (req, res) => {
 const review = await Review.findOne({ _id: req.params.id})
   review.active = false
     
@@ -60,7 +81,7 @@ const review = await Review.findOne({ _id: req.params.id})
 
 
 
-router.get('/api/productsWithRating', auth, async (req, res) => {
+router.get('/api/productsWithRating',  async (req, res) => {
     const reviews = await Review.find({ active: true})
   
 
@@ -94,7 +115,7 @@ router.get('/api/productWithReviews/:id',  async (req, res) => {
     
     
   
-const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
+const productReviews = await Review.find({$and:[{ productID: req.params.id}, { active: true}]})
 const Rate = getRating(productReviews)
 // let revsCount = productReviews.length
 // let rating = 0

@@ -9,7 +9,7 @@ import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 export const chechoutRedirect =  ()  =>{
  return dispatch =>{
- 	
+ 	console.log("dispatch link");
  dispatch({
         type: CHECKOUT_LINK_ADD, 
         
@@ -19,18 +19,11 @@ export const chechoutRedirect =  ()  =>{
 
 }
 
-export const chechoutRedirectDone =  ()  =>{
- return dispatch =>{
- 	
- dispatch({
-        type: CHECKOUT_LINK_REMOVE, 
-        
-      });
-   
-} 
+export const chechoutRedirectDone =  ()  =>({
+  type: CHECKOUT_LINK_REMOVE
+});
 
-}
-
+ 
 export const addItem = (item, items) => ({
   type: ADD_ITEM_TO_CART,
   item: item, 

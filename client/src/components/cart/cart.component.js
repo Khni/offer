@@ -20,7 +20,7 @@ cartdropdown = "cart-dropdown open" ;
 
 
 const checkoutRedirectPush =() => {
-chechoutRedirect() 
+props.chechoutRedirect() 
 props.history.push({
   pathname: '/authnav',
   //search: '?query=abc',
@@ -123,7 +123,7 @@ function mapStateToProps(state)  {
 const mapDispatchToProps = dispatch => ({
 	
 	
-	chechoutRedirect: () => chechoutRedirect(), 
+	// chechoutRedirect: () => chechoutRedirect(), 
 	
 
   removeItem: item => dispatch(removeItem(item)), 
