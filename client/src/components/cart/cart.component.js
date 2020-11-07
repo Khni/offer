@@ -125,7 +125,7 @@ const mapDispatchToProps = dispatch => ({
 	
 	chechoutRedirect: () => chechoutRedirect(), 
 	
-  addItem: item => dispatch(addItem(item))
+
   removeItem: item => dispatch(removeItem(item)), 
   addItem: item => dispatch(addItem(item))
 });
