@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Style from './cartItemComponent/cartItem.css'
 import CartItemstyle from './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
-import {addItem, removeItem} from '../../store/actions/CartItemsAction';
+import {addItem, removeItem, chechoutRedirect} from '../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 import * as actions  from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
@@ -18,6 +18,15 @@ const CartItem = (props) =>{
 cartdropdown = "cart-dropdown open" ;
 } 
 
+
+const checkoutRedirectPush =() => {
+chechoutRedirect() 
+props.history.push({
+  pathname: '/authnav',
+  //search: '?query=abc',
+  //state: { targetUrl: '/checkout-address' }
+})
+} 
  return (
 
 
@@ -74,11 +83,7 @@ cartdropdown = "cart-dropdown open" ;
 <p className="total-sum-cart" > {"Total: "+props.total}</p>
 
 {!props.isAuthenticated && !props.token ? 
-<button onClick={()=>props.history.push({
-  pathname: '/authnav',
-  search: '?query=abc',
-  state: { targetUrl: '/checkout-address' }
-})} className="custum-btn-form-fixed" >Checkout</button>
+<button onClick={()=>checkoutRedirectPush()} className="custum-btn-form-fixed" >Checkout</button>
 :<button onClick={()=>props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>} 
 
 
@@ -116,6 +121,11 @@ function mapStateToProps(state)  {
   };
 }
 const mapDispatchToProps = dispatch => ({
+	
+	
+	chechoutRedirect: () => chechoutRedirect(), 
+	
+  addItem: item => dispatch(addItem(item))
   removeItem: item => dispatch(removeItem(item)), 
   addItem: item => dispatch(addItem(item))
 });

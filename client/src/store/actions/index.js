@@ -14,6 +14,9 @@ export {
 
 export {setArabic, setEnglish } from './LangActions';
 
+chechoutRedirectDone
+
+export {chechoutRedirectDone, chechoutRedirect}   from './CartItemsAction';
 export {openSidebar}   from './cartAction';
 
 export {

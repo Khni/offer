@@ -26,26 +26,17 @@ class signIn extends Component {
   }
 componentDidUpdate(){
   if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
-	
-    if(this.props.location.state) {
-    	if(this.props.location.state.targetUrl) {
-this.props.history.push(this.props.location.state.targetUrl);
-} 
 
-  	if(!this.props.location.state.targetUrl) {
-this.props.history.push(this.props.location.state.targetUrl);
-} 
+       
+       if(this.props.checkoutRedirectLink) {
+       	const link = this.props.checkoutRedirectLink
+       this.props.chechoutRedirectDone()
+this.props.history.push(link);
+       } else {
 
-
-       } 
-       
-       
-       
-       
-       if(!this.props.location.state) {
-       	
 this.props.history.push('/');
-       } 
+} 
+       
     
   }
 }
@@ -140,6 +131,7 @@ fieldsets = [
 const mapStateToProps = state => {
   return {
   	Loading: state.userAuth.authUser.Loading,
+  checkoutRedirectLink: state.redirectAuthReducer.authLink,
     errorMsg: state.userAuth.authUser.error, 
     name: state.userAuth.authUser.name, 
     token: state.userAuth.authUser.token,
@@ -157,6 +149,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+    	chechoutRedirectDone: () => actions.chechoutRedirectDone() ,
         signInAuth: ( data,action) => dispatch( actions.auth( data,action) ),
         authLeft: () => dispatch( actions.authLeft())
       //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )

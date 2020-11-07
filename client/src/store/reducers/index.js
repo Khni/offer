@@ -17,6 +17,7 @@ import ordersReducer from './auth/ordersReducer.js';
 import OrdersAdminReducer from './admin/orders/ordersReducer'
 import {migrations} from './migrations.js' ;
 import FavAndSeenReducer from './auth/favoriteAndSeenReducer'
+import redirectAuthReducer from './auth/redirectAuthReducer' 
 
 const persistConfig = {
   key: 'root',
@@ -31,6 +32,8 @@ const persistConfig = {
 , 'checkoutReducer'
 , 'userAuth' 
 ,'langsReducer'
+, 'redirectAuthReducer' 
+
 ]
 };
 
@@ -49,7 +52,8 @@ const Reducers = combineReducers({
     addressReducer: addressReducer,
     OrdersAdminReducer: OrdersAdminReducer, 
     langsReducer : langsReducer,
-    FavAndSeenReducer: FavAndSeenReducer
+    FavAndSeenReducer: FavAndSeenReducer, 
+    redirectAuthReducer: redirectAuthReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 

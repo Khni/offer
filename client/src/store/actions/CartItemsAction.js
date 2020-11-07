@@ -1,22 +1,35 @@
-import {ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART} from '../types/cartTypes';
+import {ADD_ITEM_TO_CART, 
+REMOVE_ITEM_FROM_CART, 
+CHECKOUT_LINK_ADD, 
+  CHECKOUT_LINK_REMOVE
+  
+} from '../types';
 import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 
-/*export const AddItemToCart =  (item, items)  =>{
+export const chechoutRedirect =  ()  =>{
  return dispatch =>{
  	
  dispatch({
-        type: ADD_ITEM_TO_CART, 
-        item: item, 
-        items: items
+        type: CHECKOUT_LINK_ADD, 
+        
       });
-   
    
 } 
 
+}
 
- 
-}*/
+export const chechoutRedirectDone =  ()  =>{
+ return dispatch =>{
+ 	
+ dispatch({
+        type: CHECKOUT_LINK_REMOVE, 
+        
+      });
+   
+} 
+
+}
 
 export const addItem = (item, items) => ({
   type: ADD_ITEM_TO_CART,
@@ -63,3 +76,5 @@ export const removeItem = (item, items)  => ({
   type: REMOVE_ITEM_FROM_CART,
   item: item
 });
+
+
