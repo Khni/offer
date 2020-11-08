@@ -53,13 +53,11 @@ class ProductPage extends Component {
 
   async fetchProduct() {
 
-    const response = await axios.get('/api/product/find/' + this.props.match.params.id);
+    const response = await axios.get('/api/productWithReviews/' + this.props.match.params.id);
     const imgUrls = response.data.product.imgURLs.map(img =>
       awsImgUrl + img.imgURL)
     let ProductRating = response.data.rating
-    if (ProductRating == null) {
-      ProductRating = 0
-    }
+    
 
     await this.props.favoriteListAction(this.props.token)
 
@@ -67,7 +65,7 @@ class ProductPage extends Component {
 
     this.favoriteCheck(productID)
 
-    this.setState({ product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.product.reviews.reverse() })
+    this.setState({ product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse() })
 
     if (this.state.fetch) {
       this.setState({ fetch: false })

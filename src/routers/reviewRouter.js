@@ -51,6 +51,25 @@ router.get('/api/reviews-notactive', authAdmin, async (req, res) => {
     }
 })
 
+router.get('/api/reviews/:status', authAdmin, async (req, res) => {
+	let reviews = [] 
+	if (req.params.status =='active' ) {
+reviews = await Review.find({ active: true})
+} 
+if (req.params.status =='notactive' ) {
+reviews = await Review.find({ active: false})
+} 
+     
+  
+    try {
+
+        res.status(200).send({ reviews })
+    } catch (e) {
+        res.status(400).send({ e })
+    }
+})
+
+
 router.get('/api/review-activate/:id', authAdmin, async (req, res) => {
 const review = await Review.findOne({ _id: req.params.id})
   review.active = true
@@ -141,7 +160,7 @@ const Rate = getRating(productReviews)
 
     try {
 
-        res.status(200).send({ product , Rate , productReviews })
+        res.status(200).send({ product , rating , productReviews })
     } catch (e) {
         res.status(400).send({ e })
     }

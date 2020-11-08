@@ -33,7 +33,7 @@ newRate:''
   
   async addReview(data){
  try{
-  const response =   await axios.post('/api/product/add-comment/'+this.props.productID, data, {
+  const response =   await axios.post('/api/review/add/'+this.props.productID, data, {
       headers : { Authorization: `Bearer ${this.props.userToken}`
 
        } });
