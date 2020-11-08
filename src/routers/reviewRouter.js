@@ -130,12 +130,12 @@ router.get('/api/productWithReviews/:id',  async (req, res) => {
     
   
 
-    let product = await Product.find({_id : req.params.id})
+    let product = await Product.findOne({_id : req.params.id})
     
     
   
 const productReviews = await Review.find({$and:[{ productID: req.params.id}, { active: true}]})
-const Rate = getRating(productReviews)
+const rating = getRating(productReviews)
 // let revsCount = productReviews.length
 // let rating = 0
 // if (revsCount != 0) {

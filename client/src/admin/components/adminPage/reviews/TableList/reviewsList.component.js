@@ -39,10 +39,8 @@ class CategoryList extends Component {
      }
      
      
-const response =   await axios.get(this.props.apiFetchLink+ this.props.match.params.status, {
-             headers : { Authorization: `Bearer ${this.props.AuthToken}`
-              }} );
-              const list = await this.props.fetchList() 
+
+              const list = await this.props.fetchList(this.props.match.params.status, this.props.adminToken) 
               this.setState({list: list, Loading: false, status :this.props.match.params.status})
               
 
@@ -55,6 +53,7 @@ const response =   await axios.get(this.props.apiFetchLink+ this.props.match.par
    }
 
 async componentDidMount() {
+  console.log("log from review list " + this.props.Ato);
 await this.FetchCategoriesFromServer()
   }
 
@@ -93,9 +92,9 @@ async componentDidUpdate(prevProps,prevState){
                       <table className="TableList">
     <tr><td> </td><th>Order Number</th> <th>Total</th></tr>
     {/* onClick={() => this.props.history.push(`${this.props.match.url+"orderpage-admin/" }${orders._id}`)} */}
-{this.props.orders.map((orders,i)=>{
-return     <tr onClick={() => this.props.history.push(/orderpage-admin/+orders._id) }>
-  <td>{i +1}</td><td>{orders.orderNum}</td><td>{orders.totalPrice}</td></tr>
+{this.state.list.map((item,i)=>{
+return     <tr onClick={() => this.props.history.push(/orderpage-admin/+item._id) }>
+  <td>{i +1}</td><td>{item.active}</td><td>{item.title}</td></tr>
    })}
   
       </table>:  <div className="loader"/>}

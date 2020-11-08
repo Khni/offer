@@ -10,7 +10,7 @@ import { compose } from 'redux';
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 import AddProduct from '../addItemToServer/addProduct.component'
-import List from '../TableList/ordersList.component'
+import List from '../TableList/reviewsList.component'
 import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/product';
@@ -29,47 +29,21 @@ class ProductsNav extends Component {
 
 
 
-
+componentDidMount() {
+  console.log("reviewsComponent" + this.props.subRoute+'status' );
+}
 
 
 
 
     render() {
 
-      const navlinks = [
-      {
-        path: "/admin/orders/orders-list/all",
-        title: "all Orders"
-      },
-      {
-        path: "/admin/orders/orders-list/unconfirmed",
-        title: "Unconfirmed Orders"
-      }
-      ,
-      ,
-      {
-        path: "/admin/orders/orders-list/confirmed",
-        title: "Confirmed Orders"
-      },
-      {
-        path: "/admin/orders/orders-list/shipped",
-        title: "Shipped Orders"
-      },
-      {
-        path: "/admin/orders/orders-list/delivered",
-        title: "delivered Orders"
-      }
-      // ,
-      // {
-      //   path: "/admin/products/add-product",
-      //   title: "Add Product"
-      // }
-    ]
+     
         return(
 
 
      <div className="TopNavPage">
-       <TopNavComponent navlinksArr={navlinks} />
+       <TopNavComponent navlinksArr={this.props.navlinks} />
       
  
 
@@ -78,17 +52,16 @@ class ProductsNav extends Component {
       <div className="TopNav-container">
                 <Switch>
                     
-                    {/* <Route exact path="/admin/products/add-product" component={AddProduct}  /> */}
-                    <Route exact path="/admin/orders/orders-list/:status" component={List}  />
-                    <Redirect from="/admin/orders" to="/admin/orders/orders-list/all" />
-                    
-                    
-       <Route
-  path={this.props.subRoute+'status' }
+                
+                <Route
+  path={this.props.subRoute+'/:status' }
   render={(props) => (
-    <List {...props} isAuthed={true} />
+    <List {...props} fetchList={this.props.fetchList} adminToken={this.props.adminToken} />
   )}
-/>
+/>    
+
+
+    
 <Redirect from={this.props.mainRoute} to={this.props.redirectLink} />
                     
                    

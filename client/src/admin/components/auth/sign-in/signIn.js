@@ -22,7 +22,9 @@ class signIn extends Component {
    
     
   }
-
+authLeft() {
+  //some code 
+}
   async onSubmit(formData) {
 
 
@@ -81,6 +83,7 @@ fieldsets = [
   // signupLink="/signup" 
   // ToSignUp={this.props.ToSignUp}
    signup_title={this.props.signup_title} 
+   removeErr={this.authLeft}
    />
       </div>
 

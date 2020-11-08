@@ -27,6 +27,7 @@ import FavoriteList from './components/UserAccount/components/userPages/Favorite
 import ViewedItems from './components/UserAccount/components/userPages/ViewedItems/ViewedItems.js'
 import Carousel from './components/carousel'
 import OrderPageAdmin from './admin/components/adminPage/orders/orderPage'
+import ReviewsNavAdmin from './admin/components/adminPage/reviews/TopNav/reviewsNav'
 function App() {
   return (
     <div className="App">
@@ -45,7 +46,8 @@ function App() {
           <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
           <Route path='/admin-login' component={AdminLogin} />
           <Route path='/authnav' component={AuthNav} />
-          
+
+          <Route path='/admin-reviews' component={ReviewsNavAdmin} />
           <Route path='/checkout-address' component={AccountHOC(CheckoutAddress) } />
           <Route path='/checkout-confirm' component={AccountHOC(CheckoutPayment) } />
           <Route path="/settings" component={AccountHOC(AccountSettingsNav) } />

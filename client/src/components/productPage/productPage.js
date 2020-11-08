@@ -54,6 +54,8 @@ class ProductPage extends Component {
   async fetchProduct() {
 
     const response = await axios.get('/api/productWithReviews/' + this.props.match.params.id);
+    const product = response.data.product
+    console.log("product"+JSON.stringify(product));
     const imgUrls = response.data.product.imgURLs.map(img =>
       awsImgUrl + img.imgURL)
     let ProductRating = response.data.rating
