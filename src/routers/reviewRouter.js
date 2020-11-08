@@ -10,13 +10,14 @@ const {getRating} =require('./review.utils')
 
 
 
-router.post('/api/review/add', auth, async (req, res) => {
+router.get('/api/review/add/:id', auth, async (req, res) => {
 
     
     const review = new Review({
         ...req.body,
         active: false, 
-        userID: req.user._id
+        userID: req.user._id,
+        productID: req.params.id
 
     })
 
