@@ -33,7 +33,7 @@ newRate:''
   
   async addReview(data){
  try{
-  const response =   await axios.post('/api/review/add/'+this.props.productID, data, {
+  const response =   await axios.post('/api/review/add', data, {
       headers : { Authorization: `Bearer ${this.props.userToken}`
 
        } });
@@ -48,6 +48,7 @@ console.log("err: " + err);
 	async onSubmit(formData) {
 		if(this.state.newRate){
     formData.rate = this.state.newRate
+    formData.productID= this.props.productID
     console.log(formData);
  await this.addReview(formData)
  this.props.fetchHandle(true)
