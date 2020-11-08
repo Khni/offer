@@ -1,75 +1,70 @@
-$dicoraction : "line-through" ;
+$dicoraction: "line-through";
 
 .item {
-				
-				display: flex;
-				/*align-items: center; 
+	display: flex;
+	/*align-items: center; 
                justify-content: center;*/
-				flex-direction: column;
-				min-height: 222px;
-				min-width: 185px;
-				background: white;
-				margin: 5px;
-				box-shadow: 1px 2px 3px #888888;
-				
-				border-radius: 5px;
-				
-				}
-				
-.item-title-menu-item {
-				display:flex;
-				
-				font-size: 15px;
-				/*font-weight: bold;*/
-				margin: 5px; 
-				padding: 0px;
-				margin-top: 2px;
-				}
+	flex-direction: column;
+	min-height: 222px;
+	min-width: 185px;
+	background: white;
+	margin: 5px;
+	box-shadow: 1px 2px 3px #888888;
 
-.item-before-price{
-				display:flex;
-				
-				text-decoration: $dicoraction;
-				color: red;
-				font-size: 15px;
-				margin: 0px; 
-				padding: 0px;
-				
-				
-				}
-.item-price{
-				display:flex;
-				margin: 0px; 
-				padding: 0px;
-				font-size: 15px;
-				/*font-weight: bold;*/
-				
-				
-				}
-				
-.item-img{
-				display:flex;
-				height:190px;
-				width:190px;
-				margin: 0px;
-			 padding: 0px;
-			 cursor: pointer;
-				}
+	border-radius: 5px;
+}
+
+.marginTop50 {
+	margin-top: 50px;
+}
+
+.item-title-menu-item {
+	display: flex;
+
+	font-size: 15px;
+	/*font-weight: bold;*/
+	margin: 5px;
+	padding: 0px;
+	margin-top: 2px;
+}
+
+.item-before-price {
+	display: flex;
+
+	text-decoration: $dicoraction;
+	color: red;
+	font-size: 15px;
+	margin: 0px;
+	padding: 0px;
+}
+.item-price {
+	display: flex;
+	margin: 0px;
+	padding: 0px;
+	font-size: 15px;
+	/*font-weight: bold;*/
+}
+
+.item-img {
+	display: flex;
+	height: 190px;
+	width: 190px;
+	margin: 0px;
+	padding: 0px;
+	cursor: pointer;
+}
 
 .custum-btn {
-  width: 110px;
-  margin: 5px;
-  height: 30px;
-  
-  
-  
-  font-size: 13px;
-  Background: linear-gradient(to right,  #00B4DB, #0083B0);
-  color: white;
-  text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
-  font-weight: bolder;
-  border: none;
-  cursor: pointer;
- } 
-				
+	width: 110px;
+	margin: 5px;
+	height: 30px;
+
+	font-size: 13px;
+	background: linear-gradient(to right, #00b4db, #0083b0);
+	color: white;
+	text-transform: uppercase;
+	font-family: "Open Sans Condensed";
+	font-weight: bolder;
+	border: none;
+	cursor: pointer;
+}

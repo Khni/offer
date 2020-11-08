@@ -45,9 +45,9 @@ onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}
 
 
 </div>
-<div className="flex-row">
+<div className="flex-row marginTop50">
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
-<div><AddFavorite /></div>
+<div  className="icon-button pointer hoverscalein" ><AddFavorite /></div>
 </div>
 </div>
 
