@@ -111,8 +111,6 @@ let productsWrate =await Promise.all( products.map(async(product)=>{
 const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
 const productRate = getRating(productReviews)
 
-
-
 return {...product.toObject(),   rate : productRate}
 }))
 

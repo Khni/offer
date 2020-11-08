@@ -7,6 +7,10 @@ const authAdmin = require('../middleware/adminAuth')
 const auth = require('../middleware/auth')
 const deletePOS = require('../middleware/deleteProductsOfSection.js')
 const authUploadProduct = require('../middleware/adminAuthUpload')
+const {productsWithRate} =require('./review.utils')
+const Review = require('../models/Review')
+
+
 var aws = require('aws-sdk')
 
 var multer = require('multer')
@@ -60,6 +64,28 @@ router.get('/api/products',  async (req, res) => {
 
     try {
    res.status(201).send({products})
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+router.get('/api/productsWsections',  async (req, res) => {
+	
+	
+	let sections = await Section.find({})
+	
+	let productsWithSections =await Promise.all(sections.map((section)=>{
+
+return {...section, products : await productsWithRate.filter(product => product.sectionID ==section._id)} 
+} )) 
+	
+	
+    
+
+    try {
+   res.status(201).send({productsWithSections})
         
     } catch (e) {
         res.status(400).send(e)

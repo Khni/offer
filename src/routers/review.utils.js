@@ -1,3 +1,8 @@
+const Review = require('../models/Review')
+const Product = require('../models/Product')
+const User = require('../models/User')
+
+
 const getRating = (productReviews) => {
 
 
@@ -20,7 +25,24 @@ const getRating = (productReviews) => {
     return rating
 }
 
+
+const productsWithRate =() => {
+
+
+let products = await Product.find({})
+  
+let productsWithRate =await Promise.all( products.map(async(product)=>{
+const productReviews = await Review.find({$and:[{ productID: product._id}, { active: true}]})
+const productRate = getRating(productReviews)
+
+return {...product.toObject(),   rate : productRate}
+}))
+
+return productsWithRate
+} 
+
 module.exports = {
-    getRating
+    getRating, 
+    productsWithRate
 };
 

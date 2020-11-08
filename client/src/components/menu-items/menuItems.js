@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MenuItems from './menuItems.scss';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -12,16 +12,23 @@ import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import * as actions from '../../store/actions/index';
 const menuItems = (props, {history,match})=>{
-/*
-const inFavorite() {
-const favProduct = props.favList.find((f)f.productID == props.item._id)
-if (favProduct) {
-return true;
-} 
-} 
 
-onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}
-*/
+const [favorite, setFavorite] = useState(false);
+
+useEffect(() => {
+    await props.favoriteListAction(props.token)
+    const fav = props.FavoritesList.find((favorite) => favorite._id == props.item._id)
+    if (fav) {
+      setFavorite(true) 
+    } else {
+      setFavorite(false) 
+    }
+    
+    }, [])
+    
+
+
+
    return(
    <div>
    
@@ -46,8 +53,13 @@ onClick={() => props.history.push(`${props.match.url+"item/" }${props.id}`)}
 
 </div>
 <div className="flex-row marginTop50">
+
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
+{favorite ? 
+<div  className="icon-button pointer hoverscalein" ><FavoriteAdded /></div>
+:
 <div  className="icon-button pointer hoverscalein" ><AddFavorite /></div>
+} 
 </div>
 </div>
 
@@ -71,6 +83,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps =(state) =>{
 	return {
  //collections: selectProducts(state), 
+ token: state.userAuth.authUser.token,
+ FavoritesList: state.FavAndSeenReducer.favorites.list,
  cartItems: selectCartItems(state),
  categories : state.categoryReducer.categories,
  sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
