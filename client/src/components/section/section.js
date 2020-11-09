@@ -51,7 +51,7 @@ isFavorite ( itemID) {
 
 
   <div className="menu-item">
-{this.props.items.map( async (item , {...others}) => {
+{this.props.items.map(  (item , {...others}) => {
 
   /*
   Error: Objects are not valid as a React child (found: [object Promise]).
