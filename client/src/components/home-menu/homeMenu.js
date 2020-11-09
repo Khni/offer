@@ -137,8 +137,8 @@ item.name.indexOf(this.state.search) !== -1)
 <p>{isFacebookApp() ? "fb" : "broswer"}</p>
 <p>{"fbapp: " +isFacebookApp()}</p> */}
           {/* testing */}
-		   {!this.state.Loading 	<div className="full-menu">
-		{this.props.sectionsWithProducts.map((col)=>
+		   {!this.state.Loading? 	<div className="full-menu">
+		{this.state.items.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
     )}
 		</div>: 
