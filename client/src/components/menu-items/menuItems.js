@@ -56,7 +56,7 @@ const [favorite, setFavorite] = useState(false);
 <div className="flex-row marginTop50">
 
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
-{props.favorite ? 
+{props.item.isFav? 
 <div  className="icon-button pointer hoverscalein" ><FavoriteAdded /></div>
 :
 <div  className="icon-button pointer hoverscalein" ><AddFavorite /></div>

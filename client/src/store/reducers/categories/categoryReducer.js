@@ -15,12 +15,12 @@ import {
   SECTIONS_IS_FETCHING, 
   CATEGORIES_IS_FETCHING, 
   COLLECTIONS_IS_FETCHING,
-
+PRODUCT_FETCHED, 
   ADDING_PRODUCT,
  ADDING_SECTION,
  ADDING_CATEGORY,
  ADDING_COLLECTION
-      } from '../../types/productsTypes'
+      } from '../../types'
 
 
     const INITIAL_STATE = {
@@ -37,6 +37,7 @@ import {
         sectionsWithProducts: [], 
         sectionsWithProductsFetched: false, 
         sectionsWithProductsIsFetching: false,
+        productsLoading: true
        
 
 
@@ -69,7 +70,12 @@ import {
              
             };
             
-          
+          case PRODUCT_FETCHED :
+            return {
+           ...state, 
+           productsLoading: false
+             
+            };
             
   
             case FETCH_SECTIONS :

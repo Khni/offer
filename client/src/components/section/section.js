@@ -123,6 +123,8 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+  productsFetched: () => dispatch(actions.productsFetched()),
+  
 });
 const mapStateToProps =(state) =>{
 	return {

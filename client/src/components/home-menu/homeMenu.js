@@ -13,13 +13,45 @@ class homeMenu extends Component {
 	
 	this.state = {
 	  search: '',
-	  Loading: false
+	  Loading: false, 
+	favorites : [],
+    items: [] 
     }
   }
 
   searchUpdate(event) {
     this.setState({ search: event.target.value.substr(0, 20) })
   }
+  
+  
+  
+  productsObject() {
+let products = this.props.sectionsWithProducts
+let productsWithFav = products.map((product)=> {
+	
+	return product.productsOfSection.map((pos)=>{
+const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
+let Favorite = false
+  if (fav) {
+    Favorite = true
+  } else {
+    Favorite= false
+  }
+
+return {...pos, isFav: Favorite} 
+} )
+
+
+
+
+} )
+
+this.setState({items: productsWithFav})
+  
+
+} 
+  
+  
   
   
   async FetchSectionsFromServer(){
@@ -47,6 +79,9 @@ if (shortLang.indexOf('_') !== -1)
 console.log("lang"+lang+ shortLang);
 console.log("window navigator" + navigator.userAgent);
 await this.FetchSectionsFromServer()
+await this.props.favoriteListAction(this.props.token)
+  this.setState({favorites: this.props.FavoritesList})
+  this.productsObject()
   }
   async componentDidUpdate(prevProps, prevState) {
     console.log("prevState:" + prevState.Loading);
@@ -102,7 +137,7 @@ item.name.indexOf(this.state.search) !== -1)
 <p>{isFacebookApp() ? "fb" : "broswer"}</p>
 <p>{"fbapp: " +isFacebookApp()}</p> */}
           {/* testing */}
-		   {!this.state.Loading?	<div className="full-menu">
+		   {!this.state.Loading 	<div className="full-menu">
 		{this.props.sectionsWithProducts.map((col)=>
   <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
     )}
@@ -127,9 +162,15 @@ item.name.indexOf(this.state.search) !== -1)
 	
 }
 
+
+
+
+
 const mapStateToProps =(state) =>{
 	return {
+		token: state.userAuth.authUser.token,
  collections: selectProducts(state), 
+ productsLoading: state.categoryReducer.productsLoading, 
  categories : state.categoryReducer.categories,
  sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
  sectionsWithProducts: state.categoryReducer.sectionsWithProducts

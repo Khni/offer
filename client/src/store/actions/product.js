@@ -14,10 +14,12 @@ import { FETCH_PRODUCTS ,
   SECTIONS_IS_FETCHING, 
   CATEGORIES_IS_FETCHING, 
   COLLECTIONS_IS_FETCHING, 
-  ADDING_PRODUCT
+  ADDING_PRODUCT, 
+  PRODUCT_FETCHED
 
   } from '../types/productsTypes'
-
+import * as actionTypes from "../types";
+import * as APIs from './APIs'
 
 export const fetchCategories = () => {
 
@@ -290,7 +292,32 @@ export const addCollectionToServer = (data, adminToken) => {
   
   
   
-  
+  export const productsFetched =  ()  =>({
+  type: PRODUCT_FETCHED
+});
 
+
+export const fetchFavorites = (token) =>{
+	return async dispatch => {
+	
+  dispatch({
+         type: actionTypes.FRTCH_FAVORITES_START
+      });
+  let url = APIs.GET_USER_FAVORITES
+  try {
+    let response = await calls.getDataHeaderAuth(url,token) 
+  
+    dispatch({
+         type: actionTypes.FRTCH_FAVORITES_SUCCESS, 
+         list: response.data.favoriteProducts
+      });
+  } catch (error) {
+    dispatch({
+         type: actionTypes.FRTCH_FAVORITES_ERROR, 
+         error: error.response.data.error
+      });
+  }
+}
+} 
 
 
