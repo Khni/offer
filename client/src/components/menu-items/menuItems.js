@@ -12,16 +12,16 @@ import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import * as actions from '../../store/actions/index';
 const MenuItem = (props)=>{
-  useEffect(async() => {
-    await props.favoriteListAction(props.token)
-    const fav = props.FavoritesList.find((favorite) => favorite._id == props.item._id)
-    if (fav) {
-      setFavorite(true) 
-    } else {
-      setFavorite(false) 
-    }
+  // useEffect(async() => {
+  //   await props.favoriteListAction(props.token)
+  //   const fav = props.FavoritesList.find((favorite) => favorite._id == props.item._id)
+  //   if (fav) {
+  //     setFavorite(true) 
+  //   } else {
+  //     setFavorite(false) 
+  //   }
     
-    }, [])
+  //   }, [])
 
 const [favorite, setFavorite] = useState(false);
 
@@ -56,7 +56,7 @@ const [favorite, setFavorite] = useState(false);
 <div className="flex-row marginTop50">
 
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
-{favorite ? 
+{props.favorite ? 
 <div  className="icon-button pointer hoverscalein" ><FavoriteAdded /></div>
 :
 <div  className="icon-button pointer hoverscalein" ><AddFavorite /></div>

@@ -1,10 +1,44 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Section from './section.css';
 import Item from '../menu-items/menuItems.js';
+import { connect } from 'react-redux';
+import {addItem} from '../../store/actions/CartItemsAction';
+import { withRouter } from 'react-router-dom';
+import * as Cartactions from '../../store/actions/CartItemsAction';
+import { selectCartItems } from '../../store/reducers/cart/cartReselect';
+import * as actions from '../../store/actions/index';
+
+class SectionComponent extends Component {
+  constructor(props) {
+    super(props);
+  this.state = {
+    favorites : [],
+    favorite : false
+  }
+  }
 
 
-const section = (props)=>{
-   
+
+ async componentDidMount() {
+  await this.props.favoriteListAction(this.props.token)
+  this.setState({favorites: this.props.FavoritesList})
+  
+  }
+
+isFavorite ( itemID) {
+  const fav = this.state.favorites.find((favorite) => favorite._id == itemID)
+  if (fav) {
+    return true
+  } else {
+    return false
+  }
+}
+
+  
+  render() {
+  
+
+
    return(
     
 
@@ -12,15 +46,26 @@ const section = (props)=>{
  
 
 
-  <h5 className="section-title">{props.title}</h5>
+  <h5 className="section-title">{this.props.title}</h5>
   
 
 
   <div className="menu-item">
-{props.items.map((item , {...others}) => 
-   <Item id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
+{this.props.items.map( async (item , {...others}) => {
+
+  /*
+  Error: Objects are not valid as a React child (found: [object Promise]).
+   If you meant to render a collection of children, use an array instead.
+  */
+
+
+
+const isFav = await this.isFavorite(item._id)
+
+
+ return <Item favorite={isFav}  id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
   {...others} />
- )}
+})}
  </div>
 
       
@@ -28,4 +73,27 @@ const section = (props)=>{
      );
 }
 
-export default section;
+}
+
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item)),
+  addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
+  favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+});
+const mapStateToProps =(state) =>{
+	return {
+ //collections: selectProducts(state), 
+ token: state.userAuth.authUser.token,
+ FavoritesList: state.FavAndSeenReducer.favorites.list,
+ cartItems: selectCartItems(state),
+ categories : state.categoryReducer.categories,
+ sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
+ sectionsWithProducts: state.categoryReducer.sectionsWithProducts
+ //collections: state.ProductsReducer.products
+	}
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SectionComponent));
