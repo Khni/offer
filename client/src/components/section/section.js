@@ -20,9 +20,32 @@ class SectionComponent extends Component {
 
 
 
+ productsObject() {
+let products = this.props.items
+let productsWithFav = products.map((product)=> {
+const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
+let Favorite = false
+  if (fav) {
+    Favorite = true
+  } else {
+    Favorite= false
+  }
+
+
+return {...product, isFav: Favorite} 
+} )
+
+this.setState({items: productsWithFav})
+  
+
+} 
+
+
  async componentDidMount() {
   await this.props.favoriteListAction(this.props.token)
   this.setState({favorites: this.props.FavoritesList})
+  this.productsObject()
+  
   
   }
 
