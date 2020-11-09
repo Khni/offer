@@ -13,7 +13,8 @@ class SectionComponent extends Component {
     super(props);
   this.state = {
     favorites : [],
-    favorite : false
+    favorite : false, 
+    items: [] 
   }
   }
 
@@ -34,6 +35,26 @@ isFavorite ( itemID) {
   }
 }
 
+async productsObject() {
+let products = this.props.items
+let productsWithFav = products.map((product)=> {
+const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
+let Favorite = false
+  if (fav) {
+    Favorite = true
+  } else {
+    Favorite= false
+  }
+
+
+return {...product, isFav: Favorite} 
+} )
+
+this.setState({items: productsWithFav})
+  
+
+} 
+
   
   render() {
   
@@ -51,7 +72,7 @@ isFavorite ( itemID) {
 
 
   <div className="menu-item">
-{this.props.items.map(  (item , {...others}) => {
+{this.state.items.map(  (item , {...others}) => {
 
   /*
   Error: Objects are not valid as a React child (found: [object Promise]).
@@ -60,10 +81,10 @@ isFavorite ( itemID) {
 
 
 
-const isFav = await this.isFavorite(item._id)
+const isFav =  this.isFavorite(item._id)
 
 
- return <Item favorite={isFav}  id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
+ return <Item favorite={item.isFav}  id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
   {...others} />
 })}
  </div>
