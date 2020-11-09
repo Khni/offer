@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MenuItems from './menuItems.scss';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -11,11 +11,8 @@ import { withRouter } from 'react-router-dom';
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import * as actions from '../../store/actions/index';
-const menuItems = (props, {history,match})=>{
-
-const [favorite, setFavorite] = useState(false);
-
-useEffect(() => {
+const MenuItem = (props)=>{
+  useEffect(async() => {
     await props.favoriteListAction(props.token)
     const fav = props.FavoritesList.find((favorite) => favorite._id == props.item._id)
     if (fav) {
@@ -25,6 +22,10 @@ useEffect(() => {
     }
     
     }, [])
+
+const [favorite, setFavorite] = useState(false);
+
+
     
 
 
@@ -96,4 +97,4 @@ const mapStateToProps =(state) =>{
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(menuItems));
+)(MenuItem));

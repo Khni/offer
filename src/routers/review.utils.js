@@ -26,7 +26,7 @@ const getRating = (productReviews) => {
 }
 
 
-const productsWithRate =() => {
+const productsWithRate =async() => {
 
 
 let products = await Product.find({})

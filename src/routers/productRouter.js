@@ -78,7 +78,7 @@ router.get('/api/productsWsections',  async (req, res) => {
 	
 	let productsWithSections =await Promise.all(sections.map((section)=>{
 
-return {...section, products : await productsWithRate.filter(product => product.sectionID ==section._id)} 
+return {...section, products :  productsWithRate.filter(product => product.sectionID ==section._id)} 
 } )) 
 	
 	
