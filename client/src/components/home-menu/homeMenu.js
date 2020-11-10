@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import './homeMenu.css';
 import {selectProducts} from '../../store/reducers/products/productsReselect'
 import * as actions from '../../store/actions/product';
+import * as Calls from '../../store/actions/axiosCalls'
 import Header from '../headd/header/header'
 import Section from '../section/section.js';
 import Searchbox from '../searchbox/searchbox.component'
@@ -10,11 +11,12 @@ import { connect } from 'react-redux';
 class homeMenu extends Component {
 	constructor(props){
 		super(props);
-	
+	this.ToggleFavorite = this.ToggleFavorite.bind(this)
 	this.state = {
 	  search: '',
 	  Loading: false, 
-	favorites : [],
+  favorites : [],
+  favorite: false,
     items: [] 
     }
   }
@@ -24,30 +26,64 @@ class homeMenu extends Component {
   }
   
   
+
+  async ToggleFavorite(productID) {
+  console.log("from toggle favorite");
+    this.setState({ favorite: !this.state.favorite })
+    try {
+      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete',{ productID: productID },this.props.token)
+console.log("response" +response);
+    } catch (e) {
+      if (e) {
+        this.setState({ favorite: !this.state.favorite })
+       
+      }
+    }
+  }
+
   
   productsObject() {
 let products = this.props.sectionsWithProducts
+
 let productsWithFav = products.map((product)=> {
+
+
+
+
+return {...product,productsOfSection: product.productsOfSection.map((pos)=>{
+  const fav = this.state.favorites.find((favorite) => favorite._id == pos._id)
+  let Favorite = false
+    if (fav) {
+      this.setState({ favorite: true })
+    } else {
+      this.setState({ favorite: false })
+    }
+  
+  return {...pos, isFav: this.state.favorite} 
+  } )}
+
 	
-	return product.productsOfSection.map((pos)=>{
-const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
-let Favorite = false
-  if (fav) {
-    Favorite = true
-  } else {
-    Favorite= false
-  }
+// 	return product.productsOfSection.map((pos)=>{
+// const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
+// let Favorite = false
+//   if (fav) {
+//     Favorite = true
+//   } else {
+//     Favorite= false
+//   }
 
-return {...pos, isFav: Favorite} 
+// return {...pos, isFav: Favorite} 
+// } )
+
+
+
+
 } )
 
-
-
-
-} )
 
 this.setState({items: productsWithFav})
-  
+this.setState({Loading: false})
+console.log("products new" + JSON.stringify(this.state.items));
 
 } 
   
@@ -59,7 +95,7 @@ this.setState({items: productsWithFav})
    this.setState({Loading: true})
      const { fetchSectionsWithProducts } = this.props;
      await fetchSectionsWithProducts();
-     this.setState({Loading: false})
+    //  this.setState({Loading: false})
     }
      console.log("log from add product Updatefetchproduct" )
        
@@ -79,7 +115,7 @@ if (shortLang.indexOf('_') !== -1)
 console.log("lang"+lang+ shortLang);
 console.log("window navigator" + navigator.userAgent);
 await this.FetchSectionsFromServer()
-await this.props.favoriteListAction(this.props.token)
+await this.props.fetchFavorites(this.props.token)
   this.setState({favorites: this.props.FavoritesList})
   this.productsObject()
   }
@@ -139,7 +175,7 @@ item.name.indexOf(this.state.search) !== -1)
           {/* testing */}
 		   {!this.state.Loading? 	<div className="full-menu">
 		{this.state.items.map((col)=>
-  <Section key={col._id}  items={col.productsOfSection} title={col.nameEn} />
+  <Section key={col._id} favorite={this.state.favorite}  items={col.productsOfSection} title={col.nameEn} ToggleFavorite={this.ToggleFavorite}/>
     )}
 		</div>: 
     
@@ -168,6 +204,7 @@ item.name.indexOf(this.state.search) !== -1)
 
 const mapStateToProps =(state) =>{
 	return {
+    FavoritesList: state.FavAndSeenReducer.favorites.list,
 		token: state.userAuth.authUser.token,
  collections: selectProducts(state), 
  productsLoading: state.categoryReducer.productsLoading, 

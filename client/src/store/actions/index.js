@@ -11,10 +11,10 @@ export {
     authLeft
     
 } from './userActions';
-productsFetched
+
 export {setArabic, setEnglish } from './LangActions';
 
-export {productsFetched } from './product';
+// export {productsFetched } from './product';
 
 
 export {chechoutRedirectDone, chechoutRedirect}   from './CartItemsAction';

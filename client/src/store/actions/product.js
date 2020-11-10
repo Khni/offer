@@ -17,9 +17,10 @@ import { FETCH_PRODUCTS ,
   ADDING_PRODUCT, 
   PRODUCT_FETCHED
 
-  } from '../types/productsTypes'
+  } from '../types'
 import * as actionTypes from "../types";
 import * as APIs from './APIs'
+import * as calls from './axiosCalls'
 
 export const fetchCategories = () => {
 

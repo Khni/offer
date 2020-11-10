@@ -5,7 +5,11 @@
 				overflow: auto; 
 				margin:5px;
 				background:	#f7f7f7;
-				
+			
+				opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
 				
 				
 				

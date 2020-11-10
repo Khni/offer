@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddFavorite } from '../productPage/icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../productPage/icons/Heartfull.svg'
-
+import * as Calls from '../../store/actions/axiosCalls'
 import { connect } from 'react-redux';
 import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
@@ -23,8 +23,22 @@ const MenuItem = (props)=>{
     
   //   }, [])
 
-const [favorite, setFavorite] = useState(false);
 
+const [favorite, setFavorite] = useState(props.item.isFav);
+const ToggleFavorite = async (productID) =>{
+  console.log("from toggle favorite");
+  setFavorite(!favorite)
+  
+    try {
+      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete',{ productID: productID },props.token)
+console.log("response" +response);
+    } catch (e) {
+      if (e) {
+        setFavorite(!favorite)
+       
+      }
+    }
+  }
 
     
 
@@ -56,10 +70,12 @@ const [favorite, setFavorite] = useState(false);
 <div className="flex-row marginTop50">
 
 <button className="custum-btn-form "  onClick={() => props.addItemToCartItem(props.item,props.cartItems)}>ADD TO CART  </button>
-{props.item.isFav? 
-<div  className="icon-button pointer hoverscalein" ><FavoriteAdded /></div>
+{favorite? 
+<div  className="icon-button-favorite  pointer hoverscalein"  onClick={async()=>{ await ToggleFavorite(props.item._id);}}>
+  <FavoriteAdded /></div>
 :
-<div  className="icon-button pointer hoverscalein" ><AddFavorite /></div>
+<div  className="icon-button pointer hoverscalein" onClick={async()=>{ await ToggleFavorite(props.item._id);}}>
+  <AddFavorite /></div>
 } 
 </div>
 </div>

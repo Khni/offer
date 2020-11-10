@@ -20,63 +20,20 @@ class SectionComponent extends Component {
 
 
 
- productsObject() {
-let products = this.props.items
-let productsWithFav = products.map((product)=> {
-const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
-let Favorite = false
-  if (fav) {
-    Favorite = true
-  } else {
-    Favorite= false
-  }
 
-
-return {...product, isFav: Favorite} 
-} )
-
-this.setState({items: productsWithFav})
-  
-
-} 
 
 
  async componentDidMount() {
   await this.props.favoriteListAction(this.props.token)
-  this.setState({favorites: this.props.FavoritesList})
-  this.productsObject()
+  
+
   
   
   }
 
-isFavorite ( itemID) {
-  const fav = this.state.favorites.find((favorite) => favorite._id == itemID)
-  if (fav) {
-    return true
-  } else {
-    return false
-  }
-}
-
-async productsObject() {
-let products = this.props.items
-let productsWithFav = products.map((product)=> {
-const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
-let Favorite = false
-  if (fav) {
-    Favorite = true
-  } else {
-    Favorite= false
-  }
 
 
-return {...product, isFav: Favorite} 
-} )
 
-this.setState({items: productsWithFav})
-  
-
-} 
 
   
   render() {
@@ -95,20 +52,20 @@ this.setState({items: productsWithFav})
 
 
   <div className="menu-item">
-{this.state.items.map(  (item , {...others}) => {
+{this.props.items.map(  (item , {...others}) => {
 
-  /*
+  /* when using async coz it will return promise 
   Error: Objects are not valid as a React child (found: [object Promise]).
    If you meant to render a collection of children, use an array instead.
   */
 
 
 
-const isFav =  this.isFavorite(item._id)
+
 
 
  return <Item favorite={item.isFav}  id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
-  {...others} />
+  {...others} ToggleFavorite={this.props.ToggleFavorite} favorite={this.props.favorite} token={this.props.token}/>
 })}
  </div>
 
@@ -123,7 +80,7 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
-  productsFetched: () => dispatch(actions.productsFetched()),
+  // productsFetched: () => dispatch(actions.productsFetched()),
   
 });
 const mapStateToProps =(state) =>{

@@ -37,7 +37,7 @@ PRODUCT_FETCHED,
         sectionsWithProducts: [], 
         sectionsWithProductsFetched: false, 
         sectionsWithProductsIsFetching: false,
-        productsLoading: true
+        productsLoading: true,
        
 
 

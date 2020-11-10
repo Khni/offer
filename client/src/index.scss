@@ -142,6 +142,15 @@ background-color: $hoverbg;
 padding: 1px;
   margin: 2px;
 }
+
+.icon-button-favorite {
+  @include iconButton($navsize * 0.8, $white,25px, $darkcolor);
+  padding: 1px;
+    margin: 2px;
+    &:hover{
+    background-color: $colored;
+    }
+  }
 .icon-button-noBorder{
   @include iconButton($navsize * 0.8, $white,20px, $darkcolor);
 padding: 1px;
