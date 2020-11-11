@@ -43,12 +43,19 @@ console.log("response" +response);
 
   
   productsObject() {
+  	
 let products = this.props.sectionsWithProducts
 
+if (!this.props.token) {
+return this.setState({items: products, Loading: false})
+
+} 
+
+
+await this.props.fetchFavorites(this.props.token)
+  this.setState({favorites: this.props.FavoritesList})
+  
 let productsWithFav = products.map((product)=> {
-
-
-
 
 return {...product,productsOfSection: product.productsOfSection.map((pos)=>{
   const fav = this.state.favorites.find((favorite) => favorite._id == pos._id)
@@ -62,26 +69,11 @@ return {...product,productsOfSection: product.productsOfSection.map((pos)=>{
   return {...pos, isFav: this.state.favorite} 
   } )}
 
-	
-// 	return product.productsOfSection.map((pos)=>{
-// const fav = this.state.favorites.find((favorite) => favorite._id == product._id)
-// let Favorite = false
-//   if (fav) {
-//     Favorite = true
-//   } else {
-//     Favorite= false
-//   }
-
-// return {...pos, isFav: Favorite} 
-// } )
-
-
-
-
 } )
 
 
 this.setState({items: productsWithFav})
+
 this.setState({Loading: false})
 console.log("products new" + JSON.stringify(this.state.items));
 
@@ -115,10 +107,11 @@ if (shortLang.indexOf('_') !== -1)
 console.log("lang"+lang+ shortLang);
 console.log("window navigator" + navigator.userAgent);
 await this.FetchSectionsFromServer()
-await this.props.fetchFavorites(this.props.token)
-  this.setState({favorites: this.props.FavoritesList})
+
   this.productsObject()
   }
+  
+  
   async componentDidUpdate(prevProps, prevState) {
     console.log("prevState:" + prevState.Loading);
     if (!prevState.Loading) {
