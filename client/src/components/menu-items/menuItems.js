@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import MenuItems from './menuItems.scss';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import  './menuItems.scss';
+// import { useHistory } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { ReactComponent as AddFavorite } from '../productPage/icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../productPage/icons/Heartfull.svg'
 import * as Calls from '../../store/actions/axiosCalls'
@@ -26,6 +26,11 @@ const MenuItem = (props)=>{
 
 const [favorite, setFavorite] = useState(props.item.isFav);
 const ToggleFavorite = async (productID) =>{
+
+  if(!props.token){
+    return 
+  }
+
   console.log("from toggle favorite");
   setFavorite(!favorite)
   

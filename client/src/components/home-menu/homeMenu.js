@@ -42,11 +42,12 @@ console.log("response" +response);
   }
 
   
-  productsObject() {
+ async productsObject() {
   	
 let products = this.props.sectionsWithProducts
 
 if (!this.props.token) {
+
 return this.setState({items: products, Loading: false})
 
 } 

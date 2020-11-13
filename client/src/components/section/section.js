@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Section from './section.css';
+import './section.css';
 import Item from '../menu-items/menuItems.js';
 import { connect } from 'react-redux';
 import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
-import * as actions from '../../store/actions/index';
+// import * as actions from '../../store/actions/index';
 
 class SectionComponent extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class SectionComponent extends Component {
 
 
  async componentDidMount() {
-  await this.props.favoriteListAction(this.props.token)
+
   
 
   
@@ -64,7 +64,7 @@ class SectionComponent extends Component {
 
 
 
- return <Item favorite={item.isFav}  id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
+ return <Item   id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
   {...others} ToggleFavorite={this.props.ToggleFavorite} favorite={this.props.favorite} token={this.props.token}/>
 })}
  </div>
@@ -79,7 +79,7 @@ class SectionComponent extends Component {
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
-  favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+ 
   // productsFetched: () => dispatch(actions.productsFetched()),
   
 });
@@ -87,7 +87,7 @@ const mapStateToProps =(state) =>{
 	return {
  //collections: selectProducts(state), 
  token: state.userAuth.authUser.token,
- FavoritesList: state.FavAndSeenReducer.favorites.list,
+ 
  cartItems: selectCartItems(state),
  categories : state.categoryReducer.categories,
  sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,

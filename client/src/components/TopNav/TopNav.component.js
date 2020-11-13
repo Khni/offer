@@ -7,7 +7,7 @@ import {
     // Redirect
   } from 'react-router-dom';
 
-import TopNavStyle from './TopNavStyle.scss'
+import  './TopNavStyle.scss'
 
 
 

@@ -1,10 +1,18 @@
-import React, {Component} from 'react'
+import React
+// , {Component}
+ from 'react'
 
-import { Route, NavLink, Switch ,Redirect, Link} from 'react-router-dom';
-import Offerenologo from '../header/img/Offereno.png';
+import {  
+  NavLink
+  // ,Route
+  // , Switch
+  //  ,Redirect
+  //  , Link
+  } from 'react-router-dom';
+import  '../header/img/Offereno.png';
 
 
-import FixedSideMenuNavStyle from './FixedSideMenuNav.scss'
+import  './FixedSideMenuNav.scss'
 const FixedSideMenuNav = (props) => {
 
    
