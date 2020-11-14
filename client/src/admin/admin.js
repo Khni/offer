@@ -4,6 +4,7 @@ import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
 import CategoriesNav from './components/adminPage/categories/categoriesNav.component.js'
 import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
+import Reviews from './components/adminPage/reviews/TopNav/reviewsNav'
 import ProductsNav from './components/adminPage/products/TopNav/productsNav.component'
 import OrdersNav from './components/adminPage/orders/TopNav/ordersNav.component'
 import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
@@ -58,7 +59,13 @@ const navlinks = [{
 {
   path: "/admin/orders",
   title: "Orders"
+},
+,
+{
+  path: "/admin/reviews",
+  title: "Reviews"
 }
+
 ]
 
 const buttons = [{
@@ -85,6 +92,7 @@ const buttons = [{
                     <Route path="/admin/categories" component={CategoriesNav} />
                     <Route path="/admin/collections" component={CollectionNav} />
                     <Route path="/admin/orders" component={OrdersNav} />
+                    <Route path="/admin/reviews" component={Reviews} />
                     <Redirect from="/admin" to="/admin/products" />
                 </Switch>
                

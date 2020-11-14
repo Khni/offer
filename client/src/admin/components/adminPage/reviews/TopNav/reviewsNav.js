@@ -50,11 +50,11 @@ async fetchReviews(status,token) {
       const Ato = "bsa"
       const navlinks = [
       {
-        path: "/admin-reviews/list/notactive",
+        path: "/admin/reviews/list/notactive",
         title: "Not Active Reviews"
       },
       {
-        path: "/admin-reviews/list/active",
+        path: "/admin/reviews/list/active",
         title: "Active Reviews"
       }
     ]
@@ -66,9 +66,9 @@ async fetchReviews(status,token) {
 
 <ListComponent  
 navlinks={navlinks}
-mainRoute="/admin-reviews"
-subRoute= "/admin-reviews/list"
-redirectLink ="/admin-reviews/list/active"
+mainRoute="/admin/reviews"
+subRoute= "/admin/reviews/list"
+redirectLink ="/admin/reviews/list/notactive"
 fetchList = {this.fetchReviews}
 Ato = {Ato}
 adminToken = {this.props.AdminToken}

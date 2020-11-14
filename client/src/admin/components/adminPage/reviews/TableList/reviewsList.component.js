@@ -53,6 +53,10 @@ class CategoryList extends Component {
   }
 
   async active(action, token, id) {
+    if (!this.state.Loading) {
+      //this if statment to prevent infinity loop in componentdidupdate
+      this.setState({ Loading: true })
+    }
     let url = ''
     if (action) {
      url = '/api/review-activate/'
@@ -63,7 +67,9 @@ class CategoryList extends Component {
      const response =   await axios.get(url +id, {
       headers : { Authorization: `Bearer ${token}` } });
  
-       
+      const list = await this.props.fetchList(this.props.match.params.status, this.props.adminToken)
+      this.setState({ list: list, Loading: false, status: this.props.match.params.status })
+  
       } catch(err) {
      console.log(err);
           
@@ -115,8 +121,8 @@ class CategoryList extends Component {
                 return <tr>
                   <td>{i + 1}</td><td>{item.rate}</td><td>{item.title}</td><td>{item.comment}</td>
                   {this.props.match.params.status == "notactive" ?
-                    <p onClick={() => this.active(true,this.props.AdminToken,item._id)} >activate</p>
-                    : <p onClick={() => this.active(false,this.props.AdminToken,item._id)}>deactivate</p>
+                    <p className="pointer" onClick={() => this.active(true,this.props.AdminToken,item._id)} >activate</p>
+                    : <p className="pointer" onClick={() => this.active(false,this.props.AdminToken,item._id)}>deactivate</p>
                   }
 
 

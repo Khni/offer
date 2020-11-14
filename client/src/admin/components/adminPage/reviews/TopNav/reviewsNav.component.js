@@ -53,7 +53,7 @@ componentDidMount() {
                 <Switch>
                     
                 
-                <Route
+                <Route exact
   path={this.props.subRoute+'/:status' }
   render={(props) => (
     <List {...props} fetchList={this.props.fetchList} adminToken={this.props.adminToken} />

@@ -27,7 +27,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 // import 'react-awesome-slider/dist/captioned.css';
 import MenuItem from '../menu-items/menuItems'
 import * as Calls from '../../store/actions/axiosCalls'
-const awsImgUrl =  "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"
+const awsImgUrl = "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"
 class ProductPage extends Component {
   constructor(props) {
     super(props);
@@ -55,17 +55,21 @@ class ProductPage extends Component {
 
     const response = await axios.get('/api/productWithReviews/' + this.props.match.params.id);
     const product = response.data.product
-    console.log("product"+JSON.stringify(product));
+    console.log("product" + JSON.stringify(product));
     const imgUrls = response.data.product.imgURLs.map(img =>
       awsImgUrl + img.imgURL)
     let ProductRating = response.data.rating
-    
 
-    await this.props.favoriteListAction(this.props.token)
 
-    const productID = response.data.product._id
 
-    this.favoriteCheck(productID)
+    if (this.props.token) {
+      await this.props.favoriteListAction(this.props.token)
+
+      const productID = response.data.product._id
+
+      this.favoriteCheck(productID)
+    }
+
 
     this.setState({ product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse() })
 
@@ -77,24 +81,27 @@ class ProductPage extends Component {
 
 
   async ToggleFavorite() {
-  
+    if (!this.props.token) {
+      return
+    }
+
     this.setState({ favorite: !this.state.favorite })
     try {
-      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete',{ productID: this.state.product._id },this.props.token)
+      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
 
     } catch (e) {
       if (e) {
         this.setState({ favorite: !this.state.favorite })
-       
+
       }
     }
 
- 
+
 
   }
 
   async addSeenProduct() {
-    const response = await Calls.postDataHeaderAuth('/api/viewed/add',{ productID: this.state.product._id },this.props.token)
+    const response = await Calls.postDataHeaderAuth('/api/viewed/add', { productID: this.state.product._id }, this.props.token)
   }
 
 
@@ -102,7 +109,7 @@ class ProductPage extends Component {
   async favoriteCheck(productID) {
 
     const fav = this.props.FavoritesList.find((favorite) => favorite._id == productID)
-    
+
     if (fav) {
       this.setState({ favorite: true })
     } else {
@@ -113,7 +120,10 @@ class ProductPage extends Component {
 
   async componentDidMount() {
     await this.fetchProduct()
-    await this.addSeenProduct()
+    if (this.props.token) {
+      await this.addSeenProduct()
+    }
+    
 
   }
   async componentDidUpdate() {
@@ -130,8 +140,8 @@ class ProductPage extends Component {
 
 
   render() {
-    
-   
+
+
     return (
 
       <div className="product-container" >
@@ -154,7 +164,7 @@ class ProductPage extends Component {
             />
 
           </div>
-        
+
 
           <div className="StarRatingsContainer" >
 
