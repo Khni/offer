@@ -24,10 +24,10 @@ const userSchema = mongoose.Schema({
     age: {
         type: Number
     },
-active: {
+    active: {
         type: Boolean
-        
-    }, 
+
+    },
     local: {
 
         email: {
@@ -95,110 +95,110 @@ active: {
     },
 
 
-phone: {
-               type: Number,
-              trim: true,
+    phone: {
+        type: Number,
+        trim: true,
 
-              },
+    },
 
-    
+
 
     addresses: [{
-      // address: {
-            firstName: {
-                type: String,
-                trim: true
-            }, 
-            lastName: {
-                type: String,
-                trim: true
-            }, 
-            phone: {
-               type: Number,
-              trim: true,
+        // address: {
+        firstName: {
+            type: String,
+            trim: true
+        },
+        lastName: {
+            type: String,
+            trim: true
+        },
+        phone: {
+            type: Number,
+            trim: true,
 
-              },
-              country: {
-        type: String,
-        trim: true,
+        },
+        country: {
+            type: String,
+            trim: true,
 
-            },
-            city: {
-        type: String,
-        trim: true,
+        },
+        city: {
+            type: String,
+            trim: true,
 
-            },
-            street: {
-        type: String,
-        trim: true,
+        },
+        street: {
+            type: String,
+            trim: true,
 
-            },
-            floor: {
-        type: Number,
-        trim: true,
+        },
+        floor: {
+            type: Number,
+            trim: true,
 
-            },
-            apartment : {
-        type: Number,
-        trim: true,
+        },
+        apartment: {
+            type: Number,
+            trim: true,
 
-            },
-            landmark: {
-        type: String,
-        trim: true
+        },
+        landmark: {
+            type: String,
+            trim: true
 
-            },
-       // }
+        },
+        // }
     }],
 
-     defaultAddress: {
-         _id: {
+    defaultAddress: {
+        _id: {
             type: mongoose.Schema.Types.ObjectId,
 
-         },
+        },
         firstName: {
-                type: String,
-                trim: true
-            }, 
-            lastName: {
-                type: String,
-                trim: true
-            }, 
-            phone: {
-               type: Number,
-              trim: true,
+            type: String,
+            trim: true
+        },
+        lastName: {
+            type: String,
+            trim: true
+        },
+        phone: {
+            type: Number,
+            trim: true,
 
-              },
-              country: {
-        type: String,
-        trim: true,
+        },
+        country: {
+            type: String,
+            trim: true,
 
-            },
-            city: {
-        type: String,
-        trim: true,
+        },
+        city: {
+            type: String,
+            trim: true,
 
-            },
-            street: {
-        type: String,
-        trim: true,
+        },
+        street: {
+            type: String,
+            trim: true,
 
-            },
-            floor: {
-        type: Number,
-        trim: true,
+        },
+        floor: {
+            type: Number,
+            trim: true,
 
-            },
-            apartment : {
-        type: Number,
-        trim: true,
+        },
+        apartment: {
+            type: Number,
+            trim: true,
 
-            },
-            landmark: {
-        type: String,
-        trim: true
+        },
+        landmark: {
+            type: String,
+            trim: true
 
-            }
+        }
     },
 
 
@@ -301,7 +301,7 @@ userSchema.methods.toJSON = function () {
     // if (userObject.local.password != undefined) {
     //     delete userObject.local.password
     // }
-   //  delete userObject.local.password
+    //  delete userObject.local.password
     delete userObject.tokens
 
     return userObject
@@ -323,11 +323,11 @@ userSchema.methods.generateAuthToken = async function () {
 userSchema.statics.signUp = async (email, password) => {
     const userLogin = await User.findOne({ "local.email": email })
     if (!userLogin) {
-        throw new Error({error:'unable to Login'})
+        throw new Error({ error: 'unable to Login' })
     }
     const isTruePassword = await bcrypt.compare(password, userLogin.local.password)
     if (!isTruePassword) {
-        throw new Error({error:'unable to Login'})
+        throw new Error({ error: 'unable to Login' })
     }
 
 
@@ -338,11 +338,11 @@ userSchema.statics.signUp = async (email, password) => {
 userSchema.statics.findByCredentials = async (email, password) => {
     const userLogin = await User.findOne({ "local.email": email })
     if (!userLogin) {
-        throw new Error({error:'unable to Login'})
+        throw new Error({ error: 'unable to Login' })
     }
     const isTruePassword = await bcrypt.compare(password, userLogin.local.password)
     if (!isTruePassword) {
-        throw new Error({error:'unable to Login'})
+        throw new Error({ error: 'unable to Login' })
     }
 
 
