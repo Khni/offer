@@ -28,6 +28,7 @@ import ViewedItems from './components/UserAccount/components/userPages/ViewedIte
 import Carousel from './components/carousel'
 import OrderPageAdmin from './admin/components/adminPage/orders/orderPage'
 import ReviewsNavAdmin from './admin/components/adminPage/reviews/TopNav/reviewsNav'
+import OrderUserPage from './components/UserAccount/components/userPages/Orders/orderPage'
 function App() {
   return (
     <div className="App">
@@ -55,6 +56,8 @@ function App() {
                     <Route path="/orderpage-admin/:id" component={OrderPageAdmin}  />
                     <Route path="/favorite-list" component={AccountHOC(FavoriteList) } />
                     <Route path="/viewed-items" component={AccountHOC(ViewedItems) } />
+                    <Route path="/orderpage-user/:id" component={AccountHOC(OrderUserPage) } />
+                   
         </Switch>
     </div>
   );

@@ -84,7 +84,7 @@ async componentDidUpdate(prevProps,prevState){
     {/* onClick={() => this.props.history.push(`${this.props.match.url+"orderpage-admin/" }${orders._id}`)} */}
 {this.props.orders.map((orders,i)=>{
 return     <tr onClick={() => this.props.history.push(/orderpage-admin/+orders._id) }>
-  <td>{i +1}</td><td>{orders.orderNum}</td><td>{orders.totalPrice}</td></tr>
+  <td>{i +1}</td><td>{orders.createdAt}</td><td>{orders.orderNum}</td><td>{orders.totalPrice}</td></tr>
    })}
   
       </table>:  <div className="loader"/>}

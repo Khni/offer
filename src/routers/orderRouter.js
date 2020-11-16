@@ -121,6 +121,23 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
     }
 })
 
+
+
+router.get('/api/user/order/find/:id', auth, async (req, res) => {
+
+    let order = await Order.findOne({ _id: req.params.id })
+
+
+
+    try {
+
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
 // router.get('/api/admin/orders', authAdmin, async (req, res) => {
 //     const orders = await Order.find({})
 

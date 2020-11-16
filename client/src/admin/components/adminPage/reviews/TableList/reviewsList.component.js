@@ -121,8 +121,8 @@ class CategoryList extends Component {
                 return <tr>
                   <td>{i + 1}</td><td>{item.rate}</td><td>{item.title}</td><td>{item.comment}</td>
                   {this.props.match.params.status == "notactive" ?
-                    <p className="pointer" onClick={() => this.active(true,this.props.AdminToken,item._id)} >activate</p>
-                    : <p className="pointer" onClick={() => this.active(false,this.props.AdminToken,item._id)}>deactivate</p>
+                     <td><button className="customBtn" onClick={() => this.active(true,this.props.AdminToken,item._id)}>ACTIVATE</button></td>
+                    : <td><button className="customBtn" onClick={() => this.active(false,this.props.AdminToken,item._id)}>DEACTIVATE</button></td>
                   }
 
 

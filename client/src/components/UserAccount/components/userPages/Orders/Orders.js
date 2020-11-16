@@ -59,10 +59,10 @@ await this.FetchOrdersFromServer()
 
 
                       <table className="TableList">
-    <tr><th>Price</th><th>Order ID</th> </tr>
+    <tr><th>Price</th><th>Order ID</th> <th>status</th> </tr>
    
 {this.props.orders.map((order)=>{
-return     <tr><td>{order.totalPrice}</td><td>{order.orderNum}</td></tr>
+return     <tr onClick={() => this.props.history.push(/orderpage-user/+order._id) }><td>{order.totalPrice}</td><td>{order.orderNum}</td><td>{order.status}</td></tr>
    })}
   
       </table>  
