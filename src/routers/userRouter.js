@@ -90,9 +90,9 @@ router.post('/api/signup', async (req, res) => {
 
         try {
             await userjson.save()
-            const token = await userjson.generateAuthToken()
-            // res.status(201).send({ userjson, token })
-            res.send({ userjson, token })
+                 const tokens = await user.generateAuthToken()
+            
+            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
         } catch (e) {
             res.status(400).send(e.message)
         }
@@ -116,9 +116,9 @@ router.post('/api/signup', async (req, res) => {
         })
         try {
             await user.save()
-            const token = await user.generateAuthToken()
-            //   res.status(201).send({ user, token })
-            res.send({ user, token })
+            const tokens = await user.generateAuthToken()
+            
+            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
         } catch (e) {
 
             res.status(400).send(HandelErrors(e.message))
@@ -291,8 +291,9 @@ router.post('/api/login', async (req, res) => {
 
     try {
         const user = await User.findByCredentials(EmailInput, PasswordInput)
-        const token = await user.generateAuthToken()
-        res.send({ user, token })
+        const tokens = await user.generateAuthToken()
+            
+            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(400).json({
@@ -562,4 +563,38 @@ router.post('/api/google/callback',
         // Successful authentication, redirect home.
         res.redirect('/');
     });
+    
+    
+    
+    
+    //refresh token
+    post("/api/token/refresh", (req, res, next) => {
+    const refreshToken = req.header('Authorization').replace('Bearer ','')
+    if (!refreshToken ) {
+        return res.json({ message: "Refresh token not found, login again" });
+    }
+
+
+        const decoded = jwt.verify(refreshToken, 'refreshToken')
+        const user = await User.findOne({ _id: decoded._id, 'refreshTokens.refreshToken': refreshToken })
+      if (!user) {
+res.status(400).send("invalid token")
+
+   } 
+
+    // If the refresh token is valid, create a new accessToken and return it.
+    try {
+            
+            const tokens = await user.generateAuthToken()
+            
+            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+        } catch (e) {
+
+            res.status(400).send("error")
+            //   res.send('error')
+        }
+});
+
+
+
 module.exports = { router, routerPromise } 

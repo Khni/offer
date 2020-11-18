@@ -211,6 +211,17 @@ const userSchema = mongoose.Schema({
             }
         }
     ]
+   , 
+   refreshTokens: [
+        {
+            refreshToken: {
+                type: String,
+                required: true
+            }
+        }
+    ]
+
+
 
 
 
@@ -313,10 +324,16 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'secret', { expiresIn: '7 days' })
+    const token = jwt.sign({ _id: user._id.toString() }, 'secret', { expiresIn: '2 days' })
+    const refreshToken = jwt.sign({ _id: user._id.toString() }, 'refreshToken', { expiresIn: '7 days' })
     user.tokens = user.tokens.concat({ token })
+    user.refreshTokens = user.refreshTokens.concat({ refreshToken })
     await user.save()
-    return token
+    const tokens = {
+token, 
+refreshToken
+    } 
+    return tokens
 }
 
 //signup 
