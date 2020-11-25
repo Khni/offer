@@ -46,6 +46,7 @@ if (data.action == "login" || data.action == "signup" || data.action == 'updateu
     }
     
     if ( data.action == 'goauth') {
+      console.log("token googleAuth" + response.data.token);
       yield put(
       actions.authSuccess(response.data.token,
         response.data.user._id,

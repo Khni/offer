@@ -568,7 +568,7 @@ router.post('/api/google/callback',
     
     
     //refresh token
-    post("/api/token/refresh", (req, res, next) => {
+    router.post("/api/token/refresh", async (req, res, next) => {
     const refreshToken = req.header('Authorization').replace('Bearer ','')
     if (!refreshToken ) {
         return res.json({ message: "Refresh token not found, login again" });

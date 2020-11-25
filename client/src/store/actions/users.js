@@ -80,7 +80,7 @@ export const signIn = data => {
 
 export const oauthGoogle = data => {
   return async dispatch => {
-    const response = await axios.post('http://localhost:5000/users/oauth/google', {
+    const response = await axios.post('api/goauth', {
       access_token: data
     });
  

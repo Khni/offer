@@ -16,9 +16,10 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
 
         if (user) {
-            const token = await user.generateAuthToken()
-            console.log(user + "user");
-            return res.send({ user, token })
+            const tokens = await user.generateAuthToken()
+            
+            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
 
         }
 
@@ -38,8 +39,9 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
 
             await user.save()
-            const token = await user.generateAuthToken()
-            return res.send({ user, token })
+            const tokens = await user.generateAuthToken()
+            
+            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
 
 
 
@@ -62,12 +64,15 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
         })
 
         await user.save()
-        const token = await user.generateAuthToken()
+        const tokens = await user.generateAuthToken()
         await user.save()
         console.log("after token" + user);
         console.log("token" + token);
         //const user = userNew
-        return res.send({ user, token })
+        
+            
+            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
 
 
 
@@ -185,9 +190,9 @@ const userSignUp = async (req, res) => {
         })
         try {
             await user.save()
-            const token = await user.generateAuthToken()
-            //   res.status(201).send({ user, token })
-            res.send({ user, token })
+            const tokens = await user.generateAuthToken()
+            
+            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
         } catch (error) {
             //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
