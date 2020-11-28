@@ -8,124 +8,23 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
-const {InsertSocialUser, userSignUp} = require('../controllers/userRouterController.js')
+const { InsertSocialUser, userSignUp } = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
 const validator = require('validator')
+const jwt = require('jsonwebtoken')
 var geoip = require('geoip-lite');
 var google = require('googleapis').google;
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2();
 //post/create new user 
 //
-router.post('/api/user-signup', async (req, res) => await  userSignUp(req, res) )
+router.post('/api/user-signup', async (req, res) => await userSignUp(req, res))
 
 
 
 
 
-
-router.post('/api/signup', async (req, res) => {
-
-    const email = req.body.email
-    const password = req.body.password
-    const username = req.body.username
-    const repassword = req.body.repassword
-    if (!validator.isEmail(email)) {
-        return res.status(403).json({
-            error_en: 'Email is invalid',
-            error_ar: 'الايميل غير صحيح'
-        });
-    }
-
-    if (!email || !password) {
-        return res.status(403).json({
-            error_en: 'You must provide Email and password',
-            error_ar: 'يجب أن تدخل بريد الكتروني ورقم سري'
-        });
-    }
-
-
-    let userjson = await User.findOne({ "local.email": email })
-    if (userjson) {
-        return res.status(403).json({
-            error_en: 'Email is already in use',
-            error_ar: 'البريد الالكترونى مسجل مسبقا '
-        });
-        // return new Error('email is already exsist').status(403)
-    }
-    /*
-  const usernamejs= await User.findOne({"local.username": username})
-  if (usernamejs) {
-      return res.status(403).json({ error: 'Username is already in use'});
-    }*/
-
-
-
-
-    if (password !== repassword) {
-        return res.status(403).json({
-            error_en: 'Password is not Match',
-            error_ar: 'الرقم السري غير مطابق'
-        });
-    }
-
-
-
-    userjson = await User.findOne({
-        $or: [
-            { "google.email": email },
-            { "facebook.email": email },
-        ]
-    });
-
-    if (userjson) {
-
-        // merge them
-        userjson.methods.push('local')
-        userjson.local = {
-            email: email,
-            password: password
-        }
-
-        try {
-            await userjson.save()
-                 const tokens = await user.generateAuthToken()
-            
-            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
-        } catch (e) {
-            res.status(400).send(e.message)
-        }
-
-    }
-
-
-
-
-
-    if (!userjson) {
-
-        const user = new User({
-            methods: ['local'],
-            local: {
-                email: email,
-                password: password,
-
-            }
-            , ...req.body
-        })
-        try {
-            await user.save()
-            const tokens = await user.generateAuthToken()
-            
-            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
-        } catch (e) {
-
-            res.status(400).send(HandelErrors(e.message))
-            //   res.send('error')
-        }
-    }
-})
 //list of users
 router.get('/api/users', async (req, res) => {
     try {
@@ -292,9 +191,10 @@ router.post('/api/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(EmailInput, PasswordInput)
         const tokens = await user.generateAuthToken()
-            
-            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
+
+        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (error) {
+        
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(400).json({
             error_en: 'Email or Password Incorrect',
@@ -524,24 +424,24 @@ router.post('/api/goauth', async (req, res) => {
         auth: oauth2Client,
         version: 'v2'
     });
-   
+
 
 
 
 
     try {
         oauth2.userinfo.get(
-             async (err, resProfile)=> {
+            async (err, resProfile) => {
                 if (err) {
                     console.log(err);
 
                 } else {
                     console.log(resProfile);
-                 //   res.status(200).send({profile: resProfile.data})
-                   await InsertSocialUser(req, res, 'google' ,resProfile.data.id, resProfile.data.email,resProfile.data.name) 
+                    //   res.status(200).send({profile: resProfile.data})
+                    await InsertSocialUser(req, res, 'google', resProfile.data.id, resProfile.data.email, resProfile.data.name)
                 }
             });
-       
+
 
     } catch (error) {
         res.status(400).send({ error });
@@ -563,36 +463,51 @@ router.post('/api/google/callback',
         // Successful authentication, redirect home.
         res.redirect('/');
     });
-    
-    
-    
-    
-    //refresh token
-    router.post("/api/token/refresh", async (req, res, next) => {
-    const refreshToken = req.header('Authorization').replace('Bearer ','')
-    if (!refreshToken ) {
+
+
+
+
+//refresh token
+router.get("/api/token/refresh", async (req, res, next) => {
+    const refreshToken = req.header('Authorization').replace('Bearer ', '')
+    if (!refreshToken) {
         return res.json({ message: "Refresh token not found, login again" });
     }
 
 
-        const decoded = jwt.verify(refreshToken, 'refreshToken')
-        const user = await User.findOne({ _id: decoded._id, 'refreshTokens.refreshToken': refreshToken })
-      if (!user) {
-res.status(400).send("invalid token")
+    const decoded = jwt.verify(refreshToken, 'refreshToken')
+    const user = await User.findOne({ _id: decoded._id})
+     
+   const logOut = async (user) => {
+       // log the user out coz someone used the real refresh token ,,
+       //token may be leaked
+      user.refreshToken = ''
+      user.tokens = []
+      await user.save()
+      res.status(400).send({ user })
+   }
 
-   } 
+    if (user.refreshToken != refreshToken ) {
+        return await logOut(user)
+    }
+   // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
+    if (!user) {
+        res.status(400).send("invalid token")
+
+    }
 
     // If the refresh token is valid, create a new accessToken and return it.
     try {
-            
-            const tokens = await user.generateAuthToken()
-            
-            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
-        } catch (e) {
 
-            res.status(400).send("error")
-            //   res.send('error')
-        }
+        const tokens = await user.generateAuthToken()
+
+       // res.send({ user })
+        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
+    } catch (e) {
+   console.log(e);
+        res.status(400).send("error")
+        //   res.send('error')
+    }
 });
 
 

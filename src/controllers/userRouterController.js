@@ -195,6 +195,7 @@ const userSignUp = async (req, res) => {
             res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
         } catch (error) {
+            console.log(error);
             //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
             res.status(403).json({
                 error_en: 'Error, please try again later',

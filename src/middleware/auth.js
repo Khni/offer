@@ -19,8 +19,10 @@ const authToken = async(req ,res , next) =>{
         
         next()
     } catch (error) {
-        res.status(401).send({ error: 'Please authenticate.' })
-        console.log(error);
+        //expired TokenExpiredError
+        //invaild JsonWebTokenError
+        res.status(401).send({ error: error.name })
+        console.log( error.name);
         
     }
    
