@@ -4,6 +4,30 @@ import axios from "axios"
 import * as calls from './axiosCalls'
 
 
+const RefreshToken = async (refreshToken, dispatch) => {
+  try {
+    console.log("try refresh" + refreshToken);
+    const res = await calls.getDataHeaderAuth('/api/token/refresh', refreshToken)
+
+
+    console.log("tokens" + res.data.token + res.data.refreshToken);
+    dispatch({
+      type: actionTypes.REFRESH_TOKEN,
+      token: res.data.token,
+      refreshToken: res.data.refreshToken
+    });
+
+
+    return res.data.token
+
+  } catch (error) {
+    console.log("refresh error" + error);
+  }
+
+
+}
+
+
 export const fetchFavorites = (token, refreshToken) => {
   return async dispatch => {
 
@@ -24,29 +48,13 @@ export const fetchFavorites = (token, refreshToken) => {
       if (e.response.data.error == "TokenExpiredError") {
         console.log("token is Expired");
 
+        const newToken = await RefreshToken(refreshToken, dispatch)
+        let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
 
-
-        try {
-          const response = await calls.getDataHeaderAuth('/api/token/refresh', refreshToken)
-          console.log("tokens" +response.data.token + response.data.refreshToken );
-          dispatch({
-            type: actionTypes.REFRESH_TOKEN,
-            token: response.data.token,
-            refreshToken: response.data.refreshToken
-          });
-          
-
-          let Favoriteresponse = await calls.getDataHeaderAuth(url, response.data.token)
-
-          dispatch({
-            type: actionTypes.FRTCH_FAVORITES_SUCCESS,
-            list: Favoriteresponse.data.favoriteProducts
-          });
-
-
-        } catch (error) {
-
-        }
+      return  dispatch({
+          type: actionTypes.FRTCH_FAVORITES_SUCCESS,
+          list: Favoriteresponse.data.favoriteProducts
+        });
 
 
 

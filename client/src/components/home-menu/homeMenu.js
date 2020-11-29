@@ -53,7 +53,7 @@ class homeMenu extends Component {
     }
 
 
-    await this.props.favoriteListAction(this.props.token,this.props.refreshToken)
+    await this.props.favoriteListAction(this.props.token,this.props.RefreshToken)
     this.setState({ favorites: this.props.FavoritesList })
 
     let productsWithFav = products.map((product) => {
@@ -78,7 +78,7 @@ class homeMenu extends Component {
     this.setState({ items: productsWithFav })
 
     this.setState({ Loading: false })
-    console.log("products new" + JSON.stringify(this.state.items));
+   
 
   }
 
@@ -116,7 +116,7 @@ class homeMenu extends Component {
 
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log("prevState:" + prevState.Loading);
+    
     if (!prevState.Loading) {
       await this.FetchSectionsFromServer()
     }
@@ -206,7 +206,7 @@ const mapStateToProps = (state) => {
   return {
     FavoritesList: state.FavAndSeenReducer.favorites.list,
     token: state.userAuth.authUser.token,
-    refreshToken: state.userAuth.authUser.refreshToken,
+    RefreshToken: state.userAuth.authUser.refreshToken,
     collections: selectProducts(state),
     productsLoading: state.categoryReducer.productsLoading,
     categories: state.categoryReducer.categories,
