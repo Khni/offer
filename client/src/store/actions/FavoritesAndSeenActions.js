@@ -51,7 +51,7 @@ export const fetchFavorites = (token, refreshToken) => {
         const newToken = await RefreshToken(refreshToken, dispatch)
         let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
 
-      return  dispatch({
+        return dispatch({
           type: actionTypes.FRTCH_FAVORITES_SUCCESS,
           list: Favoriteresponse.data.favoriteProducts
         });
