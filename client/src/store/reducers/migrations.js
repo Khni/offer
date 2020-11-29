@@ -20,6 +20,17 @@ export const migrations = {
   },
 
 
+  2: state => {
+    return {
+      ...state,
+      userAuth: {
+        ...state.userAuth,
+        authUser:{...state.userAuth.authUser, refreshToken:'' }
+      },
+    };
+  },
+
+
 
 
 

@@ -88,8 +88,26 @@ class ProductPage extends Component {
     this.setState({ favorite: !this.state.favorite })
     try {
       const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
-
+   console.log("response"+ response);
     } catch (e) {
+      console.log("e"+ e.response.data.error);
+      if ( e.response.data.error =="TokenExpiredError") {
+        console.log("token is Expired");
+//try to refresh the token if its expired
+
+
+try {
+ // const response = await Calls.getDataHeaderAuth('/api/token/refresh',this.props.token)
+
+} catch (error) {
+  
+}
+
+//end of refresh try
+
+
+
+      }
       if (e) {
         this.setState({ favorite: !this.state.favorite })
 

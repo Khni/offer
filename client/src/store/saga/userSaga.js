@@ -37,6 +37,7 @@ export function* authUserSaga(data) {
 if (data.action == "login" || data.action == "signup" || data.action == 'updateuser') {
       yield put(
       actions.authSuccess(response.data.token,
+        response.data.refreshToken,
         response.data.user._id,
         response.data.user.name,
         response.data.user.local.email,
@@ -49,6 +50,7 @@ if (data.action == "login" || data.action == "signup" || data.action == 'updateu
       console.log("token googleAuth" + response.data.token);
       yield put(
       actions.authSuccess(response.data.token,
+        response.data.refreshToken,
         response.data.user._id,
         response.data.user.name,
         response.data.user.google.email,

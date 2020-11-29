@@ -6,16 +6,28 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token, userId, name, email, phone) => {
+export const authSuccess = (token, refreshToken, userId, name, email, phone) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    token: token, 
-      email: email,
-        name: name, 
-        id: userId, 
-        phone: phone
+    refreshToken: refreshToken,
+    token: token,
+    email: email,
+    name: name,
+    id: userId,
+    phone: phone
   };
 };
+
+
+export const refreshToken = (token , refreshToken) => {
+  return {
+    type: actionTypes.REFRESH_TOKEN,
+    refreshToken: refreshToken,
+    token: token
+  };
+};
+
+
 
 export const authFail = error => {
   return {
@@ -45,18 +57,18 @@ export const updateUserFail = error => {
 
 
 
-export const auth = (data,action) => {
+export const auth = (data, action) => {
   return {
     type: actionTypes.AUTH_USER,
     data: data,
-    action:action
+    action: action
   };
 };
-export const updateUser = (data,action, token) => {
+export const updateUser = (data, action, token) => {
   return {
     type: actionTypes.AUTH_USER,
     data: data,
-    action:action, 
+    action: action,
     token: token
   };
 };

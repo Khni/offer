@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import * as actions from '../../store/actions/index';
+import { refreshToken } from '../../store/actions/userActions';
 const MenuItem = (props)=>{
   // useEffect(async() => {
   //   await props.favoriteListAction(props.token)
@@ -101,6 +102,7 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+  refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
 });
 const mapStateToProps =(state) =>{
 	return {

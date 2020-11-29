@@ -298,7 +298,7 @@ export const addCollectionToServer = (data, adminToken) => {
 });
 
 
-export const fetchFavorites = (token) =>{
+export const fetchFavorites = (token,refreshToken) =>{
 	return async dispatch => {
 	
   dispatch({

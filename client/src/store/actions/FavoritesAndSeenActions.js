@@ -3,52 +3,91 @@ import * as APIs from './APIs'
 import axios from "axios"
 import * as calls from './axiosCalls'
 
-export const fetchFavorites = (token) =>{
-	return async dispatch => {
-	
-  dispatch({
-         type: actionTypes.FRTCH_FAVORITES_START
-      });
-  let url = APIs.GET_USER_FAVORITES
-  try {
-    let response = await calls.getDataHeaderAuth(url,token) 
-  
+
+export const fetchFavorites = (token, refreshToken) => {
+  return async dispatch => {
+
     dispatch({
-         type: actionTypes.FRTCH_FAVORITES_SUCCESS, 
-         list: response.data.favoriteProducts
+      type: actionTypes.FRTCH_FAVORITES_START
+    });
+    let url = APIs.GET_USER_FAVORITES
+    try {
+      let response = await calls.getDataHeaderAuth(url, token)
+
+      dispatch({
+        type: actionTypes.FRTCH_FAVORITES_SUCCESS,
+        list: response.data.favoriteProducts
       });
-  } catch (error) {
-    dispatch({
-         type: actionTypes.FRTCH_FAVORITES_ERROR, 
-         error: error.response.data.error
-      });
-  }
-}
-} 
+    } catch (e) {
+
+      //try to refresh the token if its expired
+      if (e.response.data.error == "TokenExpiredError") {
+        console.log("token is Expired");
 
 
-export const fetchSeen= (token) => {
-	return async dispatch => {
-	
-  dispatch({
-         type: actionTypes.FRTCH_SEEN_START
+
+        try {
+          const response = await calls.getDataHeaderAuth('/api/token/refresh', refreshToken)
+          console.log("tokens" +response.data.token + response.data.refreshToken );
+          dispatch({
+            type: actionTypes.REFRESH_TOKEN,
+            token: response.data.token,
+            refreshToken: response.data.refreshToken
+          });
+          
+
+          let Favoriteresponse = await calls.getDataHeaderAuth(url, response.data.token)
+
+          dispatch({
+            type: actionTypes.FRTCH_FAVORITES_SUCCESS,
+            list: Favoriteresponse.data.favoriteProducts
+          });
+
+
+        } catch (error) {
+
+        }
+
+
+
+
+
+      }
+      //end of refresh try
+
+
+
+      dispatch({
+        type: actionTypes.FRTCH_FAVORITES_ERROR,
+        error: e.response.data.error
       });
-  let url = APIs.GET_USER_SEEN
-  try {
-    let response = await calls.getDataHeaderAuth(url,token) 
-    
-    dispatch({
-         type: actionTypes.FRTCH_SEEN_SUCCESS, 
-         list: response.data.ViewedProducts
-      });
-  } catch (error) {
-    dispatch({
-         type: actionTypes.FRTCH_SEEN_ERROR, 
-         error: error.response.data.error
-      });
+    }
   }
 }
-} 
+
+
+export const fetchSeen = (token) => {
+  return async dispatch => {
+
+    dispatch({
+      type: actionTypes.FRTCH_SEEN_START
+    });
+    let url = APIs.GET_USER_SEEN
+    try {
+      let response = await calls.getDataHeaderAuth(url, token)
+
+      dispatch({
+        type: actionTypes.FRTCH_SEEN_SUCCESS,
+        list: response.data.ViewedProducts
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.FRTCH_SEEN_ERROR,
+        error: error.response.data.error
+      });
+    }
+  }
+}
 
 
 
@@ -77,7 +116,7 @@ export const favoriteListAction = (token) => {
   return {
     type: actionTypes.FAVORITE_LIST_ACTION,
     token: token
-    
+
   };
 };
 //seen
@@ -107,6 +146,6 @@ export const seenListAction = (token) => {
   return {
     type: actionTypes.SEEN_LIST_ACTION,
     token: token
-    
+
   };
 };

@@ -14,15 +14,16 @@ import * as actionTypes from '../../types';
 const DEFAULT_STATE = {
 
 
-  user:'',
+  user: '',
   Loading: false,
-  error:'',
+  error: '',
   isAuthenticated: false,
-  
+
   authUser: {
     isAuthenticated: false,
     error: '',
     token: '',
+    refreshToken: '',
     email: '',
     name: '',
     id: '',
@@ -48,12 +49,18 @@ export default (state = DEFAULT_STATE, action) => {
       return { ...state, authUser: { ...state.authUser, Loading: true } }
 
     case actionTypes.AUTH_SUCCESS:
-      return { ...state, authUser: { ...state.authUser, isAuthenticated: true, phone: action.phone, token: action.token, email: action.email, name: action.name, id: action.id, error: '', Loading: false }, updatedUser: { ...state.updatedUser, error: '' } }
+      return { ...state, authUser: { ...state.authUser, isAuthenticated: true, phone: action.phone, token: action.token, refreshToken: action.refreshToken, email: action.email, name: action.name, id: action.id, error: '', Loading: false }, updatedUser: { ...state.updatedUser, error: '' } }
+
+
+
+    case actionTypes.REFRESH_TOKEN:
+      return { ...state, authUser: { ...state.authUser, token: action.token, refreshToken: action.refreshToken } }
+
 
     case actionTypes.AUTH_FAIL:
       return { ...state, authUser: { ...state.authUser, error: action.error, Loading: false } }
     case actionTypes.AUTH_LOGOUT:
-      return { ...state, authUser: { ...state.authUser, isAuthenticated: false, phone: '', token: '', error: '', email: '', name: '', id: '', Loading: false } }
+      return { ...state, authUser: { ...state.authUser, isAuthenticated: false, phone: '', token: '', refreshToken: '', error: '', email: '', name: '', id: '', Loading: false } }
 
     case actionTypes.UPDATE_USER_FAIL:
       return { ...state, updatedUser: { ...state.updatedUser, error: action.error }, authUser: { ...state.authUser, Loading: false } }

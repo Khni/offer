@@ -21,7 +21,7 @@ import redirectAuthReducer from './auth/redirectAuthReducer'
 
 const persistConfig = {
   key: 'root',
-  version: 0,
+  version: 2,
   storage,
   debug: true,
   migrate: createMigrate(migrations, { debug: true }),
