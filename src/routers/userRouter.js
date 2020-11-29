@@ -477,7 +477,10 @@ router.get("/api/token/refresh", async (req, res, next) => {
 
     const decoded = jwt.verify(refreshToken, 'refreshToken')
     const user = await User.findOne({ _id: decoded._id})
-     
+     if (!user) {
+        res.status(400).send({ error: "invalid token" })
+
+    }
    const logOut = async (user) => {
        // log the user out coz someone used the real refresh token ,,
        //token may be leaked
@@ -491,21 +494,19 @@ router.get("/api/token/refresh", async (req, res, next) => {
         return await logOut(user)
     }
    // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
-    if (!user) {
-        res.status(400).send("invalid token")
-
-    }
+    
 
     // If the refresh token is valid, create a new accessToken and return it.
     try {
 
         const tokens = await user.generateAuthToken()
 
-       // res.send({ user })
+       
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (e) {
    console.log(e);
-        res.status(400).send("error")
+   //if it expired or token in invalid 
+        res.status(400).send({ error: error.name})
         //   res.send('error')
     }
 });
