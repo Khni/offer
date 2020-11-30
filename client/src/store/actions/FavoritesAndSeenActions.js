@@ -24,7 +24,7 @@ const RefreshToken = async (refreshToken, dispatch) => {
     dispatch({
       type: actionTypes.AUTH_LOGOUT
     });
-    
+
     return false
   }
 
@@ -50,12 +50,15 @@ export const fetchFavorites = (token, refreshToken) => {
 
       //try to refresh the token if its expired
       if (e.response.data.error == "TokenExpiredError") {
-        console.log("token is Expired");
+     
 
         const newToken = await RefreshToken(refreshToken, dispatch)
-        if (!token) {
-return
-          } 
+        if (!newToken) {
+          return dispatch({
+            type: actionTypes.FRTCH_FAVORITES_ERROR,
+            error: "error"
+          });
+        }
         let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
 
         return dispatch({
@@ -72,10 +75,7 @@ return
 
 
 
-      dispatch({
-        type: actionTypes.FRTCH_FAVORITES_ERROR,
-        error: e.response.data.error
-      });
+
     }
   }
 }
