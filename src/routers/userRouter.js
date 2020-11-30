@@ -477,6 +477,7 @@ router.get("/api/token/refresh", async (req, res, next) => {
 
     const decoded = jwt.verify(refreshToken, 'refreshToken')
     const user = await User.findOne({ _id: decoded._id})
+    console.log("user"+user);
      if (!user) {
         res.status(400).send({ error: "invalid token" })
 
@@ -506,6 +507,7 @@ router.get("/api/token/refresh", async (req, res, next) => {
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (e) {
    console.log(e);
+
    //if it expired or token in invalid 
         res.status(400).send({ error: error.name})
         //   res.send('error')

@@ -63,7 +63,7 @@ class ProductPage extends Component {
 
 
     if (this.props.token) {
-      await this.props.favoriteListAction(this.props.token)
+      await this.props.favoriteListAction(this.props.token,this.props.RefreshToken)
 
       const productID = response.data.product._id
 
@@ -220,6 +220,7 @@ const mapStateToProps = (state) => {
   return {
     FavoritesLoading: state.FavAndSeenReducer.favorites.Loading,
     token: state.userAuth.authUser.token,
+    RefreshToken: state.userAuth.authUser.refreshToken,
     id: state.userAuth.authUser.id,
     FavoritesList: state.FavAndSeenReducer.favorites.list,
     cartItems: selectCartItems(state)
