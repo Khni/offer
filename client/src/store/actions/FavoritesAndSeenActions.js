@@ -4,7 +4,7 @@ import axios from "axios"
 import * as calls from './axiosCalls'
 
 
-const RefreshToken = async (refreshToken, dispatch) => {
+export const RefreshToken = async (refreshToken, dispatch) => {
   try {
     console.log("try refresh" + refreshToken);
     const res = await calls.getDataHeaderAuth('/api/token/refresh', refreshToken)
@@ -21,6 +21,7 @@ const RefreshToken = async (refreshToken, dispatch) => {
     return res.data.token
 
   } catch (error) {
+    console.log("refresh error");
     dispatch({
       type: actionTypes.AUTH_LOGOUT
     });
@@ -53,7 +54,7 @@ export const fetchFavorites = (token, refreshToken) => {
      
 
         const newToken = await RefreshToken(refreshToken, dispatch)
-        if (!newToken) {
+        if (!newToken) { //if the refreshToken expired or wrong .. log out
           return dispatch({
             type: actionTypes.FRTCH_FAVORITES_ERROR,
             error: "error"

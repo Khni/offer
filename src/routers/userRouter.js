@@ -487,11 +487,12 @@ router.get("/api/token/refresh", async (req, res, next) => {
       user.refreshToken = ''
       user.tokens = []
       await user.save()
-      res.status(400).send({ user })
+      
    }
 
     if (user.refreshToken != refreshToken ) {
-        return await logOut(user)
+         await logOut(user)
+       return res.status(400).send({ error: "log user out"})
     }
    // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
     

@@ -31,7 +31,8 @@ export {
     fetchSeenError, 
     seenListAction, 
     fetchFavorites, 
-    fetchSeen
+    fetchSeen,
+    RefreshToken
 } from './FavoritesAndSeenActions.js';
 
 
