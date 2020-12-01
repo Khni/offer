@@ -6,6 +6,8 @@ import * as Calls from '../../store/actions/axiosCalls'
 import Header from '../headd/header/header'
 import Section from '../section/section.js';
 import Searchbox from '../searchbox/searchbox.component'
+import * as calls from '../../store/actions/axiosCalls'
+import AuthCheck from '../../config/authCheck'
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
@@ -97,6 +99,24 @@ class homeMenu extends Component {
   }
 
   async componentDidMount() {
+    
+    try{
+      const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
+      console.log("resAuth" +response.status );
+      if(response.status== 201) {
+        console.log("status created");
+        console.log("res token "+JSON.stringify(response) );
+  await this.props.refreshToken(response.data.token, response.data.refreshToken)
+     } 
+     } catch(e) {
+       console.log("e" +e.response.data.error);
+  this.props.logout()
+  } 
+
+
+
+
+    console.log("favoritelist" + this.props.FavoritesList);
     let lang = window.navigator.languages ? window.navigator.languages[0] : null;
     lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
 

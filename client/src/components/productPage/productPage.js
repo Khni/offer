@@ -4,6 +4,7 @@ import axios from 'axios';
 import MiddleComponent from './middle/middle.component'
 import DiscComponent from './disc/disc.component'
 import { connect } from 'react-redux'
+import * as calls from '../../store/actions/axiosCalls'
 // import {selectItem} from '../../store/reducers/products/productsReselect'
 import './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js'
@@ -137,6 +138,20 @@ try {
   }
 
   async componentDidMount() {
+    try{
+      const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
+      console.log("resAuth" +response.status );
+      if(response.status== 201) {
+        console.log("status created");
+        console.log("res token "+JSON.stringify(response) );
+  await this.props.refreshToken(response.data.token, response.data.refreshToken)
+     } 
+     } catch(e) {
+       console.log("e" +e.response.data.error);
+  this.props.logout()
+  } 
+
+
     await this.fetchProduct()
     if (this.props.token) {
       await this.addSeenProduct()
@@ -231,6 +246,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+  logout: () => dispatch(actions.logout()),
+  
+  refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
 });
 
 

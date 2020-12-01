@@ -6,11 +6,11 @@ const authToken = async(req ,res , next) =>{
     try {
         const token = req.body.token
         
-        
+        console.log("token" +token);
         const decoded = jwt.verify(token, 'secret')
         //send another status if token expired to refresh it
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
-      
+     
         if (!user) {
             throw new Error()
         }
@@ -20,20 +20,20 @@ const authToken = async(req ,res , next) =>{
         next()
     } catch (error) {
     	const refreshtToken = req.header('Authorization').replace('Bearer ','')
-        
+        console.log("refreshToken" + refreshtToken);
         //expired TokenExpiredError
         //invaild JsonWebTokenError
         
         //if token expired
         if(error.name=='TokenExpiredError' ) {
-if (!refreshToken) {
+if (!refreshtToken) {
       return res.status(401).send({ message: "Refresh token not found, login again" })
          
     }
     
-    const decoded = jwt.verify(refreshToken, 'refreshToken')
+    const decoded = jwt.verify(refreshtToken, 'refreshToken')
     const user = await User.findOne({ _id: decoded._id})
-    console.log("user"+user);
+    
      if (!user) {
         res.status(401).send({ error: "invalid token" })
 
@@ -48,7 +48,7 @@ if (!refreshToken) {
       
    }
    
-   if (user.refreshToken != refreshToken ) {
+   if (user.refreshToken != refreshtToken ) {
          await logOut(user)
        return res.status(401).send({ error: "log user out"})
     }
@@ -65,7 +65,7 @@ if (!refreshToken) {
    console.log(e);
 
    //if it expired or token in invalid 
-        res.status(401).send({ error: 'unauthenticated' })
+        res.status(401).send({ error: 'unauthenticated end' })
         
     }
     
@@ -77,7 +77,7 @@ if (!refreshToken) {
         
         
         //if the token invalid not just expired 
-        res.status(401).send({ error: 'unauthenticated' })
+        res.status(401).send({ error: 'unauthenticated invalid token' })
         
     }
    

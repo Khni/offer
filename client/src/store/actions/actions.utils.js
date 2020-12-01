@@ -1,4 +1,9 @@
-export const RefreshToken = async (refreshToken, dispatch) => {
+import * as actionTypes from "../types";
+import * as APIs from './APIs'
+import axios from "axios"
+import * as calls from './axiosCalls'
+
+export const refreshTokenFunc = async (refreshToken, dispatch) => {
   try {
     console.log("try refresh" + refreshToken);
     const res = await calls.getDataHeaderAuth('/api/token/refresh', refreshToken)

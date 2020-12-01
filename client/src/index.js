@@ -28,9 +28,9 @@ ReactDOM.render(
 <Provider store={store}>
 <PersistGate persistor={persistor}>
 <ScrollToTop>
-<AuthCheck>
+
 <App />
-</AuthCheck>
+
 </ScrollToTop>
 </PersistGate>
 </Provider>

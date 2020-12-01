@@ -520,11 +520,9 @@ router.get("/api/token/refresh", async (req, res, next) => {
 
 router.post('/api/user/refreshToken', authRefreshToken, async (req, res) => {
 
-
+     
         res.status(200).send()
-    } catch (e) {
-        res.status(401).send({error: 'unauthenticated' })
-    }
+   
 
 })
 

@@ -2,6 +2,8 @@ import React , {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../store/actions';
 import * as calls from '../store/actions/axiosCalls'
+import { connect } from 'react-redux';
+
 class AuthCheck extends Component {
 	
 	constructor(props) {
@@ -12,15 +14,24 @@ class AuthCheck extends Component {
     }
   }
   
-  componentDidMount async(){
+async authCheck (){
+  console.log("from AuthCheck 2");
   	try{
-    const res = await calls.postDataHeaderAuth('/api/user/refreshToken', { token: this.props.token}, RefreshToken)
-    if(res.status== 201) {
-this.props.refreshToken(res.data.token, res.data.refreshToken)
+    const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
+    console.log("resAuth" +response.status );
+    if(response.status== 201) {
+      console.log("status created");
+      console.log("res token "+JSON.stringify(response) );
+await this.props.refreshToken(response.data.token, response.data.refreshToken)
    } 
    } catch(e) {
+     console.log("e" +e.response.data.error);
 this.props.logout()
 } 
+}
+
+  async componentDidMount (){
+    await this.authCheck()
   }
 
   render() {

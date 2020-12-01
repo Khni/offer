@@ -51,4 +51,4 @@ export {fetchSectionsWithProducts,
 
 } from './product'
 
-export {RefreshToken}   from './actions.utils';
+export {refreshTokenFunc}   from './actions.utils';

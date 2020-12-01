@@ -33,7 +33,7 @@ export const RefreshToken = async (refreshToken, dispatch) => {
 }
 
 
-export const fetchFavorites = (token, refreshToken) => {
+export const fetchFavorites = (token) => {
   return async dispatch => {
 
     dispatch({
@@ -50,28 +50,28 @@ export const fetchFavorites = (token, refreshToken) => {
     } catch (e) {
 
       //try to refresh the token if its expired
-      if (e.response.data.error == "TokenExpiredError") {
+      // if (e.response.data.error == "TokenExpiredError") {
      
 
-        const newToken = await RefreshToken(refreshToken, dispatch)
-        if (!newToken) { //if the refreshToken expired or wrong .. log out
-          return dispatch({
-            type: actionTypes.FRTCH_FAVORITES_ERROR,
-            error: "error"
-          });
-        }
-        let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
+      //   const newToken = await RefreshToken(refreshToken, dispatch)
+      //   if (!newToken) { //if the refreshToken expired or wrong .. log out
+      //     return dispatch({
+      //       type: actionTypes.FRTCH_FAVORITES_ERROR,
+      //       error: "error"
+      //     });
+      //   }
+      //   let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
 
-        return dispatch({
-          type: actionTypes.FRTCH_FAVORITES_SUCCESS,
-          list: Favoriteresponse.data.favoriteProducts
-        });
-
-
+      //   return dispatch({
+      //     type: actionTypes.FRTCH_FAVORITES_SUCCESS,
+      //     list: Favoriteresponse.data.favoriteProducts
+      //   });
 
 
 
-      }
+
+
+      // }
       //end of refresh try
 
 
@@ -84,44 +84,44 @@ export const fetchFavorites = (token, refreshToken) => {
 
 
 
-export const ToggleFavorite  = async (token,refreshToken, setState, productID)  =>{
-    if (!token) {
-      return
-    }
+// export const ToggleFavorite  = async (token,refreshToken, setState, productID)  =>{
+//     if (!token) {
+//       return
+//     }
 
-    setState({ favorite: !this.state.favorite })
-    try {
-      const response = await calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: productID }, token)
-   console.log("response"+ response);
-    } catch (e) {
-      console.log("e"+ e.response.data.error);
-      //try to refresh the token if its expired
-      if ( e.response.data.error =="TokenExpiredError") {
+//     setState({ favorite: !this.state.favorite })
+//     try {
+//       const response = await calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: productID }, token)
+//    console.log("response"+ response);
+//     } catch (e) {
+//       console.log("e"+ e.response.data.error);
+//       //try to refresh the token if its expired
+//       if ( e.response.data.error =="TokenExpiredError") {
         
-const newToken = await RefreshToken(refreshToken, dispatch)
-        if (!newToken) { //if the refreshToken expired or wrong .. log out
-          return dispatch({
-            type: actionTypes.FRTCH_FAVORITES_ERROR,
-            error: "error"
-          });
-        }
-        let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
+// const newToken = await RefreshToken(refreshToken, dispatch)
+//         if (!newToken) { //if the refreshToken expired or wrong .. log out
+//           return dispatch({
+//             type: actionTypes.FRTCH_FAVORITES_ERROR,
+//             error: "error"
+//           });
+//         }
+//         let Favoriteresponse = await calls.getDataHeaderAuth(url, newToken)
 
 
 
 
 
-      }
-      //end of refresh try
-      if (e) {
-        setState({ favorite: !this.state.favorite })
+//       }
+//       //end of refresh try
+//       if (e) {
+//         setState({ favorite: !this.state.favorite })
 
-      }
-    }
+//       }
+//     }
 
 
 
-  }
+//   }
 
 
 

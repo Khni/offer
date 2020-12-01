@@ -20,7 +20,9 @@ export const authSuccess = (token, refreshToken, userId, name, email, phone) => 
 
 
 export const refreshToken = (token , refreshToken) => {
+  console.log("from refresh token"+ token + refreshToken);
   return {
+    
     type: actionTypes.REFRESH_TOKEN,
     refreshToken: refreshToken,
     token: token
