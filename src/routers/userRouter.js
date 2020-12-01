@@ -2,6 +2,8 @@ const express = require('express')
 const User = require('../models/User')
 const router = new express.Router()
 const auth = require('../middleware/auth')
+const authRefreshToken = require('../middleware/authRefreshToken')
+
 const passport = require('passport');
 const oauth = require('../config/oauth.js');
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
@@ -515,5 +517,15 @@ router.get("/api/token/refresh", async (req, res, next) => {
 });
 
 
+
+router.post('/api/user/refreshToken', authRefreshToken, async (req, res) => {
+
+
+        res.status(200).send()
+    } catch (e) {
+        res.status(401).send({error: 'unauthenticated' })
+    }
+
+})
 
 module.exports = { router, routerPromise } 

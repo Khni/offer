@@ -11,7 +11,7 @@ import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from './config/scrollToTop.js';
-
+import AuthCheck from './config/authCheck'
 
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -28,7 +28,9 @@ ReactDOM.render(
 <Provider store={store}>
 <PersistGate persistor={persistor}>
 <ScrollToTop>
+<AuthCheck>
 <App />
+</AuthCheck>
 </ScrollToTop>
 </PersistGate>
 </Provider>
