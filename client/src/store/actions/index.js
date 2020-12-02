@@ -9,6 +9,7 @@ export {
     logout, 
     updateLeft, 
     authLeft,
+    authCheck, 
     refreshToken
     
 } from './userActions';
