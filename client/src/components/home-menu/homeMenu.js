@@ -220,6 +220,7 @@ const mapDispatchToProps = dispatch => ({
   fetchSectionsWithProducts: () => dispatch(actions.fetchSectionsWithProducts()),
   favoriteListAction: (token,refreshToken) => dispatch(actions.fetchFavorites(token,refreshToken)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
+  logout: () => dispatch(actions.logout()),
 });
 
 const mapStateToProps = (state) => {
