@@ -8,6 +8,7 @@ const authToken = async(req ,res , next) =>{
         
         console.log("token" +token);
         const decoded = jwt.verify(token, 'secret')
+       
         //send another status if token expired to refresh it
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
      

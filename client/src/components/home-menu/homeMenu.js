@@ -100,10 +100,11 @@ class homeMenu extends Component {
   }
 
   async componentDidMount() {
-  //  AuthCheckUtil()
+
+  console.log("homemenu 2");
     try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
-      console.log("resAuth" +response.status );
+      console.log("resAuth v2" +response.status );
       if(response.status== 201) {
         console.log("status created");
         console.log("res token "+JSON.stringify(response) );
