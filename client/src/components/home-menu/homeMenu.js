@@ -102,7 +102,8 @@ class homeMenu extends Component {
   async componentDidMount() {
 
   console.log("homemenu 2");
-    try{
+  await this.props.authCheck(this.props.token,this.props.RefreshToken)
+  /*  try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
       console.log("resAuth v2" +response.status );
       if(response.status== 201) {
@@ -113,7 +114,7 @@ class homeMenu extends Component {
      } catch(e) {
        console.log("e" +e.response.data.error);
   this.props.logout()
-  } 
+  } */
 
 
 
@@ -223,6 +224,8 @@ const mapDispatchToProps = dispatch => ({
   favoriteListAction: (token,refreshToken) => dispatch(actions.fetchFavorites(token,refreshToken)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
   logout: () => dispatch(actions.logout()),
+  authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
+
 });
 
 const mapStateToProps = (state) => {

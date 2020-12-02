@@ -1,10 +1,14 @@
 import * as actionTypes from "../types";
+import * as calls from './axiosCalls.js'
 
 export const authStart = () => {
   return {
     type: actionTypes.AUTH_START
   };
 };
+
+
+
 
 export const authSuccess = (token, refreshToken, userId, name, email, phone) => {
   return {
@@ -72,6 +76,30 @@ export const updateUser = (data, action, token) => {
     data: data,
     action: action,
     token: token
+  };
+};
+
+export const authCheck = (token, refreshToken) => {
+  return async dispatch => {
+    try{
+      const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token }, refreshToken )
+      console.log("resAuth v3" +response.status );
+      if(response.status== 201) {
+        
+        dispatch({
+        type: actionTypes.REFRESH_TOKEN,
+    refreshToken: response.data.refreshToken,
+    token: response.data.token
+      });
+  
+     } 
+     } catch(e) {
+       console.log("e" +e.response.data.error);
+  dispatch({
+        type: actionTypes.AUTH_INITIATE_LOGOUT
+      });
+  } 
+
   };
 };
 
