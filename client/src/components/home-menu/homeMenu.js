@@ -8,6 +8,7 @@ import Section from '../section/section.js';
 import Searchbox from '../searchbox/searchbox.component'
 import * as calls from '../../store/actions/axiosCalls'
 import AuthCheck from '../../config/authCheck'
+import AuthCheckUtil from '../../config/authCheck.util'
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
@@ -99,7 +100,7 @@ class homeMenu extends Component {
   }
 
   async componentDidMount() {
-    
+  //  AuthCheckUtil()
     try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
       console.log("resAuth" +response.status );
