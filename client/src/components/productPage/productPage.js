@@ -138,20 +138,20 @@ try {
   }
 
   async componentDidMount() {
-    try{
-      const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
-      console.log("resAuth" +response.status );
-      if(response.status== 201) {
-        console.log("status created");
-        console.log("res token "+JSON.stringify(response) );
-  await this.props.refreshToken(response.data.token, response.data.refreshToken)
-     } 
-     } catch(e) {
-       console.log("e" +e.response.data.error);
-  this.props.logout()
-  } 
+  //   try{
+  //     const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
+  //     console.log("resAuth" +response.status );
+  //     if(response.status== 201) {
+  //       console.log("status created");
+  //       console.log("res token "+JSON.stringify(response) );
+  // await this.props.refreshToken(response.data.token, response.data.refreshToken)
+  //    } 
+  //    } catch(e) {
+  //      console.log("e" +e.response.data.error);
+  // this.props.logout()
+  // } 
 
-
+   await this.props.authCheck(this.props.token,this.props.RefreshToken)
     await this.fetchProduct()
     if (this.props.token) {
       await this.addSeenProduct()
@@ -247,7 +247,8 @@ const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   logout: () => dispatch(actions.logout()),
-  
+  authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
+
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
 });
 

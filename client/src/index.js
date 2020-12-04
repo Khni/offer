@@ -25,6 +25,7 @@ axios.defaults.headers.common['Authorization'] = jwtToken;
 //const store = createStore(Reducers , {}, applyMiddleware(reduxThunk));
 ReactDOM.render(
   <BrowserRouter>
+  
 <Provider store={store}>
 <PersistGate persistor={persistor}>
 <ScrollToTop>
@@ -34,6 +35,7 @@ ReactDOM.render(
 </ScrollToTop>
 </PersistGate>
 </Provider>
+
   </BrowserRouter>,
   document.getElementById('root')
 );

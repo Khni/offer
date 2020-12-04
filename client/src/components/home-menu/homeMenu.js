@@ -102,7 +102,7 @@ class homeMenu extends Component {
   async componentDidMount() {
 
   console.log("homemenu 2");
-  await this.props.authCheck(this.props.token,this.props.RefreshToken)
+   await this.props.authCheck(this.props.token,this.props.RefreshToken)
   /*  try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
       console.log("resAuth v2" +response.status );

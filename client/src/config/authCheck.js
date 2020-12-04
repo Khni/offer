@@ -31,7 +31,8 @@ this.props.logout()
 }
 
   async componentDidMount (){
-    await this.authCheck()
+    //await this.authCheck()
+    await this.props.authCheck(this.props.token,this.props.RefreshToken)
   }
 
   render() {
@@ -45,6 +46,8 @@ const mapDispatchToProps = dispatch => ({
  // addItem: item => dispatch(actions.addItem(item)),
   //addItemToCartItem: (item, items) => dispatch(actions.addItemToCartItem(item, items)),
   logout: () => dispatch(actions.logout()),
+  authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
+
   favoriteListAction: (token,refreshToken) => dispatch(actions.fetchFavorites(token,refreshToken)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
 });
