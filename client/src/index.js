@@ -28,11 +28,13 @@ ReactDOM.render(
   
 <Provider store={store}>
 <PersistGate persistor={persistor}>
+
 <ScrollToTop>
 
 <App />
 
 </ScrollToTop>
+
 </PersistGate>
 </Provider>
 

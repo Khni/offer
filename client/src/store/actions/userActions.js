@@ -81,6 +81,7 @@ export const updateUser = (data, action, token) => {
 
 export const authCheck = (token, refreshToken) => {
   return async dispatch => {
+    console.log("before resAuth");
     try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token }, refreshToken )
       console.log("resAuth v3" +response.status );
