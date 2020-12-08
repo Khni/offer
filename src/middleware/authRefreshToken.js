@@ -75,8 +75,8 @@ if (!refreshtToken) {
         }
         req.token = token
         req.user = user
-        
-        next()
+        await  refreshTokenFunc()
+     //   next()
     } catch (error) {
     	const refreshtToken = req.header('Authorization').replace('Bearer ','')
         console.log("refreshToken" + refreshtToken);
