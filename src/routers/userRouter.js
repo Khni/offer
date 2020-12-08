@@ -108,7 +108,10 @@ router.post('/api/user/update', auth, async (req, res) => {
             new: true
         });
         const token = req.token
-        res.send({ user, token })
+        const tokens = await user.generateAuthToken()
+
+       
+        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
         console.log("userphone" + user.phone);
     } catch (error) {
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
