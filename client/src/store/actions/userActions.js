@@ -23,10 +23,10 @@ export const authSuccess = (token, refreshToken, userId, name, email, phone) => 
 };
 
 
-export const refreshToken = (token , refreshToken) => {
-  console.log("from refresh token"+ token + refreshToken);
+export const refreshToken = (token, refreshToken) => {
+  console.log("from refresh token" + token + refreshToken);
   return {
-    
+
     type: actionTypes.REFRESH_TOKEN,
     refreshToken: refreshToken,
     token: token
@@ -82,24 +82,29 @@ export const updateUser = (data, action, token) => {
 export const authCheck = (token, refreshToken) => {
   return async dispatch => {
     console.log("before resAuth");
-    try{
-      const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token }, refreshToken )
-      console.log("resAuth v3" +response.status );
-      if(response.status== 201) {
-        
+    try {
+      const response = await calls.postDataHeaderAuth('/api/user/refreshToken', { token }, refreshToken)
+      console.log("resAuth v3" + response.status);
+      if (response.status == 201) {
+
         dispatch({
-        type: actionTypes.REFRESH_TOKEN,
-    refreshToken: response.data.refreshToken,
-    token: response.data.token
-      });
-  
-     } 
-     } catch(e) {
-       console.log("e" +e.response.data.error);
-  dispatch({
+          type: actionTypes.REFRESH_TOKEN,
+          refreshToken: response.data.refreshToken,
+          token: response.data.token
+        });
+
+      }
+    } catch (e) {
+      console.log("e response" + e.response.status);
+      if (e.response.status === 500 || e.response.status === "500" ) {
+        console.log("SERVER ERROR");
+        return
+      }
+      console.log("e" + e.response.data.error);
+      dispatch({
         type: actionTypes.AUTH_INITIATE_LOGOUT
       });
-  } 
+    }
 
   };
 };

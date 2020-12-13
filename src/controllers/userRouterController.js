@@ -16,9 +16,10 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
 
         if (user) {
+            console.log("found user already generate token");
             const tokens = await user.generateAuthToken()
             
-            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+          return  res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
 
         }
@@ -41,7 +42,7 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
             await user.save()
             const tokens = await user.generateAuthToken()
             
-            res.send({ userjson, token :tokens.token, refreshToken: tokens.refreshToken})
+         return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
 
 
@@ -65,13 +66,13 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
         await user.save()
         const tokens = await user.generateAuthToken()
-        await user.save()
-        console.log("after token" + user);
-        console.log("token" + token);
+      //  await user.save()
+      //  console.log("after token" + user);
+      //  console.log("token" + token);
         //const user = userNew
         
             
-            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+         return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
 
 
