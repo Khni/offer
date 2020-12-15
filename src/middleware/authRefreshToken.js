@@ -16,8 +16,12 @@ if (!refreshtToken) {
     return res.status(401).send({ message: "Refresh token not found, login again" })
        
   }
+  try {
+    const decoded = jwt.verify(refreshtToken, 'refreshToken')
+  } catch (error) {
+    res.status(401).send({ error: "Token is Invalid or Expired" })
+  }
   
-  const decoded = jwt.verify(refreshtToken, 'refreshToken')
   const user = await User.findOne({ _id: decoded._id})
   
    if (!user) {
