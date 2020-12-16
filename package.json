@@ -40,6 +40,8 @@
     "passport-google-token": "^0.1.2",
     "passport-jwt": "^4.0.0",
     "shortid": "^2.2.16",
-    "validator": "^13.0.0"
+    "validator": "^13.0.0",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.5"
   }
 }

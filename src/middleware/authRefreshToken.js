@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 
 
 const authToken = async(req ,res , next) =>{
-
+//refresh token function
   const refreshTokenFunc= async() => {
     const refreshtToken = req.header('Authorization').replace('Bearer ','')
     
@@ -18,9 +18,7 @@ if (!refreshtToken) {
   }
   try {
     const decoded = jwt.verify(refreshtToken, 'refreshToken')
-  } catch (error) {
-    res.status(401).send({ error: "Token is Invalid or Expired" })
-  }
+  
   
   const user = await User.findOne({ _id: decoded._id})
   
@@ -46,7 +44,7 @@ if (!refreshtToken) {
   
   
   
-  try {
+  
 
       const tokens = await user.generateAuthToken()
 
@@ -62,7 +60,10 @@ if (!refreshtToken) {
   
   
   
-  }
+  }//end of refresh token function
+
+
+  //start auth refresh token
 
     
     try {
