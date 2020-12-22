@@ -3,7 +3,7 @@ const User = require('../models/User')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 const authRefreshToken = require('../middleware/authRefreshToken')
-
+const refreshTokenAuth = require('../middleware/refreshTokenAuth')
 const passport = require('passport');
 const oauth = require('../config/oauth.js');
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
@@ -528,12 +528,23 @@ router.get("/api/token/refresh", async (req, res, next) => {
 
 
 
-router.post('/api/user/refreshToken', authRefreshToken, async (req, res) => {
+router.post('/api/user/refresh-Token', authRefreshToken, async (req, res) => {
 
      
         res.status(200).send()
    
 
 })
+
+
+router.post('/api/user/refreshToken', refreshTokenAuth, async (req, res) => {
+
+     
+        res.status(200).send()
+   
+
+})
+
+
 
 module.exports = { router, routerPromise } 
