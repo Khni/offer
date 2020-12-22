@@ -6,7 +6,7 @@ import axios from "axios";
 export default (history, token, refreshToken, refreshTokenFunc) => {
   //const baseURL = process.env.REACT_APP_BACKEND_URL;
 
-
+let userToken = token
 /*  let headers = {};
 
   if (localStorage.token) {
@@ -20,7 +20,7 @@ axiosInstance.interceptors.request.use(
    config => {
        
        if (token) {
-           config.headers['Authorization'] = 'Bearer ' + token;
+           config.headers['Authorization'] = 'Bearer ' + userToken;
        }
        // config.headers['Content-Type'] = 'application/json';
        return config;
@@ -47,18 +47,18 @@ axiosInstance.interceptors.response.use((response) => {
 
        originalRequest._retry = true;
      
-       return axios.post('/api/user/refreshToken',
-           {
-            token
-           }, {
+       return axios.post('/api/user/refresh-Token',
+           {}, {
             headers : { Authorization: `Bearer ${refreshToken}`
              }})
            .then(res => {
                if (res.status === 201) {
                   // localStorageService.setToken(res.data);
+                  userToken = res.data.token
                   refreshTokenFunc(res.data.token, res.data.refreshToken) 
+
                    axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
-                   return axios(originalRequest);
+                   return axiosInstance(originalRequest);
                }
            }).catch((e)=> console.log(e.response))
    }

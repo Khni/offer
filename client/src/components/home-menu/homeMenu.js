@@ -57,7 +57,7 @@ class homeMenu extends Component {
     }
 
 
-    await this.props.favoriteListAction(this.props.token,this.props.RefreshToken)
+    await this.props.favoriteListAction(this.props.token,this.props.RefreshToken,this.props.refreshToken)
     this.setState({ favorites: this.props.FavoritesList })
 
     let productsWithFav = products.map((product) => {
@@ -103,7 +103,7 @@ class homeMenu extends Component {
   async componentDidMount() {
 
   console.log("homemenu 2");
-   await this.props.authCheck(this.props.token,this.props.RefreshToken)
+  // await this.props.authCheck(this.props.token,this.props.RefreshToken)
   /*  try{
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
       console.log("resAuth v2" +response.status );
@@ -222,7 +222,7 @@ const mapDispatchToProps = dispatch => ({
  // addItem: item => dispatch(actions.addItem(item)),
   //addItemToCartItem: (item, items) => dispatch(actions.addItemToCartItem(item, items)),
   fetchSectionsWithProducts: () => dispatch(actions.fetchSectionsWithProducts()),
-  favoriteListAction: (token,refreshToken) => dispatch(actions.fetchFavorites(token,refreshToken)),
+  favoriteListAction: (token,refreshToken,refreshTokenFunc) => dispatch(actions.fetchFavorites(token,refreshToken,refreshTokenFunc)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
   logout: () => dispatch(actions.logout()),
   authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),

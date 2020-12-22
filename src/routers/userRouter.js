@@ -473,77 +473,71 @@ router.post('/api/google/callback',
 
 
 //refresh token
-router.get("/api/token/refresh", async (req, res, next) => {
+// router.get("/api/token/refresh", async (req, res, next) => {
     
-    const refreshToken = req.header('Authorization').replace('Bearer ', '')
-    if (!refreshToken) {
-        return res.json({ message: "Refresh token not found, login again" });
-    }
+//     const refreshToken = req.header('Authorization').replace('Bearer ', '')
+//     if (!refreshToken) {
+//         return res.json({ message: "Refresh token not found, login again" });
+//     }
 
-    const logOut = async (user) => {
-        // log the user out coz someone used the real refresh token ,,
-        //token may be leaked
-       user.refreshToken = ''
-       user.tokens = []
-       await user.save()
+//     const logOut = async (user) => {
+//         // log the user out coz someone used the real refresh token ,,
+//         //token may be leaked
+//        user.refreshToken = ''
+//        user.tokens = []
+//        await user.save()
        
-    }
-    try {
-        const decoded = jwt.verify(refreshToken, 'refreshToken')
-    } catch (error) {
-        res.status(400).send({ error: error})
-    }
+//     }
+//     try {
+//         const decoded = jwt.verify(refreshToken, 'refreshToken')
+//     } catch (error) {
+//         res.status(400).send({ error: error})
+//     }
    
    
-    const user = await User.findOne({ _id: decoded._id})
-    console.log("user"+user);
-     if (!user) {
-        res.status(400).send({ error: "invalid token" })
+//     const user = await User.findOne({ _id: decoded._id})
+//     console.log("user"+user);
+//      if (!user) {
+//         res.status(400).send({ error: "invalid token" })
 
-    }
+//     }
   
 
-    if (user.refreshToken != refreshToken ) {
-         await logOut(user)
-       return res.status(400).send({ error: "log user out"})
-    }
-   // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
+//     if (user.refreshToken != refreshToken ) {
+//          await logOut(user)
+//        return res.status(400).send({ error: "log user out"})
+//     }
+//    // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
     
 
-    // If the refresh token is valid, create a new accessToken and return it.
+//     // If the refresh token is valid, create a new accessToken and return it.
     
-    try {
-        const tokens = await user.generateAuthToken()
+//     try {
+//         const tokens = await user.generateAuthToken()
 
        
-        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
-    } catch (e) {
-   //console.log(e);
+//         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
+//     } catch (e) {
+//    //console.log(e);
 
-   //if it expired or token in invalid 
-        res.status(400).send({ error: error.name})
-        //   res.send('error')
-    }
-});
-
-
-
-router.post('/api/user/refresh-Token', authRefreshToken, async (req, res) => {
-
-     
-        res.status(200).send()
-   
-
-})
+//    //if it expired or token in invalid 
+//         res.status(400).send({ error: error.name})
+//         //   res.send('error')
+//     }
+// });
 
 
-router.post('/api/user/refreshToken', refreshTokenAuth, async (req, res) => {
+
+// router.post('/api/user/refreshToken', authRefreshToken, async (req, res) => {
 
      
-        res.status(200).send()
+//         res.status(200).send()
    
 
-})
+// })
+
+
+router.post('/api/user/refresh-Token', refreshTokenAuth)
 
 
 

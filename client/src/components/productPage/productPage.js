@@ -151,7 +151,7 @@ try {
   // this.props.logout()
   // } 
 
-   await this.props.authCheck(this.props.token,this.props.RefreshToken)
+   //await this.props.authCheck(this.props.token,this.props.RefreshToken)
     await this.fetchProduct()
     if (this.props.token) {
       await this.addSeenProduct()

@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 const authToken = async(req ,res , next) =>{
 
     const refreshtToken = req.header('Authorization').replace('Bearer ','')
-    
+    console.log("refreshtoken"+ refreshtToken);
 if (!refreshtToken) {
     return res.status(401).send({ message: "Refresh token not found, login again" })
        

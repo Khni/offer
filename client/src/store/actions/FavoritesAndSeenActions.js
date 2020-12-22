@@ -2,7 +2,7 @@ import * as actionTypes from "../types";
 import * as APIs from './APIs'
 import axios from "axios"
 import * as calls from './axiosCalls'
-
+import axiosInstance from '../../helpers/axiosInstance'
 
 export const RefreshToken = async (refreshToken, dispatch) => {
   try {
@@ -33,15 +33,15 @@ export const RefreshToken = async (refreshToken, dispatch) => {
 }
 
 
-export const fetchFavorites = (token) => {
+export const fetchFavorites = (token,refreshToken,refreshTokenFunc) => {
   return async dispatch => {
-
+console.log("fetch favorote lis");
     dispatch({
       type: actionTypes.FRTCH_FAVORITES_START
     });
     let url = APIs.GET_USER_FAVORITES
     try {
-      let response = await calls.getDataHeaderAuth(url, token)
+      let response = await axiosInstance(null,token,refreshToken,refreshTokenFunc).get(url)
 
       dispatch({
         type: actionTypes.FRTCH_FAVORITES_SUCCESS,

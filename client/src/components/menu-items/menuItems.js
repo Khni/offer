@@ -37,7 +37,7 @@ const ToggleFavorite = async (productID) =>{
   setFavorite(!favorite)
   
     try {
-      const response = await axiosInstance(null,props.token,props.refreshToken,props.RefreshToken).post('/api/favorite/addanddelete',{ productID: productID },props.token)
+      const response = await axiosInstance(null,props.token,props.RefreshToken,props.refreshToken).post('/api/favorite/addanddelete',{ productID: productID },props.token)
 console.log("response" +response);
     } catch (e) {
       if (e) {
