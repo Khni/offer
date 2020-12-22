@@ -32,6 +32,7 @@ axiosInstance.interceptors.request.use(
   //Add a response interceptor
 
 axiosInstance.interceptors.response.use((response) => {
+    console.log("fromAxios instance");
    return response
 }, function (error) {
    const originalRequest = error.config;
@@ -45,11 +46,13 @@ axiosInstance.interceptors.response.use((response) => {
    if (error.response.status === 401 && !originalRequest._retry) {
 
        originalRequest._retry = true;
-       const refreshToken = localStorageService.getRefreshToken();
+     
        return axios.post('/api/user/refreshToken',
            {
             token
-           })
+           }, {
+            headers : { Authorization: `Bearer ${refreshToken}`
+             }})
            .then(res => {
                if (res.status === 201) {
                   // localStorageService.setToken(res.data);
@@ -57,7 +60,7 @@ axiosInstance.interceptors.response.use((response) => {
                    axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
                    return axios(originalRequest);
                }
-           })
+           }).catch((e)=> console.log(e.response))
    }
    return Promise.reject(error);
 });

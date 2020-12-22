@@ -10,6 +10,7 @@ import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
+import axiosInstance from '../../helpers/axiosInstance'
 import * as actions from '../../store/actions/index';
 import { refreshToken } from '../../store/actions/userActions';
 const MenuItem = (props)=>{
@@ -32,11 +33,11 @@ const ToggleFavorite = async (productID) =>{
     return 
   }
 
-  console.log("from toggle favorite");
+  console.log("from toggle favorite prepare for axios");
   setFavorite(!favorite)
   
     try {
-      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete',{ productID: productID },props.token)
+      const response = await axiosInstance(null,props.token,props.refreshToken,props.RefreshToken).post('/api/favorite/addanddelete',{ productID: productID },props.token)
 console.log("response" +response);
     } catch (e) {
       if (e) {
@@ -107,6 +108,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps =(state) =>{
 	return {
  //collections: selectProducts(state), 
+ RefreshToken: state.userAuth.authUser.refreshToken,
  token: state.userAuth.authUser.token,
  FavoritesList: state.FavAndSeenReducer.favorites.list,
  cartItems: selectCartItems(state),

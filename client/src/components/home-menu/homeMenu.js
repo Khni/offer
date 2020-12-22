@@ -31,11 +31,12 @@ class homeMenu extends Component {
 
 
   async ToggleFavorite(productID) {
-    console.log("from toggle favorite");
+    console.log("from toggle favorit");
     this.setState({ favorite: !this.state.favorite })
     try {
       const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: productID }, this.props.token)
       console.log("response" + response);
+      console.log("prepar for axiosinsT");
     } catch (e) {
       if (e) {
         this.setState({ favorite: !this.state.favorite })
