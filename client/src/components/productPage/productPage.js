@@ -64,7 +64,7 @@ class ProductPage extends Component {
 
 
     if (this.props.token) {
-      await this.props.favoriteListAction(this.props.token,this.props.RefreshToken)
+      await this.props.favoriteListAction(this.props.token,this.props.RefreshToken, this.props.refreshToken)
 
       const productID = response.data.product._id
 
@@ -245,7 +245,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
-  favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
+  favoriteListAction: (token, refreshToken, refreshTokenFunc) => dispatch(actions.fetchFavorites(token, refreshToken, refreshTokenFunc)),
   logout: () => dispatch(actions.logout()),
   authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
 
