@@ -3,8 +3,9 @@ import axios from 'axios';
 // import PicComponent from './pic/pic.component'
 import MiddleComponent from './middle/middle.component'
 import DiscComponent from './disc/disc.component'
+import axiosInstance from '../../helpers/axiosInstance'
 import { connect } from 'react-redux'
-import * as calls from '../../store/actions/axiosCalls'
+
 // import {selectItem} from '../../store/reducers/products/productsReselect'
 import './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js'
@@ -26,7 +27,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 // import withCaption from 'react-awesome-slider/dist/captioned';
 // import 'react-awesome-slider/dist/styles.css';
 // import 'react-awesome-slider/dist/captioned.css';
-import MenuItem from '../menu-items/menuItems'
+
 import * as Calls from '../../store/actions/axiosCalls'
 const awsImgUrl = "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"
 class ProductPage extends Component {
@@ -88,11 +89,13 @@ class ProductPage extends Component {
 
     this.setState({ favorite: !this.state.favorite })
     try {
-      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
+
+      const response = await axiosInstance(null,this.props.token,this.props.RefreshToken,this.props.refreshToken).post('/api/favorite/addanddelete', { productID: this.state.product._id })
+    //  const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
    console.log("response"+ response);
     } catch (e) {
       console.log("e"+ e.response.data.error);
-      if ( e.response.data.error =="TokenExpiredError") {
+      if ( e.response.data.error === "TokenExpiredError") {
         console.log("token is Expired");
 //try to refresh the token if its expired
 
@@ -120,14 +123,14 @@ try {
   }
 
   async addSeenProduct() {
-    const response = await Calls.postDataHeaderAuth('/api/viewed/add', { productID: this.state.product._id }, this.props.token)
+    await Calls.postDataHeaderAuth('/api/viewed/add', { productID: this.state.product._id }, this.props.token)
   }
 
 
 
   async favoriteCheck(productID) {
 
-    const fav = this.props.FavoritesList.find((favorite) => favorite._id == productID)
+    const fav = this.props.FavoritesList.find((favorite) => favorite._id === productID)
 
     if (fav) {
       this.setState({ favorite: true })

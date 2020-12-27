@@ -6,9 +6,7 @@ import * as Calls from '../../store/actions/axiosCalls'
 import Header from '../headd/header/header'
 import Section from '../section/section.js';
 import Searchbox from '../searchbox/searchbox.component'
-import * as calls from '../../store/actions/axiosCalls'
-import AuthCheck from '../../config/authCheck'
-import AuthCheckUtil from '../../config/authCheck.util'
+
 import { connect } from 'react-redux';
 
 class homeMenu extends Component {
@@ -64,8 +62,8 @@ class homeMenu extends Component {
 
       return {
         ...product, productsOfSection: product.productsOfSection.map((pos) => {
-          const fav = this.state.favorites.find((favorite) => favorite._id == pos._id)
-          let Favorite = false
+          const fav = this.state.favorites.find((favorite) => favorite._id === pos._id)
+         // let Favorite = false
           if (fav) {
             this.setState({ favorite: true })
           } else {
@@ -120,7 +118,7 @@ class homeMenu extends Component {
 
 
 
-    console.log("favoritelist" + this.props.FavoritesList);
+    //console.log("favoritelist" + this.props.FavoritesList);
     let lang = window.navigator.languages ? window.navigator.languages[0] : null;
     lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
 
@@ -131,8 +129,8 @@ class homeMenu extends Component {
     if (shortLang.indexOf('_') !== -1)
       shortLang = shortLang.split('_')[0];
 
-    console.log("lang" + lang + shortLang);
-    console.log("window navigator" + navigator.userAgent);
+   // console.log("lang" + lang + shortLang);
+    //console.log("window navigator" + navigator.userAgent);
     await this.FetchSectionsFromServer()
 
     this.productsObject()
@@ -151,20 +149,20 @@ class homeMenu extends Component {
 
   render() {
     // testing
-    let lang = window.navigator.languages ? window.navigator.languages[0] : null;
-    lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
+    // let lang = window.navigator.languages ? window.navigator.languages[0] : null;
+    // lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
 
-    let shortLang = lang;
-    if (shortLang.indexOf('-') !== -1)
-      shortLang = shortLang.split('-')[0];
+    // let shortLang = lang;
+    // if (shortLang.indexOf('-') !== -1)
+    //   shortLang = shortLang.split('-')[0];
 
-    if (shortLang.indexOf('_') !== -1)
-      shortLang = shortLang.split('_')[0];
+    // if (shortLang.indexOf('_') !== -1)
+    //   shortLang = shortLang.split('_')[0];
 
-    function isFacebookApp() {
-      var ua = navigator.userAgent || navigator.vendor || window.opera;
-      return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-    }
+    // function isFacebookApp() {
+    //   var ua = navigator.userAgent || navigator.vendor || window.opera;
+    //   return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+    // }
     //for instgram  (ua.indexOf('Instagram') > -1)
     //testing
 
@@ -172,10 +170,8 @@ class homeMenu extends Component {
 
 
     let { collections } = this.props
-    let { categories } = this.props
-    let collectionsFiltered = collections.flatMap((collection) => collection.items).filter((item) =>
-      item.name.indexOf(this.state.search) !== -1)
-
+    
+    
 
 
     return (

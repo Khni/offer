@@ -4,16 +4,16 @@ import { FETCH_PRODUCTS ,
   FETCH_SECTIONS, 
   FETCH_SECTIONS_WITH_PRODUCTS,
   FETCH_COLLECTIONS, 
-  FETCH_CATEGORY_ERROR ,
-  FETCH_PRODUCTS_ERROR, 
-  FETCH_SECTIONS_ERROR, 
+  // FETCH_CATEGORY_ERROR ,
+  // FETCH_PRODUCTS_ERROR, 
+  // FETCH_SECTIONS_ERROR, 
   FETCH_ERROR, 
   ADDED_TO_SERVER, 
   ADDED_TO_SERVER_ERROR, 
   PRODUCTS_IS_FETCHING, 
-  SECTIONS_IS_FETCHING, 
-  CATEGORIES_IS_FETCHING, 
-  COLLECTIONS_IS_FETCHING, 
+  // SECTIONS_IS_FETCHING, 
+  // CATEGORIES_IS_FETCHING, 
+  // COLLECTIONS_IS_FETCHING, 
   ADDING_PRODUCT, 
   PRODUCT_FETCHED
 
@@ -210,7 +210,7 @@ export const addProductToServer = (data, adminToken) => {
         });
     
       try {
-     const response =   await axios.post('/api/add/product', data, {
+     await axios.post('/api/add/product', data, {
       headers : { Authorization: `Bearer ${adminToken}`
      // Accept: 'application/json',
      // 'content-type': `multipart/form-data; boundary=${data._boundary}`
