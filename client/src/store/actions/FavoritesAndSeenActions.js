@@ -1,6 +1,6 @@
 import * as actionTypes from "../types";
 import * as APIs from './APIs'
-import axios from "axios"
+
 import * as calls from './axiosCalls'
 import axiosInstance from '../../helpers/axiosInstance'
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import backdrop from '../../sidebar/backdrop';
 
 const NavItem =(props)=> {
     const [open, setOpen] = useState(false);

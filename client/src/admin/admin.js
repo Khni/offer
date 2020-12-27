@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
+import { Route,  Switch ,Redirect} from 'react-router-dom';
 import CategoriesNav from './components/adminPage/categories/categoriesNav.component.js'
 import CollectionNav from './components/adminPage/collections/TopNav/collectionsNav.component'
 //import AddProduct from './components/adminPage/products/addProduct.component'
@@ -10,8 +10,8 @@ import OrdersNav from './components/adminPage/orders/TopNav/ordersNav.component'
 import SectionsNav from './components/adminPage/sections/TopNav/sectionsNav.component'
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/admins'
-import Header from '../components/head/header/header'
-import SideNavStyle from '../components/FixedSideMenuNav/FixedSideMenuNav.scss'
+
+import  '../components/FixedSideMenuNav/FixedSideMenuNav.scss'
 import SideNavComponent from '../components/FixedSideMenuNav/FixedSideMenuNav'
 class AdminPage extends Component {
 
@@ -60,7 +60,7 @@ const navlinks = [{
   path: "/admin/orders",
   title: "Orders"
 },
-,
+
 {
   path: "/admin/reviews",
   title: "Reviews"

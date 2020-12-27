@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {selectUserAuth} from '../../../store/reducers/auth/userReselect'
+// import {selectUserAuth} from '../../../store/reducers/auth/userReselect'
 
 export default (AuthComponent) => {
   class MixedComponent extends Component {

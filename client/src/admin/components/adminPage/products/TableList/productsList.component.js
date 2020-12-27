@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
 import { selectAdminAuth } from '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../../components/form/selectOptions.component' 
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/product';
-import TableListStyle from '../../../../../components/TableList/TableList.scss'
-import PupupMenu from "../../../../../components/popup-menu/popup"
+import  '../../../../../components/TableList/TableList.scss'
+// import PupupMenu from "../../../../../components/popup-menu/popup"
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
@@ -47,7 +44,7 @@ class ProductsList extends Component {
   async DeleteProduct(id) {
   	console.log('id' +id) 
     try {
-     const response =   await axios.delete('/api/product/delete/' +id, {
+       await axios.delete('/api/product/delete/' +id, {
       headers : { Authorization: `Bearer ${this.props.AdminToken}` } });
   const { fetchProducts } = this.props;
       
@@ -78,7 +75,7 @@ class ProductsList extends Component {
 
   submit = (title, id) => {
     confirmAlert({
-      title: 'Confirm to Delete Product: '+" " + title,
+      title: 'Confirm to Delete Product: ' + title,
       message: 'Are you sure to do this.',
       buttons: [
         {

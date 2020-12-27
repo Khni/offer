@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { Route,  Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
@@ -13,7 +10,7 @@ import AddSection from '../addSection.component'
 import SectionsList from '../TableList/sectionsList.component'
 
 import * as actions from '../../../../../store/actions/product';
-import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
+import  '../../../../../components/TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 
 
@@ -21,10 +18,10 @@ import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 
 class SectionsNav extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
         
-    }
+    // }
 
 
 

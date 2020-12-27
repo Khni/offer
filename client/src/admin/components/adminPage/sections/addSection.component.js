@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+
 import { compose } from 'redux';
-import AddSectionStyle from './addSectionStyle.scss'
+import  './addSectionStyle.scss'
 import InputForm from '../../../../components/form/inputAdminForm' 
 import SelectForm from '../../../../components/form/selectOptions.component' 
 import * as actions from '../../../../store/actions/product';

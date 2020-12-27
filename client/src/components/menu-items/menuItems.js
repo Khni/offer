@@ -4,7 +4,7 @@ import  './menuItems.scss';
 // import { Link } from 'react-router-dom';
 import { ReactComponent as AddFavorite } from '../productPage/icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../productPage/icons/Heartfull.svg'
-import * as Calls from '../../store/actions/axiosCalls'
+
 import { connect } from 'react-redux';
 import {addItem} from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
@@ -12,7 +12,7 @@ import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import axiosInstance from '../../helpers/axiosInstance'
 import * as actions from '../../store/actions/index';
-import { refreshToken } from '../../store/actions/userActions';
+
 const MenuItem = (props)=>{
   // useEffect(async() => {
   //   await props.favoriteListAction(props.token)
@@ -62,7 +62,7 @@ console.log("response" +response);
    
  
 
-<img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+props.imgURL}  className="item-img"/>
+<img alt={props.item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+props.imgURL}  className="item-img"/>
 
 <p className="item-title-menu-item">{props.item.nameEn} </p>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputCss from './inputFrom.css';
+import  './inputFrom.css';
 export default class CustomInput extends Component {
   render() {
     const { input: { value, onChange } } = this.props;

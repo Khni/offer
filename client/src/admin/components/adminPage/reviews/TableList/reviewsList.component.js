@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { selectAdminAuth } from '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
+
 import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 import axios from 'axios'
 //import AddProduct from './addProduct.component'
 import * as actions from '../../../../../store/actions/ordersAdmin';
-import TableListStyle from '../../../../../components/TableList/TableList.scss'
+import  '../../../../../components/TableList/TableList.scss'
 
 
 
@@ -64,7 +63,7 @@ class CategoryList extends Component {
       url = '/api/review-deactivate/'
     }
     try {
-     const response =   await axios.get(url +id, {
+      await axios.get(url +id, {
       headers : { Authorization: `Bearer ${token}` } });
  
       const list = await this.props.fetchList(this.props.match.params.status, this.props.adminToken)
@@ -120,7 +119,7 @@ class CategoryList extends Component {
               {this.state.list.map((item, i) => {
                 return <tr>
                   <td>{i + 1}</td><td>{item.rate}</td><td>{item.title}</td><td>{item.comment}</td>
-                  {this.props.match.params.status == "notactive" ?
+                  {this.props.match.params.status === "notactive" ?
                      <td><button className="customBtn" onClick={() => this.active(true,this.props.AdminToken,item._id)}>ACTIVATE</button></td>
                     : <td><button className="customBtn" onClick={() => this.active(false,this.props.AdminToken,item._id)}>DEACTIVATE</button></td>
                   }

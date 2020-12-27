@@ -1,22 +1,22 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch ,Redirect} from 'react-router-dom';
+import { Route,  Switch ,Redirect} from 'react-router-dom';
 import AccountSettingsNav from './components/userPages/AccountSettings/AccountSettingsNav.js'
 import Orders from'./components/userPages/Orders/Orders.js'
 //import AddProduct from './components/adminPage/products/addProduct.component'
 import FavoriteList from './components/userPages/FavoriteList/FavoriteList.js'
-import ViewedItems from './components/userPages/ViewedItems/ViewedItems.js'
+
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/users.js'
 import Header from '../header/header'
-import SideNavStyle from '../FixedSideMenuNav/FixedSideMenuNav.scss'
+import '../FixedSideMenuNav/FixedSideMenuNav.scss'
 import SideNavComponent from '../FixedSideMenuNav/FixedSideMenuNav'
 class  AccountUser extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
        
-    }
+    // }
 
           
           componentDidMount() {
@@ -47,10 +47,10 @@ const navlinks = [{
   title: "Viewed"
 }]
 
-const buttons = [{
-  title: "Sign Out",
-  onClickFunc :this.signOutUser
-}]
+// const buttons = [{
+//   title: "Sign Out",
+//   onClickFunc :this.signOutUser
+// }]
 
 
         return(

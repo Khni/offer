@@ -36,7 +36,7 @@ async fetchFavorites(){
      }} );
      
      let compare = async (a, b) =>{
-        const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ==this.props.id))
+        const userIndex =  a.favorites.indexOf(a.favorites.find((f)=>  f.userID ===this.props.id))
          
         const createdA = a.favorites[userIndex].created; 
         const createdB = b.favorites[userIndex].created; 
@@ -94,7 +94,7 @@ console.log("favorite log"+ this.props.FavoritesLoading);
 <div className="cart-Item" >
  
  <div className="cart-item-desc">
-   <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
+   <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
    <div className="cart-item-details">
       <p className="cart-item-title margin0">{item.nameEn} </p>
       <p className="cart-item-before-price margin0">   EGP {item.price *1.24} </p>
@@ -146,13 +146,13 @@ const mapStateToProps = state => {
 
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    favoriteListAction: ( token) => dispatch( actions.fetchFavorites( token) ),
-      //authLeft: () => dispatch( actions.authLeft())
-    //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     favoriteListAction: ( token) => dispatch( actions.fetchFavorites( token) ),
+//       //authLeft: () => dispatch( actions.authLeft())
+//     //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+//   };
+// };
 
 
 

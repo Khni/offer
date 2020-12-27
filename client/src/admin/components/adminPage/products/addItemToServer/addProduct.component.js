@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field, Form } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { reduxForm, Field } from 'redux-form';
+
 import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
+import  './addProduct.scss'
 import FormData from 'form-data'
 import InputForm from '../../../../../components/form/inputAdminForm' 
 import InputFile from '../../../../../components/form/inputFileAdmin' 
@@ -62,7 +61,7 @@ console.log("formdata keys"+formData_FormData.get('upload'));
   // console.log("formOBJ", JSON.stringify(FormDataObj));
   //formData['file'] = this.state.selectedFile
 const AdminToken = this.props.AdminToken
-let AddetToServerCond = this.props.AddedToServer
+
 console.log("form Data apeend" + data.nameEn);
 
 //console.log("form name" + formData.upload.name );

@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import React from 'react'
+
 import { css, jsx } from '@emotion/core'
-import Slide from './slide';
+
 
 const Dot = ({ active, slides, slide,DotSet }) =>{ 
   

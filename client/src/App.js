@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import {Component} from 'react';
-import Header from './components/header/header.js'
+
 import HomeMenu from './components/home-menu/homeMenu.js'
 import { Switch, Route } from 'react-router-dom';
-import  AuthNav from './components/authNew/authNavPage/authNavPage';
+import AuthNav from './components/authNew/authNavPage/authNavPage';
 import SignUp from './components/authNew/sign-up/signUp.js';
 import SignIn from './components/authNew/sign-in/signIn.js';
 
@@ -19,9 +18,9 @@ import AdminLogin from './admin/components/auth/sign-in/signIn'
 import UserAccount from './components/UserAccount/account.page.js'
 import CheckoutAddress from './components/checkout/addresses/checkoutAddress'
 import AddAddress from './components/UserAccount/components/userPages/AccountSettings/AddAddressForm/AddAddressForm'
-import CheckoutPayment from './components/checkout/payment/checkoutPayment' 
+import CheckoutPayment from './components/checkout/payment/checkoutPayment'
 import AccountSettingsNav from './components/UserAccount/components/userPages/AccountSettings/AccountSettingsNav.js'
-import Orders from'./components/UserAccount/components/userPages/Orders/Orders.js'
+import Orders from './components/UserAccount/components/userPages/Orders/Orders.js'
 //import AddProduct from './components/UserAccount/components/adminPage/products/addProduct.component'
 import FavoriteList from './components/UserAccount/components/userPages/FavoriteList/FavoriteList.js'
 import ViewedItems from './components/UserAccount/components/userPages/ViewedItems/ViewedItems.js'
@@ -32,33 +31,33 @@ import OrderUserPage from './components/UserAccount/components/userPages/Orders/
 function App() {
   return (
     <div className="App">
-   
-    
-     <Switch>
-   
-          <Route exact path='/' component={HomeMenu} />
-          <Route path='/signup' component={authHOC(SignUp) } />
-          <Route path='/carousel' component={Carousel} />
-         <Route path='/signin' component={authHOC(SignIn)} />
-         <Route path='/cart' component={Cart} />
-         <Route path='/account' component={AccountHOC(UserAccount )} />
-          <Route path='/item/:id' component={ProductPage} />
-          <Route path='/addaddress' component={AddAddress} />
-          <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
-          <Route path='/admin-login' component={AdminLogin} />
-          <Route path='/authnav' component={AuthNav} />
 
-          <Route path='/admin-reviews' component={ReviewsNavAdmin} />
-          <Route path='/checkout-address' component={AccountHOC(CheckoutAddress) } />
-          <Route path='/checkout-confirm' component={AccountHOC(CheckoutPayment) } />
-          <Route path="/settings" component={AccountHOC(AccountSettingsNav) } />
-                    <Route path="/orders" component={AccountHOC(Orders)}  />
-                    <Route path="/orderpage-admin/:id" component={OrderPageAdmin}  />
-                    <Route path="/favorite-list" component={AccountHOC(FavoriteList) } />
-                    <Route path="/viewed-items" component={AccountHOC(ViewedItems) } />
-                    <Route path="/orderpage-user/:id" component={AccountHOC(OrderUserPage) } />
-                   
-        </Switch>
+
+      <Switch>
+
+        <Route exact path='/' component={HomeMenu} />
+        <Route path='/signup' component={authHOC(SignUp)} />
+        <Route path='/carousel' component={Carousel} />
+        <Route path='/signin' component={authHOC(SignIn)} />
+        <Route path='/cart' component={Cart} />
+        <Route path='/account' component={AccountHOC(UserAccount)} />
+        <Route path='/item/:id' component={ProductPage} />
+        <Route path='/addaddress' component={AddAddress} />
+        <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
+        <Route path='/admin-login' component={AdminLogin} />
+        <Route path='/authnav' component={AuthNav} />
+
+        <Route path='/admin-reviews' component={ReviewsNavAdmin} />
+        <Route path='/checkout-address' component={AccountHOC(CheckoutAddress)} />
+        <Route path='/checkout-confirm' component={AccountHOC(CheckoutPayment)} />
+        <Route path="/settings" component={AccountHOC(AccountSettingsNav)} />
+        <Route path="/orders" component={AccountHOC(Orders)} />
+        <Route path="/orderpage-admin/:id" component={OrderPageAdmin} />
+        <Route path="/favorite-list" component={AccountHOC(FavoriteList)} />
+        <Route path="/viewed-items" component={AccountHOC(ViewedItems)} />
+        <Route path="/orderpage-user/:id" component={AccountHOC(OrderUserPage)} />
+
+      </Switch>
     </div>
   );
 }

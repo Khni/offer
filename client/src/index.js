@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers,  applyMiddleware} from 'redux';
-import reduxThunk from 'redux-thunk';
+
 import './index.scss';
 import './models.scss';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+
 import App from './App';
 import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from './config/scrollToTop.js';
-import AuthCheck from './config/authCheck'
+
 
 import { PersistGate } from 'redux-persist/integration/react';
 

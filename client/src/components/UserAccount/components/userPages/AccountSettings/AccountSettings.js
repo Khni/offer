@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { reduxForm } from 'redux-form';
+
 import { compose } from 'redux';
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 //import AddProduct from '../addItemToServer/addProduct.component'
 //import ProductsList from '../TableList/productsList.component'
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
-import TopNavComponent from '../../../../TopNav/TopNav.component'
+import '../../../../TopNav/TopNavStyle.scss'
+
 //import * as actions from '../../../../../store/actions/users';
 import {selectTermsLang} from  '../../../../../store/reducers/langReducer/langsReselect';
 import * as actions from '../../../../../store/actions';
@@ -51,7 +50,6 @@ async onSubmit(formData) {
 
 console.log("form data: " + JSON.stringify(formData) )
 
-const { UpdateUser } = this.props;
 
 let data = {
 email: this.state.useremail, 

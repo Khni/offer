@@ -1,19 +1,16 @@
 import React, {Component} from 'react'
 import SignUp from '../sign-up/signUp.js';
 import SignIn from '../sign-in/signIn.js';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { Route,  Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 import Head from '../../headd/header/header'
 
 import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
 
 
 
-import TopNavStyle from '../../TopNav/TopNavStyle.scss'
+import  '../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../TopNav/TopNav.component'
 
 
@@ -24,10 +21,10 @@ import TopNavComponent from '../../TopNav/TopNav.component'
 
 class AuthNavPage extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
         
-    }
+    // }
 
 
 

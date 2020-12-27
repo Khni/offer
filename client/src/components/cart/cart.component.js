@@ -6,7 +6,7 @@ import Minusicon from './img/minus.svg';
 import  './cartItemComponent/cartItem.css'
 import  './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
-import {addItem, removeItem} from '../../store/actions/CartItemsAction';
+// import {addItem, removeItem} from '../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
 import * as actions  from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';

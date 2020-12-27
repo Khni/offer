@@ -1,18 +1,19 @@
-import Style from './signUp.css';
-import { withRouter } from 'react-router-dom';
-import * as RouterDom from 'react-router-dom';
-import Googleicon from './img/googleicon.png';
-import FacebookIcon from './img/Facebookicon.png';
+import  './signUp.css';
+
+// import Googleicon from './img/googleicon.png';
+// import FacebookIcon from './img/Facebookicon.png';
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {selectTermsLang, selectLang} from  '../../../store/reducers/langReducer/langsReselect';
+import {selectTermsLang
+  // , selectLang
+} from  '../../../store/reducers/langReducer/langsReselect';
 //import { selectTermsLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
-import { Link } from 'react-router-dom';
+// import GoogleLogin from 'react-google-login';
+// import FacebookLogin from 'react-facebook-login';
+
 import Form from '../../form/form.component';
 class signUp extends Component {
 

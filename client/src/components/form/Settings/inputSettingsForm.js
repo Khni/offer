@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputCss from './inputSettingsForm.scss';
+import  './inputSettingsForm.scss';
 class InputSettings extends Component {
   render() {
    // const { input: { value, onChange } } = this.props;

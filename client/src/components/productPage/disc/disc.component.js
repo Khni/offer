@@ -1,5 +1,5 @@
 import React from 'react'
-import Style from './disc.scss'
+import './disc.scss'
 const ProductDisc = () => {
 
 

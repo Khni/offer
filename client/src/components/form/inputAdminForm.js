@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputCss from './inputAdminForm.scss';
+import './inputAdminForm.scss';
 export default class CustomInput extends Component {
   render() {
     const { input: { value, onChange } } = this.props;

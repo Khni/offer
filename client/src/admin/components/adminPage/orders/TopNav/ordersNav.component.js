@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { Route,  Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //import AddproductStyle from './addProduct.scss'
@@ -18,10 +18,10 @@ import * as actions from '../../../../../store/actions/product';
 
 class ProductsNav extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
         
-    }
+    // }
 
 
 
@@ -43,7 +43,7 @@ class ProductsNav extends Component {
         title: "Unconfirmed Orders"
       }
       ,
-      ,
+      
       {
         path: "/admin/orders/orders-list/confirmed",
         title: "Confirmed Orders"

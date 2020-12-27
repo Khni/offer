@@ -1,27 +1,24 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 //import AddProduct from '../addItemToServer/addProduct.component'
 //import ProductsList from '../TableList/productsList.component'
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
-import TopNavComponent from '../../../../TopNav/TopNav.component'
+import  '../../../../TopNav/TopNavStyle.scss'
+import '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
 import Head from '../../../../headd/header/header'
 
 class UserOrders extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
         
-    }
+    // }
 
 
 

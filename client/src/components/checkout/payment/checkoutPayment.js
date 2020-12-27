@@ -4,7 +4,7 @@ import './checkoutPayment.scss';
 import * as actions from '../../../store/actions/users';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 
-import Header from '../../headd/header/header'
+
 import { connect } from 'react-redux';
 
 class CheckPayment extends Component {

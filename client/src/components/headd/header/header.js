@@ -85,7 +85,7 @@ class Header extends Component {
     let logoCorner = "logo-corner-head"
     let sideBar = "sidebar"
 
-    if (this.props.Lang == 'ar') {
+    if (this.props.Lang === 'ar') {
       navBarNav = "juv-navbar-navAr"
       CounterCart = "CounterCartAr"
       logo = "logo-ar"
@@ -106,7 +106,7 @@ class Header extends Component {
           </div>
 
           <Link className="icon-button-noBorder" to='/'>
-            <img className={logo} src={Offerenologo} />
+            <img alt="JUVNI" className={logo} src={Offerenologo} />
           </Link>
         </div>
 

@@ -1,18 +1,15 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 //import AddProduct from '../addItemToServer/addProduct.component'
 //import ProductsList from '../TableList/productsList.component'
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
-import TopNavComponent from '../../../../TopNav/TopNav.component'
+import '../../../../TopNav/TopNavStyle.scss'
+
 import * as actions from '../../../../../store/actions';
 import axios from 'axios';
 
@@ -70,7 +67,7 @@ console.log("seen" + this.props.seenList);
 <div className="cart-Item" >
  
  <div className="cart-item-desc">
-   <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
+   <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
    <div className="cart-item-details">
       <p className="cart-item-title margin0">{item.nameEn} </p>
       <p className="cart-item-before-price margin0">   EGP {item.price *1.24} </p>
@@ -121,13 +118,13 @@ const mapStateToProps = state => {
 
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchSeen: ( token) => dispatch( actions.fetchSeen( token) ),
-      //authLeft: () => dispatch( actions.authLeft())
-    //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchSeen: ( token) => dispatch( actions.fetchSeen( token) ),
+//       //authLeft: () => dispatch( actions.authLeft())
+//     //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+//   };
+// };
 
 
 export default  connect(mapStateToProps, actions)(UserSeenList);

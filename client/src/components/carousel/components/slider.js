@@ -1,5 +1,7 @@
 /** @jsx jsx */
-import React, { useState, useEffect, useRef } from 'react'
+import
+// React, 
+{ useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
 import Slide from './slide'
@@ -12,13 +14,13 @@ import Dots from './Dots'
  * @function Slider
  */
 const Slider = props => {
-	const autoPlayRef = useRef()
+  const autoPlayRef = useRef()
 
-useEffect(() => {
-  autoPlayRef.current = nextSlide
-})
+  useEffect(() => {
+    autoPlayRef.current = nextSlide
+  })
 
-useEffect(() => {
+  useEffect(() => {
     const play = () => {
       autoPlayRef.current()
     }
@@ -26,7 +28,7 @@ useEffect(() => {
     const interval = setInterval(play, props.autoPlay * 1000)
     return () => clearInterval(interval)
   }, [])
-	
+
   const getWidth = () => 350
 
   const [state, setState] = useState({
@@ -54,13 +56,13 @@ useEffect(() => {
   }
 
 
-const DotSet =(position) =>{
-setState({
+  const DotSet = (position) => {
+    setState({
       ...state,
-      activeIndex: position ,
+      activeIndex: position,
       translate: position * getWidth()
     })
-} 
+  }
   const prevSlide = () => {
     if (activeIndex === 0) {
       return setState({
@@ -76,7 +78,7 @@ setState({
       translate: (activeIndex - 1) * getWidth()
     })
   }
-  
+
   return (
     <div css={SliderCSS}>
       <SliderContent
