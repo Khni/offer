@@ -1,15 +1,15 @@
-import Style from './formSettings.scss';
-import { withRouter } from 'react-router-dom';
-import * as RouterDom from 'react-router-dom';
+import './formSettings.scss';
+// import { withRouter } from 'react-router-dom';
+// import * as RouterDom from 'react-router-dom';
 
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+// import { connect } from 'react-redux';
+// import { compose } from 'redux';
 import InputForm from './inputSettingsForm.js';
-import InputFormPhone from './inputSettingsPhone'
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+// import InputFormPhone from './inputSettingsPhone'
+// import GoogleLogin from 'react-google-login';
+// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Link } from 'react-router-dom';
 
 class Form extends Component {

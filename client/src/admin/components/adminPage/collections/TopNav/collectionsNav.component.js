@@ -1,20 +1,16 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import InputForm from '../../../../../components/form/inputAdminForm' 
-import SelectForm from '../../../../../components/form/selectOptions.component' 
+
 import * as actions from '../../../../../store/actions/product';
 import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+
 //import AddproductStyle from './addProduct.scss'
 
 import AddCollection from '../addItemToServer/addCollection.component'
 import CollectionsList from '../TableList/collectionsList.component'
 
-import TopNavStyle from '../../../../../components/TopNav/TopNavStyle.scss'
+import '../../../../../components/TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../../components/TopNav/TopNav.component'
 
 

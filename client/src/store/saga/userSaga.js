@@ -11,30 +11,30 @@ export function* authUserSaga(data) {
   console.log("auth saga started");
   let url = APIs.USER_POST_SIGNUP
 
-  if (data.action == "login") {
+  if (data.action === "login") {
     url = APIs.USER_POST_LOGIN
 
   }
-  if (data.action == "updateuser") {
+  if (data.action === "updateuser") {
     url = APIs.USER_POST_UPDATE
 
   }
-  if (data.action == 'goauth') {
+  if (data.action === 'goauth') {
     url = APIs.USER_POST_GOOGLE_OAUTH
   }
   try {
     //   const response = yield axios.post(url, data)
     let response = ''
-    if (data.action == "login" || data.action == "signup" || data.action == 'goauth') {
+    if (data.action === "login" || data.action === "signup" || data.action === 'goauth') {
       response = yield call(calls.postData, url, data.data)
     }
 
-    if (data.action == "updateuser") {
+    if (data.action === "updateuser") {
       response = yield call(calls.postDataHeaderAuth, url, data.data, data.token)
     }
     console.log("phone action" + response.data.user.phone);
 
-if (data.action == "login" || data.action == "signup" || data.action == 'updateuser') {
+if (data.action === "login" || data.action === "signup" || data.action === 'updateuser') {
       yield put(
       actions.authSuccess(response.data.token,
         response.data.refreshToken,
@@ -46,7 +46,7 @@ if (data.action == "login" || data.action == "signup" || data.action == 'updateu
     );
     }
     
-    if ( data.action == 'goauth') {
+    if ( data.action === 'goauth') {
       console.log("token googleAuth" + response.data.token);
       yield put(
       actions.authSuccess(response.data.token,
@@ -64,7 +64,7 @@ if (data.action == "login" || data.action == "signup" || data.action == 'updateu
     
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
-    if (data.action == "updateuser") {
+    if (data.action === "updateuser") {
       return yield put(actions.updateUserFail(error.response.data.error_en));
 
     }

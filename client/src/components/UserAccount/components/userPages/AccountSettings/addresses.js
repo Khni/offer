@@ -1,20 +1,20 @@
 import React, {Component} from 'react'
 //import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+// import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import * as RouterDom from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 //import AddproductStyle from './addProduct.scss'
 //import InputForm from '../../../../components/form/inputAdminForm' 
 //import SelectForm from '../../../../components/form/selectOptions.component' 
 //import AddProduct from '../addItemToServer/addProduct.component'
 //import ProductsList from '../TableList/productsList.component'
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
-import TopNavComponent from '../../../../TopNav/TopNav.component'
+import '../../../../TopNav/TopNavStyle.scss'
+// import TopNavComponent from '../../../../TopNav/TopNav.component'
 import * as actions from '../../../../../store/actions/users';
-import Form from '../../../../form/Settings/formSettings.component.js';
+// import Form from '../../../../form/Settings/formSettings.component.js';
 import AddAddressForm from './AddAddressForm/AddAddressForm.js' 
 class Addresses extends Component {
 
@@ -93,9 +93,9 @@ console.log("addresseslost"+this.props.addressesList.length);
     render() {
     	
 
-const showList = () => {
-  this.setState({listToshow: true})
-}
+// const showList = () => {
+//   this.setState({listToshow: true})
+// }
 
 
 
@@ -115,7 +115,7 @@ this.setState({isLoading: false})
 
 
 let cartItemClass=  "cart-Item" 
-let setdefaultclass=  "remove-text default" 
+// let setdefaultclass=  "remove-text default" 
 
 let  DefaultBorder=(DefaultAddress, addressID)=> {
 	if (!DefaultAddress) {
@@ -166,7 +166,7 @@ return <div className={cartItemClass} >
   
    <div className="cart-item-bar">
      <div className="remove-text-icon" >
-         {this.props.defaultAddress._id != address._id ? 
+         {this.props.defaultAddress._id !== address._id ? 
          <p className="remove-text"  onClick={async() =>await setDefault(this.props.token, address) }>SET DEFAULT ADDRESS </p> : 
 <p className="remove-text default-address"  > DEFAULT ADDRESS </p> 
 } 
@@ -202,7 +202,7 @@ return <div className={cartItemClass} >
 </div> : null   } 
       
     {!this.state.isLoading &&  !this.state.listToshow   ? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
-    {!this.state.isLoading &&  this.props.addressesList.length == 0? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
+    {!this.state.isLoading &&  this.props.addressesList.length === 0? <AddAddressForm showlist={this.handleAddingAddress}/> : null} 
 </div>
 
 

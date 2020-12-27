@@ -3,14 +3,14 @@ import {
   AUTH_SIGN_UP, 
   AUTH_SIGN_OUT, 
   AUTH_SIGN_IN,
-  AUTH_LINK_GOOGLE, 
-  AUTH_LINK_FACEBOOK,
-  AUTH_UNLINK_GOOGLE,
-  AUTH_UNLINK_FACEBOOK, 
+  // AUTH_LINK_GOOGLE, 
+  // AUTH_LINK_FACEBOOK,
+  // AUTH_UNLINK_GOOGLE,
+  // AUTH_UNLINK_FACEBOOK, 
   AUTH_ERROR,
   UPDATE_USER, 
   UPDATE_USER_ERROR, 
-  DASHBOARD_GET_DATA, 
+  // DASHBOARD_GET_DATA, 
   ADD_NEW_ADDRESS,
   SET_DEFAULT_ADDRESS, 
   FETCH_ADDRESSES, 
@@ -40,9 +40,9 @@ import {ObjIndexToZero} from './users.utils'
    // axios.defaults.headers.common['Authorization'] = response.token;
     } catch(err) {
     	let error ='' 
-    	if( lang == 'ar') {
+    	if( lang === 'ar') {
         error =err.response.data.error_ar
-           } else if ( lang == 'en'){
+           } else if ( lang === 'en'){
             error =err.response.data.error_en
              } 
     	console.error('err',error +'' +lang + err)

@@ -85,7 +85,7 @@ export const authCheck = (token, refreshToken) => {
     try {
       const response = await calls.postDataHeaderAuth('/api/user/refreshToken', { token }, refreshToken)
       console.log("resAuth v3" + response.status);
-      if (response.status == 201) {
+      if (response.status === 201) {
 
         dispatch({
           type: actionTypes.REFRESH_TOKEN,

@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
 
-import { Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { Route,  Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+// import { reduxForm, Field } from 'redux-form';
+// import * as RouterDom from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
+// import { compose } from 'redux';
 import Head from '../../../../headd/header/header'
 import {selectTermsLang} from  '../../../../../store/reducers/langReducer/langsReselect';
 import AccountSettings from './AccountSettings.js'
 import Address from './addresses.js'
 
 
-import TopNavStyle from '../../../../TopNav/TopNavStyle.scss'
+import  '../../../../TopNav/TopNavStyle.scss'
 import TopNavComponent from '../../../../TopNav/TopNav.component'
 
 

@@ -1,10 +1,4 @@
-import { 
-    
-    SET_DEFAULT_ADDRESS, 
-    FETCH_ADDRESSES,
-    ADD_NEW_ADDRESS
- 
-  } from '../../types/authUserTypes';
+
   import * as actionTypes from '../../types';
 
   const DEFAULT_STATE = {

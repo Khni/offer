@@ -2,8 +2,8 @@ import React from 'react';
 import Trashicon from './img/trash.png';
 import Plusicon from './img/add.png';
 import Minusicon from './img/minus.png';
-import { Link } from 'react-router-dom';
-import CartItemstyle from './cart-dropdown.styles.css';
+
+import './cart-dropdown.styles.css';
 import { connect } from 'react-redux';
 import {addItem, removeItem} from '../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
@@ -27,7 +27,7 @@ cartdropdown = "cart-dropdown open" ;
 <div className="cart-Item-drop" >
  
  <div className="cart-item-desc">
-   <img src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img-drop"/>
+   <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img-drop"/>
    <div className="cart-item-details">
       <p className="cart-item-title margin0">{item.nameEn} </p>
       <p className="cart-item-before-price margin0">   EGP {item.price *1.24} </p>
@@ -37,14 +37,14 @@ cartdropdown = "cart-dropdown open" ;
   
    <div className="cart-item-bar">
      <div className="remove-text-icon" onClick={() => props.removeItem(item)}>
-         <img src={Trashicon} className="trash-icon"/>
+         <img alt="delete" src={Trashicon} className="trash-icon"/>
          <p className="remove-text" >REMOVE </p>
       </div>{/*remove-text-icon */}
       
       <div className="adjust-item-number">
-             <img src={Minusicon} className="minus-icon" onClick={() => props.removeItem(item)}/>
+             <img alt="-" src={Minusicon} className="minus-icon" onClick={() => props.removeItem(item)}/>
              <p className="item-number">{item.quantity}</p>
-             <img src={Plusicon} className="plus-icon" onClick={() => props.addItem(item)}/>
+             <img alt="+" src={Plusicon} className="plus-icon" onClick={() => props.addItem(item)}/>
       </div>{/*adjust-item-number */}
       
   

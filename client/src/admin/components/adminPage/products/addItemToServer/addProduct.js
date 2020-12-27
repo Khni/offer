@@ -1,18 +1,14 @@
 import React, {Component} from 'react'
 import {selectAdminAuth} from  '../../../../../store/reducers/admin/auth/adminReselect';
-import { Route, NavLink, Switch } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 
-import * as RouterDom from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
-import AddproductStyle from './addProduct.scss'
+
+import './addProduct.scss'
 import FormData from 'form-data'
-import InputForm from '../../../../../components/form/inputAdminForm' 
-import InputFile from '../../../../../components/form/inputFileAdmin' 
-import SelectForm from '../../../../../components/form/selectOptions.component' 
+
 import * as actions from '../../../../../store/actions/product';
-//import ProductsList from './productsList.component'
+
 
 
 
