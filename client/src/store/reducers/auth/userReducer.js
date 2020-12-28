@@ -1,12 +1,12 @@
-import {
-  AUTH_SIGN_UP,
-  AUTH_SIGN_OUT,
-  AUTH_SIGN_IN,
-  AUTH_ERROR,
-  UPDATE_USER,
-  UPDATE_USER_ERROR,
+// import {
+//   AUTH_SIGN_UP,
+//   AUTH_SIGN_OUT,
+//   AUTH_SIGN_IN,
+//   AUTH_ERROR,
+//   UPDATE_USER,
+//   UPDATE_USER_ERROR,
 
-} from '../../types/authUserTypes';
+// } from '../../types/authUserTypes';
 
 import * as actionTypes from '../../types';
 

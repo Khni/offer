@@ -1,13 +1,15 @@
 import React from 'react'
-import Style from './middle.scss'
+import  './middle.scss'
 import { ReactComponent as AddFavorite } from '../icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../icons/Heartfull.svg'
-import FBicon from "../../form/img/Facebookicon.png"
-import googleicon from "../../form/img/googleicon.png"
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import FBicon from "../../form/img/Facebookicon.png"
+// import googleicon from "../../form/img/googleicon.png"
+// import { useHistory } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {addItem, addItemToCartItem} from '../../../store/actions/CartItemsAction';
+import {addItem
+  // , addItemToCartItem
+} from '../../../store/actions/CartItemsAction';
 import * as actions  from '../../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {
@@ -50,9 +52,9 @@ const MiddleProduct = (props) => {
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    addItem: (item, items) => dispatch(addItem(item, items))
-  });
+// const mapDispatchToProps = dispatch => ({
+//     addItem: (item, items) => dispatch(addItem(item, items))
+//   });
 
 const mapStateToProps = state => {
   return {

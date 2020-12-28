@@ -1,18 +1,13 @@
-import Style from './signIn.css';
-import { withRouter } from 'react-router-dom';
-import * as RouterDom from 'react-router-dom';
-import Googleicon from './img/googleicon.png';
-import FacebookIcon from './img/Facebookicon.png';
+import  './signIn.css';
+
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { selectTermsLang } from '../../../store/reducers/langReducer/langsReselect';
 //import * as actions from '../../../store/actions/users.js';
 import * as actions from '../../../store/actions';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
-import { Link } from 'react-router-dom';
+
 import Form from '../../form/form.component';
 class signIn extends Component {
 
@@ -99,7 +94,7 @@ class signIn extends Component {
 
 
   render() {
-    const { handleSubmit } = this.props;
+    
     return (
 
       <div class="main-container-auth">

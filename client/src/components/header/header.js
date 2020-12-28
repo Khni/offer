@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import headercss from './header.scss';
+import  './header.scss';
 import Offerenologo from './img/juv.png';
 import menuicon from './img/menu.png';
 import iconuser from './img/newuser.png';
@@ -15,10 +15,10 @@ import {cartHidden, sidebarHidden, selectCartItems} from  '../../store/reducers/
 
 class Header extends Component {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-  }
+  // }
   render() {
 
     return (
@@ -35,11 +35,11 @@ class Header extends Component {
           
             <div className="logo-container-left">
 
-              <img src={menuicon} className="menuicon" onClick={this.props.openSidebar} />
+              <img alt="menu" src={menuicon} className="menuicon" onClick={this.props.openSidebar} />
 
 
               <Link to='/'>
-                <img className="logo" src={Offerenologo} />
+                <img alt="JUVNI" className="logo" src={Offerenologo} />
               </Link>
               
             </div>{/*logo cont left*/}
@@ -56,7 +56,7 @@ class Header extends Component {
                 
 <p className="signin-text icontext-text">  Welcome, <br />
  {this.props.name} </p>
-                  <img src={iconuser} className="icontext-icon" />
+                  <img alt="user" src={iconuser} className="icontext-icon" />
                 </Link> : null}
 
 
@@ -66,8 +66,8 @@ class Header extends Component {
               
                 {this.props.hidden ? <div className="cart-Section" > 
                 
-                  <img src={carticon} className="icontext-icon-cart" /></div>
-                  : <img src={closeCart} className="icontext-icon-cart" />}
+                  <img alt="cart" src={carticon} className="icontext-icon-cart" /></div>
+                  : <img alt="close cart" src={closeCart} className="icontext-icon-cart" />}
 
 
 
