@@ -14,7 +14,7 @@ import { ReactComponent as Us } from '../icons/us.svg';
 //import * as actions from '../../store/actions/cartAction.js'
 import * as actions from '../../store/actions'
 import {selectTermsLang, selectLang}  from '../../store/reducers/langReducer/langsReselect';
-import NavItem from '../headd/NavItem/NavItem'
+// import NavItem from '../headd/NavItem/NavItem'
 
 import {
   // cartHidden,
@@ -72,7 +72,7 @@ return (
   <MenuIcontText class={miniMenuItem}  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}   leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
   <hr />
-  {props.lang == 'ar' ? 
+  {props.lang === 'ar' ? 
   <div>
 <p> Languages </p>
 <MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={SetEnglishFunc}>Set English</MenuIcontText>
@@ -110,15 +110,15 @@ function mapStateToProps(state) {
 
   };
 }
-const mapDispatchToProps = dispatch => {
-    return {
+// const mapDispatchToProps = dispatch => {
+//     return {
         
-        openSidebar: () => dispatch( actions.openSidebar()), 
-      setEnglish: () => dispatch( actions.setEnglish()), 
+//         openSidebar: () => dispatch( actions.openSidebar()), 
+//       setEnglish: () => dispatch( actions.setEnglish()), 
  
-      setArabic: () => dispatch( actions.setArabic())
-};
+//       setArabic: () => dispatch( actions.setArabic())
+// };
 
-} 
+// } 
 
 export default connect(mapStateToProps,actions)(Sidebar);

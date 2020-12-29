@@ -1,7 +1,7 @@
 import './signIn.css';
 
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { selectAuthLang } from '../../../../store/reducers/langReducer/langReselect';

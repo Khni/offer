@@ -23,10 +23,10 @@ import TopNavComponent from '../../../../TopNav/TopNav.component'
 
 class AccountSettingsNav extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
         
-    }
+    // }
 
 
 

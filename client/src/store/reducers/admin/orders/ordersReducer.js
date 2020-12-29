@@ -1,4 +1,6 @@
-import {FETCH_ORDERS_ADMIN , FETCH_ORDERS_ERRROR} from '../../../types/ordersAdminType';
+import {FETCH_ORDERS_ADMIN
+  //  , FETCH_ORDERS_ERRROR
+  } from '../../../types/ordersAdminType';
 
 
 const INITIAL_STATE = {
@@ -29,7 +31,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 
-  return state;
+  
 };
 
 export default ordersReducer;

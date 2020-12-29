@@ -47,9 +47,7 @@ class Form extends Component {
   }
 
 
-  responseGoogle(response) {
-    console.log(response);
-  }
+  
   componentWillUnmount() {
 
     this.props.removeErr()

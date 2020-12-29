@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADMIN_SIGN_IN, ADMIN_AUTH_ERROR,ADMIN_SIGN_UP,ADMIN_SIGN_OUT } from '../types/authAdminTypes'
+import { ADMIN_SIGN_IN, ADMIN_AUTH_ERROR,ADMIN_SIGN_OUT } from '../types/authAdminTypes'
 
 
 

@@ -136,7 +136,7 @@ componentDidMount(){
 
 
   render() {
-    const { handleSubmit } = this.props;
+    
     return (
 
       <div className="container-signup">
@@ -151,7 +151,7 @@ componentDidMount(){
           labelClass="input-label"
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
-          errorMsg = {this.props.errorMsg}
+          
           LoadingBtn = {this.props.Loading}
           removeErr={this.props.authLeft} 
           

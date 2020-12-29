@@ -1,6 +1,5 @@
-import Style from './AddAddressForm.scss';
-import { withRouter } from 'react-router-dom';
-import * as RouterDom from 'react-router-dom';
+import  './AddAddressForm.scss';
+
 
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
@@ -9,7 +8,7 @@ import { compose } from 'redux';
 //import { selectAuthLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../../../../store/actions/users';
 
-import { Link } from 'react-router-dom';
+
 
 import InputForm from "../../../../../form/inputForm"
 class AddAddress extends Component {

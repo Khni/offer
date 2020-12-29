@@ -99,14 +99,14 @@ class ProductsList extends Component {
     })
 
 
-    let menuPopup = [
-      {
-        title: "Edit"
-      },
-      {
-        title: "Delete"
-      }
-    ]
+    // let menuPopup = [
+    //   {
+    //     title: "Edit"
+    //   },
+    //   {
+    //     title: "Delete"
+    //   }
+    // ]
     return (
       <div className="TableList-container">
         <div className="Tabel-Header">

@@ -7,9 +7,9 @@ import { ReactComponent as FavoriteAdded } from '../icons/Heartfull.svg'
 // import { useHistory } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {addItem
-  // , addItemToCartItem
-} from '../../../store/actions/CartItemsAction';
+// import {addItem
+//    , addItemToCartItem
+// } from '../../../store/actions/CartItemsAction';
 import * as actions  from '../../../store/actions/CartItemsAction';
 import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {

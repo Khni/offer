@@ -1,5 +1,5 @@
 export const ObjIndexToZero = (ArrayList, Obj) => {
-    if (ArrayList.length == 0) {
+    if (ArrayList.length === 0) {
         return ArrayList
     }
     const indexOfDefault = ArrayList.findIndex(a => a._id === Obj._id)

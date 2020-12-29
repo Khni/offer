@@ -28,6 +28,7 @@ const Slider = props => {
     const interval = setInterval(play, props.autoPlay * 1000)
     return () => clearInterval(interval)
   }, [])
+  // Line 30:6:  React Hook useEffect has a missing dependency: 'props.autoPlay'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
   const getWidth = () => 350
 

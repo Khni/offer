@@ -169,7 +169,7 @@ class homeMenu extends Component {
 
 
 
-    let { collections } = this.props
+ 
     
     
 

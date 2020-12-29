@@ -1,5 +1,5 @@
 import {ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, CHECKOUT_FINISHED} from '../../types/cartTypes';
-import { addItemToCart, removeItemFromCart } from './cart.utils';
+// import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 
 

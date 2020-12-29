@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS} from '../../types/productsTypes';
+// import {FETCH_PRODUCTS} from '../../types/productsTypes';
 import SHOP_DATA from './items.js'
 
 const INITIAL_STATE = {
