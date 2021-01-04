@@ -67,10 +67,21 @@ flex-direction: row;
         
         }
         
-
+        @media screen and (min-width: 700px) {
+            .PicAndMiddleComponent{
+                display: flex;
+                flex-direction: row;
+            }
+          }
         
         @media only screen and (min-width: 1100px) {
-        
+            .PicAndMiddleComponent{
+                display: flex;
+                flex-direction: row;
+            }
+            .container-productPage{
+                justify-content: space-between;
+            }
             .MiddleComponent{
                 width: 25%;
                 padding: 30px;
@@ -90,6 +101,10 @@ flex-direction: row;
                left:1px;
                z-index:50;
        
+           }
+           .ReviewsComponent {
+               display: flex;
+               
            }
         
         }

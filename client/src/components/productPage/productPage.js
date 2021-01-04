@@ -65,7 +65,7 @@ class ProductPage extends Component {
 
 
     if (this.props.token) {
-      await this.props.favoriteListAction(this.props.token,this.props.RefreshToken, this.props.refreshToken)
+      await this.props.favoriteListAction(this.props.token, this.props.RefreshToken, this.props.refreshToken)
 
       const productID = response.data.product._id
 
@@ -90,24 +90,24 @@ class ProductPage extends Component {
     this.setState({ favorite: !this.state.favorite })
     try {
 
-      const response = await axiosInstance(null,this.props.token,this.props.RefreshToken,this.props.refreshToken).post('/api/favorite/addanddelete', { productID: this.state.product._id })
-    //  const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
-   console.log("response"+ response);
+      const response = await axiosInstance(null, this.props.token, this.props.RefreshToken, this.props.refreshToken).post('/api/favorite/addanddelete', { productID: this.state.product._id })
+      //  const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
+      console.log("response" + response);
     } catch (e) {
-      console.log("e"+ e.response.data.error);
-      if ( e.response.data.error === "TokenExpiredError") {
+      console.log("e" + e.response.data.error);
+      if (e.response.data.error === "TokenExpiredError") {
         console.log("token is Expired");
-//try to refresh the token if its expired
+        //try to refresh the token if its expired
 
 
-try {
- // const response = await Calls.getDataHeaderAuth('/api/token/refresh',this.props.token)
+        try {
+          // const response = await Calls.getDataHeaderAuth('/api/token/refresh',this.props.token)
 
-} catch (error) {
-  
-}
+        } catch (error) {
 
-//end of refresh try
+        }
+
+        //end of refresh try
 
 
 
@@ -141,25 +141,25 @@ try {
   }
 
   async componentDidMount() {
-  //   try{
-  //     const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
-  //     console.log("resAuth" +response.status );
-  //     if(response.status== 201) {
-  //       console.log("status created");
-  //       console.log("res token "+JSON.stringify(response) );
-  // await this.props.refreshToken(response.data.token, response.data.refreshToken)
-  //    } 
-  //    } catch(e) {
-  //      console.log("e" +e.response.data.error);
-  // this.props.logout()
-  // } 
+    //   try{
+    //     const response = await calls.postDataHeaderAuth('/api/user/refreshToken',{ token: this.props.token}, this.props.RefreshToken )
+    //     console.log("resAuth" +response.status );
+    //     if(response.status== 201) {
+    //       console.log("status created");
+    //       console.log("res token "+JSON.stringify(response) );
+    // await this.props.refreshToken(response.data.token, response.data.refreshToken)
+    //    } 
+    //    } catch(e) {
+    //      console.log("e" +e.response.data.error);
+    // this.props.logout()
+    // } 
 
-   //await this.props.authCheck(this.props.token,this.props.RefreshToken)
+    //await this.props.authCheck(this.props.token,this.props.RefreshToken)
     await this.fetchProduct()
     if (this.props.token) {
       await this.addSeenProduct()
     }
-    
+
 
   }
   async componentDidUpdate() {
@@ -186,48 +186,45 @@ try {
         </div>
 
         {!this.state.Loading ? <div className="container-productPage">
-          <div className="PicComponent">
+
+          <div className="PicAndMiddleComponent">
+            <div className="PicComponent">
 
 
-            <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
-            <StarRatings
-              rating={this.state.rating}
-              starRatedColor='rgb(255,215,0)'
-              starDimension="25px"
-              starSpacing="1px"
-              numberOfStars={5}
-              name='rating'
+              <Slider slides={this.state.imgUrlsArr} autoPlay={4} />
+              <StarRatings
+                rating={this.state.rating}
+                starRatedColor='rgb(255,215,0)'
+                starDimension="25px"
+                starSpacing="1px"
+                numberOfStars={5}
+                name='rating'
+              />
+
+            </div>
+
+
+
+            <div className="MiddleComponent">
+              <MiddleComponent
+                favorite={this.state.favorite}
+                name={this.state.product.nameEn}
+                price={this.state.product.price}
+                item={this.state.product}
+                ToggleFavorite={this.ToggleFavorite}
+              />
+            </div>
+          </div>
+
+          <div className="ReviewsComponent">
+            <Reviews
+              fetchHandle={this.fetchHandle}
+              productID={this.state.product._id}
+              reviews={this.state.reviews}
+              userToken={this.props.token}
             />
 
           </div>
-
-
-          <div className="StarRatingsContainer" >
-
-          </div>
-          <div className="MiddleComponent">
-            <MiddleComponent
-              favorite={this.state.favorite}
-              name={this.state.product.nameEn}
-              price={this.state.product.price}
-              item={this.state.product}
-              ToggleFavorite={this.ToggleFavorite}
-            />
-          </div>
-          <div className="DiscComponent">
-            <DiscComponent />
-          </div>
-
-
-
-          <Reviews
-            fetchHandle={this.fetchHandle}
-            productID={this.state.product._id}
-            reviews={this.state.reviews}
-            userToken={this.props.token}
-          />
-
-
         </div> : <div className="loaderHome" />}
       </div>
     );
@@ -250,9 +247,9 @@ const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token, refreshToken, refreshTokenFunc) => dispatch(actions.fetchFavorites(token, refreshToken, refreshTokenFunc)),
   logout: () => dispatch(actions.logout()),
-  authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
+  authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token, refreshToken)),
 
-  refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
+  refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
 });
 
 

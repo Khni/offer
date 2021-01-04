@@ -1,6 +1,7 @@
 import ReactStars from "react-rating-stars-component";
 import React, { Component } from 'react';
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
 import './middle.scss'
 import InputForm from '../../form/TextAreaForm.js';
@@ -25,7 +26,8 @@ class Reviews extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      newRate: ''
+      newRate: '',
+      Loading: false
     }
 
   }
@@ -49,10 +51,13 @@ class Reviews extends Component {
 
   async onSubmit(formData) {
     if (this.state.newRate) {
+      this.setState({Loading: true})
       formData.rate = this.state.newRate
       formData.productID = this.props.productID
       console.log(formData);
       await this.addReview(formData)
+      this.setState({Loading: false})
+      this.submit()
       this.props.fetchHandle(true)
       //window.location.reload();
     } else {
@@ -64,6 +69,25 @@ class Reviews extends Component {
     console.log(newRating);
     this.setState({ newRate: newRating })
   };
+
+
+
+
+  submit = () => {
+    confirmAlert({
+      title: 'Thank You!, Review has been added ' ,
+      message: 'it will be review ',
+      buttons: [
+        {
+          label: 'Ok',
+          onClick:()=> window.location.reload()
+        }
+      ],
+      afterClose: ()=> window.location.reload()
+
+    });
+  };
+
 
   render() {
     const { handleSubmit } = this.props
@@ -106,9 +130,12 @@ class Reviews extends Component {
             />
           </fieldset>
 
+          {!this.state.Loading ?
+            <button type="submit" class="custum-btn-form">post</button>
+            : <div className="loadingBtnDiv"><div className="loaderbTn" /></div>}
 
 
-          <button type="submit" class="custum-btn-form">post</button>
+          
 
         </form>
 

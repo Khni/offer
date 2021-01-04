@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import  './middle.scss'
 import { ReactComponent as AddFavorite } from '../icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../icons/Heartfull.svg'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 // import FBicon from "../../form/img/Facebookicon.png"
 // import googleicon from "../../form/img/googleicon.png"
 // import { useHistory } from 'react-router-dom';
@@ -15,6 +17,25 @@ import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {
 
 
+
+
+  
+  const submit = () => {
+    confirmAlert({
+      title: 'تم أضافة المنتج الي السلة ' ,
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'المواصلة الي الدفع',
+         // onClick: 
+        },
+        {
+          label: 'الاستمرار في التسوق',
+        // onClick: 
+        }
+      ]
+    });
+  };
     return (
 
 <div className="MiddleProduct">
