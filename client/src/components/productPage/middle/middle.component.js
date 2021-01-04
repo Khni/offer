@@ -36,6 +36,11 @@ const MiddleProduct = (props) => {
       ]
     });
   };
+  
+  const addItem =() =>{
+props.addItemToCartItem(props.item, props.cartItems)
+submit() 
+} 
     return (
 
 <div className="MiddleProduct">
@@ -43,7 +48,7 @@ const MiddleProduct = (props) => {
     <p className="product-page-price">Price: {" "+props.price+" "}EGP</p>
     <div className="flex-row margin0">
      <button type="submit" className="custum-btn-form"
-     onClick={() => props.addItemToCartItem(props.item, props.cartItems)}
+     onClick={() => addItem() }
       >ADD TO CART</button> 
 
   {!props.favorite?
