@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-import  './middle.scss'
+import React, { useState } from 'react'
+import './middle.scss'
 import { ReactComponent as AddFavorite } from '../icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../icons/Heartfull.svg'
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import AddToCartBtn from '../../addToCartBtn/addToCartBtn'
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 // import FBicon from "../../form/img/Facebookicon.png"
 // import googleicon from "../../form/img/googleicon.png"
@@ -12,59 +13,38 @@ import { connect } from 'react-redux';
 // import {addItem
 //    , addItemToCartItem
 // } from '../../../store/actions/CartItemsAction';
-import * as actions  from '../../../store/actions/CartItemsAction';
-import {selectCartItems} from  '../../../store/reducers/cart/cartReselect';
+import * as actions from '../../../store/actions/CartItemsAction';
+import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
 const MiddleProduct = (props) => {
 
 
 
+  return (
 
+    <div className="MiddleProduct">
+      <h4 className="product-page-title">{props.name}</h4>
+      <p className="product-page-price">Price: {" " + props.price + " "}EGP</p>
+      <div className="flex-row margin0">
+        <AddToCartBtn
+          cartItems={props.cartItems}
+          item={props.item}
+          addItemToCartItem={props.addItemToCartItem} />
   
-  const submit = () => {
-    confirmAlert({
-      title: 'تم أضافة المنتج الي السلة ' ,
-      message: 'Are you sure to do this.',
-      buttons: [
-        {
-          label: 'المواصلة الي الدفع',
-         // onClick: 
-        },
-        {
-          label: 'الاستمرار في التسوق',
-        // onClick: 
+
+        {!props.favorite ?
+          <div className="icon-button pointer hoverscalein" onClick={async () => { await props.ToggleFavorite(); }}>
+            <AddFavorite />
+          </div> : <div className="icon-button pointer hoverscalein" onClick={async () => { await props.ToggleFavorite(); }}>
+
+            <FavoriteAdded /></div>
+
         }
-      ]
-    });
-  };
-  
-  const addItem =() =>{
-props.addItemToCartItem(props.item, props.cartItems)
-submit() 
-} 
-    return (
+      </div>
+      <p className="brand-text">Brand: Fashion | Similar products from Fashion</p>
 
-<div className="MiddleProduct">
-<h4 className="product-page-title">{props.name}</h4>
-    <p className="product-page-price">Price: {" "+props.price+" "}EGP</p>
-    <div className="flex-row margin0">
-     <button type="submit" className="custum-btn-form"
-     onClick={() => addItem() }
-      >ADD TO CART</button> 
+      {/* <button type="submit" className="custum-btn-form" onClick={() => props.addItemToCartItem(props.item, props.cartItems)} >ADD TO CART</button> */}
 
-  {!props.favorite?
-        <div  className="icon-button pointer hoverscalein" onClick={async()=>{ await props.ToggleFavorite();}}>
-        <AddFavorite />
-        </div> : <div  className="icon-button pointer hoverscalein"  onClick={async()=>{ await props.ToggleFavorite();}}>
-
-<FavoriteAdded /></div>
-        
-        }
-        </div>
-    <p className="brand-text">Brand: Fashion | Similar products from Fashion</p>
-
-    {/* <button type="submit" className="custum-btn-form" onClick={() => props.addItemToCartItem(props.item, props.cartItems)} >ADD TO CART</button> */}
-
-    {/* <div>
+      {/* <div>
     <p><h2 className="share-this-product">SHARE THIS PRODUCT</h2></p>
     <div className="share-icons-product">
     <img className="fb-btn" src={FBicon}  />
@@ -73,9 +53,9 @@ submit()
     </div>
     
     </div> */}
-</div>
+    </div>
 
-    );
+  );
 }
 
 // const mapDispatchToProps = dispatch => ({
@@ -84,13 +64,13 @@ submit()
 
 const mapStateToProps = state => {
   return {
-  	
+
     cartItems: selectCartItems(state)
   }
 
 }
 
 export default connect(
-    mapStateToProps,
-    actions
-  )(MiddleProduct);
+  mapStateToProps,
+  actions
+)(MiddleProduct);
