@@ -15,6 +15,7 @@ export {
 } from './userActions';
 
 export {setArabic, setEnglish } from './LangActions';
+export {addItemToCartItem, removeItemFromCartItem } from './CartItemsAction';
 
 // export {productsFetched } from './product';
 

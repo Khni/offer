@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import './middle.scss'
 import { ReactComponent as AddFavorite } from '../icons/heartempty.svg'
 import { ReactComponent as FavoriteAdded } from '../icons/Heartfull.svg'
-import { confirmAlert } from 'react-confirm-alert'; // Import
+
 import AddToCartBtn from '../../addToCartBtn/addToCartBtn'
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 // import FBicon from "../../form/img/Facebookicon.png"
 // import googleicon from "../../form/img/googleicon.png"
 // import { useHistory } from 'react-router-dom';

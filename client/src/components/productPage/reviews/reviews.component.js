@@ -75,8 +75,8 @@ class Reviews extends Component {
 
   submit = () => {
     confirmAlert({
-      title: 'Thank You!, Review has been added ' ,
-      message: 'it will be review ',
+      title: 'شكرا لتقيمكم! سيتم مراجهعته سريعا ليتم نشره قريبا. ' ,
+      message: '',
       buttons: [
         {
           label: 'Ok',
