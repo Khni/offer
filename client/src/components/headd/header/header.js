@@ -12,7 +12,7 @@ import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
 import { ReactComponent as Menu } from '../../icons/header/menu.svg';
 import {
-  // cartHidden, 
+   cartHidden, 
   sidebarHidden, selectCartItems
 } from '../../../store/reducers/cart/cartReselect';
 import {
@@ -22,6 +22,7 @@ import {
 import * as actions from '../../../store/actions/cartAction.js'
 // import CartDropdown from '../../cart/cart-dropdown.component';
 import Sidebar from '../../sidebar/sidebar.js'
+import CartDropdown from '../../cart/cart-dropdown.component';
 import Backdrop from '../../sidebar/backdrop'
 import BackDropMenu from '../../miniMenus/backdrop'
 import Offerenologo from '../../header/img/juv.png';
@@ -120,11 +121,12 @@ class Header extends Component {
               < BackDropMenu />
             </NavItem> : <NavItem link='/authnav' icon={<User />} />}
 
-          <NavItem icon={<CartIcon />} link='/cart' />
+          <NavItem icon={<CartIcon />} link='/cart' itemClick ={this.props.toggle} />
           <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems} />
 
         </div>
 
+    <CartDropdown show={this.props.hidden} />
 
       </Navbar>
 
@@ -139,7 +141,7 @@ function mapStateToProps(state) {
     errorMsg: state.userAuth.authUser.error,
     token: state.userAuth.authUser.token,
     name: state.userAuth.authUser.name,
-    // hidden: cartHidden(state) ,
+    hidden: cartHidden(state) ,
     hiddenSidebar: sidebarHidden(state),
     totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
     // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
