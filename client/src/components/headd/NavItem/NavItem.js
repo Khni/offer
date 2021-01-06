@@ -7,7 +7,10 @@ const NavItem =(props)=> {
   
   const onClickItem =() =>{
 setOpen(!open)
-props.itemClick;
+if(props.itemClick){
+  props.itemClick()
+}
+
 } 
     return (
       

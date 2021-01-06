@@ -66,7 +66,7 @@ cartdropdown = "cart-dropdown open" ;
 <button className="custum-btn " onClick={()=>props.history.push("/cart")} >CART LIST</button>
 
 
-<button className="custum-btn " >Checkout</button>
+<button className="custum-btn " onClick={()=>props.history.push("/checkout-address")} >Checkout</button>
 </div>
 
 </div> {/*cart-dropdown-content */} 

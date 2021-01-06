@@ -11,6 +11,7 @@ import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
 import { ReactComponent as Menu } from '../../icons/header/menu.svg';
+import { ReactComponent as CloseCart } from '../../icons/header/close.svg';
 import {
    cartHidden, 
   sidebarHidden, selectCartItems
@@ -120,10 +121,11 @@ class Header extends Component {
               <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
               < BackDropMenu />
             </NavItem> : <NavItem link='/authnav' icon={<User />} />}
-
-          <NavItem icon={<CartIcon />} link='/cart' itemClick ={this.props.toggle} />
-          <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems} />
-
+            {this.props.hidden ?   <div onClick={()=>this.props.toggle()}>
+          <NavItem icon={<CartIcon />}   />
+          <CartCounter class={CounterCart}  total={this.props.totalItems} />
+          </div> :  <NavItem icon={<CloseCart />}  itemClick ={this.props.toggle} />}
+           
         </div>
 
     <CartDropdown show={this.props.hidden} />
