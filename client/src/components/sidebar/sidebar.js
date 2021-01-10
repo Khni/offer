@@ -7,7 +7,7 @@ import { ReactComponent as View } from '../icons/header/view.svg';
 import { ReactComponent as Settings } from '../icons/header/setting.svg';
 import { ReactComponent as Close } from '../icons/close.svg';
 // import { ReactComponent as User } from '../icons/header/usern.svg';
- import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
+// import { ReactComponent as Avatar } from '../icons/header/avatar.svg';
 // import { ReactComponent as UserLogged } from '../icons/header/userlogged.svg';
 import { ReactComponent as Egypt } from '../icons/egypt.svg';
 import { ReactComponent as Us } from '../icons/us.svg';
@@ -56,8 +56,8 @@ return (
  
  
   {props.isAuth && props.token && !props.errorMsg?
-                <div><Link className="avatar-sidebar" to='/settings/details' >
-                 <Avatar /> 
+                <div><Link className="avatar-sidebarnone" to='/settings/details' >
+                {/* <Avatar /> */}
                 
                 </Link>
                 <h5>Welcome, {props.name}! :)</h5>
@@ -66,12 +66,12 @@ return (
 <h5>Login or Sign up here</h5>
                   
                 </Link>}
-              
+                <hr />
   <MenuIcontText class={miniMenuItem} leftIcon={<Settings />} link='/settings' click={props.openSidebar}>{props.terms.settings}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}   leftIcon={<Orders />} link='/orders' click={props.openSidebar}>{props.terms.orders}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}   leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
-  
+  <hr />
   {props.lang === 'ar' ? 
   <div>
 <p> Languages </p>
@@ -81,7 +81,7 @@ return (
 <div>
 <p> اللغة </p>
 <MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={SetArabicFunc}> حول للعربية </MenuIcontText>
-
+<hr />
 </div>
 } 
 

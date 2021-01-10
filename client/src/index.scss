@@ -117,7 +117,7 @@ background-color: $hoverbg;
 
 
 .miniMenuItem-sidebar{
-@include miniMenuItem (15px, $white,#f7f7f7, black);
+@include miniMenuItem (20px, $white,$white, $darkcolor);
 
     .text{margin-left: 15px;}
      
