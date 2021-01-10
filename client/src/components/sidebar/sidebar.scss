@@ -22,7 +22,7 @@
 }
 
 .sidebar {
-  @include sideBar(null, 0, -100%, 40%);
+  @include sideBar(null, 0, -100%, 30%);
 }
 
 .sidebar.open {
@@ -30,7 +30,7 @@
 }
 
 .sidebarAr {
-  @include sideBar(0, null, +100%, 40%);
+  @include sideBar(0, null, +100%, 30%);
 }
 
 .sidebarAr.open {
