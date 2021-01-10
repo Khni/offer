@@ -101,8 +101,7 @@ class Header extends Component {
         <div className={logoCorner}>
 
           <div className="icon-button" onClick={this.props.openSidebar}>
-          <NavItem  icon={<Menu />} />
-            
+            <Menu />
 
           </div>
 
