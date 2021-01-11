@@ -61,7 +61,7 @@ class AddAddress extends Component {
                 name="firstName"
                 id="firstName"
                 classN="halfInput"
-              //  placeholder="First Name"
+                placeholder="First Name"
                 component={InputForm}
                 label="First Name "
               />
@@ -72,7 +72,7 @@ class AddAddress extends Component {
                 name="lastName"
                 id="lastName"
                 classN="halfInput"
-             //   placeholder="Last Name"
+               placeholder="Last Name"
                 component={InputForm}
                 label="Last Name  "
               />
@@ -85,36 +85,37 @@ class AddAddress extends Component {
 
 
         </table>
-        <div>
-           
-           <fieldset>
-           <Field
-               type="tel"
-               name="phone"
-               id="phone"
-               classN="fullInput"
-            //   placeholder="phone"
-               component={InputForm}
-               label="Phone  "
-             />
-           </fieldset>
-          
-         </div>
-         <div>
-           
-           <fieldset>
-           <Field
-               type="text"
-               name="city"
-               id="city"
-               classN="fullInput"
-            //   placeholder="City"
-               component={InputForm}
-               label="City  "
-             />
-           </fieldset>
-          
-         </div>
+        <table>
+         <tr>
+           <td>
+              <fieldset>
+                <Field
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  classN="fullInput"
+                  placeholder="phone"
+                  component={InputForm}
+                  label="Phone  "
+                />
+              </fieldset>
+              </td>
+            
+              <td>
+              <fieldset>
+                <Field
+                  type="text"
+                  name="city"
+                  id="city"
+                  classN="fullInput"
+                  placeholder="City"
+                  component={InputForm}
+                  label="City  "
+                />
+              </fieldset>
+              </td>
+            </tr>
+            </table>
          <div>
            
            <fieldset>

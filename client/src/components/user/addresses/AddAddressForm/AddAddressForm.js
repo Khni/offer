@@ -84,8 +84,9 @@ class AddAddress extends Component {
 
 
             </table>
-            <div>
-
+            <table>
+         <tr>
+           <td>
               <fieldset>
                 <Field
                   type="tel"
@@ -97,10 +98,9 @@ class AddAddress extends Component {
                   label="Phone  "
                 />
               </fieldset>
-
-            </div>
-            <div>
-
+              </td>
+            
+              <td>
               <fieldset>
                 <Field
                   type="text"
@@ -112,8 +112,9 @@ class AddAddress extends Component {
                   label="City  "
                 />
               </fieldset>
-
-            </div>
+              </td>
+            </tr>
+            </table>
             <div>
 
               <fieldset>
