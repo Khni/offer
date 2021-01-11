@@ -134,40 +134,6 @@ class AddAddress extends Component {
 
 
 
-    
-
-         <table>
-          <tr>
-            <td><fieldset>
-              <Field
-                type="number"
-                name="appartment"
-                id="appartment"
-                classN="halfInput"
-               // placeholder="First Name"
-                component={InputForm}
-                label="appartment "
-              />
-            </fieldset></td>
-            <td><fieldset>
-            <Field
-                type="number"
-                name="floor"
-                id="floor"
-                classN="halfInput"
-               // placeholder="Last Name"
-                component={InputForm}
-                label="floor  "
-              />
-            </fieldset></td>
-          </tr>
-         
-
-
-
-
-
-        </table>
         <button type="submit" class="custum-btn-form">submit</button>
    </form>
       </div>
