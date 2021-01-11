@@ -93,10 +93,7 @@ class Form extends Component {
           {this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg}</div> : null}
           {!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
-            : <LoadingScreen />
-
-{/*<div className="loadingBtnDiv"><div className="loaderbTn" /></div>*/} 
-}
+            : <LoadingScreen />}
 
         </form>
 
