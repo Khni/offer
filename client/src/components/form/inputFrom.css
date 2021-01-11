@@ -36,3 +36,29 @@
 	font-weight: 700;
 	color: #753a88;
 }
+
+
+.user-input-wrp .inputText:focus{
+	border-color: blue;
+	
+}
+// .user-input-wrp
+ .floating-label {
+	background-color: white;
+	position: absolute;
+	pointer-events: none;
+	top: 14px;
+	left: 10px;
+	transition: 0.2s ease all;
+	color:  #0066cc;
+}
+.user-input-wrp input:focus ~ .floating-label,
+.user-input-wrp input:not(:focus):valid ~ .floating-label{
+	top: -8px;
+	left: 10px;
+	font-size: 15px;
+	 opacity: 1;
+	color: blueviolet;
+	
+	background-color: white;
+}

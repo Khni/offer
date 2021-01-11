@@ -19,7 +19,7 @@ const DropdownMenu =() =>{
     }
   
     return (
-      <div className="dropdown">
+      <div className={props.classname}>
           <DropdownItem leftIcon={<Settings />}>Account Settings</DropdownItem>
           <DropdownItem leftIcon={<Orders />}>Orders</DropdownItem>
           <DropdownItem leftIcon={<Favorite />}>Favorite Items</DropdownItem>

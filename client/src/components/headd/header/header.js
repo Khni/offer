@@ -84,6 +84,7 @@ class Header extends Component {
     let userCorner = "user-corner-head"
     let logoCorner = "logo-corner-head"
     let sideBar = "sidebar"
+    let dropdownClass = "dropdown"
 
     if (this.props.Lang === 'ar') {
       navBarNav = "juv-navbar-navAr"
@@ -92,6 +93,7 @@ class Header extends Component {
       userCorner = "user-corner-headAr"
       logoCorner = "logo-corner-headAr"
       sideBar = "sidebarAr"
+      dropdownClass = "dropdownAr"
     }
     return (
 
@@ -101,7 +103,7 @@ class Header extends Component {
         <div className={logoCorner}>
 
           <div className="icon-button" onClick={this.props.openSidebar}>
-            <Menu />
+            <NavItem icon={<Menu />} />
 
           </div>
 
@@ -116,13 +118,13 @@ class Header extends Component {
           {this.props.token ?
             <NavItem icon={<UserLogged />}  >
 
-              <DropdownMenu dropDownItems={dropDownItems}></DropdownMenu>
+              <DropdownMenu classname={dropdownClass} dropDownItems={dropDownItems}></DropdownMenu>
               < BackDropMenu />
             </NavItem> : <NavItem link='/authnav' icon={<User />} />}
-
-          <NavItem icon={<CartIcon />} link='/cart' />
-          <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems} />
-
+          <div onClick={()=>this.props.history.push('/cart')}>
+            <NavItem icon={<CartIcon />} link='/cart' />
+            <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems} />
+          </div>
         </div>
 
 

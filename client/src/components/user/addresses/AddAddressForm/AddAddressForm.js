@@ -24,23 +24,23 @@ class AddAddress extends Component {
 
   async onSubmit(formData) {
 
- console.log("data" + JSON.stringify(formData));
-     const { AddNewAddress } = this.props;
+    console.log("data" + JSON.stringify(formData));
+    const { AddNewAddress } = this.props;
     // let lang = this.props.lang
     // console.log(lang)
-     await AddNewAddress(formData, this.props.token);
-   //  this.props.history.push('/account/settings/address');
+    await AddNewAddress(formData, this.props.token);
+    //  this.props.history.push('/account/settings/address');
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token ) {
-	
+
     //   this.props.history.push('/');
-      
+
     // }
   }
 
 
 
 
- 
+
 
 
 
@@ -50,127 +50,126 @@ class AddAddress extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="container-signup">
-      <div class="form-container-form">
-        <h3>Add New Address Details</h3>
-        <form onSubmit={handleSubmit(this.onSubmit)}>
-        <table>
-          <tr>
-            <td><fieldset>
-              <Field
-                type="text"
-                name="firstName"
-                id="firstName"
-                classN="halfInput"
-              //  placeholder="First Name"
-                component={InputForm}
-                label="First Name "
-              />
-            </fieldset></td>
-            <td><fieldset>
-            <Field
-                type="text"
-                name="lastName"
-                id="lastName"
-                classN="halfInput"
-             //   placeholder="Last Name"
-                component={InputForm}
-                label="Last Name  "
-              />
-            </fieldset></td>
-          </tr>
-         
+        <div class="form-container-form">
+          <h3>Add New Address Details</h3>
+          <form onSubmit={handleSubmit(this.onSubmit)}>
+            <table>
+              <tr>
+                <td><fieldset>
+                  <Field
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    classN="halfInput"
+                    placeholder="First Name"
+                    component={InputForm}
+                    label="First Name "
+                  />
+                </fieldset></td>
+                <td><fieldset>
+                  <Field
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    placeholder="Last Name"
+                    component={InputForm}
+                    label="Last Name  "
+                  />
+                </fieldset></td>
+              </tr>
 
 
 
 
 
-        </table>
-        <div>
-           
-           <fieldset>
-           <Field
-               type="tel"
-               name="phone"
-               id="phone"
-               classN="fullInput"
-            //   placeholder="phone"
-               component={InputForm}
-               label="Phone  "
-             />
-           </fieldset>
-          
-         </div>
-         <div>
-           
-           <fieldset>
-           <Field
-               type="text"
-               name="city"
-               id="city"
-               classN="fullInput"
-            //   placeholder="City"
-               component={InputForm}
-               label="City  "
-             />
-           </fieldset>
-          
-         </div>
-         <div>
-           
-           <fieldset>
-           <Field
-               type="text"
-               name="street"
-               id="street"
-               classN="fullInput"
-             //  placeholder="phone"
-               component={InputForm}
-               label="Street  "
-             />
-           </fieldset>
-          
-         </div>
 
+            </table>
+            <div>
 
+              <fieldset>
+                <Field
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  classN="fullInput"
+                  placeholder="phone"
+                  component={InputForm}
+                  label="Phone  "
+                />
+              </fieldset>
 
-    
+            </div>
+            <div>
 
-         <table>
-          <tr>
-            <td><fieldset>
-              <Field
-                type="number"
-                name="appartment"
-                id="appartment"
-                classN="halfInput"
-               // placeholder="First Name"
-                component={InputForm}
-                label="appartment "
-              />
-            </fieldset></td>
-            <td><fieldset>
-            <Field
-                type="number"
-                name="floor"
-                id="floor"
-                classN="halfInput"
-               // placeholder="Last Name"
-                component={InputForm}
-                label="floor  "
-              />
-            </fieldset></td>
-          </tr>
-         
+              <fieldset>
+                <Field
+                  type="text"
+                  name="city"
+                  id="city"
+                  classN="fullInput"
+                  placeholder="City"
+                  component={InputForm}
+                  label="City  "
+                />
+              </fieldset>
+
+            </div>
+            <div>
+
+              <fieldset>
+                <Field
+                  type="text"
+                  name="street"
+                  id="street"
+                  classN="fullInput"
+                  placeholder="street"
+                  component={InputForm}
+                  label="Street  "
+                />
+              </fieldset>
+
+            </div>
 
 
 
 
 
-        </table>
-        <button type="submit" class="custum-btn-form">submit</button>
-   </form>
+            <table>
+              <tr>
+                <td><fieldset>
+                  <Field
+                    type="number"
+                    name="appartment"
+                    id="appartment"
+                    classN="halfInput"
+                    placeholder="appartment number"
+                    component={InputForm}
+                    label="appartment "
+                  />
+                </fieldset></td>
+                <td><fieldset>
+                  <Field
+                    type="number"
+                    name="floor"
+                    id="floor"
+                    classN="halfInput"
+                    placeholder="floor"
+                    component={InputForm}
+                    label="floor  "
+                  />
+                </fieldset></td>
+              </tr>
+
+
+
+
+
+
+            </table>
+            <button type="submit" class="custum-btn-form">submit</button>
+          </form>
+        </div>
       </div>
-</div>
 
 
 
@@ -182,7 +181,7 @@ const mapStateToProps = state => {
   return {
     // errorMsg: state.userAuth.authUser.error, 
     // name: state.userAuth.authUser.name, 
-     token: state.userAuth.authUser.token,
+    token: state.userAuth.authUser.token,
     // isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     // submit_signin_btn: selectAuthLang(state).submit_signin_btn,
     // signin_title: selectAuthLang(state).signin_title,
