@@ -121,12 +121,12 @@ class AddAddress extends Component {
            <fieldset>
            <Field
                type="text"
-               name="street"
-               id="street"
+               name="fullAddress"
+               id="fullAddress"
                classN="fullInput"
              //  placeholder="phone"
                component={InputForm}
-               label="Street  "
+               label="Street/ Building number / Apartment number  "
              />
            </fieldset>
           

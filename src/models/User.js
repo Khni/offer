@@ -143,6 +143,11 @@ const userSchema = mongoose.Schema({
             trim: true,
 
         },
+        fullAddress: {
+            type: String,
+            trim: true
+
+        },
         landmark: {
             type: String,
             trim: true

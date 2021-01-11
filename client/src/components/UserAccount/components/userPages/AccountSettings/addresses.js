@@ -158,6 +158,9 @@ class Addresses extends Component {
                   <p className="cart-item-title margin0">{address.street} </p>
                   <p className="cart-item-title margin0">{address.city} </p>
                   <p className="cart-item-title margin0">{address.phone} </p>
+                  <p className="cart-item-title margin0">{address.fullAddress} </p>
+
+
 
 
                 </div>{/* end of cart-utem-details*/}

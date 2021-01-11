@@ -310,7 +310,8 @@ router.post('/api/user-add-address', auth, async (req, res) => {
             city: req.body.city,
             street: req.body.street,
             floor: req.body.floor,
-            apartment: req.body.apartment
+            apartment: req.body.apartment, 
+            fullAddress: req.body.fullAddress
 
         }
         )
