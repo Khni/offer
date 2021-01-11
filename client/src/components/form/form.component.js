@@ -7,7 +7,7 @@ import { reduxForm, Field } from 'redux-form';
 // import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import InputForm from './input';
-
+import LoadingScreen from '../loadingScreen/loadingScreen.js' 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Link } from 'react-router-dom';
@@ -93,7 +93,10 @@ class Form extends Component {
           {this.props.errorMsg ? <div className="errorMsg">{this.props.errorMsg}</div> : null}
           {!this.props.LoadingBtn ?
             <button type="submit" class="custum-btn-form">{this.props.submitBtnTitle}</button>
-            : <div className="loadingBtnDiv"><div className="loaderbTn" /></div>}
+            : <LoadingScreen />
+
+{/*<div className="loadingBtnDiv"><div className="loaderbTn" /></div>*/} 
+}
 
         </form>
 
