@@ -1,12 +1,9 @@
 import React from 'react';
-import Trashicon from './img/trash.png';
-import Plusicon from './img/add.png';
-import Minusicon from './img/minus.png';
 
-import './cart-dropdown.styles.css';
+import './hintBox.scss';
 import { connect } from 'react-redux';
 import {toggleHintBox} from '../../store/actions';
-import {selectCartItems} from  '../../store/reducers/cart/cartReselect';
+
 import { withRouter } from 'react-router-dom';
 
 const HintBox = (props) =>{
