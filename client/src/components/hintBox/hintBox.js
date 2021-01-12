@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 const HintBox = (props) =>{
 	let hintBoxClass = "hintBox" ;
   if (!props.hidden) {
-hintBox = "hintBox show" ;
+hintBoxClass = "hintBox show" ;
 } 
 
  return (
