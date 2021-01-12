@@ -18,7 +18,7 @@ import OrdersAdminReducer from './admin/orders/ordersReducer'
 import {migrations} from './migrations.js' ;
 import FavAndSeenReducer from './auth/favoriteAndSeenReducer'
 import redirectAuthReducer from './auth/redirectAuthReducer' 
-
+import hintBoxReducer from './hintBox/hintBoxReducer' 
 const persistConfig = {
   key: 'root',
   version: 2,
@@ -53,7 +53,8 @@ const Reducers = combineReducers({
     OrdersAdminReducer: OrdersAdminReducer, 
     langsReducer : langsReducer,
     FavAndSeenReducer: FavAndSeenReducer, 
-    redirectAuthReducer: redirectAuthReducer
+    redirectAuthReducer: redirectAuthReducer, 
+    hintBoxReducer: hintBoxReducer, 
 });
 
 export default persistReducer(persistConfig, Reducers) 

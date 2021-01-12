@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js'
 import Header from '../headd/header/header'
+import HintBox from '../hintBox/hintBox.js'
 import Slider from '../carousel/components/slider'
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import * as actions from '../../store/actions/index';
@@ -91,6 +92,7 @@ class ProductPage extends Component {
     try {
 
       const response = await axiosInstance(null, this.props.token, this.props.RefreshToken, this.props.refreshToken).post('/api/favorite/addanddelete', { productID: this.state.product._id })
+      this.props.toggleHintBox('done added') 
       //  const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
       console.log("response" + response);
     } catch (e) {
@@ -184,7 +186,7 @@ class ProductPage extends Component {
         <div className="header-container">
           <Header />
         </div>
-
+<HintBox />
         {!this.state.Loading ? <div className="container-productPage">
 
           <div className="PicAndMiddleComponent">
@@ -248,7 +250,7 @@ const mapDispatchToProps = dispatch => ({
   favoriteListAction: (token, refreshToken, refreshTokenFunc) => dispatch(actions.fetchFavorites(token, refreshToken, refreshTokenFunc)),
   logout: () => dispatch(actions.logout()),
   authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token, refreshToken)),
-
+ toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
 });
 

@@ -22,6 +22,7 @@ export {addItemToCartItem, removeItemFromCartItem } from './CartItemsAction';
 
 export {chechoutRedirectDone, chechoutRedirect}   from './CartItemsAction';
 export {openSidebar}   from './cartAction';
+export {toggleHintBox}   from './hintBoxAction';
 
 export {
     fetchFavoritesStart,
