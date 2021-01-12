@@ -13,7 +13,7 @@ return dispatch =>{
  dispatch({
         type: HIDE_HINTBOX
         
-      });
+      })
 
 , 2000);
       
