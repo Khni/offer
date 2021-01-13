@@ -7,7 +7,7 @@
 
   right: $right;
   left: $left;
-  background: white;
+  background: linear-gradient(to right, #00b4db, #0083b0);
   border: 0.5px solid black;
   z-index: 200;
   transition: 1s ease;
@@ -22,7 +22,7 @@
 }
 
 .sidebar {
-  @include sideBar(null, 0, -100%, 25%);
+  @include sideBar(null, 0, -100%, 30%);
 }
 
 .sidebar.open {
@@ -30,7 +30,7 @@
 }
 
 .sidebarAr {
-  @include sideBar(0, null, +100%, 25%);
+  @include sideBar(0, null, +100%, 30%);
 }
 
 .sidebarAr.open {

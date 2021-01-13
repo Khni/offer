@@ -1,5 +1,5 @@
 $darkcolor: #5B5EA6;
-$bgcolor: #f7f7f7;
+$bgcolor: #807373;
 $colored: #EFC050;
 $white : white;
 $gradbluecolor: linear-gradient(to right, #00B4DB, #0083B0);
@@ -100,7 +100,7 @@ a {
 }
 
 
-@mixin miniMenuItem ($height, $bg,$hoverbg, $hoverfont) {
+@mixin miniMenuItem ($height, $bg,$hoverbg, $hoverfont,$fontcolor) {
 height: $height;
     margin: 5px;
     background-color: $bg;
@@ -109,6 +109,7 @@ height: $height;
   border-radius: $border-radius;
   transition: background $speed;
   padding: 0.5rem;
+  color: $fontcolor;
     &:hover{
 background-color: $hoverbg;
   color: $hoverfont;
@@ -117,17 +118,18 @@ background-color: $hoverbg;
 
 
 .miniMenuItem-sidebar{
-@include miniMenuItem (25px, $bgcolor,$white, $darkcolor);
+@include miniMenuItem (25px, $gradbluecolor,black, $darkcolor,null);
 
-    .text{margin-left: 15px;}
+    .text{margin-left: 15px;
+      color: white;}
      
   
 }
 .miniMenuItem-sidebarAr{
-  @include miniMenuItem (25px, $bgcolor,$white, $darkcolor);
+  @include miniMenuItem (25px, $gradbluecolor,black, $darkcolor,null);
   
       .text{margin-right: 15px;
-      
+      color: white;
       }
       flex-flow: row-reverse
     
@@ -157,7 +159,7 @@ padding: 1px;
   margin: 2px;
 }
 .icon-button-menu{
-@include iconButton($navsize * 0.5, $white,25px, $darkcolor);
+@include iconButton($navsize * 0.5, $gradbluecolor,20px, $white);
 padding: 1px;
   margin: 2px;
 }
@@ -193,7 +195,7 @@ z-index: 2;
   top: 58px;
   width: 300px;
   transform: translateX(-45%);
-  background-color: $white;
+  background-color: $darkcolor;
   border: 1px solid black ;
   border-radius: $border-radius;
   padding: 1rem;
@@ -208,7 +210,7 @@ z-index: 2;
   left: 215px;
   width: 300px;
   transform: translateX(-45%);
-  background-color: $white;
+  background-color: $darkcolor;
   border: 1px solid black ;
   border-radius: $border-radius;
   padding: 1rem;
@@ -222,7 +224,7 @@ z-index: 2;
 }
 
 .miniMenuItem-drop {
-@include miniMenuItem (50px, $bgcolor,$darkcolor, $white);
+@include miniMenuItem (50px, black,black, white,white);
 
 }
 
@@ -231,6 +233,9 @@ z-index: 2;
   margin-right: 0.5rem;
 }
 
+.icon-button-menu {
+  background-color: $gradbluecolor;
+}
 
 .miniMenu-item .icon-button-menu:hover {
   filter: none;

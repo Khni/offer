@@ -70,24 +70,24 @@ return (
 <h5>Login or Sign up here</h5>
                   
                 </Link>}
-               
+                {props.lang === 'ar' ? 
+  <div>
+
+<MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={SetEnglishFunc}>Set English</MenuIcontText>
+</div> :
+
+<div>
+
+<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={SetArabicFunc}> حول للعربية </MenuIcontText>
+
+</div>
+}     
   <MenuIcontText class={miniMenuItem} leftIcon={<Settings />} link='/settings' click={props.openSidebar}>{props.terms.settings}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}   leftIcon={<Orders />} link='/orders' click={props.openSidebar}>{props.terms.orders}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}  leftIcon={<Favorite />} link='/orders' click={props.openSidebar}>{props.terms.favorites}</MenuIcontText>
   <MenuIcontText class={miniMenuItem}   leftIcon={<View />} link='/orders' click={props.openSidebar}>{props.terms.viewed}</MenuIcontText>
   
-  {props.lang === 'ar' ? 
-  <div>
-<p> Languages </p>
-<MenuIcontText  class={miniMenuItem}  leftIcon={<Us />}  click={SetEnglishFunc}>Set English</MenuIcontText>
-</div> :
-
-<div>
-<p> اللغة </p>
-<MenuIcontText class="miniMenuItem-sidebar"  leftIcon={<Egypt />} click={SetArabicFunc}> حول للعربية </MenuIcontText>
-
-</div>
-} 
+ 
 
 
 
