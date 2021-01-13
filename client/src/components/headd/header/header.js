@@ -11,6 +11,7 @@ import { ReactComponent as Orders } from '../../icons/header/orders.svg';
 import { ReactComponent as View } from '../../icons/header/view.svg';
 import { ReactComponent as Settings } from '../../icons/header/setting.svg';
 import { ReactComponent as Menu } from '../../icons/header/menu.svg';
+import HintBox from '../../hintBox/hintBox.js'
 import {
   // cartHidden, 
   sidebarHidden, selectCartItems
@@ -125,6 +126,8 @@ class Header extends Component {
             <NavItem icon={<CartIcon />} link='/cart' />
             <CartCounter class={CounterCart} click={this.counterClick} total={this.props.totalItems} />
           </div>
+          
+          <HintBox />
         </div>
 
 

@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import './ProductPage.scss'
 import Reviews from './reviews/reviews.component.js'
 import Header from '../headd/header/header'
-import HintBox from '../hintBox/hintBox.js'
+
 import Slider from '../carousel/components/slider'
 import * as Cartactions from '../../store/actions/CartItemsAction';
 import * as actions from '../../store/actions/index';
@@ -186,7 +186,7 @@ class ProductPage extends Component {
         <div className="header-container">
           <Header />
         </div>
-<HintBox />
+
         {!this.state.Loading ? <div className="container-productPage">
 
           <div className="PicAndMiddleComponent">
