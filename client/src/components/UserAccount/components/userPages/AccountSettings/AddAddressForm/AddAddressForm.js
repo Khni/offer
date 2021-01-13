@@ -60,7 +60,7 @@ class AddAddress extends Component {
                 type="text"
                 name="firstName"
                 id="firstName"
-                classN="halfInput"
+                classN="addressInput"
                 placeholder="First Name"
                 component={InputForm}
                 label="First Name "
@@ -71,7 +71,7 @@ class AddAddress extends Component {
                 type="text"
                 name="lastName"
                 id="lastName"
-                classN="halfInput"
+                classN="addressInput"
                placeholder="Last Name"
                 component={InputForm}
                 label="Last Name  "
@@ -93,7 +93,7 @@ class AddAddress extends Component {
                   type="tel"
                   name="phone"
                   id="phone"
-                  classN="fullInput"
+                  classN="addressInput"
                   placeholder="phone"
                   component={InputForm}
                   label="Phone  "
@@ -107,7 +107,7 @@ class AddAddress extends Component {
                   type="text"
                   name="city"
                   id="city"
-                  classN="fullInput"
+                  classN="addressInput"
                   placeholder="City"
                   component={InputForm}
                   label="City  "
@@ -123,10 +123,10 @@ class AddAddress extends Component {
                type="text"
                name="fullAddress"
                id="fullAddress"
-               classN="fullInput"
+               classN="addressInput-full"
              //  placeholder="phone"
                component={InputForm}
-               label="Street/ Building number / Apartment number  "
+               label="Street /Building No. /Apartment No"
              />
            </fieldset>
           

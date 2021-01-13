@@ -1,3 +1,12 @@
+$darkcolor: #5b5ea6;
+$bgcolor: #807373;
+$colored: #efc050;
+$white: white;
+$gradbluecolor: linear-gradient(to right, #00b4db, #0083b0);
+$navsize: 60px;
+$border-radius: 8px;
+$speed: 500ms;
+
 @mixin sideBar($right, $left, $transx, $width) {
   height: 100%;
   width: $width;
@@ -7,7 +16,7 @@
 
   right: $right;
   left: $left;
-  background: linear-gradient(to right, #00b4db, #0083b0);
+  background: white;
   border: 0.5px solid black;
   z-index: 200;
   transition: 1s ease;
@@ -88,4 +97,70 @@
   .sidebarAr {
     @include sideBar(0, null, +100%, 80%);
   }
+}
+
+//menu items
+/*mixins */
+
+@mixin iconButton($size, $bg, $svgsize, $svgbg) {
+  width: $size;
+  height: $size;
+  background-color: $bg;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+  border-radius: 50%;
+  svg {
+    fill: $svgbg;
+    width: $svgsize;
+
+    height: $svgsize;
+  }
+}
+
+@mixin miniMenuItem($height, $bg, $hoverbg, $hoverfont, $fontcolor) {
+  height: $height;
+  margin: 5px;
+  background-color: $bg;
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius;
+  transition: background $speed;
+  padding: 0.5rem;
+  color: $fontcolor;
+  &:hover {
+    background-color: $hoverbg;
+    color: $hoverfont;
+  }
+}
+
+.miniMenuItem-sidebar {
+  @include miniMenuItem(25px, $gradbluecolor,#f7f7f7, $darkcolor, null);
+
+  .text {
+    margin-left: 15px;
+    color: $gradbluecolor;
+  }
+}
+.miniMenuItem-sidebarAr {
+  @include miniMenuItem(25px, $gradbluecolor, #f7f7f7, $darkcolor, null);
+
+  .text {
+    margin-right: 15px;
+    color: $gradbluecolor;
+  }
+  flex-flow: row-reverse;
+}
+
+.icon-button-menu {
+  @include iconButton($navsize * 0.5, $gradbluecolor, 20px, $gradbluecolor);
+  padding: 1px;
+  margin: 2px;
+}
+.avatar-sidebar {
+  @include iconButton(80px, $bgcolor, 70px, $darkcolor);
+  padding: 5px;
+  margin: 0 auto;
 }

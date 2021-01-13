@@ -117,26 +117,6 @@ background-color: $hoverbg;
 }
 
 
-.miniMenuItem-sidebar{
-@include miniMenuItem (25px, $gradbluecolor,black, $darkcolor,null);
-
-    .text{margin-left: 15px;
-      color: white;}
-     
-  
-}
-.miniMenuItem-sidebarAr{
-  @include miniMenuItem (25px, $gradbluecolor,black, $darkcolor,null);
-  
-      .text{margin-right: 15px;
-      color: white;
-      }
-      flex-flow: row-reverse
-    
-  }
-
-
-
 
 /* Icon Button */
 .icon-button {
@@ -158,16 +138,7 @@ padding: 1px;
 padding: 1px;
   margin: 2px;
 }
-.icon-button-menu{
-@include iconButton($navsize * 0.5, $gradbluecolor,20px, $white);
-padding: 1px;
-  margin: 2px;
-}
-.avatar-sidebar{
- @include iconButton(80px, $bgcolor,70px, $darkcolor);
-padding: 5px;
-  margin: 0 auto;
-}
+
 .logo{
   margin-left: 30px;
 }
@@ -233,9 +204,7 @@ z-index: 2;
   margin-right: 0.5rem;
 }
 
-.icon-button-menu {
-  background-color: $gradbluecolor;
-}
+
 
 .miniMenu-item .icon-button-menu:hover {
   filter: none;

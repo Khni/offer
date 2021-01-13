@@ -1,27 +1,25 @@
-
 .user-input-wrp {
 	position: relative;
 	z-index: 10;
 }
 .fieldset-container {
-	
 }
 // .user-input-wrp
- .inputText{
- background-color: white;
-  width: 200px;
-  position: relative;
-  display: inline-block;
-  
-  
-  color: #353b3a;
-//   background-color: transparent;
-  
-  
-  outline: none;
-  
-  font-size: 12pt;
+
+@mixin inputMixin($width) {
 	
+	background-color: white;
+	width: $width;
+	position: relative;
+	display: inline-block;
+
+	color: #353b3a;
+	//   background-color: transparent;
+
+	outline: none;
+
+	font-size: 12pt;
+
 	transition: width 1s;
 	height: 23px;
 	/*margin-bottom: 1px;*/
@@ -31,46 +29,55 @@
 	padding-right: 30px;
 	padding-left: 30px;
 	text-align: left;
-	transition:  1s ease;
+	transition: 1s ease;
 
-	&:focus{
-transition:  1s ease;
-	border-radius: 5px;
-	box-shadow: 0 0 5px #00ccff;
-	 border: 1px solid #0066cc;
-} 
+	&:focus {
+		transition: 1s ease;
+		border-radius: 5px;
+		box-shadow: 0 0 5px #00ccff;
+		border: 1px solid #0066cc;
+	}
 
-	// outline: none;
-	// border:none;
-	// border-bottom: 1px solid #777;
- 	// box-shadow: none !important;
+	
 }
-.user-input-wrp .inputText:focus{
+
+.inputText {
+
+	@include inputMixin(200px)
+}
+
+.addressInput-full {
+	@include inputMixin(290px)
+}
+
+
+.addressInput {
+	@include inputMixin(100px)
+}
+.user-input-wrp .inputText:focus .addressInput:focus .addressInput-full{
 	border-color: blue;
 	// border-width: medium medium 2px;
 }
 // .user-input-wrp
- .floating-label {
+.floating-label {
 	background-color: white;
 	position: absolute;
 	pointer-events: none;
 	top: 14px;
 	left: 10px;
 	transition: 0.2s ease all;
-	color:  #0066cc;
+	color: #0066cc;
 }
 .user-input-wrp input:focus ~ .floating-label,
-.user-input-wrp input:not(:focus):valid ~ .floating-label{
+.user-input-wrp input:not(:focus):valid ~ .floating-label {
 	top: -8px;
 	left: 10px;
 	font-size: 15px;
-	 opacity: 1;
+	opacity: 1;
 	color: blueviolet;
-	
+
 	background-color: white;
 }
-
-
 
 // .LabelMove{
 //   position: relitive;
@@ -103,7 +110,7 @@ transition:  1s ease;
 //   outline: none;
 //   z-index: 20;
 //   font-size: 12pt;
-	
+
 // 	transition: width 1s;
 // 	height: 20px;
 // 	/*margin-bottom: 1px;*/
@@ -114,26 +121,18 @@ transition:  1s ease;
 // 	padding-left: 30px;
 // 	text-align: left;
 // 	transition:  1s ease;
-	
+
 // 	&:focus{
 // transition:  1s ease;
 // 	border-radius: 5px;
 // 	box-shadow: 0 0 5px #00ccff;
 // 	border: 1px solid #0066cc;
-// } 
+// }
 // }
 
 // .inputLabelMove:focus ~ .LabelMove, .inputLabelMove:valid ~ .LabelMove ,.inputLabelMove:not(:focus):valid ~ .LabelMove{
 //   top: -60px;
 // }
-
-
-
-
-
-
-
-
 
 // body {
 //   background-color: #00796B;
@@ -146,7 +145,7 @@ transition:  1s ease;
 //   height: 275px;
 //   margin: 30px auto 0;
 //   overflow: auto;
-  
+
 //   box-shadow: 0px 0px 8px 1px rgba(0,0,0,.75);
 // }
 
