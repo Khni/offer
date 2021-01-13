@@ -92,9 +92,14 @@ class ProductPage extends Component {
     try {
 
       const response = await axiosInstance(null, this.props.token, this.props.RefreshToken, this.props.refreshToken).post('/api/favorite/addanddelete', { productID: this.state.product._id })
-      this.props.toggleHintBox('done added') 
+      let message = "Removed from Favorite List"
+      if (!response.data.deleted) {
+        message= "Added To Favorite List"
+      }
+      this.props.toggleHintBox(message) 
       //  const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: this.state.product._id }, this.props.token)
-      console.log("response" + response);
+      
+      console.log("responsssse" + response );
     } catch (e) {
       console.log("e" + e.response.data.error);
       if (e.response.data.error === "TokenExpiredError") {

@@ -37,8 +37,15 @@ const MenuItem = (props) => {
     setFavorite(!favorite)
 
     try {
+     
+      
       const response = await axiosInstance(null, props.token, props.RefreshToken, props.refreshToken).post('/api/favorite/addanddelete', { productID: productID }, props.token)
-      console.log("response" + response);
+      let message = "Removed from Favorite List"
+      if (!response.data.deleted) {
+        message= "Added To Favorite List"
+      }
+      props.toggleHintBox(message) 
+      console.log("responsssses" + JSON.stringify(response) );
     } catch (e) {
       if (e) {
         setFavorite(!favorite)
@@ -107,6 +114,8 @@ const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
+  toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
+  
 });
 const mapStateToProps = (state) => {
   return {

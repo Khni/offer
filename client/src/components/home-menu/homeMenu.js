@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 class homeMenu extends Component {
   constructor(props) {
     super(props);
-    this.ToggleFavorite = this.ToggleFavorite.bind(this)
+    
     this.state = {
       search: '',
       Loading: false,
@@ -28,20 +28,21 @@ class homeMenu extends Component {
 
 
 
-  async ToggleFavorite(productID) {
-    console.log("from toggle favorit");
-    this.setState({ favorite: !this.state.favorite })
-    try {
-      const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: productID }, this.props.token)
-      console.log("response" + response);
-      console.log("prepar for axiosinsT");
-    } catch (e) {
-      if (e) {
-        this.setState({ favorite: !this.state.favorite })
+  // async ToggleFavorite(productID) {
+  //   console.log("from toggle favorit");
+  //   this.setState({ favorite: !this.state.favorite })
+  //   try {
+  //     const response = await Calls.postDataHeaderAuth('/api/favorite/addanddelete', { productID: productID }, this.props.token)
+     
+  //     console.log("response" + response);
+  //     console.log("prepar for axiosinsT");
+  //   } catch (e) {
+  //     if (e) {
+  //       this.setState({ favorite: !this.state.favorite })
 
-      }
-    }
-  }
+  //     }
+  //   }
+  // }
 
 
   async productsObject() {
@@ -189,7 +190,7 @@ class homeMenu extends Component {
         {/* testing */}
         {!this.state.Loading ? <div className="full-menu">
           {this.state.items.map((col) =>
-            <Section key={col._id} favorite={this.state.favorite} items={col.productsOfSection} title={col.nameEn} ToggleFavorite={this.ToggleFavorite} />
+            <Section key={col._id} favorite={this.state.favorite} items={col.productsOfSection} title={col.nameEn}/>
           )}
         </div> :
 
@@ -222,6 +223,7 @@ const mapDispatchToProps = dispatch => ({
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token,refreshToken)),
   logout: () => dispatch(actions.logout()),
   authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token,refreshToken)),
+  toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
 
 });
 

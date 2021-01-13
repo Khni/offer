@@ -13,9 +13,9 @@ hintBoxClass = "hintBox show" ;
 } 
 
  return (
-<div className={hintBoxClass} >
+<p className={hintBoxClass} >
 {props.msg}
-</div>
+</p>
 );
 
 } 
