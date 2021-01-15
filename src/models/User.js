@@ -165,6 +165,11 @@ const userSchema = mongoose.Schema({
             type: String,
             trim: true
         },
+        fullAddress: {
+            type: String,
+            trim: true
+
+        },
         lastName: {
             type: String,
             trim: true

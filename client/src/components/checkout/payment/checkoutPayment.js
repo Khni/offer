@@ -35,28 +35,46 @@ console.log("sendPrder");
 		<div className="checkoutPayment-container">
 		
 		  <h4>Confirm Order / payment on arrival  </h4>
-           <table className="TableList">
-           <tr><th>Price</th><th>Quantity </th><th>Product</th> </tr>
-           {this.props.cartItems.map(item=>(
 
-<tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
+      {this.props.cartItems.map(item=>(
 
+
+<div className="cart-Item" >
+ 
+ <div className="cart-item-desc">
+   <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
+   <div className="cart-item-details">
+      <p className="cart-item-title margin0">{item.nameEn} </p>
+      <p className="cart-item-price margin0">X {item.quantity}</p>
+      <p className="cart-item-price margin0">   EGP   {item.price}  </p>
+    </div>{/* end of cart-utem-details*/}
+  </div>{/* end of cart-item-desc*/}
+  
+   
+
+
+
+{/*cart-item */} 
+</div> 
   ))} 
-       <tr><td>{this.props.total+ " EGP"}</td > <td colspan="2">Total</td></tr>    
-      </table>     
-           
-           
-           
-		   <p>Total Order : {this.props.total+ " EGP"}</p>
 
 
-<div className="cart-Item borderCard" > 
 
-<p className="centerdiv">{this.props.defaultAddress.firstName +" "+ this.props.defaultAddress.lastName} </p>
-      <p className="centerdiv">{this.props.defaultAddress.street} </p>
-      <p className="centerdiv">{this.props.defaultAddress.city} </p>
-      <p className="centerdiv">{this.props.defaultAddress.phone} </p>
-      </div>
+
+          
+           
+           
+		   <p className="total-sum-cart" >Total Order : {this.props.total+ " EGP"}</p>
+
+
+       <table >
+  <tr><td>Name:</td><td>{this.props.defaultAddress.firstName} </td></tr>
+  <tr><td>Street:</td><td>{this.props.defaultAddress.street} </td></tr>
+  <tr><td>City:</td><td>{this.props.defaultAddress.city} </td></tr>
+  <tr><td>Phone:</td><td>{this.props.defaultAddress.phone} </td></tr>
+</table>
+
+
       
       <button onClick={async()=>{await this.sendOrder(this.props.cartItems,this.props.token);} } className="custum-btn-form-fixed" >Confirm Order</button>
   <div className="checkout-cart-footer">

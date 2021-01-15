@@ -56,37 +56,23 @@ this.setState({Loading: false})
           {!this.state.Loading?   <div className="checkoutPayment-container">
 		
         <h4>{this.state.order.status.toUpperCase() +" ORDER"} </h4>
+        <table className="TableList">
+         <tr><th>Price</th><th>Quantity </th><th>Product</th> </tr>
          {this.state.order.products.map(item=>(
 
+<tr><td>{item.price}</td><td>{item.quantity}</td><td>{item.nameEn}</td></tr>
 
-<div className="cart-Item" >
- 
- <div className="cart-item-desc">
-   <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"+item.imgURLs[0].imgURL} className="cart-item-img"/>
-   <div className="cart-item-details">
-      <p className="cart-item-title margin0">{item.nameEn} </p>
-      <p className="cart-item-price margin0">   EGP   {item.price}  </p>
-      <p className="cart-item-price margin0">   Quantity:   {item.quantity}  </p>
-      
-    </div>{/* end of cart-utem-details*/}
-  </div>{/* end of cart-item-desc*/}
+))} 
+     <tr><td>{this.state.order.totalPrice+ " EGP"}</td > <td colspan="2">Total</td></tr>    
+    </table>     
+
   
- 
-
-
-
-{/*cart-item */} 
-</div> 
-  ))} 
-  
-         <p className="total-sum-cart" > {"Total Order: "+this.state.order.totalPrice}</p>
-
          <div className="cart-Item borderCard" > 
-<h3>Address</h3>
-<p className="centerdiv">{this.state.order.defaultAddress.firstName} </p>
-      <p className="centerdiv">{this.state.order.defaultAddress.street} </p>
-      <p className="centerdiv">{this.state.order.defaultAddress.city} </p>
-      <p className="centerdiv">{this.state.order.defaultAddress.phone} </p>
+
+<p className="centerdiv">Name: {this.state.order.defaultAddress.firstName} </p>
+      <p className="centerdiv">Address: {this.state.order.defaultAddress.fullAddress} </p>
+      <p className="centerdiv">City: {this.state.order.defaultAddress.city} </p>
+      <p className="centerdiv">Phone: {this.state.order.defaultAddress.phone} </p>
       </div>
         
 
