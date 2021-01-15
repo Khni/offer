@@ -6,7 +6,7 @@ $gradbluecolor: linear-gradient(to right, #00b4db, #0083b0);
 $navsize: 60px;
 $border-radius: 8px;
 $speed: 500ms;
-$darkfont: color: rgba(0, 0, 0, 0.54);
+$darkfont: rgba(0, 0, 0, 0.54);
 
 @mixin sideBar($right, $left, $transx, $width) {
   height: 100%;
