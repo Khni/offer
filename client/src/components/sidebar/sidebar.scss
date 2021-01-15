@@ -6,6 +6,7 @@ $gradbluecolor: linear-gradient(to right, #00b4db, #0083b0);
 $navsize: 60px;
 $border-radius: 8px;
 $speed: 500ms;
+$darkfont: color: rgba(0, 0, 0, 0.54);
 
 @mixin sideBar($right, $left, $transx, $width) {
   height: 100%;
@@ -137,25 +138,27 @@ $speed: 500ms;
 }
 
 .miniMenuItem-sidebar {
-  @include miniMenuItem(25px, $gradbluecolor,#f7f7f7, $darkcolor, null);
+  @include miniMenuItem(27px, $gradbluecolor,#f7f7f7, $darkcolor, null);
 
   .text {
     margin-left: 15px;
-    color: $gradbluecolor;
+    color: $darkfont;
+    font-size: 15px;
   }
 }
 .miniMenuItem-sidebarAr {
-  @include miniMenuItem(25px, $gradbluecolor, #f7f7f7, $darkcolor, null);
+  @include miniMenuItem(27px, $gradbluecolor, #f7f7f7, $darkcolor, null);
 
   .text {
     margin-right: 15px;
-    color: $gradbluecolor;
+    color: $darkfont;
+    font-size: 15px;
   }
   flex-flow: row-reverse;
 }
 
 .icon-button-menu {
-  @include iconButton($navsize * 0.5, $gradbluecolor, 20px, $gradbluecolor);
+  @include iconButton($navsize * 0.5, $gradbluecolor, 27px, $darkfont);
   padding: 1px;
   margin: 2px;
 }
