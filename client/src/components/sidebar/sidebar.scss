@@ -1,12 +1,14 @@
 $darkcolor: #5b5ea6;
 $bgcolor: #807373;
 $colored: #efc050;
+$lightBg: #f7f7f7;
 $white: white;
 $gradbluecolor: linear-gradient(to right, #00b4db, #0083b0);
 $navsize: 60px;
 $border-radius: 8px;
 $speed: 500ms;
 $darkfont: rgba(0, 0, 0, 0.54);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 @mixin sideBar($right, $left, $transx, $width) {
   height: 100%;
@@ -18,7 +20,7 @@ $darkfont: rgba(0, 0, 0, 0.54);
   right: $right;
   left: $left;
   background: white;
-  border: 0.5px solid black;
+  
   z-index: 200;
   transition: 1s ease;
   transform: translateX($transx);
@@ -92,11 +94,11 @@ $darkfont: rgba(0, 0, 0, 0.54);
 
 @media only screen and (max-width: 600px) {
   .sidebar {
-    @include sideBar(null, 0, -100%, 80%);
+    @include sideBar(null, 0, -100%, 70%);
   }
 
   .sidebarAr {
-    @include sideBar(0, null, +100%, 80%);
+    @include sideBar(0, null, +100%, 70%);
   }
 }
 
@@ -106,7 +108,7 @@ $darkfont: rgba(0, 0, 0, 0.54);
 @mixin iconButton($size, $bg, $svgsize, $svgbg) {
   width: $size;
   height: $size;
-  background-color: $bg;
+  background: $bg;
   padding: 2px;
   display: flex;
   align-items: center;
@@ -124,7 +126,7 @@ $darkfont: rgba(0, 0, 0, 0.54);
 @mixin miniMenuItem($height, $bg, $hoverbg, $hoverfont, $fontcolor) {
   height: $height;
   margin: 5px;
-  background-color: $bg;
+  background: $bg;
   display: flex;
   align-items: center;
   border-radius: $border-radius;
@@ -138,29 +140,33 @@ $darkfont: rgba(0, 0, 0, 0.54);
 }
 
 .miniMenuItem-sidebar {
-  @include miniMenuItem(27px, $gradbluecolor,#f7f7f7, $darkcolor, null);
-
+  @include miniMenuItem(27px, $lightBg
+  , white, null, $darkcolor);
+  
   .text {
     margin-left: 15px;
-    color: $darkfont;
-    font-size: 15px;
+    color: $darkcolor;
+    font-size: 17px;
+    font-family: 'Roboto';
   }
 }
 .miniMenuItem-sidebarAr {
-  @include miniMenuItem(27px, $gradbluecolor, #f7f7f7, $darkcolor, null);
+  @include miniMenuItem(27px, $lightBg
+  , white, null, $darkcolor);
 
   .text {
     margin-right: 15px;
-    color: $darkfont;
-    font-size: 15px;
+    color: $darkcolor;
+    font-size: 17px;
+    font-family: 'Roboto';
   }
   flex-flow: row-reverse;
 }
 
 .icon-button-menu {
-  @include iconButton($navsize * 0.5, $gradbluecolor, 27px, $darkfont);
+  @include iconButton($navsize * 0.5, $white, 24px, $darkcolor);
   padding: 1px;
-  margin: 2px;
+  margin: 10px;
 }
 .avatar-sidebar {
   @include iconButton(80px, $bgcolor, 70px, $darkcolor);

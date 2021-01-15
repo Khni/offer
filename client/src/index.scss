@@ -1,5 +1,6 @@
 $darkcolor: #5B5EA6;
 $bgcolor: #807373;
+$lightcolor: #f7f7f7;
 $colored: #EFC050;
 $white : white;
 $gradbluecolor: linear-gradient(to right, #00B4DB, #0083B0);
@@ -151,9 +152,7 @@ z-index: 2;
   top: 58px;
   width: 300px;
   transform: translateX(-45%);
-  background-color: $darkcolor;
-  border: 1px solid black ;
-  border-radius: $border-radius;
+  background-color: white;
   padding: 1rem;
   overflow: hidden;
   transition: height $speed ease;
@@ -166,9 +165,7 @@ z-index: 2;
   left: 215px;
   width: 300px;
   transform: translateX(-45%);
-  background-color: $darkcolor;
-  border: 1px solid black ;
-  border-radius: $border-radius;
+  background-color: $white;
   padding: 1rem;
   overflow: hidden;
   transition: height $speed ease;
@@ -178,9 +175,11 @@ z-index: 2;
 .menu {
   width: 100%;
 }
+//@mixin miniMenuItem ($height, $bg,$hoverbg, $hoverfont,$fontcolor)
+
 
 .miniMenuItem-drop {
-@include miniMenuItem (50px, black,black, white,white);
+@include miniMenuItem (50px,$lightcolor,$lightcolor,null,$darkcolor);
 
 }
 
