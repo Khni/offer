@@ -1,0 +1,31 @@
+$darkcolor: #5b5ea6;
+$bgcolor: #807373;
+$colored: #efc050;
+$lightBg: #f7f7f7;
+$white: white;
+$gradbluecolor: linear-gradient(to right, #00b4db, #0083b0);
+$navsize: 60px;
+$border-radius: 8px;
+$speed: 500ms;
+$darkfont: rgba(0, 0, 0, 0.54);
+
+
+
+.backDropWhite {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  opacity: 0.8;
+
+  left: 0;
+  background: white;
+  cursor: default;
+  z-index: 190;
+  transform: translateX(-100%);
+}
+.backDropWhite.open {
+  box-shadow: 5px 10px 18px black;
+  transform: translateX(0);
+}
+.
