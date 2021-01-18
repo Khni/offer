@@ -88,6 +88,7 @@ const MenuItem = (props) => {
           <AddToCartBtn
             cartItems={props.cartItems}
             item={props.item}
+            showAlarmWindowAction={props.showAlarmWindowAction} 
             addItemToCartItem={props.addItemToCartItem} />
           {favorite ?
             <div className="icon-button-favorite  pointer hoverscalein" onClick={async () => { await ToggleFavorite(props.item._id); }}>
@@ -116,6 +117,8 @@ const mapDispatchToProps = dispatch => ({
   addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
+  showAlarmWindowAction: (btns, title) => dispatch(actions.showAlarmWindowAction(btns, title)),
+  hideAlarmWindowAction: () => dispatch(actions.hideAlarmWindowAction()),
   toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
   
 });

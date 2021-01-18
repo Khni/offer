@@ -19,7 +19,7 @@ alarmWindow = "alarmWindow show" ;
  <div>
  < Backdrop show={props.showAlarmWindow} />
 <p className={alarmWindow} >
-gg
+{props.windowTitle} 
 </p>
 </div>
 );
@@ -30,7 +30,9 @@ function mapStateToProps(state)  {
   return {
     hidden: state.hintBoxReducer.hidden, 
     msg: state.hintBoxReducer.msg, 
-    showAlarmWindow: state.hintBoxReducer.showAlarmWindow, 
+    showAlarmWindow: state.hintBoxReducer.alarmWindow.show, 
+    windowTitle: state.hintBoxReducer.alarmWindow.title, 
+    
     
     
   };

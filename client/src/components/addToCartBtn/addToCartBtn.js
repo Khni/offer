@@ -28,8 +28,8 @@ const addToCartBtn = (props) => {
 
     const addItem = () => {
         props.addItemToCartItem(props.item, props.cartItems)
-       
-        submit()
+       props.showAlarmWindowAction(null, 'added to cart' ) 
+      //  submit()
     }
 
 

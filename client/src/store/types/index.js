@@ -15,6 +15,12 @@ export const CHECKOUT_LINK_REMOVE = 'CHECKOUT_LINK_REMOVE';
 //hintBox 
 export const SHOW_HINTBOX = 'SHOW_HINTBOX';
 export const HIDE_HINTBOX = 'HIDE_HINTBOX';
+
+//alarmWindow
+export const SHOW_ALARMWINDOW = 'SHOW_ALARMWINDOW';
+export const HIDE_ALARMWINDOW = 'HIDE_ALARMWINDOW';
+
+
 //favorite and seen
 export const FRTCH_FAVORITES_START = 'FRTCH_FAVORITES_START';
 export const FRTCH_FAVORITES_SUCCESS = 'FRTCH_FAVORITES_SUCCESS';
