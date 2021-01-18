@@ -84,7 +84,7 @@ const MenuItem = (props) => {
 
         </div>
         <div className="flex-row marginTop50">
-
+        
           <AddToCartBtn
             cartItems={props.cartItems}
             item={props.item}
@@ -98,6 +98,8 @@ const MenuItem = (props) => {
               <AddFavorite /></div>
           }
         </div>
+      
+        
       </div>
 
 
@@ -125,6 +127,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = (state) => {
   return {
     //collections: selectProducts(state), 
+    showAlarmWindow: state.hintBoxReducer.alarmWindow.show,
     RefreshToken: state.userAuth.authUser.refreshToken,
     token: state.userAuth.authUser.token,
     FavoritesList: state.FavAndSeenReducer.favorites.list,

@@ -7,7 +7,16 @@ import AdjustItemCount from './adjustItemCount'
 const addToCartBtn = (props) => {
 
 
-
+const btns = [
+    {
+        label: "نعم، أريد أتمام الشراء",
+        onClick:()=> props.history.push('/cart')
+    },
+    {
+        label: "لا ، أريد الاستمرار في التسوق",
+        onClick:() => {}
+    },
+]
     const submit = () => {
         confirmAlert({
             title: 'تم إضاقة المنتج بنجاح الي سلة المشتريات ، هل تريد أتمام الطلب؟',
@@ -28,8 +37,8 @@ const addToCartBtn = (props) => {
 
     const addItem = () => {
         props.addItemToCartItem(props.item, props.cartItems)
-       props.showAlarmWindowAction(null, 'added to cart' ) 
-      //  submit()
+        props.showAlarmWindowAction(btns,"تم إضافة المنتج بنجاح الي عربى الشراء، هل تريد إتمام الشراء؟")
+        //  submit()
     }
 
 

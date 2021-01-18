@@ -2,25 +2,35 @@ import React, {useState} from 'react';
 
 import './alarmWindow.scss';
 import { connect } from 'react-redux';
-import {toggleHintBox} from '../../store/actions';
+import * as actions from '../../store/actions';
 import Backdrop from '../backdrop/backdropComponent'
 import { withRouter } from 'react-router-dom';
+import { ReactComponent as View } from '../../icons/src/action/check_circle/materialicons/24px.svg';
 
 const HintBox = (props) =>{
 
-  const [window, showWindow] =useState(props.showAlarmWindow)
+  const [window, ShowWindow] =useState(props.showAlarmWindow)
 	let alarmWindow = "alarmWindow" ;
-  if (window) {
+  if (props.showAlarmWindow) {
 alarmWindow = "alarmWindow show" ;
 } 
 
 
  return (
  <div>
- < Backdrop show={props.showAlarmWindow} />
-<p className={alarmWindow} >
-{props.windowTitle} 
-</p>
+ < Backdrop show={props.showAlarmWindow} clickHandler={props.hideAlarmWindowAction}/>
+<div className={alarmWindow} >
+
+  <div className="avatar-sidebar">{props.done? <View /> : <View />}</div>
+<p>{props.windowTitle}</p> 
+<div  className="flex-row centerdiv centerflex paddingBottom20  ">
+
+ {props.btns.map((btn) =><button onClick={()=>{btn.onClick()
+ props.hideAlarmWindowAction() } } className="custum-btn-form">{btn.label}</button> )}
+
+</div>
+</div>
+
 </div>
 );
 
@@ -31,6 +41,7 @@ function mapStateToProps(state)  {
     hidden: state.hintBoxReducer.hidden, 
     msg: state.hintBoxReducer.msg, 
     showAlarmWindow: state.hintBoxReducer.alarmWindow.show, 
+    btns: state.hintBoxReducer.alarmWindow.btns, 
     windowTitle: state.hintBoxReducer.alarmWindow.title, 
     
     
@@ -38,7 +49,8 @@ function mapStateToProps(state)  {
   };
 }
 const mapDispatchToProps = dispatch => ({
-  toggleHintBox: (msg) => dispatch(toggleHintBox(msg))
+  
+  hideAlarmWindowAction: () => dispatch(actions.hideAlarmWindowAction()),
 });
 
  

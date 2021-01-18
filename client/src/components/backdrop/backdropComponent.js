@@ -12,15 +12,16 @@ import {
 import { connect } from 'react-redux';
 const Sidebar = props => {
 
-  const [back, showBack] =useState(props.show)
+  
   let backClass = "backDropWhite";
-  if (back) {
+  if (props.show) {
     backClass = "backDropWhite open";
   }
   const onClickBackdrop=() =>{
+    
   if (props.clickHandler) {
 props.clickHandler()
-showBack(false)
+
 
 } 
 } 

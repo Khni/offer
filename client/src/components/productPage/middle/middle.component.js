@@ -28,6 +28,7 @@ const MiddleProduct = (props) => {
         <AddToCartBtn
           cartItems={props.cartItems}
           item={props.item}
+          showAlarmWindowAction={props.showAlarmWindowAction}
           addItemToCartItem={props.addItemToCartItem} />
   
 

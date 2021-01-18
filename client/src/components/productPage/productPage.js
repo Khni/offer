@@ -219,6 +219,7 @@ class ProductPage extends Component {
                 price={this.state.product.price}
                 item={this.state.product}
                 ToggleFavorite={this.ToggleFavorite}
+                showAlarmWindowAction={this.props.showAlarmWindowAction}
               />
             </div>
           </div>
@@ -256,6 +257,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actions.logout()),
   authCheck: async (token, refreshToken) => dispatch(actions.authCheck(token, refreshToken)),
  toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
+ showAlarmWindowAction: (btns, title) => dispatch(actions.showAlarmWindowAction(btns, title)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
 });
 
