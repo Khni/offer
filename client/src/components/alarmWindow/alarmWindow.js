@@ -1,22 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './alarmWindow.scss';
 import { connect } from 'react-redux';
 import {toggleHintBox} from '../../store/actions';
-
+import Backdrop from '../backdrop/backdropComponent'
 import { withRouter } from 'react-router-dom';
 
 const HintBox = (props) =>{
+
+  const [window, showWindow] =useState(props.showAlarmWindow)
 	let alarmWindow = "alarmWindow" ;
-  if (props.show) {
+  if (window) {
 alarmWindow = "alarmWindow show" ;
 } 
 
+
  return (
  <div>
- < Backdrop show={props.show} />
+ < Backdrop show={props.showAlarmWindow} />
 <p className={alarmWindow} >
-
+gg
 </p>
 </div>
 );
@@ -27,6 +30,7 @@ function mapStateToProps(state)  {
   return {
     hidden: state.hintBoxReducer.hidden, 
     msg: state.hintBoxReducer.msg, 
+    showAlarmWindow: state.hintBoxReducer.showAlarmWindow, 
     
     
   };

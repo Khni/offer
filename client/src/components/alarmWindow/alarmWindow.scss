@@ -10,16 +10,16 @@
   font-weight: 900;
   text-align: center;
   right: 0px;
-
-  background: linear-gradient(to right, #00b4db, #0083b0);
+  box-shadow: 1px 3px 5px #888888;
+  background: white;
 	color: white;
 	text-transform: uppercase;
 	font-family: "Open Sans Condensed";
-  z-index: 5;
+  z-index: 300;
  transform: translateY(-395%);
   transition: transform 0.3s ease-out;
 }
 
 .alarmWindow.show{
-transform: translateY(0);
+transform: translateY(+60%);
 } 

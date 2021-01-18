@@ -180,7 +180,8 @@ class homeMenu extends Component {
 
         <Header searchbox={true}
           SearchVal={this.state.search}
-          SearchChange={this.searchUpdate} />
+          SearchChange={this.searchUpdate} 
+          />
         <Searchbox />
         {/* testing */}
         {/* <p>"window navigator" +{ navigator.userAgent}</p>

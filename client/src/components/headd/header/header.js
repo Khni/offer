@@ -33,6 +33,7 @@ import { withRouter } from 'react-router-dom';
 // import Searchbox from '../../searchbox/searchbox.component'
 import CartCounter from '../cartCounter'
 import '../head.scss'
+import AlarmWindow from '../../alarmWindow/alarmWindow'
 class Header extends Component {
 
   constructor(props) {
@@ -102,6 +103,7 @@ class Header extends Component {
         < Backdrop show={this.props.hiddenSidebar} />
         <Sidebar class={sideBar} show={this.props.hiddenSidebar} />
         <div className={logoCorner}>
+        <AlarmWindow show={this.props.alarmwindow}/>
 
           <div className="icon-button" onClick={this.props.openSidebar}>
             <NavItem icon={<Menu />} />

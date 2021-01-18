@@ -2,7 +2,8 @@ import {SHOW_HINTBOX, HIDE_HINTBOX} from '../../types';
 
 const INITIAL_STATE = {
   hidden: true, 
-  msg: '' 
+  msg: '' ,
+  showAlarmWindow: false
   
   
 };

@@ -12,7 +12,7 @@ import * as Cartactions from '../../store/actions/CartItemsAction';
 import { selectCartItems } from '../../store/reducers/cart/cartReselect';
 import axiosInstance from '../../helpers/axiosInstance'
 import * as actions from '../../store/actions/index';
-
+import AlarmWindow from '../alarmWindow/alarmWindow'
 const MenuItem = (props) => {
   // useEffect(async() => {
   //   await props.favoriteListAction(props.token)
@@ -24,7 +24,7 @@ const MenuItem = (props) => {
   //   }
 
   //   }, [])
-
+  const [alarmWindow, showAlarmWindow] =useState(false)
 
   const [favorite, setFavorite] = useState(props.item.isFav);
   const ToggleFavorite = async (productID) => {
@@ -60,9 +60,11 @@ const MenuItem = (props) => {
 
   return (
     <div>
+      
 
       <div className="item"
       >
+        
         <div onClick={() => props.history.push(`${props.match.url + "item/"}${props.id}`)} >
 
 

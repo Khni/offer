@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './backdrop.scss';
 
 import * as actions from '../../store/actions/cartAction.js'
@@ -11,19 +11,22 @@ import {
 
 import { connect } from 'react-redux';
 const Sidebar = props => {
-  let back = "backDropWhite";
-  if (!props.show) {
-    back = "backDropWhite open";
+
+  const [back, showBack] =useState(props.show)
+  let backClass = "backDropWhite";
+  if (back) {
+    backClass = "backDropWhite open";
   }
   const onClickBackdrop=() =>{
   if (props.clickHandler) {
 props.clickHandler()
+showBack(false)
 
 } 
 } 
   return (
 
-    <div className={back} onClick={() => onClickBackdrop()}  >
+    <div className={backClass} onClick={() => onClickBackdrop()}  >
 
     </div>
 
