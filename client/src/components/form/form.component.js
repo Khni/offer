@@ -46,7 +46,9 @@ class Form extends Component {
   }
 
   async responseFacebook(res) {
-    console.log("fb res"+JSON.stringify(res));
+
+    this.props.fbres(res)
+    
   //  this.props.fbres(res)
   }
 

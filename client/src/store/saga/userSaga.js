@@ -22,10 +22,14 @@ export function* authUserSaga(data) {
   if (data.action === 'goauth') {
     url = APIs.USER_POST_GOOGLE_OAUTH
   }
+
+  if (data.action === 'fbauth') {
+    url = APIs.USER_POST_FB_OAUTH
+  }
   try {
     //   const response = yield axios.post(url, data)
     let response = ''
-    if (data.action === "login" || data.action === "signup" || data.action === 'goauth') {
+    if (data.action === "login" || data.action === "signup" || data.action === 'goauth'|| data.action === 'fbauth') {
       response = yield call(calls.postData, url, data.data)
     }
 
@@ -58,6 +62,19 @@ if (data.action === "login" || data.action === "signup" || data.action === 'upda
       )
     );
     }
+  /*  if ( data.action === 'fbauth') {
+      console.log("token fBAuth" + response.data.token);
+      yield put(
+      actions.authSuccess(response.data.token,
+        response.data.refreshToken,
+        response.data.user._id,
+        response.data.user.name,
+        response.data.user.facebook.email,
+        response.data.user.phone
+      )
+    );
+    }*/
+
 
 
 

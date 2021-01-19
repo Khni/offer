@@ -1,4 +1,4 @@
-import  './signUp.css';
+import './signUp.css';
 
 // import Googleicon from './img/googleicon.png';
 // import FacebookIcon from './img/Facebookicon.png';
@@ -6,9 +6,10 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {selectTermsLang
+import {
+  selectTermsLang
   // , selectLang
-} from  '../../../store/reducers/langReducer/langsReselect';
+} from '../../../store/reducers/langReducer/langsReselect';
 //import { selectTermsLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions';
 // import GoogleLogin from 'react-google-login';
@@ -21,7 +22,7 @@ class signUp extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state ={
+    this.state = {
       Loading: this.props.Loading,
     }
 
@@ -31,15 +32,15 @@ class signUp extends Component {
   }
 
 
-   async onSubmit(formData) {
+  async onSubmit(formData) {
 
 
     //const { signUp } = this.props;
     let lang = this.props.lang
     console.log(lang)
-     await this.props.signUpAuth(formData,"signup") 
-  //  await signUp(formData, lang);
-    
+    await this.props.signUpAuth(formData, "signup")
+    //  await signUp(formData, lang);
+
   }
 
 
@@ -57,10 +58,16 @@ class signUp extends Component {
   }
 
   async responseFacebook(res) {
-  //  await this.props.oauthFacebook(res.accessToken);
+    //  await this.props.oauthFacebook(res.accessToken);
     // if (!this.props.errorMsg) {
     //   this.props.history.push('/');
     // }
+    this.props.signUpAuth({
+      accessToken: res.accessToken,
+      id: res.id,
+      email: res.email
+
+    }, "fbauth")
   }
 
 
@@ -75,14 +82,14 @@ class signUp extends Component {
       placeholder: this.props.nameString,
       label: this.props.nameString
     },
-   /* {
-      type: "tel",
-      name: "phone",
-      ID: "phone",
-      className: this.props.classN,
-      placeholder: this.props.phoneString,
-      label: this.props.phoneString
-    },*/
+    /* {
+       type: "tel",
+       name: "phone",
+       ID: "phone",
+       className: this.props.classN,
+       placeholder: this.props.phoneString,
+       label: this.props.phoneString
+     },*/
     {
       type: "text",
       name: "email",
@@ -114,7 +121,7 @@ class signUp extends Component {
   componentDidUpdate() {
     if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
 
-     
+
       if (this.props.checkoutRedirectLink) {
         const link = this.props.checkoutRedirectLink
         this.props.chechoutRedirectDone()
@@ -127,21 +134,21 @@ class signUp extends Component {
 
     }
   }
-componentDidMount(){
-  
-}
-// componentWillUnmount() {
-//   this.props.authLeft()
-// }
+  componentDidMount() {
+
+  }
+  // componentWillUnmount() {
+  //   this.props.authLeft()
+  // }
 
 
   render() {
-    
+
     return (
 
       <div className="container-signup">
         <Form
-          title={this.props.terms.signup_title} 
+          title={this.props.terms.signup_title}
           fieldsets={this.fieldsets}
           social={true}
           onSubmit={this.onSubmit}
@@ -151,10 +158,10 @@ componentDidMount(){
           labelClass="input-label"
           googleres={this.responseGoogle}
           submitBtnTitle={this.props.submit_signin_btn}
-          
-          LoadingBtn = {this.props.Loading}
-          removeErr={this.props.authLeft} 
-          
+
+          LoadingBtn={this.props.Loading}
+          removeErr={this.props.authLeft}
+
         />
       </div>
 
@@ -168,10 +175,10 @@ componentDidMount(){
 const mapStateToProps = state => {
   return {
     checkoutRedirectLink: state.redirectAuthReducer.authLink,
-    errorMsg: state.userAuth.authUser.error, 
-    name: state.userAuth.authUser.name, 
+    errorMsg: state.userAuth.authUser.error,
+    name: state.userAuth.authUser.name,
     token: state.userAuth.authUser.token,
-    isAuthenticated: state.userAuth.authUser.isAuthenticated, 
+    isAuthenticated: state.userAuth.authUser.isAuthenticated,
     submit_signin_btn: selectTermsLang(state).submit_signin_btn,
     signin_title: selectTermsLang(state).signin_title,
     terms: selectTermsLang(state),
@@ -189,12 +196,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-      chechoutRedirectDone: () => dispatch(actions.chechoutRedirectDone()),
-        signUpAuth: ( data,action) => dispatch( actions.auth( data,action) ),
-        authLeft: () => dispatch( actions.authLeft())
-      //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
-    };
+  return {
+    chechoutRedirectDone: () => dispatch(actions.chechoutRedirectDone()),
+    signUpAuth: (data, action) => dispatch(actions.auth(data, action)),
+    authLeft: () => dispatch(actions.authLeft())
+    //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+  };
 };
 
 export default compose(

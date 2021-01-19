@@ -16,6 +16,7 @@ const { ObjIndexToZero } = require('./usersFuncs')
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
 var geoip = require('geoip-lite');
+const request = require('request');
 var google = require('googleapis').google;
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2();
@@ -110,7 +111,7 @@ router.post('/api/user/update', auth, async (req, res) => {
         const token = req.token
         const tokens = await user.generateAuthToken()
 
-       
+
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
         console.log("userphone" + user.phone);
     } catch (error) {
@@ -199,7 +200,7 @@ router.post('/api/login', async (req, res) => {
 
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (error) {
-        
+
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
         res.status(400).json({
             error_en: 'Email or Password Incorrect',
@@ -310,7 +311,7 @@ router.post('/api/user-add-address', auth, async (req, res) => {
             city: req.body.city,
             street: req.body.street,
             floor: req.body.floor,
-            apartment: req.body.apartment, 
+            apartment: req.body.apartment,
             fullAddress: req.body.fullAddress
 
         }
@@ -414,8 +415,23 @@ router.get('/api/getip', (req, res) => {
 
 
 //fb 
-router.post('/api/fbauth', async(req,res) =>{
-console.log("fb res"+req.response);
+router.post('/api/fbauth', async (req, res) => {
+    request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true }, function (error, response, body) {
+        console.error('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+
+
+        if (body.name && body.id) {
+            console.log("name" + body);
+            console.log("email"+ req.body.email);
+            res.send("Welcome" + body.id).status(201)
+        } else {
+            res.send({ error: body.error }).status(400)
+        }
+
+    });
+
 })
 //google
 router.post('/api/goauth', async (req, res) => {
@@ -481,7 +497,7 @@ router.post('/api/google/callback',
 
 //refresh token
 // router.get("/api/token/refresh", async (req, res, next) => {
-    
+
 //     const refreshToken = req.header('Authorization').replace('Bearer ', '')
 //     if (!refreshToken) {
 //         return res.json({ message: "Refresh token not found, login again" });
@@ -493,36 +509,36 @@ router.post('/api/google/callback',
 //        user.refreshToken = ''
 //        user.tokens = []
 //        await user.save()
-       
+
 //     }
 //     try {
 //         const decoded = jwt.verify(refreshToken, 'refreshToken')
 //     } catch (error) {
 //         res.status(400).send({ error: error})
 //     }
-   
-   
+
+
 //     const user = await User.findOne({ _id: decoded._id})
 //     console.log("user"+user);
 //      if (!user) {
 //         res.status(400).send({ error: "invalid token" })
 
 //     }
-  
+
 
 //     if (user.refreshToken != refreshToken ) {
 //          await logOut(user)
 //        return res.status(400).send({ error: "log user out"})
 //     }
 //    // const user = await User.findOne({ _id: decoded._id, refreshToken: refreshToken })
-    
+
 
 //     // If the refresh token is valid, create a new accessToken and return it.
-    
+
 //     try {
 //         const tokens = await user.generateAuthToken()
 
-       
+
 //         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
 //     } catch (e) {
 //    //console.log(e);
@@ -537,9 +553,9 @@ router.post('/api/google/callback',
 
 // router.post('/api/user/refreshToken', authRefreshToken, async (req, res) => {
 
-     
+
 //         res.status(200).send()
-   
+
 
 // })
 
