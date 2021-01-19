@@ -1,7 +1,7 @@
 .alarmWindow {
   position: absolute;
   opacity: 0.95;
-  width: 80%;
+  width: 100%;
   
 
   top: 45px;
@@ -14,12 +14,12 @@
 	text-transform: uppercase;
 	font-family: "Open Sans Condensed";
   z-index: 300;
-  right: 10%;
+  
  transform: translateY(-395%);
-  transition: transform 0.3s ease-out;
+  transition: transform 0.6s ease-out;
 }
 
 .alarmWindow.show{
 transform: translateY(+20%);
-transition: transform 0.3s ease-out;
+transition: transform 0.6s ease-out;
 } 

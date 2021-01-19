@@ -39,11 +39,15 @@ class Form extends Component {
 
   }
   async responseGoogle(res) {
-    this.props.googleres(res)
+  
+      this.props.googleres(res)
+   
+   
   }
 
   async responseFacebook(res) {
-    this.props.fbres(res)
+    console.log("fb res"+JSON.stringify(res));
+  //  this.props.fbres(res)
   }
 
 
@@ -112,13 +116,13 @@ class Form extends Component {
             <div className="social-btns">
 
               <FacebookLogin
-                appId=""
+                appId="707125976663072"
                 textButton="Facebook"
                 render={renderProps => (
                   <img alt="FB" className="fb-btn" src={FacebookIcon} onClick={renderProps.onClick} />
                 )}
                 fields="name,email,picture"
-                callback={this.props.fbres}
+                callback={this.responseFacebook}
 
 
               />
@@ -133,7 +137,7 @@ class Form extends Component {
                 isSignedIn={false}
 
                 onSuccess={this.props.googleres}
-                onFailure={this.props.googleres}
+              //  onFailure={this.props.googleres}
 
               />
 

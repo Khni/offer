@@ -411,6 +411,12 @@ router.get('/api/getip', (req, res) => {
         res.status(400).send({ error });
     }
 })
+
+
+//fb 
+router.post('/api/fbauth', async(req,res) =>{
+console.log("fb res"+req.response);
+})
 //google
 router.post('/api/goauth', async (req, res) => {
 
