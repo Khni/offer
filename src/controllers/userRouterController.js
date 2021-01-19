@@ -98,6 +98,102 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
 
 
+
+const InsertFbUser = async (req, res, social, id, email, name) => {
+
+    console.log("insert social started" + social + id);
+
+    try {
+        console.log("insert social started login");
+        let user = ''
+        //login if already exist 
+
+        user = await User.findOne({ "facebook.id": id })
+
+
+        if (user) {
+            console.log("found user already generate token");
+            const tokens = await user.generateAuthToken()
+            
+          return  res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
+
+        }
+
+
+
+        // Check if we have someone with the same email in local
+        user = await User.findOne({ "local.email": email })
+        if (user) {
+            console.log("insert social same email ?");
+            // We want to merge google's data with local auth
+
+            user.methods.push('Facebook')
+            user.facebook = {
+                id: id,
+                email: email
+            }
+
+
+            await user.save()
+            const tokens = await user.generateAuthToken()
+            
+         return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
+
+
+        }//end of if foundUserLocal
+
+
+
+        //insert brand new users
+
+
+        console.log("insert social brand new");
+        user = new User({
+            name: name,
+            methods: ['Faceboom'],
+            facebook: {
+                id: id,
+                email: email
+
+            }
+        })
+
+        await user.save()
+        const tokens = await user.generateAuthToken()
+      //  await user.save()
+      //  console.log("after token" + user);
+      //  console.log("token" + token);
+        //const user = userNew
+        
+            
+         return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
+
+
+
+
+
+
+        console.log("after inserting brand new");
+        //end of new User
+
+
+
+
+    } catch (error) {
+        res.status(400).send({ error })
+    }
+
+}
+
+
+
+
+
+
+
 const userSignUp = async (req, res) => {
 
 
