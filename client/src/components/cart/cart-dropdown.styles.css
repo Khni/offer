@@ -67,7 +67,7 @@ overflow: scroll;
 
 .cart-item-bar {
    display: flex;
-   border-top: 0.5px solid black;
+   border-top: 0.5px solid #f7f7f7;
    height: 35px;
    margin-top: 10px;
    text-align: center;
@@ -109,6 +109,7 @@ margin-left: 0;
 	display: flex;
   flex-direction: row;
   cursor: pointer;
+  margin-right: 28px;
 }
 
 .trash-icon{

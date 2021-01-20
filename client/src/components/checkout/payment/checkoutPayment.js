@@ -69,7 +69,7 @@ console.log("sendPrder");
 
        <table >
   <tr><td>Name:</td><td>{this.props.defaultAddress.firstName} </td></tr>
-  <tr><td>Street:</td><td>{this.props.defaultAddress.street} </td></tr>
+  <tr><td>Street:</td><td>{this.props.defaultAddress.fullAddress} </td></tr>
   <tr><td>City:</td><td>{this.props.defaultAddress.city} </td></tr>
   <tr><td>Phone:</td><td>{this.props.defaultAddress.phone} </td></tr>
 </table>
