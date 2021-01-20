@@ -306,4 +306,4 @@ const userSignUp = async (req, res) => {
 
 
 
-module.exports = { InsertSocialUser, userSignUp }
+module.exports = { InsertSocialUser, userSignUp,InsertFbUser }

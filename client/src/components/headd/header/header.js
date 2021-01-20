@@ -100,10 +100,12 @@ class Header extends Component {
     return (
 
       <Navbar navBarNav={navBarNav}>
+        
         < Backdrop show={this.props.hiddenSidebar} />
         <Sidebar class={sideBar} show={this.props.hiddenSidebar} />
+        
         <div className={logoCorner}>
-        <AlarmWindow show={this.props.alarmwindow}/>
+        
 
           <div className="icon-button" onClick={this.props.openSidebar}>
             <NavItem icon={<Menu />} />
@@ -130,9 +132,10 @@ class Header extends Component {
           </div>
           
           <HintBox />
+          <AlarmWindow />
         </div>
 
-
+       
       </Navbar>
 
     );

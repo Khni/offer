@@ -140,8 +140,8 @@ $darkfont: rgba(0, 0, 0, 0.54);
 }
 
 .miniMenuItem-sidebar {
-  @include miniMenuItem(27px, $lightBg
-  , white, null, $darkcolor);
+  @include miniMenuItem(27px,  white,$lightBg
+  , null, $darkcolor);
   
   .text {
     margin-left: 15px;
@@ -151,8 +151,8 @@ $darkfont: rgba(0, 0, 0, 0.54);
   }
 }
 .miniMenuItem-sidebarAr {
-  @include miniMenuItem(27px, $lightBg
-  , white, null, $darkcolor);
+  @include miniMenuItem(27px,  white,$lightBg
+  , null, $darkcolor);
 
   .text {
     margin-right: 15px;

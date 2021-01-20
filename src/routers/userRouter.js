@@ -10,7 +10,7 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const AuthPassport = require("./passport")
 const routerPromise = require('express-promise-router')();
 const UserController = require('../controllers/userController')
-const { InsertSocialUser, userSignUp } = require('../controllers/userRouterController.js')
+const { InsertSocialUser, userSignUp, InsertFbUser } = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
 const validator = require('validator')
@@ -416,13 +416,14 @@ router.get('/api/getip', (req, res) => {
 
 //fb 
 router.post('/api/fbauth', async (req, res) => {
-    request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true }, function (error, response, body) {
+    request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true },  async(error, response, body)=> {
         console.error('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.
 
 
         if (body.name && body.id) {
+            await InsertFbUser(req,res,"facebook",body.id,req.body.email,body.name)
             console.log("name" + body);
             console.log("email"+ req.body.email);
             res.send("Welcome" + body.id).status(201)

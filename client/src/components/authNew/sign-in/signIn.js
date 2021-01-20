@@ -58,9 +58,12 @@ class signIn extends Component {
 
   async responseFacebook(res) {
     //   await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMsg) {
-      this.props.history.push('/');
-    }
+    this.props.signInAuth({
+      accessToken: res.accessToken,
+      id: res.id,
+      email: res.email
+
+    }, "fbauth")
   }
 
   componentDidMount() {

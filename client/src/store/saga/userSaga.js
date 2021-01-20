@@ -62,7 +62,7 @@ if (data.action === "login" || data.action === "signup" || data.action === 'upda
       )
     );
     }
-  /*  if ( data.action === 'fbauth') {
+   if ( data.action === 'fbauth') {
       console.log("token fBAuth" + response.data.token);
       yield put(
       actions.authSuccess(response.data.token,
@@ -73,7 +73,7 @@ if (data.action === "login" || data.action === "signup" || data.action === 'upda
         response.data.user.phone
       )
     );
-    }*/
+    }
 
 
 
