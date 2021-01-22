@@ -125,6 +125,8 @@ class Form extends Component {
                 )}
                 fields="name,email,picture"
                 callback={this.responseFacebook}
+                isMobile={false}
+                disableMobileRedirect={true} 
 
 
               />
