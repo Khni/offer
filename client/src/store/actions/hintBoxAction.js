@@ -50,7 +50,7 @@ export const toggleHintBox = (msg) => {
 
                })
 
-               , 2000);
+               , 3000);
 
      }
 }

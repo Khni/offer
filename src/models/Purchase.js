@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const shortid = require('shortid');
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
-const orderSchema = mongoose.Schema({
+const purchaseSchema = mongoose.Schema({
 
 
   shortid: {
@@ -12,12 +12,12 @@ const orderSchema = mongoose.Schema({
     'default': shortid.generate
   },
 
-  userID: {
+  supplierID: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'User'
+   // required: true,
+    ref: 'Supplier'
   },
-  orderNum: {
+  purchaseNum: {
     type: Number,
     required: true
 
@@ -54,60 +54,6 @@ const orderSchema = mongoose.Schema({
   },
 
 
-  defaultAddress: {
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-
-    },
-    firstName: {
-      type: String,
-      trim: true
-    },
-    fullAddress: {
-      type: String,
-      trim: true
-
-    },
-    lastName: {
-      type: String,
-      trim: true
-    },
-    phone: {
-      type: Number,
-      trim: true,
-
-    },
-    country: {
-      type: String,
-      trim: true,
-
-    },
-    city: {
-      type: String,
-      trim: true,
-
-    },
-    street: {
-      type: String,
-      trim: true,
-
-    },
-    floor: {
-      type: Number,
-      trim: true,
-
-    },
-    apartment: {
-      type: Number,
-      trim: true,
-
-    },
-    landmark: {
-      type: String,
-      trim: true
-
-    }
-  },
 
 
 
@@ -123,6 +69,6 @@ const orderSchema = mongoose.Schema({
 
 
 
-const Order = mongoose.model('Order', orderSchema);
+const Purchase = mongoose.model('Purchase', purchaseSchema);
 
-module.exports = Order;
+module.exports = Purchase;

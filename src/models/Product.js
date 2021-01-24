@@ -46,59 +46,59 @@ const productSchema = mongoose.Schema({
     availableQty: {
         type: Number,
         trim: true,
-        
+
     },
-   // physically available (including Qty Reserved), minus  “pickedQty"
+    // physically available (including Qty Reserved), minus  “pickedQty"
     onHandQty: {
         type: Number,
         trim: true,
-        
+
     },
     //ordered by customer 
     reservedQty: {
         type: Number,
         trim: true,
-        
+
     },
-    
-   //awaiting shipment(ordered by customer and sitting in box) 
- pickedQty: {
+
+    //awaiting shipment(ordered by customer and sitting in box) 
+    pickedQty: {
         type: Number,
         trim: true,
-        
+
     },
     //ordered from vendor 
     onOrderQty: {
         type: Number,
         trim: true,
-        
+
     },
     //order from vendor and in transit, has not been received at location yet 
     transitQty: {
         type: Number,
         trim: true,
-        
+
     },
     sku: {
         type: String,
         trim: true,
-        
+
     },
-    barcode : {
+    barcode: {
         ean: {
-        type: String,
-        trim: true,
-        
-    },
-    
-   upc: {
-        type: String,
-        trim: true,
-        
+            type: String,
+            trim: true,
+
+        },
+
+        upc: {
+            type: String,
+            trim: true,
+
+        },
+
     },
 
-     } 
-    
     sizes: [
         {
             size: {
@@ -125,8 +125,8 @@ const productSchema = mongoose.Schema({
         }
 
     ],
-    
-    favorites : [
+
+    favorites: [
         {
             userID: {
                 type: mongoose.Schema.Types.ObjectId
@@ -137,7 +137,7 @@ const productSchema = mongoose.Schema({
         }
 
     ],
-    seen : [
+    seen: [
         {
             userID: {
                 type: mongoose.Schema.Types.ObjectId
@@ -148,27 +148,27 @@ const productSchema = mongoose.Schema({
         }
 
     ],
-    ordered : [
+    ordered: [
         {
             userID: {
                 type: mongoose.Schema.Types.ObjectId
-            }, 
+            },
             quantity: {
-              type: Number
-              } ,
-              created: {
+                type: Number
+            },
+            created: {
                 type: Number
             }
         }
 
     ],
-    
-    
+
+
     active: {
         type: Boolean
-        
+
     },
-    
+
 
     sectionID: {
         type: mongoose.Schema.Types.ObjectId,
@@ -207,12 +207,12 @@ const productSchema = mongoose.Schema({
     },
 
     reviews: [
-    
+
         {
-        	active: {
-        type: Boolean
-        
-    }, 
+            active: {
+                type: Boolean
+
+            },
             rate: {
                 type: Number,
                 trim: true,
