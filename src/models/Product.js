@@ -42,6 +42,63 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true
     },
+    //onHandQty minus reservedQty(actual stock) 
+    availableQty: {
+        type: Number,
+        trim: true,
+        
+    },
+   // physically available (including Qty Reserved), minus  “pickedQty"
+    onHandQty: {
+        type: Number,
+        trim: true,
+        
+    },
+    //ordered by customer 
+    reservedQty: {
+        type: Number,
+        trim: true,
+        
+    },
+    
+   //awaiting shipment(ordered by customer and sitting in box) 
+ pickedQty: {
+        type: Number,
+        trim: true,
+        
+    },
+    //ordered from vendor 
+    onOrderQty: {
+        type: Number,
+        trim: true,
+        
+    },
+    //order from vendor and in transit, has not been received at location yet 
+    transitQty: {
+        type: Number,
+        trim: true,
+        
+    },
+    sku: {
+        type: String,
+        trim: true,
+        
+    },
+    barcode : {
+        ean: {
+        type: String,
+        trim: true,
+        
+    },
+    
+   upc: {
+        type: String,
+        trim: true,
+        
+    },
+
+     } 
+    
     sizes: [
         {
             size: {
