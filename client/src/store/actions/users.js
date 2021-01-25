@@ -297,7 +297,7 @@ export const setDefaultAddress = ( token, id) => {
         });
         
       } catch(err) {
-      	console.log(err) 
+      	console.log("order error" +JSON.stringify(err.response.data) ) 
         dispatch({
           type: "ERRRRR"
         //  payload: err
