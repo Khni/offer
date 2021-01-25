@@ -192,7 +192,7 @@ class ProductPage extends Component {
           <Header />
         </div>
 
-        {!this.state.Loading ? <div className="container-productPage">
+        {!this.state.Loading && this.state.product.availableQty !== 0  ? <div className="container-productPage">
 
           <div className="PicAndMiddleComponent">
             <div className="PicComponent">
@@ -211,7 +211,6 @@ class ProductPage extends Component {
             </div>
 
 
-
             <div className="MiddleComponent">
               <MiddleComponent
                 favorite={this.state.favorite}
@@ -221,8 +220,11 @@ class ProductPage extends Component {
                 ToggleFavorite={this.ToggleFavorite}
                 showAlarmWindowAction={this.props.showAlarmWindowAction}
               />
-            </div>
+            </div> 
+           
           </div>
+
+          
 
           <div className="ReviewsComponent">
             <Reviews
@@ -232,8 +234,15 @@ class ProductPage extends Component {
               userToken={this.props.token}
             />
 
-          </div>
-        </div> : <div className="loaderHome" />}
+          </div> 
+
+
+
+        </div> : null}
+
+        {this.state.Loading ?<div className="loaderHome" /> : null }
+
+        {this.state.product.availableQty === 0 ?<div><Slider slides={this.state.imgUrlsArr} autoPlay={4} /> <h3>Out Of Stock</h3></div>  : null }
       </div>
     );
   }
