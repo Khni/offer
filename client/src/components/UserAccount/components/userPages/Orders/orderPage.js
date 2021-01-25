@@ -55,7 +55,7 @@ this.setState({Loading: false})
 
           {!this.state.Loading?   <div className="checkoutPayment-container">
 		
-        <h4>{this.state.order.status.toUpperCase() +" ORDER"} </h4>
+        <h4>{"Order Status: " +this.state.order.status } </h4>
         <table className="TableList">
          <tr><th>Price</th><th>Quantity </th><th>Product</th> </tr>
          {this.state.order.products.map(item=>(

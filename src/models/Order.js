@@ -52,6 +52,18 @@ const orderSchema = mongoose.Schema({
   status: {
     type: String
   },
+  history: [{
+    time: {
+      type: Date,
+      default: () => Date.now()
+    },
+    operation:{
+      type: String
+    }
+    
+    
+    
+  }],
 
 
   defaultAddress: {

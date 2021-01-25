@@ -49,6 +49,18 @@ const purchaseSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  history: [{
+    time: {
+      type: Date,
+      default: () => Date.now()
+    },
+    operation:{
+      type: String
+    }
+    
+    
+    
+  }],
   status: {
     type: String
   },

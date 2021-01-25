@@ -37,14 +37,14 @@ class ProductPage extends Component {
   async updateOrder() {
 
     let statusToUpdate = 'aa'
-    if (this.state.order.status === "unconfirmed") {
-      statusToUpdate = "confirmed"
+    if (this.state.order.status === "inProcessing") {
+      statusToUpdate = "Picked"
     }
-    if (this.state.order.status === "confirmed") {
-      statusToUpdate = "shipped"
+    if (this.state.order.status === "Picked") {
+      statusToUpdate = "Shipped"
     }
-    if (this.state.order.status === "shipped") {
-      statusToUpdate = "delivered"
+    if (this.state.order.status === "Shipped") {
+      statusToUpdate = "Delivered"
     }
 
 

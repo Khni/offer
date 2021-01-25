@@ -4,6 +4,7 @@ const router = new express.Router()
 const auth = require('../middleware/auth')
 const authAdmin = require('../middleware/adminAuth')
 const User = require('../models/User')
+const Product = require('../models/Product')
 
 
 router.post('/api/order/add', auth, async (req, res) => {
@@ -12,13 +13,27 @@ router.post('/api/order/add', auth, async (req, res) => {
         orderNum: new Date().valueOf(),
         userID: req.user._id,
         products: req.body,
-        status: "unconfirmed",
+        status: "inProcessing",
         defaultAddress: req.user.defaultAddress,
         totalPrice: req.body.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)
     })
 
+    order.history =  order.history.concat({operation: "order has been placed"})
+
     try {
         await order.save()
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+
+            
+            MainProduct.reservedQty = MainProduct.reservedQty + product.quantity
+            MainProduct.availableQty = MainProduct.availableQty - product.quantity
+
+
+            await MainProduct.save()
+        }))
 
         order.address = req.user.defaultAddress
         await order.save()
