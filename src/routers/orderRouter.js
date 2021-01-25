@@ -8,20 +8,22 @@ const Product = require('../models/Product')
 
 
 router.post('/api/order/add', auth, async (req, res) => {
+	let outOfStock=[] 
 	
 	await Promise.all(req.body.map(async (product) => {
-           let outOfStock=[] 
+           
             let MainProduct = await Product.findById(product._id)
             if (MainProduct.availableQty < product.quantity) {
-              outOfStock.concat({outOfStock: MainProduct.nameEn+ "only" + product.quantity+ "Qty in Stock" } )
+     outOfStock =   outOfStock.concat({outOfStock: MainProduct.nameEn+ "only" + product.quantity+ "Qty in Stock" } )
+       
               } 
-           if(outOfStock) {
-         return   res.status(400).send({ outOfStock })
-            } 
+           
 
        
         }))
-	
+	if(outOfStock) {
+         return   res.status(400).send({ outOfStucks })
+            } 
 	
     const order = new Order({
         ...req.body,
