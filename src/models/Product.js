@@ -42,6 +42,18 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true
     },
+    //ordered from vendor 
+    onOrderQty: {
+        type: Number,
+        trim: true,
+
+    },
+    //order from vendor and in transit, has not been received at location yet 
+    transitQty: {
+        type: Number,
+        trim: true,
+
+    },
     //onHandQty minus reservedQty(actual stock) 
     availableQty: {
         type: Number,
@@ -67,18 +79,17 @@ const productSchema = mongoose.Schema({
         trim: true,
 
     },
-    //ordered from vendor 
-    onOrderQty: {
+    shippedQty: {
         type: Number,
         trim: true,
 
     },
-    //order from vendor and in transit, has not been received at location yet 
-    transitQty: {
+    deliveredQty: {
         type: Number,
         trim: true,
 
     },
+    
     sku: {
         type: String,
         trim: true,

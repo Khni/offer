@@ -76,6 +76,78 @@ router.get('/api/admin/purchase/intransit/:id',  async (req, res) => {
 })
 
 
+
+
+router.get('/api/admin/purchase/instock/:id',  async (req, res) => {
+
+    let purchase = await Purchase.findOne({ _id: req.params.id })
+
+
+    try {
+        purchase.status = "inStock"
+
+        purchase.save()
+
+        await Promise.all( purchase.products.map( async (product) =>{
+            let MainProduct =  await Product.findById(product._id)
+          
+           
+            MainProduct.availableQty =  product.quantity + MainProduct.availableQty 
+            MainProduct.onHandQty =  product.quantity + MainProduct.onHandQty 
+           MainProduct.transitQty =  MainProduct.transitQty  -product.quantity 
+     
+           
+           await MainProduct.save()
+          }  ))
+
+
+        res.status(201).send({ purchase })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
+
+
+
+router.post('/api/admin/purchase/returned',  async (req, res) => {
+
+
+   
+    const returnedPurchase = new Purchase({
+        ...req.body,
+        purchaseNum: new Date().valueOf(),
+        //supplierID: req.user._id,
+        products: req.body,
+        status: "returned",
+        
+        totalPrice: req.body.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)
+    })
+
+    try {
+        await returnedPurchase.save()
+        await Promise.all( req.body.map( async (product) =>{
+            let MainProduct =  await Product.findById(product._id)
+          
+           MainProduct.availableQty =   MainProduct.availableQty - product.quantity
+            MainProduct.onHandQty =   MainProduct.onHandQty - product.quantity
+           
+           await MainProduct.save()
+          }  ))
+
+       
+        
+        
+        res.status(201).send({ returnedPurchase })
+    } catch (e) {
+        res.status(400).send({ e: e })
+    }
+})
+
+
 // router.get('/api/user-orders', auth, async (req, res) => {
 //     const orders = await Order.find({ userID: req.user._id })
 
