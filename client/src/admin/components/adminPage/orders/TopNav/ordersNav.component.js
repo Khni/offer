@@ -39,22 +39,22 @@ class ProductsNav extends Component {
         title: "all Orders"
       },
       {
-        path: "/admin/orders/orders-list/unconfirmed",
-        title: "Unconfirmed Orders"
+        path: "/admin/orders/orders-list/inProcessing",
+        title: "inProcessing Orders"
       }
       ,
       
       {
-        path: "/admin/orders/orders-list/confirmed",
-        title: "Confirmed Orders"
+        path: "/admin/orders/orders-list/Picked",
+        title: "Picked Orders"
       },
       {
-        path: "/admin/orders/orders-list/shipped",
+        path: "/admin/orders/orders-list/Shipped",
         title: "Shipped Orders"
       },
       {
-        path: "/admin/orders/orders-list/delivered",
-        title: "delivered Orders"
+        path: "/admin/orders/orders-list/Delivered",
+        title: "Delivered Orders"
       }
       // ,
       // {
