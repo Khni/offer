@@ -8,6 +8,21 @@ const Product = require('../models/Product')
 
 
 router.post('/api/order/add', auth, async (req, res) => {
+	
+	await Promise.all(req.body.map(async (product) => {
+           let outOfStock=[] 
+            let MainProduct = await Product.findById(product._id)
+            if (MainProduct.availableQty < product.quantity) {
+              outOfStock.concat({outOfStock: MainProduct.nameEn+ "only" + product.quantity "Qty in Stock" } )
+              } 
+           if(outOfStock) {
+         return   res.status(400).send({ outOfStock })
+            } 
+
+       
+        }))
+	
+	
     const order = new Order({
         ...req.body,
         orderNum: new Date().valueOf(),
@@ -124,16 +139,104 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
 
     let order = await Order.findOne({ _id: req.params.id })
 
-
-    try {
-        order.status = req.body.status
+if (order.status === "inProcessing" && req.body.status ==="Picked" ) {
+try {
+        order.status = "Picked" 
 
         order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+
+            MainProduct.onHandQty = MainProduct.onHandQty - product.quantity
+            MainProduct.reservedQty = MainProduct.reservedQty - product.quantity
+            MainProduct.pickedQty = MainProduct.pickedQty + product.quantity
+
+
+            await MainProduct.save()
+        }))
+        
+        
+        
         res.status(201).send({ order })
 
     } catch (e) {
         res.status(400).send(e)
     }
+} 
+
+
+
+if (order.status === "Picked" && req.body.status ==="Shipped" ) {
+try {
+        order.status = "Shipped" 
+
+        order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+
+            
+            MainProduct.pickedQty = MainProduct.pickedQty - product.quantity
+            MainProduct.shippedQty = MainProduct.shippedQty + product.quantity
+
+            
+
+
+            await MainProduct.save()
+        }))
+        
+        
+        
+        
+        
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+} 
+
+
+
+
+if (order.status === "Shipped" && req.body.status ==="Delivered" ) {
+try {
+        order.status = "Delivered" 
+
+        order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+
+            
+            MainProduct.deliveredQty = MainProduct.deliveredQty + product.quantity
+            MainProduct.shippedQty = MainProduct.shippedQty - product.quantity
+
+            
+
+
+            await MainProduct.save()
+        }))
+        
+        
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+} 
+
+    
 })
 
 
