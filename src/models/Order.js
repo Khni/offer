@@ -64,6 +64,12 @@ const orderSchema = mongoose.Schema({
     
     
   }],
+  payment : [{
+  paid: {type: Boolean}, 
+  method: {type: String}, 
+  
+
+ } ] , 
 
 
   defaultAddress: {

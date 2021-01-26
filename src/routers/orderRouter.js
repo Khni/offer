@@ -162,7 +162,7 @@ try {
             await MainProduct.save()
         }))
         
-        
+        order.history =  order.history.concat({operation: "Order Has Been Picked"})
         
         res.status(201).send({ order })
 
@@ -197,7 +197,7 @@ try {
         
         
         
-        
+      order.history =  order.history.concat({operation: "Olrder Has Been Shipped"})  
         
         res.status(201).send({ order })
 
@@ -231,6 +231,7 @@ try {
             await MainProduct.save()
         }))
         
+        order.history =  order.history.concat({operation: "Olrder Has Been Delivered"})  
         
         res.status(201).send({ order })
 
@@ -241,6 +242,129 @@ try {
 
     
 })
+
+
+
+//cancel and return customer order
+
+router.post('/api/admin/order/cancelandreturn/:id', authAdmin, async (req, res) => {
+
+    let order = await Order.findOne({ _id: req.params.id })
+
+if (order.status === "inProcessing"  ) {
+try {
+        order.status = "canceledAfterProcessing" 
+
+        order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+             
+             MainProduct.reservedQty = MainProduct.reservedQty - product.quantity
+            MainProduct.availableQty = MainProduct.availableQty + product.quantity
+             
+             
+            
+
+            await MainProduct.save()
+        }))
+        //I will add reason later 
+        order.history =  order.history.concat({operation: "canceledAfterProcessing"})
+        
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+} 
+
+
+
+if (order.status === "Picked" ) {
+try {
+        order.status = "cancelledAfterPicked" 
+
+        order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+            
+            MainProduct.onHandQty = MainProduct.onHandQty + product.quantity
+            MainProduct.availableQty = MainProduct.availableQty + product.quantity
+             MainProduct.pickedQty = MainProduct.pickedQty - product.quantity
+
+
+
+
+            
+            
+            
+
+
+            await MainProduct.save()
+        }))
+        
+        
+        
+      order.history =  order.history.concat({operation: "cancelledAfterPicked"})  
+        
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+} 
+
+
+
+
+if (order.status === "Shipped" ) {
+try {
+        order.status = "returnedAfterShipping-inTransit" 
+
+        order.save()
+        
+        
+        await Promise.all(order.products.map(async (product) => {
+           
+            let MainProduct = await Product.findById(product._id)
+
+
+            
+            MainProduct.cancelledinTransit = MainProduct.cancelledinTransit + product.quantity
+            MainProduct.shippedQty = MainProduct.shippedQty - product.quantity
+
+            
+
+
+            await MainProduct.save()
+        }))
+        
+        order.history =  order.history.concat({operation: "returnedAfterShipping-inTransit"})  
+        
+        res.status(201).send({ order })
+
+    } catch (e) {
+        res.status(400).send(e)
+    }
+} 
+
+    
+})
+
+
+
+
+
+
+
+
+
 
 
 

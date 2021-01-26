@@ -84,6 +84,13 @@ const productSchema = mongoose.Schema({
         trim: true,
 
     },
+    
+    cancelledinTransit: {
+        type: Number,
+        trim: true,
+
+    },
+    
     deliveredQty: {
         type: Number,
         trim: true,
