@@ -42,7 +42,10 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true
     },
-    //ordered from vendor 
+
+    
+
+    //ordered from vendor
     onOrderQty: {
         type: Number,
         trim: true,
@@ -54,8 +57,8 @@ const productSchema = mongoose.Schema({
         trim: true,
 
     },
-    //onHandQty minus reservedQty(actual stock) 
-    availableQty: {
+     //onHandQty minus reservedQty(actual stock)
+     availableQty: {
         type: Number,
         trim: true,
 
@@ -66,15 +69,22 @@ const productSchema = mongoose.Schema({
         trim: true,
 
     },
-    //ordered by customer 
+    //ordered by customer
     reservedQty: {
         type: Number,
         trim: true,
 
     },
+    
 
     //awaiting shipment(ordered by customer and sitting in box) 
     pickedQty: {
+        type: Number,
+        trim: true,
+
+    },
+    //canceled after reserved or picked
+    canceled: {
         type: Number,
         trim: true,
 
@@ -85,18 +95,35 @@ const productSchema = mongoose.Schema({
 
     },
     
-    cancelledinTransit: {
-        type: Number,
-        trim: true,
-
-    },
-    
     deliveredQty: {
         type: Number,
         trim: true,
 
     },
-    
+    //returned after shipping or deleivered but still inTransit
+    returnedinTransitQty: {
+        type: Number,
+        trim: true,
+
+    },
+    //returned in stock
+    returnedQty: {
+        type: Number,
+        trim: true,
+
+    },
+
+
+
+
+
+
+
+
+
+
+
+
     sku: {
         type: String,
         trim: true,

@@ -57,19 +57,19 @@ const orderSchema = mongoose.Schema({
       type: Date,
       default: () => Date.now()
     },
-    operation:{
+    operation: {
       type: String
     }
-    
-    
-    
-  }],
-  payment : [{
-  paid: {type: Boolean}, 
-  method: {type: String}, 
-  
 
- } ] , 
+
+
+  }],
+  payment: [{
+    paid: { type: Boolean },
+    method: { type: String },
+
+
+  }],
 
 
   defaultAddress: {
