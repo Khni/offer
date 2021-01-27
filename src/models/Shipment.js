@@ -4,83 +4,87 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const shipmentSchema = mongoose.Schema({
-	//delivery boy
-	shipper:{
-		type: String,
+    //delivery boy
+    shipperID: {
+        type: String,
         trim: true,
         require: true,
-         }, 
-         
-		company:{
-		type: String,
-        trim: true,
-        require: true,
-         }, 
-         
-		order:{
-		type: String,
-        trim: true,
-        require: true,
-         }, 
-         
-		recipient:{
-		type: String,
-        trim: true,
-        require: true,
-         }, 
-         active: {
-        type: Boolean
-        
-    }, 
-         
-		returnPolicyEn:{
-		type: String,
-        trim: true,
-        require: true,
-         }, 
-         
-		returnPolicyAr:{
-		type: String,
-        trim: true,
-        require: true,
-         }, 
-         
-		gender: {type: String,
-        trim: true,
-        require: true,}, 
+    },
 
-        age: {type: String,
+    company: {
+        type: String,
         trim: true,
-        require: true,}, 
-		
-		adminID: {
-       type: mongoose.Schema.Types.ObjectId,
+        
+    },
+
+    orderID: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    recipient: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+    active: {
+        type: Boolean
+
+    },
+
+    returnPolicyEn: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    returnPolicyAr: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    gender: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    age: {
+        type: String,
+        trim: true,
+        require: true,
+    },
+
+    adminID: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Admin'
-         } ,
+    },
 
-         categoryID: {
-       type: mongoose.Schema.Types.ObjectId,
+    categoryID: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
-         }, 
-         
-         productsOfSection: [{
-            productOfSection:  {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product'
-           } 
-      }] 
-		
-	
-	
-	}
+    },
 
-,
+    productsOfSection: [{
+        productOfSection: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    }]
+
+
+
+}
+
+    ,
     {
         timestamps: true
     })
-	
+
 sectionSchema.virtual('products', {
     ref: 'Product',
     localField: '_id',
@@ -92,8 +96,8 @@ sectionSchema.virtual('category', {
     localField: '_id',
     foreignField: 'sectionsOfCategory'
 })
-	
-	
-const Shipment= mongoose.model('Shipment', shipmentSchema );
+
+
+const Shipment = mongoose.model('Shipment', shipmentSchema);
 
 module.exports = Shipment;
