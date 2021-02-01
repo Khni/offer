@@ -1,30 +1,29 @@
-const auth = require('../middleware/auth')
+const auth = require('../middleware/adminAuth')
+const authHiegher =require('../middleware/higherAdminAuth')
 const express = require('express')
 const Viewed = require('../models/Viewed')
 const Product= require('../models/Product')
 const User= require('../models/User')
+const Voucher = require('../models/Voucher')
 const router = new express.Router()
 
 
 
 
 
-router.post('/api/viewed/add', auth, async (req, res) => {
+router.post('/api/voucher/add', auth, async (req, res) => {
 
-    const ViewedItem =await Viewed.find({$and:[{productID: req.body.productID},{userID: req.user._id}]})
-    if (ViewedItem) {
-        await Viewed.deleteOne({$and:[{productID: req.body.productID},{userID: req.user._id}]})
-        
-    }
-    const viewed = new Viewed({
+   
+    const voucher = new Voucher({
         ...req.body,
-        userID: req.user._id
+        isEnabled: false
+        //userID: req.user._id
         
     })
 
     try {
-        await viewed.save()
-        res.status(201).send({viewed})
+        await voucher.save()
+        res.status(201).send({voucher})
     } catch (e) {
         res.status(400).send({e})
     }

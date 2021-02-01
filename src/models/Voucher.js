@@ -6,62 +6,62 @@ const jwt = require('jsonwebtoken')
 const voucherSchema = mongoose.Schema({
 
 
-code:{
-type: String, 
-trim: true
-} , 
-_id,
-minValue:{
-type: Number, 
-trim: true
-} , 
-maxValue :{
-type: Number, 
-trim: true
-} ,
-validFrom :{
-type: Date, 
-trim: true
-} , 
-validUntil: {
-type: Date, 
-trim: true
-} , 
-isEnabled :{
-type: Boolean, 
-
-} , 
-allUsers :{
-type: Boolean
-} , //true if for all
-validList:[{
-userID:{
-type :mongoose.Schema.Types.ObjectId
-}
-}] , //users _ids if it's not for        all  users 
-
-usersApplied:[{//useful if the user only have limited times to use the Voucher or truck who used it 
-userID:{
-type :mongoose.Schema.Types.ObjectId
-}, 
-date: {
-      type: Date,
-      default: () => Date.now()
+    code: {
+        type: String,
+        trim: true
     },
-}] , 
+    _id,
+    minValue: {
+        type: Number,
+        trim: true
+    },
+    maxValue: {
+        type: Number,
+        trim: true
+    },
+    validFrom: {
+        type: Date,
+        trim: true
+    },
+    validUntil: {
+        type: Date,
+        trim: true
+    },
+    isEnabled: {
+        type: Boolean,
+
+    },
+    allUsers: {
+        type: Boolean
+    }, //true if for all
+    validList: [{
+        userID: {
+            type: mongoose.Schema.Types.ObjectId
+        }
+    }], //users _ids if it's not for        all  users 
+
+    usersApplied: [{//useful if the user only have limited times to use the Voucher or truck who used it 
+        userID: {
+            type: mongoose.Schema.Types.ObjectId
+        },
+        date: {
+            type: Date,
+            default: () => Date.now()
+        },
+    }],
 
 
-allProducts:{
-type: Boolean, 
+    allProducts: {
+        type: Boolean,
 
-} , //true if applied to all, false if selected products
-selectedProducts: [{
-productsID:{
-type :mongoose.Schema.Types.ObjectId
-} 
-}] //if not applied to all
+    }, //true if applied to all, false if selected products
+    selectedProducts: [{
+        productsID: {
+            type: mongoose.Schema.Types.ObjectId
+        }
+    }] //if not applied to all
 
-            
+
 },
     {
         timestamps: true
@@ -106,6 +106,6 @@ reviewSchema.virtual('cart', {
     foreignField: 'productName'
 })*/
 
-const Voucher= mongoose.model('Voucher', voucherSchema);
+const Voucher = mongoose.model('Voucher', voucherSchema);
 
 module.exports = Voucher;
