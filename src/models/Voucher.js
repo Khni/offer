@@ -10,7 +10,7 @@ const voucherSchema = mongoose.Schema({
         type: String,
         trim: true
     },
-    _id,
+    
     minValue: {
         type: Number,
         trim: true

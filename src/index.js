@@ -29,6 +29,7 @@ const CollectionRouter = require('./routers/collectionRouter')
 const PurchaseRouter = require('./routers/purchasesRouter')
 const orderRouter = require('./routers/orderRouter')
 const ViewedRouter = require('./routers/ViewedRouter')
+const VoucherRouter = require('./routers/voucherRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
 const ReviewRouter = require('./routers/reviewRouter')
 
@@ -123,6 +124,7 @@ app.use(ViewedRouter)
 app.use(FavoriteRouter)
 app.use(ReviewRouter)
 app.use(PurchaseRouter)
+app.use(VoucherRouter)
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 app.get('*', (req, res) => {

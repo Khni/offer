@@ -11,7 +11,7 @@ const router = new express.Router()
 
 
 
-router.post('/api/voucher/add', auth, async (req, res) => {
+router.post('/api/voucher/create',  async (req, res) => {
 
    
     const voucher = new Voucher({
@@ -31,33 +31,33 @@ router.post('/api/voucher/add', auth, async (req, res) => {
 
 
 
-router.get('/api/user-viewed', auth, async (req, res) => {
+// router.get('/api/user-viewed', auth, async (req, res) => {
 
-    const viewed = await Viewed.find({userID : req.user._id})
+//     const viewed = await Viewed.find({userID : req.user._id})
   
 
-    let ViewedProducts = await Promise.all( viewed.map(async(v) => {
+//     let ViewedProducts = await Promise.all( viewed.map(async(v) => {
       
-        return await Product.findById(v.productID)
-    }))
+//         return await Product.findById(v.productID)
+//     }))
 
 
 
 
     
-// const products = await Product.find({})
+// // const products = await Product.find({})
 
-// const viewedProducts = 
-//     viewed.map((f)=>products.filter((p) => p._id == f.userID ))
+// // const viewedProducts = 
+// //     viewed.map((f)=>products.filter((p) => p._id == f.userID ))
     
 
-    try {
+//     try {
         
-        res.status(200).send({ViewedProducts})
-    } catch (e) {
-        res.status(400).send({e})
-    }
-})
+//         res.status(200).send({ViewedProducts})
+//     } catch (e) {
+//         res.status(400).send({e})
+//     }
+// })
 
 module.exports = router
 
