@@ -5,27 +5,29 @@ const jwt = require('jsonwebtoken')
 
 const voucherSchema = mongoose.Schema({
 
-affiliatePartnerID:{//if the user affiliate program added it 
-type: mongoose.Schema.Types.ObjectId
+    affiliatePartnerID: {//if the user affiliate program added it 
+        type: mongoose.Schema.Types.ObjectId
 
-}, 
+    },
     code: {
+        unique: true,
         type: String,
         trim: true,
-        required: true
+        required: true,
+        
     },
-  discount: {
-inPercentage:{
+    discount: {
+        inPercentage: { //true if the dicount in Percentage
 
-type: Boolean,
-required: true
-}, 
-value:{
-type: Number,
-        trim: true
-} 
+            type: Boolean,
+            required: true
+        },
+        value: {
+            type: Number,
+            trim: true
+        }
 
-} 
+    } ,
    
     minValue: {
         type: Number,
@@ -41,26 +43,31 @@ type: Number,
     },
     validUntil: {
         type: Date,
-        trim: true, 
+        trim: true,
         required: true
     },
     isEnabled: {
         type: Boolean,
 
     },
-    allUsers: {
-        type: Boolean, 
+    allUsers: { //true if for all
+        type: Boolean,
         required: true
-    }, //true if for all
-    validList: [{
+    },
+    validList: [{//users _ids if it's not for        all  users 
         userID: {
             type: mongoose.Schema.Types.ObjectId
         }
-    }], //users _ids if it's not for        all  users 
+    }], 
 
     usersApplied: [{//useful if the user only have limited times to use the Voucher or truck who used it 
         userID: {
             type: mongoose.Schema.Types.ObjectId
+        },
+        orderID: {
+
+            type: mongoose.Schema.Types.ObjectId
+
         },
         date: {
             type: Date,
@@ -102,7 +109,6 @@ reviewSchema.virtual('section', {
     localField: '_id',
     foreignField: 'productsOfSection.productOfSection'
 })
-
 reviewSchema.virtual('Favorite', {
     ref: 'Favorite',
     localField: '_id',
@@ -113,7 +119,6 @@ reviewSchema.virtual('Viewed', {
     localField: '_id',
     foreignField: 'productID'
 })
-
 reviewSchema.virtual('Orders', {
     ref: 'Order',
     localField: '_id',
