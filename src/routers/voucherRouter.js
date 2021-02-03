@@ -33,14 +33,17 @@ router.post('/api/voucher/create', async (req, res) => {
 
 router.post('/api/voucher/verify', async (req, res) => {
 
-    let voucher = await Voucher.findById(req.body._id)
+    let voucher = await Voucher.findOne({code: req.body.code})
 
     let dateForm = new Date(voucher.validFrom)
     let dateuntil = new Date(voucher.validUntil)
-    let date = new Date(req.body.date)
+    // let date = new Date(req.body.date)
+    let DateNow = new Date()
+    console.log("nowdate"+ DateNow.getTime());
+    console.log("until"+ dateuntil.getTime());
 
 
-    if (dateuntil.getTime() < date.getTime()) {
+    if (dateuntil.getTime() < DateNow.getTime()) {
         return res.status(400).send({ error: "ExpiredVoucher" })
     }
 

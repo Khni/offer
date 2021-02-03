@@ -11,6 +11,7 @@ const voucherSchema = mongoose.Schema({
     },
     code: {
         unique: true,
+        index: true,
         type: String,
         trim: true,
         required: true,
