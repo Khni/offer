@@ -5,12 +5,27 @@ const jwt = require('jsonwebtoken')
 
 const voucherSchema = mongoose.Schema({
 
+affiliatePartnerID:{//if the user affiliate program added it 
+type: mongoose.Schema.Types.ObjectId
 
+}, 
     code: {
         type: String,
         trim: true,
-        
+        required: true
     },
+  discount: {
+inPercentage:{
+
+type: Boolean,
+required: true
+}, 
+value:{
+type: Number,
+        trim: true
+} 
+
+} 
    
     minValue: {
         type: Number,
@@ -26,14 +41,16 @@ const voucherSchema = mongoose.Schema({
     },
     validUntil: {
         type: Date,
-        trim: true
+        trim: true, 
+        required: true
     },
     isEnabled: {
         type: Boolean,
 
     },
     allUsers: {
-        type: Boolean
+        type: Boolean, 
+        required: true
     }, //true if for all
     validList: [{
         userID: {
@@ -54,6 +71,7 @@ const voucherSchema = mongoose.Schema({
 
     allProducts: {
         type: Boolean,
+        required: true
 
     }, //true if applied to all, false if selected products
     selectedProducts: [{
