@@ -51,6 +51,11 @@ const voucherSchema = mongoose.Schema({
         type: Boolean,
 
     },
+    timesToUse: {// how many times the users can use it
+        type: Number,
+        trim: true
+
+    },
     allUsers: { //true if for all
         type: Boolean,
         required: true
