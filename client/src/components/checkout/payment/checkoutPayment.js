@@ -47,7 +47,7 @@ this.setState({totalPrice: this.props.total-response.data.value} )
   //I will implement error eng or Arabic later
   console.log("error:"+ e.response.data.error);
   if(this.props.lang==='ar') {
-this.setState({voucher.error: e.response.data.error_ar) 
+this.setState({voucher.error: e.response.data.error_ar} ) 
 } else if (this.props.lang==='en') {
 
 this.setState({voucher.error: e.response.data.error})
