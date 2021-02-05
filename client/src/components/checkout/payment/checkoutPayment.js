@@ -40,7 +40,7 @@ this.onSubmit = this.onSubmit.bind(this);
  const response = await Calls.postDataHeaderAuth("/api/voucher/verify",formData,{token: "3333"})
  console.log("onsubmit"+response.data.value + response.data.inPercentage );
  if(!response.data.inPercentage) {
-totalPrice
+
 this.setState({totalPrice: this.props.total-response.data.value ) 
 } 
 } catch (e) {
