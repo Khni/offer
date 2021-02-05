@@ -35,7 +35,12 @@ class CheckPayment extends Component {
 
    // const response = Calls.postDataHeaderAuth("/api/voucher/verify",formData,this.props.token)
     formData.orderValue = 499
+    try{
  const response = await Calls.postDataHeaderAuth("/api/voucher/verify",formData,{token: "3333"})
+} catch (e) {
+	//I will implement error eng or Arabic later
+this.setState({error: e.response.data.error}) 
+} 
     //  const { signIn } = this.props;
     //   await signIn(formData);
    console.log("onsubmit"+response.data.value + response.data.inPercentage );
