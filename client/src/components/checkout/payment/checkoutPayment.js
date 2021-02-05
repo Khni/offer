@@ -4,17 +4,18 @@ import Form from '../../form/form.component'
 import * as Calls from '../../../store/actions/axiosCalls'
 import * as actions from '../../../store/actions/users';
 import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
-
+import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
 
 import { connect } from 'react-redux';
 
 class CheckPayment extends Component {
   constructor(props) {
     super(props);
-
+this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       search: '',
       Loading: false,
+      totalPrice:props.total,
       voucher: {
         error: '',
         value: 0,
@@ -38,9 +39,19 @@ class CheckPayment extends Component {
     try{
  const response = await Calls.postDataHeaderAuth("/api/voucher/verify",formData,{token: "3333"})
  console.log("onsubmit"+response.data.value + response.data.inPercentage );
+ if(!response.data.inPercentage) {
+totalPrice
+this.setState({totalPrice: this.props.total-response.data.value ) 
+} 
 } catch (e) {
   //I will implement error eng or Arabic later
   console.log("error:"+ e.response.data.error);
+  if(this.props.lang==='ar') {
+this.setState({voucher:{error: e.response.data.error_ar}) 
+} else if (this.props.lang==='en') {
+
+this.setState({voucher:{error: e.response.data.error} })
+}  
 // this.setState({error: e.response.data.error}) 
 } 
     //  const { signIn } = this.props;
@@ -109,7 +120,7 @@ class CheckPayment extends Component {
 
 
 
-        <p className="total-sum-cart" >Total Order : {this.props.total + " EGP"}</p>
+        <p className="total-sum-cart" >Total Order : {this.state.totalPrice+ " EGP"}</p>
       <div className="main-container-auth">
         <Form
           title={this.props.signin_title}
@@ -118,9 +129,9 @@ class CheckPayment extends Component {
           labelClass="input-label"
           
           onSubmit={this.onSubmit}
-          errorMsg={this.props.errorMsg}
+          errorMsg={this.state.voucher.error}
         
-          submitBtnTitle="Redeem"
+          submitBtnTitle="USE"
           
           removeErr={this.authLeft}
           LoadingBtn={this.props.Loading}
@@ -157,6 +168,7 @@ class CheckPayment extends Component {
 
 const mapStateToProps = (state) => {
   return {
+  	lang: selectLang(state), 
     token: state.userAuth.authUser.token,
     total: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0),
     cartItems: selectCartItems(state),
