@@ -41,7 +41,7 @@ this.onSubmit = this.onSubmit.bind(this);
  console.log("onsubmit"+response.data.value + response.data.inPercentage );
  if(!response.data.inPercentage) {
 
-this.setState({totalPrice: this.props.total-response.data.value ) 
+this.setState({totalPrice: this.props.total-response.data.value} ) 
 } 
 } catch (e) {
   //I will implement error eng or Arabic later
