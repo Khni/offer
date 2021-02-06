@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './checkoutPayment.scss';
+import axios from 'axios';
 import Form from '../../form/form.component'
 import * as Calls from '../../../store/actions/axiosCalls'
 import * as actions from '../../../store/actions/users';
@@ -35,10 +36,28 @@ voucherUsed: this.state.voucher.used,
 voucherCode: this.state.voucher.code
 
 } 
-    await MakeOrder(data, token)
-    clearCart()
-    this.props.history.push('/orders')
-    console.log("sendPrder");
+
+try {
+  const response =   await axios.post('/api/order/add' , data, {
+   headers : { Authorization: `Bearer ${token}`
+    }} );
+ console.log("order done"+ response.data.order);
+ clearCart()
+ this.props.history.push(/orderpage-user/ + response.data.order._id)
+ console.log("sendPrder");
+     
+   } catch(err) {
+     console.log("order error" +JSON.stringify(err.response.data) ) 
+    
+   }
+
+
+
+
+
+
+    //await MakeOrder(data, token)
+    
   }
 
   async onSubmit(formData) {

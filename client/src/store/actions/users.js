@@ -288,7 +288,7 @@ export const setDefaultAddress = ( token, id) => {
      const response =   await axios.post('/api/order/add' , data, {
       headers : { Authorization: `Bearer ${token}`
        }} );
-    console.log(response.data.order);
+    console.log("order done"+ response.data.order);
         dispatch({
           type: MAKE_ORDER
           

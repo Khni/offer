@@ -10,7 +10,7 @@ const Voucher = require('../models/Voucher')
 router.post('/api/order/add', auth, async (req, res) => {
     let outOfStock = []
 
-    await Promise.all(req.body.map(async (product) => {
+    await Promise.all(req.body.products.map(async (product) => {
 
         let MainProduct = await Product.findById(product._id)
         if (MainProduct.availableQty < product.quantity) {
@@ -25,74 +25,76 @@ router.post('/api/order/add', auth, async (req, res) => {
     if (outOfStock.length > 0) {
         return res.status(400).send({ outOfStock })
     }
-  let  totalPrice: req.body.products.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)
-  
-  
-    if (req.body.voucherUsed ) {
-    	
-    let voucher = await Voucher.findOne({ code: req.body.voucherCode })
-    
-    
+    let totalPrice = req.body.products.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)
+
+
+    if (req.body.voucherUsed) {
+
+        let voucher = await Voucher.findOne({ code: req.body.voucherCode })
+
+
         let dateForm = new Date(voucher.validFrom)
-    let dateuntil = new Date(voucher.validUntil)
-    // let date = new Date(req.body.date)
-    let DateNow = new Date()
-    console.log("nowdate" + DateNow.getTime());
-    console.log("until" + dateuntil.getTime());
+        let dateuntil = new Date(voucher.validUntil)
+        // let date = new Date(req.body.date)
+        let DateNow = new Date()
+        console.log("nowdate" + DateNow.getTime());
+        console.log("until" + dateuntil.getTime());
 
 
-    if (dateuntil.getTime() < DateNow.getTime()) {
-        return res.status(400).send({
-            error: "Voucher is Expired",
-            error_ar: "قسيمة الشراء منتهية"
-        })
-    }
-
-    const timesToUse = voucher.timesToUse
-
-    const timesUserUsed =voucher.usersApplied.filter(list => list.userID === req.body.userID)
-    if(timesToUse === timesUserUsed || timesToUse < timesUserUsed){
-        return res.status(400).send({
-            error: "You have reached maximum times of using this Voucher",
-            error_ar: "تخطيت الحد المسموح لاستخدام هذه القسيمة"
-        })
-
-    }
-
-    if (!voucher.allUsers) {
-        const user = voucher.validList.find(list => list.userID === req.body.userID)
-        return res.status(400).send({
-            error: "You can not use this voucher",
-            error_ar: "لا يمكنك استخدام هذه القسيمة"
-        })
-    }
-
-    if (!voucher.allProducts) {
-        const product = voucher.selectedProducts.find(list => list.productsID === req.body.productID)
-        if (!product) {
-            return  res.status(400).send({
-                error: "The voucher can not used for this product",
-                error_ar: " لا يمكنك استخدام هذه القسيمة مع هذا المنتج "
+        if (dateuntil.getTime() < DateNow.getTime()) {
+            return res.status(400).send({
+                error: "Voucher is Expired",
+                error_ar: "قسيمة الشراء منتهية"
             })
         }
-    }
-    
-    if(!voucher.discount.inPercentage){
-     totalPrice= totalPrice-voucher.discount.value
-     } 
-     if(voucher.discount.inPercentage){
-     totalPrice= totalPrice*voucher.discount.value// percent will be in this form 0.90 means 10%
-     } 
-     
-     voucher.usersApplied =  voucher.usersApplied.concat({ userID: req.user._id , orderID : order._id })
 
+        const timesToUse = voucher.timesToUse
+
+        const timesUserUsed = voucher.usersApplied.filter(list => list.userID === req.body.userID)
+        if (timesToUse === timesUserUsed || timesToUse < timesUserUsed) {
+            return res.status(400).send({
+                error: "You have reached maximum times of using this Voucher",
+                error_ar: "تخطيت الحد المسموح لاستخدام هذه القسيمة"
+            })
+
+        }
+
+        if (!voucher.allUsers) {
+            const user = voucher.validList.find(list => list.userID === req.body.userID)
+            return res.status(400).send({
+                error: "You can not use this voucher",
+                error_ar: "لا يمكنك استخدام هذه القسيمة"
+            })
+        }
+
+        if (!voucher.allProducts) {
+            const product = voucher.selectedProducts.find(list => list.productsID === req.body.productID)
+            if (!product) {
+                return res.status(400).send({
+                    error: "The voucher can not used for this product",
+                    error_ar: " لا يمكنك استخدام هذه القسيمة مع هذا المنتج "
+                })
+            }
+        }
+
+        if (!voucher.discount.inPercentage) {
+            totalPrice = totalPrice - voucher.discount.value
+        }
+        if (voucher.discount.inPercentage) {
+            totalPrice = totalPrice * voucher.discount.value// percent will be in this form 0.90 means 10%
+        }
+
+        voucher.usersApplied = voucher.usersApplied.concat({ userID: req.user._id})
+  
+    await voucher.save()
+  
     }
 
 
 
 
     const order = new Order({
-    
+
         orderNum: new Date().valueOf(),
         userID: req.user._id,
         products: req.body.products,
@@ -106,12 +108,12 @@ router.post('/api/order/add', auth, async (req, res) => {
     order.history = order.history.concat({ operation: "order has been placed" })
 
     //here i will take the voucher id to concate user id in usersApplied
-    
+
 
 
     try {
         await order.save()
-        await voucher.save()
+        //await voucher.save()
         await Promise.all(order.products.map(async (product) => {
 
             let MainProduct = await Product.findById(product._id)
