@@ -86,7 +86,7 @@ router.post('/api/voucher/verify', async (req, res) => {
 
     try {
 
-        res.status(201).send({ value: voucher.discount.value, inPercentage: voucher.discount.inPercentage })
+        res.status(201).send({ value: voucher.discount.value, inPercentage: voucher.discount.inPercentage,code: voucher.code })
     } catch (e) {
         res.status(400).send({ e })
     }

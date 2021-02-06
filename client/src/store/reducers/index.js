@@ -33,6 +33,7 @@ const persistConfig = {
 , 'userAuth' 
 ,'langsReducer'
 , 'redirectAuthReducer' 
+,'addressReducer'
 
 ]
 };

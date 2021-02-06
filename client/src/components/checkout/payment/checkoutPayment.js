@@ -17,9 +17,12 @@ this.onSubmit = this.onSubmit.bind(this);
       Loading: false,
       totalPrice:props.total,
       voucher: {
+        code:'',
+        class: '',
         error: '',
         value: 0,
-        inPercentage: false
+        inPercentage: false,
+        used: false
       }
     }
   }
@@ -41,7 +44,7 @@ this.onSubmit = this.onSubmit.bind(this);
  console.log("onsubmit"+response.data.value + response.data.inPercentage );
  if(!response.data.inPercentage) {
 
-this.setState({totalPrice: this.props.total-response.data.value} ) 
+this.setState({totalPrice: this.props.total-response.data.value ,voucher:{used:true , class:"beforePrice" ,code:response.data.code} } ) 
 } 
 } catch (e) {
   //I will implement error eng or Arabic later
@@ -120,24 +123,28 @@ this.setState({voucher:{ error: e.response.data.error}})
 
 
 
-        <p className="total-sum-cart" >Total Order : {this.state.totalPrice+ " EGP"}</p>
+        <p className={"total-sum-cart " +this.state.voucher.class } >Total Order : {this.props.total+ " EGP"}</p>
+        {this.state.voucher.used? <p className="total-sum-cart" >Price after Discount : {this.state.totalPrice+ " EGP" + " / promocode " + this.state.voucher.code + " applied"}</p> : null }
       <div className="main-container-auth">
+        {!this.state.voucher.used ?
         <Form
-          title={this.props.signin_title}
-          fieldsets={this.fieldsets}
-          classN="juv-input-form-set"
-          labelClass="input-label"
-          
-          onSubmit={this.onSubmit}
-          errorMsg={this.state.voucher.error}
+        title={this.props.signin_title}
+        fieldsets={this.fieldsets}
+        classN="juv-input-form-set"
+        labelClass="input-label"
         
-          submitBtnTitle="USE"
-          
-          removeErr={this.authLeft}
-          LoadingBtn={this.props.Loading}
-        />
+        onSubmit={this.onSubmit}
+        errorMsg={this.state.voucher.error}
+      
+        submitBtnTitle="Apply Promocode"
+        
+        removeErr={this.authLeft}
+        LoadingBtn={this.props.Loading}
+      /> : null
+        }
+        
 </div>
-        <table >
+        <table className="TableList" >
           <tr><td>Name:</td><td>{this.props.defaultAddress.firstName} </td></tr>
           <tr><td>Street:</td><td>{this.props.defaultAddress.fullAddress} </td></tr>
           <tr><td>City:</td><td>{this.props.defaultAddress.city} </td></tr>
@@ -146,7 +153,7 @@ this.setState({voucher:{ error: e.response.data.error}})
 
 
 
-        <button onClick={async () => { await this.sendOrder(this.props.cartItems, this.props.token); }} className="custum-btn-form-fixed" >Confirm Order</button>
+        <button onClick={async () => { await this.sendOrder(this.props.cartItems, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
         <div className="checkout-cart-footer">
 
 
