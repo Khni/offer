@@ -22,6 +22,18 @@ const orderSchema = mongoose.Schema({
     required: true
 
   },
+  voucher: {
+  	used:{
+type: Boolean,
+}, 
+code:{
+type: String,
+}, 
+value: {type: Number,} 
+    
+    
+
+  },
   products: [{
     _id: {
       type: mongoose.Schema.Types.ObjectId,

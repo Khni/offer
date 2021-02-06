@@ -18,7 +18,7 @@ const voucherSchema = mongoose.Schema({
         
     },
     discount: {
-        inPercentage: { //true if the dicount in Percentage
+        inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
             type: Boolean,
             required: true

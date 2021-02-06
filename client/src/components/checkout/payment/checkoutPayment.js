@@ -27,8 +27,14 @@ this.onSubmit = this.onSubmit.bind(this);
     }
   }
 
-  async sendOrder(data, token) {
+  async sendOrder(cartitems, token) {
     const { MakeOrder, clearCart } = this.props
+    const data = {
+products : cartItems, 
+voucherUsed: voucher.used, 
+voucherCode: voucher.code
+
+} 
     await MakeOrder(data, token)
     clearCart()
     this.props.history.push('/orders')
@@ -45,6 +51,11 @@ this.onSubmit = this.onSubmit.bind(this);
  if(!response.data.inPercentage) {
 
 this.setState({totalPrice: this.props.total-response.data.value ,voucher:{used:true , class:"beforePrice" ,code:response.data.code} } ) 
+} 
+
+if(response.data.inPercentage) {
+
+this.setState({totalPrice: this.props.total*response.data.value ,voucher:{used:true , class:"beforePrice" ,code:response.data.code} } ) 
 } 
 } catch (e) {
   //I will implement error eng or Arabic later
