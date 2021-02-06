@@ -30,9 +30,9 @@ this.onSubmit = this.onSubmit.bind(this);
   async sendOrder(cartitems, token) {
     const { MakeOrder, clearCart } = this.props
     const data = {
-products : cartItems, 
-voucherUsed: voucher.used, 
-voucherCode: voucher.code
+products : cartitems, 
+voucherUsed: this.state.voucher.used, 
+voucherCode: this.state.voucher.code
 
 } 
     await MakeOrder(data, token)
