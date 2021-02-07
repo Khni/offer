@@ -17,6 +17,7 @@ this.onSubmit = this.onSubmit.bind(this);
       search: '',
       Loading: false,
       totalPrice:props.total,
+      error:'', 
       voucher: {
         code:'',
         class: '',
@@ -47,6 +48,11 @@ try {
  console.log("sendPrder");
      
    } catch(err) {
+   	if(err.response.data.outOfStock) {
+     if(err.response.data.outOfStock.length > 0) {
+     this.setState({error: "some products are ordered more than available stock" }) 
+      } 
+      } 
      console.log("order error" +JSON.stringify(err.response.data) ) 
     
    }
@@ -181,7 +187,7 @@ this.setState({voucher:{ error: e.response.data.error}})
           <tr><td>Phone:</td><td>{this.props.defaultAddress.phone} </td></tr>
         </table>
 
-
+{this.state.error? <div className="errorMsg">{this.state.error}</div> : null}
 
         <button onClick={async () => { await this.sendOrder(this.props.cartItems, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
         <div className="checkout-cart-footer">
