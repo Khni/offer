@@ -32,7 +32,7 @@ const ViewedRouter = require('./routers/ViewedRouter')
 const VoucherRouter = require('./routers/voucherRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
 const ReviewRouter = require('./routers/reviewRouter')
-
+const CartRouter = require('./routers/cartRouter')
 app.use(cors())
 
 app.use(cors({credentials: true, origin: 'https://juv-khaled.herokuapp.com'}));
@@ -125,6 +125,7 @@ app.use(FavoriteRouter)
 app.use(ReviewRouter)
 app.use(PurchaseRouter)
 app.use(VoucherRouter)
+app.use(CartRouter)
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 app.get('*', (req, res) => {
