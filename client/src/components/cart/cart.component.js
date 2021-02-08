@@ -19,6 +19,24 @@ const CartItem = (props) =>{
 // } 
 
 
+/*
+await props.cartitems.map(item =>{
+let response_product = await axios.post('getproduct', item._id) 
+item = {...item, item.availableQty:response_product.availableQty, item.price:response_product.price} 
+if (response_product.aviableQty<item.quantity) {
+item.quantity=response_aviableQty
+} 
+if (response_product.aviableQty===0) {
+	
+item.price=0
+item.quantity=0
+} 
+
+} )
+
+*/
+
+
 const checkoutRedirectPush =() => {
 props.chechoutRedirect() 
 props.history.push({
