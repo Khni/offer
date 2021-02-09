@@ -123,6 +123,108 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
 
 
 
+//delete product from cart
+router.post('/api/cart/deleteproduct', auth, async (req, res) => {
+   
+    const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
+    //validate that cart and product are fount toperform decreasing
+    console.log("foundproduct" + foundproduct);
+    if (foundproduct) {
+
+        const product = foundproduct.products.find(product => {
+
+
+            return product.productID == req.body.productID
+
+        })
+        console.log("product" + product.productID );
+
+        try {
+
+                const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID }, 
+                { $pull: { products:{productID: product.productID}  } });
+               
+                return res.status(200).send()
+
+            } catch (error) {
+                return res.status(401).send({ error })
+
+
+            }
+    }else{
+        return res.status(400).send({ error : "product is not found"})
+    }
+
+
+
+})
+
+
+
+
+
+router.post('/api/cart/mergelocal', auth, async (req, res) => {
+   
+   let localCart = req.body.products
+   let serverCart = await Cart.findOne({ userID: req.user._id})
+   localCart =await Promise.all (serverCart.products.map(product=>{
+ localCart.filter(local =>{
+return local.productID != product.productID
+} ) 
+
+})) 
+   serverCart= serverCart.products.concat(localCart)
+    
+    
+    try {
+
+                 await serverCart.save()
+                return res.status(200).send()
+
+            } catch (error) {
+                return res.status(401).send({ error })
+
+
+            }
+    
+    
+
+})
+
+
+
+
+router.get('/api/cart/get', auth, async (req, res) => {
+   
+   let cart = await Cart.findOne({  userID: req.user._id  })
+let cartWithProducts = Promise.all(cart.products.map(product=>{
+	const foundproduct = await Product.findOne({_id: product.productID})
+return {...product, 
+price: foundproduct.price,
+ nameEn:foundproduct.nameEn, 
+ nameAr:foundproduct.nameAr
+} 
+}))
+
+
+  
+    
+    try {
+
+                 
+                return res.status(200).send({cartWithProducts})
+
+            } catch (error) {
+                return res.status(401).send({ error })
+
+
+            }
+    
+    
+
+})
+
+
 
 
 
