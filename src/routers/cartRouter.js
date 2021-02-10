@@ -178,20 +178,81 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
     //     })
 
     // }))
+
+    function filterArray(array, filter) {
+        var myArrayFiltered = [];
+        for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < filter.length; j++) {
+                if (array[i].userid === filter[j].userid && array[i].projectid === filter[j].projectid) {
+                    myArrayFiltered.push(array[i]);
+                }
+            }
+        }
+        return myArrayFiltered;
+    }
+
+
+
     localCart = await Promise.all(serverCart.products.map(product =>{
-       return  localCart.filter(local => {
-            return local.productID != product.productID
-         })
+       return  localCart.filter(local => local.productID != product.productID)
 
     }))
 
+    localCart = localCart.filter(async (local) =>{
+       return await Promise.all(serverCart.products.map(async (product)=>local.productID != product.productID ))
+    })
+    //const serverCartIDs = await Promise.all(serverCart.products.map(product=> product.productID))
+    const products= [
+        {
+            "_id": "60242abc209cbd32d8e85ec8",
+            "productID": "5f6fd4f18b6f6b001799243f",
+            "quantity": 2
+        },
+        {
+            "_id": "60242b00209cbd32d8e85ec9",
+            "productID": "5f6fd57f8b6f6b0017992443",
+            "quantity": 1
+        }
+    ]
+
+    let localcartArr= [
+        {
+            
+            "productID": "5f6fd57f8b6f6b0017992443",
+            "quantity": 2
+        },
+        {
+           
+            "productID": "5f6fd12a8b6f6b001799242f",
+            "quantity": 1
+        }
+        ,
+        {
+            
+            "productID": "5f7a5668a9baa50017d495e8",
+            "quantity": 1
+        }
+]
+    let filterd= localcartArr.filter( local => {
+        return products.some( product => {
+          return local.productID !==  product.productID    
+        });
+      });
 
 
-    console.log("localcartAftermodiefed"+ JSON.stringify(localCart) );
-    serverCart.products = serverCart.products.concat(localCart)
+
+
+
+
+
+  
+
+
+    console.log("localcartAftermodiefed"+ JSON.stringify(filterd) );
+   // serverCart.products = serverCart.products.concat(localCart)
     try {
 
-        await serverCart.save()
+      //  await serverCart.save()
         return res.status(200).send({serverCart})
 
     } catch (error) {
