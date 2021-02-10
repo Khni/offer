@@ -169,6 +169,7 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
 
     let localCart = req.body.products
     let serverCart = await Cart.findOne({ userID: req.user._id })
+    if(serverCart) {
     localCart = await Promise.all(serverCart.products.map(product => {
         localCart.filter(local => {
             return local.productID != product.productID
@@ -176,18 +177,34 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
 
     }))
     serverCart = serverCart.products.concat(localCart)
-
-
     try {
 
         await serverCart.save()
-        return res.status(200).send()
+        return res.status(200).send({serverCart})
 
     } catch (error) {
         return res.status(401).send({ error })
 
 
     }
+} else {
+const cart = new Cart({
+        userID: req.user._id, 
+        products:req.body.products
+    })
+    try {
+
+        await cart.save()
+        return res.status(200).send({cart})
+
+    } catch (error) {
+        return res.status(401).send({ error })
+
+
+    }
+} 
+
+    
 
 
 
@@ -203,9 +220,10 @@ router.get('/api/cart/get', auth, async (req, res) => {
         return res.status(400).send({ error: "cart is not found" })
     }
 
-    let cartWithProducts = await Promise.all(cart.products.map(async product => {
+    let cartWithProducts =cart.products.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
+        if(foundproduct) {
         let price = foundproduct.price
         let Qty = product.quantity
         if (foundproduct.availableQty === 0) {
@@ -213,7 +231,7 @@ router.get('/api/cart/get', auth, async (req, res) => {
                 Qty = 0
 
         }
-        // return {
+        
         return {
             ...product.toObject(),
             price: price,
@@ -222,7 +240,66 @@ router.get('/api/cart/get', auth, async (req, res) => {
             availableQty: foundproduct.availableQty,
             Qty: Qty
         }
-        //}
+        
+       } //end of if foundproduct
+        
+    })
+
+
+
+
+    try {
+
+
+        return res.status(200).send({ cartWithProducts })
+
+    } catch (error) {
+        return res.status(401).send({ error })
+
+
+    }
+
+
+
+})
+
+
+
+
+
+
+
+
+router.get('/api/localcart/get', auth, async (req, res) => {
+
+    let cart = req.body.cart
+    if (!cart) {
+        return res.status(400).send({ error: "cart is not found" })
+    }
+
+    let cartWithProducts = await Promise.all(cart.products.map(async product => {
+
+        const foundproduct = await Product.findById(product.productID)
+        if(foundproduct) {
+        let price = foundproduct.price
+        let Qty = product.quantity
+        if (foundproduct.availableQty === 0) {
+            price = 0,
+                Qty = 0
+
+        }
+        
+        return {
+            ...product.toObject(),
+            price: price,
+            nameEn: foundproduct.nameEn,
+            nameAr: foundproduct.nameAr,
+            availableQty: foundproduct.availableQty,
+            Qty: Qty
+        }
+        
+       } //end of if foundproduct
+        
     }))
 
 

@@ -25,8 +25,20 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true,
     },
+   
 
+discount: {
+        inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
+            type: Boolean,
+            required: true
+        },
+        value: {
+            type: Number,
+            trim: true
+        }
+
+    } ,
     adminID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -63,6 +75,12 @@ const productSchema = mongoose.Schema({
         trim: true,
 
     },
+    
+    onlyOrderAvailableQty:{//false if user can order even there is no enough available quantity 
+type: Boolean,
+            required: true
+}, 
+    
     // physically available (including Qty Reserved), minus  “pickedQty"
     onHandQty: {
         type: Number,
