@@ -42,9 +42,9 @@ router.post('/api/cart/add', auth, async (req, res) => {
         foundcart.products = foundcart.products.concat({ productID: req.body.productID, quantity: 1 })
         try {
             await foundcart.save()
-            res.status(201).send(foundcart)
+          return  res.status(201).send(foundcart)
         } catch (error) {
-            res.status(400).send(error)
+          return  res.status(400).send(error)
         }
     } //if found cart 
 
@@ -168,15 +168,27 @@ router.post('/api/cart/deleteproduct', auth, async (req, res) => {
 router.post('/api/cart/mergelocal', auth, async (req, res) => {
 
     let localCart = req.body.products
+    console.log("localcart"+ JSON.stringify(localCart) );
     let serverCart = await Cart.findOne({ userID: req.user._id })
+    console.log("servercart"+ serverCart);
     if(serverCart) {
-    localCart = await Promise.all(serverCart.products.map(product => {
-        localCart.filter(local => {
+    // localCart = await Promise.all(serverCart.products.map(product => {
+    //     localCart.filter(local => {
+    //         return local.productID != product.productID
+    //     })
+
+    // }))
+    localCart = await Promise.all(serverCart.products.map(product =>{
+       return  localCart.filter(local => {
             return local.productID != product.productID
-        })
+         })
 
     }))
-    serverCart = serverCart.products.concat(localCart)
+
+
+
+    console.log("localcartAftermodiefed"+ JSON.stringify(localCart) );
+    serverCart.products = serverCart.products.concat(localCart)
     try {
 
         await serverCart.save()
