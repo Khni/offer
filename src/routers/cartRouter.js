@@ -332,6 +332,7 @@ router.post('/api/user/localcart', async (req, res) => {
             return {
                 
                 price: price,
+                _id: foundproduct._id,
                 nameEn: foundproduct.nameEn,
                 nameAr: foundproduct.nameAr,
                 availableQty: foundproduct.availableQty,
