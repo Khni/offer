@@ -12,16 +12,31 @@ import * as actions from '../../store/actions/CartItemsAction';
 import { withRouter } from 'react-router-dom';
 
 import Head from '../headd/header/header'
-const CartItem = (props) => {
+class CartItem extends React.Component {
 
-  useEffect( () => {
-    (async () => {
+  constructor(props) {
+    super(props);
+   
 
-    await actions.fetchCart(props.cartItems, props.token, props.isAuthenticated)
+  }
+  
 
 
-    })()
-  }, [])
+
+
+
+
+
+
+ async componentDidMount() {
+  await this.props.fetchCart(this.props.cartItems, 
+    this.props.token,
+     this.props.isAuthenticated)
+     console.log("cartItem" + this.props.cartProducts);
+  }
+  
+      
+  
 
 
 
@@ -54,14 +69,17 @@ const CartItem = (props) => {
   */
 
 
-  const checkoutRedirectPush = () => {
-    props.chechoutRedirect()
-    props.history.push({
+  checkoutRedirectPush ()  {
+    this.props.chechoutRedirect()
+    this.props.history.push({
       pathname: '/authnav',
       //search: '?query=abc',
       //state: { targetUrl: '/checkout-address' }
     })
   }
+
+
+  render(){
   return (
 
 
@@ -70,13 +88,13 @@ const CartItem = (props) => {
         <Head />
       </div>
 
-      {!props.total ? <h2 className="EmprtCart">Cart is Empty</h2> :
+      {/*!this.props.total ? <h2 className="EmprtCart">Cart is Empty</h2> :  */
 
 
 
 
         <div className="cartItemContainer">
-          {props.cartProducts.map(item => (
+          {this.props.cartProducts.map(item => (
 
 
             <div className="cart-Item" >
@@ -91,15 +109,15 @@ const CartItem = (props) => {
               </div>{/* end of cart-item-desc*/}
 
               <div className="cart-item-bar">
-                <div className="remove-text-icon" onClick={() => props.removeItemFromCartItem(item, props.cartItems)} >
+                <div className="remove-text-icon" onClick={() => this.props.removeItemFromCartItem(item, this.props.cartItems)} >
                   <img alt="delete" src={Trashicon} className="trash-icon" />
                   <p className="remove-text" >REMOVE </p>
                 </div>{/*remove-text-icon */}
 
                 <div className="adjust-item-number">
-                  <img alt="-" src={Minusicon} className="minus-icon" onClick={() => props.removeItemFromCartItem(item, props.cartItems)} />
+                  <img alt="-" src={Minusicon} className="minus-icon" onClick={() => this.props.removeItemFromCartItem(item, this.props.cartItems)} />
                   <p className="item-number">{item.quantity}</p>
-                  <img alt="+" src={Plusicon} className="plus-icon" onClick={() => props.addItemToCartItem(item, props.cartItems)} />
+                  <img alt="+" src={Plusicon} className="plus-icon" onClick={() =>this.props.addItemToCartItem(item, this.props.cartItems)} />
                 </div>{/*adjust-item-number */}
 
 
@@ -115,11 +133,11 @@ const CartItem = (props) => {
 
 
 
-          <p className="total-sum-cart" > {"Total: " + props.total}</p>
+          <p className="total-sum-cart" > {"Total: " + this.props.total}</p>
 
-          {!props.isAuthenticated && !props.token ?
-            <button onClick={() => checkoutRedirectPush()} className="custum-btn-form-fixed" >Checkout</button>
-            : <button onClick={() => props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>}
+          {!this.props.isAuthenticated && !this.props.token ?
+            <button onClick={() => this.checkoutRedirectPush()} className="custum-btn-form-fixed" >Checkout</button>
+            : <button onClick={() => this.props.history.push('/checkout-address')} className="custum-btn-form-fixed" >Checkout</button>}
 
 
 
@@ -141,7 +159,8 @@ const CartItem = (props) => {
 
 
     </div>
-  );
+  )
+    }
 
 }
 

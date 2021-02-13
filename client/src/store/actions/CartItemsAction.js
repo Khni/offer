@@ -84,37 +84,37 @@ export const removeItem = (item, items) => ({
 
 
 export const fetchCart = (cartItems, token, isAuthenticated) => {
- 
+  console.log("from fetchCar Func");
   return async dispatch => {
-    console.log("from fetchCar Func");
+    
     console.log("token" +token);
     console.log("token" +isAuthenticated);
-    console.log("token" +cartItems);
+    console.log("token" +JSON.stringify(cartItems) );
     try {
      
       let response = ''
-      if (isAuthenticated) {
+      if (isAuthenticated && token) {
         //if user is Authenticated fetch cart from server
         response = await axios.get(APIs.CART_GET_SERVER, {
           headers: { Authorization: `Bearer ${token}` }
         });
-      } else if(!isAuthenticated) {
+      } else  {
         console.log("not user");
         //if user is not Authenticated return local cart from server
-        response = await axios.get(APIs.CART_GET_LOCAL,{cart: cartItems});
-        console.log("cart"+ response.data.cart);
+        response = await axios.post(APIs.CART_GET_LOCAL,{cart: cartItems});
+        console.log("cart"+ response.data.cartWithProducts);
       }
       console.log("res"+ response);
       dispatch({
         type: FETCH_CART,
-        cart: response.data.cart
+        cart: response.data.cartWithProducts
       });
 
     } catch (err) {
       console.log("err"+err);
       dispatch({
         type: ERROR_FETCH_CART,
-        payload: err.response.data.error
+        payload: err
       })
     }
   };

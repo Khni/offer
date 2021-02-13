@@ -203,7 +203,7 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
     let localCart = req.body.products
     let serverCart = await Cart.findOne({ userID: req.user._id })
     if (serverCart) {
-      
+
         localCart = localCart.filter((elem) =>
             !serverCart.products.find((product) => elem.productID == product.productID))
 
@@ -308,16 +308,17 @@ router.get('/api/user/servercart', auth, async (req, res) => {
 
 
 
-router.post('/api/user/localcart', auth, async (req, res) => {
+router.post('/api/user/localcart', async (req, res) => {
 
     let cart = req.body.cart
     if (!cart) {
         return res.status(400).send({ error: "cart is not found" })
     }
 
-    let cartWithProducts = await Promise.all(cart.products.map(async product => {
+    let cartWithProducts =await Promise.all( cart.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
+        
         if (foundproduct) {
             let price = foundproduct.price
             let Qty = product.quantity
@@ -326,14 +327,16 @@ router.post('/api/user/localcart', auth, async (req, res) => {
                     Qty = 0
 
             }
+           
 
             return {
-                ...product.toObject(),
+                
                 price: price,
                 nameEn: foundproduct.nameEn,
                 nameAr: foundproduct.nameAr,
                 availableQty: foundproduct.availableQty,
-                Qty: Qty
+                quantity: product.quantity,
+                imgURLs: foundproduct.imgURLs
             }
 
         } //end of if foundproduct

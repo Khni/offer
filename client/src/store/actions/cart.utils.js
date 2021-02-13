@@ -18,18 +18,18 @@ export const addItemToCart2 = (cartItems, cartItemToAdd) => {
 
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
-    cartItem => cartItem._id === cartItemToAdd._id
+    cartItem => cartItem.productID === cartItemToAdd._id
   );
 
   if (existingCartItem) {
     return cartItems.map(cartItem =>
-      cartItem._id === cartItemToAdd._id
+      cartItem.productID === cartItemToAdd._id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
 
-  return [...cartItems, { ...cartItemToAdd,productID:cartItemToAdd._id , quantity: 1 }];
+  return [...cartItems, { productID:cartItemToAdd._id , quantity: 1 }];
 };
 
 
