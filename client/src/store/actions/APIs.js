@@ -10,8 +10,8 @@ export const USER_POST_FB_OAUTH = '/api/fbauth'
 
 //cart
 
-export const CART_GET_SERVER = '/api/cart/get'
-export const CART_GET_LOCAL = '/api/localcart/get'
+export const CART_GET_SERVER = '/api/user/servercart'
+export const CART_GET_LOCAL = '/api/user/localcart'
 
 
 export const CART_POST_MERGE = '/api/cart/mergelocal' 

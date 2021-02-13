@@ -16,20 +16,15 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
         //console.log("foundproduct" + foundproduct.products);
         if (foundproduct) {
-        
 
-       //check if product onlyOrderAvailableQty to stop adding if it out of stock
-        let product = await Product.findOne({_id: req.body.productID})
-        if(product.onlyOrderAvailableQty) {
-         
-         } 
-	
-        
-        
-        
-        
-        
-        //find the product in cart to get its Qty in cart
+
+
+
+
+
+
+
+            //find the product in cart to get its Qty in cart
             const productinCart = foundproduct.products.find(product => {
 
 
@@ -37,27 +32,27 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
             })
             //check if product onlyOrderAvailableQty to stop adding if it out of stock
-        let product = await Product.findOne({_id: req.body.productID})
-        if(product.onlyOrderAvailableQty) {
-         if(product.availableQty === 0 ||  product.availableQty < 0) {
-           return res.status(400).send({
-                error: "There are no more in stock",
-                error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
-            })
-        } 
-         } 
-         
-         //check if there is discount and there are limited number to buy
-         if(product.discount.isActive && product.discount.limitedOrder !== 0) {
-         if(product.discount.limitedOrder === productinCart.quantity ||  product.discount.limitedOrder < productinCart.quantity ) {
-           return res.status(400).send({
-                error: "You Reached maximum amount in Discount",
-                error_ar: "وصلت للحد الأقصى في وقت العرض"
-            })
-        } 
-         } 
-            
-            
+            let product = await Product.findOne({ _id: req.body.productID })
+            if (product.onlyOrderAvailableQty) {
+                if (product.availableQty === 0 || product.availableQty < 0) {
+                    return res.status(400).send({
+                        error: "There are no more in stock",
+                        error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
+                    })
+                }
+            }
+
+            //check if there is discount and there are limited number to buy
+            if (product.discount.isActive && product.discount.limitedOrder !== 0) {
+                if (product.discount.limitedOrder === productinCart.quantity || product.discount.limitedOrder < productinCart.quantity) {
+                    return res.status(400).send({
+                        error: "You Reached maximum amount in Discount",
+                        error_ar: "وصلت للحد الأقصى في وقت العرض"
+                    })
+                }
+            }
+
+
 
 
 
@@ -80,9 +75,9 @@ router.post('/api/cart/add', auth, async (req, res) => {
         foundcart.products = foundcart.products.concat({ productID: req.body.productID, quantity: 1 })
         try {
             await foundcart.save()
-          return  res.status(201).send(foundcart)
+            return res.status(201).send(foundcart)
         } catch (error) {
-          return  res.status(400).send(error)
+            return res.status(400).send(error)
         }
     } //if found cart 
 
@@ -206,114 +201,42 @@ router.post('/api/cart/deleteproduct', auth, async (req, res) => {
 router.post('/api/cart/mergelocal', auth, async (req, res) => {
 
     let localCart = req.body.products
-    console.log("localcart"+ JSON.stringify(localCart) );
     let serverCart = await Cart.findOne({ userID: req.user._id })
-    console.log("servercart"+ serverCart);
-    if(serverCart) {
-    // localCart = await Promise.all(serverCart.products.map(product => {
-    //     localCart.filter(local => {
-    //         return local.productID != product.productID
-    //     })
+    if (serverCart) {
+      
+        localCart = localCart.filter((elem) =>
+            !serverCart.products.find((product) => elem.productID == product.productID))
 
-    // }))
 
-    function filterArray(array, filter) {
-        var myArrayFiltered = [];
-        for (var i = 0; i < array.length; i++) {
-            for (var j = 0; j < filter.length; j++) {
-                if (array[i].userid === filter[j].userid && array[i].projectid === filter[j].projectid) {
-                    myArrayFiltered.push(array[i]);
-                }
-            }
+        serverCart.products = serverCart.products.concat(localCart)
+        try {
+
+            await serverCart.save()
+            return res.status(200).send({ serverCart })
+
+        } catch (error) {
+            return res.status(401).send({ error })
+
+
         }
-        return myArrayFiltered;
+    } else {
+        const cart = new Cart({
+            userID: req.user._id,
+            products: req.body.products
+        })
+        try {
+
+            await cart.save()
+            return res.status(200).send({ cart })
+
+        } catch (error) {
+            return res.status(401).send({ error })
+
+
+        }
     }
 
 
-
-    localCart = await Promise.all(serverCart.products.map(product =>{
-       return  localCart.filter(local => local.productID != product.productID)
-
-    }))
-
-    localCart = localCart.filter(async (local) =>{
-       return await Promise.all(serverCart.products.map(async (product)=>local.productID != product.productID ))
-    })
-    //const serverCartIDs = await Promise.all(serverCart.products.map(product=> product.productID))
-    const products= [
-        {
-            "_id": "60242abc209cbd32d8e85ec8",
-            "productID": "5f6fd4f18b6f6b001799243f",
-            "quantity": 2
-        },
-        {
-            "_id": "60242b00209cbd32d8e85ec9",
-            "productID": "5f6fd57f8b6f6b0017992443",
-            "quantity": 1
-        }
-    ]
-
-    let localcartArr= [
-        {
-            
-            "productID": "5f6fd57f8b6f6b0017992443",
-            "quantity": 2
-        },
-        {
-           
-            "productID": "5f6fd12a8b6f6b001799242f",
-            "quantity": 1
-        }
-        ,
-        {
-            
-            "productID": "5f7a5668a9baa50017d495e8",
-            "quantity": 1
-        }
-]
-    const r = localcartArr.filter((elem) => !products.find(({productID} ) => elem.productID ===productID) ); 
-
-const filterdLocalCart= localCart.filter((elem) => !serverCart.products.find(({productID} ) => elem.productID ===productID) ); 
-
-
-
-
-
-
-
-  
-
-
-    console.log("localcartAftermodiefed"+ JSON.stringify(filterdLocalCart) );
-   // serverCart.products = serverCart.products.concat(filterdLocalCart)
-    try {
-
-      //  await serverCart.save()
-        return res.status(200).send({serverCart})
-
-    } catch (error) {
-        return res.status(401).send({ error })
-
-
-    }
-} else {
-const cart = new Cart({
-        userID: req.user._id, 
-        products:req.body.products
-    })
-    try {
-
-        await cart.save()
-        return res.status(200).send({cart})
-
-    } catch (error) {
-        return res.status(401).send({ error })
-
-
-    }
-} 
-
-    
 
 
 
@@ -322,43 +245,43 @@ const cart = new Cart({
 
 
 
-router.get('/api/cart/get', auth, async (req, res) => {
+router.get('/api/user/servercart', auth, async (req, res) => {
 
     let cart = await Cart.findOne({ userID: req.user._id })
     if (!cart) {
         return res.status(400).send({ error: "cart is not found" })
     }
 
-    let cartWithProducts =cart.products.map(async product => {
+    let cartWithProducts = await Promise.all(cart.products.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
-        if(foundproduct) {
-        let price = foundproduct.price
-        let Qty = product.quantity
-        if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
-            price = 0,
-                Qty = 0
+        if (foundproduct) {
+            let price = foundproduct.price
+            let Qty = product.quantity
+            if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
+                price = 0,
+                    Qty = 0
 
-        }
-        if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
-            
+            }
+            if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
+
                 Qty = foundproduct.availableQty
 
-        }
-        
-        
-        return {
-            ...product.toObject(),
-            price: price,
-            nameEn: foundproduct.nameEn,
-            nameAr: foundproduct.nameAr,
-            availableQty: foundproduct.availableQty,
-            Qty: Qty
-        }
-        
-       } //end of if foundproduct
-        
-    })
+            }
+
+
+            return {
+                ...product.toObject(),
+                price: price,
+                nameEn: foundproduct.nameEn,
+                nameAr: foundproduct.nameAr,
+                availableQty: foundproduct.availableQty,
+                Qty: Qty
+            }
+
+        } //end of if foundproduct
+
+    }))
 
 
 
@@ -385,7 +308,7 @@ router.get('/api/cart/get', auth, async (req, res) => {
 
 
 
-router.get('/api/localcart/get', auth, async (req, res) => {
+router.post('/api/user/localcart', auth, async (req, res) => {
 
     let cart = req.body.cart
     if (!cart) {
@@ -395,26 +318,26 @@ router.get('/api/localcart/get', auth, async (req, res) => {
     let cartWithProducts = await Promise.all(cart.products.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
-        if(foundproduct) {
-        let price = foundproduct.price
-        let Qty = product.quantity
-        if (foundproduct.availableQty === 0) {
-            price = 0,
-                Qty = 0
+        if (foundproduct) {
+            let price = foundproduct.price
+            let Qty = product.quantity
+            if (foundproduct.availableQty === 0) {
+                price = 0,
+                    Qty = 0
 
-        }
-        
-        return {
-            ...product.toObject(),
-            price: price,
-            nameEn: foundproduct.nameEn,
-            nameAr: foundproduct.nameAr,
-            availableQty: foundproduct.availableQty,
-            Qty: Qty
-        }
-        
-       } //end of if foundproduct
-        
+            }
+
+            return {
+                ...product.toObject(),
+                price: price,
+                nameEn: foundproduct.nameEn,
+                nameAr: foundproduct.nameAr,
+                availableQty: foundproduct.availableQty,
+                Qty: Qty
+            }
+
+        } //end of if foundproduct
+
     }))
 
 
