@@ -15,15 +15,12 @@ import Head from '../headd/header/header'
 const CartItem = (props) => {
 
   useEffect( () => {
-    const fetchProducts = async () => {
-    console.log("useEffect");
-
+    (async () => {
 
     await actions.fetchCart(props.cartItems, props.token, props.isAuthenticated)
 
 
-    }
-    fetchProducts()
+    })()
   }, [])
 
 
