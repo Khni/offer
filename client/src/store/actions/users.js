@@ -19,7 +19,7 @@ import {
 } from '../types/authUserTypes'
 
 import * as APIs from './APIs.js'
-import {CHECKOUT_FINISHED} from '../types/cartTypes';
+import {CLEAR_LOCAL_CARTITEMS} from '../types';
 import {ObjIndexToZero} from './users.utils'
  
  export const signUp =( data, lang) => {
@@ -201,8 +201,8 @@ export const UserSignOut = () => {
     return async dispatch => {
       try {
      const response =   await axios.post('/api/user-add-address' , data, {
-      headers : { Authorization: `Bearer ${token}`
-       }} );
+      headers : { Authorization: `Bearer ${token}`}
+} );
   
         dispatch({
           type: ADD_NEW_ADDRESS,
@@ -349,7 +349,7 @@ export const clearCart = () => {
     return  dispatch => {
      
         dispatch({
-          type: CHECKOUT_FINISHED
+          type: CLEAR_LOCAL_CARTITEMS
          
         });
        

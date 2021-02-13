@@ -1,6 +1,6 @@
 import * as actions from '../actions'
 import * as APIs from '../actions/APIs'
-
+import * as actionTypes from "../types";
 import * as calls from './axiosCalls.js'
 import { put, call } from 'redux-saga/effects'
 
@@ -76,7 +76,27 @@ if (data.action === "login" || data.action === "signup" || data.action === 'upda
     }
 
 
+/*
+//merge localCart when user Logged
+try{
 
+const mergeRes = yield call(calls.postDataHeaderAuth, APIs.CART_POST_MERGE, data.cartItems, data.token)
+
+//remove localCart when merging is done
+
+	yield put({
+type: actionTypes.CLEAR_LOCAL_CARTITEMS
+}) 
+	
+
+
+
+
+} catch(e) {
+
+
+} 
+*/
 
     
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));

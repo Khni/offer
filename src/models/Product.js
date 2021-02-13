@@ -28,6 +28,13 @@ const productSchema = mongoose.Schema({
    
 
 discount: {
+	
+	isActive: { //true there is discount 
+
+            type: Boolean,
+            required: true
+        },
+	
         inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
             type: Boolean,
@@ -36,7 +43,12 @@ discount: {
         value: {
             type: Number,
             trim: true
-        }
+        }, 
+        limitedOrder: {//0 if unlimited
+            type: Number,
+            trim: true
+        }, 
+        
 
     } ,
     adminID: {

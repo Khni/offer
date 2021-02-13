@@ -8,6 +8,9 @@ import cartReducer from './cart/cartReducer';
 import langReducer from './langReducer/langReducer';
 import langsReducer from './langReducer/langsReducer';
 import cartItemsReducer from './cart/cartItemsReducer';
+import cartProductsReducer from './cart/cartProductsReducer';
+
+
 import checkoutReducer from './checkout/checkoutReducer';
 import { persistReducer, createMigrate} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -56,6 +59,7 @@ const Reducers = combineReducers({
     FavAndSeenReducer: FavAndSeenReducer, 
     redirectAuthReducer: redirectAuthReducer, 
     hintBoxReducer: hintBoxReducer, 
+    cartProductsReducer: cartProductsReducer
 });
 
 export default persistReducer(persistConfig, Reducers) 

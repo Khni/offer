@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Trashicon from './img/trash.svg';
 import Plusicon from './img/plus.svg';
 import Minusicon from './img/minus.svg';
@@ -13,6 +13,24 @@ import { withRouter } from 'react-router-dom';
 
 import Head from '../headd/header/header'
 const CartItem = (props) =>{
+	
+    useEffect(() => {
+    	
+    
+    	await actions.fetchCart(props.cartItems,props.token,props.isAuthenticated) 
+    
+        
+        
+        
+    }, [])
+	
+	
+	
+	
+	
+	
+	
+	
 // 	let cartdropdown = "cart-dropdown" ;
 //   if (!props.show) {
 // cartdropdown = "cart-dropdown open" ;
@@ -131,6 +149,7 @@ props.history.push({
 function mapStateToProps(state)  {
   return {
   	token: state.userAuth.authUser.token,
+  cartProducts : state.cartProductsReducer.cartProducts, 
       isAuthenticated: state.userAuth.authUser.isAuthenticated, 
     cartItems: selectCartItems(state), 
     total: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity * item.price, 0)

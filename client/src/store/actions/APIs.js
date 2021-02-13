@@ -8,6 +8,14 @@ export const USER_POST_GOOGLE_OAUTH = '/api/goauth'
 export const USER_POST_FB_OAUTH = '/api/fbauth' 
 
 
+//cart
+
+export const CART_GET_SERVER = '/api/cart/get'
+export const CART_GET_LOCAL = '/api/localcart/get'
+
+
+export const CART_POST_MERGE = '/api/cart/mergelocal' 
+
 //favorites and seen 
 export const GET_USER_FAVORITES = '/api/user-favorites' 
 export const GET_USER_SEEN = '/api/user-viewed' 

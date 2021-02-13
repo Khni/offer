@@ -16,17 +16,55 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
         //console.log("foundproduct" + foundproduct.products);
         if (foundproduct) {
-            const product = foundproduct.products.find(product => {
+        
+
+       //check if product onlyOrderAvailableQty to stop adding if it out of stock
+        let product = await Product.findOne({_id: req.body.productID})
+        if(product.onlyOrderAvailableQty) {
+         
+         } 
+	
+        
+        
+        
+        
+        
+        //find the product in cart to get its Qty in cart
+            const productinCart = foundproduct.products.find(product => {
 
 
                 return product.productID == req.body.productID
 
             })
+            //check if product onlyOrderAvailableQty to stop adding if it out of stock
+        let product = await Product.findOne({_id: req.body.productID})
+        if(product.onlyOrderAvailableQty) {
+         if(product.availableQty === 0 ||  product.availableQty < 0) {
+           return res.status(400).send({
+                error: "There are no more in stock",
+                error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
+            })
+        } 
+         } 
+         
+         //check if there is discount and there are limited number to buy
+         if(product.discount.isActive && product.discount.limitedOrder !== 0) {
+         if(product.discount.limitedOrder === productinCart.quantity ||  product.discount.limitedOrder < productinCart.quantity ) {
+           return res.status(400).send({
+                error: "You Reached maximum amount in Discount",
+                error_ar: "وصلت للحد الأقصى في وقت العرض"
+            })
+        } 
+         } 
+            
+            
+
+
 
             try {
 
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
-                    { $set: { "products.$.quantity": product.quantity + 1 } },
+                    { $set: { "products.$.quantity": productinCart.quantity + 1 } },
                     { safe: true })
                 return res.status(200).send({ updatecart })
                 // updatecart.save()
@@ -233,11 +271,9 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
             "quantity": 1
         }
 ]
-    let filterd= localcartArr.filter( local => {
-        return products.some( product => {
-          return local.productID !==  product.productID    
-        });
-      });
+    const r = localcartArr.filter((elem) => !products.find(({productID} ) => elem.productID ===productID) ); 
+
+const filterdLocalCart= localCart.filter((elem) => !serverCart.products.find(({productID} ) => elem.productID ===productID) ); 
 
 
 
@@ -248,8 +284,8 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
   
 
 
-    console.log("localcartAftermodiefed"+ JSON.stringify(filterd) );
-   // serverCart.products = serverCart.products.concat(localCart)
+    console.log("localcartAftermodiefed"+ JSON.stringify(filterdLocalCart) );
+   // serverCart.products = serverCart.products.concat(filterdLocalCart)
     try {
 
       //  await serverCart.save()
@@ -299,11 +335,17 @@ router.get('/api/cart/get', auth, async (req, res) => {
         if(foundproduct) {
         let price = foundproduct.price
         let Qty = product.quantity
-        if (foundproduct.availableQty === 0) {
+        if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
             price = 0,
                 Qty = 0
 
         }
+        if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
+            
+                Qty = foundproduct.availableQty
+
+        }
+        
         
         return {
             ...product.toObject(),

@@ -23,6 +23,7 @@ router.post('/api/order/add', auth, async (req, res) => {
 
     }))
     if (outOfStock.length > 0) {
+    	//frontend should redirect to a cart which will update the order list
         return res.status(400).send({ outOfStock })
     }
     let totalPrice = req.body.products.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)

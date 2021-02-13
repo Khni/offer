@@ -1,4 +1,4 @@
-import {TOGGLE_CART, OPEN_SIDEBAR} from '../types/cartTypes.js'
+import {TOGGLE_CART, OPEN_SIDEBAR, FETCH_CART} from '../types'
 
 
 export const toggle =() =>{

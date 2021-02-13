@@ -1,4 +1,4 @@
-import {ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, CHECKOUT_FINISHED} from '../../types/cartTypes';
+import {ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, CLEAR_LOCAL_CARTITEMS} from '../../types';
 // import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 
@@ -23,7 +23,7 @@ const cartItemsReducer = (state = INITIAL_STATE, action) => {
       
       
       
-      case CHECKOUT_FINISHED:
+      case CLEAR_LOCAL_CARTITEMS:
       return {
         ...state,
         cartItems: [] 
