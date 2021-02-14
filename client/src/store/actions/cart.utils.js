@@ -17,11 +17,34 @@ export const addItemToCart2 = (cartItems, cartItemToAdd) => {
 
 
 export const addItemToCart = (cartItems, cartItemToAdd) => {
+	
+	//check if product onlyOrderAvailableQty to stop adding if it out of stock
+ 
+            if (cartItemToAdd.onlyOrderAvailableQty) {
+                if (cartItemToAdd.availableQty === 0 || cartItemToAdd.availableQty < 0) {
+                    return;
+                }
+            }
+
+            
+	
+	
   const existingCartItem = cartItems.find(
     cartItem => cartItem.productID === cartItemToAdd._id
   );
 
   if (existingCartItem) {
+  	//check if there is discount and there are limited number to buy
+            if (cartItemToAdd.discount.isActive && cartItemToAdd.discount.limitedOrder !== 0) {
+                if (cartItemToAdd.discount.limitedOrder === existingCartItem.quantity || cartItemToAdd.discount.limitedOrder < existingCartItem.quantity) {
+                    return;
+                }
+            }
+  
+  
+  
+  
+  
     return cartItems.map(cartItem =>
       cartItem.productID === cartItemToAdd._id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }

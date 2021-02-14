@@ -256,9 +256,33 @@ router.get('/api/user/servercart', auth, async (req, res) => {
 
         const foundproduct = await Product.findById(product.productID)
         if (foundproduct) {
-            let price = foundproduct.price
+            
+                 	let price = foundproduct.price
             let Qty = product.quantity
-            if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
+        
+        
+        
+        if (foundproduct.onlyOrderAvailableQty) {
+                if (foundproduct.availableQty < product.quantity ) {
+                    Qty = foundproduct.availableQty
+                }
+            }
+
+            //check if there is discount and there are limited number to buy
+            if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
+                if (foundproduct.discount.limitedOrder < Qty ) {
+                    Qty = foundproduct.discount.limitedOrder
+                }
+            }
+     
+            
+            
+            
+            
+            
+            
+            
+        /*    if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
                 price = 0,
                     Qty = 0
 
@@ -267,7 +291,7 @@ router.get('/api/user/servercart', auth, async (req, res) => {
 
                 Qty = foundproduct.availableQty
 
-            }
+            }*/
 
 
             return {
@@ -320,13 +344,25 @@ router.post('/api/user/localcart', async (req, res) => {
         const foundproduct = await Product.findById(product.productID)
         
         if (foundproduct) {
-            let price = foundproduct.price
+        	let price = foundproduct.price
             let Qty = product.quantity
-            if (foundproduct.availableQty === 0) {
-                price = 0,
-                    Qty = 0
-
+        
+        
+        
+        if (foundproduct.onlyOrderAvailableQty) {
+                if (foundproduct.availableQty < product.quantity ) {
+                    Qty = foundproduct.availableQty
+                }
             }
+
+            //check if there is discount and there are limited number to buy
+            if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
+                if (foundproduct.discount.limitedOrder < Qty ) {
+                    Qty = foundproduct.discount.limitedOrder
+                }
+            }
+        
+      
            
 
             return {
