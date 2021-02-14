@@ -10,7 +10,7 @@ import {
 } from '../types';
 import axios from 'axios'
 import * as APIs from './APIs'
-import { addItemToCart, removeItemFromCart } from './cart.utils';
+import { addItemToCart, removeItemFromCart ,deleteItemFromCart } from './cart.utils';
 
 
 export const chechoutRedirect = () => {
@@ -64,6 +64,29 @@ export const addItemToCartItem = (item, items) => {
 export const removeItemFromCartItem = (item, items) => {
 
   const updatedItems = removeItemFromCart(items, item)
+  return dispatch => {
+
+    dispatch({
+      type: CART_UPDATE
+    });
+
+    dispatch({
+      type: REMOVE_ITEM_FROM_CART,
+      items: updatedItems
+
+    });
+
+
+  };
+}
+
+
+
+
+
+export const deleteItemFromCartItem = (item, items) => {
+
+  const updatedItems = deleteItemFromCart(items, item)
   return dispatch => {
 
     dispatch({

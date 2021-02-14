@@ -127,7 +127,18 @@ class CartItem extends React.Component {
 
             <div className="cart-Item" >
 
-              <div className="cart-item-desc">
+          {item.quantity === 0 ? 
+          <div className="cart-item-desc">
+          <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + item.imgURLs[0].imgURL} className="cart-item-img" />
+          <div className="cart-item-details">
+            <p className="cart-item-title margin0"><h5>OUT OF STOCK</h5> </p>
+           
+          </div>
+          </div> :
+
+
+         <div> 
+          <div className="cart-item-desc">
                 <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + item.imgURLs[0].imgURL} className="cart-item-img" />
                 <div className="cart-item-details">
                   <p className="cart-item-title margin0">{item.nameEn} </p>
@@ -137,7 +148,7 @@ class CartItem extends React.Component {
               </div>{/* end of cart-item-desc*/}
 
               <div className="cart-item-bar">
-                <div className="remove-text-icon" onClick={() => this.props.removeItemFromCartItem(item, this.props.cartItems)} >
+                <div className="remove-text-icon" onClick={() => this.props.deleteItemFromCartItem(item, this.props.cartItems)} >
                   <img alt="delete" src={Trashicon} className="trash-icon" />
                   <p className="remove-text" >REMOVE </p>
                 </div>{/*remove-text-icon */}
@@ -150,6 +161,9 @@ class CartItem extends React.Component {
 
 
               </div> {/*end of cart-item-bar */}
+        </div>
+        }
+
 
 
 
