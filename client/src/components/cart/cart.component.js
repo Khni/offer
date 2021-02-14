@@ -17,9 +17,7 @@ class CartItem extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-    updateCart: false
-     } 
+   
    
 
   }
@@ -41,12 +39,12 @@ class CartItem extends React.Component {
   
   
   async componentDidUpdate() {
-  	if(this.state.updateCart) {
+  	if(this.props.updateCart) {
   await this.props.fetchCart(this.props.cartItems, 
     this.props.token,
      this.props.isAuthenticated)
      console.log("cartItem" + this.props.cartProducts);
-     this.setState({updateCart: false}) 
+    
     } 
   }
   
@@ -104,7 +102,7 @@ class CartItem extends React.Component {
         <Head />
       </div>
 
-      {this.props.cartProducts.length() == 0 ? <h2 className="EmprtCart">Cart is Empty</h2> :  
+      {this.props.cartProducts.length == 0 ? <h2 className="EmprtCart">Cart is Empty</h2> :  
 
 
 
@@ -183,6 +181,8 @@ class CartItem extends React.Component {
 function mapStateToProps(state) {
   return {
     token: state.userAuth.authUser.token,
+    cartIsLoading: state.cartProductsReducer.isLoading,
+    updateCart: state.cartProductsReducer.updateCart,
     cartProducts: state.cartProductsReducer.cartProducts,
     isAuthenticated: state.userAuth.authUser.isAuthenticated,
     cartItems: selectCartItems(state),

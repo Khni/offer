@@ -38,16 +38,16 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const existingCartItem = cartItems.find(
-    cartItem => cartItem._id === cartItemToRemove._id
+    cartItem =>  cartItem.productID  === cartItemToRemove._id
   );
 
   if (existingCartItem.quantity === 1) {
-    return cartItems.filter(cartItem => cartItem._id !== cartItemToRemove._id);
+    return cartItems.filter(cartItem => cartItem.productID !== cartItemToRemove._id);
   }
 
   return cartItems.map(cartItem =>
-    cartItem._id === cartItemToRemove._id
-      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+    cartItem.productID === cartItemToRemove._id
+      ? { productID:cartItemToRemove._id, quantity: cartItem.quantity - 1 }
       : cartItem
   );
 };

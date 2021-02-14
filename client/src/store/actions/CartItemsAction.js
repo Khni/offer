@@ -5,6 +5,8 @@ import {
   CHECKOUT_LINK_REMOVE
   , FETCH_CART
   , ERROR_FETCH_CART
+  , CART_IS_LOADING
+  , CART_UPDATE
 } from '../types';
 import axios from 'axios'
 import * as APIs from './APIs'
@@ -37,11 +39,15 @@ export const addItem = (item, items) => ({
 
 
 export const addItemToCartItem = (item, items) => {
+
   //get token and isAuthenticated to check if user logged 
   //if logged return axios to add to server cart
   //else add to localCart
   const updatedItems = addItemToCart(items, item)
   return dispatch => {
+    dispatch({
+      type: CART_UPDATE
+    });
 
     dispatch({
       type: ADD_ITEM_TO_CART,
@@ -59,6 +65,10 @@ export const removeItemFromCartItem = (item, items) => {
 
   const updatedItems = removeItemFromCart(items, item)
   return dispatch => {
+
+    dispatch({
+      type: CART_UPDATE
+    });
 
     dispatch({
       type: REMOVE_ITEM_FROM_CART,
@@ -84,34 +94,34 @@ export const removeItem = (item, items) => ({
 
 
 export const fetchCart = (cartItems, token, isAuthenticated) => {
-  console.log("from fetchCar Func");
+
   return async dispatch => {
-    
-    console.log("token" +token);
-    console.log("token" +isAuthenticated);
-    console.log("token" +JSON.stringify(cartItems) );
+    dispatch({
+      type: CART_IS_LOADING
+    });
+
     try {
-     
+
       let response = ''
       if (isAuthenticated && token) {
         //if user is Authenticated fetch cart from server
         response = await axios.get(APIs.CART_GET_SERVER, {
           headers: { Authorization: `Bearer ${token}` }
         });
-      } else  {
+      } else {
         console.log("not user");
         //if user is not Authenticated return local cart from server
-        response = await axios.post(APIs.CART_GET_LOCAL,{cart: cartItems});
-        console.log("cart"+ response.data.cartWithProducts);
+        response = await axios.post(APIs.CART_GET_LOCAL, { cart: cartItems });
+        console.log("cart" + response.data.cartWithProducts);
       }
-      console.log("res"+ response);
+      console.log("res" + response);
       dispatch({
         type: FETCH_CART,
         cart: response.data.cartWithProducts
       });
 
     } catch (err) {
-      console.log("err"+err);
+      console.log("err" + err);
       dispatch({
         type: ERROR_FETCH_CART,
         payload: err
