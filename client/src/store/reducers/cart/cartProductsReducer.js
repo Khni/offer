@@ -8,7 +8,9 @@ import {FETCH_CART
 const INITIAL_STATE = {
   
   cartProducts: [], 
-  fetchError: '' 
+  fetchError: '', 
+  isLoading: false, 
+  updateCart: false
 };
 
 const cartProductsReducer = (state = INITIAL_STATE, action) => {
@@ -16,7 +18,9 @@ const cartProductsReducer = (state = INITIAL_STATE, action) => {
     case FETCH_CART :
       return {
      ...state,
-        cartProducts: action.cart
+        cartProducts: action.cart, 
+        isLoading: false, 
+        updateCart: false
       };
       
       case ERROR_FETCH_CART :
