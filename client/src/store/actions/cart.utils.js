@@ -22,7 +22,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
  
             if (cartItemToAdd.onlyOrderAvailableQty) {
                 if (cartItemToAdd.availableQty === 0 || cartItemToAdd.availableQty < 0) {
-                    return;
+                    return [...cartItems]
                 }
             }
 
@@ -37,7 +37,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   	//check if there is discount and there are limited number to buy
             if (cartItemToAdd.discount.isActive && cartItemToAdd.discount.limitedOrder !== 0) {
                 if (cartItemToAdd.discount.limitedOrder === existingCartItem.quantity || cartItemToAdd.discount.limitedOrder < existingCartItem.quantity) {
-                    return;
+                  return [...cartItems]
                 }
             }
   

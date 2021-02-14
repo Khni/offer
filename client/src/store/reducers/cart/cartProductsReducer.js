@@ -11,6 +11,8 @@ import {
 const INITIAL_STATE = {
 
   cartProducts: [],
+  filteredCart: [], //cart does not contain out of stock product
+  totalPrice: 0, //total price of filteredCart
   fetchError: '',
   isLoading: false,
   updateCart: false
@@ -39,6 +41,8 @@ const cartProductsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartProducts: action.cart,
+        filteredCart: action.filteredCart,
+        totalPrice: action.totalPrice,
         isLoading: false,
         updateCart: false
       };

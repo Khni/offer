@@ -372,8 +372,10 @@ router.post('/api/user/localcart', async (req, res) => {
                 nameEn: foundproduct.nameEn,
                 nameAr: foundproduct.nameAr,
                 availableQty: foundproduct.availableQty,
-                quantity: product.quantity,
-                imgURLs: foundproduct.imgURLs
+                quantity: Qty,
+                imgURLs: foundproduct.imgURLs,
+                discount: foundproduct.discount,
+                onlyOrderAvailableQty: foundproduct.onlyOrderAvailableQty
             }
 
         } //end of if foundproduct

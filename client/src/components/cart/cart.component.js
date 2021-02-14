@@ -16,6 +16,13 @@ class CartItem extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state ={
+      filterdCart: []
+    }
+
+
+
     
    
    
@@ -34,6 +41,9 @@ class CartItem extends React.Component {
   await this.props.fetchCart(this.props.cartItems, 
     this.props.token,
      this.props.isAuthenticated)
+
+    let cart = this.props.cartProducts.filter(product => product.quantity !== 0)
+    console.log("cartfiltered" + cart);
      console.log("cartItem" + this.props.cartProducts);
   }
   
@@ -110,6 +120,10 @@ class CartItem extends React.Component {
         <div className="cartItemContainer">
           {this.props.cartProducts.map(item => (
 
+            
+        
+
+         
 
             <div className="cart-Item" >
 
@@ -147,7 +161,7 @@ class CartItem extends React.Component {
 
 
 
-          <p className="total-sum-cart" > {"Total: " + this.props.total}</p>
+          <p className="total-sum-cart" > {"Total: " + this.props.totalPrice}</p>
 
           {!this.props.isAuthenticated && !this.props.token ?
             <button onClick={() => this.checkoutRedirectPush()} className="custum-btn-form-fixed" >Checkout</button>
@@ -184,9 +198,14 @@ function mapStateToProps(state) {
     cartIsLoading: state.cartProductsReducer.isLoading,
     updateCart: state.cartProductsReducer.updateCart,
     cartProducts: state.cartProductsReducer.cartProducts,
+    filteredCart: state.cartProductsReducer.filteredCart,
+    totalPrice: state.cartProductsReducer.totalPrice,
     isAuthenticated: state.userAuth.authUser.isAuthenticated,
     cartItems: selectCartItems(state),
-    total: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
+
+   // total: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
+
+    total: 0
 
 
   };

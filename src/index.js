@@ -20,7 +20,7 @@ app.use(express.json());
 const path = require('path');
 
 const userRouter = require('./routers/userRouter')
-const {router , routerPromise} =require('./routers/userRouter')
+const { router, routerPromise } = require('./routers/userRouter')
 const adminRouter = require('./routers/adminRouter')
 const CategoryRouter = require('./routers/categoryRouter')
 const SectionRouter = require('./routers/sectionRouter')
@@ -33,10 +33,11 @@ const VoucherRouter = require('./routers/voucherRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
 const ReviewRouter = require('./routers/reviewRouter')
 const CartRouter = require('./routers/cartRouter')
+const Product = require('./models/Product')
 app.use(cors())
 
-app.use(cors({credentials: true, origin: 'https://juv-khaled.herokuapp.com'}));
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: 'https://juv-khaled.herokuapp.com' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 //enable for using both ports client and server for developement
 /*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
@@ -51,8 +52,8 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
       next();
     
   });*/
-  //--end of enbling use both ports for developing  
- 
+//--end of enbling use both ports for developing  
+
 /*
 Access to XMLHttpRequest at 'http://localhost:8080/signup' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field authorization is not allowed by Access-Control-Allow-Headers in preflight response.
 VM167:1 POST http://localhost:8080/signup net::ERR_FAILED
@@ -106,7 +107,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 // logger.error("first error")
 // console.log(`Your AT is ${process.env.ATO}`)
-app.use('/imgs',express.static(path.join(__dirname, '../uploads')));
+app.use('/imgs', express.static(path.join(__dirname, '../uploads')));
 
 
 //to get data jason from postman
@@ -127,10 +128,16 @@ app.use(PurchaseRouter)
 app.use(VoucherRouter)
 app.use(CartRouter)
 
+
+
+
+
+
+
 app.use(express.static(path.join(__dirname, '../client/build')))
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+  res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
-app.listen(port,()=>{
-    console.log('ok')
+app.listen(port, () => {
+  console.log('ok')
 })

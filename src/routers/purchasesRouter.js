@@ -159,14 +159,26 @@ router.get('/api/admin/purchase/instock/:id', async (req, res) => {
 })
 
 //this router for upgrade database by updating all records
-/*router.get('/api/admin/upgradedb', async (req, res) => {
-    // let update = {onOrderQty:0, transitQty:0 , availableQty:0 , onHandQty:0 , reservedQty:0,
-    //     pickedQty:0, shippedQty:0 , deliveredQty:0
-    
-    // }
-    let update = {history:[]}
+router.get('/api/admin/upgradedb', async (req, res) => {
+   // let update = {onOrderQty:0, transitQty:0 , availableQty:0 , onHandQty:0 , reservedQty:0,
+//     pickedQty:0, shippedQty:0 , deliveredQty:0
 
- await Purchase.updateMany({},update)
+// }
+//  let update = {history:[]}
+let update = {
+  discount: {
+
+    isActive: false,
+    inPercentage: false,
+    value: 0,
+    limitedOrder: 0
+
+
+  },
+  onlyOrderAvailableQty: false
+}
+
+await Product.updateMany({}, update)
 
 
     try {
@@ -177,7 +189,7 @@ router.get('/api/admin/purchase/instock/:id', async (req, res) => {
     } catch (e) {
         res.status(400).send(e)
     }
-})*/
+})
 
 
 

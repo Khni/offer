@@ -44,7 +44,7 @@ const btns = [
 
 
     const checkItem = () => {
-        const itemCheck = props.cartItems.find((item) => item._id === props.item._id)
+        const itemCheck = props.cartItems.find((item) => item.productID === props.item._id)
         return itemCheck
     }
 

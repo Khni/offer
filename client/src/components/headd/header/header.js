@@ -151,7 +151,8 @@ function mapStateToProps(state) {
     name: state.userAuth.authUser.name,
     // hidden: cartHidden(state) ,
     hiddenSidebar: sidebarHidden(state),
-    totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
+    totalItems: 0
+   // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
     // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 
 
