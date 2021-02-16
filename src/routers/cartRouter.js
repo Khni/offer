@@ -2,7 +2,7 @@ const express = require('express')
 const Cart = require('../models/Cart')
 const router = new express.Router()
 const Product = require('../models/Product')
-
+const {CartProductsList} =require('./cartRouter.utils')
 const auth = require('../middleware/auth')
 
 
@@ -61,7 +61,10 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $set: { "products.$.quantity": productinCart.quantity + 1 } },
                     { safe: true })
-                return res.status(200).send({ updatecart })
+                    const cart = await Cart.findOne({ userID: req.user._id })
+
+            const cartProducts =await CartProductsList(cart, req.user._id) 
+                return res.status(200).send({ cartProducts })
                 // updatecart.save()
             } catch (error) {
                 return res.status(401).send({ error })
@@ -75,7 +78,9 @@ router.post('/api/cart/add', auth, async (req, res) => {
         foundcart.products = foundcart.products.concat({ productID: req.body.productID, quantity: 1 })
         try {
             await foundcart.save()
-            return res.status(201).send(foundcart)
+            const cartProducts =await CartProductsList(foundcart, req.user._id) 
+                return res.status(200).send({ cartProducts })
+            
         } catch (error) {
             return res.status(400).send(error)
         }
@@ -88,7 +93,11 @@ router.post('/api/cart/add', auth, async (req, res) => {
     cart.products = cart.products.concat({ productID: req.body.productID, quantity: req.body.quantity })
     try {
         await cart.save()
-        res.status(201).send(cart)
+        
+        
+        const cartProducts =await CartProductsList(cart, req.user._id) 
+                return res.status(200).send({ cartProducts })
+            
     } catch (e) {
         res.status(400).send(e)
     }
@@ -115,8 +124,11 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
 
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $pull: { products: { productID: product.productID } } });
+const cart = await Cart.findOne({ userID: req.user._id })
 
-                return res.status(200).send()
+                const cartProducts =await CartProductsList(cart, req.user._id) 
+                return res.status(200).send({ cartProducts })
+            
 
 
 
@@ -141,7 +153,11 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
             const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                 { $set: { "products.$.quantity": product.quantity - 1 } },
                 { safe: true })
-            return res.status(200).send({ updatecart })
+            const cart = await Cart.findOne({ userID: req.user._id })
+
+                const cartProducts =await CartProductsList(cart, req.user._id) 
+                return res.status(200).send({ cartProducts })
+            
             // updatecart.save()
         } catch (error) {
             return res.status(401).send({ error })
@@ -159,10 +175,10 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
 
 
 //delete product from cart
-router.post('/api/cart/deleteproduct', auth, async (req, res) => {
+router.post('/api/cart/removeproduct', auth, async (req, res) => {
 
     const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
-    //validate that cart and product are fount toperform decreasing
+    //validate that cart and product are found toperform decreasing
     console.log("foundproduct" + foundproduct);
     if (foundproduct) {
 
@@ -179,7 +195,11 @@ router.post('/api/cart/deleteproduct', auth, async (req, res) => {
             const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                 { $pull: { products: { productID: product.productID } } });
 
-            return res.status(200).send()
+            const cart = await Cart.findOne({ userID: req.user._id })
+
+                const cartProducts =await CartProductsList(cart, req.user._id) 
+                return res.status(200).send({ cartProducts })
+            
 
         } catch (error) {
             return res.status(401).send({ error })

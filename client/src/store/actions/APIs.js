@@ -13,6 +13,13 @@ export const USER_POST_FB_OAUTH = '/api/fbauth'
 export const CART_GET_SERVER = '/api/user/servercart'
 export const CART_GET_LOCAL = '/api/user/localcart'
 
+export const CART_POST_ADD = '/api/cart/add' 
+export const CART_POST_DECREASE = '/api/cart/decrease' 
+export const CART_POST_REMOVE = '/api/cart/removeproduct'
+
+
+
+
 
 export const CART_POST_MERGE = '/api/cart/mergelocal' 
 
