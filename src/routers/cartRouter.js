@@ -227,7 +227,7 @@ router.post('/api/cart/removeproduct', auth, async (req, res) => {
 
 
 
-router.post('/api/cart/mergelocal', auth, async (req, res) => {
+router.post('/api/cart-mergelocal', auth, async (req, res) => {
 
     let localCart = req.body.products
     let serverCart = await Cart.findOne({ userID: req.user._id })

@@ -76,11 +76,11 @@ if (data.action === "login" || data.action === "signup" || data.action === 'upda
     }
 
 
-/*
+
 //merge localCart when user Logged
 try{
 
-const mergeRes = yield call(calls.postDataHeaderAuth, APIs.CART_POST_MERGE, data.cartItems, data.token)
+const mergeRes = yield call(calls.postDataHeaderAuth, APIs.CART_POST_MERGE, {products: data.cartItems} , response.data.token)
 
 //remove localCart when merging is done
 
@@ -96,7 +96,7 @@ type: actionTypes.CLEAR_LOCAL_CARTITEMS
 
 
 } 
-*/
+
 
     
     // yield put(actions.checkAuthTimeout(response.data.expiresIn));

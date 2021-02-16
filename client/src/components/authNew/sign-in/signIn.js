@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { selectTermsLang } from '../../../store/reducers/langReducer/langsReselect';
 //import * as actions from '../../../store/actions/users.js';
 import * as actions from '../../../store/actions';
-
+import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
 import Form from '../../form/form.component';
 class signIn extends Component {
 
@@ -40,7 +40,7 @@ class signIn extends Component {
 
     //  const { signIn } = this.props;
     //   await signIn(formData);
-    this.props.signInAuth(formData, "login")
+    this.props.signInAuth(formData, "login", this.props.cartItems)
 
   }
 
@@ -49,7 +49,7 @@ class signIn extends Component {
     console.log("google res" + JSON.stringify(res.accessToken));
     //const data = { access_token: res.accessToken }
     // console.log(data+"data");
-    this.props.signInAuth({ access_token: res.accessToken }, "goauth")
+    this.props.signInAuth({ access_token: res.accessToken }, "goauth", this.props.cartItems)
     //  await this.props.oauthGoogle(res.accessToken);
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
     //   this.props.history.push('/');
@@ -63,7 +63,7 @@ class signIn extends Component {
       id: res.id,
       email: res.email
 
-    }, "fbauth")
+    }, "fbauth", this.props.cartItems)
   }
 
   componentDidMount() {
@@ -142,6 +142,7 @@ const mapStateToProps = state => {
     passwordString: selectTermsLang(state).password,
     classN: selectTermsLang(state).classN,
     ToSignUp: selectTermsLang(state).ToSignUp,
+    cartItems: selectCartItems(state),
     signup_title: selectTermsLang(state).signup_title
   }
 
@@ -151,7 +152,7 @@ const mapDispatchToProps = dispatch => {
   return {
 
     chechoutRedirectDone: () => dispatch(actions.chechoutRedirectDone()),
-    signInAuth: (data, action) => dispatch(actions.auth(data, action)),
+    signInAuth: (data, action, cartItems) => dispatch(actions.auth(data, action, cartItems)),
     authLeft: () => dispatch(actions.authLeft())
     //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
   };

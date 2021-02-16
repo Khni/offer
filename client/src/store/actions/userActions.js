@@ -63,11 +63,12 @@ export const updateUserFail = error => {
 
 
 
-export const auth = (data, action) => {
+export const auth = (data, action, cartItems) => {
   return {
     type: actionTypes.AUTH_USER,
     data: data,
-    action: action
+    action: action, 
+    cartItems :cartItems
   };
 };
 export const updateUser = (data, action, token) => {

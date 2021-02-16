@@ -12,6 +12,7 @@ import {
 } from '../../../store/reducers/langReducer/langsReselect';
 //import { selectTermsLang, selectLang} from '../../../store/reducers/langReducer/langReselect';
 import * as actions from '../../../store/actions';
+import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
 // import GoogleLogin from 'react-google-login';
 // import FacebookLogin from 'react-facebook-login';
 
@@ -38,7 +39,7 @@ class signUp extends Component {
     //const { signUp } = this.props;
     let lang = this.props.lang
     console.log(lang)
-    await this.props.signUpAuth(formData, "signup")
+    await this.props.signUpAuth(formData, "signup", this.props.cartItems)
     //  await signUp(formData, lang);
 
   }
@@ -50,7 +51,7 @@ class signUp extends Component {
     console.log("google res" + JSON.stringify(res.accessToken));
     //const data = { access_token: res.accessToken }
     // console.log(data+"data");
-    this.props.signUpAuth({ access_token: res.accessToken }, "goauth")
+    this.props.signUpAuth({ access_token: res.accessToken }, "goauth",this.props.cartItems)
     //  await this.props.oauthGoogle(res.accessToken);
     // if (this.props.isAuthenticated && !this.props.errorMsg && this.props.token) {
     //   this.props.history.push('/');
@@ -67,7 +68,7 @@ class signUp extends Component {
       id: res.id,
       email: res.email
 
-    }, "fbauth")
+    }, "fbauth",this.props.cartItems)
   }
 
 
@@ -189,6 +190,7 @@ const mapStateToProps = state => {
     phoneString: selectTermsLang(state).phone,
     classN: selectTermsLang(state).classN,
     Loading: state.userAuth.authUser.Loading,
+    cartItems: selectCartItems(state),
     //lang: selectLang(state)
     lang: state.langReducer.lang
   }
@@ -198,7 +200,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     chechoutRedirectDone: () => dispatch(actions.chechoutRedirectDone()),
-    signUpAuth: (data, action) => dispatch(actions.auth(data, action)),
+    signUpAuth: (data, action, cartItems) => dispatch(actions.auth(data, action, cartItems)),
     authLeft: () => dispatch(actions.authLeft())
     //  onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
   };
