@@ -22,7 +22,7 @@ export const CART_POST_MERGE = '/api/cart-mergelocal'
 
 
 
-export const CART_POST_MERGE = '/api/cart/mergelocal' 
+
 
 //favorites and seen 
 export const GET_USER_FAVORITES = '/api/user-favorites' 
