@@ -214,6 +214,8 @@ class ProductPage extends Component {
             <div className="MiddleComponent">
               <MiddleComponent
                 favorite={this.state.favorite}
+                isAuthenticated={this.props.isAuthenticated}
+                token={this.props.token}
                 name={this.state.product.nameEn}
                 price={this.state.product.price}
                 item={this.state.product}
@@ -252,6 +254,7 @@ const mapStateToProps = (state) => {
   return {
     FavoritesLoading: state.FavAndSeenReducer.favorites.Loading,
     token: state.userAuth.authUser.token,
+    isAuthenticated: state.userAuth.authUser.isAuthenticated,
     RefreshToken: state.userAuth.authUser.refreshToken,
     id: state.userAuth.authUser.id,
     FavoritesList: state.FavAndSeenReducer.favorites.list,

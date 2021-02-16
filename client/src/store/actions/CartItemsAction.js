@@ -10,7 +10,7 @@ import {
 } from '../types';
 import axios from 'axios'
 import * as APIs from './APIs'
-import { addItemToCart, removeItemFromCart ,deleteItemFromCart } from './cart.utils';
+import { addItemToCart, removeItemFromCart, deleteItemFromCart } from './cart.utils';
 
 
 export const chechoutRedirect = () => {
@@ -39,44 +39,49 @@ export const addItem = (item, items) => ({
 
 
 export const addItemToCartItem = (item, items, token, isAuthenticated) => {
-if (token && isAuthenticated) {
-	return async dispatch => {
-		let filteredCart= []
-      let totalPrice= 0
-		
-    dispatch({
-      type: CART_UPDATE
-    });
+  console.log("token: " +token);
+  if (token && isAuthenticated) {
+    console.log("user auth");
+    return async dispatch => {
+      let response = ''
+      let filteredCart = []
+      let totalPrice = 0
+
+      dispatch({
+        type: CART_UPDATE
+      });
 
 
 
-	try{
-	response = await axios.post(APIs.CART_POST_ADD,{productID:item._id} , {
+      try {
+        response = await axios.post(APIs.CART_POST_ADD, { productID: item._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
-         filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+        console.log("res" +response );
+
+        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-      
-      
-      console.log("res" + response);
-      dispatch({
-        type: FETCH_CART,
-        cart: response.data.cartProducts,
-        filteredCart: filteredCart,
-        totalPrice: totalPrice,
-
-      });
-        
-        
-       } catch (e) {
 
 
-} 
-        
-       } 
+        console.log("res" + response);
+        dispatch({
+          type: FETCH_CART,
+          cart: response.data.cartProducts,
+          filteredCart: filteredCart,
+          totalPrice: totalPrice,
 
-} 
+        });
+
+
+      } catch (e) {
+        console.log("err" +JSON.stringify( e.response.data)  );
+
+
+      }
+
+    }
+
+  }
   //get token and isAuthenticated to check if user logged 
   //if logged return axios to add to server cart
   //else add to localCart
@@ -98,47 +103,48 @@ if (token && isAuthenticated) {
 
 
 
-export const removeItemFromCartItem = (item, items, token, isAuthenticated ) => {
+export const removeItemFromCartItem = (item, items, token, isAuthenticated) => {
 
 
-if (token && isAuthenticated) {
-	return async dispatch => {
-		let filteredCart= []
-      let totalPrice= 0
-		
-    dispatch({
-      type: CART_UPDATE
-    });
+  if (token && isAuthenticated) {
+    return async dispatch => {
+      let response = ''
+      let filteredCart = []
+      let totalPrice = 0
+
+      dispatch({
+        type: CART_UPDATE
+      });
 
 
 
-	try{
-	response = await axios.post(APIs.CART_POST_DECREASE,{productID:item._id} , {
+      try {
+        response = await axios.post(APIs.CART_POST_DECREASE, { productID: item._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
-         filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+
+        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-      
-      
-      console.log("res" + response);
-      dispatch({
-        type: FETCH_CART,
-        cart: response.data.cartProducts,
-        filteredCart: filteredCart,
-        totalPrice: totalPrice,
-
-      });
-        
-        
-       } catch (e) {
 
 
-} 
-        
-       } 
+        console.log("res" + response);
+        dispatch({
+          type: FETCH_CART,
+          cart: response.data.cartProducts,
+          filteredCart: filteredCart,
+          totalPrice: totalPrice,
 
-} 
+        });
+
+
+      } catch (e) {
+
+
+      }
+
+    }
+
+  }
 
 
 
@@ -164,49 +170,50 @@ if (token && isAuthenticated) {
 
 
 
-export const deleteItemFromCartItem = (item, items, token, isAuthenticated ) => {
+export const deleteItemFromCartItem = (item, items, token, isAuthenticated) => {
 
 
 
 
-if (token && isAuthenticated) {
-	return async dispatch => {
-		let filteredCart= []
-      let totalPrice= 0
-		
-    dispatch({
-      type: CART_UPDATE
-    });
+  if (token && isAuthenticated) {
+    return async dispatch => {
+      let response = ''
+      let filteredCart = []
+      let totalPrice = 0
+
+      dispatch({
+        type: CART_UPDATE
+      });
 
 
 
-	try{
-	response = await axios.post(APIs.CART_POST_REMOVE,{productID:item._id} , {
+      try {
+        response = await axios.post(APIs.CART_POST_REMOVE, { productID: item._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
-         filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+
+        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-      
-      
-      console.log("res" + response);
-      dispatch({
-        type: FETCH_CART,
-        cart: response.data.cartProducts,
-        filteredCart: filteredCart,
-        totalPrice: totalPrice,
-
-      });
-        
-        
-       } catch (e) {
 
 
-} 
-        
-       } 
+        console.log("res" + response);
+        dispatch({
+          type: FETCH_CART,
+          cart: response.data.cartProducts,
+          filteredCart: filteredCart,
+          totalPrice: totalPrice,
 
-} 
+        });
+
+
+      } catch (e) {
+
+
+      }
+
+    }
+
+  }
 
 
 
@@ -250,15 +257,22 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
     });
 
     try {
+      console.log("token::" +token);
 
       let response = ''
-      let filteredCart= []
-      let totalPrice= 0
+      let filteredCart = []
+      let totalPrice = 0
       if (isAuthenticated && token) {
+        console.log("user ok");
         //if user is Authenticated fetch cart from server
         response = await axios.get(APIs.CART_GET_SERVER, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        filteredCart = response.data.cartWithProducts.filter(p => p.productID !== 0)
+        totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
+
+
+
       } else {
         console.log("not user");
         //if user is not Authenticated return local cart from server
@@ -266,7 +280,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         console.log("cart" + response.data.cartWithProducts);
         filteredCart = response.data.cartWithProducts.filter(p => p.productID !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-      
+
       }
       console.log("res" + response);
       dispatch({

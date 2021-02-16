@@ -27,10 +27,12 @@ const MiddleProduct = (props) => {
       <div className="flex-row margin0">
         <AddToCartBtn
           cartItems={props.cartItems}
+        isAuthenticated={props.isAuthenticated}
+          token={props.token}
           item={props.item}
           showAlarmWindowAction={props.showAlarmWindowAction}
           addItemToCartItem={props.addItemToCartItem} />
-  
+
 
         {!props.favorite ?
           <div className="icon-button pointer hoverscalein" onClick={async () => { await props.ToggleFavorite(); }}>

@@ -36,7 +36,8 @@ const btns = [
     };
 
     const addItem = () => {
-        props.addItemToCartItem(props.item, props.cartItems)
+        console.log("token from btn" +props.token);
+        props.addItemToCartItem(props.item, props.cartItems, props.token , props.isAuthenticated)
         props.showAlarmWindowAction(btns,"تم إضافة المنتج بنجاح الي عربى الشراء، هل تريد إتمام الشراء؟")
         //  submit()
     }
@@ -56,7 +57,10 @@ const btns = [
             {!checkItem() ? <button type="submit" className="custum-btn-form"
                 onClick={addItem}
             >ADD TO CART</button> : <AdjustItemCount
+
                     cartItems={props.cartItems}
+                    isAuthenticated={props.isAuthenticated}
+                    token={props.token}
                     item={props.item}
                     itemQuantity={checkItem().quantity} />}
 

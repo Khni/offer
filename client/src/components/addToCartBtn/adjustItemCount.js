@@ -14,10 +14,10 @@ const AdjustItemCount = (props) => {
     return (
 
         <div className="AdjustItemCountCountainer">
-             <button className="decreaseItemCount"onClick={() => props.removeItemFromCartItem(props.item, props.cartItems)} >-</button>
+             <button className="decreaseItemCount"onClick={() => props.removeItemFromCartItem(props.item, props.cartItems, props.token , props.isAuthenticated)} >-</button>
             
     <p className="itemCount">{props.itemQuantity}</p>
-    <button className="increaseItemCount" onClick={() => props.addItemToCartItem(props.item, props.cartItems)}  >+</button>
+    <button className="increaseItemCount" onClick={() => props.addItemToCartItem(props.item, props.cartItems, props.token , props.isAuthenticated)}  >+</button>
 
         </div>
 

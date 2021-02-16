@@ -88,6 +88,8 @@ const MenuItem = (props) => {
           <AddToCartBtn
             cartItems={props.cartItems}
             item={props.item}
+            token = {props.token}
+            isAuthenticated = {props.isAuthenticated}
             showAlarmWindowAction={props.showAlarmWindowAction} 
             addItemToCartItem={props.addItemToCartItem} />
           {favorite ?
@@ -116,7 +118,7 @@ const MenuItem = (props) => {
 }
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
-  addItemToCartItem: (item, items) => dispatch(Cartactions.addItemToCartItem(item, items)),
+  addItemToCartItem: (item, items, token, isAuthenticated) => dispatch(Cartactions.addItemToCartItem(item, items , token, isAuthenticated)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
   showAlarmWindowAction: (btns, title) => dispatch(actions.showAlarmWindowAction(btns, title)),
@@ -130,6 +132,7 @@ const mapStateToProps = (state) => {
     showAlarmWindow: state.hintBoxReducer.alarmWindow.show,
     RefreshToken: state.userAuth.authUser.refreshToken,
     token: state.userAuth.authUser.token,
+    isAuthenticated: state.userAuth.authUser.isAuthenticated,
     FavoritesList: state.FavAndSeenReducer.favorites.list,
     cartItems: selectCartItems(state),
     categories: state.categoryReducer.categories,

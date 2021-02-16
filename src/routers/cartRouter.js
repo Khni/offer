@@ -2,20 +2,31 @@ const express = require('express')
 const Cart = require('../models/Cart')
 const router = new express.Router()
 const Product = require('../models/Product')
-const {CartProductsList} =require('./cartRouter.utils')
+const { CartProductsList } = require('./cartRouter.utils')
 const auth = require('../middleware/auth')
 
 
 
 router.post('/api/cart/add', auth, async (req, res) => {
     const foundcart = await Cart.findOne({ userID: req.user._id })
+     //check if product onlyOrderAvailableQty to stop adding if it out of stock
+     let product = await Product.findOne({ _id: req.body.productID })
+     if (product.onlyOrderAvailableQty) {
+         if (product.availableQty === 0 || product.availableQty < 0) {
+             return res.status(400).send({
+                 error: "There are no more in stock",
+                 error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
+             })
+         }
+     }
 
     if (foundcart) {
-        console.log("foundcart" + foundcart);
+        
         const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
 
         //console.log("foundproduct" + foundproduct.products);
         if (foundproduct) {
+            
 
 
 
@@ -31,16 +42,9 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 return product.productID == req.body.productID
 
             })
-            //check if product onlyOrderAvailableQty to stop adding if it out of stock
-            let product = await Product.findOne({ _id: req.body.productID })
-            if (product.onlyOrderAvailableQty) {
-                if (product.availableQty === 0 || product.availableQty < 0) {
-                    return res.status(400).send({
-                        error: "There are no more in stock",
-                        error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
-                    })
-                }
-            }
+           
+           
+            
 
             //check if there is discount and there are limited number to buy
             if (product.discount.isActive && product.discount.limitedOrder !== 0) {
@@ -52,18 +56,22 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 }
             }
 
-
+            
 
 
 
             try {
 
+                console.log("foundCart");
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $set: { "products.$.quantity": productinCart.quantity + 1 } },
                     { safe: true })
-                    const cart = await Cart.findOne({ userID: req.user._id })
+                    console.log("foundCart");
+                const cart = await Cart.findOne({ userID: req.user._id })
+                console.log("cart"+cart);
 
-            const cartProducts =await CartProductsList(cart, req.user._id) 
+                const cartProducts = await CartProductsList(cart, req.user._id)
+                console.log("cartProd"+cartProducts);
                 return res.status(200).send({ cartProducts })
                 // updatecart.save()
             } catch (error) {
@@ -78,9 +86,10 @@ router.post('/api/cart/add', auth, async (req, res) => {
         foundcart.products = foundcart.products.concat({ productID: req.body.productID, quantity: 1 })
         try {
             await foundcart.save()
-            const cartProducts =await CartProductsList(foundcart, req.user._id) 
-                return res.status(200).send({ cartProducts })
             
+            const cartProducts = await CartProductsList(foundcart, req.user._id)
+            return res.status(200).send({ cartProducts })
+
         } catch (error) {
             return res.status(400).send(error)
         }
@@ -90,14 +99,14 @@ router.post('/api/cart/add', auth, async (req, res) => {
     const cart = new Cart({
         userID: req.user._id
     })
-    cart.products = cart.products.concat({ productID: req.body.productID, quantity: req.body.quantity })
+    cart.products = cart.products.concat({ productID: req.body.productID, quantity: 1 })
     try {
         await cart.save()
-        
-        
-        const cartProducts =await CartProductsList(cart, req.user._id) 
-                return res.status(200).send({ cartProducts })
-            
+
+
+        const cartProducts = await CartProductsList(cart, req.user._id)
+        return res.status(200).send({ cartProducts })
+
     } catch (e) {
         res.status(400).send(e)
     }
@@ -117,18 +126,18 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
             return product.productID == req.body.productID
 
         })
-        console.log("product" + product.productID);
+       
 
         if (product.quantity === 1) {
             try {
 
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $pull: { products: { productID: product.productID } } });
-const cart = await Cart.findOne({ userID: req.user._id })
+                const cart = await Cart.findOne({ userID: req.user._id })
 
-                const cartProducts =await CartProductsList(cart, req.user._id) 
+                const cartProducts = await CartProductsList(cart, req.user._id)
                 return res.status(200).send({ cartProducts })
-            
+
 
 
 
@@ -155,9 +164,9 @@ const cart = await Cart.findOne({ userID: req.user._id })
                 { safe: true })
             const cart = await Cart.findOne({ userID: req.user._id })
 
-                const cartProducts =await CartProductsList(cart, req.user._id) 
-                return res.status(200).send({ cartProducts })
-            
+            const cartProducts = await CartProductsList(cart, req.user._id)
+            return res.status(200).send({ cartProducts })
+
             // updatecart.save()
         } catch (error) {
             return res.status(401).send({ error })
@@ -197,9 +206,9 @@ router.post('/api/cart/removeproduct', auth, async (req, res) => {
 
             const cart = await Cart.findOne({ userID: req.user._id })
 
-                const cartProducts =await CartProductsList(cart, req.user._id) 
-                return res.status(200).send({ cartProducts })
-            
+            const cartProducts = await CartProductsList(cart, req.user._id)
+            return res.status(200).send({ cartProducts })
+
 
         } catch (error) {
             return res.status(401).send({ error })
@@ -265,7 +274,7 @@ router.post('/api/cart/mergelocal', auth, async (req, res) => {
 
 
 
-router.get('/api/user/servercart', auth, async (req, res) => {
+router.get('/api/user-servercart', auth, async (req, res) => {
 
     let cart = await Cart.findOne({ userID: req.user._id })
     if (!cart) {
@@ -276,51 +285,55 @@ router.get('/api/user/servercart', auth, async (req, res) => {
 
         const foundproduct = await Product.findById(product.productID)
         if (foundproduct) {
-            
-                 	let price = foundproduct.price
+
+            let price = foundproduct.price
             let Qty = product.quantity
-        
-        
-        
-        if (foundproduct.onlyOrderAvailableQty) {
-                if (foundproduct.availableQty < product.quantity ) {
+
+
+
+            if (foundproduct.onlyOrderAvailableQty) {
+                if (foundproduct.availableQty < product.quantity) {
                     Qty = foundproduct.availableQty
                 }
             }
 
             //check if there is discount and there are limited number to buy
             if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-                if (foundproduct.discount.limitedOrder < Qty ) {
+                if (foundproduct.discount.limitedOrder < Qty) {
                     Qty = foundproduct.discount.limitedOrder
                 }
             }
-     
-            
-            
-            
-            
-            
-            
-            
-        /*    if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
-                price = 0,
-                    Qty = 0
 
-            }
-            if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
 
-                Qty = foundproduct.availableQty
 
-            }*/
+
+
+
+
+
+            /*    if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
+                    price = 0,
+                        Qty = 0
+    
+                }
+                if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
+    
+                    Qty = foundproduct.availableQty
+    
+                }*/
 
 
             return {
                 ...product.toObject(),
                 price: price,
+                _id: foundproduct._id,
                 nameEn: foundproduct.nameEn,
                 nameAr: foundproduct.nameAr,
                 availableQty: foundproduct.availableQty,
-                Qty: Qty
+                quantity: Qty,
+                imgURLs: foundproduct.imgURLs,
+                discount: foundproduct.discount,
+                onlyOrderAvailableQty: foundproduct.onlyOrderAvailableQty
             }
 
         } //end of if foundproduct
@@ -352,41 +365,41 @@ router.get('/api/user/servercart', auth, async (req, res) => {
 
 
 
-router.post('/api/user/localcart', async (req, res) => {
+router.post('/api/user-localcart', async (req, res) => {
 
     let cart = req.body.cart
     if (!cart) {
         return res.status(400).send({ error: "cart is not found" })
     }
 
-    let cartWithProducts =await Promise.all( cart.map(async product => {
+    let cartWithProducts = await Promise.all(cart.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
-        
+
         if (foundproduct) {
-        	let price = foundproduct.price
+            let price = foundproduct.price
             let Qty = product.quantity
-        
-        
-        
-        if (foundproduct.onlyOrderAvailableQty) {
-                if (foundproduct.availableQty < product.quantity ) {
+
+
+
+            if (foundproduct.onlyOrderAvailableQty) {
+                if (foundproduct.availableQty < product.quantity) {
                     Qty = foundproduct.availableQty
                 }
             }
 
             //check if there is discount and there are limited number to buy
             if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-                if (foundproduct.discount.limitedOrder < Qty ) {
+                if (foundproduct.discount.limitedOrder < Qty) {
                     Qty = foundproduct.discount.limitedOrder
                 }
             }
-        
-      
-           
+
+
+
 
             return {
-                
+
                 price: price,
                 _id: foundproduct._id,
                 nameEn: foundproduct.nameEn,
