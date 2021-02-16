@@ -108,12 +108,21 @@ let rating=(ratingCount/revsCount) *5
 if(rating== null) {
 	rating=0
 	} 
+	
+	
+	//check if product onlyOrderAvailableQty to stop adding if it out of stock
+	let outOfStock = false
+	if (product.onlyOrderAvailableQty) {
+         if (product.availableQty === 0 || product.availableQty < 0) {
+             outOfStock = true
+         }
+     }
 
     
 
 
     try {
-   res.status(201).send({product, rating})
+   res.status(201).send({product, rating, outOfStock})
         
     } catch (e) {
         res.status(400).send(e)

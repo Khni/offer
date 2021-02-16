@@ -43,7 +43,8 @@ class ProductPage extends Component {
       fetch: false,
       imgUrlsArr: [],
       reviews: [],
-      favorite: false
+      favorite: false, 
+      outOfStock: false
     }
 
   }
@@ -74,7 +75,7 @@ class ProductPage extends Component {
     }
 
 
-    this.setState({ product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse() })
+    this.setState({outOfStock:response.data.outOfStock, product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse() })
 
     if (this.state.fetch) {
       this.setState({ fetch: false })
@@ -192,7 +193,7 @@ class ProductPage extends Component {
           <Header />
         </div>
 
-        {!this.state.Loading && this.state.product.availableQty !== 0  ? <div className="container-productPage">
+        {!this.state.Loading && !this.state.outOfStock ? <div className="container-productPage">
 
           <div className="PicAndMiddleComponent">
             <div className="PicComponent">
@@ -244,7 +245,7 @@ class ProductPage extends Component {
 
         {this.state.Loading ?<div className="loaderHome" /> : null }
 
-        {this.state.product.availableQty === 0 ?<div><Slider slides={this.state.imgUrlsArr} autoPlay={4} /> <h3>Out Of Stock</h3></div>  : null }
+        {this.state.outOfStock ?<div><Slider slides={this.state.imgUrlsArr} autoPlay={4} /> <h3>Out Of Stock</h3></div>  : null }
       </div>
     );
   }

@@ -32,9 +32,26 @@ router.get('/api/sections-with-products',  async (req, res) => {
 	
 	let sections = await Section.find({})
 	
-	let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
+	/*let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
         return {...section.toObject(), productsOfSection: await Promise.all(section.productsOfSection.map(async(pos)=>{
             return Product.findOne({_id: pos.productOfSection})
+        }))}
+    }))*/
+    
+    
+    let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
+        return {...section.toObject(), productsOfSection: await Promise.all(section.productsOfSection.map(async(pos)=>{
+        	let product = Product.findOne({_id: pos.productOfSection})
+        let outOfStock = false
+	if (product.onlyOrderAvailableQty) {
+         if (product.availableQty === 0 || product.availableQty < 0) {
+             outOfStock = true
+         }
+     }
+     product = {...product.toObject(), outOfStock: outOfStock} 
+     if(!product.outOfStock) {
+        return product
+       } 
         }))}
     }))
     
