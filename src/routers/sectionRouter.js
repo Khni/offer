@@ -41,7 +41,7 @@ router.get('/api/sections-with-products',  async (req, res) => {
     
     let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
         return {...section.toObject(), productsOfSection: await Promise.all(section.productsOfSection.map(async(pos)=>{
-        	let product = Product.findOne({_id: pos.productOfSection})
+        	let product =await Product.findOne({_id: pos.productOfSection})
         let outOfStock = false
 	if (product.onlyOrderAvailableQty) {
          if (product.availableQty === 0 || product.availableQty < 0) {
@@ -49,11 +49,18 @@ router.get('/api/sections-with-products',  async (req, res) => {
          }
      }
      product = {...product.toObject(), outOfStock: outOfStock} 
-     if(!product.outOfStock) {
+    if(!product.outOfStock) {
         return product
        } 
-        }))}
+      } )) }
     }))
+
+      //every product is out of stock will return as null , so this will be  filtering the products to remove null projects
+    SectionsWithProducts = await Promise.all(SectionsWithProducts.map(section=>{
+
+
+        return{...section ,  productsOfSection: section.productsOfSection.filter(p => p != null) }
+    })) 
     
 
     try {

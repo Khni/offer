@@ -64,8 +64,12 @@ class SectionComponent extends Component {
 
 
 
- return <Item   id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
+  return <Item   id={item._id} item={item} key={item._id} name={item.nameEn} imgURL={item.imgURLs[0].imgURL} price={item.price}
   {...others} ToggleFavorite={this.props.ToggleFavorite} favorite={this.props.favorite} token={this.props.token}/>
+
+
+
+
 })}
  </div>
 
