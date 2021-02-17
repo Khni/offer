@@ -59,7 +59,7 @@ export const addItemToCartItem = (item, items, token, isAuthenticated) => {
         });
         console.log("res" +response );
 
-        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+        filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
 
@@ -123,7 +123,7 @@ export const removeItemFromCartItem = (item, items, token, isAuthenticated) => {
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+        filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
 
@@ -192,7 +192,7 @@ export const deleteItemFromCartItem = (item, items, token, isAuthenticated) => {
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        filteredCart = response.data.cartProducts.filter(p => p.productID !== 0)
+        filteredCart = response.data.cartWithProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
 
@@ -268,7 +268,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         response = await axios.get(APIs.CART_GET_SERVER, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        filteredCart = response.data.cartWithProducts.filter(p => p.productID !== 0)
+        filteredCart = response.data.cartWithProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
 
@@ -278,7 +278,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         //if user is not Authenticated return local cart from server
         response = await axios.post(APIs.CART_GET_LOCAL, { cart: cartItems });
         console.log("cart" + response.data.cartWithProducts);
-        filteredCart = response.data.cartWithProducts.filter(p => p.productID !== 0)
+        filteredCart = response.data.cartWithProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
       }
