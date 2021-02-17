@@ -134,7 +134,7 @@ this.setState({voucher:{ error: e.response.data.error}})
 
         <h4>Confirm Order / payment on arrival  </h4>
 
-        {this.props.cartItems.map(item => (
+        {this.props.filteredCart.map(item => (
 
 
           <div className="cart-Item" >
