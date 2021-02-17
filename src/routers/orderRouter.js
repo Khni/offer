@@ -13,11 +13,17 @@ router.post('/api/order/add', auth, async (req, res) => {
     await Promise.all(req.body.products.map(async (product) => {
 
         let MainProduct = await Product.findById(product._id)
-        if (MainProduct.availableQty < product.quantity) {
-            outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
-            //outOfStock =   outOfStock.concat( MainProduct.nameEn+ " only " + MainProduct.availableQty+ " Qty in Stock "  )
-
-        }
+        
+        
+        if (MainProduct.onlyOrderAvailableQty) {
+         if (MainProduct.availableQty < product.quantity) {
+             outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
+         }
+     }
+        
+        
+        
+       
 
 
 
