@@ -43,6 +43,7 @@ const cartProductsReducer = (state = INITIAL_STATE, action) => {
         cartProducts: action.cart,
         filteredCart: action.filteredCart,
         totalPrice: action.totalPrice,
+        fetchError: '',
         isLoading: false,
         updateCart: false
       };

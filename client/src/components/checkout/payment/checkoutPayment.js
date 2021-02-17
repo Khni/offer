@@ -3,7 +3,7 @@ import './checkoutPayment.scss';
 import axios from 'axios';
 import Form from '../../form/form.component'
 import * as Calls from '../../../store/actions/axiosCalls'
-import * as actions from '../../../store/actions/users';
+import * as actions from '../../../store/actions';
 import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
 import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
 
@@ -116,9 +116,12 @@ this.setState({voucher:{ error: e.response.data.error}})
 
   }
 
-  //   async componentDidMount() {
-  //   await this.sendOrder()
-  //   }
+    async componentDidMount() {
+    await this.props.fetchCart(null,
+      this.props.token,
+      this.props.isAuthenticated)
+
+   }
   render() {
 
     
@@ -189,7 +192,7 @@ this.setState({voucher:{ error: e.response.data.error}})
 
 {this.state.error? <div className="errorMsg">{this.state.error}</div> : null}
 
-        <button onClick={async () => { await this.sendOrder(this.props.cartItems, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
+        <button onClick={async () => { await this.sendOrder(this.props.filteredCart, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
         <div className="checkout-cart-footer">
 
 
@@ -211,6 +214,8 @@ this.setState({voucher:{ error: e.response.data.error}})
 
 const mapStateToProps = (state) => {
   return {
+  	isAuthenticated: state.userAuth.authUser.isAuthenticated,
+  	filteredCart: state.cartProductsReducer.filteredCart,
   	lang: selectLang(state), 
     token: state.userAuth.authUser.token,
     total: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0),

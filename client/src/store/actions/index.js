@@ -15,6 +15,8 @@ export {
 } from './userActions';
 
 export {setArabic, setEnglish } from './LangActions';
+
+export {clearCart, FetchOrders, MakeOrder, FetchAddresses, setDefaultAddress} from './users';
 export {addItemToCartItem, removeItemFromCartItem, fetchCart} from './CartItemsAction';
 
 // export {productsFetched } from './product';
