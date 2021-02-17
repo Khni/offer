@@ -218,7 +218,7 @@ const mapStateToProps = (state) => {
   	filteredCart: state.cartProductsReducer.filteredCart,
   	lang: selectLang(state), 
     token: state.userAuth.authUser.token,
-    total: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0),
+    total: state.cartProductsReducer.totalPrice,
     cartItems: selectCartItems(state),
     defaultAddress: state.addressReducer.default
 

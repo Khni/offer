@@ -67,13 +67,19 @@ this.setState({Loading: false})
     </table>     
 
   
-         <div className="cart-Item borderCard" > 
-
-<p className="centerdiv">Name: {this.state.order.defaultAddress.firstName} </p>
-      <p className="centerdiv">Address: {this.state.order.defaultAddress.fullAddress} </p>
-      <p className="centerdiv">City: {this.state.order.defaultAddress.city} </p>
-      <p className="centerdiv">Phone: {this.state.order.defaultAddress.phone} </p>
-      </div>
+  
+  
+  
+  
+  <table className="TableList" >
+          <tr><td>Name:</td><td>{this.state.order.defaultAddress.firstName} </td></tr>
+          <tr><td>Street:</td><td>{this.state.order.defaultAddress.fullAddress} </td></tr>
+          <tr><td>City:</td><td>{this.state.order.defaultAddress.city} </td></tr>
+          <tr><td>Phone:</td><td>{this.state.order.defaultAddress.phone} </td></tr>
+        </table>
+  
+  
+    
         
 
 
