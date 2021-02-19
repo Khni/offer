@@ -2,10 +2,15 @@ import * as actions from '../actions'
 import * as APIs from '../actions/APIs'
 import * as actionTypes from "../types";
 import * as calls from './axiosCalls.js'
-import { put, call } from 'redux-saga/effects'
+import { put, call, select} from 'redux-saga/effects'
+import {selectLang} from '../reducers/langReducer/langsReselect.js' 
+
+
 
 
 export function* authUserSaga(data) {
+	const lang = yield select(selectLang);
+	
   console.log("data" + JSON.stringify(data.data));
   yield put(actions.authStart());
   console.log("auth saga started");
@@ -105,9 +110,14 @@ type: actionTypes.CLEAR_LOCAL_CARTITEMS
       return yield put(actions.updateUserFail(error.response.data.error_en));
 
     }
+    
+    if(lang =="en") {
 
     yield put(actions.authFail(error.response.data.error_en));
+  } else if (lang =='ar') {
+  	yield put(actions.authFail(error.response.data.error_ar));
 
+} 
   }
 }
 

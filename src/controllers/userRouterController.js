@@ -87,7 +87,10 @@ const InsertSocialUser = async (req, res, social, id, email, name) => {
 
 
     } catch (error) {
-        res.status(400).send({ error })
+        res.status(403).json({
+                error_en: 'Error, please try again later',
+                error_ar: 'خطأ ، برجاء المحاولة لاحقا'
+            });
     }
 
 }
@@ -183,7 +186,10 @@ const InsertFbUser = async (req, res, social, id, email, name) => {
 
 
     } catch (error) {
-        res.status(400).send({ error })
+        res.status(403).json({
+                error_en: 'Error, please try again later',
+                error_ar: 'خطأ ، برجاء المحاولة لاحقا'
+            });
     }
 
 }

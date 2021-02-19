@@ -39,16 +39,16 @@ class Form extends Component {
 
   }
   async responseGoogle(res) {
-  
+  if(res) {//fire the callback only when there is response 
       this.props.googleres(res)
-   
+  } 
    
   }
 
   async responseFacebook(res) {
-
-    this.props.fbres(res)
-    
+  	if(res) {//fire the callback only when there is response 
+ this.props.fbres(res)
+   } 
   //  this.props.fbres(res)
   }
 

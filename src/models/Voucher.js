@@ -47,7 +47,7 @@ const voucherSchema = mongoose.Schema({
         trim: true,
         required: true
     },
-    isEnabled: {
+    isActivated: {
         type: Boolean,
 
     },

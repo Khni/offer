@@ -16,7 +16,7 @@ router.post('/api/voucher/create', async (req, res) => {
 
     const voucher = new Voucher({
         ...req.body,
-        isEnabled: false
+        isActivated: false
         //userID: req.user._id
 
     })
@@ -34,6 +34,23 @@ router.post('/api/voucher/create', async (req, res) => {
 router.post('/api/voucher/verify', async (req, res) => {
 
     let voucher = await Voucher.findOne({ code: req.body.code })
+    if (!voucher) {
+        
+        return res.status(400).send({
+            error: "Invalid Voucher Code",
+            error_ar: "رمز قسمية غير صحيح"
+        })
+    }
+    
+    if (!voucher.isActivated) {
+        
+        return res.status(400).send({
+            error: " Voucher is not activated",
+            error_ar: "قسيمة غير مفعلة"
+        })
+    }
+    
+    
 
     let dateForm = new Date(voucher.validFrom)
     let dateuntil = new Date(voucher.validUntil)
@@ -86,9 +103,12 @@ router.post('/api/voucher/verify', async (req, res) => {
 
     try {
 
-        res.status(201).send({ value: voucher.discount.value, inPercentage: voucher.discount.inPercentage,code: voucher.code })
+        res.status(200).send({ value: voucher.discount.value, inPercentage: voucher.discount.inPercentage,code: voucher.code })
     } catch (e) {
-        res.status(400).send({ e })
+        res.status(400).send({
+                error: "Error",
+                error_ar: " حدث خطأ "
+            })
     }
 })
 
