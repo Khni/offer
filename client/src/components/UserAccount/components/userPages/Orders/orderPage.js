@@ -72,6 +72,7 @@ this.setState({Loading: false})
   
   
   <table className="TableList" >
+  <h3>Shipping Details</h3>
           <tr><td>Name:</td><td>{this.state.order.defaultAddress.firstName} </td></tr>
           <tr><td>Street:</td><td>{this.state.order.defaultAddress.fullAddress} </td></tr>
           <tr><td>City:</td><td>{this.state.order.defaultAddress.city} </td></tr>
