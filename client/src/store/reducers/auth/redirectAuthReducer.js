@@ -13,7 +13,7 @@ const DEFAULT_STATE = {
     switch(action.type) {
       
           case CHECKOUT_LINK_ADD:
-        return { ...state, authLink: '/checkout-address'}
+        return { ...state, authLink: '/cart'}
         
         case CHECKOUT_LINK_REMOVE:
         return { ...state, authLink: ''}
