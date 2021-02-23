@@ -48,13 +48,13 @@ try {
  console.log("sendPrder");
      
    } catch(err) {
-   	if(err.response.data.outOfStock) {
-     if(err.response.data.outOfStock.length > 0) {
-     this.setState({error: "some products are ordered more than available stock" }) 
-      } 
-      } 
-     console.log("order error" +JSON.stringify(err.response.data) ) 
-    
+   	if (this.props.lang== 'en' ) {
+this.setState({error: err.response.data.error}) 
+} else if (this.props.lang== 'ar' ) {
+	this.setState({error: err.response.data.error_ar}) 
+	
+	} 
+   	
    }
 
 
