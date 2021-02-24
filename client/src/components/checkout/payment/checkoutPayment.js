@@ -6,7 +6,7 @@ import * as Calls from '../../../store/actions/axiosCalls'
 import * as actions from '../../../store/actions';
 import { selectCartItems } from '../../../store/reducers/cart/cartReselect';
 import {selectTermsLang, selectLang}  from '../../../store/reducers/langReducer/langsReselect';
-
+import LoadingScreen from '../../loadingScreen/loadingScreen.js' 
 import { connect } from 'react-redux';
 
 class CheckPayment extends Component {
@@ -18,6 +18,7 @@ this.onSubmit = this.onSubmit.bind(this);
       Loading: false,
       totalPrice:props.total,
       error:'', 
+      placeOrderLoading: false, 
       voucher: {
         code:'',
         class: '',
@@ -30,7 +31,7 @@ this.onSubmit = this.onSubmit.bind(this);
   }
 
   async sendOrder(cartitems, token) {
-    
+    this.setState({placeOrderLoading:true}) 
     const { MakeOrder, clearCart } = this.props
     const data = {
 products : cartitems, 
@@ -45,10 +46,12 @@ try {
     }} );
  console.log("order done"+ response.data.order);
  clearCart()
+ this.setState({placeOrderLoading:false}) 
  this.props.history.push(/orderpage-user/ + response.data.order._id)
  console.log("sendPrder");
      
    } catch(err) {
+   	this.setState({placeOrderLoading:false}) 
    	if (this.props.lang== 'en' ) {
 this.setState({error: err.response.data.error}) 
 } else if (this.props.lang== 'ar' ) {
@@ -194,7 +197,12 @@ this.setState({voucher:{ error: e.response.data.error}})
 
 {this.state.error? <div className="errorMsg">{this.state.error}</div> : null}
 
-        <button onClick={async () => { await this.sendOrder(this.props.filteredCart, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
+{!this.state.placeOrderLoading ?
+            <button onClick={async () => { await this.sendOrder(this.props.filteredCart, this.props.token); }} className="custum-btn-form" >Confirm Order</button>
+            : <LoadingScreen />}
+
+
+        
         <div className="checkout-cart-footer">
 
 
