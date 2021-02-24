@@ -6,6 +6,9 @@ const authAdmin = require('../middleware/adminAuth')
 const User = require('../models/User')
 const Product = require('../models/Product')
 const Voucher = require('../models/Voucher')
+require("dotenv").config();
+const { sendEmail } = require("../middleware/nodeMailer.js");
+
 
 router.post('/api/order/add', auth, async (req, res) => {
     let outOfStock = []
@@ -119,7 +122,12 @@ error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
 
     //here i will take the voucher id to concate user id in usersApplied
 
-
+sendEmail({
+  subject: "we received your order",
+  text: "we received your order",
+  to: req.user.email,
+  from: process.env.EMAIL
+});
 
     try {
         await order.save()
