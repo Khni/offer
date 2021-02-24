@@ -23,15 +23,15 @@ const orderSchema = mongoose.Schema({
 
   },
   voucher: {
-  	used:{
-type: Boolean,
-}, 
-code:{
-type: String,
-}, 
-value: {type: Number,} 
-    
-    
+    used: {
+      type: Boolean,
+    },
+    code: {
+      type: String,
+    },
+    value: { type: Number, }
+
+
 
   },
   products: [{

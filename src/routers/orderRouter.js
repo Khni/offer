@@ -7,7 +7,7 @@ const User = require('../models/User')
 const Product = require('../models/Product')
 const Voucher = require('../models/Voucher')
 require("dotenv").config();
-const { sendEmail } = require("../middleware/nodeMailer.js");
+const sendEmail = require('../middleware/nodeMailer');
 
 
 router.post('/api/order/add', auth, async (req, res) => {
@@ -16,27 +16,28 @@ router.post('/api/order/add', auth, async (req, res) => {
     await Promise.all(req.body.products.map(async (product) => {
 
         let MainProduct = await Product.findById(product._id)
-        
-        
+
+
         if (MainProduct.onlyOrderAvailableQty) {
-         if (MainProduct.availableQty < product.quantity) {
-             outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
-         }
-     }
-        
-        
-        
-       
+            if (MainProduct.availableQty < product.quantity) {
+                outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
+            }
+        }
+
+
+
+
 
 
 
     }))
     if (outOfStock.length > 0) {
-    	//frontend should redirect to a cart which will update the order list
-        return res.status(400).send({ outOfStock, 
-error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
-                error: "there is not enough stock for some products"
-})
+        //frontend should redirect to a cart which will update the order list
+        return res.status(400).send({
+            outOfStock,
+            error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
+            error: "there is not enough stock for some products"
+        })
     }
     let totalPrice = req.body.products.reduce((accumalatedQuantity, product) => accumalatedQuantity + product.quantity * product.price, 0)
 
@@ -97,10 +98,10 @@ error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
             totalPrice = totalPrice * voucher.discount.value// percent will be in this form 0.90 means 10%
         }
 
-        voucher.usersApplied = voucher.usersApplied.concat({ userID: req.user._id})
-  
-    await voucher.save()
-  
+        voucher.usersApplied = voucher.usersApplied.concat({ userID: req.user._id })
+
+        await voucher.save()
+
     }
 
 
@@ -118,16 +119,28 @@ error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
 
 
 
+
+
+
     order.history = order.history.concat({ operation: "order has been placed" })
 
     //here i will take the voucher id to concate user id in usersApplied
 
-sendEmail({
-  subject: "we received your order",
-  text: "we received your order",
-  to: req.user.email,
-  from: process.env.EMAIL
-});
+    let email = req.user.local.email
+    if (!email) {
+        email = req.user.google.email
+    }
+    if (!email) {
+        email = req.user.facebook.email
+    }
+
+    await sendEmail({
+        subject: "Juvni.com || Order #" + order.orderNum + " is Placed ",
+        text: "Thanks for Trusting us, Your order is waiting for Confirmation. ",
+        to: email,
+        //  to: req.user.local.email,
+        from: process.env.EMAIL
+    });
 
     try {
         await order.save()
@@ -255,6 +268,22 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
             }))
 
             order.history = order.history.concat({ operation: "Order Has Been Picked" })
+            const user =  await User.findById(order.userID)
+            let email = user.local.email
+            if (!email) {
+                email = user.google.email
+            }
+            if (!email) {
+                email = user.facebook.email
+            }
+
+            await sendEmail({
+                subject: "Juvni.com || Order #" + order.orderNum + " is Picked ",
+                text: "Your order is Picked. ",
+                to: email,
+                //  to: req.user.local.email,
+                from: process.env.EMAIL
+            });
 
             res.status(201).send({ order })
 
@@ -289,7 +318,24 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
 
 
 
-            order.history = order.history.concat({ operation: "Olrder Has Been Shipped" })
+            order.history = order.history.concat({ operation: "Order Has Been Shipped" })
+
+            const user =  await User.findById(order.userID)
+            let email = user.local.email
+            if (!email) {
+                email = user.google.email
+            }
+            if (!email) {
+                email = user.facebook.email
+            }
+
+            await sendEmail({
+                subject: "Juvni.com || Order #" + order.orderNum + " is out for delivery ",
+                text: "Your order is out for delivery. ",
+                to: email,
+                //  to: req.user.local.email,
+                from: process.env.EMAIL
+            });
 
             res.status(201).send({ order })
 
@@ -323,7 +369,23 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
                 await MainProduct.save()
             }))
 
-            order.history = order.history.concat({ operation: "Olrder Has Been Delivered" })
+            order.history = order.history.concat({ operation: "Order Has Been Delivered" })
+            const user =  await User.findById(order.userID)
+            let email = user.local.email
+            if (!email) {
+                email = user.google.email
+            }
+            if (!email) {
+                email = user.facebook.email
+            }
+
+            await sendEmail({
+                subject: "Juvni.com || Order #" + order.orderNum + " Has Been Delivered ",
+                text: "Your order Has Been Delivered. ",
+                to: email,
+                //  to: req.user.local.email,
+                from: process.env.EMAIL
+            });
 
             res.status(201).send({ order })
 

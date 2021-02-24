@@ -30,6 +30,7 @@ this.onSubmit = this.onSubmit.bind(this);
   }
 
   async sendOrder(cartitems, token) {
+    
     const { MakeOrder, clearCart } = this.props
     const data = {
 products : cartitems, 
@@ -120,6 +121,7 @@ this.setState({voucher:{ error: e.response.data.error}})
     await this.props.fetchCart(null,
       this.props.token,
       this.props.isAuthenticated)
+     console.log("carts" +JSON.stringify( this.props.filteredCart));
 
    }
   render() {
