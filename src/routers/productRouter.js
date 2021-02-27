@@ -234,7 +234,7 @@ router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (r
 })
 
 
-router.post('/api/add-product',[authAdmin , upload.array('photos", 10)] , async (req, res) => {
+router.post('/api/add-product',[authAdmin , upload.array('photos' , 10)] , async (req, res) => {
     const product = new Product({
         ...req.body,
         adminID: req.admin._id
