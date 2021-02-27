@@ -24,7 +24,8 @@ class AddProduct extends Component {
         
         this.state = {
           addingToServer: false,
-          selectedFile: null
+          selectedFile: null, 
+          selectedFiles:[] 
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this)
@@ -67,7 +68,7 @@ console.log("form Data apeend" + data.nameEn);
 //console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;
 console.log("apend data: " + JSON.stringify(data)  )
-
+formData_FormData.append("photos", this.state.selectedFiles)
 console.log("isAdding After setting True///" +this.state.addingProduct );
  await addProductToServer(formData_FormData,AdminToken)
  //  this.setState({addingToServer: false})
@@ -98,7 +99,7 @@ if(!this.props.sectionsFetched) {
 onChangeHandler=(event)=>{
   this.setState({
     selectedFile: event.target.files[0],
-   
+   selectedFiles: event.target.files
   })
   console.log('state' + this.state.selectedFile)
 
@@ -238,6 +239,48 @@ const { handleSubmit } = this.props;
                 label='Pic' 
               />
             </fieldset>
+            
+            <fieldset>
+              <Field
+                type='file' 
+                name='pic2' 
+                id='pic2' 
+                className='imgURL'
+          //      placeholder='enter title in English ' 
+                component={InputFile}
+//change={this.onChangeHandler}
+                label='Pic' 
+              />
+            </fieldset>
+            
+            
+            <fieldset>
+              <Field
+                type='file' 
+                name='pic3' 
+                id='pic3' 
+                className='imgURL'
+          //      placeholder='enter title in English ' 
+                component={InputFile}
+//change={this.onChangeHandler}
+                label='Pic' 
+              />
+            </fieldset>
+            
+            <fieldset>
+              <Field
+                type='file' 
+                name='pic4' 
+                id='pic4' 
+                className='imgURL'
+          //      placeholder='enter title in English ' 
+                component={InputFile}
+//change={this.onChangeHandler}
+                label='Pic' 
+              />
+            </fieldset>
+            
+            
             
 
             <fieldset>

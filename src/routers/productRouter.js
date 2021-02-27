@@ -233,6 +233,41 @@ router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (r
     }
 })
 
+
+router.post('/api/add-product',[authAdmin , upload.array('photos", 10)] , async (req, res) => {
+    const product = new Product({
+        ...req.body,
+        adminID: req.admin._id
+    })
+    
+    let imgUrlPathArr =  req.files.map(file=>{return {imgURL: file.key}})
+    product.imgURLs = product.imgURLs.concat(imgUrlPathArr) 
+     product.pricehistory = product.pricehistory.concat({price: req.body.price}) 
+     
+    try {
+
+        await product.save()
+        const relatedSection = await Section.findOne({_id: req.body.sectionID})
+        
+        relatedSection.productsOfSection =  relatedSection.productsOfSection.concat({productOfSection : product._id})
+         
+        await relatedSection.save()
+
+
+
+
+
+
+        
+        res.status(201).send({product})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+
+
+
 router.post('/api/uploadpic/product/:id',[authAdmin , upload.single('upload') ] , async (req, res) => {
     const product = await Product.findById(req.params.id)
     
