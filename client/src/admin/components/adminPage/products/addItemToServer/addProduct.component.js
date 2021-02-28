@@ -41,8 +41,21 @@ async onSubmit(formData) {
  //let FormDataObj = new FormData(formData)
  for ( var key in formData ) {
   formData_FormData.append(key, formData[key]);
+  
 }
+formData_FormData.append("photos", formData_FormData.get('pic1'))
+formData_FormData.append("photos",  formData_FormData.get('pic2'))
 
+formData_FormData.append("onlyOrderAvailableQty", false)
+
+
+// formData_FormData.forEach(file => {
+//   formData_FormData.append("photos[]", file.upload, file.pic2)
+// })
+
+for (var pair of formData_FormData.entries()) {
+  console.log(pair[0]+ ', ' + pair[1]); 
+}
 
 console.log("formdata keys"+formData_FormData.get('upload'));
 
@@ -68,10 +81,11 @@ console.log("form Data apeend" + data.nameEn);
 //console.log("form name" + formData.upload.name );
 const { addProductToServer } = this.props;
 console.log("apend data: " + JSON.stringify(data)  )
-formData_FormData.append("photos", this.state.selectedFiles)
-console.log("products Arr" + JSON.stringify(formData_FormData) )
+//formData_FormData.append("photos", this.state.selectedFiles)
+
+
 console.log("isAdding After setting True///" +this.state.addingProduct );
- //await addProductToServer(formData_FormData,AdminToken)
+ await addProductToServer(formData_FormData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
@@ -102,7 +116,7 @@ onChangeHandler=(event)=>{
     selectedFile: event.target.files[0],
    selectedFiles: event.target.files
   })
-  console.log('state' + this.state.selectedFile)
+  console.log('state' +event.target.files)
 
 }
 async componentDidMount() {
@@ -231,8 +245,8 @@ const { handleSubmit } = this.props;
             <fieldset>
               <Field
                 type='file' 
-                name='upload' 
-                id='upload' 
+                name='pic1' 
+                id='pic1' 
                 className='imgURL'
           //      placeholder='enter title in English ' 
                 component={InputFile}
@@ -255,7 +269,7 @@ const { handleSubmit } = this.props;
             </fieldset>
             
             
-            <fieldset>
+            {/* <fieldset>
               <Field
                 type='file' 
                 name='pic3' 
@@ -282,7 +296,7 @@ const { handleSubmit } = this.props;
             </fieldset>
             
             
-            
+             */}
 
             <fieldset>
             <Field

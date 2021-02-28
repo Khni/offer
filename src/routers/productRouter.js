@@ -240,6 +240,8 @@ router.post('/api/add-product',[authAdmin , upload.array('photos' , 10)] , async
         adminID: req.admin._id
     })
 
+    
+
 
     
     
