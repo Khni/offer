@@ -40,7 +40,12 @@ async onSubmit(formData) {
  let formData_FormData = new FormData()
  //let FormDataObj = new FormData(formData)
  for ( var key in formData ) {
-  formData_FormData.append(key, formData[key]);
+ 	if (key == 'photos') {
+formData_FormData.append('photos[]' , formData[key])
+} 
+else{
+  formData_FormData.append(key, formData[key])
+} 
   
 }
 /*formData_FormData.append("photos", formData_FormData.get('pic1'))
