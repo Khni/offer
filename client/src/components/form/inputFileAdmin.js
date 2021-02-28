@@ -29,6 +29,7 @@ export default class CustomInput extends Component {
          // value={ value }
           onChange={this.onChange}
          required   
+         multiple
            /> 
   
       </div>

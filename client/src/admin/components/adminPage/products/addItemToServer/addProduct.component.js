@@ -43,8 +43,8 @@ async onSubmit(formData) {
   formData_FormData.append(key, formData[key]);
   
 }
-formData_FormData.append("photos", formData_FormData.get('pic1'))
-formData_FormData.append("photos",  formData_FormData.get('pic2'))
+/*formData_FormData.append("photos", formData_FormData.get('pic1'))
+formData_FormData.append("photos",  formData_FormData.get('pic2'))*/
 
 formData_FormData.append("onlyOrderAvailableQty", false)
 
@@ -245,21 +245,8 @@ const { handleSubmit } = this.props;
             <fieldset>
               <Field
                 type='file' 
-                name='pic1' 
-                id='pic1' 
-                className='imgURL'
-          //      placeholder='enter title in English ' 
-                component={InputFile}
-//change={this.onChangeHandler}
-                label='Pic' 
-              />
-            </fieldset>
-            
-            <fieldset>
-              <Field
-                type='file' 
-                name='pic2' 
-                id='pic2' 
+                name='photos' 
+                id='photos' 
                 className='imgURL'
           //      placeholder='enter title in English ' 
                 component={InputFile}
@@ -269,34 +256,6 @@ const { handleSubmit } = this.props;
             </fieldset>
             
             
-            {/* <fieldset>
-              <Field
-                type='file' 
-                name='pic3' 
-                id='pic3' 
-                className='imgURL'
-          //      placeholder='enter title in English ' 
-                component={InputFile}
-//change={this.onChangeHandler}
-                label='Pic' 
-              />
-            </fieldset>
-            
-            <fieldset>
-              <Field
-                type='file' 
-                name='pic4' 
-                id='pic4' 
-                className='imgURL'
-          //      placeholder='enter title in English ' 
-                component={InputFile}
-//change={this.onChangeHandler}
-                label='Pic' 
-              />
-            </fieldset>
-            
-            
-             */}
 
             <fieldset>
             <Field
