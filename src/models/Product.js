@@ -32,13 +32,13 @@ discount: {
 	isActive: { //true there is discount 
 
             type: Boolean,
-            required: true
+           
         },
 	
         inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
             type: Boolean,
-            required: true
+            
         },
         value: {
             type: Number,

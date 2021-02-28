@@ -69,8 +69,9 @@ console.log("form Data apeend" + data.nameEn);
 const { addProductToServer } = this.props;
 console.log("apend data: " + JSON.stringify(data)  )
 formData_FormData.append("photos", this.state.selectedFiles)
+console.log("products Arr" + JSON.stringify(formData_FormData) )
 console.log("isAdding After setting True///" +this.state.addingProduct );
- await addProductToServer(formData_FormData,AdminToken)
+ //await addProductToServer(formData_FormData,AdminToken)
  //  this.setState({addingToServer: false})
    console.log("isAdding After setting false///" +this.state.addingProduct );
    //console.log(formData);
