@@ -42,6 +42,7 @@ router.get('/api/sections-with-products',  async (req, res) => {
     let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
         return {...section.toObject(), productsOfSection: await Promise.all(section.productsOfSection.map(async(pos)=>{
         	let product =await Product.findOne({_id: pos.productOfSection})
+            if(product){
         let outOfStock = false
 	if (product.onlyOrderAvailableQty) {
          if (product.availableQty === 0 || product.availableQty < 0) {
@@ -52,6 +53,9 @@ router.get('/api/sections-with-products',  async (req, res) => {
     if(!product.outOfStock) {
         return product
        } 
+
+
+    }
       } )) }
     }))
 

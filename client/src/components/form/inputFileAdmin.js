@@ -9,8 +9,10 @@ export default class CustomInput extends Component {
 
 
   onChange(e) {
+    //this onchage we use if we want to get files in formData
     const { input: { onChange } } = this.props
     onChange(e.target.files[0])
+    console.log("eee"+e.target.files);
   }
 
   render() {
@@ -27,7 +29,7 @@ export default class CustomInput extends Component {
           className="inputText-admin"
           type='file'
          // value={ value }
-          onChange={this.onChange}
+          onChange={this.props.change}
          required   
          multiple
            /> 

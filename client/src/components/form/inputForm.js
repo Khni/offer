@@ -15,7 +15,7 @@ export default class CustomInput extends Component {
           value={ value }
           onChange={ onChange }
           // placeholder={}
-         required   
+          
           oninvalid="this.setCustomValidity('The Field can not be Empty ')"
     oninput="this.setCustomValidity('')"  />
     <span className="floating-label">{this.props.label}</span>
