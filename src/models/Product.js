@@ -51,6 +51,21 @@ discount: {
         
 
     } ,
+    
+    inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
+
+            type: Boolean,
+            
+        },
+        discountValue: {
+            type: Number,
+            trim: true
+        }, 
+        limitedOrder: {//0 if unlimited
+            type: Number,
+            trim: true
+        }, 
+    
     adminID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -157,20 +172,13 @@ type: Boolean,
     sku: {
         type: String,
         trim: true,
+        require: true
 
     },
     barcode: {
-        ean: {
-            type: String,
+        type: Number,
             trim: true,
-
-        },
-
-        upc: {
-            type: String,
-            trim: true,
-
-        },
+            require: true
 
     },
 

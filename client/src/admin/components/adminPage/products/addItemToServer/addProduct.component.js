@@ -26,6 +26,7 @@ class AddProduct extends Component {
       addingToServer: false,
       selectedFile: null,
       selectedFiles: []
+      
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this)
@@ -35,80 +36,36 @@ class AddProduct extends Component {
 
   async onSubmit(formData) {
     this.setState({ addingToServer: true })
-    // formData.append('file', this.state.selectedFile)
-    let data = new FormData()
+    
     let formData_FormData = new FormData()
-    //let FormDataObj = new FormData(formData)
+    //append all form data to formData 
     for (var key in formData) {
      
         formData_FormData.append(key, formData[key])
       
-
     }
-
+    //append photo files to formData
     const files = this.state.selectedFiles
     for (let i = 0; i < files.length; i++) {
       formData_FormData.append(`photos`, files[i])
   }
-
-   
-
-    
-    /*formData_FormData.append("photos", formData_FormData.get('pic1'))
-    formData_FormData.append("photos",  formData_FormData.get('pic2'))*/
-
+  
     formData_FormData.append("onlyOrderAvailableQty", false)
 
 
-    // formData_FormData.forEach(file => {
-    //   formData_FormData.append("photos[]", file.upload, file.pic2)
-    // })
-
     for (var pair of formData_FormData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
+     // console.log(pair[0] + ', ' + pair[1]);
     }
-    console.log('stateNewSubmit' + this.state.selectedFiles)
-
-
-    console.log("formdata keys" + formData_FormData.get('upload'));
-
-
-    data.append("nameAr", "sas")
-    data.append("nameEn", "apend")
-    data.append("descEn", "ddddd")
-    data.append("descAr", "ddddd")
-    data.append('upload', formData.upload)
-    data.append("nameAr", "sas")
-    data.append("price", 45)
-    data.append("quantity", 45)
-    data.append("sectionID", "5f6681eea6cac600174014a3")
-    // console.log(data.name + 'dataapend');
-    //const filen = this.state.selectedFile
-    // console.log(this.state.selectedFile.name  + 'filen');
-    // console.log("formOBJ", JSON.stringify(FormDataObj));
-    //formData['file'] = this.state.selectedFile
-    const AdminToken = this.props.AdminToken
-
-    console.log("form Data apeend" + data.nameEn);
-
-    //console.log("form name" + formData.upload.name );
+    
+    
     const { addProductToServer } = this.props;
-    console.log("apend data: " + JSON.stringify(data))
-    //formData_FormData.append("photos", this.state.selectedFiles)
-
-
-    console.log("isAdding After setting True///" + this.state.addingProduct);
-    await addProductToServer(formData_FormData, AdminToken)
-    //  this.setState({addingToServer: false})
-    console.log("isAdding After setting false///" + this.state.addingProduct);
-    //console.log(formData);
-    let AddetToServerCondafter = this.props.AddedToServer
-    console.log("added cond after submit" + AddetToServerCondafter);
-
+    
+    await addProductToServer(formData_FormData, this.props.AdminToken)
+    
     if (this.props.AddedToServer) {
 
       this.setState({ addingToServer: false })
-      //alert("Item has been added!") 
+      
       window.location.reload();
     }
 
@@ -157,6 +114,20 @@ class AddProduct extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    const onlyOrderAvailableQty = [
+    {
+    	option: "Yes, limited order depends on the Availabe Quantity ", 
+        value: true
+    
+   }, 
+   {
+   	option: "No, unlimited order allowed, even if there is NOT enough stock ", 
+        value: false
+  } 
+   ] 
+   const sections = this.props.sections.map(section=>{
+return {value : section._id, option : section.nameEn}
+   })
 
     return (
       <div className="addProduct-container">
@@ -267,13 +238,91 @@ class AddProduct extends Component {
                 label='Pic'
               />
             </fieldset>
+            
+            <fieldset>
+              <Field
+                type='number'
+                name='discountValue'
+                id='discountValue'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='Discount Value'
+              />
+            </fieldset>
+            
+                    <fieldset>
+              <Field
+
+                options={[{option:'in Percentage', value:true}, 
+                      {option:'in Currency', value:false}  ]}
+                name='inPercentage'
+                id='inPercentage'
+                className='sectionID'
+                //      placeholder='enter title in English ' 
+                component={SelectForm}
+                label=' Discount Type '
+              />
+            </fieldset>
+            
+            
+                <fieldset>
+              <Field
+                type='number'
+                name='limitedOrder'
+                id='limitedOrder'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='limited number to order'
+              />
+            </fieldset>
+            
+                 <fieldset>
+              <Field
+                type='number'
+                name='barcode'
+                id='barcode'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='barcode'
+              />
+            </fieldset>
+            
+            <fieldset>
+              <Field
+                type='text'
+                name='sku'
+                id='sku'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='sku'
+              />
+            </fieldset>
+            
+            
+            
+            <fieldset>
+              <Field
+
+                options={onlyOrderAvailableQty}
+                name='onlyOrderAvailableQty'
+                id='onlyOrderAvailableQtya'
+                className='sectionID'
+                //      placeholder='enter title in English ' 
+                component={SelectForm}
+                label=' order only if there is enough stock? '
+              />
+            </fieldset>
 
 
 
             <fieldset>
               <Field
 
-                sections={this.props.sections}
+                options={sections}
                 name='sectionID'
                 id='sectionID'
                 className='sectionID'
