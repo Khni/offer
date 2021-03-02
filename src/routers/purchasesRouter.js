@@ -165,18 +165,26 @@ router.get('/api/admin/upgradedb', async (req, res) => {
 
 // }
 //  let update = {history:[]}
+// let update = {
+//   discount: {
+
+//     isActive: false,
+//     inPercentage: false,
+//     value: 0,
+//     limitedOrder: 0
+
+
+//   },
+//   onlyOrderAvailableQty: false
+// }
 let update = {
-  discount: {
-
-    isActive: false,
+    discountValue : 10,
     inPercentage: false,
-    value: 0,
-    limitedOrder: 0
-
-
-  },
-  onlyOrderAvailableQty: false
-}
+    barcode: 0,
+    limitedOrder: 15,
+    sku:"N/A"
+   
+  }
 
 await Product.updateMany({}, update)
 

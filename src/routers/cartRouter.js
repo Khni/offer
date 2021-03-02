@@ -9,24 +9,24 @@ const auth = require('../middleware/auth')
 
 router.post('/api/cart/add', auth, async (req, res) => {
     const foundcart = await Cart.findOne({ userID: req.user._id })
-     //check if product onlyOrderAvailableQty to stop adding if it out of stock
-     let product = await Product.findOne({ _id: req.body.productID })
-     if (product.onlyOrderAvailableQty) {
-         if (product.availableQty === 0 || product.availableQty < 0) {
-             return res.status(400).send({
-                 error: "There are no more in stock",
-                 error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
-             })
-         }
-     }
+    //check if product onlyOrderAvailableQty to stop adding if it out of stock
+    let product = await Product.findOne({ _id: req.body.productID })
+    if (product.onlyOrderAvailableQty) {
+        if (product.availableQty === 0 || product.availableQty < 0) {
+            return res.status(400).send({
+                error: "There are no more in stock",
+                error_ar: "ليس هناك مخزون كافي لاضافة المزيد"
+            })
+        }
+    }
 
     if (foundcart) {
-        
+
         const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
 
         //console.log("foundproduct" + foundproduct.products);
         if (foundproduct) {
-            
+
 
 
 
@@ -42,9 +42,9 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 return product.productID == req.body.productID
 
             })
-           
-           
-            
+
+
+
 
             //check if there is discount and there are limited number to buy
             if (product.discount.isActive && product.discount.limitedOrder !== 0) {
@@ -56,7 +56,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 }
             }
 
-            
+
 
 
 
@@ -66,12 +66,12 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $set: { "products.$.quantity": productinCart.quantity + 1 } },
                     { safe: true })
-                    console.log("foundCart");
+                console.log("foundCart");
                 const cart = await Cart.findOne({ userID: req.user._id })
-                console.log("cart"+cart);
+                console.log("cart" + cart);
 
                 const cartProducts = await CartProductsList(cart, req.user._id)
-                console.log("cartProd"+cartProducts);
+                console.log("cartProd" + cartProducts);
                 return res.status(200).send({ cartProducts })
                 // updatecart.save()
             } catch (error) {
@@ -86,7 +86,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
         foundcart.products = foundcart.products.concat({ productID: req.body.productID, quantity: 1 })
         try {
             await foundcart.save()
-            
+
             const cartProducts = await CartProductsList(foundcart, req.user._id)
             return res.status(200).send({ cartProducts })
 
@@ -126,7 +126,7 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
             return product.productID == req.body.productID
 
         })
-       
+
 
         if (product.quantity === 1) {
             try {
@@ -303,11 +303,20 @@ router.get('/api/user-servercart', auth, async (req, res) => {
             }
 
             //check if there is discount and there are limited number to buy
-            if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-                if (foundproduct.discount.limitedOrder < Qty) {
-                    Qty = foundproduct.discount.limitedOrder
-                }
+            // if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
+            //     if (foundproduct.discount.limitedOrder < Qty) {
+            //         Qty = foundproduct.discount.limitedOrder
+            //     }
+            // }
+
+            if (foundproduct.limitedOrder < Qty) {
+                Qty = foundproduct.limitedOrder
             }
+
+
+
+
+
 
 
 
@@ -394,11 +403,17 @@ router.post('/api/user-localcart', async (req, res) => {
             }
 
             //check if there is discount and there are limited number to buy
-            if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-                if (foundproduct.discount.limitedOrder < Qty) {
-                    Qty = foundproduct.discount.limitedOrder
-                }
+            // if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
+            //     if (foundproduct.discount.limitedOrder < Qty) {
+            //         Qty = foundproduct.discount.limitedOrder
+            //     }
+            // }
+
+            if (foundproduct.limitedOrder < Qty) {
+                Qty = foundproduct.limitedOrder
             }
+
+
 
 
 

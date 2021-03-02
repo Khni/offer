@@ -25,47 +25,47 @@ const productSchema = mongoose.Schema({
         trim: true,
         require: true,
     },
-   
 
-discount: {
-	
-	isActive: { //true there is discount 
+
+    discount: {
+
+        isActive: { //true there is discount 
 
             type: Boolean,
-           
+
         },
-	
+
         inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
             type: Boolean,
-            
+
         },
         value: {
             type: Number,
             trim: true
-        }, 
+        },
         limitedOrder: {//0 if unlimited
             type: Number,
             trim: true
-        }, 
-        
+        },
 
-    } ,
-    
+
+    },
+
     inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
-            type: Boolean,
-            
-        },
-        discountValue: {
-            type: Number,
-            trim: true
-        }, 
-        limitedOrder: {//0 if unlimited
-            type: Number,
-            trim: true
-        }, 
-    
+        type: Boolean,
+
+    },
+    discountValue: {
+        type: Number,
+        trim: true
+    },
+    limitedOrder: {//0 if unlimited
+        type: Number,
+        trim: true
+    },
+
     adminID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -82,7 +82,7 @@ discount: {
         require: true
     },
 
-    
+
 
     //ordered from vendor
     onOrderQty: {
@@ -96,18 +96,18 @@ discount: {
         trim: true,
 
     },
-     //onHandQty minus reservedQty(actual stock)
-     availableQty: {
+    //onHandQty minus reservedQty(actual stock)
+    availableQty: {
         type: Number,
         trim: true,
 
     },
-    
-    onlyOrderAvailableQty:{//false if user can order even there is no enough available quantity 
-type: Boolean,
-            required: true
-}, 
-    
+
+    onlyOrderAvailableQty: {//false if user can order even there is no enough available quantity 
+        type: Boolean,
+        required: true
+    },
+
     // physically available (including Qty Reserved), minus  “pickedQty"
     onHandQty: {
         type: Number,
@@ -120,7 +120,7 @@ type: Boolean,
         trim: true,
 
     },
-    
+
 
     //awaiting shipment(ordered by customer and sitting in box) 
     pickedQty: {
@@ -139,7 +139,7 @@ type: Boolean,
         trim: true,
 
     },
-    
+
     deliveredQty: {
         type: Number,
         trim: true,
@@ -177,8 +177,8 @@ type: Boolean,
     },
     barcode: {
         type: Number,
-            trim: true,
-            require: true
+        trim: true,
+        require: true
 
     },
 

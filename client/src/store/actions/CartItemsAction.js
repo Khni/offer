@@ -74,7 +74,7 @@ export const addItemToCartItem = (item, items, token, isAuthenticated) => {
 
 
       } catch (e) {
-        console.log("err" +JSON.stringify( e.response.data)  );
+       console.log("err" +JSON.stringify( e.response.data)  );
 
 
       }

@@ -35,7 +35,7 @@ class AddProduct extends Component {
 
 
   async onSubmit(formData) {
-    this.setState({ addingToServer: true })
+    // this.setState({ addingToServer: true })
     
     let formData_FormData = new FormData()
     //append all form data to formData 
@@ -50,11 +50,12 @@ class AddProduct extends Component {
       formData_FormData.append(`photos`, files[i])
   }
   
-    formData_FormData.append("onlyOrderAvailableQty", false)
+   // formData_FormData.append("onlyOrderAvailableQty", false)
+   
 
 
     for (var pair of formData_FormData.entries()) {
-     // console.log(pair[0] + ', ' + pair[1]);
+      console.log(pair[0] + ', ' + pair[1]);
     }
     
     
