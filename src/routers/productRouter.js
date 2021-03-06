@@ -235,9 +235,16 @@ router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (r
 
 
 router.post('/api/add-product',[authAdmin , upload.array('photos' , 10)] , async (req, res) => {
+	//first be sure that photos are uploaded 
     const product = new Product({
         ...req.body,
-        adminID: req.admin._id
+        adminID: req.admin._id, 
+        barcode: {
+    	code: req.body.barcode, 
+       type: req.body.barcodeType
+      } 
+       
+    
     })
 
     

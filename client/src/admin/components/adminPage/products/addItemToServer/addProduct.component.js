@@ -239,7 +239,21 @@ return {value : section._id, option : section.nameEn}
                 label='Pic'
               />
             </fieldset>
+            <h3>Discount</h3>
             
+            
+            
+            <fieldset>
+              <Field
+                type='number'
+                name='defaultDiscountValue'
+                id='defaultDiscountValue'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='default Discount Value Value'
+              />
+            </fieldset>
             <fieldset>
               <Field
                 type='number'
@@ -248,9 +262,38 @@ return {value : section._id, option : section.nameEn}
                 className='nameAr'
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='Discount Value'
+                label='Offer Discount Value'
               />
             </fieldset>
+            
+            <fieldset>
+              <Field
+                type='date'
+                name='discountStartsAt'
+                id='discountStartsAt'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='discount Starts At  '
+              />
+            </fieldset>
+            
+            
+            <fieldset>
+              <Field
+                type='date'
+                name='discountExpAt'
+                id='discountExpAt'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='discount Exp At'
+              />
+            </fieldset>
+            
+            
+            
+            
             
                     <fieldset>
               <Field
@@ -281,9 +324,21 @@ return {value : section._id, option : section.nameEn}
             
                  <fieldset>
               <Field
-                type='number'
+                type='text'
                 name='barcode'
                 id='barcode'
+                className='nameAr'
+                //    placeholder='enter title in Arabic' 
+                component={InputForm}
+                label='barcode'
+              />
+            </fieldset>
+            
+            <fieldset>
+              <Field
+                type='text'
+                name='barcodeType'
+                id='barcodeType'
                 className='nameAr'
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}

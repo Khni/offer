@@ -51,19 +51,37 @@ const productSchema = mongoose.Schema({
 
 
     },
-
+    
+    defaultDiscountValue: {
+    type: Number,
+        trim: true, 
+        required: true
+   }, 
+discountStartsAt: {
+        type: Date,
+        trim: true, 
+        required: true
+    },
+    discountExpAt: {
+        type: Date,
+        trim: true,
+        required: true
+    },
     inPercentage: { //true if the dicount in Percentage/ percent will be in this form 0.90 means 10%
 
         type: Boolean,
+        required: true
 
     },
     discountValue: {
         type: Number,
-        trim: true
+        trim: true, 
+        required: true
     },
-    limitedOrder: {//0 if unlimited
+    limitedOrder: {
         type: Number,
-        trim: true
+        trim: true, 
+        required: true
     },
 
     adminID: {
@@ -176,28 +194,33 @@ const productSchema = mongoose.Schema({
 
     },
     barcode: {
-        type: Number,
+    	required: true, 
+    	code: {
+        type: String,
+      unique: true,
+      index: true,
+      required: true
+        trim: true
+        
+       }, 
+       type: {
+        type: String,
         trim: true,
         require: true
+       }
+       
 
     },
 
-    sizes: [
-        {
-            size: {
-                type: String,
-                trim: true,
-            },
-            quantity: {
-                type: Number,
-                trim: true,
+    color: {
+    type: String,
+     trim: true,	
+} ,
 
-            }
-
-        }
-
-    ],
-
+size: {
+    type: String,
+     trim: true,	
+} ,
     imgURLs: [
         {
             imgURL: {
@@ -265,28 +288,28 @@ const productSchema = mongoose.Schema({
     oldprice: {
         type: String,
         trim: true,
-        require: true,
+        
 
     },
     gender:
     {
         type: String,
         trim: true,
-        require: true,
+        
     },
 
     age:
     {
         type: String,
         trim: true,
-        require: true,
+        
     },
 
     color:
     {
         type: String,
         trim: true,
-        require: true,
+        
     },
 
     reviews: [

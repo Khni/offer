@@ -54,10 +54,9 @@ router.post('/api/voucher/verify', async (req, res) => {
 
     let dateForm = new Date(voucher.validFrom)
     let dateuntil = new Date(voucher.validUntil)
-    // let date = new Date(req.body.date)
+    
     let DateNow = new Date()
-    console.log("nowdate" + DateNow.getTime());
-    console.log("until" + dateuntil.getTime());
+    
 
 
     if (dateuntil.getTime() < DateNow.getTime()) {

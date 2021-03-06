@@ -44,6 +44,8 @@ class ProductPage extends Component {
       imgUrlsArr: [],
       reviews: [],
       favorite: false, 
+    //  discountValue: 0,
+  //    inPercentage: false, 
       outOfStock: false
     }
 

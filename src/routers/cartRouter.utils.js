@@ -24,11 +24,11 @@ const CartProductsList =async (cart, userID) => {
             }
 
             //check if there is discount and there are limited number to buy
-            if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-                if (foundproduct.discount.limitedOrder < Qty ) {
-                    Qty = foundproduct.discount.limitedOrder
-                }
+            
+            if (foundproduct.limitedOrder < Qty) {
+                Qty = foundproduct.limitedOrder
             }
+            
      
             
 
@@ -41,7 +41,8 @@ const CartProductsList =async (cart, userID) => {
                 availableQty: foundproduct.availableQty,
                 quantity: Qty,
                 imgURLs: foundproduct.imgURLs,
-                discount: foundproduct.discount,
+                discountValue: foundproduct.discountValue,
+                inPercentage:foundproduct.inPercentage
                 onlyOrderAvailableQty: foundproduct.onlyOrderAvailableQty
             }
 

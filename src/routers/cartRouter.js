@@ -24,7 +24,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
         const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
 
-        //console.log("foundproduct" + foundproduct.products);
+        
         if (foundproduct) {
 
 
@@ -47,14 +47,14 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
 
             //check if there is discount and there are limited number to buy
-            if (product.discount.isActive && product.discount.limitedOrder !== 0) {
-                if (product.discount.limitedOrder === productinCart.quantity || product.discount.limitedOrder < productinCart.quantity) {
+            
+                if (product.limitedOrder === productinCart.quantity || product.limitedOrder < productinCart.quantity) {
                     return res.status(400).send({
                         error: "You Reached maximum amount in Discount",
-                        error_ar: "وصلت للحد الأقصى في وقت العرض"
+                        error_ar: "وصلت للحد الأقصى لطلب هذا المنتج "
                     })
                 }
-            }
+            
 
 
 
@@ -62,16 +62,16 @@ router.post('/api/cart/add', auth, async (req, res) => {
 
             try {
 
-                console.log("foundCart");
+                
                 const updatecart = await Cart.updateOne({ "userID": req.user._id, "products.productID": req.body.productID },
                     { $set: { "products.$.quantity": productinCart.quantity + 1 } },
                     { safe: true })
-                console.log("foundCart");
+                
                 const cart = await Cart.findOne({ userID: req.user._id })
-                console.log("cart" + cart);
+                
 
                 const cartProducts = await CartProductsList(cart, req.user._id)
-                console.log("cartProd" + cartProducts);
+                
                 return res.status(200).send({ cartProducts })
                 // updatecart.save()
             } catch (error) {
@@ -117,7 +117,7 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
 
     const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
     //validate that cart and product are fount toperform decreasing
-    console.log("foundproduct" + foundproduct);
+    
     if (foundproduct) {
 
         const product = foundproduct.products.find(product => {
@@ -285,8 +285,11 @@ router.get('/api/user-servercart', auth, async (req, res) => {
     if (!cart) {
         return res.status(400).send({ error: "cart is not found" })
     }
+    
+    const cartProducts = await CartProductsList(cart, req.user._id)
+    
 
-    let cartWithProducts = await Promise.all(cart.products.map(async product => {
+  /*  let cartWithProducts = await Promise.all(cart.products.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
         if (foundproduct) {
@@ -303,11 +306,7 @@ router.get('/api/user-servercart', auth, async (req, res) => {
             }
 
             //check if there is discount and there are limited number to buy
-            // if (foundproduct.discount.isActive && foundproduct.discount.limitedOrder !== 0) {
-            //     if (foundproduct.discount.limitedOrder < Qty) {
-            //         Qty = foundproduct.discount.limitedOrder
-            //     }
-            // }
+            
 
             if (foundproduct.limitedOrder < Qty) {
                 Qty = foundproduct.limitedOrder
@@ -325,16 +324,7 @@ router.get('/api/user-servercart', auth, async (req, res) => {
 
 
 
-            /*    if (foundproduct.availableQty === 0 && foundproduct.onlyOrderAvailableQty) {
-                    price = 0,
-                        Qty = 0
-    
-                }
-                if (foundproduct.availableQty < Qty && foundproduct.onlyOrderAvailableQty) {
-    
-                    Qty = foundproduct.availableQty
-    
-                }*/
+            
 
 
             return {
@@ -352,7 +342,7 @@ router.get('/api/user-servercart', auth, async (req, res) => {
 
         } //end of if foundproduct
 
-    }))
+    }))*/
 
 
 
@@ -360,7 +350,7 @@ router.get('/api/user-servercart', auth, async (req, res) => {
     try {
 
 
-        return res.status(200).send({ cartWithProducts })
+        return res.status(200).send({ cartProducts })
 
     } catch (error) {
         return res.status(401).send({ error })
@@ -385,8 +375,10 @@ router.post('/api/user-localcart', async (req, res) => {
     if (!cart) {
         return res.status(400).send({ error: "cart is not found" })
     }
+    
+    
 
-    let cartWithProducts = await Promise.all(cart.map(async product => {
+  /*  let cartWithProducts = await Promise.all(cart.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
 
@@ -433,15 +425,16 @@ router.post('/api/user-localcart', async (req, res) => {
 
         } //end of if foundproduct
 
-    }))
+    }))*/
 
 
-
+const cartProducts = await CartProductsList(cart, req.user._id)
+    
 
     try {
 
 
-        return res.status(200).send({ cartWithProducts })
+        return res.status(200).send({ cartProducts })
 
     } catch (error) {
         return res.status(401).send({ error })
