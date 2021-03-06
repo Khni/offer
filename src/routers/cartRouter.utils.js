@@ -42,7 +42,7 @@ const CartProductsList =async (cart, userID) => {
                 quantity: Qty,
                 imgURLs: foundproduct.imgURLs,
                 discountValue: foundproduct.discountValue,
-                inPercentage:foundproduct.inPercentage
+                inPercentage:foundproduct.inPercentage,
                 onlyOrderAvailableQty: foundproduct.onlyOrderAvailableQty
             }
 

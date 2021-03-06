@@ -11,7 +11,7 @@ export default class CustomInput extends Component {
         <select name={this.props.name}
           id={this.props.id}
           /* placeholder={ this.props.placeholder } */
-          className="input-select-admin"
+          className={this.props.classNs}
 
 
           onChange={onChange}
@@ -29,6 +29,7 @@ export default class CustomInput extends Component {
 
 
         </select>
+      
       </div>
     );
   }

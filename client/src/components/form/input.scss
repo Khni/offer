@@ -50,6 +50,13 @@
 	@include inputMixin(290px)
 }
 
+.input-300 {
+	@include inputMixin(300px)
+}
+.input-100 {
+	@include inputMixin(100px)
+}
+
 
 .addressInput {
 	@include inputMixin(100px)

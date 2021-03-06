@@ -135,14 +135,15 @@ router.get('/api/productWithReviews/:id',  async (req, res) => {
   
 const productReviews = await Review.find({$and:[{ productID: req.params.id}, { active: true}]})
 const rating = getRating(productReviews)
-const finalPrice = finalPrice(product) 
+const price = finalPrice(product) 
+console.log("finalPrice" + JSON.stringify(price));
 
     try {
 
         res.status(200).send({ product , rating , productReviews ,
-         finalPrice: finalPrice.finalPrice, 
-         discountInPercentage: finalPrice.discountInPercentage, 
-         discountValue: finalPrice.discountValue
+         finalPrice: price.finalPrice, 
+         discountInPercentage: price.discountInPercentage, 
+         discountValue: price.discountValue
  })
     } catch (e) {
         res.status(400).send({ e })

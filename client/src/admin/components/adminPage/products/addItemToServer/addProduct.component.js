@@ -7,7 +7,7 @@ import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import './addProduct.scss'
 import FormData from 'form-data'
-import InputForm from '../../../../../components/form/inputAdminForm'
+import InputForm from '../../../../../components/form/inputForm'
 import InputFile from '../../../../../components/form/inputFileAdmin'
 import SelectForm from '../../../../../components/form/selectOptions.component'
 import * as actions from '../../../../../store/actions/product';
@@ -26,7 +26,7 @@ class AddProduct extends Component {
       addingToServer: false,
       selectedFile: null,
       selectedFiles: []
-      
+
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this)
@@ -36,37 +36,37 @@ class AddProduct extends Component {
 
   async onSubmit(formData) {
     // this.setState({ addingToServer: true })
-    
+
     let formData_FormData = new FormData()
     //append all form data to formData 
     for (var key in formData) {
-     
-        formData_FormData.append(key, formData[key])
-      
+
+      formData_FormData.append(key, formData[key])
+
     }
     //append photo files to formData
     const files = this.state.selectedFiles
     for (let i = 0; i < files.length; i++) {
       formData_FormData.append(`photos`, files[i])
-  }
-  
-   // formData_FormData.append("onlyOrderAvailableQty", false)
-   
+    }
+
+    // formData_FormData.append("onlyOrderAvailableQty", false)
+
 
 
     for (var pair of formData_FormData.entries()) {
       console.log(pair[0] + ', ' + pair[1]);
     }
-    
-    
+
+
     const { addProductToServer } = this.props;
-    
+
     await addProductToServer(formData_FormData, this.props.AdminToken)
-    
+
     if (this.props.AddedToServer) {
 
       this.setState({ addingToServer: false })
-      
+
       window.location.reload();
     }
 
@@ -116,19 +116,19 @@ class AddProduct extends Component {
   render() {
     const { handleSubmit } = this.props;
     const onlyOrderAvailableQty = [
-    {
-    	option: "Yes, limited order depends on the Availabe Quantity ", 
+      {
+        option: "Yes, limited order ",
         value: true
-    
-   }, 
-   {
-   	option: "No, unlimited order allowed, even if there is NOT enough stock ", 
+
+      },
+      {
+        option: "No, unlimited order  ",
         value: false
-  } 
-   ] 
-   const sections = this.props.sections.map(section=>{
-return {value : section._id, option : section.nameEn}
-   })
+      }
+    ]
+    const sections = this.props.sections.map(section => {
+      return { value: section._id, option: section.nameEn }
+    })
 
     return (
       <div className="addProduct-container">
@@ -159,7 +159,7 @@ return {value : section._id, option : section.nameEn}
                 type='text'
                 name='nameAr'
                 id='nameAr'
-                className='nameAr'
+                classN="input-300"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Title in Arabic'
@@ -170,7 +170,7 @@ return {value : section._id, option : section.nameEn}
                 type='text'
                 name='nameEn'
                 id='nameEn'
-                className='nameEn'
+                classN="input-300"
                 //       placeholder='enter title in English ' 
                 component={InputForm}
                 label='Title in English'
@@ -179,10 +179,10 @@ return {value : section._id, option : section.nameEn}
 
             <fieldset>
               <Field
-                type='text'
+                type='Number'
                 name='price'
                 id='price'
-                className='price'
+                classN="input-100"
                 //       placeholder='enter title in English ' 
                 component={InputForm}
                 label='price'
@@ -192,10 +192,10 @@ return {value : section._id, option : section.nameEn}
 
             <fieldset>
               <Field
-                type='text'
+                type='Number'
                 name='quantity'
                 id='quantity'
-                className='quantity'
+                classN="input-100"
                 //   placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Quantity '
@@ -208,7 +208,7 @@ return {value : section._id, option : section.nameEn}
                 type='text'
                 name='descAr'
                 id='descAr'
-                className='descAr'
+                classN="input-300"
                 //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' description in Arabic'
@@ -219,7 +219,7 @@ return {value : section._id, option : section.nameEn}
                 type='text'
                 name='descEn'
                 id='descEn'
-                className='descEn'
+                classN="input-300"
                 //      placeholder='enter title in English ' 
                 component={InputForm}
                 label=' Description in English'
@@ -232,26 +232,26 @@ return {value : section._id, option : section.nameEn}
                 type='file'
                 name='photos'
                 id='photos'
-                className='imgURL'
+                className='sectionID'
                 //      placeholder='enter title in English ' 
                 component={InputFile}
                 change={this.onChangeHandler}
-                label='Pic'
+                label='Upload product Photos'
               />
             </fieldset>
             <h3>Discount</h3>
-            
-            
-            
+
+
+
             <fieldset>
               <Field
                 type='number'
                 name='defaultDiscountValue'
                 id='defaultDiscountValue'
-                className='nameAr'
+                classN="input-100"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='default Discount Value Value'
+                label='default Discount Value'
               />
             </fieldset>
             <fieldset>
@@ -259,114 +259,114 @@ return {value : section._id, option : section.nameEn}
                 type='number'
                 name='discountValue'
                 id='discountValue'
-                className='nameAr'
+                classN="input-100"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='Offer Discount Value'
               />
             </fieldset>
-            
+
             <fieldset>
               <Field
                 type='date'
                 name='discountStartsAt'
                 id='discountStartsAt'
-                className='nameAr'
+                classN="input-300"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='discount Starts At  '
               />
             </fieldset>
-            
-            
+
+
             <fieldset>
               <Field
                 type='date'
                 name='discountExpAt'
                 id='discountExpAt'
-                className='nameAr'
+                classN="input-300"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='discount Exp At'
               />
             </fieldset>
-            
-            
-            
-            
-            
-                    <fieldset>
+
+
+
+
+
+            <fieldset>
               <Field
 
-                options={[{option:'in Percentage', value:true}, 
-                      {option:'in Currency', value:false}  ]}
+                options={[{ option: 'in Percentage', value: true },
+                { option: 'in Currency', value: false }]}
                 name='inPercentage'
                 id='inPercentage'
-                className='sectionID'
+                classN="input-300"
                 //      placeholder='enter title in English ' 
                 component={SelectForm}
                 label=' Discount Type '
               />
             </fieldset>
-            
-            
-                <fieldset>
+
+
+            <fieldset>
               <Field
                 type='number'
                 name='limitedOrder'
                 id='limitedOrder'
-                className='nameAr'
+                classN="input-100"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='limited number to order'
+                label='Maximum to order'
               />
             </fieldset>
-            
-                 <fieldset>
+
+            <fieldset>
               <Field
                 type='text'
                 name='barcode'
                 id='barcode'
-                className='nameAr'
+                classN="input-300"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='barcode'
               />
             </fieldset>
-            
+
             <fieldset>
               <Field
                 type='text'
                 name='barcodeType'
                 id='barcodeType'
-                className='nameAr'
+                classN="input-100"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
-                label='barcode'
+                label='barcode type'
               />
             </fieldset>
-            
+
             <fieldset>
               <Field
                 type='text'
                 name='sku'
                 id='sku'
-                className='nameAr'
+                classN="input-300"
                 //    placeholder='enter title in Arabic' 
                 component={InputForm}
                 label='sku'
               />
             </fieldset>
-            
-            
-            
+
+
+
             <fieldset>
               <Field
 
                 options={onlyOrderAvailableQty}
                 name='onlyOrderAvailableQty'
                 id='onlyOrderAvailableQtya'
-                className='sectionID'
+                classN="input-100"
                 //      placeholder='enter title in English ' 
                 component={SelectForm}
                 label=' order only if there is enough stock? '
@@ -381,7 +381,7 @@ return {value : section._id, option : section.nameEn}
                 options={sections}
                 name='sectionID'
                 id='sectionID'
-                className='sectionID'
+                classN="input-100"
                 //      placeholder='enter title in English ' 
                 component={SelectForm}
                 label=' section'

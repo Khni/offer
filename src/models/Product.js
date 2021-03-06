@@ -51,15 +51,15 @@ const productSchema = mongoose.Schema({
 
 
     },
-    
+
     defaultDiscountValue: {
-    type: Number,
-        trim: true, 
+        type: Number,
+        trim: true,
         required: true
-   }, 
-discountStartsAt: {
+    },
+    discountStartsAt: {
         type: Date,
-        trim: true, 
+        trim: true,
         required: true
     },
     discountExpAt: {
@@ -75,12 +75,12 @@ discountStartsAt: {
     },
     discountValue: {
         type: Number,
-        trim: true, 
+        trim: true,
         required: true
     },
     limitedOrder: {
         type: Number,
-        trim: true, 
+        trim: true,
         required: true
     },
 
@@ -194,33 +194,33 @@ discountStartsAt: {
 
     },
     barcode: {
-    	required: true, 
-    	code: {
-        type: String,
-      unique: true,
-      index: true,
-      required: true
-        trim: true
         
-       }, 
-       type: {
-        type: String,
-        trim: true,
-        require: true
-       }
-       
+        code: {
+            type: String,
+            unique: true,
+            index: true,
+            required: true,
+            trim: true
+
+        },
+        type: {
+            type: String,
+            trim: true,
+            require: true
+        }
+
 
     },
 
     color: {
-    type: String,
-     trim: true,	
-} ,
+        type: String,
+        trim: true,
+    },
 
-size: {
-    type: String,
-     trim: true,	
-} ,
+    size: {
+        type: String,
+        trim: true,
+    },
     imgURLs: [
         {
             imgURL: {
@@ -288,28 +288,28 @@ size: {
     oldprice: {
         type: String,
         trim: true,
-        
+
 
     },
     gender:
     {
         type: String,
         trim: true,
-        
+
     },
 
     age:
     {
         type: String,
         trim: true,
-        
+
     },
 
     color:
     {
         type: String,
         trim: true,
-        
+
     },
 
     reviews: [
