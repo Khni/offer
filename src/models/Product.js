@@ -106,36 +106,42 @@ const productSchema = mongoose.Schema({
     onOrderQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //order from vendor and in transit, has not been received at location yet 
     transitQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //onHandQty minus reservedQty(actual stock)
     availableQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
 
     onlyOrderAvailableQty: {//false if user can order even there is no enough available quantity 
         type: Boolean,
-        required: true
+        required: true,
+        default: 0
     },
 
     // physically available (including Qty Reserved), minus  “pickedQty"
     onHandQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //ordered by customer
     reservedQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
 
@@ -144,35 +150,41 @@ const productSchema = mongoose.Schema({
     pickedQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //canceled after reserved or picked
     canceled: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     shippedQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
 
     deliveredQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //returned after shipping or deleivered but still inTransit
     returnedinTransitQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
     //returned in stock
     returnedQty: {
         type: Number,
         trim: true,
+        default: 0
 
     },
 
@@ -305,12 +317,7 @@ const productSchema = mongoose.Schema({
 
     },
 
-    color:
-    {
-        type: String,
-        trim: true,
-
-    },
+    
 
     reviews: [
 
