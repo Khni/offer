@@ -44,8 +44,9 @@ class ProductPage extends Component {
       imgUrlsArr: [],
       reviews: [],
       favorite: false, 
-    //  discountValue: 0,
-  //    inPercentage: false, 
+     discountValue: 0,
+     discountInPercentage: 0, 
+     finalPrice : 0,
       outOfStock: false
     }
 
@@ -77,7 +78,7 @@ class ProductPage extends Component {
     }
 
 
-    this.setState({outOfStock:response.data.outOfStock, product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse() })
+    this.setState({outOfStock:response.data.outOfStock, product: response.data.product, Loading: false, rating: ProductRating, imgUrlsArr: imgUrls, reviews: response.data.productReviews.reverse(), finalPrice: response.data.finalPrice, discountInPercentage: response.data.discountInPercentage, discountValue: response.data.discountValue})
 
     if (this.state.fetch) {
       this.setState({ fetch: false })
@@ -221,6 +222,9 @@ class ProductPage extends Component {
                 token={this.props.token}
                 name={this.state.product.nameEn}
                 price={this.state.product.price}
+                finalPrice= {this.state.finalPrice}
+                discountInPercentage= {this.state.discountInPercentage}
+                discountValue= {this.state.discountValue}
                 item={this.state.product}
                 ToggleFavorite={this.ToggleFavorite}
                 showAlarmWindowAction={this.props.showAlarmWindowAction}

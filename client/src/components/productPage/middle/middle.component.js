@@ -23,7 +23,9 @@ const MiddleProduct = (props) => {
 
     <div className="MiddleProduct">
       <h4 className="product-page-title">{props.name}</h4>
-      <p className="product-page-price">Price: {" " + props.price + " "}EGP</p>
+      <p className="item-before-price">Price: {" " + props.price + " "}EGP</p>
+      <p className="product-page-price">Price: {" " + props.finalPrice + " "}EGP</p>
+      <p className="product-page-price">You saved: {" " + props.discountValue + " "}EGP</p>
       <div className="flex-row margin0">
         <AddToCartBtn
           cartItems={props.cartItems}
