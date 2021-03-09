@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" exit 1",
     "roid": "cd client && node node_modules/react-scripts/scripts/start.js",
     "start": "node src/index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "mon": "nodemon --exec npm start",
+    "test": "cross-env NODE_ENV=development mocha ./test --recursive",
     "dev": "concurrently \"cd client && npm run roid\" \"npm run mon\""
   },
   "engines": {
@@ -45,5 +45,9 @@
     "validator": "^13.0.0",
     "winston": "^3.3.3",
     "winston-mongodb": "^5.0.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.3",
+    "cross-env": "^7.0.3"
   }
 }
