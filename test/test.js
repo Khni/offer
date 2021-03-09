@@ -1,58 +1,92 @@
-const assert = require('assert')
-const chai = require('chai')
-const expect = chai.expect
+const chai = require('chai');
+const expect = chai.expect;
+const chaiAsPromised = require('chai-as-promised')
+chai.use(chaiAsPromised);
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+chai.use(sinonChai);
+const rewire = require('rewire');
 
-describe('file to be tested', () => {
+var demo = rewire('./demo');
 
-    context('Equal', () => {
-
-
-        it('should strictEqual Number ', () => {
-
-            assert.strictEqual(1, 1)
+describe('demo', ()=>{
+    context('add', ()=>{
+        it('should add two numbers', ()=>{
+            expect(demo.add(1,2)).to.equal(3);
         })
-
-        it('should DeepEqual Object', () => {
-            assert.deepStrictEqual({ id: 1, name: 'khaled' }, { id: 1, name: 'khaled' })
-        })
-
-        it('chai expect', () => {
-            expect({ id: 1 }).to.have.property('id')
-            expect(function () { }).to.not.throw();
-            expect({ a: 1 }).to.not.have.property('b');
-            expect([1, 2]).to.be.an('array').that.does.not.include(3);
-            // Target object deeply (but not strictly) equals `{a: 1}`
-            expect({ a: 1 }).to.deep.equal({ a: 1 });
-            expect({ a: 1 }).to.not.equal({ a: 1 });
-
-            // Target array deeply (but not strictly) includes `{a: 1}`
-            expect([{ a: 1 }]).to.deep.include({ a: 1 });
-            expect([{ a: 1 }]).to.not.include({ a: 1 });
-
-            // Target object deeply (but not strictly) includes `x: {a: 1}`
-            expect({ x: { a: 1 } }).to.deep.include({ x: { a: 1 } });
-            expect({ x: { a: 1 } }).to.not.include({ x: { a: 1 } });
-
-            // Target array deeply (but not strictly) has member `{a: 1}`
-            expect([{ a: 1 }]).to.have.deep.members([{ a: 1 }]);
-            expect([{ a: 1 }]).to.not.have.members([{ a: 1 }]);
-
-            // Target set deeply (but not strictly) has key `{a: 1}`
-            expect(new Set([{ a: 1 }])).to.have.deep.keys([{ a: 1 }]);
-            expect(new Set([{ a: 1 }])).to.not.have.keys([{ a: 1 }]);
-
-            // Target object deeply (but not strictly) has property `x: {a: 1}`
-            expect({ x: { a: 1 } }).to.have.deep.property('x', { a: 1 });
-            expect({ x: { a: 1 } }).to.not.have.property('x', { a: 1 });
-
-            expect({ a: { b: ['x', 'y'] } }).to.have.nested.property('a.b[1]');
-            expect({ a: { b: ['x', 'y'] } }).to.nested.include({ 'a.b[1]': 'y' });
-
-            expect({ '.a': { '[b]': 'x' } }).to.have.nested.property('\\.a.\\[b\\]');
-            expect({ '.a': { '[b]': 'x' } }).to.nested.include({ '\\.a.\\[b\\]': 'x' });
-        })
-
-
     })
 
+    context('callback add', ()=>{
+        it('should test the callback', (done)=>{
+            demo.addCallback(1,2, (err, result)=>{
+                expect(err).to.not.exist;
+                expect(result).to.equal(3);
+                done();
+            })
+        })
+    })
+
+    context('test promise', ()=>{
+        it('should add with a promise cb', (done)=>{
+            demo.addPromise(1,2).then((result)=>{
+                expect(result).to.equal(3);
+                done();
+            }).catch((ex)=>{
+                console.log('caught error')
+                done(ex);
+            })
+        })
+
+        it('should test a promise with return', ()=>{
+            return demo.addPromise(1,2).then((result)=>{
+                expect(result).to.equal(3)
+            })
+        })
+
+        it('should test promise with async await', async ()=>{
+            let result = await demo.addPromise(1,2);
+
+            expect(result).to.equal(3);
+        })
+
+        it('should test promise with chai as promised', async ()=>{
+            await expect(demo.addPromise(1,2)).to.eventually.equal(3);
+        });
+    })
+
+    context('test doubles', ()=>{
+        it('should spy on log', ()=>{
+            let spy = sinon.spy(console, 'log');
+            demo.foo();
+
+            expect(spy.calledOnce).to.be.true;
+            expect(spy).to.have.been.calledOnce;
+            spy.restore();
+        })
+
+        it('should stub console.warn', ()=>{
+            let stub = sinon.stub(console, 'warn').callsFake(()=>{ console.log('message from stub') });
+
+            demo.foo();
+            expect(stub).to.have.been.calledOnce;
+            expect(stub).to.have.been.calledWith('console.warn was called');
+            stub.restore();
+        })
+    })
+
+    context('stub private functions', ()=>{
+        it('should stub createFile', async ()=>{
+            let createStub = sinon.stub(demo, 'createFile').resolves('create_stub');
+            let callStub = sinon.stub().resolves('calldb_stub');
+
+            demo.__set__('callDB', callStub);
+
+            let result = await demo.bar('test.txt');
+
+            expect(result).to.equal('calldb_stub');
+            expect(createStub).to.have.been.calledOnce;
+            expect(createStub).to.have.been.calledWith('test.txt');
+            expect(callStub).to.have.been.calledOnce;
+        })
+    })
 })
