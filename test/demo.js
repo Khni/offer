@@ -7,7 +7,7 @@ exports.add = function (a, b) {
 exports.addCallback = function (a, b, callback) {
     setTimeout(() => {
         return callback(null, a + b);
-    }, 500);
+    }, 1200);
 }
 
 exports.addPromise = function (a, b) {
@@ -20,6 +20,7 @@ exports.foo = () => {
     //some operation
     console.log('console.log was called');
     console.warn('console.warn was called');
+    
 
     return;
 }
