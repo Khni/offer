@@ -9,7 +9,7 @@ const rewire = require('rewire');
 
 var demo = rewire('./demo');
 
-describe('demo', ()=>{
+describe('demo', () => {
     // context('add', ()=>{
     //     it('should add two numbers', ()=>{
     //         expect(demo.add(1,2)).to.equal(3);
@@ -54,9 +54,9 @@ describe('demo', ()=>{
     //     });
     // })
 
-    context('test doubles', ()=>{
-        it('should spy on log', ()=>{
-            let spy = sinon.spy(console,"log")
+    context('test doubles', () => {
+        it('should spy on log', () => {
+            let spy = sinon.spy(console, "log")
             demo.foo();
 
             expect(spy.calledOnce).to.be.true;
@@ -64,18 +64,49 @@ describe('demo', ()=>{
             spy.restore();
         })
 
-        it('should stub console.warn', ()=>{
-            let stub = sinon.stub(console, 'warn').callsFake(()=>{ console.log('message from stub') });
+        it('should stub console.log', () => {
+            // let stub = sinon.stub(console, 'log').callsFake(()=>{ console.warn('message from stub') });
+
+            // demo.foo();
+            // expect(stub).to.have.been.calledOnce;
+            // expect(stub).to.have.been.calledWith('console.log was called');
+
+            // stub.restore();
+
+            // let stub = sinon.stub(console, 'warn').callsFake(()=>{ console.log('message from stub') });
+            let stub = sinon.stub(console, 'warn').resolves('warn from stub');
 
             demo.foo();
             expect(stub).to.have.been.calledOnce;
             expect(stub).to.have.been.calledWith('console.warn was called');
             stub.restore();
+
+
         })
     })
 
-    context('stub private functions', ()=>{
-        it('should stub createFile', async ()=>{
+
+
+
+    context('private functions createFile', () => {
+        it('should stub createFile', async () => {
+            let createStub = sinon.stub(demo, 'createFile').resolves('create_stub');
+            // let callStub = sinon.stub().resolves('calldb_stub');
+
+            //   demo.__set__('callDB', callStub);
+
+            let result = await demo.bar('test.txt');
+
+            expect(result).to.equal('saved');
+            expect(createStub).to.have.been.calledOnce;
+            expect(createStub).to.have.been.calledWith('test.txt');
+            // expect(callStub).to.have.been.calledOnce;
+            createStub.restore();
+        })
+    })
+
+    context('private stub functions', () => {
+        it('should stub createFile', async () => {
             let createStub = sinon.stub(demo, 'createFile').resolves('create_stub');
             let callStub = sinon.stub().resolves('calldb_stub');
 
@@ -87,6 +118,13 @@ describe('demo', ()=>{
             expect(createStub).to.have.been.calledOnce;
             expect(createStub).to.have.been.calledWith('test.txt');
             expect(callStub).to.have.been.calledOnce;
+            createStub.restore();
+
         })
     })
+
+
+
+
+
 })
