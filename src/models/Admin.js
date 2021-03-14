@@ -27,6 +27,21 @@ const adminSchema = mongoose.Schema({
             }
         }
     },
+    /*{HEADADMIN: CAN DO ANY THING  , 
+    ADMIN: CAN DO ANYTHING EXCEPT: ADDING OR REMOVING Admin, 
+  LATER:
+   SALESADMIN : APPROVE OORDERS, 
+    
+    
+    */
+    permission:{ 
+    	type: String,
+        trim: true,
+        required: true
+    
+
+      }, 
+    
     personalCardId: {
        type: Number,
        required: true,
