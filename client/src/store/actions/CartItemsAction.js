@@ -39,7 +39,7 @@ export const addItem = (item, items) => ({
 
 
 export const addItemToCartItem = (item, items, token, isAuthenticated) => {
-  console.log("token: " +token);
+  console.log("token: " + token);
   if (token && isAuthenticated) {
     console.log("user auth");
     return async dispatch => {
@@ -57,7 +57,7 @@ export const addItemToCartItem = (item, items, token, isAuthenticated) => {
         response = await axios.post(APIs.CART_POST_ADD, { productID: item._id }, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        console.log("res" +response );
+        console.log("res" + response);
 
         filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
@@ -74,7 +74,7 @@ export const addItemToCartItem = (item, items, token, isAuthenticated) => {
 
 
       } catch (e) {
-       console.log("err" +JSON.stringify( e.response.data)  );
+        console.log("err" + JSON.stringify(e.response.data));
 
 
       }
@@ -257,7 +257,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
     });
 
     try {
-      console.log("token::" +token);
+      console.log("token::" + token);
 
       let response = ''
       let filteredCart = []
@@ -268,7 +268,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         response = await axios.get(APIs.CART_GET_SERVER, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        filteredCart = response.data.cartWithProducts.filter(p => p.quantity !== 0)
+        filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
 
@@ -277,15 +277,15 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         console.log("not user");
         //if user is not Authenticated return local cart from server
         response = await axios.post(APIs.CART_GET_LOCAL, { cart: cartItems });
-        console.log("cart" + response.data.cartWithProducts);
-        filteredCart = response.data.cartWithProducts.filter(p => p.quantity !== 0)
+        console.log("cart" + response.data.cartProducts);
+        filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
 
       }
       console.log("res" + response);
       dispatch({
         type: FETCH_CART,
-        cart: response.data.cartWithProducts,
+        cart: response.data.cartProducts,
         filteredCart: filteredCart,
         totalPrice: totalPrice,
 

@@ -2,12 +2,12 @@ const Product = require('../models/Product')
 
 
 
-const CartProductsList =async (cart, userID) => {
+const CartProductsList =async (cart) => {
     
 
     
     
-    let CartProducts = await Promise.all(cart.products.map(async product => {
+    let CartProducts = await Promise.all(cart.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
         if (foundproduct) {

@@ -1,33 +1,36 @@
+const Product = require('../../../models/Product')
+
+
 //this function for vouchers or discounts for date verification 
-exports.verifyDate =(dataFrom, dateUntil) => {
+exports.verifyDate = (dataFrom, dateUntil) => {
 
 
-        let beginDate = new Date(dataFrom)
-        let expDate = new Date(dateUntil)
-        
-        let DateNow = new Date()
-        
-        //check if it expired 
-        if (expDate.getTime() < DateNow.getTime()) {
-            return Promise.reject(new Error('expDate'))
-  
-        }
-        
-        //check if it started? 
-        if (beginDate.getTime() > DateNow.getTime()) {
-            return Promise.reject(new Error('didNotBegin'))
-        }
-        
-        
-        //success 
-        return Promise.resolve(true)
+    let beginDate = new Date(dataFrom)
+    let expDate = new Date(dateUntil)
+
+    let DateNow = new Date()
+
+    //check if it expired 
+    if (expDate.getTime() < DateNow.getTime()) {
+        return Promise.reject(new Error('expDate'))
+
+    }
+
+    //check if it started? 
+    if (beginDate.getTime() > DateNow.getTime()) {
+        return Promise.reject(new Error('didNotBegin'))
+    }
+
+
+    //success 
+    return Promise.resolve(true)
 
 }
 
 
 //check Availability
-exports.checkAvailability =(productsList) => {
-	let outOfStock = []
+exports.checkAvailability = (productsList) => {
+    let outOfStock = []
 
     await Promise.all(productsList.map(async (product) => {
 
@@ -55,15 +58,15 @@ exports.checkAvailability =(productsList) => {
             error: "there is not enough stock for some products"
         })
     }
-	
-	
-	}
-	
-	
-exports.checkAvailabilityBeforeOrder =() => {
-	let outOfStock = []
 
-    await Promise.all(req.body.products.map(async (product) => {
+
+}
+
+
+exports.checkAvailabilityBeforeOrder = (productList) => {
+    let outOfStock = []
+
+    await Promise.all(productList.map(async (product) => {
 
         let MainProduct = await Product.findById(product._id)
 
@@ -75,22 +78,9 @@ exports.checkAvailabilityBeforeOrder =() => {
         }
 
 
-
-
-
-
-
     }))
-    if (outOfStock.length > 0) {
-        //frontend should redirect to a cart which will update the order list
-        return res.status(400).send({
-            outOfStock,
-            error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
-            error: "there is not enough stock for some products"
-        })
-    }
-	
-	
-	}
-	
-	
+    return outOfStock;
+
+}
+
+

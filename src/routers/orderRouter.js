@@ -117,7 +117,7 @@ router.post('/api/order/add', auth, async (req, res) => {
         totalPrice: totalPrice
     })
 
-
+    console.log("ordermaking");
 
 
 
@@ -127,12 +127,14 @@ router.post('/api/order/add', auth, async (req, res) => {
     //here i will take the voucher id to concate user id in usersApplied
 
     let email = req.user.local.email
+
     if (!email) {
         email = req.user.google.email
     }
     if (!email) {
         email = req.user.facebook.email
     }
+    console.log("email" + email);
 
     await sendEmail({
         subject: "Juvni.com || Order #" + order.orderNum + " is Placed ",
@@ -156,8 +158,9 @@ router.post('/api/order/add', auth, async (req, res) => {
 
 
             await MainProduct.save()
+            console.log("after saving mPrpduct");
         }))
-
+        console.log("orderd");
         order.address = req.user.defaultAddress
         await order.save()
 
@@ -185,9 +188,10 @@ router.post('/api/order/add', auth, async (req, res) => {
         */
 
 
-
+        console.log("order");
         res.status(201).send({ order })
     } catch (e) {
+        console.log("e" + e);
         res.status(400).send({ e })
     }
 })
@@ -268,7 +272,7 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
             }))
 
             order.history = order.history.concat({ operation: "Order Has Been Picked" })
-            const user =  await User.findById(order.userID)
+            const user = await User.findById(order.userID)
             let email = user.local.email
             if (!email) {
                 email = user.google.email
@@ -320,7 +324,7 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
 
             order.history = order.history.concat({ operation: "Order Has Been Shipped" })
 
-            const user =  await User.findById(order.userID)
+            const user = await User.findById(order.userID)
             let email = user.local.email
             if (!email) {
                 email = user.google.email
@@ -370,7 +374,7 @@ router.post('/api/admin/order/updatestatus/:id', authAdmin, async (req, res) => 
             }))
 
             order.history = order.history.concat({ operation: "Order Has Been Delivered" })
-            const user =  await User.findById(order.userID)
+            const user = await User.findById(order.userID)
             let email = user.local.email
             if (!email) {
                 email = user.google.email

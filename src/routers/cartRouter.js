@@ -70,7 +70,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 const cart = await Cart.findOne({ userID: req.user._id })
                 
 
-                const cartProducts = await CartProductsList(cart, req.user._id)
+                const cartProducts = await CartProductsList(cart.products)
                 
                 return res.status(200).send({ cartProducts })
                 // updatecart.save()
@@ -87,7 +87,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
         try {
             await foundcart.save()
 
-            const cartProducts = await CartProductsList(foundcart, req.user._id)
+            const cartProducts = await CartProductsList(foundcart.products)
             return res.status(200).send({ cartProducts })
 
         } catch (error) {
@@ -104,7 +104,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
         await cart.save()
 
 
-        const cartProducts = await CartProductsList(cart, req.user._id)
+        const cartProducts = await CartProductsList(cart.products)
         return res.status(200).send({ cartProducts })
 
     } catch (e) {
@@ -135,7 +135,7 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
                     { $pull: { products: { productID: product.productID } } });
                 const cart = await Cart.findOne({ userID: req.user._id })
 
-                const cartProducts = await CartProductsList(cart, req.user._id)
+                const cartProducts = await CartProductsList(cart.products)
                 return res.status(200).send({ cartProducts })
 
 
@@ -164,7 +164,7 @@ router.post('/api/cart/decrease', auth, async (req, res) => {
                 { safe: true })
             const cart = await Cart.findOne({ userID: req.user._id })
 
-            const cartProducts = await CartProductsList(cart, req.user._id)
+            const cartProducts = await CartProductsList(cart.products)
             return res.status(200).send({ cartProducts })
 
             // updatecart.save()
@@ -206,7 +206,7 @@ router.post('/api/cart/removeproduct', auth, async (req, res) => {
 
             const cart = await Cart.findOne({ userID: req.user._id })
 
-            const cartProducts = await CartProductsList(cart, req.user._id)
+            const cartProducts = await CartProductsList(cart.products)
             return res.status(200).send({ cartProducts })
 
 
@@ -286,9 +286,9 @@ router.get('/api/user-servercart', auth, async (req, res) => {
         return res.status(400).send({ error: "cart is not found" })
     }
     
-    const cartProducts = await CartProductsList(cart, req.user._id)
+    const cartProducts = await CartProductsList(cart.products)
     
-
+    console.log("cartserver" + cartProducts);
   /*  let cartWithProducts = await Promise.all(cart.products.map(async product => {
 
         const foundproduct = await Product.findById(product.productID)
@@ -427,9 +427,9 @@ router.post('/api/user-localcart', async (req, res) => {
 
     }))*/
 
-
-const cartProducts = await CartProductsList(cart, req.user._id)
-    
+console.log("cart" +JSON.stringify(cart));
+const cartProducts = await CartProductsList(cart)
+console.log("cartproducts" +JSON.stringify(cartProducts));
 
     try {
 

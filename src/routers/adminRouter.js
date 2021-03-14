@@ -7,7 +7,7 @@ const auth = require('../middleware/adminAuth')
 
 router.post('/api/admin/add', async (req,res)=>{
      const DataLoginInput = Object.keys(req.body)
-    const DataLoginMust = ['email', 'verifypassword', 'adminname', 'phone', 'password', 'personalCardId' ]
+    const DataLoginMust = ['email', 'verifypassword', 'adminname', 'phone', 'password', 'personalCardId', 'permission' ]
     const isValidOperation = DataLoginInput.every((LoginInput) => DataLoginMust.includes(LoginInput))
     
     if (!isValidOperation) {

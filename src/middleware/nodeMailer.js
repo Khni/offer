@@ -14,11 +14,13 @@ const createTransporter = async () => {
   oauth2Client.setCredentials({
     refresh_token: process.env.REFRESH_TOKEN
   });
+  console.log("refresh token"+ process.env.REFRESH_TOKEN +process.env.EMAIL );
 
   const accessToken = await new Promise((resolve, reject) => {
     
     oauth2Client.getAccessToken((err, token) => {
       if (err) {
+        console.log("err" + err);
         reject("Failed to create access token :(");
       }
       resolve(token);
