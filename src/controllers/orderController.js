@@ -19,7 +19,7 @@ module.exports = {
         if (req.body.voucherUsed) {
 
             let voucher = await Voucher.findOne({ code: req.body.voucherCode })
-
+            
             await verifyDate(voucher.validFrom, voucher.validUntil).catch(error=> {
              if (error.message === 'expDate') {
                  

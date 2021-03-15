@@ -28,6 +28,38 @@ exports.verifyDate = (dataFrom, dateUntil) => {
 }
 
 
+
+exports.verifyVoucher = (voucher) => {
+
+  await verifyDate(voucher.validFrom, voucher.validUntil)
+    
+    //check if it expired 
+    if (expDate.getTime() < DateNow.getTime()) {
+        return Promise.reject(new Error('expDate'))
+
+    }
+
+    //check if it started? 
+    if (beginDate.getTime() > DateNow.getTime()) {
+        return Promise.reject(new Error('didNotBegin'))
+    }
+
+
+    //success 
+    return Promise.resolve(true)
+
+}
+
+
+
+
+
+
+
+
+
+
+
 //check Availability
 exports.checkAvailability = (productsList) => {
     let outOfStock = []
