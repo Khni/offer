@@ -2,7 +2,7 @@ const Product = require('../../../models/Product')
 
 
 //this function for vouchers or discounts for date verification 
-exports.verifyDate = (dataFrom, dateUntil) => {
+exports.verifyDate = async(dataFrom, dateUntil) => {
 
 
     let beginDate = new Date(dataFrom)
@@ -29,7 +29,7 @@ exports.verifyDate = (dataFrom, dateUntil) => {
 
 
 
-exports.verifyVoucher = (voucher) => {
+exports.verifyVoucher =async (voucher) => {
 
   await verifyDate(voucher.validFrom, voucher.validUntil)
     
@@ -61,46 +61,46 @@ exports.verifyVoucher = (voucher) => {
 
 
 //check Availability
-exports.checkAvailability = (productsList) => {
-    let outOfStock = []
+// exports.checkAvailability = (productsList) => {
+//     let outOfStock = []
 
-    await Promise.all(productsList.map(async (product) => {
+//     await Promise.all(productsList.map(async (product) => {
 
-        let MainProduct = await Product.findById(product._id)
-
-
-        if (MainProduct.onlyOrderAvailableQty) {
-            if (MainProduct.availableQty < product.quantity) {
-                outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
-            }
-        }
+//         let MainProduct = await Product.findById(product._id)
 
 
+//         if (MainProduct.onlyOrderAvailableQty) {
+//             if (MainProduct.availableQty < product.quantity) {
+//                 outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
+//             }
+//         }
 
 
 
 
 
-    }))
-    if (outOfStock.length > 0) {
-        //frontend should redirect to a cart which will update the order list
-        return res.status(400).send({
-            outOfStock,
-            error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
-            error: "there is not enough stock for some products"
-        })
-    }
 
 
-}
+//     }))
+//     if (outOfStock.length > 0) {
+//         //frontend should redirect to a cart which will update the order list
+//         return res.status(400).send({
+//             outOfStock,
+//             error_ar: " لا يوجد مخزون كافي لبعض المنتجات ",
+//             error: "there is not enough stock for some products"
+//         })
+//     }
 
 
-exports.checkAvailabilityBeforeOrder = (productList) => {
+// }
+
+
+exports.checkAvailabilityBeforeOrder =async (productList,Productmodel) => {
     let outOfStock = []
 
     await Promise.all(productList.map(async (product) => {
 
-        let MainProduct = await Product.findById(product._id)
+        let MainProduct = await Productmodel.findById(product._id)
 
 
         if (MainProduct.onlyOrderAvailableQty) {
