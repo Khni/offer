@@ -6,6 +6,8 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 const rewire = require('rewire');
+const Product = require('../../src/models/Product')
+
 
 const { verifyDate, checkAvailabilityBeforeOrder } = require('../../src/lib/utils/routers/orderRouter.util')
 
@@ -36,15 +38,7 @@ context('VerifyDates', async () => {
 
 
 context('checkAviableProductBeforeOrdering', async () => {
-    cart = [{
-        _id: 1,
-        quantity: 2,
-    },
-    {
-        _id: 2,
-        quantity: 3,
-    }
-    ]
+    
 
     products = [
         {
@@ -63,7 +57,19 @@ context('checkAviableProductBeforeOrdering', async () => {
 
 
 
+it('checkAvailabilityBeforeOrder: pass', () => {
+cart = [{
+        _id: '5f6e12ee4dd46300176473f4',
+        quantity: 2,
+    },
+    {
+        _id: '5f6fd12a8b6f6b001799242f' ,
+        quantity: 3,
+    }
+    ]
+        expect(checkAvailabilityBeforeOrder(cart, Product)).to.be.an('array').that.is.empty
 
+    })
 
 
 
