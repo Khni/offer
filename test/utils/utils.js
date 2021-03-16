@@ -70,7 +70,7 @@ context('checkAviableProductBeforeOrdering', async () => {
 
 //     })
 
-    it('checkAvailabilityBeforeOrder: pass', (done)=>{
+    it('checkAvailabilityBeforeOrder: pass',async (done)=>{
         
         cart = [{
             _id: '5f6e12ee4dd46300176473f4',
@@ -81,15 +81,26 @@ context('checkAviableProductBeforeOrdering', async () => {
             quantity: 3,
         }
         ]
-        checkAvailabilityBeforeOrder(cart,Product).then((result)=>{
-                   expect(result).to.be.an('array').that.is.empty;
-                    done();
-                }).catch((ex)=>{
-                    console.log(ex)
-                    done(ex);
-                })
+        // checkAvailabilityBeforeOrder(cart,Product).then((result)=>{
+        //            expect(result).to.be.an('array').that.is.empty;
+        //             done();
+        //         }).catch((ex)=>{
+        //             console.log(ex)
+        //             done(ex);
+        //         })
+        let MainProduct = new Product()
+        MainProduct.then((result)=>{
+                       expect(result).to.be.an('array').that.is.empty;
+                        done();
+                    }).catch((ex)=>{
+                        console.log(ex)
+                        done(ex);
+                    })
+       
+
             })
 
+            
 
 
 })
