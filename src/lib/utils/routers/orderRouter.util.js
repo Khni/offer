@@ -98,20 +98,33 @@ exports.verifyVoucher =async (voucher) => {
 exports.checkAvailabilityBeforeOrder =async (productList,Productmodel) => {
     let outOfStock = []
 
-    await Promise.all(productList.map(async (product) => {
+    try {
+        let MainProduct = await Product.findById('5f6fd12a8b6f6b001799242f')
+    } catch (error) {
+        return error
+    }
 
-        let MainProduct = await Productmodel.findById(product._id)
-
-
-        if (MainProduct.onlyOrderAvailableQty) {
-            if (MainProduct.availableQty < product.quantity) {
-                outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
-            }
-        }
+    // await Promise.all(productList.map(async (product) => {
 
 
-    }))
-    return outOfStock;
+    //     try {
+    //         let MainProduct = await Productmodel.findById(product._id)
+    //     } catch (error) {
+    //         return error
+    //     }
+        
+
+
+    //     if (MainProduct.onlyOrderAvailableQty) {
+    //         if (MainProduct.availableQty < product.quantity) {
+    //             outOfStock = outOfStock.concat({ _id: MainProduct._id, Qty: MainProduct.availableQty, Ordered: product.quantity })
+    //         }
+    //     }
+
+
+    // }))
+   return MainProduct;
+   
 
 }
 

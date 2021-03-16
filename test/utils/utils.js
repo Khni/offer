@@ -1,3 +1,4 @@
+
 const chai = require('chai');
 const expect = chai.expect;
 const chaiAsPromised = require('chai-as-promised')
@@ -7,12 +8,13 @@ const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 const rewire = require('rewire');
 const Product = require('../../src/models/Product')
-require('../../src/db/mongoose');
+
 
 
 const { verifyDate, checkAvailabilityBeforeOrder } = require('../../src/lib/utils/routers/orderRouter.util')
 
-
+describe('mapServicePrint',function  ()  {
+    this.timeout(10000);
 context('VerifyDates', async () => {
 
 
@@ -41,39 +43,55 @@ context('VerifyDates', async () => {
 context('checkAviableProductBeforeOrdering', async () => {
     
 
-    products = [
-        {
-            _id: 1,
-            onlyOrderAvailableQty: true,
-            availableQty: 3
+    // products = [
+    //     {
+    //         _id: 1,
+    //         onlyOrderAvailableQty: true,
+    //         availableQty: 3
 
 
+    //     },
+    //     {
+    //         _id: 2,
+    //         onlyOrderAvailableQty: false,
+    //         availableQty: 4
+    //     }
+    // ]
+
+
+
+// it('checkAvailabilityBeforeOrder: pass', () => {
+
+
+    
+//         //expect([3,4]).to.be.an('array').that.does.not.include(3);
+//         to.eventually
+//         expect(checkAvailabilityBeforeOrder(cart,Product)).to.be.an('array').that.is.empty;
+
+//     })
+
+    it('checkAvailabilityBeforeOrder: pass', (done)=>{
+        
+        cart = [{
+            _id: '5f6e12ee4dd46300176473f4',
+            quantity: 2,
         },
         {
-            _id: 2,
-            onlyOrderAvailableQty: false,
-            availableQty: 4
+            _id: '5f6fd12a8b6f6b001799242f' ,
+            quantity: 3,
         }
-    ]
+        ]
+        checkAvailabilityBeforeOrder(cart,Product).then((result)=>{
+                   expect(result).to.be.an('array').that.is.empty;
+                    done();
+                }).catch((ex)=>{
+                    console.log(ex)
+                    done(ex);
+                })
+            })
 
 
 
-it('checkAvailabilityBeforeOrder: pass', () => {
-cart = [{
-        _id: '5f6e12ee4dd46300176473f4',
-        quantity: 2,
-    },
-    {
-        _id: '5f6fd12a8b6f6b001799242f' ,
-        quantity: 3,
-    }
-    ]
-
-    checkAvailabilityBeforeOrder(cart, Product)
-       // expect(checkAvailabilityBeforeOrder(cart, Product)).to.be.an('array').that.is.empty
-
-    })
-
-
+})
 
 })
