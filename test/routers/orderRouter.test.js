@@ -7,7 +7,7 @@ let Book = require('../app/models/book');
 //Require the dev-dependencies
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../server');
+let server = require('../../src/index');
 let should = chai.should();
 
 

@@ -6,7 +6,7 @@ const Admin = require('./models/Admin')
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const app = express();
-const logger = require('./config/logger')
+// const logger = require('./config/logger')
 const port = process.env.PORT || 8080
 var cors = require('cors');
 var bodyParser = require('body-parser');
@@ -138,6 +138,8 @@ app.use(express.static(path.join(__dirname, '../client/build')))
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
-app.listen(port, () => {
+ app.listen(port, () => {
   console.log('ok')
 })
+
+module.exports = app

@@ -55,7 +55,7 @@ var s3 = new aws.S3()
 
 
 
-router.get('/api/products',  async (req, res) => {
+router.get('/api/products', async  (req, res) => {
 	
 	let products = await Product.find({})
 	
@@ -63,12 +63,29 @@ router.get('/api/products',  async (req, res) => {
     
 
     try {
-   res.status(201).send({products})
+   res.status(200).send({products})
         
     } catch (e) {
         res.status(400).send(e)
     }
 })
+
+
+router.get('/api/tests', async  (req, res) => {
+	
+	
+	
+	
+    
+
+    try {
+   res.status(203).send([])
+        
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
 
 
 router.get('/api/productsWsections',  async (req, res) => {

@@ -7,10 +7,11 @@ let MongoURL = process.env.MONGODB_URL
 /*if (process.env.NODE_ENV=== 'development') {
 MongoURL = process.env.MONGODB_URL_DEV
 } */
-mongoose.connect(MongoURL, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-    
-})
+
+let options = {
+    server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }
+  };
+mongoose.connect(MongoURL,options)
 
 
