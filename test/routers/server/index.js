@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 dotenv.config();
 const Product = require('../../../src/models/Product')
-
+const TestUser = require('./userModel')
 let MongoURL = process.env.MONGODB_URL
 
 
@@ -33,23 +33,22 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.get("/", (req, res) => res.json({message: "Welcome to our Bookstore!"}));
 
 
-app.get('/api/test/test', async  (req, res) => {
+app.get('/api/test/test',   (req, res) => {
 	
 	
-	let products = await Product.find({})
 	
 	
-    
-
-    try {
-   res.status(200).send({products})
-	
-    
-
-        
-    } catch (e) {
-        res.status(400).send(e)
-    }
+	//Creates a new book
+    var user =new TestUser({name:"khaled", age:9})
+    //Save it into the DB.
+    user.save((err,user) => {
+        if(err) {
+            res.send(err);
+        }
+        else { //If no errors, send it back to the client
+            res.json({message: "Book successfully added!", user });
+        }
+    });
 })
 
 
