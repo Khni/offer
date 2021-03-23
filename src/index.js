@@ -1,5 +1,6 @@
 require('./db/mongoose');
-require("dotenv").config()
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const User = require('./models/User')
 const Admin = require('./models/Admin')
 //import Admin from './models/Admin'
@@ -17,7 +18,7 @@ app.use(express.json());
 // add this line
 
 //const path = require('path')
-const path = require('path');
+
 
 const userRouter = require('./routers/userRouter')
 const { router, routerPromise } = require('./routers/userRouter')

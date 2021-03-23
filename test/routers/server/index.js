@@ -1,13 +1,15 @@
 let express = require('express');
 let app = express();
 const mongoose = require('mongoose')
-const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../../src/.env') });
+
+
 const Product = require('../../../src/models/Product')
 const User = require('../../../src/models/User')
 const TestUser = require('./userModel')
-let MongoURL = process.env.MONGODB_URL_DEV
-
+let MongoURL = process.env.MONGODB_URL
+console.log("dev"+MongoURL );
 
 let bodyParser = require('body-parser');
 let port = 8080;
@@ -21,9 +23,8 @@ let options = {
   };
 
 //db connection
-mongoose.connect('mongodb://localhost:27017/juvni', options);
+mongoose.connect(MongoURL, options);
 let db = mongoose.connection;
-
 
 
 //parse application/json and look for raw text
