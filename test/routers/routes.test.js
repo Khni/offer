@@ -31,13 +31,13 @@ describe('Books', () => {
       it('it should GET all the books', (done) => {
         chai.request(server)
             .get('/api/test/test')
-            .then(res => {
+            .end((err,res) => {
                 res.body.should.be.an('object');
-                res.body.should.have.a.property('name');
+                res.body.should.have.a.property('message');
                  
-                res.body.length.should.be.eql(0);
-                done(); // <—- TWICE
-              }).catch(e=> console.log("e"+e))
+                // res.body.length.should.be.eql(0);
+                done(); 
+              })
            
             });
       });

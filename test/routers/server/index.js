@@ -4,8 +4,9 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 dotenv.config();
 const Product = require('../../../src/models/Product')
+const User = require('../../../src/models/User')
 const TestUser = require('./userModel')
-let MongoURL = process.env.MONGODB_URL
+let MongoURL = process.env.MONGODB_URL_DEV
 
 
 let bodyParser = require('body-parser');
@@ -14,9 +15,10 @@ let port = 8080;
 
 //db options
 let options = {
-                server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }
-              };
+    useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+  };
 
 //db connection
 mongoose.connect(MongoURL, options);
@@ -38,7 +40,7 @@ app.get('/api/test/test',   (req, res) => {
 	
 	
 	
-	//Creates a new book
+	// //Creates a new book
     var user =new TestUser({name:"khaled", age:9})
     //Save it into the DB.
     user.save((err,user) => {
@@ -49,6 +51,8 @@ app.get('/api/test/test',   (req, res) => {
             res.json({message: "Book successfully added!", user });
         }
     });
+    // res.json({message: "Book successfully added!" });
+
 })
 
 
