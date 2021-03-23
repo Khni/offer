@@ -21,7 +21,7 @@ let options = {
   };
 
 //db connection
-mongoose.connect(MongoURL, options);
+mongoose.connect('mongodb://localhost:27017/juvni', options);
 let db = mongoose.connection;
 
 
