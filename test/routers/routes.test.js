@@ -21,6 +21,39 @@ describe('Books', () => {
   */
   describe('/GET book',function () {
     this.timeout(10000)
+    
+    
+    
+      it('add new product', (done) => {
+      	chai.request(server)
+            .post('/api/uploads')
+      .field('nameEn', 'blue Hat')
+        .field('nameAr', 'قبعة زرقاء')
+          .field('descEn', 'blue hat')
+            .field('descAr', 'قبعة')
+            field('price', 230)
+        .field('defaultDiscountValue', 30)
+          .field('discountStartsAt', '2021-03-03')
+            .field('discountExpAt', '2031-03-03')
+            field('inPercentage', false)
+        .field('discountValue', 70)
+          .field('limitedOrder', 30)
+            .field('adminID', 'SOMEID')
+            field('onlyOrderAvailableQty', false)
+        .field('barcode', 'kkkk')
+          .field('barcodeType', 'ean13')
+            .field('sectionID', 'someID')
+                    .field('collectionID', 'someID')
+      .attach('photos', './p1.jpg', 'p1.jpg')
+            .attach('photos', './p2.jpg', 'p2.jpg')
+      .then((result) => {
+        expect(result).to.have.status(201)
+        expect(result.body[0].location).to.include('/test.png')
+      })
+      done() 
+            });
+    
+    
 
     console.log("user" + userToSignUp);
 

@@ -7,4 +7,13 @@ const userToSignUp = {
     repassword: "atobsaatobsa"
 }
 
-module.exports = [userToSignUp]
+const userToLogin = {
+ 	
+    
+    email:  "khaled@gmail.com",
+    password: "atobsaatobsa",
+    
+}
+
+
+module.exports = { userToSignUp }

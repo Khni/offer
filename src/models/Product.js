@@ -8,22 +8,22 @@ const productSchema = mongoose.Schema({
     nameEn: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
     nameAr: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
     descEn: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
     descAr: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
 
 
@@ -92,7 +92,7 @@ const productSchema = mongoose.Schema({
     price: {
         type: Number,
         trim: true,
-        require: true,
+        required: true,
     },
     quantity: {
         type: Number,
@@ -238,7 +238,7 @@ const productSchema = mongoose.Schema({
             imgURL: {
                 type: String,
                 trim: true,
-                require: true
+                required: true
             }
         }
 
