@@ -2,7 +2,7 @@ const userToSignUp = {
  	
     name: "khaled mohamed",
     age: 29,
-    email:  "khaled@gmail.com",
+    email:  "khaleds@gmail.com",
     password: "atobsaatobsa",
     repassword: "atobsaatobsa"
 }
