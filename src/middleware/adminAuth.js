@@ -5,6 +5,7 @@ const multer = require('multer')
 
 const authToken = async(req ,res , next) =>{
     try {
+        
         const token = req.header('Authorization').replace('Bearer ','')
         const decoded = jwt.verify(token, 'secret')
         const admin = await Admin.findOne({ _id: decoded._id, 'tokens.token': token })

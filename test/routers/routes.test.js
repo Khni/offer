@@ -21,6 +21,18 @@ describe('Books', () => {
       */
     describe('/GET book', function () {
         this.timeout(10000)
+        it('add product faild', (done) => {
+            chai.request(server)
+                .post('/api/add-product')
+                .send(userToSignUp)
+                .end((err, res) => {
+                    res.should.have.status(400)
+
+                    // res.body.length.should.be.eql(0);
+                    done();
+                })
+
+        });
 
 
 
@@ -40,19 +52,25 @@ describe('Books', () => {
                 .field('limitedOrder', 30)
                 .field('adminID', 'SOMEID')
                 .field('onlyOrderAvailableQty', false)
-                .field('barcode', 'kkkk')
+                .field('barcode', 'ss')
                 .field('barcodeType', 'ean13')
-                .field('sectionID', 'someID')
-                .field('collectionID', 'someID')
+                .field('sectionID', '6059d9814af9a03aa8bceef0')
+                .field('collectionID', '6059d9814af9a03aa8bceef0')
                 .attach('photos', './p1.jpg', 'p1.jpg')
                 .attach('photos', './p2.jpg', 'p2.jpg')
                 .end((err, res) => {
-                    console.log("res"+result.body);
+                    if (err) {
+                        return console.log("err"+ err);
+                        
+                    }
+                    console.log("resbody"+JSON.stringify(res) );
+                    
                     res.body.should.be.an('object');
-                    res.should.have.status(301)
+                    res.should.have.status(201)
+                    done()
                    // expect(result.body[0].location).to.include('/test.png')
                 })
-            done()
+            
         });
 
 

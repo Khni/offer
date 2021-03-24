@@ -251,11 +251,16 @@ router.post('/api/add/product',[authAdmin , upload.single('upload') ] , async (r
 })
 
 
-router.post('/api/add-product',upload.array('photos' , 10) , async (req, res) => {
+router.post('/api/add-product',[authAdmin,upload.array('photos' , 10)] , async (req, res) => {
 	//first be sure that photos are uploaded 
+    if (!req.files) {
+      return  res.status(400).send("Photos are required")
+    }
+    
     const product = new Product({
         ...req.body,
-        adminID: req.admin._id, 
+        //adminID: req.admin._id, 
+        adminID: "6059d9814af9a03aa8bceef0",
         barcode: {
     	code: req.body.barcode, 
        type: req.body.barcodeType
