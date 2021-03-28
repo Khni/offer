@@ -2,8 +2,8 @@ const userToSignUp = {
  	
     name: "khaled mohamed",
     age: 29,
-    email:  "khaleds@gmail.com",
-password: "atobsaatobsa",
+    email:  "khaled@gmail.com",
+    password: "atobsaatobsa",
     repassword: "atobsaatobsa"
 }
 
@@ -15,5 +15,31 @@ const userToLogin = {
     
 }
 
+const userToLoginWrongPass = {
+ 	
+    
+    email:  "khaled@gmail.com",
+    password: "atobsaatob",
+    
+}
 
-module.exports = { userToSignUp }
+const userToLoginWrongEmail = {
+ 	
+    
+    email:  "khalded@gmail.com",
+    password: "atobsaatobsa",
+    
+}
+
+
+const userToSignUpWrongRepass= {
+ 	
+    name: "khaled mohamed",
+    age: 29,
+    email:  "khaled@gmail.com",
+    password: "atobsaatobsa",
+    repassword: "atobsaatob"
+}
+
+
+module.exports = { userToSignUp, userToLogin}

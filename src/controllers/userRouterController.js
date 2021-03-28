@@ -295,7 +295,7 @@ const userSignUp = async (req, res) => {
             await user.save()
             const tokens = await user.generateAuthToken()
             
-            res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+            res.status(201).send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
         } catch (error) {
             console.log(error);

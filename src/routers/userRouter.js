@@ -71,7 +71,7 @@ router.post('/api/user/update', auth, async (req, res) => {
     const email = req.body.email
 
     if (!validator.isEmail(email)) {
-        return res.status(403).json({
+        return res.status(400).json({
             error_en: 'Email is invalid',
             error_ar: 'الايميل غير صحيح'
         });
@@ -80,7 +80,7 @@ router.post('/api/user/update', auth, async (req, res) => {
 
     let user = await User.findOne({ "local.email": email })
     if (user && req.user.local.email !== email) {
-        return res.status(403).json({
+        return res.status(400).json({
             error_en: 'Email is already in use',
             error_ar: 'البريد الالكترونى مسجل مسبقا '
         });
@@ -90,7 +90,7 @@ router.post('/api/user/update', auth, async (req, res) => {
     console.log("ss" + userphone);
     console.log("req" + req.body.phone);
     if (userphone && req.user.phone !== req.body.phone) {
-        return res.status(403).json({
+        return res.status(400).json({
             error_en: 'Phone is already in use',
             error_ar: 'الهاتف مسجل مسبقا لمستخدم اخر'
         });
@@ -182,23 +182,14 @@ router.post('/api/login', async (req, res) => {
 
 
 
-    /*
-    router.post('/api/users/login', async (req, res) => {
-        try {
-            const user = await User.findByCredentials(req.body.email, req.body.password)
-            res.send(user)
-        } catch (e) {
-            res.status(400).send()
-        }
-    })
-*/
+    
 
 
     try {
         const user = await User.findByCredentials(EmailInput, PasswordInput)
         const tokens = await user.generateAuthToken()
 
-        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
+        res.status(200).send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (error) {
 
         //const userToLogin =await User.verifyLogin(req.body.email,req.body.password)
