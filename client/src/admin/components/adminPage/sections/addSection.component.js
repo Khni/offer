@@ -57,6 +57,9 @@ async componentDidMount() {
 
 
     render() {
+      const categories = this.props.categories.map(category => {
+        return { value: category._id, option: category.nameEn }
+      })
 const { handleSubmit } = this.props;
 
         return(
@@ -118,7 +121,7 @@ const { handleSubmit } = this.props;
             <fieldset>
             <Field
                 
-                sections={this.props.categories}
+                options={categories}
                 name='categoryID' 
                 id='categoryID' 
                 className='categoryID'

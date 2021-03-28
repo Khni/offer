@@ -7,7 +7,7 @@ const Admin = require('./models/Admin')
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const app = express();
-// const logger = require('./config/logger')
+ //const logger = require('./config/logger')
 const port = process.env.PORT || 8080
 var cors = require('cors');
 var bodyParser = require('body-parser');
@@ -106,7 +106,7 @@ console.log(pathupload);
 console.log(__dirname);
 const dotenv = require('dotenv');
 dotenv.config();
-// logger.error("first error")
+ //logger.error("second error")
 // console.log(`Your AT is ${process.env.ATO}`)
 app.use('/imgs', express.static(path.join(__dirname, '../uploads')));
 

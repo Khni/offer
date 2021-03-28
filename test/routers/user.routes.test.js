@@ -3,6 +3,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../src/index');
 let User = require('../../src/models/User.js');
+chai.use(chaiHttp);
 //let server = require('./server/index')
 let { userToSignUp, userToLogin, userToLoginWrongPass, userToLoginWrongEmail} = require('../dataToTest')
 
@@ -20,11 +21,11 @@ describe('USER-ROUTER', () => {
       */
     describe('/API/USER-SIGNUP', function () {
         this.timeout(10000)
-        before((done) => { //Before each test we empty the database
-        User.remove({}, (err) => {
-           done();
-        });
-    });
+    //     before((done) => { //Before each test we empty the database
+    //     User.remove({}, (err) => {
+    //        done();
+    //     });
+    // });
         
         
         

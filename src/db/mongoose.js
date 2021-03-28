@@ -5,17 +5,17 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 //const MongoURL = process.env.MONGODB_URL || 'mongodb+srv://admin:atobsa90@cluster0.laygj.mongodb.net/offer?retryWrites=true&w=majority'
 
 let MongoURL = process.env.MONGODB_URL
-if (process.env.NODE_ENV== 'development') {
-MongoURL = process.env.MONGODB_URL_DEV
-} 
+if (process.env.NODE_ENV == 'development') {
+  MongoURL = process.env.MONGODB_URL_DEV
+}
 
-console.log("dev"+ process.env.NODE_ENV);
+console.log("dev" + process.env.NODE_ENV);
 
 let options = {
-    useNewUrlParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
-  };
-mongoose.connect(MongoURL,options)
+};
+mongoose.connect(MongoURL, options)
 
 
