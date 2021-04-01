@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import './menuItems.scss';
 // import { useHistory } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -27,6 +27,32 @@ const MenuItem = (props) => {
   const [alarmWindow, showAlarmWindow] =useState(false)
 
   const [favorite, setFavorite] = useState(props.item.isFav);
+
+  // useEffect(async() => {
+  //   const fetchData = async () => {
+  //       await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
+       
+  //   }
+  
+  //   await fetchData();
+  //   console.log("cart useeffect" + props.cartProducts);
+  // }, []);
+
+  useEffect(() => {
+
+    (async () => {
+      await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
+      console.log("cart items local: "+JSON.stringify(props.cartItems));
+    })();
+    console.log("cart useeffect" + JSON.stringify(props.cartProducts) );
+  }, []);
+  
+
+  
+
+
+
+
   const ToggleFavorite = async (productID) => {
 
     if (!props.token) {
@@ -118,6 +144,8 @@ const MenuItem = (props) => {
 }
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
+  fetchCart: (cartItems,token,isAuthenticated)=>dispatch(actions.fetchCart(cartItems,token,isAuthenticated)) ,
+
   addItemToCartItem: (item, items, token, isAuthenticated) => dispatch(Cartactions.addItemToCartItem(item, items , token, isAuthenticated)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
@@ -135,6 +163,7 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.userAuth.authUser.isAuthenticated,
     FavoritesList: state.FavAndSeenReducer.favorites.list,
     cartItems: selectCartItems(state),
+    cartProducts: state.cartProductsReducer.cartProducts,
     categories: state.categoryReducer.categories,
     sectionsWithProductsFetched: state.categoryReducer.sectionsWithProductsFetched,
     sectionsWithProducts: state.categoryReducer.sectionsWithProducts

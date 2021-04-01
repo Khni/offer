@@ -16,8 +16,11 @@ export const addItemToCart2 = (cartItems, cartItemToAdd) => {
 
 
 
-export const addItemToCart = (cartItems, cartItemToAdd) => {
 
+
+
+export const addItemToCart = (cartItems, cartItemToAdd) => {
+console.log("cart.utils.js cartItemToAdd._id"+cartItemToAdd._id );
   //check if product onlyOrderAvailableQty to stop adding if it out of stock
 
   if (cartItemToAdd.onlyOrderAvailableQty) {
@@ -32,25 +35,28 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.productID === cartItemToAdd._id
   );
+  console.log("cart.util.js cartItems" + JSON.stringify(cartItems) + "cartItemToAdd._id" + cartItemToAdd._id);
 
   if (existingCartItem) {
     //check if there is discount and there are limited number to buy
-    if (cartItemToAdd.discount.isActive && cartItemToAdd.discount.limitedOrder !== 0) {
-      if (cartItemToAdd.discount.limitedOrder === existingCartItem.quantity || cartItemToAdd.discount.limitedOrder < existingCartItem.quantity) {
+    console.log("cartItem is exist cart.utils.js"+ JSON.stringify(existingCartItem));
+      if (cartItemToAdd.limitedOrder === existingCartItem.quantity || cartItemToAdd.limitedOrder < existingCartItem.quantity) {
+        console.log("max limitedorder cart.utils.js");
         return [...cartItems]
       }
-    }
+    
 
 
 
 
-
+      console.log("increase quanitiy cart.utils.js");
     return cartItems.map(cartItem =>
       cartItem.productID === cartItemToAdd._id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
+  console.log("create new cart cart.utils.js");
 
   return [...cartItems, { productID: cartItemToAdd._id, quantity: 1 }];
 };

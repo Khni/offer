@@ -38,13 +38,14 @@ class CartItem extends React.Component {
 
 
   async componentDidMount() {
+    console.log("cart items cart.component.js"+JSON.stringify(this.props.cartItems) );
     await this.props.fetchCart(this.props.cartItems,
       this.props.token,
       this.props.isAuthenticated)
 
     let cart = this.props.cartProducts.filter(product => product.quantity !== 0)
     console.log("cartfiltered" + cart);
-    console.log("cartItem" +JSON.stringify(this.props.cartProducts) );
+    console.log("cartItem" + JSON.stringify(this.props.cartProducts));
   }
 
 
@@ -128,35 +129,35 @@ class CartItem extends React.Component {
               <div className="cart-Item" >
 
                 {item.quantity === 0 ?
-                <div>
-                  <div className="cart-item-desc">
-                    <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + item.imgURLs[0].imgURL} className="cart-item-img" />
-                    <div className="cart-item-details">
-                      <p className="cart-item-title margin0"><h5>OUT OF STOCK</h5> </p>
-                     
+                  <div>
+                    <div className="cart-item-desc">
+                      <img alt={item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + item.imgURLs[0].imgURL} className="cart-item-img" />
+                      <div className="cart-item-details">
+                        <p className="cart-item-title margin0"><h5>OUT OF STOCK</h5> </p>
+
+
+
+                      </div>
+
+
+
+
 
 
                     </div>
+                    <div className="cart-item-bar">
 
-                    
-
-
-
-
-                  </div>
-                  <div className="cart-item-bar">
-
-                      <div className="remove-text-icon" onClick={() => this.props.deleteItemFromCartItem(item, this.props.cartItems ,this.props.token , this.props.isAuthenticated)} >
+                      <div className="remove-text-icon" onClick={() => this.props.deleteItemFromCartItem(item, this.props.cartItems, this.props.token, this.props.isAuthenticated)} >
                         <img alt="delete" src={Trashicon} className="trash-icon" />
                         <p className="remove-text" >REMOVE </p>
                       </div>{/*remove-text-icon */}
-                      
+
 
 
                     </div> {/*end of cart-item-bar */}
-                  
-                  
-                  </div>:
+
+
+                  </div> :
 
 
                   <div>
@@ -170,15 +171,15 @@ class CartItem extends React.Component {
                     </div>{/* end of cart-item-desc*/}
 
                     <div className="cart-item-bar">
-                      <div className="remove-text-icon" onClick={() => this.props.deleteItemFromCartItem(item, this.props.cartItems ,this.props.token , this.props.isAuthenticated)} >
+                      <div className="remove-text-icon" onClick={() => this.props.deleteItemFromCartItem(item, this.props.cartItems, this.props.token, this.props.isAuthenticated)} >
                         <img alt="delete" src={Trashicon} className="trash-icon" />
                         <p className="remove-text" >REMOVE </p>
                       </div>{/*remove-text-icon */}
 
                       <div className="adjust-item-number">
-                        <img alt="-" src={Minusicon} className="minus-icon" onClick={() => this.props.removeItemFromCartItem(item, this.props.cartItems ,this.props.token , this.props.isAuthenticated)} />
+                        <img alt="-" src={Minusicon} className="minus-icon" onClick={() => this.props.removeItemFromCartItem(item, this.props.cartItems, this.props.token, this.props.isAuthenticated)} />
                         <p className="item-number">{item.quantity}</p>
-                        <img alt="+" src={Plusicon} className="plus-icon" onClick={() => this.props.addItemToCartItem(item, this.props.cartItems,this.props.token , this.props.isAuthenticated)} />
+                        <img alt="+" src={Plusicon} className="plus-icon" onClick={() => this.props.addItemToCartItem(item, this.props.cartItems, this.props.token, this.props.isAuthenticated)} />
                       </div>{/*adjust-item-number */}
 
 
