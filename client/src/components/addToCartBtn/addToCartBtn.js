@@ -59,6 +59,7 @@ const btns = [
             >ADD TO CART</button> : <AdjustItemCount
 
                     cartItems={props.cartItems}
+                    cartProducts={props.cartProducts}
                     isAuthenticated={props.isAuthenticated}
                     token={props.token}
                     item={props.item}

@@ -39,13 +39,13 @@ const MenuItem = (props) => {
   // }, []);
 
   useEffect(() => {
-
     (async () => {
       await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
-      console.log("cart items local: "+JSON.stringify(props.cartItems));
-    })();
-    console.log("cart useeffect" + JSON.stringify(props.cartProducts) );
-  }, []);
+      console.log("cartitems local: "+JSON.stringify(props.cartItems));
+      console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
+    })()
+   
+  }, [props.cartItems]);
   
 
   
@@ -113,6 +113,7 @@ const MenuItem = (props) => {
         
           <AddToCartBtn
             cartItems={props.cartItems}
+            cartProducts= {props.cartProducts}
             item={props.item}
             token = {props.token}
             isAuthenticated = {props.isAuthenticated}
@@ -144,7 +145,7 @@ const MenuItem = (props) => {
 }
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
-  fetchCart: (cartItems,token,isAuthenticated)=>dispatch(actions.fetchCart(cartItems,token,isAuthenticated)) ,
+  fetchCart:async (cartItems,token,isAuthenticated)=>dispatch(await actions.fetchCart(cartItems,token,isAuthenticated)) ,
 
   addItemToCartItem: (item, items, token, isAuthenticated) => dispatch(Cartactions.addItemToCartItem(item, items , token, isAuthenticated)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
