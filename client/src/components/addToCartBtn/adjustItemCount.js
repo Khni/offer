@@ -6,13 +6,12 @@ import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 const AdjustItemCount = (props) => {
 
-
   return (
 
     <div className="AdjustItemCountCountainer">
       <button className="decreaseItemCount" onClick={async () => await props.removeItemFromCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)} >-</button>
 
-      <p className="itemCount">{props.ProductQty}</p>
+      <p className="itemCount">{props.isLoading? <div className="loaderbTn"/> : props.ProductQty}</p>
       <button className="increaseItemCount" onClick={async () => await props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)}  >+</button>
 
     </div>
