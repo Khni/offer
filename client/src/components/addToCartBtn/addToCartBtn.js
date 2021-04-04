@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react"
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
-
+// import Logger from '../../config/logger/logger'
 import AdjustItemCount from './adjustItemCount'
 const AddToCartBtn = (props) => {
 
-    const [cartProductQty, updateCartProductQty] = useState(false)
+    
     const [ProductQty, setProductQty] = useState(null)
     const [ProductCart, setProductCart] = useState(null)
 
     useEffect(() => {
+        // Logger.console("useEffectLogger")
+
         const fetching = async () => {
             await props.fetchCart(props.cartItems, props.token, props.isAuthenticated)
 
         }
         fetching();
-    }, [props.ProductsOfCart])
+    }, [ProductQty])
 
     useEffect(() => {
 
@@ -52,24 +52,7 @@ const AddToCartBtn = (props) => {
             onClick: () => { }
         },
     ]
-    const submit = () => {
-        confirmAlert({
-            title: 'تم إضاقة المنتج بنجاح الي سلة المشتريات ، هل تريد أتمام الطلب؟',
-            message: '',
-            buttons: [
-
-                {
-                    label: 'لا، أريد الأستمرار في التسوق',
-                    // onClick: 
-                },
-                {
-                    label: 'نعم، أريد اتمام الطلب ',
-                    onClick: () => props.history.push('/cart')
-                }
-            ]
-        });
-    };
-
+    
     const addItem = () => {
         console.log("token from btn" + props.token);
         props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)
@@ -78,11 +61,6 @@ const AddToCartBtn = (props) => {
     }
 
 
-
-    const checkItem = () => {
-        const itemCheck = props.cartItems.find((item) => item.productID === props.item._id)
-        return itemCheck
-    }
 
 
     return (
@@ -98,7 +76,7 @@ const AddToCartBtn = (props) => {
                 isAuthenticated={props.isAuthenticated}
                 token={props.token}
                 item={props.item}
-                itemQuantity={ProductQty} />}
+                ProductQty={ProductQty} />}
 
 
 
