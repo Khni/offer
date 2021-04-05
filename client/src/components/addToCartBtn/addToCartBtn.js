@@ -76,7 +76,10 @@ const AddToCartBtn = (props) => {
                 isAuthenticated={props.isAuthenticated}
                 token={props.token}
                 item={props.item}
-                ProductQty={ProductQty} />}
+                ProductQty={ProductQty} 
+                isLoading={props.isLoading}
+
+/>}
 
 
 
@@ -92,6 +95,8 @@ const mapStateToProps = (state) => {
 
         RefreshToken: state.userAuth.authUser.refreshToken,
         ProductsOfCart: state.cartProductsReducer.cartProducts,
+        isLoading: state.cartProductsReducer.isLoading,
+
 
     }
 }
