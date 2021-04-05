@@ -5,14 +5,21 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 const AdjustItemCount = (props) => {
-
+  const [productID, setProductID] = useState('')
   return (
 
     <div className="AdjustItemCountCountainer">
+      {console.log("productIDss")}
       <button className="decreaseItemCount" onClick={async () => await props.removeItemFromCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)} >-</button>
 
-      <p className="itemCount">{props.isLoading? <div className="loaderbTn"/> : props.ProductQty}</p>
-      <button className="increaseItemCount" onClick={async () => await props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)}  >+</button>
+      <p className="itemCount">{props.isLoading && productID === props.item._id ? <div className="loaderCount"/> : props.ProductQty}</p>
+      <button className="increaseItemCount" onClick={async () =>
+      {setProductID(props.item._id)
+      //   console.log("productID"+productID +' ' +props.item._id);
+      // console.log("productIDitem"+props.item._id);
+        await props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)
+      
+      } }  >+</button>
 
     </div>
 
