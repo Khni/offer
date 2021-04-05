@@ -10,16 +10,25 @@ const AdjustItemCount = (props) => {
 
     <div className="AdjustItemCountCountainer">
       {console.log("productIDss")}
-      <button className="decreaseItemCount" onClick={async () => await props.removeItemFromCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)} >-</button>
+      <button className="decreaseItemCount" onClick={async () =>{
+setProductID(props.item._id)
+await props.removeItemFromCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)
+setTimeout(() => {
+  setProductID('')
+}, 500);
+      } } >-</button>
 
-      <p className="itemCount">{props.isLoading && productID === props.item._id ? <div className="loaderCount"/> : props.ProductQty}</p>
-      <button className="increaseItemCount" onClick={async () =>
-      {setProductID(props.item._id)
-      //   console.log("productID"+productID +' ' +props.item._id);
-      // console.log("productIDitem"+props.item._id);
+      {/* <p>{productID}</p> */}
+      <p className="itemCount">{props.isLoading && productID === props.item._id ? <div className="loaderCount" /> : props.ProductQty}</p>
+      <button className="increaseItemCount" onClick={async () => {
+        setProductID(props.item._id)
+
         await props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)
-      
-      } }  >+</button>
+        setTimeout(() => {
+          setProductID('')
+        }, 500);
+
+      }}  >+</button>
 
     </div>
 

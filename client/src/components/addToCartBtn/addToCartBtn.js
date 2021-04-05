@@ -68,19 +68,21 @@ const AddToCartBtn = (props) => {
 
         <div>
            
-            {!ProductCart ? <button type="submit" className="custum-btn-form"
+            {!ProductCart  ? <button type="submit" className="custum-btn-form"
                 onClick={addItem}
             >ADD TO CART</button> : <AdjustItemCount
 
-                cartItems={props.cartItems}
-                cartProducts={props.cartProducts}
-                isAuthenticated={props.isAuthenticated}
-                token={props.token}
-                item={props.item}
-                ProductQty={ProductQty} 
-                isLoading={props.isLoading}
+            cartItems={props.cartItems}
+            cartProducts={props.cartProducts}
+            isAuthenticated={props.isAuthenticated}
+            token={props.token}
+            item={props.item}
+            ProductQty={ProductQty} 
+            isLoading={props.isLoading}
 
 />}
+
+
 
 
 
