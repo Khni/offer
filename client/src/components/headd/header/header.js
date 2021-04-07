@@ -20,7 +20,7 @@ import {
   // selectTermsLang, 
   selectLang
 } from '../../../store/reducers/langReducer/langsReselect';
-import * as actions from '../../../store/actions/cartAction.js'
+import * as actions from '../../../store/actions'
 // import CartDropdown from '../../cart/cart-dropdown.component';
 import Sidebar from '../../sidebar/sidebar.js'
 import Backdrop from '../../sidebar/backdrop'
@@ -50,6 +50,12 @@ class Header extends Component {
   counterClick() {
     this.props.history.push('/cart')
   }
+  
+  
+  async componentDidMount () {
+await props.fetchCart(this.props.cartItems, this.props.token, this.props.isAuth)
+
+} 
   render() {
     const dropDownItems = [
       {
@@ -151,7 +157,8 @@ function mapStateToProps(state) {
     name: state.userAuth.authUser.name,
     // hidden: cartHidden(state) ,
     hiddenSidebar: sidebarHidden(state),
-    totalItems: 0
+    cartItems: selectCartItems(state), 
+    totalItems: state.cartProductsReducer.totalItems,
    // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
     // totalItems: selectCartItems(state).reduce((accumalatedQuantity, item) =>accumalatedQuantity + item.quantity , 0)
 

@@ -13,6 +13,7 @@ const INITIAL_STATE = {
   cartProducts: [],
   filteredCart: [], //cart does not contain out of stock product
   totalPrice: 0, //total price of filteredCart
+  totalItems: 0,
   fetchError: '',
   isLoading: false,
   updateCart: false
@@ -43,6 +44,7 @@ const cartProductsReducer = (state = INITIAL_STATE, action) => {
         cartProducts: action.cart,
         filteredCart: action.filteredCart,
         totalPrice: action.totalPrice,
+        totalItems: action.totalItems,
         fetchError: '',
         isLoading: false,
         updateCart: false

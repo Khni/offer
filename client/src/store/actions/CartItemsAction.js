@@ -264,6 +264,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
       let response = ''
       let filteredCart = []
       let totalPrice = 0
+      let totalItems = 0
       if (isAuthenticated && token) {
         console.log("user ok");
         //if user is Authenticated fetch cart from server
@@ -272,6 +273,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         });
         filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
+        totalItems: filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
 
 
 
@@ -282,6 +284,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         console.log("cart" +JSON.stringify(response.data.cartProducts) );
         filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
+        totalItems: filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
 
       }
       console.log("res" + response);
@@ -290,6 +293,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         cart: response.data.cartProducts,
         filteredCart: filteredCart,
         totalPrice: totalPrice,
+        totalItems: totalItems
 
       });
 
