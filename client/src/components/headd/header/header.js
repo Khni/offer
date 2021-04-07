@@ -53,7 +53,7 @@ class Header extends Component {
   
   
   async componentDidMount () {
-await props.fetchCart(this.props.cartItems, this.props.token, this.props.isAuth)
+await this.props.fetchCart(this.props.cartItems, this.props.token, this.props.isAuth)
 
 } 
   render() {
