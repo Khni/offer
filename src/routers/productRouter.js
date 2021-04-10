@@ -259,8 +259,8 @@ router.post('/api/add-product',[authAdmin,upload.array('photos' , 10)] , async (
     
     const product = new Product({
         ...req.body,
-        //adminID: req.admin._id, 
-        adminID: "6059d9814af9a03aa8bceef0",
+        adminID: req.admin._id, 
+       // adminID: "6059d9814af9a03aa8bceef0",
         barcode: {
     	code: req.body.barcode, 
        type: req.body.barcodeType
@@ -295,8 +295,9 @@ router.post('/api/add-product',[authAdmin,upload.array('photos' , 10)] , async (
 
         
         res.status(201).send({product})
-    } catch (e) {
-        res.status(400).send(e)
+    } catch (error) {
+        console.log("Er"+ error);
+        res.status(400).send(error)
     }
 })
 

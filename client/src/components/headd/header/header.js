@@ -54,7 +54,7 @@ class Header extends Component {
   
   async componentDidMount () {
 await this.props.fetchCart(this.props.cartItems, this.props.token, this.props.isAuth)
-
+console.log('totalItems: '+this.props.totalItems )
 } 
   render() {
     const dropDownItems = [

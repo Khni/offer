@@ -41,6 +41,7 @@ export const addItem = (item, items) => ({
 export const addItemToCartItem = (item, items, token, isAuthenticated) => {
   console.log("cartitems cartitemsaction: " +JSON.stringify(items));
   console.log("token: " + token);
+  console.log("item: "+JSON.stringify(item));
   if (token && isAuthenticated) {
     console.log("user auth");
     return async dispatch => {
@@ -75,7 +76,7 @@ export const addItemToCartItem = (item, items, token, isAuthenticated) => {
 
 
       } catch (e) {
-        console.log("err" + JSON.stringify(e.response.data));
+        console.log("err" + e);
 
 
       }
@@ -273,7 +274,7 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         });
         filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-        totalItems: filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
+        totalItems= filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
 
 
 
@@ -284,10 +285,10 @@ export const fetchCart = (cartItems, token, isAuthenticated) => {
         console.log("cart" +JSON.stringify(response.data.cartProducts) );
         filteredCart = response.data.cartProducts.filter(p => p.quantity !== 0)
         totalPrice = filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity * item.price, 0)
-        totalItems: filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
+        totalItems= filteredCart.reduce((accumalatedQuantity, item) => accumalatedQuantity + item.quantity, 0)
 
       }
-      console.log("res" + response);
+     
       dispatch({
         type: FETCH_CART,
         cart: response.data.cartProducts,

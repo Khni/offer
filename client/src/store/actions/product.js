@@ -162,7 +162,7 @@ export const addSectionToServer = (data, adminToken) => {
 
 export const fetchProducts= (isFetching) => {
 
-
+console.log("fetchProucts STARTS");
     return async dispatch => {
       console.log("before Start"+isFetching);
     dispatch({
@@ -174,7 +174,7 @@ export const fetchProducts= (isFetching) => {
     
       try {
      const response =   await axios.get('/api/products');
-  console.log('response' );
+  console.log('fetchProucts'+ JSON.stringify(response) );
   
   //setTimeout(() => {
     dispatch({
@@ -188,7 +188,7 @@ export const fetchProducts= (isFetching) => {
   console.log("after fetch Start"+isFetching);
        
       } catch(err) {
-      // console.log();
+       console.log('fetchProuctsERR');
         //  console.error("err"+ err.response.data.error)
         dispatch({
           type: FETCH_ERROR,

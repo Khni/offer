@@ -8,7 +8,9 @@ const auth = require('../middleware/auth')
 
 
 router.post('/api/cart/add', auth, async (req, res) => {
+    
     const foundcart = await Cart.findOne({ userID: req.user._id })
+    
     //check if product onlyOrderAvailableQty to stop adding if it out of stock
     let product = await Product.findOne({ _id: req.body.productID })
     if (product.onlyOrderAvailableQty) {
@@ -19,15 +21,15 @@ router.post('/api/cart/add', auth, async (req, res) => {
             })
         }
     }
-
+    
     if (foundcart) {
-
+        console.log("add to cart start"+foundcart);
         const foundproduct = await Cart.findOne({ $and: [{ userID: req.user._id }, { "products.productID": req.body.productID }] })
 
-        
+        console.log('product::'+ foundproduct);
         if (foundproduct) {
 
-
+console.log('product::'+ foundproduct);
 
 
 
@@ -42,6 +44,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 return product.productID == req.body.productID
 
             })
+            console.log("productINCart"+productinCart);
 
 
 
@@ -49,6 +52,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
             //check if there is discount and there are limited number to buy
             
                 if (product.limitedOrder === productinCart.quantity || product.limitedOrder < productinCart.quantity) {
+                    console.log("err limited");
                     return res.status(400).send({
                         error: "You Reached maximum amount in Discount",
                         error_ar: "وصلت للحد الأقصى لطلب هذا المنتج "
@@ -75,6 +79,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
                 return res.status(200).send({ cartProducts })
                 // updatecart.save()
             } catch (error) {
+                console.log("ERR0: "+ error);
                 return res.status(401).send({ error })
 
 
@@ -91,9 +96,14 @@ router.post('/api/cart/add', auth, async (req, res) => {
             return res.status(200).send({ cartProducts })
 
         } catch (error) {
+            console.log("EER1: "+error);
+
             return res.status(400).send(error)
         }
     } //if found cart 
+    
+
+
 
     //if cart nor product are exist 
     const cart = new Cart({
@@ -108,6 +118,7 @@ router.post('/api/cart/add', auth, async (req, res) => {
         return res.status(200).send({ cartProducts })
 
     } catch (e) {
+        console.log("ERR PRODUCT ADD TO CART:"+ e);
         res.status(400).send(e)
     }
 })

@@ -30,13 +30,13 @@ class ProductsList extends Component {
     this.setState({ search: event.target.value.substr(0, 20) })
   }
   async FetchProductsFromServer() {
-    if (!this.props.productsFetched) {
+    //if (!this.props.productsFetched) {
 
       const { fetchProducts } = this.props;
       
       await fetchProducts(this.props.productsIsFetching);
 
-    }
+   // }
     console.log("log from add product Updatefetchproduct")
 
   }
@@ -68,7 +68,7 @@ class ProductsList extends Component {
 
   }
   async componentDidUpdate() {
-    await this.FetchProductsFromServer()
+    // await this.FetchProductsFromServer()
     console.log("log from list product Update")
   }
 

@@ -11,7 +11,7 @@ const AddToCartBtn = (props) => {
     const [ProductCart, setProductCart] = useState(null)
 
     useEffect(() => {
-        // Logger.console("useEffectLogger")
+        
 
         const fetching = async () => {
             await props.fetchCart(props.cartItems, props.token, props.isAuthenticated)
