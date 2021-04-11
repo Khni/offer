@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 // import Logger from '../../config/logger/logger'
-import AdjustItemCount from './adjustItemCount'
+
 const SearchProducts = (props) => {
 
     
