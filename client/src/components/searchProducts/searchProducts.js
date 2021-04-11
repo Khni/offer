@@ -28,6 +28,7 @@ const SearchProducts = (props) => {
         }
         fetching();
     }, [])
+    
 
     /*    useEffect(() => {
     
@@ -99,7 +100,7 @@ const SearchProducts = (props) => {
 
 
         <div className="menu-container">
-            <Header /> 
+            <Header />
 
             <input className="input-search-main" type='text' value={search} onChange={searchUpdate} placeholder="search....." />
 
@@ -166,8 +167,8 @@ const SearchProducts = (props) => {
 const mapStateToProps = (state) => {
     return {
 
+
         
-        ProductsOfCart: state.cartProductsReducer.cartProducts,
         isLoading: state.cartProductsReducer.isLoading,
         productsFetched: state.categoryReducer.productsFetched,
         productsIsFetching: state.categoryReducer.productsIsFetching,

@@ -20,6 +20,16 @@ const AddToCartBtn = (props) => {
         fetching();
     }, [ProductQty])
 
+
+    useEffect(() => {
+        (async () => {
+          await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
+          console.log("cartitems local: "+JSON.stringify(props.cartItems));
+          console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
+        })()
+       
+      }, [props.cartItems]);
+
     useEffect(() => {
 
         const product = props.ProductsOfCart.find(product => product._id == props.item._id)

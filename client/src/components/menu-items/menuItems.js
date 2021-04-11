@@ -38,14 +38,14 @@ const MenuItem = (props) => {
   //   console.log("cart useeffect" + props.cartProducts);
   // }, []);
 
-  useEffect(() => {
-    (async () => {
-      await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
-      console.log("cartitems local: "+JSON.stringify(props.cartItems));
-      console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
-    })()
+  // useEffect(() => {
+  //   (async () => {
+  //     await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
+  //     console.log("cartitems local: "+JSON.stringify(props.cartItems));
+  //     console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
+  //   })()
    
-  }, [props.cartItems]);
+  // }, [props.cartItems]);
   
 
   
