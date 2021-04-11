@@ -29,7 +29,7 @@ router.post('/api/section/add', auth, async (req, res) => {
 
 
 router.get('/api/sections-with-products',  async (req, res) => {
-	
+	console.log("ooo");
 	let sections = await Section.find({})
 	
 	/*let SectionsWithProducts = await Promise.all(sections.map(async(section) => {
@@ -45,11 +45,13 @@ router.get('/api/sections-with-products',  async (req, res) => {
             if(product){
         let outOfStock = false
 	if (product.onlyOrderAvailableQty) {
+        console.log(product.nameEn);
          if (product.availableQty === 0 || product.availableQty < 0) {
              outOfStock = true
          }
      }
      product = {...product.toObject(), outOfStock: outOfStock} 
+     console.log("outOfStock: "+ product.outOfStock);
     if(!product.outOfStock) {
         return product
        } 

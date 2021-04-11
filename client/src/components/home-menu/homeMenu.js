@@ -183,7 +183,7 @@ class homeMenu extends Component {
           SearchChange={this.searchUpdate} 
           />
           
-          <input className="input-search-tableList" type='text' placeholder="search....." />
+          <input onClick={()=> this.props.history.push('/search')} className="input-search-main" type='text' placeholder="search....." />
     {/*    <Searchbox />*/} 
         {/* testing */}
         {/* <p>"window navigator" +{ navigator.userAgent}</p>
