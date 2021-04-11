@@ -140,12 +140,13 @@ const mapStateToProps = state => {
   return {
     productsFetched: state.categoryReducer.productsFetched,
     productsIsFetching: state.categoryReducer.productsIsFetching,
+    products: state.categoryReducer.products, 
     sectionsFetched: state.categoryReducer.sectionsFetched,
 
     sections: state.categoryReducer.sections,
     AdminToken: selectAdminAuth(state).token,
     AddedToServer: state.categoryReducer.AddToServer.added,
-    products: state.categoryReducer.products
+    
     //   Name: selectAdminAuth(state).Name,
     // Email: selectAdminAuth(state).Email,
     //state.adminAuth.error

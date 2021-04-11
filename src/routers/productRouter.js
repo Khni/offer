@@ -259,6 +259,7 @@ router.post('/api/add-product',[authAdmin,upload.array('photos' , 10)] , async (
     
     const product = new Product({
         ...req.body,
+        isActive: false, 
         adminID: req.admin._id, 
        // adminID: "6059d9814af9a03aa8bceef0",
         barcode: {

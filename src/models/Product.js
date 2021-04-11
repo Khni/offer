@@ -282,10 +282,11 @@ const productSchema = mongoose.Schema({
     ],
 
 
-    active: {
-        type: Boolean
+    isActive: { //Product is Active or not? 
 
-    },
+            type: Boolean,
+
+        },
 
 
     sectionID: {

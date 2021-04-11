@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import AuthNav from './components/authNew/authNavPage/authNavPage';
 import SignUp from './components/authNew/sign-up/signUp.js';
 import SignIn from './components/authNew/sign-in/signIn.js';
+import SearchProducts from './components/searchProducts/searchProducts';
 
 import authHOC from './components/HOCs/auth/authHOC.js';
 import AccountHOC from './components/HOCs/auth/accountHOC.js';
@@ -46,6 +47,7 @@ function App() {
         <Route path='/admin' component={AdminAuthHOC(AdminPage)} />
         <Route path='/admin-login' component={AdminLogin} />
         <Route path='/authnav' component={AuthNav} />
+        <Route path='/search' component={SearchProducts} />
 
         <Route path='/admin-reviews' component={ReviewsNavAdmin} />
         <Route path='/checkout-address' component={AccountHOC(CheckoutAddress)} />

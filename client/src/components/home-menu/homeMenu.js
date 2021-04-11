@@ -178,11 +178,13 @@ class homeMenu extends Component {
     return (
       <div className="menu-container">
 
-        <Header searchbox={true}
+        <Header searchbox={false}
           SearchVal={this.state.search}
           SearchChange={this.searchUpdate} 
           />
-        <Searchbox />
+          
+          <input className="input-search-tableList" type='text' placeholder="search....." />
+    {/*    <Searchbox />*/} 
         {/* testing */}
         {/* <p>"window navigator" +{ navigator.userAgent}</p>
 <p>{"lang: "+lang+" short: " + shortLang}</p>
