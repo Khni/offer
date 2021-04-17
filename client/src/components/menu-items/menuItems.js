@@ -99,7 +99,7 @@ const MenuItem = (props) => {
 
           <img alt={props.item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + props.imgURL} className="item-img" />
 
-          <p className="item-title-menu-item">{props.item.nameEn} </p>
+          <p className="item-title-menu-item">{props.item.nameEn.substr(0,90)} </p>
 
 
 
