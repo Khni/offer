@@ -1,6 +1,7 @@
-const Review = require('../models/Review')
-const Product = require('../models/Product')
-const User = require('../models/User')
+const Review = require('../../models/Review')
+const User = require('../../models/Product')
+const Product = require('../../models/Product')
+
 
 
 const getRating = (productReviews) => {
@@ -85,4 +86,3 @@ module.exports = {
     finalPrice,
     productsWithRate
 };
-
