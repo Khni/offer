@@ -1,11 +1,11 @@
 let langObj = {}
 const fs = require('fs');
-
+var path = require('path');
 console.log("test");
 //read file and return JSON obj
-const readFile = (path) => {
+const readFile = (filepath) => {
 	console.log("best");
-let rawdata = fs.readFileSync(path);
+let rawdata = fs.readFileSync(path.join(__dirname, filepath));
 let data = JSON.parse(rawdata);
 
 
