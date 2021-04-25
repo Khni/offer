@@ -2,6 +2,18 @@ const Validator = require('validator');
 const isEmpty = require('../is-empty');
 const {setLang} = require('../../languages/setLang');
 
+
+
+// const ValidateNameInput = (name)=>{
+//   name = !isEmpty(name) ? name : '';
+//   if (Validator.isEmpty(name)) {
+    
+//     return
+//   }
+  
+// }
+
+
 module.exports = function validateLoginInput(data, lang) {
 	const messages = setLang(lang) 
   let errors = {};
@@ -37,15 +49,10 @@ const validateRegisterInput= (data, lang)=> {
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
-  data.repassword = !isEmpty(data.password2) ? data.password2 : '';
-
-  if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-    errors.name = "ff"
-    errors.name = messages.errLength30
-  }
-
+  data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
+  
   if (Validator.isEmpty(data.name)) {
-    errors.name = "fffff"
+    
     errors.name = messages.nameRequired
   }
 
@@ -53,21 +60,32 @@ const validateRegisterInput= (data, lang)=> {
     errors.email = messages.emailRequired
   }
 
-  if (!Validator.isEmail(data.email)) {
-    errors.email = messages.invalidEmail
+  if (Validator.isEmpty(data.repassword)) {
+    errors.repassword = messages.confirmPasswordRequired
   }
 
   if (Validator.isEmpty(data.password)) {
     errors.password = messages.passwordRequired
   }
 
+  if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
+    
+    errors.name = messages.errLength30
+  }
+
+  
+
+  if (!Validator.isEmail(data.email)) {
+    errors.email = messages.invalidEmail
+  }
+
+  
+
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = messages.passwordLength
   }
 
-  if (Validator.isEmpty(data.repassword)) {
-    errors.repassword = messages.confirmPasswordRequired
-  }
+  
 
   if (!Validator.equals(data.password, data.password2)) {
     errors.repassword = messages.passwordMatch

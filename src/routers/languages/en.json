@@ -4,7 +4,7 @@
  "passwordRequired": "Password field is required", 
  "incorrectEmailOrPass": "The email address or password is incorrect", 
  "errLength30": "Name must be between 2 and 30 characters", 
- "nameRequired": "The name address or password is incorrect", 
+ "nameRequired": "Name field is required", 
  "passwordLength": "Password must be at least 8 characters", 
  "passwordMatch": "Passwords must match", 
  "confirmPasswordRequired": "Confirm Password field is required", 
