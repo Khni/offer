@@ -13,7 +13,7 @@ const UserController = require('../controllers/userController')
 const { InsertSocialUser, userSignUp, InsertFbUser } = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
-const { validateLoginInput, validateRegisterInput, validateUpdateInput} = require('./utils/routesUtils/users.utils')
+const { validateLoginInput, validateRegisterInput, validateUpdateInput} = require('./utils/routesUtils/usersUtils/users.utils')
 const {setLang} = require('./languages/setLang');
 
 const validator = require('validator')
@@ -33,7 +33,10 @@ router.post('/api/:lang/user', async (req, res) => {
 
   // Check Validation
   if (!isValid) {
-     
+    for (const [key, value] of Object.entries(errors)) {
+        //console.log(`${key}: ${value}`);
+        console.log(value);
+      }
     return res.status(400).json(errors);
   }
   

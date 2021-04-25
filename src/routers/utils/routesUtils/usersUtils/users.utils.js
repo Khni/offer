@@ -1,7 +1,7 @@
 const Validator = require('validator');
-const isEmpty = require('../is-empty');
-const {setLang} = require('../../languages/setLang');
-const {ValidateNameInput} =require('./inputsValidation');
+const isEmpty = require('../../is-empty');
+const {setLang} = require('../../../languages/setLang');
+const {validateNameInput} =require('./inputsValidation');
 
 
  
@@ -38,7 +38,7 @@ const validateRegisterInput= (data, messages)=> {
   
   let errors = {};
   
-const  validateName = ValidateNameInput(name, messages)
+const  validateName = validateNameInput(data.name, messages)
 if(!validateName.valid) errors.name = validateName.error
 
   //data.name = !isEmpty(data.name) ? data.name : '';
