@@ -26,9 +26,9 @@ var oauth2Client = new OAuth2();
 
 // @desc    Register user
 router.post('/api/:lang/user', async (req, res) => {
-	
-	const { errors, isValid } = validateRegisterInput(req.body, req.params.lang);
-const messages = setLang(req.params.lang) 
+	const messages = setLang(req.params.lang) 
+	const { errors, isValid } = validateRegisterInput(req.body, messages);
+
        //let errors = {} 
 
   // Check Validation
