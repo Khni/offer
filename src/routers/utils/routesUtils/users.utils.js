@@ -29,7 +29,7 @@ module.exports = function validateLoginInput(data, lang) {
 
 
 
-module.exports = function validateRegisterInput(data, lang) {
+const validateRegisterInput= (data, lang)=> {
   const messages = setLang(lang) 
   let errors = {};
 
@@ -40,10 +40,12 @@ module.exports = function validateRegisterInput(data, lang) {
   data.repassword = !isEmpty(data.password2) ? data.password2 : '';
 
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
+    errors.name = "ff"
     errors.name = messages.errLength30
   }
 
   if (Validator.isEmpty(data.name)) {
+    errors.name = "fffff"
     errors.name = messages.nameRequired
   }
 
@@ -64,7 +66,7 @@ module.exports = function validateRegisterInput(data, lang) {
   }
 
   if (Validator.isEmpty(data.repassword)) {
-    errors.repassword = messenges.confirmPasswordRequired
+    errors.repassword = messages.confirmPasswordRequired
   }
 
   if (!Validator.equals(data.password, data.password2)) {
@@ -74,8 +76,8 @@ module.exports = function validateRegisterInput(data, lang) {
   return {
     errors,
     isValid: isEmpty(errors)
-  };
-};
+  }
+}
 
 
 
@@ -149,3 +151,6 @@ if (Validator.isEmpty(data.password)) {
     isValid: isEmpty(errors)
   };
 };
+
+
+module.exports = { validateRegisterInput}

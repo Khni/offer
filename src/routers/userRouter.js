@@ -29,10 +29,11 @@ router.post('/api/:lang/user', async (req, res) => {
 	
 	const { errors, isValid } = validateRegisterInput(req.body, req.params.lang);
 const messages = setLang(req.params.lang) 
-       let errors = {} 
+       //let errors = {} 
 
   // Check Validation
   if (!isValid) {
+     
     return res.status(400).json(errors);
   }
   
@@ -51,7 +52,7 @@ const messages = setLang(req.params.lang)
     }
 	
 	//create new user
-  const user = new User({
+   user = new User({
             methods: ['local'],
             name : req.body.name,
             local: {
@@ -67,6 +68,7 @@ const messages = setLang(req.params.lang)
             res.status(201).send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
         } catch (error) {
+            const messages = setLang(req.params.lang) 
             errors.error= messages.error
              res.status(400).json(errors);
         }
