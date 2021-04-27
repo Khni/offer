@@ -1,30 +1,17 @@
 const Validator = require('validator');
 const isEmpty = require('../../is-empty');
 const {setLang} = require('../../../languages/setLang');
-const {validateNameInput} =require('./inputsValidation');
+const {validateEmailInput, validatePasswordInput, validatePhoneInput, validateConfirmPassInput, validateNameInput} =require('./inputsValidation');
 
-
- 
-
-
-module.exports = function validateLoginInput(data, lang) {
-	const messages = setLang(lang) 
+const validateLoginInput = (data, messages) => {
+	
   let errors = {};
 
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.password = !isEmpty(data.password) ? data.password : '';
+  const  validateEmail = validateEmailInput(data.email, messages)
+if(!validateEmail.valid) errors.email = validateEmail.error
 
-  if (!Validator.isEmail(data.email)) {
-    errors.email = messages.invalidEmail;
-  }
-
-  if (Validator.isEmpty(data.email)) {
-    errors.email = messages.emailRequired;
-  }
-
-  if (Validator.isEmpty(data.password)) {
-    errors.password = messages.passwordRequired;
-  }
+const  validatePassword = validatePasswordInput(data.password, messages)
+if(!validatePassword.valid) errors.password = validatePassword.error
 
   return {
     errors,
@@ -41,50 +28,14 @@ const validateRegisterInput= (data, messages)=> {
 const  validateName = validateNameInput(data.name, messages)
 if(!validateName.valid) errors.name = validateName.error
 
-  //data.name = !isEmpty(data.name) ? data.name : '';
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.password = !isEmpty(data.password) ? data.password : '';
-  data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
-  
- /* if (Validator.isEmpty(data.name)) {
-    
-    errors.name = messages.nameRequired
-  }*/
+const  validateEmail = validateEmailInput(data.email, messages)
+if(!validateEmail.valid) errors.email = validateEmail.error
 
-  if (Validator.isEmpty(data.email)) {
-    errors.email = messages.emailRequired
-  }
+const  validatePassword = validatePasswordInput(data.password, messages)
+if(!validatePassword.valid) errors.password = validatePassword.error
 
-  if (Validator.isEmpty(data.repassword)) {
-    errors.repassword = messages.confirmPasswordRequired
-  }
-
-  if (Validator.isEmpty(data.password)) {
-    errors.password = messages.passwordRequired
-  }
-
-  /*if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-    
-    errors.name = messages.errLength30
-  }*/
-
-  
-
-  if (!Validator.isEmail(data.email)) {
-    errors.email = messages.invalidEmail
-  }
-
-  
-
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = messages.passwordLength
-  }
-
-  
-
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.repassword = messages.passwordMatch
-  }
+const  validateConfirmPass = validateConfirmPassInput(data.repassword, messages)
+if(!validateConfirmPass.valid) errors.password = validateConfirmPass.error
 
   return {
     errors,
@@ -93,70 +44,31 @@ if(!validateName.valid) errors.name = validateName.error
 }
 
 
-
-
-module.exports = function validateUpdateInput(update, data, lang) {
-  const messages = setLang(lang) 
+const validateUpdateInput = (update, data, messages)=> {
+  
   let errors = {};
 if(update === 'name' ) {
-date.name= !isEmpty(date.name) ? date.name : '';
-if (!Validator.isLength(date.name, { min: 2, max: 30 })) {
-    errors.name = messages.errLength30
-  }
-
-  if (Validator.isEmpty(date.name)) {
-    errors.name = messages.nameRequired
-  }
+const  validateName = validateNameInput(data.name, messages)
+if(!validateName.valid) errors.name = validateName.error
 } 
-
-
-
-
 
 
 if(update === 'phone' ) {
-data.phone = !isEmpty(data.phone) ? data.phone : '';
-if (Validator.isEmpty(data.phone)) {
-    errors.email = messages.phoneRequired
-  }
-
-  if (!validator.isMobilePhone(data.phone)) {
-    errors.email = messages.invalidPhone
-  }
+const  validatePhone= validateNameInput(data.phone, messages)
+if(!validatePhone.valid) errors.name = validatePhone.error
 } 
 
-
-
-
 if(update === 'email' ) {
-data.email = !isEmpty(data.email) ? data.email : '';
-if (Validator.isEmpty(data.email)) {
-    errors.email = messages.emailRequired
-  }
-
-  if (!Validator.isEmail(data.email)) {
-    errors.email = messages.invalidEmail
-  }
+const  validateEmail = validateEmailInput(data.email, messages)
+if(!validateEmail.valid) errors.email = validateEmail.error
 } 
 
 if(update === 'password' ) {
-data.password = !isEmpty(data.password) ? data.password : '';
-  data.repassword = !isEmpty(data.repassword) ? data.repassword : '';
-if (Validator.isEmpty(data.password)) {
-    errors.password = messages.passwordRequired
-  }
+const  validatePassword = validatePasswordInput(data.password, messages)
+if(!validatePassword.valid) errors.password = validatePassword.error
 
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = messages.passwordLength
-  }
-
-  if (Validator.isEmpty(data.repassword)) {
-    errors.repassword = messenges.confirmPasswordRequired
-  }
-
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.repassword = messages.passwordMatch
-  }
+const  validateConfirmPass = validateConfirmPassInput(data.repassword, messages)
+if(!validateConfirmPass.valid) errors.password = validateConfirmPass.error
 } 
 
   return {
@@ -166,4 +78,4 @@ if (Validator.isEmpty(data.password)) {
 };
 
 
-module.exports = { validateRegisterInput}
+module.exports = {validateLoginInput, validateRegisterInput, validateUpdateInput,}

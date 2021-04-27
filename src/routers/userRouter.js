@@ -24,12 +24,12 @@ var google = require('googleapis').google;
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2();
 
-// @desc    Register user
+// @desc  Register new user
 router.post('/api/:lang/user', async (req, res) => {
 	const messages = setLang(req.params.lang) 
 	const { errors, isValid } = validateRegisterInput(req.body, messages);
 
-       //let errors = {} 
+       
 
   // Check Validation
   if (!isValid) {
@@ -71,7 +71,7 @@ router.post('/api/:lang/user', async (req, res) => {
             res.status(201).send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
         } catch (error) {
-            const messages = setLang(req.params.lang) 
+            
             errors.error= messages.error
              res.status(400).json(errors);
         }
@@ -83,9 +83,9 @@ router.post('/api/:lang/user', async (req, res) => {
 
 // @desc   user login
 router.post('/api/:lang/user/login', async (req, res) => {
-	
-	const { errors, isValid } = validateLoginInput(req.body, req.params.lang);
-const messages = setLang(req.params.lang) 
+	const messages = setLang(req.params.lang) 
+	const { errors, isValid } = validateLoginInput(req.body, messages);
+
   // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
@@ -108,8 +108,8 @@ res.status(400).json(errors);
 
 // @desc    update user name
 router.patch('/api/:lang/user/name', auth, async (req, res) => {
-	
-	const { errors, isValid } = validateUpdateInput('name' , req.body, req.params.lang);
+	const messages = setLang(req.params.lang) 
+	const { errors, isValid } = validateUpdateInput('name' , req.body, messages);
 
   // Check Validation
   if (!isValid) {
@@ -118,7 +118,6 @@ router.patch('/api/:lang/user/name', auth, async (req, res) => {
 
   try {
         let user = await User.findOneAndUpdate({ _id: req.user._id }, {name: req.body.name}, {
-            // returnOriginal: false
             new: true
         });
         
@@ -136,7 +135,7 @@ router.patch('/api/:lang/user/name', auth, async (req, res) => {
 // @desc update user phone
 router.patch('/api/:lang/user/phone', auth, async (req, res) => {
 	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('phone' , req.body, req.params.lang);
+	const { errors, isValid } = validateUpdateInput('phone' , req.body, messages);
 
   // Check Validation
   if (!isValid) {
@@ -204,7 +203,7 @@ router.patch('/api/:lang/user/password', auth, async (req, res) => {
 
 router.patch('/api/:lang/user/email', auth, async (req, res) => {
 	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('email' , req.body, req.params.lang);
+	const { errors, isValid } = validateUpdateInput('email' , req.body, messages);
 
   // Check Validation
   if (!isValid) {
