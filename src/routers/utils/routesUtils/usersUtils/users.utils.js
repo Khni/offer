@@ -77,6 +77,47 @@ const validateUpdateInput = (update, data, messages) => {
 };
 
 
+
+const isUniqueEmail= async(operation,User, email, messages) => {
+
+  let errors = {};
+  
+  if(operation === 'update' ) {
+  const user = await User.findOne({email})
+  	let checkEmail = await User.findOne({
+        $or: [
+            { "google.email": email },
+            { "facebook.email": email },
+            { "local.email": email }
+        ]
+    });
+    if (!user.local.email) {
+    	errors.email = messages.socialAccount
+    }
+    //check if email is used by another user
+    if (checkEmail && user.local.email !== email) {
+        errors.email = messages.usedEmail
+    }
+ } else if (operation === 'new' ) {
+let user = await User.findOne({
+        $or: [
+            { "google.email": email },
+            { "facebook.email": email },
+            { "local.email": email }
+        ]
+    });
+    if (user) {errors.email = messages.usedEmail} 
+else {errors.error = messages.error} 
+
+} 
+
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  };
+};
+
+
 const updateUser = async (User, update, _id, data, messages) => {
   let errors = {};
   let user = {}
@@ -84,10 +125,30 @@ const updateUser = async (User, update, _id, data, messages) => {
   try {
     
     if (update === 'name') {
-      user = await User.findOneAndUpdate({ _id}, { name: data .name}, {
+      user = await User.findOneAndUpdate({ _id}, { name: data.name}, {
         new: true
       });
     } else if (update === 'phone') {
+      user = await User.findOneAndUpdate({ _id}, { phone: data.phone }, {
+        new: true
+      });
+
+    } else if (update === 'email') {
+    	
+  const isUnique = await isUniqueEmail("update" ,User, data.email, messages) 	
+    if (!isUnique.isValid) {errors = isUnique.errors}
+      user = await User.findOneAndUpdate({ _id}, { "local.email": data.email }, {
+        new: true
+      });
+
+    } else if (update === 'password') {
+    	const currentUser = await User.findOne({_id})
+    if (!currentUser.local.email) {
+    	errors.email = messages.socialAccount
+    return;
+    }
+    User.findByCredentials(currentUser.local.email. , data.password).then()
+    .catch((error)=> errors.password = messages.passwordMatch ) 
       user = await User.findOneAndUpdate({ _id}, { phone: data.phone }, {
         new: true
       });
@@ -96,7 +157,7 @@ const updateUser = async (User, update, _id, data, messages) => {
       errors.error = messages.error
     }
   } catch (error) {
-    errors.error = messages.error
+    errors.update = messages.error
 
   }
 
@@ -109,4 +170,4 @@ const updateUser = async (User, update, _id, data, messages) => {
 }
 
 
-module.exports = { validateLoginInput, validateRegisterInput, validateUpdateInput, updateUser}
+module.exports = { validateLoginInput, validateRegisterInput, validateUpdateInput, updateUser, isUniqueEmail}

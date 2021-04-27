@@ -13,7 +13,7 @@ const UserController = require('../controllers/userController')
 const { InsertSocialUser, userSignUp, InsertFbUser } = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
-const { validateLoginInput, validateRegisterInput, validateUpdateInput, updateUser } = require('./utils/routesUtils/usersUtils/users.utils')
+const { validateLoginInput, validateRegisterInput, validateUpdateInput, updateUser, isUniqueEmail} = require('./utils/routesUtils/usersUtils/users.utils')
 const { setLang } = require('./languages/setLang');
 
 const validator = require('validator')
@@ -40,8 +40,14 @@ router.post('/api/:lang/user', async (req, res) => {
         }
         return res.status(400).json(errors);
     }
+    //check if email is already exists 
     const email = req.body.email
-    //check if user is already exists 
+    const isUnique = await isUniqueEmail("new" ,User, email, messages) 	
+    if (!isUnique.isValid) {
+    	return res.status(400).json(isUnique.errors);
+}
+/*
+    //check if email is already exists 
     let user = await User.findOne({
         $or: [
             { "google.email": email },
@@ -54,6 +60,7 @@ router.post('/api/:lang/user', async (req, res) => {
         return res.status(400).json(errors);
 
     }
+    */
 
     //create new user
     user = new User({
@@ -166,6 +173,8 @@ router.patch('/api/:lang/user/:update', auth, async (req, res) => {
 
 // })
 
+
+/*
 // @desc edit user password 
 router.patch('/api/:lang/user/password', auth, async (req, res) => {
     const messages = setLang(req.params.lang)
@@ -175,8 +184,9 @@ router.patch('/api/:lang/user/password', auth, async (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
+//
     if (!req.user.local.email) {
+    	//set error
         return res.status(400).json(errors);
     }
 
@@ -252,6 +262,155 @@ router.patch('/api/:lang/user/email', auth, async (req, res) => {
 
 
 })
+
+*/
+
+
+//fb auth
+router.post('/api/:lang/user/fb', async (req, res) => {
+	const messages = setLang(req.params.lang)
+	let errors  = {} 
+ request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true }, async (error, response, body) => {
+        
+    if (!body.name || !body.id) {
+    	errors.error = body.error
+        return  res.status(400).json(errors);
+   } 
+   
+   
+        const email = req.body.email
+                const name = body.name
+                const id = body.id    
+            try {
+        
+        let user = {} 
+        //login if already exist 
+        user = await User.findOne({ "facebook.id": id })
+           if (user) {
+              const tokens = await user.generateAuthToken()
+              return  res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+            }
+
+
+        // Check if we have someone with the same email in local to merge Google id with local
+        user = await User.findOne({ "local.email": email })
+        if (user) {
+            user.methods.push('Facebook')
+            user.facebook = {
+                id: id,
+                email: email
+            }
+           await user.save()
+            const tokens = await user.generateAuthToken()
+            return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+        }
+
+        //insert brand new users
+        user = new User({
+            name: name,
+            methods: ['Facebook'],
+            facebook: {
+                id: id,
+                email: email
+            }
+        })
+
+        await user.save()
+        const tokens = await user.generateAuthToken()
+        return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+
+    } catch (error) {
+        errors.error = messages.error
+        res.status(400).json(errors);
+    }
+            
+    });
+
+})
+
+
+
+//google auth
+router.post('/api/:lang/user/google', async (req, res) => {
+	const messages = setLang(req.params.lang)
+	let errors  = {} 
+	oauth2Client.setCredentials({
+        access_token: req.body.access_token,
+        // clientID: "746252017489-f5c1v2vlrlhum6vrl2epec0t74qccbvi.apps.googleusercontent.com",
+        // clientSecret: 'FGf7UrLXHsGSmwugR52e2_NU',
+    });
+    var oauth2 = google.oauth2({
+        auth: oauth2Client,
+        version: 'v2'
+    });
+
+    try {
+        oauth2.userinfo.get(
+            async (err, resProfile) => {
+                if (err) {
+         errors.error = messages.error
+        return res.status(400).json(errors);
+
+                } 
+                
+                const email = resProfile.data.email
+                const name = resProfile.data.name
+                const id = resProfile.data.id
+                
+               let user = {} 
+        //login if already exist 
+        user = await User.findOne({ "google.id": id })
+           if (user) {
+              const tokens = await user.generateAuthToken()
+              return  res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+            }
+
+
+        // Check if we have someone with the same email in local to merge Google id with local
+        user = await User.findOne({ "local.email": email })
+        if (user) {
+            user.methods.push('Google')
+            user.google = {
+                id: id,
+                email: email
+            }
+           await user.save()
+            const tokens = await user.generateAuthToken()
+            return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+        }
+
+        //insert brand new users
+        user = new User({
+            name: name,
+            methods: ['Google'],
+            Google: {
+                id: id,
+                email: email
+            }
+        })
+
+        await user.save()
+        const tokens = await user.generateAuthToken()
+        return   res.send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
+                    
+                
+            });
+
+
+    } catch (error) {
+        errors.error = messages.error
+        return res.status(400).json(errors);
+    }
+  
+
+})
+
+
+
+
+
+
+
 
 
 
@@ -703,6 +862,8 @@ router.post('/api/goauth', async (req, res) => {
     } catch (error) {
         res.status(400).send({ error });
     }
+    
+    
 })
 
 
