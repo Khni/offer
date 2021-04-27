@@ -141,12 +141,16 @@ userSchema.statics.signUp = async (email, password) => {
 
 //login verify
 userSchema.statics.findByCredentials = async (email, password) => {
+   
     const userLogin = await User.findOne({ "local.email": email })
+
     if (!userLogin) {
         throw new Error({ error: 'unable to Login' })
     }
+    
     const isTruePassword = await bcrypt.compare(password, userLogin.local.password)
     if (!isTruePassword) {
+       
         throw new Error({ error: 'unable to Login' })
     }
 

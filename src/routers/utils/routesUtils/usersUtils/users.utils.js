@@ -2,7 +2,7 @@ const Validator = require('validator');
 const isEmpty = require('../../is-empty');
 const { setLang } = require('../../../languages/setLang');
 const { validateEmailInput, validatePasswordInput, validatePhoneInput, validateConfirmPassInput, validateNameInput } = require('./inputsValidation');
-
+const bcrypt = require('bcryptjs')
 const validateLoginInput = (data, messages) => {
 
   let errors = {};
@@ -78,14 +78,14 @@ const validateUpdateInput = (update, data, messages) => {
 
 
 
-const isUniqueEmail = async (operation, User, email, messages,_id) => {
+const isUniqueEmail = async (operation, User, email, messages, _id) => {
 
   let errors = {};
 
   if (operation === 'update') {
-console.log("update"+ email);
+    console.log("update" + email);
     const user = await User.findOne({ _id })
-    console.log("user"+ user.local.email);
+    console.log("user" + user.local.email);
     let checkEmail = await User.findOne({
       $or: [
         { "google.email": email },
@@ -138,7 +138,7 @@ const updateUser = async (User, update, _id, data, messages) => {
 
     } else if (update === 'email') {
 
-      const isUnique = await isUniqueEmail('update', User, data.email, messages,_id)
+      const isUnique = await isUniqueEmail('update', User, data.email, messages, _id)
       if (!isUnique.isValid) { errors = isUnique.errors }
       user = await User.findOneAndUpdate({ _id }, { "local.email": data.email }, {
         new: true
@@ -150,25 +150,32 @@ const updateUser = async (User, update, _id, data, messages) => {
         errors.email = messages.socialAccount
         return;
       }
-      User.findByCredentials(currentUser.local.email, data.oldpassword).then()
-        .catch((error) => errors.oldpassword = messages.passwordMatch)
-      user = await User.findOneAndUpdate({ _id }, { "local.password": data.password }, {
-        new: true
-      });
+      
+      const isTruePassword = await bcrypt.compare(data.oldpassword, currentUser.local.password)
+        if (!isTruePassword) {
+          console.log("isTr"+isTruePassword+data.oldpassword +currentUser.local.password);
+          errors.oldpassword = messages.passwordMatch
+        }
+      
+      
+       
+user = await User.findOneAndUpdate({ _id }, { "local.password": data.password }, {
+  new: true
+});
 
     } else {
-      errors.error = messages.error
-    }
+  errors.error = messages.error
+}
   } catch (error) {
-    errors.update = messages.error
+  errors.update = messages.error
 
-  }
+}
 
-  return {
-    errors,
-    isValid: isEmpty(errors),
-    user
-  };
+return {
+  errors,
+  isValid: isEmpty(errors),
+  user
+};
 
 }
 
