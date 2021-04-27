@@ -75,7 +75,7 @@ const validatePhoneInput = (phone , messages) => {
     return { valid: false, error: messages.phoneRequired }
   }
 
-  if (!validator.isMobilePhone(phone)) {
+  if (!Validator.isMobilePhone(phone)) {
     return { valid: false, error: messages.invalidPhone }
   }
  
@@ -87,7 +87,7 @@ const validatePhoneInput = (phone , messages) => {
 
 
 
-module.exports = { ValidateNameInput, validateEmailInput, validatePasswordInput, validatePhoneInput, validateConfirmPassInput}
+module.exports = { validateNameInput, validateEmailInput, validatePasswordInput, validatePhoneInput, validateConfirmPassInput}
 
 
 

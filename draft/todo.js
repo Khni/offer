@@ -1,3 +1,7 @@
+//auth handle with erros
+
+
+
 Orders status : ordered / confirmed / shipped / delivered / - returned/order Page /change status
 1day. Done 
 

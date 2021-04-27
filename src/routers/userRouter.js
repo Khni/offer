@@ -13,68 +13,69 @@ const UserController = require('../controllers/userController')
 const { InsertSocialUser, userSignUp, InsertFbUser } = require('../controllers/userRouterController.js')
 const { HandelErrors } = require('./userUtils')
 const { ObjIndexToZero } = require('./usersFuncs')
-const { validateLoginInput, validateRegisterInput, validateUpdateInput} = require('./utils/routesUtils/usersUtils/users.utils')
-const {setLang} = require('./languages/setLang');
+const { validateLoginInput, validateRegisterInput, validateUpdateInput, updateUser } = require('./utils/routesUtils/usersUtils/users.utils')
+const { setLang } = require('./languages/setLang');
 
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
 var geoip = require('geoip-lite');
 const request = require('request');
 var google = require('googleapis').google;
+const { update } = require('../models/User')
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2();
 
 // @desc  Register new user
 router.post('/api/:lang/user', async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateRegisterInput(req.body, messages);
+    const messages = setLang(req.params.lang)
+    const { errors, isValid } = validateRegisterInput(req.body, messages);
 
-       
 
-  // Check Validation
-  if (!isValid) {
-    for (const [key, value] of Object.entries(errors)) {
-        //console.log(`${key}: ${value}`);
-        console.log(value);
-      }
-    return res.status(400).json(errors);
-  }
-  
-  //check if user is already exists 
-	let  user = await User.findOne({
+
+    // Check Validation
+    if (!isValid) {
+        for (const [key, value] of Object.entries(errors)) {
+            //console.log(`${key}: ${value}`);
+            console.log(value);
+        }
+        return res.status(400).json(errors);
+    }
+    const email = req.body.email
+    //check if user is already exists 
+    let user = await User.findOne({
         $or: [
             { "google.email": email },
             { "facebook.email": email },
-            {"local.email": email} 
+            { "local.email": email }
         ]
     });
     if (user) {
-    	errors.error= messages.usedEmail
+        errors.error = messages.usedEmail
         return res.status(400).json(errors);
-        
-    }
-	
-	//create new user
-   user = new User({
-            methods: ['local'],
-            name : req.body.name,
-            local: {
-                email: req.body.email,
-                password: req.body.password
-            }
-            
-        })
-        try {
-            await user.save()
-            const tokens = await user.generateAuthToken()
-            
-            res.status(201).send({ user, token :tokens.token, refreshToken: tokens.refreshToken})
 
-        } catch (error) {
-            
-            errors.error= messages.error
-             res.status(400).json(errors);
+    }
+
+    //create new user
+    user = new User({
+        methods: ['local'],
+        name: req.body.name,
+        local: {
+            email: req.body.email,
+            password: req.body.password
         }
+
+    })
+    try {
+        await user.save()
+        const tokens = await user.generateAuthToken()
+
+        res.status(201).send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
+
+    } catch (error) {
+
+        errors.error = messages.error
+        res.status(400).json(errors);
+    }
 })
 
 
@@ -83,114 +84,120 @@ router.post('/api/:lang/user', async (req, res) => {
 
 // @desc   user login
 router.post('/api/:lang/user/login', async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateLoginInput(req.body, messages);
+    const messages = setLang(req.params.lang)
+    const { errors, isValid } = validateLoginInput(req.body, messages);
 
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-	
-      try {
-        const user = await User.findByCredentials(EmailInput, PasswordInput)
+    // Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
         const tokens = await user.generateAuthToken()
 
         res.status(200).send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
     } catch (error) {
-    	const messages = setLang(req.params.lang) 
-       let errors = {} 
-errors.error= messages.incorrectEmailOrPass
-res.status(400).json(errors);
-    }
-
-
-})
-
-// @desc    update user name
-router.patch('/api/:lang/user/name', auth, async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('name' , req.body, messages);
-
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  try {
-        let user = await User.findOneAndUpdate({ _id: req.user._id }, {name: req.body.name}, {
-            new: true
-        });
-        
-        const tokens = await user.generateAuthToken()
-        res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
-        
-    } catch (error) {
-        errors.error= messages.error
+        const messages = setLang(req.params.lang)
+        let errors = {}
+        errors.error = messages.incorrectEmailOrPass
         res.status(400).json(errors);
     }
 
 
 })
 
-// @desc update user phone
-router.patch('/api/:lang/user/phone', auth, async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('phone' , req.body, messages);
+/**
+ * @description: update route
+ * @param: update: name or email or password or phone
+ */
+router.patch('/api/:lang/user/:update', auth, async (req, res) => {
+    const messages = setLang(req.params.lang)
+    const update = req.params.update
+    let resValidate = validateUpdateInput(req.params.update, req.body, messages);
 
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+    // Check Validation
+    if (!resValidate.isValid) {
+        return res.status(400).json(resValidate.errors);
+    }
 
-  try {
-        let user = await User.findOneAndUpdate({ _id: req.user._id }, {phone: req.body.phone}, {
-            // returnOriginal: false
-            new: true
-        });
-        
+    try {
+
+        let { errors, isValid, user } = await updateUser(User, update, req.user._id, req.body, messages)
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+
         const tokens = await user.generateAuthToken()
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
-        
+
     } catch (error) {
-        errors.error= messages.error
-        res.status(400).json(errors);
+        resValidate.errors.error = messages.error
+        res.status(400).json(resValidate.errors);
     }
 
 
 })
+
+// // @desc update user phone
+// router.patch('/api/:lang/user/phone', auth, async (req, res) => {
+//     const messages = setLang(req.params.lang)
+//     const { errors, isValid } = validateUpdateInput('phone', req.body, messages);
+
+//     // Check Validation
+//     if (!isValid) {
+//         return res.status(400).json(errors);
+//     }
+
+//     try {
+//         let user = await User.findOneAndUpdate({ _id: req.user._id }, { phone: req.body.phone }, {
+//             // returnOriginal: false
+//             new: true
+//         });
+
+//         const tokens = await user.generateAuthToken()
+//         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
+
+//     } catch (error) {
+//         errors.error = messages.error
+//         res.status(400).json(errors);
+//     }
+
+
+// })
 
 // @desc edit user password 
 router.patch('/api/:lang/user/password', auth, async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('password' , req.body, req.params.lang);
+    const messages = setLang(req.params.lang)
+    const { errors, isValid } = validateUpdateInput('password', req.body, req.params.lang);
 
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  
-  if (!req.user.local.email) {
-    return res.status(400).json(errors);
-  }
-  
-  try {
-  	const user = await User.findByCredentials(req.user.local.email, req.body.password)
- } catch (error) {
- 	errors.error= messages.incorrectPassword
-    return  res.status(400).json(errors);
-} 
+    // Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
 
-  try {
-        let user = await User.findOneAndUpdate({ _id: req.user._id }, {password : req.body.password}, {
+    if (!req.user.local.email) {
+        return res.status(400).json(errors);
+    }
+
+    try {
+        const user = await User.findByCredentials(req.user.local.email, req.body.password)
+    } catch (error) {
+        errors.error = messages.incorrectPassword
+        return res.status(400).json(errors);
+    }
+
+    try {
+        let user = await User.findOneAndUpdate({ _id: req.user._id }, { password: req.body.password }, {
             // returnOriginal: false
             new: true
         });
-        
+
         const tokens = await user.generateAuthToken()
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
-        
+
     } catch (error) {
-        errors.error= messages.error
+        errors.error = messages.error
         res.status(400).json(errors);
     }
 
@@ -202,44 +209,44 @@ router.patch('/api/:lang/user/password', auth, async (req, res) => {
 // @desc  update user email
 
 router.patch('/api/:lang/user/email', auth, async (req, res) => {
-	const messages = setLang(req.params.lang) 
-	const { errors, isValid } = validateUpdateInput('email' , req.body, messages);
+    const messages = setLang(req.params.lang)
+    const { errors, isValid } = validateUpdateInput('email', req.body, messages);
 
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  
-  //check if user is already exists 
-	let  user = await User.findOne({
+    // Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    //check if user is already exists 
+    let user = await User.findOne({
         $or: [
             { "google.email": email },
             { "facebook.email": email },
-            {"local.email": email} 
+            { "local.email": email }
         ]
     });
     if (user && req.user.local.email !== req.body.email) {
-    	errors.error= messages.usedEmail
+        errors.error = messages.usedEmail
         return res.status(400).json(errors);
-        
+
     }
     //unable to update local email if it already registered as Google or Facebook 
-    if (req.user.local.email !== req.body.email && !req.user.google.email && !req.user.facebook.email ) {
-errors.error= messages.error
+    if (req.user.local.email !== req.body.email && !req.user.google.email && !req.user.facebook.email) {
+        errors.error = messages.error
         res.status(403).json(errors);
-} 
+    }
 
-  try {
-        let user = await User.findOneAndUpdate({ _id: req.user._id }, {"local.email": req.body.email}, {
+    try {
+        let user = await User.findOneAndUpdate({ _id: req.user._id }, { "local.email": req.body.email }, {
             // returnOriginal: false
             new: true
         });
-        
+
         const tokens = await user.generateAuthToken()
         res.send({ user, token: tokens.token, refreshToken: tokens.refreshToken })
-        
+
     } catch (error) {
-        errors.error= messages.error
+        errors.error = messages.error
         res.status(400).json(errors);
     }
 
@@ -412,7 +419,7 @@ router.post('/api/login', async (req, res) => {
 
 
 
-    
+
 
 
     try {
@@ -637,16 +644,16 @@ router.get('/api/getip', (req, res) => {
 
 //fb 
 router.post('/api/fbauth', async (req, res) => {
-    request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true },  async(error, response, body)=> {
+    request('https://graph.facebook.com/' + req.body.id + '?access_token=' + req.body.accessToken, { json: true }, async (error, response, body) => {
         console.error('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.
 
 
         if (body.name && body.id) {
-            await InsertFbUser(req,res,"facebook",body.id,req.body.email,body.name)
+            await InsertFbUser(req, res, "facebook", body.id, req.body.email, body.name)
             console.log("name" + body);
-            console.log("email"+ req.body.email);
+            console.log("email" + req.body.email);
             res.send("Welcome" + body.id).status(201)
         } else {
             res.send({ error: body.error }).status(400)
@@ -786,4 +793,4 @@ router.post('/api/user/refresh-Token', refreshTokenAuth)
 
 
 
-module.exports = { router, routerPromise } 
+module.exports = { router, routerPromise }
