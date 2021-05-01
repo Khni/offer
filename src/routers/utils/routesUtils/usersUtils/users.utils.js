@@ -155,14 +155,14 @@ const updateUser = async (User, update, _id, data, messages) => {
         if (!isTruePassword) {
           console.log("isTr"+isTruePassword+data.oldpassword +currentUser.local.password);
           errors.oldpassword = messages.passwordMatch
+          return;
         }
       
       
        
-user = await User.findOneAndUpdate({ _id }, { "local.password": data.password }, {
-  new: true
-});
-
+user = await User.findOneAndUpdate({ _id }) 
+user.local.password = await bcrypt.hash(data.password , 8)
+user.save()
     } else {
   errors.error = messages.error
 }

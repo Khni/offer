@@ -16,7 +16,8 @@ import { ReactComponent as Us } from '../icons/us.svg';
 import * as actions from '../../store/actions'
 import {selectTermsLang, selectLang}  from '../../store/reducers/langReducer/langsReselect';
 // import NavItem from '../headd/NavItem/NavItem'
-
+import { SidebarData } from './DataMenu';
+import SubMenu from './SubMenu';
 import {
   // cartHidden,
    sidebarHidden
@@ -70,6 +71,11 @@ return (
 <h5>Login or Sign up here</h5>
                   
                 </Link>}
+                {SidebarData.map((item, index) => {
+              return <SubMenu item={item} key={index} />;
+            })}
+                
+                
                 {props.lang === 'ar' ? 
   <div>
 

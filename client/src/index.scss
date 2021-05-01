@@ -8,6 +8,13 @@ $navsize: 60px;
 $border-radius: 8px;
 $speed: 500ms; 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* makes sure that the padding and border
+ are included in the total width and height of the elements. */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
 margin: 0;
   -webkit-font-smoothing: antialiased;
