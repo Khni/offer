@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import './menuItems.scss';
 // import { useHistory } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -24,16 +24,16 @@ const MenuItem = (props) => {
   //   }
 
   //   }, [])
-  const [alarmWindow, showAlarmWindow] =useState(false)
+  const [alarmWindow, showAlarmWindow] = useState(false)
 
   const [favorite, setFavorite] = useState(props.item.isFav);
 
   // useEffect(async() => {
   //   const fetchData = async () => {
   //       await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
-       
+
   //   }
-  
+
   //   await fetchData();
   //   console.log("cart useeffect" + props.cartProducts);
   // }, []);
@@ -44,11 +44,11 @@ const MenuItem = (props) => {
   //     console.log("cartitems local: "+JSON.stringify(props.cartItems));
   //     console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
   //   })()
-   
-  // }, [props.cartItems]);
-  
 
-  
+  // }, [props.cartItems]);
+
+
+
 
 
 
@@ -63,15 +63,15 @@ const MenuItem = (props) => {
     setFavorite(!favorite)
 
     try {
-     
-      
+
+
       const response = await axiosInstance(null, props.token, props.RefreshToken, props.refreshToken).post('/api/favorite/addanddelete', { productID: productID }, props.token)
       let message = "Removed from Favorite List"
       if (!response.data.deleted) {
-        message= "Added To Favorite List"
+        message = "Added To Favorite List"
       }
-      props.toggleHintBox(message) 
-      console.log("responsssses" + JSON.stringify(response) );
+      props.toggleHintBox(message)
+      console.log("responsssses" + JSON.stringify(response));
     } catch (e) {
       if (e) {
         setFavorite(!favorite)
@@ -81,25 +81,29 @@ const MenuItem = (props) => {
   }
 
 
-
+  const awsURL = "https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/"
 
 
   return (
     <div>
-      
+
 
       <div className="item"
       >
-        
+
         <div onClick={() => props.history.push(`${props.match.url + "item/"}${props.id}`)} >
 
+          <div className="home-item-img" style={
+            { backgroundImage: `url(${awsURL + props.imgURL})` }
+          } />
 
 
 
 
-          <img alt={props.item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + props.imgURL} className="item-img" />
 
-          <p className="item-title-menu-item">{props.item.nameEn.substr(0,90)} </p>
+          {/* <img alt={props.item.nameEn} src={"https://juvkhaled.s3-us-west-1.amazonaws.com/productsimgs/" + props.imgURL} className="item-img" /> */}
+
+          <p className="item-title-menu-item">{props.item.nameEn.substr(0, 90)} </p>
 
 
 
@@ -109,15 +113,15 @@ const MenuItem = (props) => {
 
 
         </div>
-        <div className="flex-row marginTop50">
-        
+        <div className="flex-row ">
+
           <AddToCartBtn
             cartItems={props.cartItems}
-            cartProducts= {props.cartProducts}
+            cartProducts={props.cartProducts}
             item={props.item}
-            token = {props.token}
-            isAuthenticated = {props.isAuthenticated}
-            showAlarmWindowAction={props.showAlarmWindowAction} 
+            token={props.token}
+            isAuthenticated={props.isAuthenticated}
+            showAlarmWindowAction={props.showAlarmWindowAction}
             addItemToCartItem={props.addItemToCartItem} />
           {favorite ?
             <div className="icon-button-favorite  pointer hoverscalein" onClick={async () => { await ToggleFavorite(props.item._id); }}>
@@ -127,8 +131,8 @@ const MenuItem = (props) => {
               <AddFavorite /></div>
           }
         </div>
-      
-        
+
+
       </div>
 
 
@@ -145,15 +149,15 @@ const MenuItem = (props) => {
 }
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
-  fetchCart:async (cartItems,token,isAuthenticated)=>dispatch(await actions.fetchCart(cartItems,token,isAuthenticated)) ,
+  fetchCart: async (cartItems, token, isAuthenticated) => dispatch(await actions.fetchCart(cartItems, token, isAuthenticated)),
 
-  addItemToCartItem: (item, items, token, isAuthenticated) => dispatch(Cartactions.addItemToCartItem(item, items , token, isAuthenticated)),
+  addItemToCartItem: (item, items, token, isAuthenticated) => dispatch(Cartactions.addItemToCartItem(item, items, token, isAuthenticated)),
   favoriteListAction: (token) => dispatch(actions.fetchFavorites(token)),
   refreshToken: (token, refreshToken) => dispatch(actions.refreshToken(token, refreshToken)),
   showAlarmWindowAction: (btns, title) => dispatch(actions.showAlarmWindowAction(btns, title)),
   hideAlarmWindowAction: () => dispatch(actions.hideAlarmWindowAction()),
   toggleHintBox: (msg) => dispatch(actions.toggleHintBox(msg)),
-  
+
 });
 const mapStateToProps = (state) => {
   return {

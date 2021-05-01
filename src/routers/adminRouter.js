@@ -97,7 +97,7 @@ router.post('/api/admin/login', async (req,res)=>{
        res.send({adminToLogin , token})
    } catch (error) {
        // console.log(error);
-        
+        console.log("er"+error);
        return res.status(403).json({
             error: 'Email or Password is invalid'
             

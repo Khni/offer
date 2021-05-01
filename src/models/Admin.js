@@ -129,13 +129,16 @@ adminSchema.statics.verifyAdmin = async (password)=>{
 
 //login verify
 adminSchema.statics.loginVerify = async (email,password)=>{
+    console.log("em"+ email);
+    const admins = await Admin.find({})
+    console.log("admins"+JSON.stringify(admins) );
     const adminLogin = await Admin.findOne({email: email})
     if (!adminLogin) {
-        throw new Error('unable to Login') 
+        throw new Error('unable to Login not found') 
     }
     const isTruePassword = await bcrypt.compare(password, adminLogin.password)
     if (!isTruePassword) {
-     throw new Error('unable to Login') 
+     throw new Error('unable to Login password') 
     }
  
     

@@ -11,10 +11,13 @@ $speed: 500ms;
 
 /* makes sure that the padding and border
  are included in the total width and height of the elements. */
-
+* {
+  box-sizing: border-box;
+}
 
 html, body {
 margin: 0;
+padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
  height: 100%;
