@@ -6,7 +6,12 @@ import * as RiIcons from 'react-icons/ri';
 
 export const SidebarData = [
   {
-    title: 'Overview',
+    title: 'My Account',
+    path: '/myaccount',
+    icon: <FaIcons.FaCartPlus />
+  },
+  {
+    title: 'Fashion',
     path: '/overview',
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -14,19 +19,19 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Users',
+        title: 'Men',
         path: '/overview/users',
         icon: <IoIcons.IoIosPaper />
       },
       {
-        title: 'Revenue',
+        title: 'Women',
         path: '/overview/revenue',
         icon: <IoIcons.IoIosPaper />
       }
     ]
   },
   {
-    title: 'Reports',
+    title: 'MakeUp',
     path: '/reports',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -34,29 +39,20 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Reports',
+        title: 'Hair',
         path: '/reports/reports1',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav'
       },
       {
-        title: 'Reports 2',
+        title: 'Skin',
         path: '/reports/reports2',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav'
-      },
-      {
-        title: 'Reports 3',
-        path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />
       }
     ]
   },
-  {
-    title: 'Products',
-    path: '/products',
-    icon: <FaIcons.FaCartPlus />
-  },
+
   {
     title: 'Team',
     path: '/team',
