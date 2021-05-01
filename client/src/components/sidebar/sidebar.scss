@@ -15,11 +15,12 @@ $darkfont: rgba(0, 0, 0, 0.54);
   width: 250px;
   position: fixed;
   top: 0px;
+  padding: 5px;
   // overflow: scroll;
 
   right: $right;
   left: $left;
-  background: black;
+  background: #252831;
   
   z-index: 200;
   transition: 1s ease;
