@@ -28,6 +28,8 @@ $dicoraction: "line-through";
 
 .item-title-menu-item {
 	display: flex;
+	height: 49px;
+    overflow: hidden;
 
 	font-size: 15px;
 	/*font-weight: bold;*/
@@ -39,18 +41,23 @@ $dicoraction: "line-through";
 .item-before-price {
 	display: flex;
 
-	text-decoration: $dicoraction;
+	text-decoration: line-through;
 	color: red;
 	font-size: 15px;
 	margin: 0px;
 	padding: 0px;
+	
+}
+.prices {
+	margin: 5px;
 }
 .item-price {
 	display: flex;
 	margin: 0px;
 	padding: 0px;
 	font-size: 15px;
-	/*font-weight: bold;*/
+	
+	font-weight: bold;
 }
 
 .item-img {

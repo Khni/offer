@@ -106,12 +106,12 @@ const MenuItem = (props) => {
           <p className="item-title-menu-item">{props.item.nameEn.substr(0, 90)} </p>
 
 
+       <div className="prices"> 
+          <p className="item-before-price">   {Math.floor(props.item.price * 1.23)}   EGP </p>
 
-          <p className="item-before-price">   {props.item.price * 1.23}   EGP </p>
+          <p className="item-price">Price:   {props.item.price}  EGP  </p>
 
-          <p className="item-price">  {props.item.price}  EGP  </p>
-
-
+          </div>
         </div>
         <div className="flex-row ">
 

@@ -6,31 +6,31 @@ import { connect } from 'react-redux';
 import AdjustItemCount from './adjustItemCount'
 const AddToCartBtn = (props) => {
 
-    
+
     const [ProductQty, setProductQty] = useState(null)
     const [ProductCart, setProductCart] = useState(null)
 
-    useEffect(() => {
-        
+    // useEffect(() => {
 
-        const fetching = async () => {
-            await props.fetchCart(props.cartItems, props.token, props.isAuthenticated)
 
-        }
-        fetching();
-    }, [ProductQty])
+    //     const fetching = async () => {
+    //         await props.fetchCart(props.cartItems, props.token, props.isAuthenticated)
+
+    //     }
+    //     fetching();
+    // }, [ProductQty])
 
 
     useEffect(() => {
         (async () => {
-          await props.fetchCart(props.cartItems,props.token,props.isAuthenticated)
-          console.log("cartitems local: "+JSON.stringify(props.cartItems));
-          console.log("cartProducts useeffect" + JSON.stringify(props.cartProducts) );
+            await props.fetchCart(props.cartItems, props.token, props.isAuthenticated)
         })()
-       
-      }, [props.cartItems]);
+
+    }, [props.cartItems]);
 
     useEffect(() => {
+
+        
 
         const product = props.ProductsOfCart.find(product => product._id == props.item._id)
         if (product) {
@@ -41,10 +41,6 @@ const AddToCartBtn = (props) => {
             setProductQty(0)
 
         }
-
-
-        console.log("ProductOfCart second" + JSON.stringify(props.ProductsOfCart));
-
 
     }, [props.ProductsOfCart])
 
@@ -62,7 +58,7 @@ const AddToCartBtn = (props) => {
             onClick: () => { }
         },
     ]
-    
+
     const addItem = () => {
         console.log("token from btn" + props.token);
         props.addItemToCartItem(props.item, props.cartItems, props.token, props.isAuthenticated)
@@ -77,20 +73,20 @@ const AddToCartBtn = (props) => {
 
 
         <div>
-           
-            {!ProductCart  ? <button type="submit" className="custum-btn-form"
+
+            {!ProductCart ? <button type="submit" className="custum-btn-form"
                 onClick={addItem}
             >ADD TO CART</button> : <AdjustItemCount
 
-            cartItems={props.cartItems}
-            cartProducts={props.cartProducts}
-            isAuthenticated={props.isAuthenticated}
-            token={props.token}
-            item={props.item}
-            ProductQty={ProductQty} 
-            isLoading={props.isLoading}
+                cartItems={props.cartItems}
+                cartProducts={props.cartProducts}
+                isAuthenticated={props.isAuthenticated}
+                token={props.token}
+                item={props.item}
+                ProductQty={ProductQty}
+                isLoading={props.isLoading}
 
-/>}
+            />}
 
 
 
